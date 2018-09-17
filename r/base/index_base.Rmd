@@ -1,0 +1,9 @@
+\newpage
+
+```{r child = "base.Rmd"}
+```
+
+\newpage
+
+```{r child = "RPackage.Rmd"}
+```

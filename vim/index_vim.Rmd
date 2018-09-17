@@ -1,0 +1,40 @@
+# vim
+
+```{r child = "settings.md"}
+```
+
+\newpage
+
+```{r child = "usage.md"}
+```
+
+\newpage
+
+```{r child = "base.md"}
+```
+
+\newpage
+
+```{r child = "files.md"}
+```
+
+\newpage
+
+```{r child = "patterns.md"}
+```
+
+\newpage
+
+```{r child = "autocompletion.md"}
+```
+
+\newpage
+
+```{r child = "ex.md"}
+```
+
+\newpage
+
+```{r child = "plugins/plugins_index.Rmd"}
+```
+

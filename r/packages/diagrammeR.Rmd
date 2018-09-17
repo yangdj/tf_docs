@@ -1,0 +1,7 @@
+## DiagrammeR
+
+you can visit the following sites for details:
+
+* [DiagrammeR-github](https://github.com/rich-iannone/DiagrammeR)
+* [DiagrammeR-docs](http://rich-iannone.github.io/DiagrammeR/docs.html)
+* [mermaid-docs](https://mermaidjs.github.io/)

@@ -1,0 +1,19 @@
+\newpage
+
+```{r child = "rmarkdown.Rmd"}
+```
+
+\newpage
+
+```{r child = "dplyr.Rmd"}
+```
+
+\newpage
+
+```{r child = "diagrammeR.Rmd"}
+```
+
+\newpage
+
+```{r child = "ggplot2.Rmd"}
+```

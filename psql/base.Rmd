@@ -1,0 +1,26 @@
+# postgresql
+
+docs:
+
+* [PostgreSQL 10 Documentation](https://www.postgresql.org/docs/10/static/index.html)
+
+## commands
+
+* `\connect dbname` - switch to the `dbname` database
+* `\du` - list roles
+* `\l` - list databases
+* `\dn` - list schemas
+* `\dt` - list tables
+
+## sql
+
+    create role django login password 'django';
+    drop role django;
+    alter role django set search_path = django, foo, ...
+    alter role django createdb;
+
+    create database django owner django;
+    drop database django;
+
+    create schema django authorizaiton django;
+    drop schema django;

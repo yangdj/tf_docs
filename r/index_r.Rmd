@@ -1,0 +1,14 @@
+# R
+
+```{r child = "base/index_base.Rmd"}
+```
+
+\newpage
+
+```{r child = "packages/index_packages.Rmd"}
+```
+
+\newpage
+
+```{r child = "stat/index_stat.Rmd"}
+```

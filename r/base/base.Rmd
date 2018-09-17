@@ -1,0 +1,9 @@
+## R base
+
+### functions
+
+* getwd()
+* setwd()
+* `dim()`
+* `attr()`
+* `View()`
