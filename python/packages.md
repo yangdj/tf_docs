@@ -5,6 +5,7 @@
 * `psycopg2-binary` - postgresql
 * `mysqlclient` - mysql
 * `pymssql` - sqlserver
+* `pyhive[hive]` - hive
 * `pgcli` - `command line tool for postgresql`
 * `mycli` - `command line tool for mysql`
 
@@ -14,6 +15,11 @@ to install `pymssql`, you may have to:
     yum install unixODBC-devel # for sql.h
     pip install pymssql
     prefix - mssql+pymssq
+
+to install `pyhive[hive]`, you may have to:
+
+    yum install cyrus-sasl-devel
+    yum install cyrus-sasl-plain
 
 2. data processing:
 
