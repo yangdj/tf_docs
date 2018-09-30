@@ -21,6 +21,8 @@ to install `pyhive[hive]`, you may have to:
     yum install cyrus-sasl-devel
     yum install cyrus-sasl-plain
 
+when meets `'TSaslClientTransport' object has no attribute 'readAll'`, reinstall `thrift-sasl`
+
 2. data processing:
 
 * `line_profiler`
