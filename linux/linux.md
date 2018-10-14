@@ -12,8 +12,13 @@ you can specify:
 * `1G` for `/boot` using **standard partition** and **xfs** filesystem
 * `/`, `/home`, `swap` using **lvm** and **xfs** file system, specify storage file according to your system
 
-### Configuration
+### User and Group
 
-## User and Group
+* `adduser demo`
+* `passwd demo`
+* `gpasswd -a username wheel`: by default, on centos7, users belong to the *wheel* group are allowed to use the `sudo` command
 
-* `adduser demo`, `passwd demo`, `gpasswd -a username wheel`
+### login
+
+* `systemctl set-default multi-user.target`- login as text mode
+* `systemctl set-default graphical.target`- login as graphical mode
