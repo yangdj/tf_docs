@@ -6,26 +6,36 @@
   title: "title-name"
   author: "author-name"
   date: "3000-01-01"
-  urlcolor: black
-  linkcolor: blank
-  fontsize: 12pt
-  geometry: margin = 1in
   output: 
     pdf_document:
+      fontsize: 12pt
+      urlcolor: black
+      linkcolor: black
       latex_engine: xelatex
       includes:
-        in_header: tex/header.tex
+        in_header: tex/header.tex or ["a.file", "b.file", ...]
+        before_body: doc-prefix.tex
+        after_body: doc-suffix.tex
       highlight: tango
-      fig_caption: yes
-      number_sections: yes
-      keep_tex: yes
+      fig_caption: true
+      number_sections: true
+      keep_tex: true
+      template: template.tex
+      toc: true
+      toc_depth: 3
+      df_print: kable
+    html_document:
       toc: yes
       toc_depth: 3
-      template: template.tex
-    html_document:
+      toc_float: true
+      number_sections: true
+      css: file.css
+    word_document:
+      reference_docx: ref.docx
 ```
 
 explains:
+
 
 * `in_header: [tex1.tex, tex2.tex]`: include several tex files, you can use .
 * `urlcolor` specify external color
@@ -41,12 +51,12 @@ explains:
 
 explains:
 
-* `echo = FALSE`: hide r source code
-* `resutls = "hide"`: hide text output
 * `warning = FALSE`: hide warnings
 * `message = FALSE`: hide messages
-* `include = FALSE`: hide everything, the code is evaluated
+* `echo = FALSE`: hide r source code
 * `eval = FALSE`: not evaluate code
+* `resutls = "hide"`: hide text output
+* `include = FALSE`: hide everything, the code is evaluated
 * `fig.path="figs/"`
 * `fig.width = 12`
 * `fig.height = 8`

@@ -5,3 +5,57 @@ you can visit the following sites for details:
 * [DiagrammeR-github](https://github.com/rich-iannone/DiagrammeR)
 * [DiagrammeR-docs](http://rich-iannone.github.io/DiagrammeR/docs.html)
 * [mermaid-docs](https://mermaidjs.github.io/)
+
+
+```{r setup, include = FALSE}
+    library(DiagrammeR)
+    library(dplyr)
+```
+
+### flowchart
+
+node directions:
+
+* TB,TD - top bottome
+* BT - bottom top
+* RL - right left
+* LR - left right
+
+node shapes:
+
+* id[start now] - rectangle
+* id(start now) - with round edges
+* id((start now)) - circle
+* id>start now] - asymmetric
+* id{start now} - rhombus
+
+node links:
+
+* `-->` - arrow head
+* `---` - open link
+* `a-- this is the text ---b` or `a---|this is the text|b`- text on open links
+* `a-- this is the text -->b` or `a-->|this is the text|b`- text on arrow head links
+* `a-.->b` - dotted
+* `a-. text .->` - dotted with text
+* `a ==> b` - thick link
+* `a == text ==> b` - thick link with text
+
+subgraphs:
+
+    subgraph title
+        graph definition
+    end
+
+
+
+
+```{r example}
+    DiagrammeR("graph TB
+                    id1[start now] -- arrow head --> rectangle
+                    id2(start now) -- open link --- round
+                    id3((start now)) -. dotted .-> circle
+                    id4>start now] == thick link ==> asymmetric
+                    id5{start now} --> rhombus
+               ")
+
+```
