@@ -59,3 +59,134 @@ subgraphs:
                ")
 
 ```
+
+### graphviz
+
+graph:
+
+* layout:
+    * dot
+    * neato
+    * twopi
+    * circo
+* rankdir:
+    * LR
+    * TB
+* overlap:
+    true
+    false
+
+node attributes:
+
+* color
+* fillcolor
+* fontcolor
+* alpha
+* shape
+    * oval - default
+    * diamond
+    * egg
+    * plaintext
+    * point
+    * square
+    * triangle
+* style:
+    * filled
+* sides
+* peripheries
+* fixedsize
+* height
+* width
+* distortion
+* penwidth
+* x
+* y
+* tooltip
+* fontname
+* fontsize
+* icon
+
+edge attributes:
+
+* arrowsize
+* arrowhead
+    * normal - default
+    * box
+    * crow
+    * curve
+    * diamond
+    * dot
+    * inv
+    * none
+    * tee
+    * vee
+* arrowtail
+* dir
+* color
+* alpha
+* headport
+* tailport
+* fontname
+* fontsize
+* fontcolor
+* penwidth
+* minlen
+* tooltip
+
+```{r}
+    grViz("
+          digraph boxes_and_circles {
+            # a 'graph' statement
+            graph [overlap = true, fontsize = 10]
+            
+            node [shape = box,
+                  fontname = Helvetica]
+            A; B; C; D; E; F
+            
+            node [shape = circle,
+                  fixedsize = true,
+                  width = 0.9]
+            1; 2; 3; 4; 5; 6; 7; 8
+
+            A->1 B->2 B->3 B->4 C->A
+            1->D E->A 2->4 1->5 1->F
+            E->6 4->6 5->7 6->7 3->8
+          }
+          ")
+```
+
+```{r}
+    grViz("
+          digraph nicegraph {
+            graph [compound = true, nodesep = .5, ranksep = .25,
+                    color = crimson]
+            
+            node [fontname = Helvetica, fontcolor = darkslategray
+                    shape = rectangle, fixedsize = true, width = 1,
+                    color = darkslategray]
+
+            edge [color = grey, arrowhead = none, arrowtail = none]
+
+            subgraph cluster0 {
+                node [fixedsize = true, width = 3]
+                '@@1-1' -> '@@1-2' -> '@@1-3' -> '@@1-4'
+                '@@1-4' -> '@@1-5' -> '@@1-6' -> '@@1-7'
+            }
+
+            subgraph cluster1 {
+                node [fixedsize = true, width = 3]
+                '@@2' -> '@@3'
+            }
+
+            information [width = 1.5]
+            information -> R
+            information -> RStudio
+            R -> '@@1-1' [lhead = cluster0]
+            RStudio -> '@@2' [lhead = cluster1]
+          }
+
+[1]: paste0(names(R.Version())[1:7], ':\\n ', R.Version()[1:7])
+[2]: paste0('RStudio version:\\n ', rstudioapi::versionInfo()$version)
+[3]: paste0('Current program mode:\\n ', rstudioapi::versionInfo()[[2]])
+          ")
+```
