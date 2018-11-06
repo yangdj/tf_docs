@@ -6,6 +6,11 @@ install following packages before using:
 * `dplyr`: just dplyr
 * `dbplyr`: work with remote database tables
 
+see the docs:
+
+* `vignette("programming")`
+* `https://bookdown.org/Tazinho/Advanced-R-Solutions/`
+
 ### operations
 
 * `%>%`: data pipe
@@ -37,6 +42,8 @@ install following packages before using:
 * `rename()`: keeps all variables, rename specified variables
 
 * `filter()`: picks cases based on their values
+
+* `slice()`: select row by position, `slice(data, 1:12)`
 
 * `summarise()`: reduces multiple values down to a single summary
     * inside functions

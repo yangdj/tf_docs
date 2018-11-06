@@ -1,0 +1,60 @@
+## R regular expression
+
+for extended regular expressions:
+
+* `\`
+* `|`
+* `^`
+* `$`
+* `.`
+* `[`
+* `*`
+* `+`
+* `?`
+* `{`
+* `()`
+* `\N` - N = 1 ... 9
+
+appending `?` to `* ? + {}`, that is `*? +? ?? {}?` will use minimal  repetition, otherwise, greedy by default.
+
+the current implementation interprets following escaped character for special meaning:
+
+* `\a` - BEL
+* `\e` - ESC
+* `\t` - TAB
+* `\n` - LF
+* `\f` - FF
+* `\r` - CR
+
+the following named classes are predefined, and interpreted by POSIX locale:
+
+* `[:digit:]` - `0-9`
+* `[:xdigit:]` - `0-9`, `a-f`, `A-F`
+* `[:lower:]` - lower-case letters in the current locale
+* `[:upper:]` - upper-case letters in the current locale
+* `[:alpha:]` - `[:lower:]` and `[:upper:]`
+* `[:alnum:] - `[:alpha:]` and `[:digit:]`
+* `[:cntr:]` - in ASCII, include octal codes `000` through `037`, and `177(DEL)`.  In another character set, these are the equivalent characters, if any.
+* `[:space:]` - tab, newline, vertical tab, form feed, carriage return, space and possibly other locale-dependent characters
+* `[:blank:]` - space and tab, and possibly other locale-dependent characters such as non-breaking space
+* `[:punct:]` - `~ ! @ # $ % & ^ * ( ) - _ + = { } [] | \ : ; " '  <  > . , ? /`
+* `[:graph:]`- `[:alnum:]` and `[:punct:]`
+* `[:print:]` - `[:alnum:], `[:punct:]` and space
+
+most metacharacters lose their meaning inside a character class. Only `^ - \ ]` are special inside character classes:
+
+* To include a literal `]`, place it first in the list
+* to include a literal ^, place it anywhere but first
+* to include a literal -, place it first or last (or, for perl = TRUE only, precede it by a backslash)
+
+the shortcut for character classes:
+
+* `\w` - match a 'word` character`([[:alnum:]])`
+* `\W` - negation of `\w``([^[:alnum:]])`
+* `\d` - for digits
+* `\D` - negation of `\d`
+* `\s` - for space classes
+* `\S` - negation of `\s`
+* `\< \>` - match the empty string at the beginning and end of a word
+* `\b` - match the empty string at either edge of a word
+* `\B` - match the empty string provided it is not at an edge of a word
