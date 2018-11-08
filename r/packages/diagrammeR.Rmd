@@ -78,32 +78,37 @@ graph:
 
 node attributes:
 
-* color
+* color - provide an X11 or hexadecimal color (append 2 digits to hex for alpha)
 * fillcolor
 * fontcolor
 * alpha
+* fontname
+* fontsize
 * shape
     * oval - default
+    * square
+    * box
+    * circle
     * diamond
     * egg
     * plaintext
     * point
-    * square
     * triangle
-* style:
+    * polygon
+* style - usually given the value filled if you'd like to fill a node with a colors
     * filled
-* sides
-* peripheries
+* penwidth
+* sides - if `shape = polygon`, the number of sides can be provided here
+* distortion - the node distortion for any `shape = polygon`
+* peripheries - the number of peripheries (essentially, additional shape outlines)
 * fixedsize
+    * true
+    * false
+* x - the x position of the node (requires graph attr layout = neato to use)
+* y - the y position of the node (requires graph attr layout = neato to use)
 * height
 * width
-* distortion
-* penwidth
-* x
-* y
 * tooltip
-* fontname
-* fontsize
 * icon
 
 edge attributes:
@@ -121,16 +126,21 @@ edge attributes:
     * tee
     * vee
 * arrowtail
-* dir
 * color
+* dir - direction
+    * forward
+    * back
+    * both
+    * none
 * alpha
 * headport
 * tailport
 * fontname
 * fontsize
 * fontcolor
+* label - label text for the line between nodes
 * penwidth
-* minlen
+* minlen - minimum rank distance between head and tail
 * tooltip
 
 ```{r}
@@ -189,4 +199,91 @@ edge attributes:
 [2]: paste0('RStudio version:\\n ', rstudioapi::versionInfo()$version)
 [3]: paste0('Current program mode:\\n ', rstudioapi::versionInfo()[[2]])
           ")
+```
+
+```{r nodes}
+node1 <- 
+    create_node_df(
+        n = 4,
+        type = "lower",
+        label = c(2384, 3942, 8362, 2194),
+        style = "filled",
+        color = "aqua",
+        shape = c("circle", "circle", "rectangle", "rectangle"),
+        data = c(3.5, 2.6, 9.4, 2.7)
+    )
+
+node2 <- 
+    create_node_df(
+        n = 4,
+        type = "upper",
+        label = as.character(1:4),
+        style = "filled",
+        color = "red",
+        shape = "triangle",
+        data = c(0.5, 3.9, 3.7, 8.2)
+    )
+
+edge1 <- 
+    create_edge_df(
+        from = c(1, 1, 2, 3),
+        to = c(2, 4, 4, 1),
+        rel = "requires",
+        color = "green",
+        data = c(2.7, 8.9, 2.6, 0.6)
+    )
+
+edge2 <-
+    create_edge_df(
+        from = c(5, 7, 8, 8),
+        to = c(7, 8, 6, 5),
+        rel = "receives",
+        arrowhead = "dot",
+        color = "red"
+    )
+
+node1 <- create_node_df(
+    n = 10,
+    type="n1",
+    label = TRUE
+)
+
+edge1 <- create_edge_df(
+    from = 1:9,
+    to = 2:10,
+    rel = "edge1"
+)
+
+graph1 <- 
+    create_graph(
+        nodes_df = node1,
+        edges_df = edge1
+    )
+
+node2 <-
+    create_node_df(
+        n = 10,
+        type="node2",
+        label=as.character(11:20)
+    )
+
+edge2 <- 
+    create_edge_df(
+        from = 1:9,
+        to = 2:10,
+        rel="edge2"
+    )
+
+graph2 <- 
+    create_graph(
+        nodes_df = node2,
+        edges_df = edge2
+    )
+
+extra_edge <- 
+    create_edge_df(
+        from = c(5, 19, 1),
+        to = c(12, 3, 11),
+        rel = "extra"
+    )
 ```
