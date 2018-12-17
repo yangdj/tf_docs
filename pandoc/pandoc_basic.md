@@ -50,9 +50,3 @@ for `pdf` output, you'll need to have `LaTeX` installed:
 * texlive on Linux
 
 and install some fonts, e.g., `STSong` for `centos`:
-
-    cd /usr/share/fonts && mkdir STSong && cd STSong
-    mv STSong.ttf .
-    sudo mkfontscale
-    sudo mkfontdir
-    fc-cache -fv
