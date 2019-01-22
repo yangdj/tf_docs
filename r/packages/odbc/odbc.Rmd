@@ -1,0 +1,49 @@
+## odbc
+
+[odbc](https://github.com/r-dbi/odbc) is a DBI-compliant interface to "Open Database Connectivity" (ODBC) drivers, and built on the [nanodbc](http://nanodbc.lexicalunit.com/) C++ library.
+
+### installation
+
+first, install the driver manager `unixODBC`:
+
+```bash
+  yum install unixODBC unixODBC-devel
+```
+then, use `odbcinst -j` to find the configuration locations. after that, register drivers in the file `/etc/odbcinst.ini` or `~/.odbcinst.ini`, which can be added manually, or use `odbcinst -i -d -f template.ini`, see `man 5 odbcinst.ini`.
+
+drivers for different databases should be installed separately:
+
+```bash
+# for postgresql
+yum install postgresql-odbc
+
+# for mysql/mariadb
+# yum install mysql-connector-odbc: this may cause invalid pointer error, use the following method method
+wget https://dev.mysql.com/get/Downloads/Connector-ODBC/8.0/mysql-connector-odbc-8.0.14-1.el7.x86_64.rpm
+rpm -ivh mysql-connector-odbc-8.0.14-1.el7.x86_64.rpm
+# or directly use mariadb odbc, recommended
+wget https://downloads.mariadb.com/Connectors/odbc/connector-odbc-3.0.8/mariadb-connector-odbc-3.0.8-ga-rhel7-x86_64.tar.gz
+tar xf mariadb-connector-odbc-3.0.8-ga-rhel7-x86_64.tar.g
+cp lib64/libmaodbc.so /usr/lib64/
+
+# for hive
+# download from https://www.cloudera.com/downloads/connectors/hive/odbc/2-6-1.html
+rpm -ivh ClouderaHiveODBC-2.6.1.1001-1.x86_64.rpm
+
+# for sqlite3.0
+wget https://www.devart.com/odbc/sqlite/devart-odbc-sqlite.x86_64.rpm
+rpm -ivh devart-odbc-sqlite.x86_64.rpm
+
+```
+
+finally, configure DSN file in `/etc/odbc.ini` or `~/.odbc.ini`.
+
+### usage
+
+use `DBI::id(schema="schema_name", table="table_name")` to refer to table name when needed in the following `DBI` functions:
+
+* `dbReadTable()`
+* `dbExistsTable()`
+* `dbWriteTable()`
+* `dbRemoveTable()`
+* `...() for added`
