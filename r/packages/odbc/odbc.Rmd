@@ -40,10 +40,63 @@ finally, configure DSN file in `/etc/odbc.ini` or `~/.odbc.ini`.
 
 ### usage
 
+#### connections
+
+use `con <- DBI::dbConnect()` to connect databases, the arguments are:
+
+- drv - the first argument, and the value can be:
+    - `odbc::odbc()` (recommended)
+    - `RSQLite::SQLite()`
+    - `RMariaDB::MariaDB()` (recommended) or `RMySQL::MySQL()`
+    - `RPostgres::Postgres()`(recommended) or `RPostgreSQL::PostgreSQL()`
+        - for Windows, using `RPostgreSQL::postgresqlpqExec(con, "SET client_encoding = 'GBK'")` to change encoding
+- dsn for odbc
+- .connection_string - see [The Connection Strings](https://www.connectionstrings.com/)
+- user
+- password - using `config` package to retrieve the value
+- host
+- port
+- dbname
+    - `:memory:` or a `path` for SQLite
+
+after finished, using `DBI::dbDisconnect(con)` to close the connection.
+
+#### table operations
+
 use `DBI::id(schema="schema_name", table="table_name")` to refer to table name when needed in the following `DBI` functions:
 
-* `dbReadTable()`
 * `dbExistsTable()`
+* `dbReadTable()`
 * `dbWriteTable()`
 * `dbRemoveTable()`
 * `...() for added`
+
+for `RPostgres` or `RPostgreSQL`, can also use `c("schemaname", "tablename")`to specify table name when `schema` is needed, e.g., `DBI::dbReadTable()`, `DBI::dbWriteTable()`, `DBI::dbRemoveTable()`. and use `in_schema("schemaname", "tablename")` for `dbplyr` package.
+
+#### queries
+
+* `DBI::dbGetQuery()` - send query, retrieve results and the clear result set, best for interactive use
+
+* `DBI::dbSendQuery()` - execute a query, for `select` queries only, then use `dbFetch()` to extract records, after finishing, clear it with `dbClearResult()`. best for interactive use
+
+* `DBI::dbExecute()` - execute an update statement, query number of rows affected, and then close result set, best for interactive use
+
+* `DBI::dbSendStatement ()` - execute a data manipulation (e.g., `update`, `delete`, `insert into`, `drop table`, ...). use `dbGetRowsAffected()` to query the number of rows affected on the returned result object, finally call `dbClearResult()`. prefer `dbExecute()` for interactive use
+
+* `DBI::dbBegin()` `DBI::dbCommit()` `DBI::dbRollback()` - for transactions
+
+* `DBI::dbHasCompleted()` - whether an operation has completed. a `select` query is completed if all rows have been fetched and a data manipulation statement is always completed
+
+* `DBI::dbListTables()` - list remote tables, but can not specify `schema`, so use `dbGetQuery()` to list tables for special schema when using postgresql database
+
+* `DBI::dbListFields()` - list field names of a remote table
+
+#### reference
+
+* [DBI github](https://github.com/r-dbi/DBI)
+* [DBI for R](https://www.r-dbi.org/)
+* [DBI vignettes](https://cran.r-project.org/web/packages/DBI/vignettes/DBI-1.html)
+* [DBI specification](https://cran.r-project.org/web/packages/DBI/vignettes/spec.html)
+* [Databases using R](https://db.rstudio.com/)
+* [Introduction to dbplyr](https://dbplyr.tidyverse.org/articles/dbplyr.html)
+* [Introduction to config](https://cran.r-project.org/web/packages/config/vignettes/introduction.html)
