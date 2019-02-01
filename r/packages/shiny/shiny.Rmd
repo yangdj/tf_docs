@@ -1,0 +1,99 @@
+## shiny
+
+### UI
+
+#### layout
+
+* shinyUI
+    * fluidPage
+        * `title = "app title"`
+        * `theme = "app.css(in www directory)"`
+        * titlePanel
+        * sidebarLayout
+            * `position = c("left", "right")`
+            * sidebarPanel
+            * mainPanel
+        * fluidRow
+            * column
+                * `offset = 1`
+                * wellPanel
+        * tabsetPanel
+            * tabPanel
+        * navlistPanel
+            * tabPanel
+    * navbarPage
+        * tabPanel
+        * navbarMenu
+            * tabPanel
+    * fixedPage
+        * fixedRow
+            * column
+
+* shinyServer(function(input, output){...})
+    * input$input_name
+    * output$output_name
+        
+#### widgets
+
+* radioButtons
+* selectInput
+* checkboxInput
+* checkboxGroupInput
+* textInput
+* helpInput
+* numericInput
+* sliderInput
+    * `ticks = FALSE`
+* dateInput
+* dateRangeInput
+* fileInput
+* actionButton
+* submitButton
+    
+#### output and render
+
+* plotOutput -> renderPlot
+* imageOutput -> renderImage
+* textOutput -> renderText
+* htmlOutput -> renderUI
+* uiOutput -> renderUI
+* verbatimTextOutput
+* tableOutput -> renderTable
+* dataTableOutput -> renderDataTable
+
+#### html elements
+
+add html elements inside `*Panel` functions. `tags` lists all the tag functions. any HTML tag attributes can be set as an argument inside the tag functions. e.g., `id="id", class="class-name"`
+
+* `p()`
+* `h[1-6]()`
+* `div()`
+* `span()`
+* `pre()`
+* `code()`
+* `a()`
+* `img()`
+* `strong()`
+* `emp()`
+* `br()`
+* `hr()`
+* `HTML()`
+
+
+### running
+
+```r
+  shinyApp(ui = ui, server = server)
+  
+  runApp("/app/dir")
+```
+
+### reference
+
+* [tutorials](https://shiny.rstudio.com/tutorial/sss)
+* [layout](https://shiny.rstudio.com/articles/layout-guide.html)
+* [widget values](http://shiny.rstudio.com/gallery/widget-gallery.html)
+* [shiny examples](https://github.com/rstudio/shiny-examples)
+* [modules](https://shiny.rstudio.com/articles/modules.htmlss)
+* [shinydashboard](https://rstudio.github.io/shinydashboard/)
+* [bootswatch](https://bootswatch.com/)
