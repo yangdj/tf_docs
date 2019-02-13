@@ -66,3 +66,7 @@ you can config in the `.vimrc` file:
     autocmd VimEnter *.sql DBCompleteTables
 
 then, after the `from` keyword, press `ctrl+x` followed by`ctrl+o`, the matching tables will be shown. scroll up and down the menu using `ctrl+n` and `ctrl-p`.
+
+## references
+
+[using-vim-as-a-sql-server-client](http://blog.gypsydave5.com/posts/2015/11/17/using-vim-as-a-sql-server-client/)

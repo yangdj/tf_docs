@@ -18,6 +18,7 @@ info` shows detailed information.
 
 * `docker network create sp-example-net`
     * `--subnet=192.168.187.0/24`
+* `docker network rm sp-example-net`
 * `docker run` runs an docker image.
     * `it` - run in the foreground
     * `-d` - run in the background
@@ -50,6 +51,7 @@ the following stages are used to push an exsiting image to docker hub:
 
 * `docker exec -it <container-id> bash` starts a bash shell in the specified
 container.
+* `docker exec d2c027ea0d37 curl http://localhost:20000` - checks whether the container is working
 * `docker commit` saves the modified container as an new image
     * `4a6a528b35da` - the hash for the version of the container
     * `verse_gapminder` - the new name for the image
