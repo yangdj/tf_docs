@@ -97,3 +97,4 @@ add html elements inside `*Panel` functions. `tags` lists all the tag functions.
 * [modules](https://shiny.rstudio.com/articles/modules.htmlss)
 * [shinydashboard](https://rstudio.github.io/shinydashboard/)
 * [bootswatch](https://bootswatch.com/)
+* [DT](https://rstudio.github.io/DT/)
