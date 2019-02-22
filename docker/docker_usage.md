@@ -14,7 +14,7 @@ info` shows detailed information.
 * `docker save` saves an existing docker image for backup, and `docker load` loads a backup image.
 
         docker save verse_gapminder > verse_gapminder.tar
-        docker load --input verse_gapminder
+        docker load --input verse_gapminder.tar
 
 * `docker network create sp-example-net`
     * `--subnet=192.168.187.0/24`

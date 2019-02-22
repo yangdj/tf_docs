@@ -49,6 +49,17 @@
 * fileInput
 * actionButton
 * submitButton
+* downloadButton
+
+
+        output$downloadData <- downloadHandler(
+            filename = function() {
+              paste0("file-", Sys.Date(), ".csv")
+              },
+            content = function(file) {
+              write_excel_csv(dataInput(), file, na = "")
+            }
+        )
     
 #### output and render
 
@@ -59,7 +70,7 @@
 * uiOutput -> renderUI
 * verbatimTextOutput
 * tableOutput -> renderTable
-* dataTableOutput -> renderDataTable
+* DTOutput -> renderDT
 
 #### html elements
 
@@ -93,6 +104,7 @@ add html elements inside `*Panel` functions. `tags` lists all the tag functions.
 * [tutorials](https://shiny.rstudio.com/tutorial/sss)
 * [layout](https://shiny.rstudio.com/articles/layout-guide.html)
 * [widget values](http://shiny.rstudio.com/gallery/widget-gallery.html)
+* [shiny-cheatsheet](https://shiny.rstudio.com/images/shiny-cheatsheet.pdf)
 * [shiny examples](https://github.com/rstudio/shiny-examples)
 * [modules](https://shiny.rstudio.com/articles/modules.htmlss)
 * [shinydashboard](https://rstudio.github.io/shinydashboard/)
