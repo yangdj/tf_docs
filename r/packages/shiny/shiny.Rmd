@@ -48,7 +48,7 @@
 * dateRangeInput
 * fileInput
 * actionButton
-* submitButton
+* submitButton - choose to use `actionButton`
 * downloadButton
 
 
@@ -71,6 +71,16 @@
 * verbatimTextOutput
 * tableOutput -> renderTable
 * DTOutput -> renderDT
+
+#### server functions
+
+* `validate()`
+* `reactive()`
+* `reactiveValues()`
+* `observe()`
+* `isolate()`
+* `observeEvent()`
+* `eventReactive()`
 
 #### html elements
 
@@ -106,7 +116,9 @@ add html elements inside `*Panel` functions. `tags` lists all the tag functions.
 * [widget values](http://shiny.rstudio.com/gallery/widget-gallery.html)
 * [shiny-cheatsheet](https://shiny.rstudio.com/images/shiny-cheatsheet.pdf)
 * [shiny examples](https://github.com/rstudio/shiny-examples)
-* [modules](https://shiny.rstudio.com/articles/modules.htmlss)
+* [modules](https://shiny.rstudio.com/articles/modules.html)
+* [shiny css](https://shiny.rstudio.com/articles/css.html)
 * [shinydashboard](https://rstudio.github.io/shinydashboard/)
 * [bootswatch](https://bootswatch.com/)
 * [DT](https://rstudio.github.io/DT/)
+* [Using Action Buttons](https://shiny.rstudio.com/articles/action-buttons.html)
