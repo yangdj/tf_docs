@@ -1,15 +1,13 @@
 ## dplyr
 
-install following packages before using:
-
-* `tidyverse`: the whole tidyverse
-* `dplyr`: just dplyr
-* `dbplyr`: work with remote database tables
-
-see the docs:
+references:
 
 * `vignette("programming")`
-* `https://bookdown.org/Tazinho/Advanced-R-Solutions/`
+* [advanced R](http://adv-r.had.co.nz)
+* [advanced R book](https://adv-r.hadley.nz)
+* [advanced R solutions](https://bookdown.org/Tazinho/Advanced-R-Solutions/)
+* [Non standard evaluation from another function in R
+](https://stackoverflow.com/questions/30563745/non-standard-evaluation-from-another-function-in-r)
 
 ### operations
 
