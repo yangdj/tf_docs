@@ -100,6 +100,15 @@ add html elements inside `*Panel` functions. `tags` lists all the tag functions.
 * `hr()`
 * `HTML()`
 
+### static file
+
+```r
+addResourcePath("static", system.file("static", package="presR"))
+
+tags$head(
+    tags$link(rel = "stylesheet", type = "text/css", href = "static/css/presr.css")
+    )
+```
 
 ### running
 
