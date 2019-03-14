@@ -131,3 +131,4 @@ tags$head(
 * [bootswatch](https://bootswatch.com/)
 * [DT](https://rstudio.github.io/DT/)
 * [Using Action Buttons](https://shiny.rstudio.com/articles/action-buttons.html)
+* [fontawesome icon](https://fontawesome.com/icons?d=gallery)
