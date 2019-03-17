@@ -5,7 +5,8 @@ references:
 * `vignette("programming")`
 * [advanced R](http://adv-r.had.co.nz)
 * [advanced R book](https://adv-r.hadley.nz)
-* [advanced R solutions](https://bookdown.org/Tazinho/Advanced-R-Solutions/)
+* [advanced R book solutions](https://bookdown.org/Tazinho/Advanced-R-Solutions/)
+* [advanced R solutions](https://github.com/peterhurford/adv-r-book-solutions)
 * [Non standard evaluation from another function in R
 ](https://stackoverflow.com/questions/30563745/non-standard-evaluation-from-another-function-in-r)
 
