@@ -1,0 +1,90 @@
+---
+title: "xaringan: from scratch"
+subtitle: ""
+author: "Y"
+date: "2018-12-28 (updated `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, xaringan.css]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+# basics
+
+- three dash .red[`---`] indicates a new slide, and will not be rendered as a horizontal rule .red[`<hr />`]
+
+- two dash .red[`--`] adds content Incrementally
+
+- .red[`.class[content]`] styles the .red[content] with the specified .red[`class`]. for example, .red[.footnote[`.footnote[content]` leaves the content in the bottom place]].red[`.footnote[contents]`] leaves the content in the bottom place
+
+- fance code prefixed with a .red[`*`] will get highlighted with a yellow background,  which can brings attention to specific parts of code snippets when set .red[`highlightLines: true`]
+
+- for full reference, look the [remark.js](https://github.com/gnab/remark/wiki/Markdown#slide-properties), [xaringan](https://github.com/yihui/xaringan) and [book](https://bookdown.org/yihui/rmarkdown/xaringan.html)
+
+---
+layout: true
+
+# property
+
+---
+
+initial lines of a slide on a key-value format will be extracted as slide properties:
+
+- .red[`name: demo`] - gives the current slide an id .red[`demo`], which can be styled using .red[`#demo`], linked using .red[`[demo](#demo)`]
+
+- .red[`class: center, middle`] - classes current slide. the following are default classes
+  - left, center, right
+  - top, middle, bottom
+  - inverse
+  
+- .red[`background-image: url(image.jpg)`] - gives the current slide background image
+
+- .red[`count: true|false`] - whether counted
+
+---
+
+- .red[`template: {{ name}}`] - uses another slide as its template and append new content
+
+- .red[`layout: true|false`] - when .red[`true`], makes the current slide a layout slide, omitted from the slideshow and served as the default template for all subsequent slides. when .red[`false`], reverts to using no default template
+
+- .red[`exclude: true|false`] - hides a slide, a way to filter that slide out so that it is not used at all in rendering
+
+---
+layout: false
+
+# layout 1
+
+.pull-left[
+
+.red[`.pull-left[contents]`] floats contents on the left of the slide
+
+]
+
+.pull-right[
+
+.red[`.pull-right[contents]`] floats contents on the right of the slide
+
+]
+
+their width are same, both .red[`47%`] by default. they are best to show the comparable contents.
+
+---
+
+# layout 2
+
+they are best to show outlines on the left, and the contents on the right.
+
+.left-column[
+
+.red[`.left-column[contents]`] floats the contents to the left column with width .red[`20%`] by default
+
+]
+
+.right-column[
+
+.red[`.right-column[contents]`] floats the contents to the right column with width .red[`75%`] by default
+
+]

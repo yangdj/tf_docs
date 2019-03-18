@@ -1,6 +1,6 @@
 # YAML metadata
 
-```
+```yaml
 ---
 title: "title-name"
 subtitle: "subtitle-name"
