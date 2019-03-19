@@ -141,3 +141,4 @@
 * [github](https://github.com/ropensci/plotly)
 * [cookbook](https://plotly-r.com/index.html)
 * [plotly~ggplot2](http://ropensci.github.io/plotly/ggplot2/index.html)
+* [figure reference](https://plot.ly/r/reference/s)
