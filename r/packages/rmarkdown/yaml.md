@@ -2,9 +2,9 @@
 
 ```yaml
 ---
-title: "title-name"
-subtitle: "subtitle-name"
-author: "author-name"
+title: "title"
+subtitle: "subtitle"
+author: "author"
 date: "`r Sys.Date()`"
 output: 
   pdf_document:
@@ -35,8 +35,8 @@ output:
 ---
 ```
 
-explain:
+elements:
 
-* `in_header: [tex1.tex, tex2.tex]`: include several tex files, you can use
-* `urlcolor` specify external color
-* `linkcolor` specify internal link color.
+* `in_header: [tex1.tex, tex2.tex]` - tex files for styling
+* `urlcolor` - external link color
+* `linkcolor` - internal link color

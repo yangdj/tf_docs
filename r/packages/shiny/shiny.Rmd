@@ -120,6 +120,7 @@ tags$head(
 
 ### reference
 
+* [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
 * [tutorials](https://shiny.rstudio.com/tutorial/sss)
 * [layout](https://shiny.rstudio.com/articles/layout-guide.html)
 * [widget values](http://shiny.rstudio.com/gallery/widget-gallery.html)
