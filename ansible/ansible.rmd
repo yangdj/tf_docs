@@ -1,0 +1,72 @@
+# ansible
+
+## hosts
+
+edit(or create) inventory file `/etc/ansible/hosts` and put remote hosts in it, ip addresses or hostnames, like 
+
+```
+192.168.1.111
+aserver.example.com
+bserver.example.com
+```
+
+then, connect these hosts using ssh keys using:
+
+```bash
+ssh-copy-id 192.168.1.111
+ssh-copy-id aserver.example.com
+ssh-copy-id bserver.example.com
+```
+
+finally, test them, `all` means the default group name, containing all the hosts:
+
+```bash
+ansible all -a "bin/echo hello"
+```
+
+## commands
+
+`ansible`:
+
+* `-a --args` - module arguments
+* `-m --module-name` - module to use, default is `command`
+* `-u --user` - remote user to run the command, default to the host user
+* `-b --become` - remote user running with privilege escalation, e.g., with `sudo` power
+* `-K --ask-become-pass` - ask remote user for privilege escalation password
+
+## modules
+
+use `ansible-doc -l` to list available modules, and `ansible-doc module` for the ducumentation.
+
+* `shell` - support extended shell syntax like piping and redirects, the `command` module does not
+* `copy` - transfer file to servers
+* `file` - change ownership and permissions on files, and create directories, similar to `mkdir -p`, and delete directories(recursively) and delete files
+* `user` - user operations
+* `service` - manage services
+* `yum` - manage packages
+
+## playbooks
+
+using `ansible-playbook playbook.yml` to execute a playbook, 
+
+* `-K --ask-become-pass` - specify password to `sudo`
+* `-f --forks` - specify number of parallel processes to use
+* `--syntax-check` - check the syntax of a playbook
+* `--verbose` - list detailed output information
+* `--list-hosts` - list affected hosts by a playbook before running
+
+```yaml
+---
+- hosts: webserver
+  remote_user: username
+  become: yes
+  become_user: othername
+  become_method: sudo | su
+  vars:
+    workdir: /var/lib/ansible
+    logfile: /var/log/ansible-pull.log
+  tasks:
+     - name: test connection
+       ping:
+       remote_user: username
+```
