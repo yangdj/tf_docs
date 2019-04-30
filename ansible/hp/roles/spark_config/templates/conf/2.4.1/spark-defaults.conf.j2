@@ -1,0 +1,18 @@
+spark.master yarn
+spark.driver.memory 2g                                         
+spark.executor.memory 1g                                         
+spark.yarn.am.memory 1g                                         
+
+# need create spark.event.dir manually
+# hdfs dfs -mkdir -p /user/spark/eventlog
+spark.eventLog.enabled true                                       
+spark.eventLog.dir hdfs://{{ fs_defaultFS_host }}:9000/user/spark/eventlog   
+
+# hdfs dfs -put  $SPARK_HOME/jars/* /user/spark/jars/
+# spark.yarn.jars hdfs://{{ fs_defaultFS_host }}:9000/user/spark/jars/*
+
+# jar cv0f spark-libs.jar -C $SPARK_HOME/jars/ .
+# hdfs dfs -mkdir -p /user/spark/archive
+# hdfs dfs -put spark-libs.jar /user/spark/archive
+# spark.yarn.archive can overwrite spark.yarn.jars
+spark.yarn.archive hdfs://{{ fs_defaultFS_host }}:9000/user/spark/archive/spark-libs.jar

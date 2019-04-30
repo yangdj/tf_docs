@@ -1,0 +1,35 @@
+- name: create spark related directory
+  file:
+    path: "{{ item.value }}"
+    state: directory
+  loop: "{{ spark_base|dict2items }}"
+
+- name: generate spark configuration file to remote server
+  template:
+    src: "conf/{{ spark_version }}/{{ item }}.j2"
+    dest: "{{ spark_base.conf_version }}/{{item}}"
+  loop:
+    - slaves
+    - spark-defaults.conf
+
+- name: rsync spark source file to remote server
+  synchronize:
+    src: "spark-{{ spark_version }}"
+    dest: "{{ spark_base.bin }}"
+
+- name: configure spark environment
+  blockinfile:
+    path: "{{ hp_bashrc }}"
+    marker: "# {mark} spark variables"
+    block: |
+      export SPARK_HOME={{ spark_base.bin }}/spark-{{ spark_version }}
+      export SPARK_CONF_DIR={{ spark_base.conf }}/{{ spark_version }}
+      export SPARK_PID_DIR={{ spark_base.pid }}
+      export SPARK_LOG_DIR={{ spark_base.log }}
+      # when install spark free of hadoop jars, define SPARK_DIST_CLASSPATH
+      # export SPARK_DIST_CLASSPATH=$(hadoop classpath)
+      export PATH=${SPARK_HOME}/bin:${SPARK_HOME}/sbin:${PATH}
+      export SPARK_MASTER_HOST={{ spark_master_host }}
+      # avoid spark log saying ”Unable to load native-hadoop library for your
+      # platform, using builtin-java classes where applicable“  
+      export LD_LIBRARY_PATH=${HADOOP_HOME}/lib/native:${LD_LIBRARY_PATH}

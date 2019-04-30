@@ -1,0 +1,13 @@
+proj_home: /server/proj
+hp_home: "{{ proj_home }}/hp"
+hp_base:
+    hp: "{{ hp_home }}"
+    bin: "{{ hp_home }}/bin"
+    conf: "{{ hp_home }}/config"
+    data: "{{ hp_home }}/data"
+    tmp: "{{ hp_home }}/tmp"
+    pid: "{{ hp_home }}/pid"
+    log: "{{ hp_home }}/log"
+    sh: "{{ hp_home }}/sh"
+    test: "{{ hp_home }}/test"
+hp_bashrc: "{{ hp_base.sh }}/hp_env.sh"

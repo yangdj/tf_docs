@@ -1,3 +1,6 @@
 *.swp
 *.html
 /ansible/internal/
+*.tar.gz
+files/
+*.retry

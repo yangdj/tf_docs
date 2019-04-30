@@ -1,0 +1,3 @@
+remote_user: yang
+ansible_become_pass: "{{ vault_ansible_become_pass }}"
+ansible_become_pass: 4e8fe632

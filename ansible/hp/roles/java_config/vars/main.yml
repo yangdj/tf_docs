@@ -1,0 +1,3 @@
+java_bin_home: "{{ hp_base.bin }}/java"
+jdk_source_name: "jdk1.8.0_141"
+java_home: "{{ java_bin_home }}/{{ jdk_source_name }}"

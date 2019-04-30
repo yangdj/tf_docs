@@ -1,0 +1,14 @@
+---
+# hadoop management
+
+- name: hadoop configuration
+  hosts: hp
+  gather_facts: false
+  roles:
+    - init_os
+    - init_hp_home
+    - java_config
+    - hadoop_config
+    - spark_config
+    - scala_config
+    - maven_config

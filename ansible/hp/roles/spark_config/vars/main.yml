@@ -1,0 +1,8 @@
+spark_version: 2.4.1
+spark_base:
+  bin: "{{ hp_base.bin }}/spark"
+  conf: "{{ hp_base.conf }}/spark"
+  pid: "{{ hp_base.pid }}/spark"
+  log: "{{ hp_base.log }}/spark"
+  conf_version: "{{ hp_base.conf }}/spark/{{ spark_version }}"
+spark_master_host: "{{ hostvars[fs_defaultFS_host]['ansible_host'] }}"
