@@ -2,5 +2,6 @@
 *.html
 /ansible/internal/
 *.tar.gz
-files/
+/ansible/hp/files/
+!/ansible/hp/files/Makefile
 *.retry
