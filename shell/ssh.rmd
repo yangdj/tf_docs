@@ -1,0 +1,39 @@
+# ssh
+
+## usage
+
+for ssh login using public key authentication, first generate keys:
+
+```bash
+ssh-keygen -t rsa
+```
+
+then copy generated public key to the remote server:
+
+```bash
+ssh-copy-id host
+```
+
+when log in a new server, you may need to verity the remote server. first, gather public (ecdsa) key of the new server, the value is the same as in the file `/etc/ssh/ssh_host_ecdsa_key.pub` of the new server
+
+```bash
+ssh-keyscan -t ecdsa ip-or-hostname > server_ecdsa
+```
+
+then, find out the fingerprint of the new server public key:
+
+```bash
+ssh-keygen -l -f server_ecdsa
+```
+
+using this result to compare to the fingerprint returned by the new server
+
+you can also compute the fingerprint of the **host** stored in the file `known_hosts`:
+
+```bash
+ssh-keygen -l -F host-in-known-hosts
+```
+
+## reference
+
+* [how](https://www.slashroot.in/secure-shell-how-does-ssh-work)
