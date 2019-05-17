@@ -70,13 +70,55 @@ graph:
     * LR
     * TB
 * overlap:
-    true
-    false
+    * true
+    * false
 
 node attributes:
 
+
+```{r}
+grViz("
+      digraph node_attributes {
+
+        graph [rankdir = LR]
+        
+        # 
+        node [color=red shape=box]
+
+        root [label = 'node']
+        
+        node []
+        shape
+        
+        # node shape
+        node []
+        shape_oval; shape_box; shape_square; shape_circle
+        shape_egg; shape_triangle; shape_diamond; shape_polygon;
+        shape_point; shape_plaintext
+
+        shape_oval[shape=oval, label='oval']
+        shape_box[shape=box, label='box']
+        shape_square[shape=square, label='square']
+        shape_circle[shape=circle, label='circle']
+        shape_egg[shape=egg, label='egg']
+        shape_triangle[shape=triangle, label='triangle']
+        shape_diamond[shape=diamond, label='diamond']
+        shape_polygon[shape=polygon, label='polygon']
+        shape_point[shape=point, label='point']
+        shape_plaintext[shape=plaintext, label='plaintext']
+
+        edge [color=gray]
+
+        root -> shape -> {shape_oval, shape_box, shape_square, shape_circle, shape_egg; shape_triangle, shape_diamond, shape_polygon, shape_point, shape_plaintext}
+      }
+      ")
+```
+
+
 * color - provide an X11 or hexadecimal color (append 2 digits to hex for alpha)
-* fillcolor
+* style - usually given the value filled if you'd like to fill a node with a colors
+    * filled
+* fillcolor - when `style=filled` is set
 * fontcolor
 * alpha
 * fontname
@@ -92,8 +134,6 @@ node attributes:
     * point
     * triangle
     * polygon
-* style - usually given the value filled if you'd like to fill a node with a colors
-    * filled
 * penwidth
 * sides - if `shape = polygon`, the number of sides can be provided here
 * distortion - the node distortion for any `shape = polygon`
