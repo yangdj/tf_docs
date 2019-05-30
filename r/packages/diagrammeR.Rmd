@@ -414,6 +414,53 @@ subgraphs:
 
 ```
 
+### sequence diagrams
+
+```{r}
+mermaid("
+     sequenceDiagram
+      customer->>ticket seller: ask ticket
+      ticket seller->>database: seats
+      alt tickets available
+        database->>ticket seller: OK
+        ticket seller->>customer: confirm
+        customer->>ticket seller: OK
+        ticket seller->>database: book a seat
+        ticket seller->>printer: print a ticket
+      else sold out
+        database->>ticket seller: none left
+        ticket seller->>customer: sorry
+      end
+")
+```
+
+
+## DiagrammeR API
+
+```{r}
+nodes_1 <-
+  create_node_df(
+    n = 4,
+    label = TRUE,
+    type = "lower",
+    style = "filled",
+    color = "aqua",
+    shape = c("circle", "circle",
+              "rectangle", "rectangle"),
+    data = c(3.5, 2.6, 9.4, 2.7))
+
+edges_1 <-
+  create_edge_df(
+    from = c(1, 2, 3, 4),
+    to = c(2, 3, 4, 1),
+    rel = "requires",
+    color = "green",
+    data = c(2.7, 8.9, 2.6, 0.6))
+
+graph <- create_graph(nodes_df = nodes_1, edges_df = edges_1)
+```
+
+
 ## references:
 
 * [DiagrammeR-github](https://github.com/rich-iannone/DiagrammeR)
