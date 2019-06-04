@@ -5,13 +5,14 @@ An R packages contains:
 * an `R/` directory
 * a basic `DESCRIPTION` file
 * a basic `NAMESPACE` file
+* a `man/` directory to hold documents
 
 ### DESCRIPTION
 
 a `DESCRIPTION` file contains:
 
 * `Imports:` - packages listed here must be present for your package to work. if not, they will be installed automatically. use `usethis::use_package("dplyr")` to add the needing `Imports` package
-* `Depends:` - `Imports` just loads the package, `Depends` attaches it. There are no other differences
+* `Depends:` - `Imports` just loads the package, `Depends` attaches it. There are no other differences. use `usethis::use_package("dplyr", "Depends")` to add the needing `Depends` package
 * `Suggests:` - your package can use these packages, but doesn’t require them. they will not be installed automatically. use `requireNamespace(x, quietly = TRUE)` to check if it is available and  use `usethis::use_package("dplyr", "Suggests")` to add the needing `Suggests` package
 * `Title:` - is a one line description of the package, and is often shown in package listing. It should be plain text (no markup), capitalised like a title, and NOT end in a period. Keep it short: listings will often truncate the title to 65 characters
 * `Description:` - is more detailed than the title. You can use multiple sentences but you are limited to one paragraph. If your description spans multiple lines (and it should!), each line must be no more than 80 characters wide. Indent subsequent lines with 4 spaces
@@ -41,8 +42,8 @@ you need the `devtools` and `roxygen2` packages to help creating a package:
 
 ```r
     install.packages("devtools")
-    library("devtools")
     install.packages("roxygen2")
+    library("devtools")
     library(roxygen2)
 ```
     
