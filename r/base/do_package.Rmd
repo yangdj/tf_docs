@@ -68,7 +68,7 @@ then install your package, you need to run this from the parent working director
 ```r
     setwd("..")
     devtools::install("cats")
-    devtools::install_github('cats','github_username') # put the code to github
+    devtools::install_github('cats','github_username')
 ```
 
 to remove the installed packages using `uninstall`:
