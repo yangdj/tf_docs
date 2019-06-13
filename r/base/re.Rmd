@@ -2,7 +2,7 @@
 
 for extended regular expressions:
 
-* `\`
+* `\\`
 * `|`
 * `^`
 * `$`

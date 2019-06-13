@@ -46,7 +46,7 @@ you need the `devtools` and `roxygen2` packages to help creating a package:
     library("devtools")
     library(roxygen2)
 ```
-    
+
 then set the working directory, and create a test `cats` package:
 
 ```r
@@ -62,7 +62,7 @@ then create an document for the package:
     setwd("./cats")
     devtools::document()
 ```
-    
+
 then install your package, you need to run this from the parent working directory that contains the `cats` folder:
 
 ```r

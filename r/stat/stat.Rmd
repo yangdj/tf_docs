@@ -1,6 +1,0 @@
-## statistical learning
-
-ISLR references:
-
-* [ISLR EXERCISES](http://yahwes.github.io/ISLR/)
-* [SOLUTIONS](https://blog.princehonest.com/stat-learning/)

@@ -32,7 +32,7 @@
 * shinyServer(function(input, output){...})
     * input$input_name
     * output$output_name
-        
+
 #### widgets
 
 * radioButtons
@@ -60,7 +60,7 @@
               write_excel_csv(dataInput(), file, na = "")
             }
         )
-    
+
 #### output and render
 
 * plotOutput -> renderPlot

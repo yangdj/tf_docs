@@ -1,5 +1,0 @@
-## ggplot2
-
-you can follow the reference:
-
-* [ggplot2](https://ggplot2.tidyverse.org/)
