@@ -18,6 +18,12 @@ A Graphviz graph must begin with a directed graph `digraph` or an undirected `gr
 
 Comments may be placed within the statement list. These can be marked using a `//` or a `/* */` structure. Comment lines are denoted by a `#` character. Multiple statements within a statement list can be separated by linebreaks or `;` characters between multiple statements.
 
+export graphviz to `png` format:
+
+```r
+grViz("...") %>% export_svg()  %>% charToRaw %>% rsvg_png("graph.png")
+```
+
 ### Graph attributes
 
 Graph statements allow for attributes to be set for all components of the graph.
