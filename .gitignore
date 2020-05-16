@@ -1,7 +1,4 @@
 *.swp
 *.html
-/ansible/internal/
 *.tar.gz
-/ansible/hp/files/
-!/ansible/hp/files/Makefile
 *.retry
