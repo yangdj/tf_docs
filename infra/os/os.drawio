@@ -1,1 +1,271 @@
-<mxfile host="Electron" modified="2020-05-03T06:24:28.551Z" agent="Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/12.9.3 Chrome/80.0.3987.158 Electron/8.2.0 Safari/537.36" etag="tu2UplnKUCB9qrP94Din" version="12.9.3" type="device"><diagram id="ZcUnJ_twquDnaqtTs_gT" name="os">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</diagram></mxfile>
+<mxfile host="localhost" modified="2020-05-18T16:58:20.883Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.45.0 Chrome/78.0.3904.130 Electron/7.2.4 Safari/537.36" etag="ZTRQBh6AQyIiIDa7r4Zz" version="13.0.9">
+    <diagram id="ZcUnJ_twquDnaqtTs_gT" name="os">
+        <mxGraphModel dx="898" dy="566" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-1" value="" style="swimlane;html=1;startSize=20;horizontal=1;containerType=tree;strokeColor=none;fillColor=none;align=left;spacingLeft=4;fontStyle=0" parent="1" vertex="1">
+                    <mxGeometry x="10" y="80" width="1310" height="2130" as="geometry"/>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-2" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="6-5GKK2MCSEunAJBY8cB-6" target="6-5GKK2MCSEunAJBY8cB-7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-6" value="os" style="ellipse;whiteSpace=wrap;html=1;align=center;container=1;recursiveResize=0;treeFolding=1;treeMoving=1;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="20" y="325" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-7" value="centos7" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="190" y="330" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-11" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="6-5GKK2MCSEunAJBY8cB-7" target="6-5GKK2MCSEunAJBY8cB-12" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="140" y="235" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-12" value="init" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="300" y="115" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-13" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="6-5GKK2MCSEunAJBY8cB-12" target="6-5GKK2MCSEunAJBY8cB-14" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="280" y="205" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-14" value="partition" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="400" y="30" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-15" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="6-5GKK2MCSEunAJBY8cB-14" target="6-5GKK2MCSEunAJBY8cB-16" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="395" y="180" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-16" value="1. select &lt;font color=&quot;#ff0000&quot;&gt;install centos7&lt;/font&gt; after booting&lt;br&gt;2. click &lt;font color=&quot;#ff0000&quot;&gt;tab&lt;/font&gt;&amp;nbsp;at the bottom of the information&lt;br&gt;&amp;nbsp; &amp;nbsp; append &lt;font color=&quot;#ff0000&quot;&gt;inst.gpt&lt;/font&gt;, then press &lt;font color=&quot;#ff0000&quot;&gt;enter&lt;/font&gt;&amp;nbsp;key, &lt;br&gt;&amp;nbsp; &amp;nbsp; the system will use &lt;font color=&quot;#ff0000&quot;&gt;gpt&lt;/font&gt;&amp;nbsp;to partition the disk" style="whiteSpace=wrap;html=1;rounded=1;arcSize=21;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="530" y="10" width="290" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-17" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="6-5GKK2MCSEunAJBY8cB-12" target="6-5GKK2MCSEunAJBY8cB-18" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="395" y="205" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-18" value="fs" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="400" y="115" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-19" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="6-5GKK2MCSEunAJBY8cB-1" source="6-5GKK2MCSEunAJBY8cB-18" target="6-5GKK2MCSEunAJBY8cB-20" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="395" y="205" as="sourcePoint"/>
+                        <mxPoint x="490" y="130" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-20" value="1. &lt;font color=&quot;#ff0000&quot;&gt;2M&lt;/font&gt;&amp;nbsp; for &lt;font color=&quot;#ff0000&quot;&gt;biosboot&lt;/font&gt;, using &lt;font color=&quot;#ff0000&quot;&gt;standard partition&lt;/font&gt;&lt;br&gt;2. &lt;font color=&quot;#ff0000&quot;&gt;1G&lt;/font&gt; for &lt;font color=&quot;#ff0000&quot;&gt;/boot&lt;/font&gt;, using &lt;font color=&quot;#ff0000&quot;&gt;standard partition&lt;/font&gt; and &lt;font color=&quot;#ff0000&quot;&gt;xfs&lt;/font&gt; filesystem&lt;br&gt;3. &lt;font color=&quot;#ff0000&quot;&gt;/&lt;/font&gt;, &lt;font color=&quot;#ff0000&quot;&gt;/home&lt;/font&gt;, &lt;font color=&quot;#ff0000&quot;&gt;swap&lt;/font&gt; using &lt;font color=&quot;#ff0000&quot;&gt;lvm&lt;/font&gt; and &lt;font color=&quot;#ff0000&quot;&gt;xfs&lt;/font&gt; filesystem, specify storage size" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="530" y="100" width="390" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-25" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="6-5GKK2MCSEunAJBY8cB-12" target="6-5GKK2MCSEunAJBY8cB-26" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="385" y="165" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-26" value="user" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="400" y="200" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-27" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="6-5GKK2MCSEunAJBY8cB-26" target="6-5GKK2MCSEunAJBY8cB-28" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="385" y="205" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-28" value="&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;adduser user&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;passwd user&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;usermod -d user_home user&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;gpasswd -a user wheel -&amp;nbsp;&lt;/font&gt;&lt;font face=&quot;Courier New&quot;&gt;wheel &lt;/font&gt;&lt;span&gt;group will have &lt;/span&gt;&lt;font face=&quot;Courier New&quot;&gt;sudo&lt;/font&gt;&lt;span&gt; priviledge&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=37;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="530" y="170" width="480" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-31" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="6-5GKK2MCSEunAJBY8cB-40" target="6-5GKK2MCSEunAJBY8cB-32" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="390" y="155" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-32" value="1. &lt;font face=&quot;Courier New&quot;&gt;systemctl set-default multi-user.target&lt;/font&gt;&lt;font color=&quot;#ff0000&quot;&gt;&amp;nbsp;&lt;/font&gt;&amp;nbsp;text mode&lt;br&gt;2. &lt;font face=&quot;Courier New&quot;&gt;systemctl set-default graphical.target&lt;/font&gt; graphical mode&lt;br&gt;3.&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;systemctl start multi-user.target | graphical.target&lt;/font&gt;&lt;br&gt;4. &lt;font face=&quot;Courier New&quot;&gt;start | stop&amp;nbsp;| status&amp;nbsp;| restart | reload | enable | disenable&amp;nbsp; file.service&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="530" y="345" width="610" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-33" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="6-5GKK2MCSEunAJBY8cB-7" target="6-5GKK2MCSEunAJBY8cB-34" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="290" y="240" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-34" value="config" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="300" y="330" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-35" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="6-5GKK2MCSEunAJBY8cB-34" target="6-5GKK2MCSEunAJBY8cB-36" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="300" y="260" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-36" value="ssh" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="400" y="285" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-37" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="6-5GKK2MCSEunAJBY8cB-36" target="6-5GKK2MCSEunAJBY8cB-38" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="390" y="370" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-38" value="1.&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;ssh-keygen -t rsa&lt;/font&gt;&amp;nbsp;creates key&lt;br&gt;2.&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;ssh-copy-id user@host&lt;font color=&quot;#ff0000&quot;&gt;&amp;nbsp;&lt;/font&gt;&lt;/font&gt;put public key to remote user, similar to&amp;nbsp;&lt;br&gt;&lt;font color=&quot;#ff0000&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;/font&gt;&lt;font face=&quot;Courier New&quot;&gt;ssh user@host 'mkdir -p .ssh &amp;amp;&amp;amp; cat &amp;gt;&amp;gt; .ssh/authorized_keys' &amp;lt; ~/.ssh/id_rsa.pub&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="530" y="270" width="640" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-39" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="6-5GKK2MCSEunAJBY8cB-34" target="6-5GKK2MCSEunAJBY8cB-40" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="390" y="430" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6-5GKK2MCSEunAJBY8cB-40" value="systemd" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="400" y="365" width="90" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-1" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="6-5GKK2MCSEunAJBY8cB-7" target="bI8wqnvab-aOPjr-A80t-2" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="300" y="310" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-2" value="software" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="295" y="720" width="85" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-3" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="bI8wqnvab-aOPjr-A80t-2" target="bI8wqnvab-aOPjr-A80t-4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="290" y="325" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-4" value="basic" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="400" y="490" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-5" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="bI8wqnvab-aOPjr-A80t-2" target="bI8wqnvab-aOPjr-A80t-6" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="400" y="575" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-6" value="git" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="400" y="720" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-7" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="bI8wqnvab-aOPjr-A80t-4" target="bI8wqnvab-aOPjr-A80t-8" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="390" y="575" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-8" value="# gcc, wget, net-tools: not installed for minimal centos7&lt;br&gt;# curl-devel:&amp;nbsp;for http, https and other protocals&lt;br&gt;# lrzsz: transfor data between linux and windows, xshell support&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;sudo yum install gcc wget net-tools curl-devel lrzsz&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="530" y="540" width="430" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-9" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="bI8wqnvab-aOPjr-A80t-4" target="bI8wqnvab-aOPjr-A80t-10" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="495" y="535" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-10" value="# when face &quot;Peer reports incompatible or unsupported protocol version&quot;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;sudo yum update -y nss curl libcurl&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="530" y="485" width="440" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-11" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="bI8wqnvab-aOPjr-A80t-4" target="bI8wqnvab-aOPjr-A80t-12" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="510" y="575" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-12" value="# epel-release repository&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;sudo yum install epel-release&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="530" y="430" width="260" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-13" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="bI8wqnvab-aOPjr-A80t-6" target="bI8wqnvab-aOPjr-A80t-14" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="390" y="575" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-14" value="&lt;div&gt;&lt;span&gt;# autoconf: generate configure file&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;# asciidoc, xmlto: generate docs&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;sudo yum install autoconf zlib-devel&amp;nbsp;&lt;span&gt;perl-ExtUtils-MakeMaker asciidoc xmlto&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="530" y="620" width="600" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-15" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="bI8wqnvab-aOPjr-A80t-6" target="bI8wqnvab-aOPjr-A80t-16" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="510" y="755" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-16" value="&lt;font face=&quot;Courier New&quot;&gt;GIT_VERSION = 2.9.5&lt;br&gt;&lt;/font&gt;# download&lt;br&gt;#&amp;nbsp;git clone https://github.com/git/git.git&lt;br&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;wget &lt;u&gt;&lt;font color=&quot;#0000ff&quot;&gt;https://mirrors.edge.kernel.org/pub/software/scm/git/git-${GIT_VERSION}.tar.xz&lt;/font&gt;&lt;/u&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;tar xf git-${GIT_VERSION}.tar.xz &amp;amp;&amp;amp; mv git-${GIT_VERSION} git&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;# install&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;make configure &amp;amp;&amp;amp;&amp;nbsp;&lt;span&gt;./configure --prefix=/usr/local &amp;amp;&amp;amp;&amp;nbsp;&lt;/span&gt;&lt;span&gt;&amp;nbsp;make all doc&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;sudo make install install-doc install-html&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;# config&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;git config --global user.name ${GIT_USER_NAME}&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;git config --global user.email ${GIT_USER_EMAIL}&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;git config --global core.editor vim&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;git config --global push.default simple&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=12;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;fontStyle=0" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="530" y="700" width="650" height="230" as="geometry"/>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-17" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="bI8wqnvab-aOPjr-A80t-2" target="bI8wqnvab-aOPjr-A80t-18" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="390" y="575" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-18" value="tmux" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="400" y="980" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-19" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="bI8wqnvab-aOPjr-A80t-18" target="bI8wqnvab-aOPjr-A80t-20" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="390" y="805" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-20" value="# automake libevent libevent-devel: for autogen.sh&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;sudo yum install automake libevent libevent-devel ncurses-devel&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="530" y="940" width="510" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-21" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="bI8wqnvab-aOPjr-A80t-18" target="bI8wqnvab-aOPjr-A80t-22" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="500" y="1065" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-22" value="# download&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;git clone &lt;u&gt;&lt;font color=&quot;#0000ff&quot;&gt;https://github.com/tmux/tmux.git&lt;/font&gt;&lt;/u&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;# install&lt;br&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;cd tmux &amp;amp;&amp;amp;&amp;nbsp;&lt;span&gt;sh autogen.sh &amp;amp;&amp;amp;&lt;/span&gt;&lt;span&gt;&amp;nbsp;./configure&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;make &amp;amp;&amp;amp;&amp;nbsp;&lt;span&gt;sudo make install&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;# config&lt;span&gt;&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;.tmux.conf&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=38;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="530" y="990" width="360" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-23" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="bI8wqnvab-aOPjr-A80t-2" target="bI8wqnvab-aOPjr-A80t-24" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="390" y="815" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-24" value="python" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="400" y="1245" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-25" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="6-5GKK2MCSEunAJBY8cB-1" source="bI8wqnvab-aOPjr-A80t-24" target="bI8wqnvab-aOPjr-A80t-26" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="510" y="1073" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-26" value="&lt;div&gt;&amp;nbsp;# readline-devel: support cursor moving, like backspace and direction key&lt;/div&gt;&lt;div&gt;&amp;nbsp;# openssl-devel: for https protocal&lt;/div&gt;&lt;div&gt;&amp;nbsp;# sqlite-devel: for ipython to record history&lt;/div&gt;&lt;div&gt;&amp;nbsp;# bzip2-devel: for matplotlib use&lt;/div&gt;&lt;div&gt;&amp;nbsp;# libffi-devel: for python starting from 3.7.0&lt;/div&gt;&lt;div&gt;&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;sudo yum install readline-devel openssl-devel&amp;nbsp;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;&amp;nbsp;sudo yum install sqlite-devel bzip2-devel libffi-devel&lt;/font&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=38;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="530" y="1130" width="450" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-27" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="6-5GKK2MCSEunAJBY8cB-1" source="bI8wqnvab-aOPjr-A80t-24" target="bI8wqnvab-aOPjr-A80t-28" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="520" y="1235" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-28" value="&lt;font face=&quot;Courier New&quot;&gt;PYTHON_VERSION = 3.7.0&lt;br&gt;&lt;/font&gt;# download&lt;br&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;wget &lt;u&gt;&lt;font color=&quot;#0000ff&quot;&gt;https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz&lt;/font&gt;&lt;/u&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;tar xf Python-${PYTHON_VERSION}.tgz&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;mv Python-${PYTHON_VERSION} python&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;# install&lt;/div&gt;&lt;div&gt;&lt;div&gt;# --enable-shared for generate dynamic python library, ycm depends it&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;cd python &amp;amp;&amp;amp;&amp;nbsp;&lt;span&gt;./configure --enable-shared &amp;amp;&amp;amp;&amp;nbsp;&lt;/span&gt;&lt;span&gt;make&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;font face=&quot;Courier New&quot;&gt;sudo make install&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;# `make altinstall` instead of `make install` to support multiple python&lt;span&gt;&amp;nbsp;versions&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=20;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="530" y="1275" width="670" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-29" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="bI8wqnvab-aOPjr-A80t-2" target="bI8wqnvab-aOPjr-A80t-30" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="390" y="815" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-30" value="vim" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="400" y="1640" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-31" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="6-5GKK2MCSEunAJBY8cB-1" source="bI8wqnvab-aOPjr-A80t-30" target="bI8wqnvab-aOPjr-A80t-32" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="520" y="1310" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-32" value="# dowload&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;git clone &lt;u&gt;&lt;font color=&quot;#0000ff&quot;&gt;https://github.com/vim/vim.git&lt;/font&gt;&lt;/u&gt;&lt;br&gt;&lt;/font&gt;&lt;br&gt;&lt;div&gt;# if report cache error&lt;/div&gt;&lt;div&gt;rm vim/src/auto/config.cache&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&amp;nbsp;# adding `export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}` so vim&lt;/div&gt;&lt;div&gt;&amp;nbsp;# can find libpython3.7m.so.1.0&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;# install with python3 support&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;cd vim &amp;amp;&amp;amp;&lt;span&gt;&amp;nbsp;./configure --enable-fail-if-missing --enable-multibyte&lt;/span&gt;&lt;span&gt;&amp;nbsp;--enable-python3interp=yes \&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;&amp;nbsp; --with-python3-config-dir=/usr/local/lib/python3.7/config-3.7m-x86_64-linux-gnu&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;&amp;nbsp;make &amp;amp;&amp;amp;&amp;nbsp;&lt;span&gt;sudo make install&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=17;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="530" y="1465" width="730" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-33" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="6-5GKK2MCSEunAJBY8cB-1" source="bI8wqnvab-aOPjr-A80t-30" target="bI8wqnvab-aOPjr-A80t-34" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="510" y="1615" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-34" value="# config&lt;br&gt;# 1.&lt;font color=&quot;#ff0000&quot;&gt;&amp;nbsp;&lt;/font&gt;&lt;font face=&quot;Courier New&quot;&gt;.vimrc&lt;/font&gt;&lt;br&gt;# 2. vundle&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;git clone &lt;u&gt;https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim&lt;/u&gt;&lt;br&gt;vim +PluginInstall +qall&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=17;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="530" y="1685" width="620" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-35" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="bI8wqnvab-aOPjr-A80t-2" target="bI8wqnvab-aOPjr-A80t-36" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="390" y="815" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-36" value="zsh" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="400" y="1890" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-37" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="6-5GKK2MCSEunAJBY8cB-1" source="bI8wqnvab-aOPjr-A80t-36" target="bI8wqnvab-aOPjr-A80t-38" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="520" y="1705" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="bI8wqnvab-aOPjr-A80t-38" value="#download&lt;br style=&quot;font-size: 12px&quot;&gt;&lt;font face=&quot;Courier New&quot;&gt;git clone &lt;u&gt;&lt;font color=&quot;#0000ff&quot;&gt;git://git.code.sf.net/p/zsh/code&lt;/font&gt;&lt;/u&gt; zsh&lt;/font&gt;&lt;br style=&quot;font-size: 12px&quot;&gt;&lt;br style=&quot;font-size: 12px&quot;&gt;# install&lt;br&gt;# ./Util/preconfig genterate configuration file&lt;br style=&quot;font-size: 12px&quot;&gt;&lt;div style=&quot;font-size: 12px&quot;&gt;&lt;font face=&quot;Courier New&quot;&gt;&amp;nbsp;cd zsh &amp;amp;&amp;amp;&amp;nbsp;&lt;span style=&quot;font-size: 12px&quot;&gt;./Util/preconfig &amp;amp;&amp;amp;&lt;/span&gt;&lt;span style=&quot;font-size: 12px&quot;&gt;&amp;nbsp;./configure&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px&quot;&gt;&lt;font face=&quot;Courier New&quot;&gt;&amp;nbsp;make &amp;amp;&amp;amp; sudo make install&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px&quot;&gt;&lt;br style=&quot;font-size: 12px&quot;&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px&quot;&gt;# config&lt;/div&gt;&lt;div style=&quot;font-size: 12px&quot;&gt;# 1. use zsh shell&lt;/div&gt;&lt;div style=&quot;font-size: 12px&quot;&gt;&lt;font face=&quot;Courier New&quot;&gt;sudo usermod -s `which zsh` ${USER}&lt;/font&gt;&lt;br style=&quot;font-size: 12px&quot;&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px&quot;&gt;# 2. use omz&lt;/div&gt;&lt;div style=&quot;font-size: 12px&quot;&gt;&lt;font face=&quot;Courier New&quot;&gt;sh -c &quot;`curl -fsSL &lt;u&gt;&lt;font color=&quot;#0000ff&quot;&gt;https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh&lt;/font&gt;&lt;/u&gt;`&quot;&lt;/font&gt;&lt;br style=&quot;font-size: 12px&quot;&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px&quot;&gt;# 3. use autojump&lt;/div&gt;&lt;div style=&quot;font-size: 12px&quot;&gt;sudo yum install autojump-zsh&lt;br style=&quot;font-size: 12px&quot;&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px&quot;&gt;# 4. &lt;font face=&quot;Courier New&quot;&gt;.zshrc&lt;/font&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=17;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;fontSize=12;" parent="6-5GKK2MCSEunAJBY8cB-1" vertex="1">
+                    <mxGeometry x="530" y="1785" width="780" height="240" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

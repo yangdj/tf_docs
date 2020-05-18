@@ -1,6 +1,6 @@
-<mxfile host="localhost" modified="2020-05-18T12:22:54.413Z" agent="5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.45.1 Chrome/78.0.3904.130 Electron/7.2.4 Safari/537.36" etag="fyWA8SG_i6TMb9LGm1Km" version="13.0.9" pages="4">
+<mxfile host="localhost" modified="2020-05-18T17:10:12.483Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.45.0 Chrome/78.0.3904.130 Electron/7.2.4 Safari/537.36" etag="v6X8Y_FgFtcAjorKhkBY" version="13.0.9" pages="4">
     <diagram id="K4R4QghZersOc9A9mNaJ" name="vscode">
-        <mxGraphModel dx="622" dy="294" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+        <mxGraphModel dx="646" dy="307" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
             <root>
                 <mxCell id="dUwQ-VKBVRRGoe277Vrm-0"/>
                 <mxCell id="dUwQ-VKBVRRGoe277Vrm-1" parent="dUwQ-VKBVRRGoe277Vrm-0"/>
@@ -95,19 +95,19 @@
                 <mxCell id="RprOEVf1tIVI0a0wrrcO-1" value="&lt;h3&gt;&lt;span style=&quot;font-size: 12px ; font-weight: normal&quot;&gt;start:&lt;/span&gt;&lt;br&gt;&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;F9 - set breakpoint&lt;/li&gt;&lt;li&gt;shift + F9 - inline breakpoint&lt;/li&gt;&lt;li&gt;F5 - initiate debugging&amp;nbsp;&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=14;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=6;" parent="g1oMZA-v6UON6Q8XWzZf-0" vertex="1">
                     <mxGeometry x="310" y="302" width="230" height="80.5" as="geometry"/>
                 </mxCell>
-                <mxCell id="S_3lF0ny-4beljYbZym9-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="S_3lF0ny-4beljYbZym9-1" source="oRyd6DHy6yoq9Ppxw7yS-3" parent="g1oMZA-v6UON6Q8XWzZf-0">
+                <mxCell id="S_3lF0ny-4beljYbZym9-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="g1oMZA-v6UON6Q8XWzZf-0" source="oRyd6DHy6yoq9Ppxw7yS-3" target="S_3lF0ny-4beljYbZym9-1" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="320" y="415" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="S_3lF0ny-4beljYbZym9-1" value="&lt;h3&gt;&lt;span style=&quot;font-size: 12px ; font-weight: normal&quot;&gt;conditional breakpoints:&lt;/span&gt;&lt;br&gt;&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;expression condition&lt;/li&gt;&lt;li&gt;hit count&amp;nbsp;&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=14;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=6;" vertex="1" parent="g1oMZA-v6UON6Q8XWzZf-0">
+                <mxCell id="S_3lF0ny-4beljYbZym9-1" value="&lt;h3&gt;&lt;span style=&quot;font-size: 12px ; font-weight: normal&quot;&gt;conditional breakpoints:&lt;/span&gt;&lt;br&gt;&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;expression condition&lt;/li&gt;&lt;li&gt;hit count&amp;nbsp;&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=14;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=6;" parent="g1oMZA-v6UON6Q8XWzZf-0" vertex="1">
                     <mxGeometry x="310" y="410" width="200" height="80" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
     <diagram id="FBWLnhBGEP0MXX_W7LkF" name="settings">
-        <mxGraphModel dx="622" dy="294" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="646" dy="307" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -121,7 +121,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="BHrOOqIUnbpUJcI-PT_s" name="keybindings">
-        <mxGraphModel dx="862" dy="294" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="1" shadow="0">
+        <mxGraphModel dx="646" dy="307" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="1" shadow="0">
             <root>
                 <mxCell id="J0S1Tp6G4MbBAgsrbNJQ-0"/>
                 <mxCell id="J0S1Tp6G4MbBAgsrbNJQ-1" parent="J0S1Tp6G4MbBAgsrbNJQ-0"/>
@@ -132,7 +132,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="-PNWrWSnkWKRuond0kSB" name="plugins">
-        <mxGraphModel dx="622" dy="294" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+        <mxGraphModel dx="646" dy="307" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
             <root>
                 <mxCell id="0ULeX2zkz-rmOQAiP5B0-0"/>
                 <mxCell id="0ULeX2zkz-rmOQAiP5B0-1" parent="0ULeX2zkz-rmOQAiP5B0-0"/>

@@ -1,28 +1,28 @@
-<mxfile host="localhost" modified="2020-05-18T12:12:17.380Z" agent="5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.45.1 Chrome/78.0.3904.130 Electron/7.2.4 Safari/537.36" etag="LF_6-tfgVqiSmkABtLd3" version="13.0.9">
+<mxfile host="localhost" modified="2020-05-18T16:49:36.166Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.45.0 Chrome/78.0.3904.130 Electron/7.2.4 Safari/537.36" etag="d8yEWG9xUjiXzgCXcKiv" version="13.0.9">
     <diagram id="xKhUT-r_AZ1tNeK4rXff" name="environment">
-        <mxGraphModel dx="622" dy="294" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="646" dy="566" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="JRr6xuZ54uP4d2wEdJTd-1" value="" style="swimlane;html=1;startSize=20;horizontal=1;containerType=tree;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="40" y="140" width="770" height="310" as="geometry"/>
+                    <mxGeometry x="40" y="160" width="770" height="810" as="geometry"/>
                 </mxCell>
                 <mxCell id="JRr6xuZ54uP4d2wEdJTd-2" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="JRr6xuZ54uP4d2wEdJTd-1" source="JRr6xuZ54uP4d2wEdJTd-6" target="JRr6xuZ54uP4d2wEdJTd-7" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="JRr6xuZ54uP4d2wEdJTd-6" value="environment" style="ellipse;whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="JRr6xuZ54uP4d2wEdJTd-1" vertex="1">
-                    <mxGeometry x="10" y="80" width="100" height="40" as="geometry"/>
+                    <mxGeometry x="10" y="130" width="100" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="JRr6xuZ54uP4d2wEdJTd-7" value="pip" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="JRr6xuZ54uP4d2wEdJTd-1" vertex="1">
-                    <mxGeometry x="130" y="170" width="60" height="30" as="geometry"/>
+                    <mxGeometry x="130" y="255" width="70" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="_DjVTRdXmB7PVOCa5Odb-1" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="JRr6xuZ54uP4d2wEdJTd-1" source="JRr6xuZ54uP4d2wEdJTd-7" target="_DjVTRdXmB7PVOCa5Odb-2" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="150" y="213" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="_DjVTRdXmB7PVOCa5Odb-2" value="&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;pip (search | list | show) package&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;pip install package&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;pip install --upgrade package&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;pip uninstall package&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;pip freeze &amp;gt; requirements.txt&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;pip install -r requirements.txt&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=14;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="JRr6xuZ54uP4d2wEdJTd-1" vertex="1">
-                    <mxGeometry x="215" y="120" width="330" height="130" as="geometry"/>
+                <mxCell id="_DjVTRdXmB7PVOCa5Odb-2" value="&lt;h3&gt;&lt;font face=&quot;Courier New&quot;&gt;config:&lt;/font&gt;&lt;/h3&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;~/.pip/pip.conf - for Linux and OSX&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;~\pip\pip.ini - for Windows&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;[global]&lt;/span&gt;&lt;br&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px ; border: none ; padding: 0px&quot;&gt;&lt;/blockquote&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;index-url = https://pypi.tuna.tsinghua.edu.cn/simple&lt;/span&gt;&lt;br&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px ; border: none ; padding: 0px&quot;&gt;&lt;/blockquote&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;[install]&lt;/span&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;trusted-host=mirrors.aliyun.com&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=7;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};labelBackgroundColor=none;fontColor=#FFFFFF;" parent="JRr6xuZ54uP4d2wEdJTd-1" vertex="1">
+                    <mxGeometry x="220" y="105" width="410" height="160" as="geometry"/>
                 </mxCell>
                 <mxCell id="_DjVTRdXmB7PVOCa5Odb-3" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="JRr6xuZ54uP4d2wEdJTd-1" source="JRr6xuZ54uP4d2wEdJTd-6" target="_DjVTRdXmB7PVOCa5Odb-4" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -39,6 +39,30 @@
                 </mxCell>
                 <mxCell id="_DjVTRdXmB7PVOCa5Odb-6" value="&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;python3 -m venv virtual-name&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;source virtual-name/bin/activate;&amp;nbsp;.virtual-name\scripts\activate&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;deactivate&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=16;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="JRr6xuZ54uP4d2wEdJTd-1" vertex="1">
                     <mxGeometry x="215" y="10" width="540" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="3" source="JRr6xuZ54uP4d2wEdJTd-7" parent="JRr6xuZ54uP4d2wEdJTd-1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="230" y="325" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="3" value="&lt;h3&gt;command:&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;pip (search | list | show) package&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;pip install package&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;pip install --upgrade package&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;pip uninstall package&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;pip freeze &amp;gt; requirements.txt&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;pip install -r requirements.txt&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=4;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="JRr6xuZ54uP4d2wEdJTd-1">
+                    <mxGeometry x="220" y="275" width="330" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="5" source="JRr6xuZ54uP4d2wEdJTd-6" parent="JRr6xuZ54uP4d2wEdJTd-1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="150" y="310" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="5" value="data processing" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="JRr6xuZ54uP4d2wEdJTd-1">
+                    <mxGeometry x="130" y="525" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="7" source="5" parent="JRr6xuZ54uP4d2wEdJTd-1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="150" y="310" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="7" value="&lt;h3&gt;packages:&lt;/h3&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;ipython&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;line_profiler&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;numpy&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;pandas&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;matplotlib&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;scipy&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;siket-learn&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;jupyter&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=10;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="JRr6xuZ54uP4d2wEdJTd-1">
+                    <mxGeometry x="280" y="445" width="170" height="190" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
