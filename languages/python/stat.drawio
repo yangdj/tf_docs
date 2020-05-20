@@ -1,0 +1,46 @@
+<mxfile host="localhost" modified="2020-05-20T16:31:11.705Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.45.0 Chrome/78.0.3904.130 Electron/7.2.4 Safari/537.36" etag="1I5LplwvkpLtxy9-SQ6B" version="13.0.9">
+    <diagram id="6hGFLwfOUW9BJ-s0fimq" name="numpy">
+        <mxGraphModel dx="702" dy="399" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="" style="swimlane;html=1;startSize=15;horizontal=1;containerType=tree;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="10" y="90" width="720" height="660" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="2" source="7" target="8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="&lt;a href=&quot;https://numpy.org&quot;&gt;numpy&lt;/a&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="2" vertex="1">
+                    <mxGeometry x="40" y="240" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="&lt;h3&gt;ndarray types:&lt;/h3&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;np.int16&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;np.int32&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;np.int64 &lt;/font&gt;- default&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;np.float32&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;np.float64 &lt;/font&gt;- default&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;np.coomplex; complex&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=5;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};direction=east;" parent="2" vertex="1">
+                    <mxGeometry x="160" y="10" width="220" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="2" source="7" target="16" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="120" y="85" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="16" value="&lt;h3&gt;ndarray object attributes:&lt;/h3&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;.ndim = 2&amp;nbsp;&lt;/font&gt;- axes (dimensions) number&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;.shape = (m, n)&amp;nbsp;&lt;/font&gt;- dimensions&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;.size = 20&amp;nbsp;&lt;/font&gt;- elements number&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;.dtype = dtype(&quot;int64&quot;); .dtype.name = &quot;int64&quot;&amp;nbsp;&lt;/font&gt;- element type&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;.itemsize = 8&amp;nbsp;&lt;/font&gt;- element size of bytes&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=5;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="2" vertex="1">
+                    <mxGeometry x="160" y="355" width="500" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="2" source="7" target="18" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="150" y="240" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="18" value="&lt;h3&gt;ndarray object creation:&lt;/h3&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;np.array([3, 4, 5], dtype=np.int64)&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;np.arange(15).reshape(3, 5)&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;np.zeros((3, 4), dtype=np.int16); np.zeros_like(a)&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;np.ones((3, 4)); np.ones_lie(a)&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;np.empty((2, 3)); np.empty_like(a)&amp;nbsp;&lt;/font&gt;- uninitialized&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;np.linspace(0, 2, 9) = [0, .25, .5, ..., 2]&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=5;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};direction=east;" parent="2" vertex="1">
+                    <mxGeometry x="160" y="180" width="440" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="20" source="7" parent="2">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="150" y="350" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="20" value="&lt;h3&gt;constants:&lt;/h3&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;np.pi&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;np.e&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=5;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="2">
+                    <mxGeometry x="160" y="525" width="120" height="100" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
