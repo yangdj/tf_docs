@@ -1,17 +1,17 @@
-<mxfile host="localhost" modified="2020-05-19T16:46:54.512Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.45.0 Chrome/78.0.3904.130 Electron/7.2.4 Safari/537.36" etag="eJQaTdLLBelU1qpH9A4O" version="13.0.9" pages="4">
+<mxfile host="localhost" modified="2020-05-20T09:43:50.038Z" agent="5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.45.1 Chrome/78.0.3904.130 Electron/7.2.4 Safari/537.36" etag="s0XhIYRJIv-S3A6PBbHK" version="13.0.9" pages="4">
     <diagram id="K4R4QghZersOc9A9mNaJ" name="vscode">
-        <mxGraphModel dx="646" dy="566" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+        <mxGraphModel dx="637" dy="351" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
             <root>
                 <mxCell id="dUwQ-VKBVRRGoe277Vrm-0"/>
                 <mxCell id="dUwQ-VKBVRRGoe277Vrm-1" parent="dUwQ-VKBVRRGoe277Vrm-0"/>
                 <mxCell id="g1oMZA-v6UON6Q8XWzZf-0" value="" style="swimlane;html=1;startSize=20;horizontal=1;containerType=tree;fillColor=none;strokeColor=none;" parent="dUwQ-VKBVRRGoe277Vrm-1" vertex="1">
-                    <mxGeometry x="30" y="70" width="1190" height="540" as="geometry"/>
+                    <mxGeometry x="30" y="70" width="1190" height="780" as="geometry"/>
                 </mxCell>
                 <mxCell id="g1oMZA-v6UON6Q8XWzZf-1" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="g1oMZA-v6UON6Q8XWzZf-0" source="07cBS2gzsWg7Vqvcydfd-3" target="g1oMZA-v6UON6Q8XWzZf-6" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="g1oMZA-v6UON6Q8XWzZf-5" value="&lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;vscode&lt;/a&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;container=1;recursiveResize=0;treeFolding=1;treeMoving=1;" parent="g1oMZA-v6UON6Q8XWzZf-0" vertex="1">
-                    <mxGeometry x="40" y="215" width="100" height="40" as="geometry"/>
+                    <mxGeometry x="40" y="250" width="100" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="g1oMZA-v6UON6Q8XWzZf-6" value="user setting directory:&lt;br&gt;&lt;ol&gt;&lt;li&gt;Windows - &lt;font face=&quot;Courier New&quot;&gt;%APPDATA%\Code\User\&lt;/font&gt;&lt;/li&gt;&lt;li&gt;Linux - &lt;font face=&quot;Courier New&quot;&gt;$HOME/.config/Code/User/&lt;/font&gt;&lt;br&gt;&lt;/li&gt;&lt;li&gt;macOS -&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;$HOME/Library/Application Support/Code/User/&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=12;align=left;verticalAlign=top;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="g1oMZA-v6UON6Q8XWzZf-0" vertex="1">
                     <mxGeometry x="310" y="10" width="440" height="90" as="geometry"/>
@@ -39,7 +39,7 @@
                 </mxCell>
                 <UserObject label="&lt;font face=&quot;Courier New&quot;&gt;.vscode/ - &lt;/font&gt;every&lt;font face=&quot;Courier New&quot;&gt;&amp;nbsp;&lt;/font&gt;root folder setting in workspace" id="g1oMZA-v6UON6Q8XWzZf-23">
                     <mxCell style="whiteSpace=wrap;html=1;rounded=1;arcSize=23;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="g1oMZA-v6UON6Q8XWzZf-0" vertex="1">
-                        <mxGeometry x="470" y="255" width="300" height="30" as="geometry"/>
+                        <mxGeometry x="470" y="265" width="300" height="30" as="geometry"/>
                     </mxCell>
                 </UserObject>
                 <mxCell id="g1oMZA-v6UON6Q8XWzZf-24" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="g1oMZA-v6UON6Q8XWzZf-0" source="g1oMZA-v6UON6Q8XWzZf-23" target="g1oMZA-v6UON6Q8XWzZf-25" edge="1">
@@ -48,7 +48,7 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="g1oMZA-v6UON6Q8XWzZf-25" value="&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;settings.json&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;keybindings.json&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;launch.json&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;tasks.json&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=18;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="g1oMZA-v6UON6Q8XWzZf-0" vertex="1">
-                    <mxGeometry x="790" y="230" width="205" height="80" as="geometry"/>
+                    <mxGeometry x="790" y="240" width="205" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="mVDHqcfy2zTq7n2vBaY1-7" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="g1oMZA-v6UON6Q8XWzZf-0" source="g1oMZA-v6UON6Q8XWzZf-21" target="mVDHqcfy2zTq7n2vBaY1-8" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -66,9 +66,9 @@
                         <mxPoint x="790" y="135" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <UserObject label="&lt;font face=&quot;Courier New&quot; style=&quot;font-size: 12px&quot;&gt;{&lt;br&gt;&amp;nbsp; &quot;folder&quot;: [],&lt;br&gt;&amp;nbsp; &quot;settings&quot;: {},&lt;br&gt;&amp;nbsp; &quot;[typescript]&quot;: {}&lt;br&gt;}&lt;br&gt;&lt;/font&gt;" id="mVDHqcfy2zTq7n2vBaY1-10">
+                <UserObject label="&lt;font face=&quot;Courier New&quot; style=&quot;font-size: 12px&quot;&gt;{&lt;br&gt;&amp;nbsp; &quot;folder&quot;: [],&lt;br&gt;&amp;nbsp; &quot;settings&quot;: {},&lt;br&gt;&amp;nbsp; &quot;[typescript]&quot;: {},&lt;br&gt;&amp;nbsp; &quot;launch&quot;: {&quot;configurations: [...]}&lt;br&gt;}&lt;br&gt;&lt;/font&gt;" id="mVDHqcfy2zTq7n2vBaY1-10">
                     <mxCell style="whiteSpace=wrap;html=1;rounded=1;arcSize=10;align=left;verticalAlign=top;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="g1oMZA-v6UON6Q8XWzZf-0" vertex="1">
-                        <mxGeometry x="790" y="130" width="180" height="90" as="geometry"/>
+                        <mxGeometry x="790" y="125" width="320" height="100" as="geometry"/>
                     </mxCell>
                 </UserObject>
                 <mxCell id="07cBS2gzsWg7Vqvcydfd-2" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="g1oMZA-v6UON6Q8XWzZf-0" source="g1oMZA-v6UON6Q8XWzZf-5" target="07cBS2gzsWg7Vqvcydfd-3" edge="1">
@@ -85,74 +85,94 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="oRyd6DHy6yoq9Ppxw7yS-3" value="debugging" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="g1oMZA-v6UON6Q8XWzZf-0" vertex="1">
-                    <mxGeometry x="160" y="382.5" width="130" height="30" as="geometry"/>
+                    <mxGeometry x="160" y="410.5" width="130" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="RprOEVf1tIVI0a0wrrcO-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="g1oMZA-v6UON6Q8XWzZf-0" source="oRyd6DHy6yoq9Ppxw7yS-3" target="RprOEVf1tIVI0a0wrrcO-1" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="170" y="305" as="sourcePoint"/>
+                        <mxPoint x="170" y="333" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="RprOEVf1tIVI0a0wrrcO-1" value="&lt;h3&gt;&lt;span style=&quot;font-size: 12px ; font-weight: normal&quot;&gt;start:&lt;/span&gt;&lt;br&gt;&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;F9 - set breakpoint&lt;/li&gt;&lt;li&gt;shift + F9 - inline breakpoint&lt;/li&gt;&lt;li&gt;F5 - initiate debugging&amp;nbsp;&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=14;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=6;" parent="g1oMZA-v6UON6Q8XWzZf-0" vertex="1">
-                    <mxGeometry x="310" y="302" width="230" height="80.5" as="geometry"/>
+                    <mxGeometry x="310" y="330" width="230" height="80.5" as="geometry"/>
                 </mxCell>
                 <mxCell id="S_3lF0ny-4beljYbZym9-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="g1oMZA-v6UON6Q8XWzZf-0" source="oRyd6DHy6yoq9Ppxw7yS-3" target="S_3lF0ny-4beljYbZym9-1" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="320" y="415" as="sourcePoint"/>
+                        <mxPoint x="320" y="443" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="S_3lF0ny-4beljYbZym9-1" value="&lt;h3&gt;&lt;span style=&quot;font-size: 12px ; font-weight: normal&quot;&gt;conditional breakpoints:&lt;/span&gt;&lt;br&gt;&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;expression condition&lt;/li&gt;&lt;li&gt;hit count&amp;nbsp;&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=14;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=6;" parent="g1oMZA-v6UON6Q8XWzZf-0" vertex="1">
-                    <mxGeometry x="310" y="410" width="200" height="80" as="geometry"/>
+                    <mxGeometry x="310" y="438" width="200" height="80" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
     <diagram id="FBWLnhBGEP0MXX_W7LkF" name="settings">
-        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        
-        <mxGraphModel dx="822" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
-            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            
+        &#xa;        
+        <mxGraphModel dx="640" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            &#xa;            
             <root>
-                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                
+                &#xa;                
                 <mxCell id="0"/>
-                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                
+                &#xa;                
                 <mxCell id="1" parent="0"/>
-                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                
+                &#xa;                
                 <mxCell id="8Agz6uRHH6luh3BE55-S-1" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontSize=12;" parent="1" vertex="1">
-                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    
+                    &#xa;                    
                     <mxGeometry x="390" y="310" width="40" height="8" as="geometry"/>
-                    &#xa;                    &#xa;                    &#xa;                    &#xa;                &#xa;                &#xa;                &#xa;                
+                    &#xa;                
                 </mxCell>
-                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                
-                <mxCell id="8Agz6uRHH6luh3BE55-S-2" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th style=&quot;text-align: center&quot;&gt;&lt;span style=&quot;font-weight: normal&quot;&gt;settings&lt;/span&gt;&lt;/th&gt;&lt;td style=&quot;text-align: center&quot;&gt;meanings&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;font face=&quot;Courier New&quot; color=&quot;#ff0000&quot;&gt;settings.json&lt;/font&gt;&lt;/td&gt;&lt;td&gt;设置文件&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;h3&gt;&lt;font face=&quot;Courier New&quot;&gt;basic&lt;/font&gt;&lt;/h3&gt;&lt;font face=&quot;Courier New&quot;&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;files.eol: &quot;\n&quot;&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;files.associations: {&quot;*.rmd&quot;: &quot;markdown&quot;}&lt;br&gt;&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;workbench.editor.enablePreview: false&lt;br&gt;&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/font&gt;&lt;/td&gt;&lt;td&gt;&lt;h3&gt;&lt;br&gt;&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;&quot;\n&quot;为换行符&lt;/li&gt;&lt;li&gt;文件类型对应&lt;/li&gt;&lt;li&gt;显示多个文件，当发现只显示一个文件窗口时设置&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;h3 style=&quot;font-size: 14px&quot;&gt;Python:&lt;/h3&gt;&lt;ol&gt;&lt;li style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;font face=&quot;Courier New&quot;&gt;python.autoComplete.addBrackets: true&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;font face=&quot;Courier New&quot;&gt;python.pythonPath: &quot;python&quot;&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;python.pythonPath: &quot;${workspaceFolder}/.venv&quot;&lt;/li&gt;&lt;li style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;python.venvPath: &quot;${workspaceFolder}/.envs&lt;/li&gt;&lt;li style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;python.autoComplete.extraPaths: [pkg1, pkg2, ...]&lt;/li&gt;&lt;li style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;python.jediEnabled: false&lt;/li&gt;&lt;li style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;python.linting.enabled: true&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;td&gt;&lt;h3&gt;&lt;br&gt;&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;补全函数时自动加括号&lt;/li&gt;&lt;li&gt;设置python解释器路径&lt;/li&gt;&lt;li&gt;包含python解释器的文件夹路径&lt;/li&gt;&lt;li&gt;设置虚拟环境的文件夹路径&lt;/li&gt;&lt;li&gt;增加自定义包路径&lt;/li&gt;&lt;li&gt;不用Jedi而是ms补全，额外提供快速修复功能&lt;/li&gt;&lt;li&gt;开启linting，和上述jedi设置一起配置&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;h3&gt;Draw.io Integration:&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;hediet.vscode-drawio.theme: atlas&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;ol&gt;&lt;li&gt;设置背景&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;重启vscode&lt;/td&gt;&lt;td&gt;无法初始化设备 PRN&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" parent="1" vertex="1">
-                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    
+                &#xa;                
+                <mxCell id="8Agz6uRHH6luh3BE55-S-2" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th style=&quot;text-align: center&quot;&gt;&lt;span style=&quot;font-weight: normal&quot;&gt;settings&lt;/span&gt;&lt;/th&gt;&lt;td style=&quot;text-align: center&quot;&gt;meanings&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;font face=&quot;Courier New&quot; color=&quot;#ff0000&quot;&gt;settings.json&lt;/font&gt;&lt;/td&gt;&lt;td&gt;设置文件&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;h3&gt;&lt;font face=&quot;Courier New&quot;&gt;basic&lt;/font&gt;&lt;/h3&gt;&lt;font face=&quot;Courier New&quot;&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;files.eol: &quot;\n&quot;&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;files.associations: {&quot;*.rmd&quot;: &quot;markdown&quot;}&lt;br&gt;&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;workbench.editor.enablePreview: false&lt;br&gt;&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/font&gt;&lt;/td&gt;&lt;td&gt;&lt;h3&gt;&lt;br&gt;&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;&quot;\n&quot;为换行符&lt;/li&gt;&lt;li&gt;文件类型对应&lt;/li&gt;&lt;li&gt;显示多个文件，当发现只显示一个文件窗口时设置&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;h3 style=&quot;font-size: 14px&quot;&gt;Python:&lt;/h3&gt;&lt;ol&gt;&lt;li style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;font face=&quot;Courier New&quot;&gt;python.autoComplete.addBrackets: true&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;font face=&quot;Courier New&quot;&gt;python.pythonPath: &quot;python&quot;&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;python.autoComplete.extraPaths: [pkg1, pkg2, ...]&lt;/li&gt;&lt;li style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;python.jediEnabled: false&lt;/li&gt;&lt;li style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;python.linting.enabled: true&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;td&gt;&lt;h3&gt;&lt;br&gt;&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;补全函数时自动加括号&lt;/li&gt;&lt;li&gt;设置python解释器路径&lt;/li&gt;&lt;li&gt;增加自定义包路径&lt;/li&gt;&lt;li&gt;不用Jedi而是ms补全，额外提供快速修复功能&lt;/li&gt;&lt;li&gt;开启linting，和上述jedi设置一起配置&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;h3&gt;Draw.io Integration:&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;hediet.vscode-drawio.theme: atlas&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;ol&gt;&lt;li&gt;设置背景&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;重启vscode&lt;/td&gt;&lt;td&gt;无法初始化设备 PRN&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" parent="1" vertex="1">
+                    &#xa;                    
                     <mxGeometry x="40" y="110" width="790" height="400" as="geometry"/>
-                    &#xa;                    &#xa;                    &#xa;                    &#xa;                &#xa;                &#xa;                &#xa;                
+                    &#xa;                
                 </mxCell>
-                &#xa;                &#xa;                &#xa;                &#xa;            &#xa;            &#xa;            &#xa;            
+                &#xa;            
             </root>
-            &#xa;            &#xa;            &#xa;            &#xa;        &#xa;        &#xa;        &#xa;        
+            &#xa;        
         </mxGraphModel>
-        &#xa;        &#xa;        &#xa;        &#xa;    &#xa;    &#xa;    &#xa;    
+        &#xa;    
     </diagram>
     <diagram id="BHrOOqIUnbpUJcI-PT_s" name="shortcuts">
+        &#xa;        &#xa;        &#xa;        
         <mxGraphModel dx="898" dy="566" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="1" shadow="0">
+            &#xa;            &#xa;            &#xa;            
             <root>
+                &#xa;                &#xa;                &#xa;                
                 <mxCell id="J0S1Tp6G4MbBAgsrbNJQ-0"/>
+                &#xa;                &#xa;                &#xa;                
                 <mxCell id="J0S1Tp6G4MbBAgsrbNJQ-1" parent="J0S1Tp6G4MbBAgsrbNJQ-0"/>
+                &#xa;                &#xa;                &#xa;                
                 <mxCell id="J0S1Tp6G4MbBAgsrbNJQ-2" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;keys&lt;/th&gt;&lt;th&gt;actions&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;font color=&quot;#ff0000&quot;&gt;keybindings.json&lt;/font&gt;&lt;/td&gt;&lt;td&gt;快捷键绑定文件&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ctrl+p; cmd+p&lt;/td&gt;&lt;td&gt;查找文件&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ctrl+shift+p; cmd+shift+p&lt;/td&gt;&lt;td&gt;命令&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;; cmd+k cmd+s&lt;/td&gt;&lt;td&gt;设置快捷键&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;; cmd + shift + k&lt;/td&gt;&lt;td&gt;删除当前行&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ctrl + j&lt;/td&gt;&lt;td&gt;合并行&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;; cmd + shift + enter&lt;/td&gt;&lt;td&gt;在上方插入一行&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;; cmd + enter&lt;/td&gt;&lt;td&gt;在下方插入一行&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;shift + alt + \(\uparrow \downarrow\)&lt;/td&gt;&lt;td&gt;复制到上一行或下一行&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;alt + \(\uparrow \downarrow\)&lt;/td&gt;&lt;td&gt;移动到上一行或下一行&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ctrl + backspace;&lt;/td&gt;&lt;td&gt;删除左边单词&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ctrl + delete;&lt;/td&gt;&lt;td&gt;删除右边单词&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ctrl + space; alt + esc, fn + ctrl + space&lt;/td&gt;&lt;td&gt;触发补全&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ctrl+click;&lt;/td&gt;&lt;td&gt;跳转到链接或定义&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ctrl + ], ctrl + [;&lt;/td&gt;&lt;td&gt;行缩进&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ctrl + G&lt;/td&gt;&lt;td&gt;跳转到指定行&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" parent="J0S1Tp6G4MbBAgsrbNJQ-1" vertex="1">
+                    &#xa;                    &#xa;                    &#xa;                    
                     <mxGeometry x="40" y="60" width="400" height="420" as="geometry"/>
+                    &#xa;                    &#xa;                &#xa;                
                 </mxCell>
+                &#xa;                &#xa;            &#xa;            
             </root>
+            &#xa;            &#xa;        &#xa;        
         </mxGraphModel>
+        &#xa;        &#xa;    &#xa;    
     </diagram>
     <diagram id="-PNWrWSnkWKRuond0kSB" name="plugins">
-        <mxGraphModel dx="898" dy="566" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+        &#xa;        
+        <mxGraphModel dx="640" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+            &#xa;            
             <root>
+                &#xa;                
                 <mxCell id="0ULeX2zkz-rmOQAiP5B0-0"/>
+                &#xa;                
                 <mxCell id="0ULeX2zkz-rmOQAiP5B0-1" parent="0ULeX2zkz-rmOQAiP5B0-0"/>
+                &#xa;                
                 <mxCell id="0ULeX2zkz-rmOQAiP5B0-2" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th style=&quot;text-align: center&quot;&gt;&lt;span style=&quot;font-weight: normal&quot;&gt;插件&lt;/span&gt;&lt;/th&gt;&lt;th style=&quot;text-align: center&quot;&gt;&lt;span style=&quot;font-weight: normal&quot;&gt;应用&lt;/span&gt;&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Simple Vim&lt;/td&gt;&lt;td&gt;&lt;h3&gt;special keybindings:&lt;/h3&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;_&lt;/font&gt; - to the beginning of the line&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Draw.io Integration&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Remote Development&lt;/td&gt;&lt;td&gt;&lt;h3&gt;install and configure:&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;install &lt;a href=&quot;https://git-scm.com/download/win&quot;&gt;git for windows&lt;/a&gt;&amp;nbsp;just for windows os&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;ssh-keygen -t rsa&lt;/font&gt;&amp;nbsp;creates &lt;i&gt;public key&lt;/i&gt; to the remote machine&lt;/li&gt;&lt;li&gt;set &lt;font face=&quot;Courier New&quot;&gt;Remote.SSH: Path = path/to/ssh.exe&lt;/font&gt;&lt;/li&gt;&lt;li&gt;configure setting in file &lt;font face=&quot;Courier New&quot;&gt;~/.ssh/config&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; Host server1&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; HostName 192.168.1.0&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; User hello&lt;/div&gt;&lt;/font&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a href=&quot;https://code.visualstudio.com/docs/python/python-tutorial&quot;&gt;Python (Microsoft)&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;h3&gt;environment:&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;Python: Select Interprete&lt;/font&gt;r&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;Python: Start REPL&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;h3&gt;refactor:&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;Python Refactor: Extract Variable&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;Python Refactor: Extract Method&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;Python Refactor: Sort Imports&lt;br&gt;&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;h3&gt;linting:&lt;/h3&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;Python: Select Linter - &lt;/font&gt;use pylint default&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;Python: Enable Linting&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;Python: Run Linting&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;h3&gt;&lt;font face=&quot;Courier New&quot;&gt;testing:&lt;/font&gt;&lt;/h3&gt;&lt;/div&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;Python: Configure Tests - &lt;/font&gt;select a test framework and configure it&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;Python: Discover Tests&lt;/font&gt; - discover test framework automatically when saving a test file by default, when &lt;font face=&quot;Courier New&quot;&gt;false&lt;/font&gt;, will disable it&lt;br&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;Python: Run All Tests&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;unittestAargs: [&quot;-v&quot;, &quot;-s&quot;, &quot;./test&quot;, &quot;-p&quot;, &quot;test_*.py&quot;] &lt;/font&gt;- &quot;-v&quot; verbose output, remove this argument for simple output; &quot;-s&quot; specifies starting directory for test files,e.g., &quot;./test&quot; directory; &quot;-p&quot; is the pattern used to look for test files in the &quot;-s&quot; directory, such as files starting with &quot;test_&quot;. see&amp;nbsp;&lt;a href=&quot;https://docs.python.org/3/library/unittest.html#command-line-interface&quot;&gt;unittest command-line interface&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;&lt;h3&gt;jupyter&lt;/h3&gt;&lt;/div&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;Python: Create Blank New Jupyter Notebook &lt;/font&gt;- creates a notebook&lt;/li&gt;&lt;li&gt;cells can have there status, unselected, command mode, and edit mode.&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;# %%&lt;/font&gt; - defines jupyter-like code cells within python file&amp;nbsp;&lt;/li&gt;&lt;/ol&gt;&lt;h3&gt;jupyter settings:&lt;/h3&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;python.dataScience.themeMatplotlibPlots: true&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;h3&gt;jupyter shortcuts:&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot; style=&quot;font-size: 1em&quot;&gt;ESC&lt;/font&gt;&lt;span style=&quot;font-size: 1em&quot;&gt;&amp;nbsp;- edit mode to command mode&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot; style=&quot;font-size: 1em&quot;&gt;Enter&lt;/font&gt;&lt;span style=&quot;font-size: 1em&quot;&gt;&amp;nbsp;- command mode to edit mode&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 1em&quot;&gt;A - adds cell above&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 1em&quot;&gt;B - adds cell below&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 1em&quot;&gt;DD - deletes current cell&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 1em&quot;&gt;J,K - moves up and down in command mode&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 1em&quot;&gt;ctrl + enter - runs current cell&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 1em&quot;&gt;shift + enter - runs current cell and insert a cell below&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;" parent="0ULeX2zkz-rmOQAiP5B0-1" vertex="1">
+                    &#xa;                    
                     <mxGeometry x="70" y="20" width="660" height="1050" as="geometry"/>
+                    &#xa;                
                 </mxCell>
+                &#xa;            
             </root>
+            &#xa;        
         </mxGraphModel>
+        &#xa;    
     </diagram>
 </mxfile>
