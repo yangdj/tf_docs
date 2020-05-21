@@ -20,7 +20,8 @@
             "args": [
                 "runserver"
             ],
-            "django": true // enable debugging of Django page templates
+            "django": true, // enable debugging of Django page templates
+            "subProcess": true // for debugging
         }
     ]
 }

@@ -1,0 +1,158 @@
+<mxfile host="localhost" modified="2020-05-21T11:34:21.168Z" agent="5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.45.1 Chrome/78.0.3904.130 Electron/7.2.4 Safari/537.36" etag="NZtrHsSG5EwggjltRjbB" version="13.0.9" pages="2">
+    <diagram id="M69t58L4IS4P6THLBtKI" name="django">
+        <mxGraphModel dx="1404" dy="1454" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="ra_4u8bDI7FsC3nfDdiC-0"/>
+                <mxCell id="ra_4u8bDI7FsC3nfDdiC-1" parent="ra_4u8bDI7FsC3nfDdiC-0"/>
+                <mxCell id="ra_4u8bDI7FsC3nfDdiC-2" value="s" style="swimlane;html=1;startSize=20;horizontal=1;containerType=tree;strokeColor=none;fillColor=none;whiteSpace=wrap;" parent="ra_4u8bDI7FsC3nfDdiC-1" vertex="1">
+                    <mxGeometry x="-10" y="-10" width="1827" height="2095" as="geometry"/>
+                </mxCell>
+                <mxCell id="ra_4u8bDI7FsC3nfDdiC-3" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="ra_4u8bDI7FsC3nfDdiC-2" source="ra_4u8bDI7FsC3nfDdiC-7" target="ra_4u8bDI7FsC3nfDdiC-8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ra_4u8bDI7FsC3nfDdiC-7" value="django" style="ellipse;whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="ra_4u8bDI7FsC3nfDdiC-2" vertex="1">
+                    <mxGeometry x="20" y="610" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="ra_4u8bDI7FsC3nfDdiC-8" value="management" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="ra_4u8bDI7FsC3nfDdiC-2" vertex="1">
+                    <mxGeometry x="140" y="295" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="qcwrLH1Dof33v1OUKWGm-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="ra_4u8bDI7FsC3nfDdiC-2" source="ra_4u8bDI7FsC3nfDdiC-8" target="qcwrLH1Dof33v1OUKWGm-1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="150" y="90" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="qcwrLH1Dof33v1OUKWGm-1" value="project" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="ra_4u8bDI7FsC3nfDdiC-2" vertex="1">
+                    <mxGeometry x="270" y="160" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="qcwrLH1Dof33v1OUKWGm-2" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="ra_4u8bDI7FsC3nfDdiC-2" source="qcwrLH1Dof33v1OUKWGm-1" target="qcwrLH1Dof33v1OUKWGm-3" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="280" y="65" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="qcwrLH1Dof33v1OUKWGm-3" value="&lt;h3&gt;&lt;font face=&quot;Courier New&quot;&gt;create project:&lt;/font&gt;&lt;/h3&gt;&lt;font face=&quot;Courier New&quot;&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;django-admin startproject web_project&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;h3&gt;structures:&lt;/h3&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;&lt;div&gt;web_project/&lt;/div&gt;&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; web_project/&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; __init__.py&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; wsgi.py&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; settings.py&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; urls.py&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; manage.py&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; app/&lt;/div&gt;&lt;/li&gt;&lt;/ol&gt;&lt;h3&gt;start development server:&lt;/h3&gt;&lt;/div&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;&lt;div&gt;python manage.py runserver&lt;/div&gt;&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;div&gt;python manage.py runserver 5000&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div&gt;vscode launch.json configuration&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div&gt;subProcess: true -&amp;nbsp; debugging in launch.json file&lt;br&gt;&lt;/div&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=4;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="ra_4u8bDI7FsC3nfDdiC-2" vertex="1">
+                    <mxGeometry x="380" y="10" width="410" height="330" as="geometry"/>
+                </mxCell>
+                <mxCell id="ytSoNRwtpomNZAQt6G3V-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="ra_4u8bDI7FsC3nfDdiC-2" source="ra_4u8bDI7FsC3nfDdiC-8" target="ytSoNRwtpomNZAQt6G3V-1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="280" y="155" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ytSoNRwtpomNZAQt6G3V-1" value="apps" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="ra_4u8bDI7FsC3nfDdiC-2" vertex="1">
+                    <mxGeometry x="270" y="540" width="75" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="ytSoNRwtpomNZAQt6G3V-22" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="ra_4u8bDI7FsC3nfDdiC-2" source="ytSoNRwtpomNZAQt6G3V-1" target="ytSoNRwtpomNZAQt6G3V-23" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="290" y="280" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ytSoNRwtpomNZAQt6G3V-23" value="&lt;h3&gt;create app:&lt;/h3&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;python manage.py startapp hello&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;h3&gt;&lt;font face=&quot;Courier New&quot;&gt;structures:&lt;/font&gt;&lt;/h3&gt;&lt;/div&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;hello/&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;&amp;nbsp; &amp;nbsp; migrations/&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;&amp;nbsp; &amp;nbsp; __init__.py&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;&amp;nbsp; &amp;nbsp; admiin.py&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;&amp;nbsp; &amp;nbsp; apps.py&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;&amp;nbsp; &amp;nbsp; model.py&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;&amp;nbsp; &amp;nbsp; tests.py&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;&amp;nbsp; &amp;nbsp; view.py&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=2;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="ra_4u8bDI7FsC3nfDdiC-2" vertex="1">
+                    <mxGeometry x="380" y="430" width="370" height="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="ytSoNRwtpomNZAQt6G3V-24" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="ra_4u8bDI7FsC3nfDdiC-2" source="ra_4u8bDI7FsC3nfDdiC-7" target="ytSoNRwtpomNZAQt6G3V-25" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="160" y="350" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ytSoNRwtpomNZAQt6G3V-25" value="url" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="ra_4u8bDI7FsC3nfDdiC-2" vertex="1">
+                    <mxGeometry x="140" y="895" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="ytSoNRwtpomNZAQt6G3V-26" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="ra_4u8bDI7FsC3nfDdiC-2" source="ytSoNRwtpomNZAQt6G3V-25" target="ytSoNRwtpomNZAQt6G3V-27" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="160" y="505" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ytSoNRwtpomNZAQt6G3V-27" value="&lt;h3&gt;url format:&lt;/h3&gt;&lt;div&gt;f&lt;font face=&quot;Courier New&quot;&gt;rom django.contrib import admin&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;from django.urls import path, include&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;urlpatterns = [&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;&amp;nbsp; &amp;nbsp; path(&quot;admin/&quot;, admin.site.urls),&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;&amp;nbsp; &amp;nbsp; path(&quot;/home&quot;, views.home, name=&quot;home&quot;),&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;&amp;nbsp; &amp;nbsp; path(&quot;app&quot;, include(&quot;app.urls&quot;),&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;]&lt;/font&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="ra_4u8bDI7FsC3nfDdiC-2" vertex="1">
+                    <mxGeometry x="270" y="730" width="350" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="ytSoNRwtpomNZAQt6G3V-28" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="ra_4u8bDI7FsC3nfDdiC-2" source="ytSoNRwtpomNZAQt6G3V-25" target="ytSoNRwtpomNZAQt6G3V-29" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="230" y="665" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ytSoNRwtpomNZAQt6G3V-29" value="&lt;h3&gt;app urls:&lt;/h3&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;create &lt;font face=&quot;Courier New&quot;&gt;urls.py in the created apps folder&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;in the project urls.py&lt;/font&gt;, add&lt;font face=&quot;Courier New&quot;&gt; path(&quot;app-path&quot;,include(&quot;app.urls&quot;))&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="ra_4u8bDI7FsC3nfDdiC-2" vertex="1">
+                    <mxGeometry x="270" y="935" width="530" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="X1pdC5deUGPAKXjMuTSz-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="ra_4u8bDI7FsC3nfDdiC-2" source="ra_4u8bDI7FsC3nfDdiC-7" target="X1pdC5deUGPAKXjMuTSz-1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="130" y="475" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="X1pdC5deUGPAKXjMuTSz-1" value="template" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="ra_4u8bDI7FsC3nfDdiC-2" vertex="1">
+                    <mxGeometry x="140" y="1145" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="X1pdC5deUGPAKXjMuTSz-2" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="ra_4u8bDI7FsC3nfDdiC-2" source="X1pdC5deUGPAKXjMuTSz-1" target="X1pdC5deUGPAKXjMuTSz-3" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="130" y="475" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="X1pdC5deUGPAKXjMuTSz-3" value="&lt;div style=&quot;text-align: left&quot;&gt;&lt;h3&gt;&lt;font face=&quot;Courier New&quot;&gt;register app:&lt;/font&gt;&lt;/h3&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;web_project/setting.py INSTALLED_APPS&amp;nbsp;&lt;/font&gt;append&amp;nbsp;app &quot;&lt;font face=&quot;Courier New&quot;&gt;hello&quot;&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;h3&gt;create template files:&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;create &lt;font face=&quot;Courier New&quot;&gt;templates/hello/ &lt;/font&gt;folder in &lt;font face=&quot;Courier New&quot;&gt;hello&lt;/font&gt;&amp;nbsp;folder, django convention&lt;/li&gt;&lt;li&gt;create template files in the &lt;font face=&quot;Courier New&quot;&gt;templates/hello/&lt;/font&gt;&amp;nbsp;folder&lt;/li&gt;&lt;/ol&gt;&lt;h3&gt;render template:&lt;/h3&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;from django.shoutcuts import render&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;render(request, &quot;hello/tmp.hmtl&quot;, {&quot;name&quot;: name, &quot;age&quot;: age}&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=7;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="ra_4u8bDI7FsC3nfDdiC-2" vertex="1">
+                    <mxGeometry x="270" y="1050" width="470" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="X1pdC5deUGPAKXjMuTSz-4" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="ra_4u8bDI7FsC3nfDdiC-2" source="ra_4u8bDI7FsC3nfDdiC-7" target="X1pdC5deUGPAKXjMuTSz-5" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="130" y="640" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="X1pdC5deUGPAKXjMuTSz-5" value="static file" style="whiteSpace=wrap;html=1;rounded=1;arcSize=27;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="ra_4u8bDI7FsC3nfDdiC-2" vertex="1">
+                    <mxGeometry x="140" y="1440" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="X1pdC5deUGPAKXjMuTSz-6" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="ra_4u8bDI7FsC3nfDdiC-2" source="X1pdC5deUGPAKXjMuTSz-5" target="X1pdC5deUGPAKXjMuTSz-7" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="130" y="640" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="X1pdC5deUGPAKXjMuTSz-7" value="&lt;p&gt;setting&lt;/p&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=9;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="ra_4u8bDI7FsC3nfDdiC-2" vertex="1">
+                    <mxGeometry x="260" y="1320" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="X1pdC5deUGPAKXjMuTSz-8" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="ra_4u8bDI7FsC3nfDdiC-2" source="X1pdC5deUGPAKXjMuTSz-5" target="X1pdC5deUGPAKXjMuTSz-9" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="240" y="1435" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="X1pdC5deUGPAKXjMuTSz-9" value="&lt;p&gt;usage&lt;/p&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=9;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="ra_4u8bDI7FsC3nfDdiC-2" vertex="1">
+                    <mxGeometry x="263" y="1430" width="107" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="X1pdC5deUGPAKXjMuTSz-10" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="ra_4u8bDI7FsC3nfDdiC-2" source="X1pdC5deUGPAKXjMuTSz-5" target="X1pdC5deUGPAKXjMuTSz-11" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="240" y="1435" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="X1pdC5deUGPAKXjMuTSz-11" value="&lt;p&gt;deployment&lt;/p&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=9;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="ra_4u8bDI7FsC3nfDdiC-2" vertex="1">
+                    <mxGeometry x="260" y="1545" width="107" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="X1pdC5deUGPAKXjMuTSz-12" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="ra_4u8bDI7FsC3nfDdiC-2" source="X1pdC5deUGPAKXjMuTSz-9" target="X1pdC5deUGPAKXjMuTSz-13" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="240" y="1435" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="X1pdC5deUGPAKXjMuTSz-13" value="&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;{% load static %} &lt;/font&gt;just under &lt;font face=&quot;Courier New&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;&amp;lt;link href=&quot;{% static 'hello/site.css' %}&quot; /&amp;gt;&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=9;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="ra_4u8bDI7FsC3nfDdiC-2" vertex="1">
+                    <mxGeometry x="410" y="1420" width="400" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="X1pdC5deUGPAKXjMuTSz-14" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="ra_4u8bDI7FsC3nfDdiC-2" source="X1pdC5deUGPAKXjMuTSz-7" target="X1pdC5deUGPAKXjMuTSz-15" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="240" y="1435" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="X1pdC5deUGPAKXjMuTSz-15" value="&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;django.contrib.staticfiles -&amp;nbsp;&lt;/font&gt;append to&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;INSTALLED_APPS&amp;nbsp;&lt;/font&gt;(included default)&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;hello/static/hello/ &lt;/font&gt;-&amp;nbsp; created for app's static file, similar to templates&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;STATICFILES_DIRS = [os.path.join(BASE_DIR, &quot;static&quot;), &quot;/var/www/static&quot;] - self defined folders&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=9;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="ra_4u8bDI7FsC3nfDdiC-2" vertex="1">
+                    <mxGeometry x="410" y="1287.5" width="400" height="115" as="geometry"/>
+                </mxCell>
+                <mxCell id="X1pdC5deUGPAKXjMuTSz-16" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="ra_4u8bDI7FsC3nfDdiC-2" source="X1pdC5deUGPAKXjMuTSz-11" target="X1pdC5deUGPAKXjMuTSz-17" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="240" y="1435" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="X1pdC5deUGPAKXjMuTSz-17" value="&lt;h3&gt;settings.py&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;DEBUG=False&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;STATIC_ROOT = os.path.join(BASE_DIR, &quot;static_collected&quot;)&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;h3&gt;collect static file in the STATIC_ROOT folder:&lt;/h3&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;font face=&quot;Courier New&quot;&gt;python manage.py collectstatic&lt;/font&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=9;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="ra_4u8bDI7FsC3nfDdiC-2" vertex="1">
+                    <mxGeometry x="407" y="1500" width="480" height="140" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="gZrbFzDSdiFl9gUGTO_j" name="templates">
+        <mxGraphModel dx="577" dy="285" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="98OV1mBeewx__mKtfcIp-0"/>
+                <mxCell id="98OV1mBeewx__mKtfcIp-1" parent="98OV1mBeewx__mKtfcIp-0"/>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
