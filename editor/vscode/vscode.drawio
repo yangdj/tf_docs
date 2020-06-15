@@ -1,6 +1,6 @@
-<mxfile host="" modified="2020-06-10T06:35:02.311Z" agent="5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.45.1 Chrome/78.0.3904.130 Electron/7.2.4 Safari/537.36" etag="28XrlWxar9bAPSpHqZKh" version="13.1.3" pages="5">
+<mxfile host="" modified="2020-06-15T15:20:28.823Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.46.0 Chrome/78.0.3904.130 Electron/7.3.1 Safari/537.36" etag="8yUoHycUFrbF9b9bUx7N" version="13.1.3" pages="5">
     <diagram id="K4R4QghZersOc9A9mNaJ" name="vscode">
-        <mxGraphModel dx="626" dy="260" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+        <mxGraphModel dx="616" dy="303" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
             <root>
                 <mxCell id="dUwQ-VKBVRRGoe277Vrm-0"/>
                 <mxCell id="dUwQ-VKBVRRGoe277Vrm-1" parent="dUwQ-VKBVRRGoe277Vrm-0"/>
@@ -115,49 +115,49 @@
         </mxGraphModel>
     </diagram>
     <diagram id="M3drq7hlUULywe45jObz" name="editor">
-        &#xa;        
+        &#xa;        &#xa;        &#xa;        
         <mxGraphModel dx="603" dy="260" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
-            &#xa;            
+            &#xa;            &#xa;            &#xa;            
             <root>
-                &#xa;                
+                &#xa;                &#xa;                &#xa;                
                 <mxCell id="x_8myAfqVJ25dmq6xGWm-0"/>
-                &#xa;                
+                &#xa;                &#xa;                &#xa;                
                 <mxCell id="x_8myAfqVJ25dmq6xGWm-1" parent="x_8myAfqVJ25dmq6xGWm-0"/>
-                &#xa;                
+                &#xa;                &#xa;                &#xa;                
                 <mxCell id="1WV5k62e5-HMiqpn4Q07-0" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;内容&lt;/td&gt;&lt;th style=&quot;text-align: center&quot;&gt;用法&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;p&gt;系统默认设置&lt;/p&gt;&lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li&gt;&quot;editor.insertSpaces&quot;: true, &quot;editor.tabSize&quot;: 4 - tab键用4个空格表示&lt;/li&gt;&lt;li&gt;&quot;files.encoding&quot;: &quot;utf8&quot;&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;额外设置&lt;font face=&quot;Courier New&quot;&gt;(settings.json)&lt;/font&gt;&lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;font face=&quot;Courier New&quot;&gt;&quot;files.eol&quot;: &quot;\n&quot;&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;font face=&quot;Courier New&quot;&gt;&quot;files.associations&quot;: {&quot;*.rmd&quot;: &quot;markdown&quot;}&lt;br&gt;&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;font face=&quot;Courier New&quot;&gt;&quot;workbench.editor.enablePreview&quot;: false -&amp;nbsp;&lt;/font&gt;显示多个打开文件窗口&lt;/li&gt;&lt;li style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&quot;editor.renameOnType&quot;: true&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a href=&quot;https://code.visualstudio.com/docs/editor/codebasics#_search-across-files&quot;&gt;字符模式&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;* -&amp;nbsp;&lt;/font&gt;匹配1到多個字符&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;? -&amp;nbsp;&lt;/font&gt;匹配1个字符&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;[] - &lt;/font&gt;匹配范围内任意一个字符，[0-9]&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;! - 不包含匹配的内容&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;** -&amp;nbsp;&lt;/font&gt;匹配任意多的路径构成，包含空内容&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;{} - 分组，{**/*.html,**/*.txt}&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;, - 分隔多个模式&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" parent="x_8myAfqVJ25dmq6xGWm-1" vertex="1">
-                    &#xa;                    
+                    &#xa;                    &#xa;                    &#xa;                    
                     <mxGeometry x="30" y="20" width="700" height="320" as="geometry"/>
-                    &#xa;                
+                    &#xa;                    &#xa;                &#xa;                
                 </mxCell>
-                &#xa;            
+                &#xa;                &#xa;            &#xa;            
             </root>
-            &#xa;        
+            &#xa;            &#xa;        &#xa;        
         </mxGraphModel>
-        &#xa;    
+        &#xa;        &#xa;    &#xa;    
     </diagram>
     <diagram id="BHrOOqIUnbpUJcI-PT_s" name="shortcuts">
-        &#xa;        
+        &#xa;        &#xa;        &#xa;        
         <mxGraphModel dx="603" dy="260" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="1" shadow="0">
-            &#xa;            
+            &#xa;            &#xa;            &#xa;            
             <root>
-                &#xa;                
+                &#xa;                &#xa;                &#xa;                
                 <mxCell id="J0S1Tp6G4MbBAgsrbNJQ-0"/>
-                &#xa;                
+                &#xa;                &#xa;                &#xa;                
                 <mxCell id="J0S1Tp6G4MbBAgsrbNJQ-1" parent="J0S1Tp6G4MbBAgsrbNJQ-0"/>
-                &#xa;                
+                &#xa;                &#xa;                &#xa;                
                 <mxCell id="J0S1Tp6G4MbBAgsrbNJQ-2" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;keys&lt;/th&gt;&lt;th&gt;actions&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;font color=&quot;#ff0000&quot;&gt;keybindings.json&lt;/font&gt;&lt;/td&gt;&lt;td&gt;快捷键绑定文件&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ctrl+P; Cmd+P&lt;/td&gt;&lt;td&gt;查找文件&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ctrl+Shift+P; Cmd+Shift+P&lt;/td&gt;&lt;td&gt;命令&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;; Cmd+K Cmd+S&lt;/td&gt;&lt;td&gt;设置快捷键&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;; Cmd + Shift + K&lt;/td&gt;&lt;td&gt;删除当前行&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ctrl + J&lt;/td&gt;&lt;td&gt;合并行&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;; Cmd + Shift + Enter&lt;/td&gt;&lt;td&gt;在上方插入一行&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;; Cmd + Enter&lt;/td&gt;&lt;td&gt;在下方插入一行&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Shift + Alt + \(\uparrow \downarrow\)&lt;/td&gt;&lt;td&gt;复制到上一行或下一行&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Alt + \(\uparrow \downarrow\)&lt;/td&gt;&lt;td&gt;移动到上一行或下一行&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ctrl + Backspace;&lt;/td&gt;&lt;td&gt;删除左边单词&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ctrl + Delete;&lt;/td&gt;&lt;td&gt;删除右边单词&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ctrl + space; Alt + esc, Fn + Ctrl + Space&lt;/td&gt;&lt;td&gt;触发补全&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ctrl+Click;&lt;/td&gt;&lt;td&gt;跳转到链接或定义&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ctrl + ], Ctrl + [;&lt;/td&gt;&lt;td&gt;行缩进&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ctrl + G&lt;/td&gt;&lt;td&gt;跳转到指定行&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ctrl + D, Ctrl + Shift + L;&lt;/td&gt;&lt;td&gt;选择当前光标单词或下一个相同单词，选择所有相同单词&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Alt + Click;&lt;/td&gt;&lt;td&gt;新增光标&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Shift + Alt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;列选择&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ctrl + F, Enter and Shift + Enter, Ctrl + Enter;&lt;/td&gt;&lt;td&gt;查找，移动到下一个或上一个值，换行，多行查找和替换&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ctrl + Tab;&lt;/td&gt;&lt;td&gt;显示打开的文件&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Alt + Left, Alt + Right;&lt;/td&gt;&lt;td&gt;同一个文件或不同文件间跳转&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ctrl + Shift + \;&lt;/td&gt;&lt;td&gt;括号间跳转&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ctrl + Shift + O;&lt;/td&gt;&lt;td&gt;符号跳转&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" parent="J0S1Tp6G4MbBAgsrbNJQ-1" vertex="1">
-                    &#xa;                    
+                    &#xa;                    &#xa;                    &#xa;                    
                     <mxGeometry x="40" y="60" width="590" height="620" as="geometry"/>
-                    &#xa;                
+                    &#xa;                    &#xa;                &#xa;                
                 </mxCell>
-                &#xa;            
+                &#xa;                &#xa;            &#xa;            
             </root>
-            &#xa;        
+            &#xa;            &#xa;        &#xa;        
         </mxGraphModel>
-        &#xa;    
+        &#xa;        &#xa;    &#xa;    
     </diagram>
     <diagram id="-PNWrWSnkWKRuond0kSB" name="plugins">
-        <mxGraphModel dx="626" dy="260" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+        <mxGraphModel dx="616" dy="303" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
             <root>
                 <mxCell id="0ULeX2zkz-rmOQAiP5B0-0"/>
                 <mxCell id="0ULeX2zkz-rmOQAiP5B0-1" parent="0ULeX2zkz-rmOQAiP5B0-0"/>
@@ -168,30 +168,30 @@
         </mxGraphModel>
     </diagram>
     <diagram id="FBWLnhBGEP0MXX_W7LkF" name="exceptions">
-        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        
+        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        
         <mxGraphModel dx="689" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
-            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            
+            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            
             <root>
-                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                
+                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                
                 <mxCell id="0"/>
-                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                
+                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                
                 <mxCell id="1" parent="0"/>
-                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                
+                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                
                 <mxCell id="8Agz6uRHH6luh3BE55-S-1" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontSize=12;" parent="1" vertex="1">
-                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    
+                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    
                     <mxGeometry x="390" y="310" width="40" height="8" as="geometry"/>
-                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                
+                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                
                 </mxCell>
-                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                
+                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                
                 <mxCell id="8Agz6uRHH6luh3BE55-S-2" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;无法初始化设备 PRN - 重启vscode&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" parent="1" vertex="1">
-                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    
+                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    
                     <mxGeometry x="40" y="20" width="370" height="40" as="geometry"/>
-                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                
+                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                    &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                
                 </mxCell>
-                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            
+                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;                &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            
             </root>
-            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        
+            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;            &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        
         </mxGraphModel>
-        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;    &#xa;    &#xa;    &#xa;    &#xa;    &#xa;    
+        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;    &#xa;    &#xa;    &#xa;    &#xa;    &#xa;    &#xa;    
     </diagram>
 </mxfile>
