@@ -1,0 +1,1203 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="921px" height="4181px" viewBox="-0.5 -0.5 921 4181" content="&lt;mxfile host=&quot;&quot; modified=&quot;2020-06-16T08:55:56.054Z&quot; agent=&quot;5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.46.0 Chrome/78.0.3904.130 Electron/7.3.1 Safari/537.36&quot; etag=&quot;_pTJNWx8lM_54zXljUxu&quot; version=&quot;13.1.3&quot;&gt;&lt;diagram id=&quot;RTqvdanEotcw3ATUaWu8&quot; name=&quot;css&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <rect x="0" y="0" width="920" height="4180" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 922px; height: 4180px; padding-top: 0px; margin-left: 0px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; width: 922px; height: 4180px; overflow: hidden; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; width: 100%; height: 100%; white-space: nowrap; ">
+                                <table cellpadding="4" cellspacing="0" border="1" style="font-size: 1em ; width: 100% ; height: 100%">
+                                    <tbody>
+                                        <tr>
+                                            <th>
+                                                elements
+                                            </th>
+                                            <th>
+                                                contents
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                unit
+                                            </td>
+                                            <td>
+                                                <h3>
+                                                    absolute
+                                                </h3>
+                                                <ol>
+                                                    <li>
+                                                        in=2.54cm
+                                                    </li>
+                                                    <li>
+                                                        px=1 / 96 of in
+                                                    </li>
+                                                    <li>
+                                                        pt=1 / 72 of in
+                                                    </li>
+                                                </ol>
+                                                <h3>
+                                                    relative
+                                                </h3>
+                                                <ol>
+                                                    <li>
+                                                        %
+                                                    </li>
+                                                    <li>
+                                                        em - font size of the parent
+                                                    </li>
+                                                    <li>
+                                                        rem - font size of the root element(html)
+                                                    </li>
+                                                    <li>
+                                                        vw - viewport width, 1vw is 1% of the viewport width
+                                                    </li>
+                                                    <li>
+                                                        vh - viewport height
+                                                    </li>
+                                                </ol>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                basic
+                                            </td>
+                                            <td>
+                                                <h3>
+                                                    syntax
+                                                </h3>
+                                                <ol>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            /* ... */ 
+                                                        </font>
+                                                        for comment
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            ,
+                                                        </font>
+                                                         separates diferent selectors
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            ;
+                                                        </font>
+                                                         separates different properties
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            {} 
+                                                        </font>
+                                                        wraps all properties
+                                                    </li>
+                                                </ol>
+                                                <div>
+                                                    <h3>
+                                                        components
+                                                    </h3>
+                                                    <ol>
+                                                        <li>
+                                                            selector - 
+                                                            <font face="Courier New">
+                                                                <font color="#ff0000">
+                                                                    p
+                                                                </font>
+                                                                 { color: red }
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            property - 
+                                                            <font face="Courier New">
+                                                                p { 
+                                                                <font color="#ff0000">
+                                                                    color
+                                                                </font>
+                                                                : red }
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            value - 
+                                                            <font face="Courier New">
+                                                                p { color: 
+                                                                <font color="#ff0000">
+                                                                    red 
+                                                                </font>
+                                                                }
+                                                            </font>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        <h3>
+                                                            functions
+                                                        </h3>
+                                                    </div>
+                                                    <div>
+                                                        <ol>
+                                                            <li>
+                                                                <font face="Courier New">
+                                                                    calc()
+                                                                </font>
+                                                            </li>
+                                                            <li>
+                                                                <font face="Courier New">
+                                                                    rotate()
+                                                                </font>
+                                                            </li>
+                                                        </ol>
+                                                    </div>
+                                                </div>
+                                                <h3>
+                                                    selector
+                                                </h3>
+                                                <div>
+                                                    <ol>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                * - 
+                                                            </font>
+                                                            universal selector
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                p - 
+                                                            </font>
+                                                            element selector, selects 
+                                                            <font face="Courier New">
+                                                                &lt;p&gt;
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                #my-id - 
+                                                            </font>
+                                                            id selector, selects 
+                                                            <font face="Courier New">
+                                                                &lt;p id="my-id"&gt;
+                                                            </font>
+                                                             or 
+                                                            <font face="Courier New">
+                                                                &lt;a id="my-id&gt;
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                .my-class - 
+                                                            </font>
+                                                            class selector, selects 
+                                                            <font face="Courier New">
+                                                                &lt;p class="my-class"&gt;
+                                                            </font>
+                                                             or 
+                                                            <font face="Courier New">
+                                                                &lt;a class="my-class"&gt;
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                img[src], img[src="my.png"] - 
+                                                            </font>
+                                                            attribute selector, select image with 
+                                                            <font face="Courier New">
+                                                                src
+                                                            </font>
+                                                             attribute or 
+                                                            <font face="Courier New">
+                                                                src="my.png"
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                a:hover - 
+                                                            </font>
+                                                            pseudo-class selector
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                ::first-line, ::first-letter - 
+                                                            </font>
+                                                            pseudo-element selector, selects a certain part of an element than the element itself
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                div &gt; p - 
+                                                            </font>
+                                                            direct chirdren selector
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                div p - 
+                                                            </font>
+                                                            descendant selector
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                h1 + p - 
+                                                            </font>
+                                                            ajacent sibling selector, selects 
+                                                            <font face="Courier New">
+                                                                &lt;p&gt;
+                                                            </font>
+                                                             directly after 
+                                                            <font face="Courier New">
+                                                                &lt;h1&gt;
+                                                            </font>
+                                                             at the same level of the HTML
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                h1 ~ p - 
+                                                            </font>
+                                                            general sibling selector, selects 
+                                                            <font face="Courier New">
+                                                                &lt;p&gt;
+                                                            </font>
+                                                             with the same level after 
+                                                            <font face="Courier New">
+                                                                &lt;h1&gt;
+                                                            </font>
+                                                             of the HTML
+                                                        </li>
+                                                    </ol>
+                                                    <h3>
+                                                        @rules
+                                                    </h3>
+                                                </div>
+                                                <div>
+                                                    <ol>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                @import: @import 'styles2.css'
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                @media: @media (min-width: 30em) {body { background-color: blue}}
+                                                            </font>
+                                                        </li>
+                                                    </ol>
+                                                    <h3>
+                                                        css order
+                                                    </h3>
+                                                </div>
+                                                <div>
+                                                    <ol>
+                                                        <li>
+                                                            cascade
+                                                        </li>
+                                                        <li>
+                                                            specificity - weight from low to high, element has 0-0-1, class has 0-1-0, id has 1-0-0
+                                                        </li>
+                                                        <li>
+                                                            inheritance
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                !important
+                                                            </font>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                box
+                                            </td>
+                                            <td>
+                                                <h3>
+                                                    <font face="Courier New">
+                                                        display
+                                                    </font>
+                                                </h3>
+                                                <ol>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            inline
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            block
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            inline-block
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            flex
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            inline-flex
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            grid
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            list-item
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            table
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            table-caption
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            table-row
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            table-cell
+                                                        </font>
+                                                    </li>
+                                                </ol>
+                                                <div>
+                                                    <div>
+                                                        <p>
+                                                            block
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <ol>
+                                                            <li>
+                                                                the box will break onto a new line
+                                                            </li>
+                                                            <li>
+                                                                the box will extend in the line direction to fill the space available
+                                                            </li>
+                                                            <li>
+                                                                the width and height properties will apply
+                                                            </li>
+                                                            <li>
+                                                                padding, margin, and border will  cause other elements to be pushed away from the box
+                                                            </li>
+                                                        </ol>
+                                                    </div>
+                                                    <p>
+                                                        inline
+                                                    </p>
+                                                    <div>
+                                                        <ol>
+                                                            <li>
+                                                                the box will not break onto a new line
+                                                            </li>
+                                                            <li>
+                                                                the 
+                                                                <font face="Courier New">
+                                                                    width
+                                                                </font>
+                                                                 and 
+                                                                <font face="Courier New">
+                                                                    height
+                                                                </font>
+                                                                 properties will not apply
+                                                            </li>
+                                                            <li>
+                                                                vertical padding, margins, and borders will apply, but will not cause other inline boxes to move away from the box
+                                                            </li>
+                                                            <li>
+                                                                horizontal padding, margins, and borders will apply and cause other inline boxes to move away from the box
+                                                            </li>
+                                                        </ol>
+                                                        <div>
+                                                            inline-block
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <ol>
+                                                        <li>
+                                                            the box will not break onto a new line
+                                                        </li>
+                                                        <li>
+                                                            the 
+                                                            <font face="Courier New">
+                                                                width
+                                                            </font>
+                                                             and 
+                                                            <font face="Courier New">
+                                                                height
+                                                            </font>
+                                                             properties will apply
+                                                        </li>
+                                                        <li>
+                                                            padding, margin, and border will cause other elements to be pushed away from the box
+                                                        </li>
+                                                    </ol>
+                                                    <div>
+                                                        flex
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <ol>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                flex-direction: [row, column, row-reverse, column-reverse]
+                                                            </font>
+                                                             - the main axis runs in, the default is 
+                                                            <font face="Courier New">
+                                                                row
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                flex-wrap: wrap
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                flex-flow: row wrap
+                                                            </font>
+                                                             - shorthand for 
+                                                            <font face="Courier New">
+                                                                flex-direction
+                                                            </font>
+                                                             and 
+                                                            <font face="Courier New">
+                                                                flex-wrap
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                flex: 200px
+                                                            </font>
+                                                             - each element at least 200px wide
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                align-items: [flex-start, flex-end, center, baseline, stretch]
+                                                            </font>
+                                                             - where the flex items sit on the cross axis
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                justify-content: [space-around, center]
+                                                            </font>
+                                                             - where the flex items sit on the main axis
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                order: 0 - change the layout order of flex items, the default value is 0
+                                                            </font>
+                                                            , higher orders appear later
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                :first-child :nth-of-type(3)
+                                                            </font>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <h3>
+                                                    properties
+                                                </h3>
+                                                <div>
+                                                    <ol>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                width min-width max-width
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                height min-height max-height
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                padding
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                border
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                margin
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                box-sizing: [content-box, border-box]
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                line-height
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                overflow
+                                                            </font>
+                                                        </li>
+                                                    </ol>
+                                                    <div>
+                                                        <font face="Courier New">
+                                                            html {
+                                                        </font>
+                                                    </div>
+                                                    <div>
+                                                        <font face="Courier New">
+                                                                box-sizing: border-box;
+                                                        </font>
+                                                    </div>
+                                                    <div>
+                                                        <font face="Courier New">
+                                                            }
+                                                        </font>
+                                                    </div>
+                                                    <div>
+                                                        <font face="Courier New">
+                                                            <br/>
+                                                        </font>
+                                                    </div>
+                                                    <div>
+                                                        <font face="Courier New">
+                                                            *, *::before, *::after {
+                                                        </font>
+                                                    </div>
+                                                    <div>
+                                                        <font face="Courier New">
+                                                                box-sizing: inherit
+                                                        </font>
+                                                    </div>
+                                                    <div>
+                                                        <font face="Courier New">
+                                                            }
+                                                        </font>
+                                                    </div>
+                                                    <div>
+                                                        <font face="Courier New">
+                                                            <br/>
+                                                        </font>
+                                                    </div>
+                                                    <div>
+                                                        <font face="Courier New">
+                                                            border
+                                                        </font>
+                                                    </div>
+                                                    <div>
+                                                        <ol>
+                                                            <li>
+                                                                <font face="Courier New">
+                                                                    border: 1px solid red - short for {border-width border-style border-color}
+                                                                </font>
+                                                            </li>
+                                                            <li>
+                                                                <font face="Courier New">
+                                                                    border-width: 1px
+                                                                </font>
+                                                            </li>
+                                                            <li>
+                                                                <font face="Courier New">
+                                                                    border-style: [none, solid, dotted, dashed, double]
+                                                                </font>
+                                                            </li>
+                                                            <li>
+                                                                <font face="Courier New">
+                                                                    border-color: red
+                                                                </font>
+                                                            </li>
+                                                            <li>
+                                                                <font face="Courier New">
+                                                                    border-radius
+                                                                </font>
+                                                            </li>
+                                                        </ol>
+                                                    </div>
+                                                    <div>
+                                                        <h3>
+                                                            <font face="Courier New">
+                                                                overflow
+                                                            </font>
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <ol>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                visible
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                hidden
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                scroll
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                auto
+                                                            </font>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <div>
+                                                    <h3>
+                                                        <font face="Courier New">
+                                                            float
+                                                        </font>
+                                                    </h3>
+                                                </div>
+                                                <div>
+                                                    <ol>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                left
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                right
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                none
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                inherit
+                                                            </font>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <h3>
+                                                    <font face="Courier New">
+                                                        position
+                                                    </font>
+                                                </h3>
+                                                <div>
+                                                    <ol>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                static
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                relative
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                absolute
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                fixed
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                sticky
+                                                            </font>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <h3>
+                                                    <font face="Courier New">
+                                                        z-index
+                                                    </font>
+                                                </h3>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                font
+                                            </td>
+                                            <td>
+                                                <h3>
+                                                    <font face="Courier New">
+                                                        attributes
+                                                    </font>
+                                                </h3>
+                                                <ol>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            font
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            color
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            font-family
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            font-size: 10px
+                                                        </font>
+                                                         - inherits from parent element
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            font-style: [normal, italic, oblique]
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            font-weight: [normal, bold(700), lighter, bolder, 100-900]
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            text-decoration: [none,overline,underline,line-through]
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            font-variant: [normal, small-caps]
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            texttransform: [none, uppercase, lowercase, capitalize, full-width]
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            text-shadow: 5px 10px 2px red
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            text-align: [left, right, center, justify]
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            vertical-align: [baseline, sub, super, text-top, text-bottom, middle, top, bottom, 4px 2em 10%]
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            text-indent
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            line-height: 2em
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <span style="font-family: &quot;courier new&quot; ; font-size: 1em">
+                                                            letter-spacing: 1px
+                                                        </span>
+                                                        <br/>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            word-spacing
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            ::first-letter
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            ::first-line
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            ::selection
+                                                        </font>
+                                                         - select the text currently highlighted by the cursor
+                                                    </li>
+                                                </ol>
+                                                <div>
+                                                    font-family
+                                                </div>
+                                                <div>
+                                                    <ol>
+                                                        <li>
+                                                            sans-serif: 
+                                                            <font face="Courier New">
+                                                                [Helvetica, Arial, Verdana]
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            serif: 
+                                                            <font face="Courier New">
+                                                                [Georgia, "Times New Roman"
+                                                            </font>
+                                                            ]
+                                                        </li>
+                                                        <li>
+                                                            monospace: 
+                                                            <font face="Courier New">
+                                                                ["Courier New"]
+                                                            </font>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <div>
+                                                    text-decoration
+                                                </div>
+                                                <div>
+                                                    <ol>
+                                                        <li>
+                                                            shorthand for following attributes
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                text-decoration-line: [underline, line-through, overline,none]
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                text-decoration-style:[solid, dotted, dashed, double,wavy]
+                                                            </font>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                color and background
+                                            </td>
+                                            <td>
+                                                <h3>
+                                                    color
+                                                </h3>
+                                                <div>
+                                                    <ol>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                kewwords red, green, blue ...
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                hexademical RGB values #ff0000
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                RGB, RGBA rgba(255, 255, 255, 0.2)
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                HSL, HSLA hsl(188, 80%, 90%)
+                                                            </font>
+                                                        </li>
+                                                    </ol>
+                                                    <h3>
+                                                        background
+                                                    </h3>
+                                                </div>
+                                                <div>
+                                                    <ol>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                background
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                background-color: rgba(255, 255, 255, 0.2)
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                background-image: url(star.png)
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                backgrond-repeat: [no-repeat, repeat-x, repeat-y, repeat]
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                background-size: [ 100px 10em, cover, contain]
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                background-position: [20px 10%, top center, top 20px right 10px]
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                background-attachment
+                                                            </font>
+                                                        </li>
+                                                    </ol>
+                                                    <div>
+                                                        <font face="Courier New">
+                                                            background-image
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <ol>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                url(star.png)
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                linear-gradient(100deg, red 30%, rgba(0, 249, 255, 0.1) 80%)
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                radio-gradient(center, shape, size, start-color, ..., last-color)
+                                                            </font>
+                                                        </li>
+                                                    </ol>
+                                                    <div>
+                                                        <font face="Courier New">
+                                                            radio-gradient
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <ol>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                center
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                shape = [ellipse, circle]
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                size = [closest-side, closest-corder, farthest-side, farthest-corder]
+                                                            </font>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                hyperlink
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <font face="Courier New">
+                                                        <br/>
+                                                    </font>
+                                                </div>
+                                                <ol>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            outline: [solid, dashed, double, ridge, inset, none]
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            :link
+                                                        </font>
+                                                         - unvisited
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            :visited
+                                                        </font>
+                                                         - exists in the browser's history
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New" style="font-size: 1em">
+                                                            :focus
+                                                        </font>
+                                                        <span style="font-size: 1em">
+                                                             - using Tab key or 
+                                                        </span>
+                                                        <font face="Courier New" style="font-size: 1em">
+                                                            HTMLElement.focus()
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            :hover
+                                                        </font>
+                                                    </li>
+                                                    <li>
+                                                        <font face="Courier New" style="font-size: 1em">
+                                                            :active
+                                                        </font>
+                                                        <span style="font-size: 1em">
+                                                             - when being activated, clicked
+                                                        </span>
+                                                        <br/>
+                                                    </li>
+                                                </ol>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                list
+                                            </td>
+                                            <td>
+                                                <h3>
+                                                    attributes:
+                                                </h3>
+                                                <div>
+                                                    <ol>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                list-style
+                                                            </font>
+                                                             - shorthand for the following attributes
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                list-style-type
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                list-style-position: [outside, inside]
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                list-style-image: url(ball.svg) - 
+                                                            </font>
+                                                            better use
+                                                            <font face="Courier New">
+                                                                 background-image
+                                                            </font>
+                                                        </li>
+                                                        <li>
+                                                            <font face="Courier New">
+                                                                :last-child
+                                                            </font>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <h3>
+                                                    <font face="Courier New">
+                                                        list-style-type
+                                                    </font>
+                                                </h3>
+                                                <ol>
+                                                    <li>
+                                                        <span style="font-family: &quot;courier new&quot; ; font-size: 1em">
+                                                            none
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span style="font-family: &quot;courier new&quot; ; font-size: 1em">
+                                                            disc
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span style="font-family: &quot;courier new&quot; ; font-size: 1em">
+                                                            circle
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span style="font-family: &quot;courier new&quot; ; font-size: 1em">
+                                                            square
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span style="font-family: &quot;courier new&quot; ; font-size: 1em">
+                                                            decimal
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span style="font-family: &quot;courier new&quot; ; font-size: 1em">
+                                                            decimal-leading-zero
+                                                        </span>
+                                                        <br/>
+                                                    </li>
+                                                    <li>
+                                                        <span style="font-family: &quot;courier new&quot; ; font-size: 1em">
+                                                            lower-roman
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span style="font-family: &quot;courier new&quot; ; font-size: 1em">
+                                                            upper-roman
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span style="font-family: &quot;courier new&quot; ; font-size: 1em">
+                                                            lower-greek
+                                                        </span>
+                                                    </li>
+                                                </ol>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                transform
+                                            </td>
+                                            <td>
+                                                <ol>
+                                                    <li>
+                                                        <font face="Courier New">
+                                                            rotate(100deg)
+                                                        </font>
+                                                    </li>
+                                                </ol>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="0" y="12" fill="#000000" font-family="Helvetica" font-size="12px">
+                    elementscontentsunitabsolute...
+                </text>
+            </switch>
+        </g>
+    </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://desk.draw.io/support/solutions/articles/16000042487" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Viewer does not support full SVG 1.1
+            </text>
+        </a>
+    </switch>
+</svg>
