@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="591px" height="401px" viewBox="-0.5 -0.5 591 401" content="&lt;mxfile host=&quot;&quot; modified=&quot;2020-06-15T11:43:39.149Z&quot; agent=&quot;5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.46.0 Chrome/78.0.3904.130 Electron/7.3.1 Safari/537.36&quot; etag=&quot;tyJwz2CwUHx2AL9QhfTH&quot; version=&quot;13.1.3&quot;&gt;&lt;diagram id=&quot;6hGFLwfOUW9BJ-s0fimq&quot; name=&quot;vue-build&quot;&gt;7VnbcpswEP0aHtPhYozzmDhJ+5JOp+lMHzsqrEGtkBxZ2HG+visk7njiJnFu4xcPHHal1e7RWYGdYJ7ffZZkmV2LBJjju8mdE1w4vh/Opvirga0B/CgwQCppYiCvAW7oPVjQtWhBE1h1DJUQTNFlF4wF5xCrDkakFJuu2UKw7qxLksIAuIkJG6I/aaIyg878qMG/AE2zamZvemqe5KQytitZZSQRmxYUXDrBXAqhzFV+Nwemc1flxfhd7XhaByaBq30cfOOwJqywa7NxqW212NWG5oxwvDvPVM4Q9PBypYhUtjI4Bz4Tkt4LrkhlEesbykH+2C61lZIApaMUf2EumJAIclEOvKCM9SAbGEgFdzsX59UpQ6qByEHJLZpYh8AmuWKZvd00JQtPLZa1yjVxLUgsTdJ65CaTeGGTOZ7Y4OHEQoKksre4Iqq234ERRQW/bJ6YRJ9p0ja5AZ70kBWkucmKp4sRF3INiS2EmVjPtjOPVXCikLG1slzG2VOwVrPxbMsy6nV39KfkLhrkbl3Aye+C4jYdJJEx3PU6BZuMKrhZknIBG9SdLmEJoynH6xgXDcizc83HK9z5lKfWRCPXYt0AHDatUlw4EeZyelvozXneVK+GnOCs9XxHRRtrf97ctKo8PlxZ53Hfmg3/7Vmxpu2oNbZlYpnUsXCii303qD9OmW2l58MtWWPdLfl0Vs0GrKIc065tepx6gElSFDypdxeRsZXB0B2jmU4QxdZxZh/kNElYI4RV/yiHKpRYmbFKicUIDBcnR7q+Kl0rB7/bUKZD9kYj5A2egbzeHo36lftJu1N4wbChzPZO994Nxbp+E1Szoi7TpFumWS//Jijr1CtBHcV+VRnr8lOmiSfQbpoaChuE0T6yEGXYC2JTVJF2jgFSFA/f/QrtbWLd+TLXMVTi5Z6cpEz8JvrSmbjYKjHsuJyNGbcrM1F3coSHER0wxhXBgvouEwlZZZ8KTm8LoMljgkSwnd3nEW+/Ld4MFuoo3R9JuvvvApOhdAfBiHZHz6Hdk/el3eHOl4GX1+7Tw2l3OKjKUoo/+nPB8Tx4FJXHnAe9cKgqs0MdCKfvS1SioahUO/DwqtJX/zA8mKoMv128wImwPPO5sQSi9EW+/VVL2aufAWXBdd1B6uPfG4nGfkp6K0fP9uep49Hzo3WJvvh4fjjoEv7Y2bP/3rpHm8Db5r8DI1/NHzDB5T8=&lt;/diagram&gt;&lt;/mxfile&gt;">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="591px" height="401px" viewBox="-0.5 -0.5 591 401" content="&lt;mxfile host=&quot;&quot; modified=&quot;2020-06-29T03:18:38.666Z&quot; agent=&quot;5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.46.1 Chrome/78.0.3904.130 Electron/7.3.1 Safari/537.36&quot; etag=&quot;TKCKJrtuiX6_dP8Ebw9i&quot; version=&quot;13.1.3&quot;&gt;&lt;diagram id=&quot;6hGFLwfOUW9BJ-s0fimq&quot; name=&quot;vue-build&quot;&gt;7VnbUtswEP0aP9LxJU7CI4RLX+h0Smf62BH2xlYrS0GRE8LXd2XJdwMpBAhMXhj5aGWtds+eVYwTzLK7S0kW6ZWIgTm+G985wZnj+1N/jH81sDGAPw4NkEgaG8irgWt6DxZ0LZrTGJYtQyUEU3TRBiPBOUSqhREpxbptNhesveuCJNADriPC+ugvGqu0PNakxr8CTdJyZ298bGYyUhrbkyxTEot1AwrOnWAmhVBmlN3NgOnYlXEx6y4emK0ck8DVNgt8s2BFWG7PZv1Sm/KwyzXNGOH4dJqqjCHo4XCpiFQ2M7gHzglJ7wVXpLSI9APlIH9uFtpKSYBioRR/YSaYkAhyUbx4ThnrQP2T2MOtQCq4a0D2ZJcgMlBygyZ2NrBBLllmH9d1ysJji6WNdI1cCxJLk6R6cx1JHNhgDgc2eDqwECOp7CMekqrND2BEUcHP6xkT6BNN2jo2wOMOsoQkM4HydDKiXK4gtonoR7L0ReQyss5Y6uJmCVirqYG0m49GWxZer9q18ZLYTXqxW+VwdJNTLNNeEBnDqtchWKdUwfWCFCdao+60CUsYTTiOI4wCIM9ONR8vsPIpT6yJRq7EqgY4rBupOHMmGMvxba6L87TOXgU5wUlj/oGM1tb+rH5oZHn4dUWeh9dWbPjvlSVrmgu1xjZMLJNaFs7k7DFabV+gXrtAPbdfoRXWrtCXk2zaI1kMCwwl8Ihib+ny7Al2SZHj0rLiiIysNIbuEPV0hCi2kxM7kdE4ZrU4lj2leFWuxNK8q5Bd9MDwc3Sg8F5QuNNkwgEK+wMUDnZAYW+L7r1XTWbabzJesOsuY5d+F1TTosrTqJ2naSf+xk27qJOCyovtsjLU+sdMM0+g3TgxHDYIo11kLgq358QGrWTtDB2kqB6++w2adWKX80WmfeCYycKbo6OEiRuih87Ixf6JbkfFbswsuzAbtTdHuO/RK/q4JJhQ32UiJsv0S87pbQ40fo6TCDajuxv19pvqzWCuDtr9mbS7EoFNW5Mb2h0MXT8mu9Du0QfT7oEfCF74Ptp9/HraHfayspDij/6GcLgQHkTlORdC701vhOMPpiplwbVkZfI2stL9PhSGryYr/S8ab3AlLC59biSBKD3INr8rLXv3S6DMuWYCSH3/2xNv7Aemfbl7Nj9aHe6en61NdO+enh/22kQlUM020f3hukWbwMf6PwpGvup/ywTn/wA=&lt;/diagram&gt;&lt;/mxfile&gt;">
     <defs/>
     <g>
         <path d="M 0 20 L 0 0 L 590 0 L 590 20" fill="none" stroke="none" pointer-events="all"/>
-        <path d="M 100 120 Q 110 120 110 108.75 Q 110 97.5 110 97.5 Q 110 97.5 110 86.25 Q 110 75 120 75" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <ellipse cx="50" cy="120" rx="50" ry="20" fill="#ffffff" stroke="#000000" pointer-events="none"/>
+        <path d="M 110 120 Q 120 120 120 106.25 Q 120 92.5 120 92.5 Q 120 92.5 120 78.75 Q 120 65 130 65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <ellipse cx="60" cy="120" rx="50" ry="20" fill="#ffffff" stroke="#000000" pointer-events="none"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>
                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 120px; margin-left: 1px;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 98px; height: 1px; padding-top: 120px; margin-left: 11px;">
                         <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
                             <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">
                                 vue-build
@@ -15,34 +15,34 @@
                         </div>
                     </div>
                 </foreignObject>
-                <text x="50" y="124" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                <text x="60" y="124" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
                     vue-build
                 </text>
             </switch>
         </g>
-        <rect x="120" y="60" width="70" height="30" rx="15" ry="15" fill="#ffffff" stroke="#000000" pointer-events="none"/>
+        <rect x="130" y="50" width="120" height="30" rx="15" ry="15" fill="#ffffff" stroke="#000000" pointer-events="none"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>
                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 64px; height: 1px; padding-top: 75px; margin-left: 123px;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 114px; height: 1px; padding-top: 65px; margin-left: 133px;">
                         <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
                             <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">
-                                install
+                                dependencies
                             </div>
                         </div>
                     </div>
                 </foreignObject>
-                <text x="155" y="79" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
-                    install
+                <text x="190" y="69" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    dependencies
                 </text>
             </switch>
         </g>
-        <path d="M 190 75 Q 200 75 210 75 Q 220 75 230 75" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <rect x="230" y="40" width="330" height="70" rx="14" ry="14" fill="#ffffff" stroke="#000000" pointer-events="none"/>
+        <path d="M 250 65 Q 260 65 265 65 Q 270 65 280 65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <rect x="280" y="30" width="300" height="70" rx="14" ry="14" fill="#ffffff" stroke="#000000" pointer-events="none"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>
                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 324px; height: 1px; padding-top: 75px; margin-left: 234px;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 294px; height: 1px; padding-top: 65px; margin-left: 284px;">
                         <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
                             <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">
                                 <ol>
@@ -61,17 +61,17 @@
                         </div>
                     </div>
                 </foreignObject>
-                <text x="234" y="79" fill="#000000" font-family="Helvetica" font-size="12px">
-                    npm install --global @vue/clinpm install --save lodash...
+                <text x="284" y="69" fill="#000000" font-family="Helvetica" font-size="12px">
+                    npm install --global @vue/clinpm install --save l...
                 </text>
             </switch>
         </g>
-        <path d="M 100 120 Q 110 120 110 131.25 Q 110 142.5 110 142.5 Q 110 142.5 110 153.75 Q 110 165 120 165" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <rect x="120" y="150" width="80" height="30" rx="15" ry="15" fill="#ffffff" stroke="#000000" pointer-events="none"/>
+        <path d="M 110 120 Q 120 120 120 131.25 Q 120 142.5 120 142.5 Q 120 142.5 120 153.75 Q 120 165 130 165" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <rect x="130" y="150" width="120" height="30" rx="15" ry="15" fill="#ffffff" stroke="#000000" pointer-events="none"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>
                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 74px; height: 1px; padding-top: 165px; margin-left: 123px;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 114px; height: 1px; padding-top: 165px; margin-left: 133px;">
                         <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
                             <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">
                                 project
@@ -79,17 +79,17 @@
                         </div>
                     </div>
                 </foreignObject>
-                <text x="160" y="169" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                <text x="190" y="169" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
                     project
                 </text>
             </switch>
         </g>
-        <path d="M 200 165 Q 210 165 215 165 Q 220 165 230 165" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <rect x="230" y="125" width="230" height="80" rx="16.8" ry="16.8" fill="#ffffff" stroke="#000000" pointer-events="none"/>
+        <path d="M 250 165 Q 260 165 265 165 Q 270 165 280 165" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <rect x="280" y="125" width="230" height="80" rx="16.8" ry="16.8" fill="#ffffff" stroke="#000000" pointer-events="none"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>
                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 224px; height: 1px; padding-top: 165px; margin-left: 234px;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 224px; height: 1px; padding-top: 165px; margin-left: 284px;">
                         <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
                             <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">
                                 <ol>
@@ -113,7 +113,7 @@
                         </div>
                     </div>
                 </foreignObject>
-                <text x="234" y="169" fill="#000000" font-family="Helvetica" font-size="12px">
+                <text x="284" y="169" fill="#000000" font-family="Helvetica" font-size="12px">
                     vue create my_projectnpm run servenpm...
                 </text>
             </switch>
