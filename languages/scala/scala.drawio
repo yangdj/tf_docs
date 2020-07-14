@@ -1,11 +1,11 @@
-<mxfile host="" modified="2020-07-13T11:59:39.042Z" agent="5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.46.1 Chrome/78.0.3904.130 Electron/7.3.1 Safari/537.36" etag="rC_heQti9jctbkQi95-N" version="13.1.3" pages="4">
+<mxfile host="" modified="2020-07-14T11:32:27.125Z" agent="5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.46.1 Chrome/78.0.3904.130 Electron/7.3.1 Safari/537.36" etag="ZJ-YvTc3Gp37W5uAyY12" version="13.1.3" pages="4">
     <diagram id="FLPFpf0fDZkSOcCbkyvu" name="deploy">
-        <mxGraphModel dx="641" dy="3780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+        <mxGraphModel dx="641" dy="3780" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
             <root>
                 <mxCell id="Sro-y_ONTGwIrrQq8ra5-0"/>
                 <mxCell id="Sro-y_ONTGwIrrQq8ra5-1" parent="Sro-y_ONTGwIrrQq8ra5-0"/>
                 <mxCell id="Sro-y_ONTGwIrrQq8ra5-2" value="" style="swimlane;html=1;startSize=20;horizontal=1;containerType=tree;rounded=1;shadow=0;glass=0;comic=0;fillColor=none;align=left;strokeColor=none;spacingLeft=16;fontFamily=Courier New;" parent="Sro-y_ONTGwIrrQq8ra5-1" vertex="1">
-                    <mxGeometry x="30" y="-80" width="1530" height="740" as="geometry"/>
+                    <mxGeometry x="50" y="-80" width="2070" height="740" as="geometry"/>
                 </mxCell>
                 <mxCell id="Sro-y_ONTGwIrrQq8ra5-3" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-7" target="Sro-y_ONTGwIrrQq8ra5-8" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -14,7 +14,7 @@
                     <mxGeometry x="50" y="240" width="100" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="Sro-y_ONTGwIrrQq8ra5-8" value="hadoop" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
-                    <mxGeometry x="170" y="120" width="80" height="30" as="geometry"/>
+                    <mxGeometry x="170" y="170" width="80" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="Sro-y_ONTGwIrrQq8ra5-21" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-7" target="Sro-y_ONTGwIrrQq8ra5-22" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -22,15 +22,15 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="Sro-y_ONTGwIrrQq8ra5-22" value="spark" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
-                    <mxGeometry x="170" y="455" width="80" height="30" as="geometry"/>
+                    <mxGeometry x="170" y="515" width="80" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="Sro-y_ONTGwIrrQq8ra5-23" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-22" target="Sro-y_ONTGwIrrQq8ra5-46" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="150" y="335" as="sourcePoint"/>
+                        <mxPoint x="150" y="395" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="Sro-y_ONTGwIrrQq8ra5-24" value="$SPARK_HOME/sbin/start-all.sh&lt;br&gt;$SPARK_HOME/sbin/stop-all.sh" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;fontFamily=Courier New;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
-                    <mxGeometry x="480" y="450" width="250" height="40" as="geometry"/>
+                <mxCell id="Sro-y_ONTGwIrrQq8ra5-24" value="$SPARK_HOME/sbin/start-all.sh&lt;br&gt;$SPARK_HOME/sbin/stop-all.sh" style="whiteSpace=wrap;html=1;rounded=1;arcSize=20;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;fontFamily=Courier New;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="515" y="510" width="250" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="Sro-y_ONTGwIrrQq8ra5-25" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-7" target="Sro-y_ONTGwIrrQq8ra5-26" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -46,25 +46,25 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="Sro-y_ONTGwIrrQq8ra5-42" value="&lt;span style=&quot;font-size: 12px&quot;&gt;$HADOOP_HOME/sbin/start-dfs.sh&lt;/span&gt;&lt;br style=&quot;font-size: 12px&quot;&gt;&lt;span style=&quot;font-size: 12px&quot;&gt;$HADOOP_HOME/sbin/stop-dfs.sh&lt;/span&gt;&lt;span style=&quot;font-size: 12px&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=43;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;fontSize=12;spacingLeft=15;fontFamily=Courier New;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
-                    <mxGeometry x="480" y="182.5" width="250" height="40" as="geometry"/>
+                    <mxGeometry x="470" y="187.5" width="250" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="Sro-y_ONTGwIrrQq8ra5-43" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-44" target="Sro-y_ONTGwIrrQq8ra5-42" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="290" y="247.5" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <UserObject label="&lt;div&gt;HADOOP_HOME&lt;/div&gt;&lt;div&gt;&lt;a href=&quot;data:page/id,-WEoZyiqvBqUpz0TT_SZ&quot;&gt;HADOOP_CONF_DIR&lt;/a&gt;&lt;/div&gt;&lt;div&gt;HADOOP_PID_DIR&lt;/div&gt;&lt;div&gt;HADOOP_LOG_DIR&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" id="Sro-y_ONTGwIrrQq8ra5-44">
-                    <mxCell style="whiteSpace=wrap;html=1;rounded=1;arcSize=33;align=left;verticalAlign=top;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
-                        <mxGeometry x="270" y="162.5" width="180" height="80" as="geometry"/>
+                <UserObject label="&lt;div&gt;format &amp;amp; start &amp;amp; stop&lt;/div&gt;" id="Sro-y_ONTGwIrrQq8ra5-44">
+                    <mxCell style="whiteSpace=wrap;html=1;rounded=1;arcSize=33;align=center;verticalAlign=top;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                        <mxGeometry x="270" y="250" width="180" height="30" as="geometry"/>
                     </mxCell>
                 </UserObject>
-                <mxCell id="Sro-y_ONTGwIrrQq8ra5-45" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-46" target="Sro-y_ONTGwIrrQq8ra5-24" edge="1">
+                <mxCell id="Sro-y_ONTGwIrrQq8ra5-45" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-46" target="Sro-y_ONTGwIrrQq8ra5-24" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="300" y="460" as="sourcePoint"/>
+                        <mxPoint x="490" y="530" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="Sro-y_ONTGwIrrQq8ra5-46" value="&lt;div&gt;SPARK_HOME&lt;/div&gt;&lt;div&gt;&lt;a href=&quot;data:page/id,1RoVEH6-U07JBPiQCIpj&quot;&gt;SPARK_CONF_DIR&lt;/a&gt;&lt;/div&gt;&lt;div&gt;SPARK_PID_DIR&lt;/div&gt;&lt;div&gt;SPARK_LOG_DIR&lt;/div&gt;&lt;div&gt;SPARK_DIST_CLASSPATH&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=33;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
-                    <mxGeometry x="270" y="430" width="210" height="80" as="geometry"/>
+                <mxCell id="Sro-y_ONTGwIrrQq8ra5-46" value="&lt;div&gt;&lt;a href=&quot;data:page/id,1RoVEH6-U07JBPiQCIpj&quot;&gt;spark configuration&lt;/a&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=11;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="270" y="515" width="190" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="Sro-y_ONTGwIrrQq8ra5-47" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-7" target="Sro-y_ONTGwIrrQq8ra5-48" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -72,15 +72,15 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="Sro-y_ONTGwIrrQq8ra5-48" value="hive" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
-                    <mxGeometry x="170" y="535" width="80" height="30" as="geometry"/>
+                    <mxGeometry x="170" y="595" width="80" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="Sro-y_ONTGwIrrQq8ra5-49" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-48" target="Sro-y_ONTGwIrrQq8ra5-50" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="160" y="395" as="sourcePoint"/>
+                        <mxPoint x="160" y="455" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="Sro-y_ONTGwIrrQq8ra5-50" value="HIVE_HOME&lt;br&gt;HIVE_CONF_DIR" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
-                    <mxGeometry x="270" y="535" width="190" height="30" as="geometry"/>
+                <mxCell id="Sro-y_ONTGwIrrQq8ra5-50" value="HIVE_HOME&lt;br&gt;HIVE_CONF_DIR" style="whiteSpace=wrap;html=1;rounded=1;arcSize=10;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="270" y="595" width="190" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="tE6yXry5JkGGAP22-kF5-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-44" target="tE6yXry5JkGGAP22-kF5-1" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -88,31 +88,31 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="tE6yXry5JkGGAP22-kF5-1" value="$HADOOP_HOME/sbin/start-yarn.sh&lt;br&gt;$HADOOP_HOME/sbin/stop-yarn.sh&lt;span style=&quot;font-size: 12px&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;fontSize=12;spacingLeft=15;fontFamily=Courier New;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
-                    <mxGeometry x="470" y="290" width="270" height="40" as="geometry"/>
+                    <mxGeometry x="470" y="310" width="270" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="tE6yXry5JkGGAP22-kF5-2" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-42" target="tE6yXry5JkGGAP22-kF5-3" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="510" y="277.5" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="tE6yXry5JkGGAP22-kF5-3" value="&lt;span style=&quot;font-size: 12px&quot;&gt;master:&lt;br&gt;Namenode&lt;br&gt;SecondaryNamenode&lt;br&gt;Datanode&lt;br&gt;&lt;br&gt;&lt;/span&gt;slave:&lt;br&gt;Datanode&lt;span style=&quot;font-size: 12px&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=18;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;fontSize=12;spacingLeft=15;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
-                    <mxGeometry x="760" y="150" width="170" height="105" as="geometry"/>
+                <mxCell id="tE6yXry5JkGGAP22-kF5-3" value="&lt;span style=&quot;font-size: 12px&quot;&gt;jps master:&lt;br&gt;Namenode&lt;br&gt;SecondaryNamenode&lt;br&gt;Datanode&lt;br&gt;&lt;br&gt;&lt;/span&gt;jps slave:&lt;br&gt;Datanode&lt;span style=&quot;font-size: 12px&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=18;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;fontSize=12;spacingLeft=15;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="750" y="153" width="170" height="110" as="geometry"/>
                 </mxCell>
                 <mxCell id="2-6tEZyYjRrjFNyBFMZI-2" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="tE6yXry5JkGGAP22-kF5-1" target="2-6tEZyYjRrjFNyBFMZI-3" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="510" y="277.5" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="2-6tEZyYjRrjFNyBFMZI-3" value="&lt;span style=&quot;font-size: 12px&quot;&gt;master:&lt;br&gt;ResourceManager&lt;br&gt;NodeManager&lt;br&gt;&lt;br&gt;slave:&lt;br&gt;NodeManager&lt;br&gt;&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=22;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;fontSize=12;spacingLeft=15;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
-                    <mxGeometry x="760" y="260" width="170" height="100" as="geometry"/>
+                <mxCell id="2-6tEZyYjRrjFNyBFMZI-3" value="&lt;span style=&quot;font-size: 12px&quot;&gt;jps master:&lt;br&gt;ResourceManager&lt;br&gt;NodeManager&lt;br&gt;&lt;br&gt;jps slave:&lt;br&gt;NodeManager&lt;br&gt;&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=22;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;fontSize=12;spacingLeft=15;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="760" y="280" width="150" height="100" as="geometry"/>
                 </mxCell>
                 <mxCell id="2-6tEZyYjRrjFNyBFMZI-4" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-24" target="2-6tEZyYjRrjFNyBFMZI-5" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="780" y="370" as="sourcePoint"/>
+                        <mxPoint x="790" y="430" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="2-6tEZyYjRrjFNyBFMZI-5" value="&lt;span style=&quot;font-size: 12px&quot;&gt;master:&lt;br&gt;Master&lt;br&gt;Worker&lt;br&gt;&lt;br&gt;slave:&lt;br&gt;Worker&lt;br&gt;&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=22;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;fontSize=12;spacingLeft=15;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
-                    <mxGeometry x="760" y="420" width="170" height="100" as="geometry"/>
+                <mxCell id="2-6tEZyYjRrjFNyBFMZI-5" value="&lt;span style=&quot;font-size: 12px&quot;&gt;jps master:&lt;br&gt;Master&lt;br&gt;Worker&lt;br&gt;&lt;br&gt;jps slave:&lt;br&gt;Worker&lt;br&gt;&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=12;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;fontSize=12;spacingLeft=15;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="810" y="480" width="110" height="100" as="geometry"/>
                 </mxCell>
                 <mxCell id="jwYErbquFFIPtAXDk_Sp-5" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-44" target="jwYErbquFFIPtAXDk_Sp-6" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -120,15 +120,15 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="jwYErbquFFIPtAXDk_Sp-6" value="hdfs namenode -format: &lt;font face=&quot;Helvetica&quot;&gt;format file system first&lt;/font&gt;&lt;span style=&quot;font-size: 12px&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;fontSize=12;spacingLeft=15;fontFamily=Courier New;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
-                    <mxGeometry x="470" y="110" width="340" height="30" as="geometry"/>
+                    <mxGeometry x="470" y="120" width="340" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="PmcxF-u2VzMOZI920yMn-4" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-8" target="PmcxF-u2VzMOZI920yMn-5" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="300" y="252.5" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="PmcxF-u2VzMOZI920yMn-5" value="&lt;div&gt;&lt;span&gt;HADOOP_VERSION=3.1.1&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=33;align=left;verticalAlign=top;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
-                    <mxGeometry x="270" y="65" width="180" height="30" as="geometry"/>
+                <mxCell id="PmcxF-u2VzMOZI920yMn-5" value="&lt;div&gt;&lt;span&gt;install (&lt;/span&gt;&lt;span&gt;HADOOP_VERSION=3.1.1)&lt;/span&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=33;align=center;verticalAlign=top;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="270" y="65" width="240" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="PmcxF-u2VzMOZI920yMn-8" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="PmcxF-u2VzMOZI920yMn-5" target="PmcxF-u2VzMOZI920yMn-9" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -136,7 +136,7 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="PmcxF-u2VzMOZI920yMn-9" value="&lt;div&gt;wget&amp;nbsp;&lt;a href=&quot;http://mirrors.hust.edu.cn/apache/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz&quot;&gt;http://mirrors.hust.edu.cn/apache/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;tar xf hadoop-${HADOOP_VERSION}.tar.gz&lt;/span&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=33;align=left;verticalAlign=top;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;fontFamily=Courier New;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
-                    <mxGeometry x="480" y="60" width="840" height="40" as="geometry"/>
+                    <mxGeometry x="540" y="60" width="840" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="WFXvAkDN1zv_njqiZQ5y-2" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-7" target="WFXvAkDN1zv_njqiZQ5y-3" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -144,23 +144,23 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="WFXvAkDN1zv_njqiZQ5y-3" value="maven" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
-                    <mxGeometry x="170" y="380" width="80" height="30" as="geometry"/>
+                    <mxGeometry x="170" y="400" width="80" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="WFXvAkDN1zv_njqiZQ5y-4" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="WFXvAkDN1zv_njqiZQ5y-3" target="WFXvAkDN1zv_njqiZQ5y-5" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="200" y="380" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="WFXvAkDN1zv_njqiZQ5y-5" value="MAVEN_VERSION=3.5.4" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
-                    <mxGeometry x="260" y="380" width="200" height="30" as="geometry"/>
+                <mxCell id="WFXvAkDN1zv_njqiZQ5y-5" value="MAVEN_VERSION=3.5.4&lt;br&gt;M2_HOME&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=25;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="270" y="395" width="180" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="WFXvAkDN1zv_njqiZQ5y-6" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="WFXvAkDN1zv_njqiZQ5y-5" target="WFXvAkDN1zv_njqiZQ5y-7" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="300" y="515" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="WFXvAkDN1zv_njqiZQ5y-7" value="&lt;div&gt;wget&amp;nbsp;&lt;a href=&quot;http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz&quot;&gt;http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;tar xf apache-maven-${MAVEN_VERSION}-bin.tar.gz&lt;/span&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;fontFamily=Courier New;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
-                    <mxGeometry x="480" y="375" width="980" height="40" as="geometry"/>
+                <mxCell id="WFXvAkDN1zv_njqiZQ5y-7" value="&lt;div&gt;wget&amp;nbsp;&lt;a href=&quot;http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz&quot;&gt;http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;tar xf apache-maven-${MAVEN_VERSION}-bin.tar.gz&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;[export MAVEN_OPTS=&quot;-Xmx2g -XX:ReservedCodeCacheSize=1024m&quot; # for java8+]&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=10;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;fontFamily=Courier New;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="480" y="380" width="980" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-26" target="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -170,223 +170,167 @@
                 <mxCell id="1" value="JAVA_HOME" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
                     <mxGeometry x="275" y="20" width="110" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="9pCyZpfQApjmvLBJ3zFG-1" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" target="9pCyZpfQApjmvLBJ3zFG-2" source="Sro-y_ONTGwIrrQq8ra5-7" parent="Sro-y_ONTGwIrrQq8ra5-2">
+                <mxCell id="CP8ZkzfcKx1SgdETgGFV-1" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="CP8ZkzfcKx1SgdETgGFV-2" source="Sro-y_ONTGwIrrQq8ra5-8" parent="Sro-y_ONTGwIrrQq8ra5-2">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="180" y="180" as="sourcePoint"/>
+                        <mxPoint x="300" y="55" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="9pCyZpfQApjmvLBJ3zFG-2" value="web visit" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" vertex="1" parent="Sro-y_ONTGwIrrQq8ra5-2">
-                    <mxGeometry x="170" y="640" width="90" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="9pCyZpfQApjmvLBJ3zFG-3" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" target="9pCyZpfQApjmvLBJ3zFG-4" source="9pCyZpfQApjmvLBJ3zFG-2" parent="Sro-y_ONTGwIrrQq8ra5-2">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="180" y="180" as="sourcePoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="9pCyZpfQApjmvLBJ3zFG-4" value="&lt;br&gt;hadoop: &lt;br&gt;hpmaser:9870 for 3.x&lt;br&gt;hpmaster:50070 for 2.x" style="whiteSpace=wrap;html=1;rounded=1;arcSize=12;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" vertex="1" parent="Sro-y_ONTGwIrrQq8ra5-2">
-                    <mxGeometry x="275" y="620" width="185" height="70" as="geometry"/>
-                </mxCell>
+                <UserObject label="&lt;div&gt;&lt;a href=&quot;data:page/id,-WEoZyiqvBqUpz0TT_SZ&quot;&gt;hadoop&amp;nbsp;configuration&lt;/a&gt;&lt;/div&gt;" id="CP8ZkzfcKx1SgdETgGFV-2">
+                    <mxCell style="whiteSpace=wrap;html=1;rounded=1;arcSize=33;align=center;verticalAlign=top;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" vertex="1" parent="Sro-y_ONTGwIrrQq8ra5-2">
+                        <mxGeometry x="270" y="120" width="175" height="30" as="geometry"/>
+                    </mxCell>
+                </UserObject>
             </root>
         </mxGraphModel>
     </diagram>
-    <diagram id="-WEoZyiqvBqUpz0TT_SZ" name="hadoop_config">
-        <mxGraphModel dx="641" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <diagram id="-WEoZyiqvBqUpz0TT_SZ" name="hadoop">
+        <mxGraphModel dx="1920" dy="480" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="eWbBBnhURtFt8rfzeXO5-0"/>
                 <mxCell id="eWbBBnhURtFt8rfzeXO5-1" parent="eWbBBnhURtFt8rfzeXO5-0"/>
                 <mxCell id="eWbBBnhURtFt8rfzeXO5-2" value="" style="swimlane;html=1;startSize=20;horizontal=1;containerType=tree;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-1">
-                    <mxGeometry x="40" y="10" width="1840" height="1280" as="geometry"/>
+                    <mxGeometry x="-820" y="12" width="806" height="413" as="geometry"/>
                 </mxCell>
                 <mxCell id="eWbBBnhURtFt8rfzeXO5-3" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" parent="eWbBBnhURtFt8rfzeXO5-2" source="eWbBBnhURtFt8rfzeXO5-7" target="eWbBBnhURtFt8rfzeXO5-8">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="eWbBBnhURtFt8rfzeXO5-7" value="hadoop" style="ellipse;whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry y="335" width="150" height="60" as="geometry"/>
+                    <mxGeometry x="13" y="187" width="150" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="eWbBBnhURtFt8rfzeXO5-8" value="$HADOOP_CONF_DIR/" style="whiteSpace=wrap;html=1;rounded=1;arcSize=30;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry x="180" y="350" width="170" height="30" as="geometry"/>
+                    <mxGeometry x="182" y="68" width="170" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="IIqG2fF5GgASPDbxT9bm-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="IIqG2fF5GgASPDbxT9bm-1" source="eWbBBnhURtFt8rfzeXO5-8" parent="eWbBBnhURtFt8rfzeXO5-2">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="150" y="130" as="sourcePoint"/>
+                        <mxPoint x="143" y="3" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="IIqG2fF5GgASPDbxT9bm-1" value="core-site.xml" style="whiteSpace=wrap;html=1;rounded=1;arcSize=30;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry x="370" y="175" width="150" height="30" as="geometry"/>
+                <mxCell id="IIqG2fF5GgASPDbxT9bm-1" value="&lt;ol&gt;&lt;li&gt;&lt;span style=&quot;text-align: center&quot;&gt;masters&amp;nbsp;- hosts from /etc/hosts&lt;/span&gt;&lt;br&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;text-align: center&quot;&gt;workers ((slaves for 2.x))&amp;nbsp;- hosts from /etc/hosts&lt;br&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;core-site.xml&lt;/li&gt;&lt;li&gt;hdfs-site.xml&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;text-align: center&quot;&gt;mapred-site.xml&lt;/span&gt;&lt;br&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;text-align: center&quot;&gt;yarn-site.xml&lt;br&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;text-align: center&quot;&gt;capacity-scheduler.xml - copy from original file&lt;br&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;text-align: center&quot;&gt;log4j.properties&amp;nbsp;- copy from original file&lt;br&gt;&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=6;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
+                    <mxGeometry x="377" y="9" width="328" height="148" as="geometry"/>
                 </mxCell>
-                <mxCell id="IIqG2fF5GgASPDbxT9bm-2" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="IIqG2fF5GgASPDbxT9bm-3" source="eWbBBnhURtFt8rfzeXO5-8" parent="eWbBBnhURtFt8rfzeXO5-2">
+                <mxCell id="jLd-XOzGYIiJxBn72LBR-3" value="ENVIROMENT VARIABLE" style="whiteSpace=wrap;html=1;rounded=1;arcSize=30;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
+                    <mxGeometry x="187" y="204" width="176" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="jLd-XOzGYIiJxBn72LBR-7" value="&lt;div&gt;&lt;ol&gt;&lt;li&gt;HADOOP_HOME&lt;/li&gt;&lt;li&gt;HADOOP_CONF_DIR&lt;/li&gt;&lt;li&gt;HADOOP_PID_DIR&lt;/li&gt;&lt;li&gt;HADOOP_LOG_DIR&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;div&gt;&lt;br style=&quot;background-color: rgb(248 , 249 , 250)&quot;&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=10;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
+                    <mxGeometry x="377" y="177.25" width="195" height="79.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="jLd-XOzGYIiJxBn72LBR-2" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="jLd-XOzGYIiJxBn72LBR-3" source="eWbBBnhURtFt8rfzeXO5-7" parent="eWbBBnhURtFt8rfzeXO5-2">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="340" y="195" as="sourcePoint"/>
+                        <mxPoint x="196" y="285" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="IIqG2fF5GgASPDbxT9bm-3" value="hdfs-site.xml" style="whiteSpace=wrap;html=1;rounded=1;arcSize=30;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry x="370" y="280" width="130" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="IIqG2fF5GgASPDbxT9bm-4" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="IIqG2fF5GgASPDbxT9bm-5" source="eWbBBnhURtFt8rfzeXO5-8" parent="eWbBBnhURtFt8rfzeXO5-2">
+                <mxCell id="jLd-XOzGYIiJxBn72LBR-6" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" target="jLd-XOzGYIiJxBn72LBR-7" source="jLd-XOzGYIiJxBn72LBR-3" parent="eWbBBnhURtFt8rfzeXO5-2">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="340" y="195" as="sourcePoint"/>
+                        <mxPoint x="267" y="449" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="IIqG2fF5GgASPDbxT9bm-5" value="yarn-site.xml" style="whiteSpace=wrap;html=1;rounded=1;arcSize=30;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry x="370" y="720" width="140" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="IIqG2fF5GgASPDbxT9bm-6" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="IIqG2fF5GgASPDbxT9bm-7" source="eWbBBnhURtFt8rfzeXO5-8" parent="eWbBBnhURtFt8rfzeXO5-2">
+                <mxCell id="bHoMIDGINV_B8YVuur2R-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="bHoMIDGINV_B8YVuur2R-1" source="eWbBBnhURtFt8rfzeXO5-7" parent="eWbBBnhURtFt8rfzeXO5-2">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="340" y="195" as="sourcePoint"/>
+                        <mxPoint x="-661" y="156" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="IIqG2fF5GgASPDbxT9bm-7" value="capacity-scheduler.xml - copy from original file" style="whiteSpace=wrap;html=1;rounded=1;arcSize=30;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry x="374" y="950" width="290" height="30" as="geometry"/>
+                <mxCell id="bHoMIDGINV_B8YVuur2R-1" value="web" style="whiteSpace=wrap;html=1;rounded=1;arcSize=30;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
+                    <mxGeometry x="184" y="301" width="57" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="IIqG2fF5GgASPDbxT9bm-8" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="IIqG2fF5GgASPDbxT9bm-9" source="eWbBBnhURtFt8rfzeXO5-8" parent="eWbBBnhURtFt8rfzeXO5-2">
+                <mxCell id="bHoMIDGINV_B8YVuur2R-2" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="bHoMIDGINV_B8YVuur2R-3" source="bHoMIDGINV_B8YVuur2R-1" parent="eWbBBnhURtFt8rfzeXO5-2">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="340" y="195" as="sourcePoint"/>
+                        <mxPoint x="-657" y="229" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="IIqG2fF5GgASPDbxT9bm-9" value="mapred-site.xml" style="whiteSpace=wrap;html=1;rounded=1;arcSize=30;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry x="370" y="430" width="140" height="30" as="geometry"/>
+                <mxCell id="bHoMIDGINV_B8YVuur2R-3" value="&lt;ol&gt;&lt;li&gt;&lt;span&gt;hpmaser:9870 fo3 (&lt;/span&gt;hpmaster:50070 for 2.x)&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=11;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
+                    <mxGeometry x="293" y="289" width="306" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="IIqG2fF5GgASPDbxT9bm-10" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="IIqG2fF5GgASPDbxT9bm-11" source="eWbBBnhURtFt8rfzeXO5-8" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="340" y="40" as="sourcePoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="IIqG2fF5GgASPDbxT9bm-11" value="workers - items from /etc/hosts&lt;br&gt;(slaves for 2.x)" style="whiteSpace=wrap;html=1;rounded=1;arcSize=30;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry x="370" y="75" width="200" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="IIqG2fF5GgASPDbxT9bm-12" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="IIqG2fF5GgASPDbxT9bm-13" source="eWbBBnhURtFt8rfzeXO5-8" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="340" y="40" as="sourcePoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="IIqG2fF5GgASPDbxT9bm-13" value="masters&amp;nbsp;- itmes from /etc/hosts" style="whiteSpace=wrap;html=1;rounded=1;arcSize=30;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry x="370" y="10" width="200" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="n6tN-LVe1-n-w6xNUVMM-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="n6tN-LVe1-n-w6xNUVMM-1" source="eWbBBnhURtFt8rfzeXO5-8" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="390" y="375" as="sourcePoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="n6tN-LVe1-n-w6xNUVMM-1" value="log4j.properties&amp;nbsp;- copy from original file" style="whiteSpace=wrap;html=1;rounded=1;arcSize=30;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry x="374" y="1030" width="250" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="n6tN-LVe1-n-w6xNUVMM-6" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="n6tN-LVe1-n-w6xNUVMM-7" source="IIqG2fF5GgASPDbxT9bm-13" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="390" y="220" as="sourcePoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="n6tN-LVe1-n-w6xNUVMM-7" value="&lt;font face=&quot;Courier New&quot;&gt;hpmaster&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=30;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry x="600" y="10" width="100" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="n6tN-LVe1-n-w6xNUVMM-8" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="n6tN-LVe1-n-w6xNUVMM-9" source="IIqG2fF5GgASPDbxT9bm-11" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="390" y="220" as="sourcePoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="n6tN-LVe1-n-w6xNUVMM-9" value="&lt;font face=&quot;Courier New&quot;&gt;hpmaster&lt;br&gt;hpslave1&lt;br&gt;hpslave2&lt;br&gt;...&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=17;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry x="600" y="60" width="100" height="70" as="geometry"/>
-                </mxCell>
-                <mxCell id="n6tN-LVe1-n-w6xNUVMM-10" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="n6tN-LVe1-n-w6xNUVMM-11" source="IIqG2fF5GgASPDbxT9bm-1" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="390" y="220" as="sourcePoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="n6tN-LVe1-n-w6xNUVMM-11" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;fs.defaultFS:&amp;nbsp;hdfs://hpmaster:9000&lt;/div&gt;&lt;div&gt;hadoop.tmp.dir:&amp;nbsp;/server/proj/hp/tmp/hadoop/tmp&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;[hadoop.http.staticuser.user: hadoop_user]&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=5;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};fontFamily=Courier New;" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry x="570" y="150" width="370" height="80" as="geometry"/>
-                </mxCell>
-                <mxCell id="n6tN-LVe1-n-w6xNUVMM-12" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="n6tN-LVe1-n-w6xNUVMM-13" source="IIqG2fF5GgASPDbxT9bm-3" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="560" y="190" as="sourcePoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="n6tN-LVe1-n-w6xNUVMM-13" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;dfs.namenode.name.dir:&amp;nbsp;file:///server/proj/hp/data/hadoop/name&lt;br&gt;dfs.datanode.data.dir:&amp;nbsp;file:///server/proj/hp/data/hadoop/data&lt;div&gt;dfs.replication: 2&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=5;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};fontFamily=Courier New;" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry x="570" y="260" width="490" height="70" as="geometry"/>
-                </mxCell>
-                <mxCell id="n6tN-LVe1-n-w6xNUVMM-14" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="n6tN-LVe1-n-w6xNUVMM-15" source="IIqG2fF5GgASPDbxT9bm-9" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="540" y="240" as="sourcePoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="n6tN-LVe1-n-w6xNUVMM-15" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;mapreduce.framework.name: yarn&lt;/div&gt;&lt;div&gt;yarn.app.mapreduce.am.resource.mb: 2048&lt;br&gt;&lt;/div&gt;&lt;div&gt;mapreduce.map.memory.mb: 1024&lt;br&gt;&lt;/div&gt;&lt;div&gt;mapreduce.reduce.memory.mb: 1024&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;[&lt;/div&gt;&lt;div&gt;yarn.app.mapreduce.am.env: HADOOP_MAPRED_HOME=${HADOOP_HOME}&lt;/div&gt;&lt;div&gt;mapreduce.map.env: HADOOP_MAPRED_HOME=${HADOOP_HOME}&lt;/div&gt;&lt;div&gt;mapreduce.reduce.env: HADOOP_MAPRED_HOME=${HADOOP_HOME}&lt;/div&gt;&lt;div&gt;]&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=5;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};fontFamily=Courier New;" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry x="570" y="360" width="470" height="170" as="geometry"/>
-                </mxCell>
-                <mxCell id="n6tN-LVe1-n-w6xNUVMM-16" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="n6tN-LVe1-n-w6xNUVMM-17" source="IIqG2fF5GgASPDbxT9bm-5" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="550" y="465" as="sourcePoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="n6tN-LVe1-n-w6xNUVMM-17" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;yarn.nodemanager.aux-services:&amp;nbsp;mapreduce_shuffle&lt;br&gt;&lt;/div&gt;&lt;div&gt;yarn.resourcemanager.hostname: hpmaster&lt;/div&gt;&lt;div&gt;yarn.nodemanager.resource.memory-mb: 6144&lt;br&gt;&lt;/div&gt;&lt;div&gt;yarn.scheduler.maximum-allocation-mb: 6144&lt;br&gt;&lt;/div&gt;&lt;div&gt;yarn.scheduler.minimum-allocation-mb: 512&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;[&lt;/div&gt;&lt;div&gt;&lt;div&gt;yarn.resourcemanager.webapp.address: hpmaster:8088&lt;/div&gt;&lt;div&gt;yarn.resourcemanager.address: hpmaster:8032&lt;/div&gt;&lt;div&gt;yarn.resourcemanager.scheduler.address: hpmaster:8030&lt;/div&gt;&lt;div&gt;yarn.resourcemanager.resource-tracker.address: hpmaster:8031&lt;/div&gt;&lt;/div&gt;&lt;div&gt;]&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;lt;!-- The following property disables virtual-memory checking and&amp;nbsp;&lt;/div&gt;&lt;div&gt;can prevent containers from being allocated properly on JDK8 --&amp;gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;yarn.nodemanager.vmem-check-enabled: false&lt;br&gt;&lt;/div&gt;&lt;div&gt;yarn.nodemanager.pmem-check-enabled: false&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;lt;!-- for spark --&amp;gt;&lt;/div&gt;&lt;div&gt;yarn.resourcemanager.scheduler.class:&amp;nbsp;&lt;/div&gt;&lt;div&gt;org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=5;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};fontFamily=Courier New;" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry x="570" y="575" width="570" height="320" as="geometry"/>
-                </mxCell>
-                <mxCell id="VyEm6AgqYifmeeLquEPB-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="VyEm6AgqYifmeeLquEPB-1" source="IIqG2fF5GgASPDbxT9bm-7" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="390" y="375" as="sourcePoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="VyEm6AgqYifmeeLquEPB-1" value="&lt;br&gt;[&lt;br&gt;yarn.scheduler.capacity.maximum-am-resource-percent: 0.5&lt;br&gt;]" style="whiteSpace=wrap;html=1;rounded=1;arcSize=7;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};fontFamily=Courier New;" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-2">
-                    <mxGeometry x="690" y="930" width="440" height="70" as="geometry"/>
+                <mxCell id="6CwZz9edtbsfupQNtGP2-0" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;configuration&lt;/th&gt;&lt;th&gt;content&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;ENVIROMENT VARIABLE&lt;/span&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;font face=&quot;Courier New&quot;&gt;export HADOOP_HOME=/server/proj/hp/bin/hadoop/hadoop-3.1.2&lt;br&gt;export HADOOP_CONF_DIR=/server/proj/hp/config/hadoop/3.1.2&lt;br&gt;export HADOOP_PID_DIR=/server/proj/hp/pid/hadoop&lt;br&gt;export HADOOP_LOG_DIR=/server/proj/hp/log/hadoop&lt;br&gt;export PATH=${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:${PATH}&lt;/font&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;masters&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34; ; text-align: center&quot;&gt;hpmaster&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;workers&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;text-align: center&quot;&gt;(slaves for 2.x)&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34; ; text-align: center&quot;&gt;hpmaster&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;courier new&amp;#34; ; text-align: center&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34; ; text-align: center&quot;&gt;hpslave1&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;courier new&amp;#34; ; text-align: center&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34; ; text-align: center&quot;&gt;hpslave2&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;courier new&amp;#34; ; text-align: center&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34; ; text-align: center&quot;&gt;...&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;core-site.xml&lt;/span&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;fs.defaultFS:&amp;nbsp;hdfs://hpmaster:9000&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;hadoop.tmp.dir:&amp;nbsp;/server/proj/hp/tmp/hadoop/tmp&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;[hadoop.http.staticuser.user: hadoop_user]&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;hdfs-site.xml&lt;/span&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;dfs.namenode.name.dir:&amp;nbsp;file:///server/proj/hp/data/hadoop/name&lt;br&gt;dfs.datanode.data.dir:&amp;nbsp;file:///server/proj/hp/data/hadoop/data&lt;/font&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;dfs.replication: 2&lt;/font&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;mapred-site.xml&lt;/span&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;mapreduce.framework.name: yarn&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.app.mapreduce.am.resource.mb: 2048&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;mapreduce.map.memory.mb: 1024&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;mapreduce.reduce.memory.mb: 1024&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;[&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.app.mapreduce.am.env: HADOOP_MAPRED_HOME=${HADOOP_HOME}&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;mapreduce.map.env: HADOOP_MAPRED_HOME=${HADOOP_HOME}&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;mapreduce.reduce.env: HADOOP_MAPRED_HOME=${HADOOP_HOME}&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;]&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;yarn-site.xml&lt;/span&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.nodemanager.aux-services:&amp;nbsp;mapreduce_shuffle&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.resourcemanager.hostname: hpmaster&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.nodemanager.resource.memory-mb: 6144&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.scheduler.maximum-allocation-mb: 6144&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.scheduler.minimum-allocation-mb: 512&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;[&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;div&gt;yarn.resourcemanager.webapp.address: hpmaster:8088&lt;/div&gt;&lt;div&gt;yarn.resourcemanager.address: hpmaster:8032&lt;/div&gt;&lt;div&gt;yarn.resourcemanager.scheduler.address: hpmaster:8030&lt;/div&gt;&lt;div&gt;yarn.resourcemanager.resource-tracker.address: hpmaster:8031&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;]&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&amp;lt;!-- The following property disables virtual-memory checking and&amp;nbsp;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;can prevent containers from being allocated properly on JDK8 --&amp;gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.nodemanager.vmem-check-enabled: false&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.nodemanager.pmem-check-enabled: false&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&amp;lt;!-- for spark --&amp;gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.resourcemanager.scheduler.class:&amp;nbsp;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;capacity-scheduler.xml&lt;br&gt;(from original file)&lt;/span&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;[&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.scheduler.capacity.maximum-am-resource-percent: 0.5&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;]&lt;/span&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;log4j.properties&lt;br&gt;(from original file)&lt;/span&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=none;" vertex="1" parent="eWbBBnhURtFt8rfzeXO5-1">
+                    <mxGeometry x="-821" y="444" width="815" height="937" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
-    <diagram id="1RoVEH6-U07JBPiQCIpj" name="spark-config">
-        <mxGraphModel dx="1093" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+    <diagram id="1RoVEH6-U07JBPiQCIpj" name="spark">
+        <mxGraphModel dx="1093" dy="480" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="34mPGzUubuIL1UB4C40a-0"/>
                 <mxCell id="34mPGzUubuIL1UB4C40a-1" parent="34mPGzUubuIL1UB4C40a-0"/>
                 <mxCell id="KCW76AdvT7wmHBYV-x0i-53" value="" style="swimlane;html=1;startSize=20;horizontal=1;containerType=tree;rounded=1;shadow=0;glass=0;comic=0;fillColor=none;align=left;strokeColor=none;fontColor=#0000FF;" parent="34mPGzUubuIL1UB4C40a-1" vertex="1">
-                    <mxGeometry x="30" y="10" width="1340" height="650" as="geometry"/>
+                    <mxGeometry x="13.5" y="10" width="801" height="510" as="geometry"/>
                 </mxCell>
                 <UserObject label="spark" link="http://spark.apache.org/" id="KCW76AdvT7wmHBYV-x0i-58">
                     <mxCell style="ellipse;whiteSpace=wrap;align=center;container=1;recursiveResize=0;treeFolding=1;treeMoving=1;fontStyle=4;horizontal=1;html=1;fontColor=#0000FF;" parent="KCW76AdvT7wmHBYV-x0i-53" vertex="1">
-                        <mxGeometry x="10" y="100" width="100" height="40" as="geometry"/>
+                        <mxGeometry x="2.5" y="166" width="100" height="40" as="geometry"/>
                     </mxCell>
                 </UserObject>
                 <mxCell id="xrFCkNjzpNax4OZzC3vO-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="xrFCkNjzpNax4OZzC3vO-1" source="KCW76AdvT7wmHBYV-x0i-58" parent="KCW76AdvT7wmHBYV-x0i-53">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="130" y="150" as="sourcePoint"/>
+                        <mxPoint x="124" y="76" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="xrFCkNjzpNax4OZzC3vO-1" value="SPARK_CONF_HOME/" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" vertex="1" parent="KCW76AdvT7wmHBYV-x0i-53">
-                    <mxGeometry x="130" y="105" width="170" height="30" as="geometry"/>
+                    <mxGeometry x="124" y="31" width="170" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="rlWe1RJ4fspUfodQxJqe-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="rlWe1RJ4fspUfodQxJqe-1" source="xrFCkNjzpNax4OZzC3vO-1" parent="KCW76AdvT7wmHBYV-x0i-53">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="295" y="120" as="sourcePoint"/>
+                        <mxPoint x="289" y="46" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="rlWe1RJ4fspUfodQxJqe-1" value="slaves" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" vertex="1" parent="KCW76AdvT7wmHBYV-x0i-53">
-                    <mxGeometry x="320" y="30" width="70" height="30" as="geometry"/>
+                <mxCell id="rlWe1RJ4fspUfodQxJqe-1" value="&lt;ol&gt;&lt;li&gt;slaves&lt;/li&gt;&lt;li&gt;spark-defaults.conf - from&amp;nbsp;spark-default.conf.template&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=13;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" vertex="1" parent="KCW76AdvT7wmHBYV-x0i-53">
+                    <mxGeometry x="326" y="14" width="359" height="64" as="geometry"/>
                 </mxCell>
-                <mxCell id="rlWe1RJ4fspUfodQxJqe-2" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="rlWe1RJ4fspUfodQxJqe-3" source="rlWe1RJ4fspUfodQxJqe-1" parent="KCW76AdvT7wmHBYV-x0i-53">
+                <mxCell id="OYlz26utQldjWs7uZB4L-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="OYlz26utQldjWs7uZB4L-1" source="KCW76AdvT7wmHBYV-x0i-58" parent="KCW76AdvT7wmHBYV-x0i-53">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="315" y="163" as="sourcePoint"/>
+                        <mxPoint x="134" y="56" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="rlWe1RJ4fspUfodQxJqe-3" value="&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;hpmaster&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;hpslave1&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;hpslave2&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;...&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=17;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" vertex="1" parent="KCW76AdvT7wmHBYV-x0i-53">
-                    <mxGeometry x="435" y="10" width="100" height="70" as="geometry"/>
+                <mxCell id="OYlz26utQldjWs7uZB4L-1" value="ENVIROMENT VARIABLE" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" vertex="1" parent="KCW76AdvT7wmHBYV-x0i-53">
+                    <mxGeometry x="124" y="173" width="176" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="sbPDryvhOiNZEx7QMcJM-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="sbPDryvhOiNZEx7QMcJM-1" source="xrFCkNjzpNax4OZzC3vO-1" parent="KCW76AdvT7wmHBYV-x0i-53">
+                <mxCell id="OYlz26utQldjWs7uZB4L-2" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="OYlz26utQldjWs7uZB4L-3" source="OYlz26utQldjWs7uZB4L-1" parent="KCW76AdvT7wmHBYV-x0i-53">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="335" y="73" as="sourcePoint"/>
+                        <mxPoint x="134" y="246" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="sbPDryvhOiNZEx7QMcJM-1" value="spark-defaults.conf - from&amp;nbsp;spark-default.conf.template" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" vertex="1" parent="KCW76AdvT7wmHBYV-x0i-53">
-                    <mxGeometry x="320" y="282.5" width="320" height="30" as="geometry"/>
+                <mxCell id="OYlz26utQldjWs7uZB4L-3" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;SPARK_HOME&lt;/li&gt;&lt;li&gt;SPARK_CONF_DIR&lt;/li&gt;&lt;li&gt;SPARK_PID_DIR&lt;/li&gt;&lt;li&gt;SPARK_LOG_DIR&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;div&gt;[&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;ol&gt;&lt;li&gt;LD_LIBRARY_PATH&lt;/li&gt;&lt;li&gt;SPARK_DIST_CLASSPATH&lt;/li&gt;&lt;li&gt;SPARK_MASTER_HOST&lt;/li&gt;&lt;/ol&gt;]" style="whiteSpace=wrap;html=1;rounded=1;arcSize=3;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" vertex="1" parent="KCW76AdvT7wmHBYV-x0i-53">
+                    <mxGeometry x="326" y="86" width="225" height="200" as="geometry"/>
                 </mxCell>
-                <mxCell id="sbPDryvhOiNZEx7QMcJM-2" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="sbPDryvhOiNZEx7QMcJM-3" source="sbPDryvhOiNZEx7QMcJM-1" parent="KCW76AdvT7wmHBYV-x0i-53">
+                <mxCell id="b_U1BxzFyTe7XUg6bW6P-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="b_U1BxzFyTe7XUg6bW6P-1" source="KCW76AdvT7wmHBYV-x0i-58" parent="KCW76AdvT7wmHBYV-x0i-53">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="420" y="55" as="sourcePoint"/>
+                        <mxPoint x="117.5" y="104" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="sbPDryvhOiNZEx7QMcJM-3" value="&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.master yarn&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.driver.memory 2g&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.yarn.am.memory 1g&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.executor.memory 1g&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# need create spark.eventLog.dir manually&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# hdfs dfs -mkdir -p /user/spark/eventlog&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.eventLog.enabled true&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.eventLog.dir hdfs://hpmaster:9000/user/spark/eventlog&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# hdfs dfs -put&amp;nbsp; $SPARK_HOME/jars/* /user/spark/jars/&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# spark.yarn.jars hdfs://hpmaster:9000/user/spark/jars/*&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# jar cv0f spark-libs.jar -C $SPARK_HOME/jars/ .&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# hdfs dfs -mkdir /user/spark/archive&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# hdfs dfs -put spark-libs.jar /user/spark/archive&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# spark.yarn.archive can overwrite spark.yarn.jars&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.yarn.archive hdfs://hpmaster:9000/user/spark/archive/spark-libs.jar&lt;/font&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=3;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" vertex="1" parent="KCW76AdvT7wmHBYV-x0i-53">
-                    <mxGeometry x="690" y="148" width="570" height="300" as="geometry"/>
+                <mxCell id="b_U1BxzFyTe7XUg6bW6P-1" value="web" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" vertex="1" parent="KCW76AdvT7wmHBYV-x0i-53">
+                    <mxGeometry x="128.5" y="325" width="82" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="HqWGNaCdtybmOrp_54uY-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="HqWGNaCdtybmOrp_54uY-1" source="KCW76AdvT7wmHBYV-x0i-58" parent="KCW76AdvT7wmHBYV-x0i-53">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="119" y="160.5" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="HqWGNaCdtybmOrp_54uY-1" value="command" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" vertex="1" parent="KCW76AdvT7wmHBYV-x0i-53">
+                    <mxGeometry x="128.5" y="416" width="88" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="0n4K-FWAftFmVPVo4dPc-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="0n4K-FWAftFmVPVo4dPc-1" source="b_U1BxzFyTe7XUg6bW6P-1" parent="KCW76AdvT7wmHBYV-x0i-53">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="123.5" y="177.5" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="0n4K-FWAftFmVPVo4dPc-1" value="&lt;ol style=&quot;text-align: left&quot;&gt;&lt;li&gt;spark context:&amp;nbsp;hpmaster:4040&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=12;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" vertex="1" parent="KCW76AdvT7wmHBYV-x0i-53">
+                    <mxGeometry x="252" y="323" width="233" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="9XVjDv2vyGgLHfS5zxJg-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="9XVjDv2vyGgLHfS5zxJg-1" source="HqWGNaCdtybmOrp_54uY-1" parent="KCW76AdvT7wmHBYV-x0i-53">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="123.5" y="177.5" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="9XVjDv2vyGgLHfS5zxJg-1" value="&lt;h3 style=&quot;font-family: &amp;quot;courier new&amp;quot;;&quot;&gt;&lt;font face=&quot;Helvetica&quot;&gt;test&lt;/font&gt;&lt;/h3&gt;&lt;span style=&quot;font-family: &amp;quot;courier new&amp;quot;;&quot;&gt;run-example SparkPi 100&lt;br&gt;&lt;/span&gt;&lt;h3 style=&quot;font-family: &amp;quot;courier new&amp;quot;;&quot;&gt;shell&lt;/h3&gt;&lt;span style=&quot;font-family: &amp;quot;courier new&amp;quot;;&quot;&gt;spark-shell --master yarn&lt;/span&gt;&lt;span style=&quot;font-family: &amp;quot;courier new&amp;quot;;&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=3;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" vertex="1" parent="KCW76AdvT7wmHBYV-x0i-53">
+                    <mxGeometry x="249" y="366" width="215" height="127" as="geometry"/>
+                </mxCell>
+                <mxCell id="_y5CMLFXhptqTX6tqpg3-0" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;configuration&lt;/th&gt;&lt;th&gt;content&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;ENVIROMENT VARIABLE&lt;/span&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;&lt;div&gt;export SPARK_HOME=/server/proj/hp/bin/spark/spark-2.4.1&lt;/div&gt;&lt;div&gt;export SPARK_CONF_DIR=/server/proj/hp/config/spark/2.4.1&lt;/div&gt;&lt;div&gt;export SPARK_PID_DIR=/server/proj/hp/pid/spark&lt;/div&gt;&lt;div&gt;export SPARK_LOG_DIR=/server/proj/hp/log/spark&lt;/div&gt;&lt;/div&gt;&lt;div&gt;export PATH=${SPARK_HOME}/bin:${SPARK_HOME}/sbin:${PATH}&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;[&lt;/div&gt;&lt;div&gt;# avoid spark log saying ”Unable to load native-hadoop library for your&lt;/div&gt;&lt;div&gt;# platform, using builtin-java classes where applicable“&amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;span&gt;export LD_LIBRARY_PATH=$HADOOP_HOME/lib/native:${LD_LIBRARY_PATH}&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span&gt;export SPARK_DIST_CLASSPATH=$(hadoop classpath)&lt;/span&gt;&lt;br&gt;&lt;span&gt;export SPARK_MASTER_HOST=192.168.41.212&lt;/span&gt;&lt;br&gt;&lt;span&gt;]&lt;/span&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;slaves&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span style=&quot;text-align: center ; font-family: &amp;#34;courier new&amp;#34;&quot;&gt;hpmaster&lt;/span&gt;&lt;br style=&quot;text-align: center ; font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;span style=&quot;text-align: center ; font-family: &amp;#34;courier new&amp;#34;&quot;&gt;hpslave1&lt;/span&gt;&lt;br style=&quot;text-align: center ; font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;span style=&quot;text-align: center ; font-family: &amp;#34;courier new&amp;#34;&quot;&gt;hpslave2&lt;/span&gt;&lt;br style=&quot;text-align: center ; font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;span style=&quot;text-align: center ; font-family: &amp;#34;courier new&amp;#34;&quot;&gt;...&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;spark-defaults.conf&lt;br&gt;(from&amp;nbsp;spark-default.conf.template)&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.master yarn&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.driver.memory 2g&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.yarn.am.memory 1g&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.executor.memory 1g&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# need create spark.eventLog.dir manually&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# hdfs dfs -mkdir -p /user/spark/eventlog&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.eventLog.enabled true&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.eventLog.dir hdfs://hpmaster:9000/user/spark/eventlog&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# hdfs dfs -put&amp;nbsp; $SPARK_HOME/jars/* /user/spark/jars/&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# spark.yarn.jars hdfs://hpmaster:9000/user/spark/jars/*&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# jar cv0f spark-libs.jar -C $SPARK_HOME/jars/ .&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# hdfs dfs -mkdir /user/spark/archive&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# hdfs dfs -put spark-libs.jar /user/spark/archive&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# spark.yarn.archive can overwrite spark.yarn.jars&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.yarn.archive hdfs://hpmaster:9000/user/spark/archive/spark-libs.jar&lt;/font&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=none;" vertex="1" parent="34mPGzUubuIL1UB4C40a-1">
+                    <mxGeometry x="14" y="570" width="800" height="580" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
     <diagram id="EWGYTc7bqy6GZGGbjvN2" name="scala">
-        <mxGraphModel dx="1274" dy="3780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+        <mxGraphModel dx="1093" dy="3780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
