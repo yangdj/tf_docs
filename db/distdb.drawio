@@ -1,0 +1,339 @@
+<mxfile host="" modified="2020-07-15T14:49:06.423Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.46.1 Chrome/78.0.3904.130 Electron/7.3.1 Safari/537.36" etag="tUm9TmXkZ60UD9ICLadq" version="13.1.3" pages="8">
+    <diagram id="FLPFpf0fDZkSOcCbkyvu" name="cluster">
+        <mxGraphModel dx="666" dy="570" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="Sro-y_ONTGwIrrQq8ra5-0"/>
+                <mxCell id="Sro-y_ONTGwIrrQq8ra5-1" parent="Sro-y_ONTGwIrrQq8ra5-0"/>
+                <mxCell id="Sro-y_ONTGwIrrQq8ra5-2" value="" style="swimlane;html=1;startSize=20;horizontal=1;containerType=tree;rounded=1;shadow=0;glass=0;comic=0;fillColor=none;align=left;strokeColor=none;spacingLeft=16;fontFamily=Courier New;" parent="Sro-y_ONTGwIrrQq8ra5-1" vertex="1">
+                    <mxGeometry x="17" y="11" width="708" height="781" as="geometry"/>
+                </mxCell>
+                <mxCell id="Sro-y_ONTGwIrrQq8ra5-3" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-7" target="Sro-y_ONTGwIrrQq8ra5-8" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="153" y="544.5" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="Sro-y_ONTGwIrrQq8ra5-7" value="cluster" style="ellipse;whiteSpace=wrap;html=1;align=center;container=1;recursiveResize=0;treeFolding=1;treeMoving=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="60" y="257.5" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="Sro-y_ONTGwIrrQq8ra5-8" value="hadoop" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="178" y="262.5" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="Sro-y_ONTGwIrrQq8ra5-21" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-7" target="Sro-y_ONTGwIrrQq8ra5-22" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="140" y="225" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="Sro-y_ONTGwIrrQq8ra5-22" value="spark" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="181" y="396" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="Sro-y_ONTGwIrrQq8ra5-25" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-7" target="Sro-y_ONTGwIrrQq8ra5-26" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="150" y="170" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="Sro-y_ONTGwIrrQq8ra5-26" value="java" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="181" y="35" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="Sro-y_ONTGwIrrQq8ra5-47" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-7" target="Sro-y_ONTGwIrrQq8ra5-48" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="140" y="225" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="Sro-y_ONTGwIrrQq8ra5-48" value="hive" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="182" y="520" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="Sro-y_ONTGwIrrQq8ra5-49" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-48" target="Sro-y_ONTGwIrrQq8ra5-50" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="261" y="512" as="sourcePoint"/>
+                        <mxPoint x="281" y="512" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="Sro-y_ONTGwIrrQq8ra5-50" value="&lt;ol&gt;&lt;li&gt;&lt;a href=&quot;data:page/id,D1D5e4SczUkflpOaB_5x&quot;&gt;envs&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=10;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="294" y="515" width="158" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="j7NnDShUPY8Gism7366T-3" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-22" target="j7NnDShUPY8Gism7366T-4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="275" y="429" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="j7NnDShUPY8Gism7366T-4" value="&lt;ol&gt;&lt;li&gt;&lt;a href=&quot;data:page/id,D1D5e4SczUkflpOaB_5x&quot;&gt;envs&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;data:page/id,1RoVEH6-U07JBPiQCIpj&quot;&gt;configuration&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;data:page/id,knMVSClfLsouhgn86GnL&quot;&gt;service&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;data:page/id,DMlt9_OrqmJxumOdTNsM&quot;&gt;web ui&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;data:page/id,2QutuKDHSM4GKVfbvwYY&quot;&gt;command&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=9;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="293" y="358" width="159" height="106" as="geometry"/>
+                </mxCell>
+                <mxCell id="WFXvAkDN1zv_njqiZQ5y-3" value="maven" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="181" y="157" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="j7NnDShUPY8Gism7366T-5" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="WFXvAkDN1zv_njqiZQ5y-3" target="j7NnDShUPY8Gism7366T-6" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="272" y="191" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="j7NnDShUPY8Gism7366T-6" value="&lt;ol&gt;&lt;li&gt;&lt;a href=&quot;data:page/id,D1D5e4SczUkflpOaB_5x&quot;&gt;install &amp;amp; envs&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=25;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="288" y="147" width="146" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="WFXvAkDN1zv_njqiZQ5y-2" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-7" target="WFXvAkDN1zv_njqiZQ5y-3" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="200" y="430" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_FjJ-_5o4wbOm_jv516Y-1" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-26" target="_FjJ-_5o4wbOm_jv516Y-2" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="173" y="444" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_FjJ-_5o4wbOm_jv516Y-2" value="&lt;ol style=&quot;text-align: left&quot;&gt;&lt;li&gt;&lt;a href=&quot;data:page/id,D1D5e4SczUkflpOaB_5x&quot;&gt;envs&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=23;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="289" y="32.5" width="88" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="dS-E2oTPOJsPa3SIowS5-2" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-8" target="dS-E2oTPOJsPa3SIowS5-3" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="173" y="531.5" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="dS-E2oTPOJsPa3SIowS5-3" value="&lt;ol&gt;&lt;li&gt;&lt;a href=&quot;data:page/id,D1D5e4SczUkflpOaB_5x&quot;&gt;install &amp;amp; envs&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;data:page/id,-WEoZyiqvBqUpz0TT_SZ&quot;&gt;configuration&lt;/a&gt;&lt;br&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;data:page/id,knMVSClfLsouhgn86GnL&quot;&gt;service&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;data:page/id,DMlt9_OrqmJxumOdTNsM&quot;&gt;web ui&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;data:page/id,2QutuKDHSM4GKVfbvwYY&quot;&gt;command&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=10;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="289" y="225" width="146" height="106" as="geometry"/>
+                </mxCell>
+                <mxCell id="sYoBfOQEuPUcHSycB1xx-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="Sro-y_ONTGwIrrQq8ra5-7" target="sYoBfOQEuPUcHSycB1xx-1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="177" y="238.5" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="sYoBfOQEuPUcHSycB1xx-1" value="scala" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="181" y="98" width="63" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="sYoBfOQEuPUcHSycB1xx-2" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Sro-y_ONTGwIrrQq8ra5-2" source="sYoBfOQEuPUcHSycB1xx-1" target="sYoBfOQEuPUcHSycB1xx-3" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="279" y="496" as="sourcePoint"/>
+                        <mxPoint x="281" y="462" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="sYoBfOQEuPUcHSycB1xx-3" value="&lt;ol&gt;&lt;li&gt;&lt;a href=&quot;data:page/id,D1D5e4SczUkflpOaB_5x&quot;&gt;envs&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=10;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;spacingLeft=15;" parent="Sro-y_ONTGwIrrQq8ra5-2" vertex="1">
+                    <mxGeometry x="285" y="98" width="105" height="26" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="D1D5e4SczUkflpOaB_5x" name="install &amp; envs">
+        &#xa;        &#xa;        &#xa;        
+        <mxGraphModel dx="748" dy="570" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            &#xa;            &#xa;            &#xa;            
+            <root>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="uMOzGdJ9y4ATMqLP-dRU-0"/>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="uMOzGdJ9y4ATMqLP-dRU-1" parent="uMOzGdJ9y4ATMqLP-dRU-0"/>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="hL-x_0z0JpgMXZ3rjriP-0" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;application&lt;/th&gt;&lt;th&gt;install &amp;amp; envs&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;java&lt;/td&gt;&lt;td&gt;&lt;h3&gt;envs&lt;/h3&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;export JAVA_HOME=/server/proj/hp/bin/java/jdk1.8.0_141&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;export PATH=$PATH:${JAVA_HOME}/bin&lt;/font&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;scala&lt;/td&gt;&lt;td&gt;&lt;h3&gt;envs&lt;/h3&gt;&lt;div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;export SCALA_HOME=/server/proj/hp/bin/scala/scala-2.12.8&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;export PATH=${SCALA_HOME}/bin:${PATH}&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;maven&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;h3&gt;&lt;span style=&quot;text-align: center&quot;&gt;install&lt;/span&gt;&lt;/h3&gt;&lt;font face=&quot;Courier New&quot;&gt;&lt;span style=&quot;text-align: center&quot;&gt;MAVEN_VERSION=3.5.4&lt;/span&gt;&lt;br&gt;&lt;/font&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;wget&amp;nbsp;&lt;/font&gt;&lt;a href=&quot;http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/$%7BMAVEN_VERSION%7D/binaries/apache-maven-$%7BMAVEN_VERSION%7D-bin.tar.gz&quot;&gt;http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/${maven_version}/binaries/apache-maven-${maven_version}-bin.tar.gz&lt;/a&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;tar xf apache-maven-${MAVEN_VERSION}-bin.tar.gz&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;h3&gt;envs&lt;/h3&gt;&lt;div&gt;&lt;p&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34; ; font-size: 1em ; font-weight: normal&quot;&gt;export M2_HOME=/server/proj/hp/bin/maven/apache-maven-3.6.1&lt;br&gt;&lt;/span&gt;&lt;font face=&quot;Courier New&quot;&gt;export PATH=${M2_HOME}/bin:${PATH}&lt;br&gt;&lt;/font&gt;[&lt;font face=&quot;Courier New&quot; style=&quot;font-size: 1em ; font-weight: normal&quot;&gt;export MAVEN_OPTS=&quot;-Xmx2g -XX:ReservedCodeCacheSize=1024m&quot;&lt;/font&gt;&lt;span style=&quot;font-size: 1em ; font-weight: normal&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 1em ; font-weight: normal&quot;&gt;# for java8+]&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;hadoop&lt;/td&gt;&lt;td&gt;&lt;h3 style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;helvetica&amp;#34; ; text-align: center&quot;&gt;install&lt;/span&gt;&lt;/h3&gt;&lt;div&gt;&lt;span style=&quot;text-align: center&quot;&gt;&lt;font face=&quot;Courier New&quot;&gt;HADOOP_VERSION=3.1.1&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;wget&amp;nbsp;&lt;/font&gt;&lt;a href=&quot;http://mirrors.hust.edu.cn/apache/hadoop/common/hadoop-$%7BHADOOP_VERSION%7D/hadoop-$%7BHADOOP_VERSION%7D.tar.gz&quot;&gt;http://mirrors.hust.edu.cn/apache/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz&lt;/a&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;tar xf hadoop-${HADOOP_VERSION}.tar.gz&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;h3&gt;envs&lt;/h3&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;export HADOOP_HOME=/server/proj/hp/bin/hadoop/hadoop-3.1.2&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;export HADOOP_CONF_DIR=/server/proj/hp/config/hadoop/3.1.2&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;export HADOOP_PID_DIR=/server/proj/hp/pid/hadoop&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;export HADOOP_LOG_DIR=/server/proj/hp/log/hadoop&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;export PATH=${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:${PATH}&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;spark&lt;/td&gt;&lt;td&gt;&lt;h3&gt;envs&lt;/h3&gt;&lt;div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;export SPARK_HOME=/server/proj/hp/bin/spark/spark-2.4.1&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;export SPARK_CONF_DIR=/server/proj/hp/config/spark/2.4.1&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;export SPARK_PID_DIR=/server/proj/hp/pid/spark&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;export SPARK_LOG_DIR=/server/proj/hp/log/spark&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;export PATH=${SPARK_HOME}/bin:${SPARK_HOME}/sbin:${PATH}&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;[&lt;/div&gt;&lt;div&gt;# avoid spark log saying ”Unable to load native-hadoop library for your&lt;/div&gt;&lt;div&gt;# platform, using builtin-java classes where applicable“&amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;font face=&quot;Courier New&quot;&gt;export LD_LIBRARY_PATH=$HADOOP_HOME/lib/native:${LD_LIBRARY_PATH}&lt;br&gt;&lt;br&gt;export SPARK_DIST_CLASSPATH=$(hadoop classpath)&lt;br&gt;export SPARK_MASTER_HOST=192.168.41.212&lt;/font&gt;&lt;br&gt;]&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;hive&lt;/td&gt;&lt;td&gt;&lt;h3&gt;envs&lt;/h3&gt;&lt;div&gt;&lt;span&gt;HIVE_HOME&lt;/span&gt;&lt;br&gt;&lt;span&gt;HIVE_CONF_DIR&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=none;" parent="uMOzGdJ9y4ATMqLP-dRU-1" vertex="1">
+                    &#xa;                    &#xa;                    &#xa;                    
+                    <mxGeometry x="6" y="7" width="815" height="989" as="geometry"/>
+                    &#xa;                    &#xa;                &#xa;                
+                </mxCell>
+                &#xa;                &#xa;            &#xa;            
+            </root>
+            &#xa;            &#xa;        &#xa;        
+        </mxGraphModel>
+        &#xa;        &#xa;    &#xa;    
+    </diagram>
+    <diagram id="-WEoZyiqvBqUpz0TT_SZ" name="hadoop_config">
+        &#xa;        &#xa;        &#xa;        
+        <mxGraphModel dx="1575" dy="570" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            &#xa;            &#xa;            &#xa;            
+            <root>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="eWbBBnhURtFt8rfzeXO5-0"/>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="eWbBBnhURtFt8rfzeXO5-1" parent="eWbBBnhURtFt8rfzeXO5-0"/>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="eWbBBnhURtFt8rfzeXO5-2" value="" style="swimlane;html=1;startSize=20;horizontal=1;containerType=tree;fillColor=none;strokeColor=none;align=left;" parent="eWbBBnhURtFt8rfzeXO5-1" vertex="1">
+                    &#xa;                    &#xa;                    &#xa;                    
+                    <mxGeometry x="-816" y="12" width="797" height="191" as="geometry"/>
+                    &#xa;                    &#xa;                &#xa;                
+                </mxCell>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="eWbBBnhURtFt8rfzeXO5-3" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="eWbBBnhURtFt8rfzeXO5-2" source="eWbBBnhURtFt8rfzeXO5-7" target="eWbBBnhURtFt8rfzeXO5-8" edge="1">
+                    &#xa;                    &#xa;                    &#xa;                    
+                    <mxGeometry relative="1" as="geometry"/>
+                    &#xa;                    &#xa;                &#xa;                
+                </mxCell>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="eWbBBnhURtFt8rfzeXO5-7" value="hadoop configuration" style="ellipse;whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="eWbBBnhURtFt8rfzeXO5-2" vertex="1">
+                    &#xa;                    &#xa;                    &#xa;                    
+                    <mxGeometry x="20" y="69" width="150" height="60" as="geometry"/>
+                    &#xa;                    &#xa;                &#xa;                
+                </mxCell>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="eWbBBnhURtFt8rfzeXO5-8" value="$HADOOP_CONF_DIR/" style="whiteSpace=wrap;html=1;rounded=1;arcSize=30;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="eWbBBnhURtFt8rfzeXO5-2" vertex="1">
+                    &#xa;                    &#xa;                    &#xa;                    
+                    <mxGeometry x="195" y="84" width="170" height="30" as="geometry"/>
+                    &#xa;                    &#xa;                &#xa;                
+                </mxCell>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="IIqG2fF5GgASPDbxT9bm-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="eWbBBnhURtFt8rfzeXO5-2" source="eWbBBnhURtFt8rfzeXO5-8" target="IIqG2fF5GgASPDbxT9bm-1" edge="1">
+                    &#xa;                    &#xa;                    &#xa;                    
+                    <mxGeometry relative="1" as="geometry">
+                        &#xa;                        &#xa;                        &#xa;                        
+                        <mxPoint x="151" y="-48" as="sourcePoint"/>
+                        &#xa;                        &#xa;                    &#xa;                    
+                    </mxGeometry>
+                    &#xa;                    &#xa;                &#xa;                
+                </mxCell>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="IIqG2fF5GgASPDbxT9bm-1" value="&lt;ol&gt;&lt;li&gt;&lt;span style=&quot;text-align: center&quot;&gt;masters&lt;/span&gt;&lt;br&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;text-align: center&quot;&gt;workers&lt;br&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;core-site.xml&lt;/li&gt;&lt;li&gt;hdfs-site.xml&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;text-align: center&quot;&gt;mapred-site.xml&lt;/span&gt;&lt;br&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;text-align: center&quot;&gt;yarn-site.xml&lt;br&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;text-align: center&quot;&gt;capacity-scheduler.xml&lt;br&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;text-align: center&quot;&gt;log4j.properties&lt;br&gt;&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=6;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};" parent="eWbBBnhURtFt8rfzeXO5-2" vertex="1">
+                    &#xa;                    &#xa;                    &#xa;                    
+                    <mxGeometry x="390" y="25" width="196" height="148" as="geometry"/>
+                    &#xa;                    &#xa;                &#xa;                
+                </mxCell>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="6CwZz9edtbsfupQNtGP2-0" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;configuration&lt;/th&gt;&lt;th&gt;content&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;masters (&lt;/span&gt;hosts from /etc/hosts)&lt;/td&gt;&lt;td&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34; ; text-align: center&quot;&gt;hpmaster&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;workers&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;text-align: center&quot;&gt;(slaves for 2.x) (&lt;/span&gt;hosts from /etc/hosts)&lt;/td&gt;&lt;td&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34; ; text-align: center&quot;&gt;hpmaster&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;courier new&amp;#34; ; text-align: center&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34; ; text-align: center&quot;&gt;hpslave1&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;courier new&amp;#34; ; text-align: center&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34; ; text-align: center&quot;&gt;hpslave2&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;courier new&amp;#34; ; text-align: center&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34; ; text-align: center&quot;&gt;...&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;core-site.xml&lt;/span&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;fs.defaultFS:&amp;nbsp;hdfs://hpmaster:9000&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;hadoop.tmp.dir:&amp;nbsp;/server/proj/hp/tmp/hadoop/tmp&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;[hadoop.http.staticuser.user: hadoop_user]&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;hdfs-site.xml&lt;/span&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;dfs.namenode.name.dir:&amp;nbsp;file:///server/proj/hp/data/hadoop/name&lt;br&gt;dfs.datanode.data.dir:&amp;nbsp;file:///server/proj/hp/data/hadoop/data&lt;/font&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;dfs.replication: 2&lt;/font&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;mapred-site.xml&lt;/span&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;mapreduce.framework.name: yarn&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.app.mapreduce.am.resource.mb: 2048&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;mapreduce.map.memory.mb: 1024&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;mapreduce.reduce.memory.mb: 1024&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;[&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.app.mapreduce.am.env: HADOOP_MAPRED_HOME=${HADOOP_HOME}&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;mapreduce.map.env: HADOOP_MAPRED_HOME=${HADOOP_HOME}&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;mapreduce.reduce.env: HADOOP_MAPRED_HOME=${HADOOP_HOME}&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;]&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;yarn-site.xml&lt;/span&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.nodemanager.aux-services:&amp;nbsp;mapreduce_shuffle&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.resourcemanager.hostname: hpmaster&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.nodemanager.resource.memory-mb: 6144&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.scheduler.maximum-allocation-mb: 6144&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.scheduler.minimum-allocation-mb: 512&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;[&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;div&gt;yarn.resourcemanager.webapp.address: hpmaster:8088&lt;/div&gt;&lt;div&gt;yarn.resourcemanager.address: hpmaster:8032&lt;/div&gt;&lt;div&gt;yarn.resourcemanager.scheduler.address: hpmaster:8030&lt;/div&gt;&lt;div&gt;yarn.resourcemanager.resource-tracker.address: hpmaster:8031&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;]&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&amp;lt;!-- The following property disables virtual-memory checking and&amp;nbsp;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;can prevent containers from being allocated properly on JDK8 --&amp;gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.nodemanager.vmem-check-enabled: false&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.nodemanager.pmem-check-enabled: false&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&amp;lt;!-- for spark --&amp;gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.resourcemanager.scheduler.class:&amp;nbsp;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;capacity-scheduler.xml&lt;br&gt;(from original file)&lt;/span&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;[&lt;/span&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;yarn.scheduler.capacity.maximum-am-resource-percent: 0.5&lt;/span&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;]&lt;/span&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;log4j.properties&lt;br&gt;(from original file)&lt;/span&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=none;" parent="eWbBBnhURtFt8rfzeXO5-1" vertex="1">
+                    &#xa;                    &#xa;                    &#xa;                    
+                    <mxGeometry x="-821" y="229" width="815" height="808" as="geometry"/>
+                    &#xa;                    &#xa;                &#xa;                
+                </mxCell>
+                &#xa;                &#xa;            &#xa;            
+            </root>
+            &#xa;            &#xa;        &#xa;        
+        </mxGraphModel>
+        &#xa;        &#xa;    &#xa;    
+    </diagram>
+    <diagram id="1RoVEH6-U07JBPiQCIpj" name="spark_config">
+        &#xa;        &#xa;        &#xa;        
+        <mxGraphModel dx="748" dy="570" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            &#xa;            &#xa;            &#xa;            
+            <root>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="34mPGzUubuIL1UB4C40a-0"/>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="34mPGzUubuIL1UB4C40a-1" parent="34mPGzUubuIL1UB4C40a-0"/>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="KCW76AdvT7wmHBYV-x0i-53" value="" style="swimlane;html=1;startSize=20;horizontal=1;containerType=tree;rounded=1;shadow=0;glass=0;comic=0;fillColor=none;align=left;strokeColor=none;fontColor=#0000FF;" parent="34mPGzUubuIL1UB4C40a-1" vertex="1">
+                    &#xa;                    &#xa;                    &#xa;                    
+                    <mxGeometry x="11" y="17" width="801" height="140" as="geometry"/>
+                    &#xa;                    &#xa;                &#xa;                
+                </mxCell>
+                &#xa;                &#xa;                &#xa;                
+                <UserObject label="spark configuration" link="http://spark.apache.org/" id="KCW76AdvT7wmHBYV-x0i-58">
+                    &#xa;                    &#xa;                    &#xa;                    
+                    <mxCell style="ellipse;whiteSpace=wrap;align=center;container=1;recursiveResize=0;treeFolding=1;treeMoving=1;fontStyle=4;horizontal=1;html=1;fontColor=#0000FF;" parent="KCW76AdvT7wmHBYV-x0i-53" vertex="1">
+                        &#xa;                        &#xa;                        &#xa;                        
+                        <mxGeometry x="21" y="37" width="121.5" height="64" as="geometry"/>
+                        &#xa;                        &#xa;                    &#xa;                    
+                    </mxCell>
+                    &#xa;                    &#xa;                &#xa;                
+                </UserObject>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="xrFCkNjzpNax4OZzC3vO-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="KCW76AdvT7wmHBYV-x0i-53" source="KCW76AdvT7wmHBYV-x0i-58" target="xrFCkNjzpNax4OZzC3vO-1" edge="1">
+                    &#xa;                    &#xa;                    &#xa;                    
+                    <mxGeometry relative="1" as="geometry">
+                        &#xa;                        &#xa;                        &#xa;                        
+                        <mxPoint x="162.5" y="20" as="sourcePoint"/>
+                        &#xa;                        &#xa;                    &#xa;                    
+                    </mxGeometry>
+                    &#xa;                    &#xa;                &#xa;                
+                </mxCell>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="xrFCkNjzpNax4OZzC3vO-1" value="SPARK_CONF_HOME/" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="KCW76AdvT7wmHBYV-x0i-53" vertex="1">
+                    &#xa;                    &#xa;                    &#xa;                    
+                    <mxGeometry x="175.5" y="54" width="170" height="30" as="geometry"/>
+                    &#xa;                    &#xa;                &#xa;                
+                </mxCell>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="rlWe1RJ4fspUfodQxJqe-0" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="KCW76AdvT7wmHBYV-x0i-53" source="xrFCkNjzpNax4OZzC3vO-1" target="rlWe1RJ4fspUfodQxJqe-1" edge="1">
+                    &#xa;                    &#xa;                    &#xa;                    
+                    <mxGeometry relative="1" as="geometry">
+                        &#xa;                        &#xa;                        &#xa;                        
+                        <mxPoint x="327.5" y="-10" as="sourcePoint"/>
+                        &#xa;                        &#xa;                    &#xa;                    
+                    </mxGeometry>
+                    &#xa;                    &#xa;                &#xa;                
+                </mxCell>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="rlWe1RJ4fspUfodQxJqe-1" value="&lt;ol&gt;&lt;li&gt;slaves&lt;/li&gt;&lt;li&gt;spark-defaults.conf&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=13;align=left;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="KCW76AdvT7wmHBYV-x0i-53" vertex="1">
+                    &#xa;                    &#xa;                    &#xa;                    
+                    <mxGeometry x="368" y="37" width="176" height="64" as="geometry"/>
+                    &#xa;                    &#xa;                &#xa;                
+                </mxCell>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="_y5CMLFXhptqTX6tqpg3-0" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;configuration&lt;/th&gt;&lt;th&gt;content&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;slaves&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span style=&quot;text-align: center ; font-family: &amp;#34;courier new&amp;#34;&quot;&gt;hpmaster&lt;/span&gt;&lt;br style=&quot;text-align: center ; font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;span style=&quot;text-align: center ; font-family: &amp;#34;courier new&amp;#34;&quot;&gt;hpslave1&lt;/span&gt;&lt;br style=&quot;text-align: center ; font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;span style=&quot;text-align: center ; font-family: &amp;#34;courier new&amp;#34;&quot;&gt;hpslave2&lt;/span&gt;&lt;br style=&quot;text-align: center ; font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;span style=&quot;text-align: center ; font-family: &amp;#34;courier new&amp;#34;&quot;&gt;...&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;text-align: center&quot;&gt;spark-defaults.conf&lt;br&gt;(from&amp;nbsp;spark-default.conf.template)&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.master yarn&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.driver.memory 2g&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.yarn.am.memory 1g&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.executor.memory 1g&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# need create spark.eventLog.dir manually&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# hdfs dfs -mkdir -p /user/spark/eventlog&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.eventLog.enabled true&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.eventLog.dir hdfs://hpmaster:9000/user/spark/eventlog&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# hdfs dfs -put&amp;nbsp; $SPARK_HOME/jars/* /user/spark/jars/&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# spark.yarn.jars hdfs://hpmaster:9000/user/spark/jars/*&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# jar cv0f spark-libs.jar -C $SPARK_HOME/jars/ .&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# hdfs dfs -mkdir /user/spark/archive&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# hdfs dfs -put spark-libs.jar /user/spark/archive&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;# spark.yarn.archive can overwrite spark.yarn.jars&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;courier new&quot;&gt;spark.yarn.archive hdfs://hpmaster:9000/user/spark/archive/spark-libs.jar&lt;/font&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=none;" parent="34mPGzUubuIL1UB4C40a-1" vertex="1">
+                    &#xa;                    &#xa;                    &#xa;                    
+                    <mxGeometry x="12" y="195" width="800" height="407" as="geometry"/>
+                    &#xa;                    &#xa;                &#xa;                
+                </mxCell>
+                &#xa;                &#xa;            &#xa;            
+            </root>
+            &#xa;            &#xa;        &#xa;        
+        </mxGraphModel>
+        &#xa;        &#xa;    &#xa;    
+    </diagram>
+    <diagram id="knMVSClfLsouhgn86GnL" name="service">
+        &#xa;        &#xa;        &#xa;        
+        <mxGraphModel dx="748" dy="-599" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            &#xa;            &#xa;            &#xa;            
+            <root>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="LBw0oB8Ax3fo7K_TX9qn-0"/>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="LBw0oB8Ax3fo7K_TX9qn-1" parent="LBw0oB8Ax3fo7K_TX9qn-0"/>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="YdgulqHaHJexgDxJzUGA-0" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;application&lt;/th&gt;&lt;th&gt;service&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;hadoop&lt;/td&gt;&lt;td&gt;&lt;h3 style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;helvetica&amp;#34; ; text-align: center&quot;&gt;file system format&lt;/span&gt;&lt;/h3&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;hdfs namenode -format&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;h3&gt;start dfs&lt;/h3&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;$HADOOP_HOME/sbin/start-dfs.sh&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;h4 style=&quot;font-family: &amp;#34;helvetica&amp;#34;&quot;&gt;&lt;span style=&quot;font-size: 12px&quot;&gt;jps master&lt;/span&gt;&lt;/h4&gt;&lt;ol style=&quot;font-family: &amp;#34;helvetica&amp;#34;&quot;&gt;&lt;li&gt;Namenode&lt;/li&gt;&lt;li&gt;SecondaryNamenode&lt;/li&gt;&lt;li&gt;Datanode&lt;/li&gt;&lt;/ol&gt;&lt;span style=&quot;font-family: &amp;#34;helvetica&amp;#34;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;h4 style=&quot;font-family: &amp;#34;helvetica&amp;#34;&quot;&gt;jps slave&lt;/h4&gt;&lt;ol style=&quot;font-family: &amp;#34;helvetica&amp;#34;&quot;&gt;&lt;li&gt;Datanode&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;h3 style=&quot;font-family: &amp;#34;helvetica&amp;#34;&quot;&gt;start yarn&lt;/h3&gt;&lt;div&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;$HADOOP_HOME/sbin/start-yarn.sh&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;h4 style=&quot;font-family: &amp;#34;helvetica&amp;#34;&quot;&gt;&lt;span style=&quot;font-size: 12px&quot;&gt;jps master&lt;/span&gt;&lt;/h4&gt;&lt;ol style=&quot;font-family: &amp;#34;helvetica&amp;#34;&quot;&gt;&lt;li&gt;ResourceManager&lt;/li&gt;&lt;li&gt;NodeManager&lt;/li&gt;&lt;/ol&gt;&lt;span style=&quot;font-family: &amp;#34;helvetica&amp;#34;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;h4 style=&quot;font-family: &amp;#34;helvetica&amp;#34;&quot;&gt;&lt;span style=&quot;font-size: 12px&quot;&gt;jps slave&lt;/span&gt;&lt;/h4&gt;&lt;ol style=&quot;font-family: &amp;#34;helvetica&amp;#34;&quot;&gt;&lt;li&gt;NodeManager&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;h3 style=&quot;font-family: &amp;#34;helvetica&amp;#34;&quot;&gt;stop&lt;/h3&gt;&lt;div&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34; ; font-size: 1em&quot;&gt;$HADOOP_HOME/sbin/stop-yarn.sh&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;$HADOOP_HOME/sbin/stop-dfs.sh&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;spark&lt;/td&gt;&lt;td&gt;&lt;h3 style=&quot;font-family: &amp;#34;helvetica&amp;#34;&quot;&gt;start&lt;/h3&gt;&lt;h3&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34; ; font-size: 12px ; font-weight: 400&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;$SPARK_HOME/sbin/start-all.sh&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;/h3&gt;&lt;h3&gt;&lt;span style=&quot;font-size: 12px&quot;&gt;jps master&lt;/span&gt;&lt;/h3&gt;&lt;h3&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34; ; font-size: 12px ; font-weight: 400&quot;&gt;&lt;ol style=&quot;font-family: &amp;#34;helvetica&amp;#34;&quot;&gt;&lt;li&gt;Master&lt;/li&gt;&lt;li&gt;Worker&lt;/li&gt;&lt;/ol&gt;&lt;span style=&quot;font-family: &amp;#34;helvetica&amp;#34;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;/h3&gt;&lt;h3&gt;&lt;span style=&quot;font-size: 12px&quot;&gt;jps slave&lt;/span&gt;&lt;/h3&gt;&lt;h3&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34; ; font-size: 12px ; font-weight: 400&quot;&gt;&lt;ol style=&quot;font-family: &amp;#34;helvetica&amp;#34;&quot;&gt;&lt;li&gt;Worker&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/h3&gt;&lt;h3 style=&quot;font-family: &amp;#34;helvetica&amp;#34;&quot;&gt;stop&lt;/h3&gt;&lt;h3&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34; ; font-size: 12px ; font-weight: 400&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;$SPARK_HOME/sbin/stop-all.sh&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;/h3&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=none;" parent="LBw0oB8Ax3fo7K_TX9qn-1" vertex="1">
+                    &#xa;                    &#xa;                    &#xa;                    
+                    <mxGeometry x="5" y="1179" width="816" height="939" as="geometry"/>
+                    &#xa;                    &#xa;                &#xa;                
+                </mxCell>
+                &#xa;                &#xa;            &#xa;            
+            </root>
+            &#xa;            &#xa;        &#xa;        
+        </mxGraphModel>
+        &#xa;        &#xa;    &#xa;    
+    </diagram>
+    <diagram id="DMlt9_OrqmJxumOdTNsM" name="web ui">
+        &#xa;        &#xa;        &#xa;        
+        <mxGraphModel dx="748" dy="570" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            &#xa;            &#xa;            &#xa;            
+            <root>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="H-LUcxX7aIvZO07M6lNC-0"/>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="H-LUcxX7aIvZO07M6lNC-1" parent="H-LUcxX7aIvZO07M6lNC-0"/>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="TBrTxKTLhDJ8FPgjvIH3-0" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;application&lt;/th&gt;&lt;th&gt;web ui&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;hadoop&lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li&gt;hpmaser:9870 fo 3 (hpmaster:50070 for 2.x) - hadoop info&lt;/li&gt;&lt;li&gt;hpmaster:8088 - yarn&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;spark&lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li&gt;hpmaster:8080 - spark info&lt;/li&gt;&lt;li&gt;hpmaster:4040 - running application info&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=none;" parent="H-LUcxX7aIvZO07M6lNC-1" vertex="1">
+                    &#xa;                    &#xa;                    &#xa;                    
+                    <mxGeometry x="15" y="15" width="538" height="149" as="geometry"/>
+                    &#xa;                    &#xa;                &#xa;                
+                </mxCell>
+                &#xa;                &#xa;            &#xa;            
+            </root>
+            &#xa;            &#xa;        &#xa;        
+        </mxGraphModel>
+        &#xa;        &#xa;    &#xa;    
+    </diagram>
+    <diagram id="2QutuKDHSM4GKVfbvwYY" name="command">
+        &#xa;        
+        <mxGraphModel dx="878" dy="570" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            &#xa;            
+            <root>
+                &#xa;                
+                <mxCell id="gWmngUpNYIues3Ztnhtc-0"/>
+                &#xa;                
+                <mxCell id="gWmngUpNYIues3Ztnhtc-1" parent="gWmngUpNYIues3Ztnhtc-0"/>
+                &#xa;                
+                <mxCell id="GLxN9rC-ETo4cjDv01O4-0" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;application&lt;/th&gt;&lt;th&gt;command&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;hadoop&lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;hadoop fs -ls path&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;hadoop fs -mkdir [-p] path&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;hadoop fs -rm [-r] path&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34; ; font-size: 1em&quot;&gt;hadoop fs -mv oldpath newpath&lt;/span&gt;&lt;br&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;hadoop fs -cat file&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;hadoop fs -touchz file&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;hadoop fs -put from_local_path to_hadoop_path&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;hadoop fs -get from_hadoop_path to_local_path&lt;br&gt;&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;spark&lt;/td&gt;&lt;td&gt;&lt;h3 style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;font face=&quot;Helvetica&quot;&gt;example&lt;/font&gt;&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;./bin/run-example SparkPi 10&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;&lt;h3 style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;spar-shell&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;spark-shell --master local[2] - &lt;/span&gt;run locally with 2 threads&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;spark-shell --master spark://hpmaster:7077 - &lt;/font&gt;connect to given spark standalone cluster master&lt;br&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;spark-shell --master yarn - &lt;/span&gt;connect to a yarn cluster&lt;/li&gt;&lt;/ol&gt;&lt;br&gt;&lt;h3&gt;spark-submit&lt;/h3&gt;&lt;ol style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;spark-submit run-example SparkPi 10&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;h3&gt;&lt;a href=&quot;http://spark.apache.org/docs/latest/submitting-applications.html#master-urls&quot;&gt;arguments&lt;/a&gt;&lt;/h3&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;--master [local[2], spark://host:port, yarn, ...]&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;--deploy-mode [client, cluster]&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;div&gt;when&amp;nbsp;&lt;span style=&quot;font-size: 1em&quot;&gt;connects to a yarn cluster, config the client server &lt;font face=&quot;Courier New&quot;&gt;HADOOP_CONF_DIR&lt;/font&gt; and &lt;font face=&quot;Courier New&quot;&gt;SPARK_CONF_DIR&lt;/font&gt;, make the configuration same&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 1em&quot;&gt;with the cluster's settings&lt;/span&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=none;" parent="gWmngUpNYIues3Ztnhtc-1" vertex="1">
+                    &#xa;                    
+                    <mxGeometry x="16" y="8" width="807" height="557" as="geometry"/>
+                    &#xa;                
+                </mxCell>
+                &#xa;            
+            </root>
+            &#xa;        
+        </mxGraphModel>
+        &#xa;    
+    </diagram>
+    <diagram id="NkisUvPFfx2Ht4jt18F8" name="exceptions">
+        <mxGraphModel dx="666" dy="570" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="gTexTB-qxQphuoFDzarR-0"/>
+                <mxCell id="gTexTB-qxQphuoFDzarR-1" parent="gTexTB-qxQphuoFDzarR-0"/>
+                <mxCell id="qak5Ek1I1GwERdlOnX0V-0" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;application&lt;/th&gt;&lt;th&gt;exceptions&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;spark&lt;/td&gt;&lt;td&gt;&lt;h3&gt;1.&amp;nbsp;No route to host&lt;/h3&gt;try to close the client server firewall and make sure all server can visit each other&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=none;" parent="gTexTB-qxQphuoFDzarR-1" vertex="1">
+                    <mxGeometry x="16" y="8" width="541" height="105" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
