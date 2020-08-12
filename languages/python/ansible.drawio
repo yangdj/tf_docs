@@ -1,0 +1,49 @@
+<mxfile host="483004f5-00d3-4bd5-b949-14e868ddea37" modified="2020-08-12T12:56:12.565Z" agent="5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36" etag="Vu5-KHEA6lGHEmZh-Get" version="13.1.3" pages="3">
+    <diagram id="eBcAbpSF-Oy_RSFWKtva" name="ansible">
+        <mxGraphModel dx="585" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="6xjhARad8wJrEWCtZ0LZ-0"/>
+                <mxCell id="6xjhARad8wJrEWCtZ0LZ-1" parent="6xjhARad8wJrEWCtZ0LZ-0"/>
+                <mxCell id="ZcP3yA8Dl-tpxINnKkQJ-0" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;settings&lt;/th&gt;&lt;th&gt;contents&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;packages&lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li&gt;ansible&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;concepts&lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li&gt;control node&lt;/li&gt;&lt;li&gt;managed nodes&lt;/li&gt;&lt;li&gt;inventory - a list of managed nodes&lt;/li&gt;&lt;li&gt;modules&lt;/li&gt;&lt;li&gt;tasks&lt;/li&gt;&lt;li&gt;playbooks - list of tasks&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ad-hoc commands&lt;/td&gt;&lt;td&gt;&lt;h3&gt;ansible arguments&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;pattern - &lt;/font&gt;specifies&amp;nbsp;hosts or groups&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;--inventory -i host-file&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;--limit -l - &lt;/font&gt;limits selected hosts to an additional pattern&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;-- playbook-dir basedir&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;--module-name -m moudule_name - &lt;/font&gt;default&lt;font face=&quot;Courier New&quot;&gt; command&lt;/font&gt; module&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;--args -a &quot;a1=v1 a2=v2&quot; - &lt;/font&gt;module arguments&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;--forks -f forks - &lt;/font&gt;number of parallel process to use, default 5&lt;/li&gt;&lt;/ol&gt;&lt;h4&gt;pattern&lt;/h4&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;all (or *) - &lt;/font&gt;for all&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;host1 -&lt;/font&gt; one host&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;host1:host (or host1,host2) - &lt;/font&gt;multiple hosts&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;webserver - &lt;/font&gt;one group&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;websever:dbserver - &lt;/font&gt;multiple group&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;webserver:!dbserver - &lt;/font&gt;hosts in webserver, excluding in dbserver&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;webserver:&amp;amp;dbserver - &lt;/font&gt;hosts in webserver and dbserver&amp;nbsp;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" parent="6xjhARad8wJrEWCtZ0LZ-1" vertex="1">
+                    <mxGeometry x="10" y="20" width="810" height="520" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="KFz88gbmkmA4D01acFhd" name="inventory">
+        <mxGraphModel dx="585" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="uhKCY2jXzY3qLd5-olUe-0"/>
+                <mxCell id="uhKCY2jXzY3qLd5-olUe-1" parent="uhKCY2jXzY3qLd5-olUe-0"/>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="OCWlrfduKCj-sj5FC8W1" name="playbook">
+        <mxGraphModel dx="585" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="QPv2SNy1hGz203TRQEjH-0"/>
+                <mxCell id="QPv2SNy1hGz203TRQEjH-1" parent="QPv2SNy1hGz203TRQEjH-0"/>
+                <mxCell id="QPv2SNy1hGz203TRQEjH-5" value="" style="swimlane;html=1;startSize=20;horizontal=1;containerType=tree;strokeColor=none;fillColor=none;align=left;fontFamily=Courier New;spacingLeft=12;spacingTop=-1;" vertex="1" parent="QPv2SNy1hGz203TRQEjH-1">
+                    <mxGeometry x="10" y="30" width="570" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="QPv2SNy1hGz203TRQEjH-6" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;align=left;fontFamily=Courier New;spacingLeft=12;spacingTop=-1;" edge="1" parent="QPv2SNy1hGz203TRQEjH-5" source="QPv2SNy1hGz203TRQEjH-10" target="QPv2SNy1hGz203TRQEjH-11">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="QPv2SNy1hGz203TRQEjH-10" value="playbook-dir/" style="ellipse;whiteSpace=wrap;html=1;align=left;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};fontFamily=Courier New;spacingLeft=12;spacingTop=-1;" vertex="1" parent="QPv2SNy1hGz203TRQEjH-5">
+                    <mxGeometry x="10" y="100" width="130" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="QPv2SNy1hGz203TRQEjH-11" value="inventory" style="whiteSpace=wrap;html=1;rounded=1;arcSize=13;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};fontFamily=Courier New;spacingLeft=12;spacingTop=-1;" vertex="1" parent="QPv2SNy1hGz203TRQEjH-5">
+                    <mxGeometry x="160" y="65" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="QPv2SNy1hGz203TRQEjH-15" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;align=left;fontFamily=Courier New;spacingLeft=12;spacingTop=-1;" edge="1" target="QPv2SNy1hGz203TRQEjH-16" source="QPv2SNy1hGz203TRQEjH-11" parent="QPv2SNy1hGz203TRQEjH-5">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="120" y="165" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="QPv2SNy1hGz203TRQEjH-16" value="host&lt;br&gt;staging&lt;br&gt;production&lt;br&gt;host_vars/&lt;br&gt;&amp;nbsp; &amp;nbsp; host1.yml&lt;br&gt;&amp;nbsp; &amp;nbsp; host2.yml&lt;br&gt;group_vars/&lt;br&gt;&amp;nbsp; &amp;nbsp; group1.yml&lt;br&gt;&amp;nbsp; &amp;nbsp; group2.yml" style="whiteSpace=wrap;html=1;rounded=1;arcSize=6;align=left;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};fontFamily=Courier New;spacingLeft=12;spacingTop=-1;" vertex="1" parent="QPv2SNy1hGz203TRQEjH-5">
+                    <mxGeometry x="290" y="10" width="150" height="140" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

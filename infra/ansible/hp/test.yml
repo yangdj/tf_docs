@@ -1,9 +1,0 @@
-- name: test cases
-  hosts: localhost
-  tasks:
-    - debug:
-        msg: "before run"
-    - debug:
-        var: ansible_facts
-    - debug:
-        msg: "after run"
