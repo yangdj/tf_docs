@@ -1,0 +1,73 @@
+<mxfile host="8f5f5eb2-27b7-44b2-9f76-2482384f7409" modified="2020-08-13T12:01:37.934Z" agent="5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36" etag="Kzxs36v3clHHSrJaG4QZ" version="13.1.3" pages="3">
+    <diagram id="XEAWAZAWPxnJUcbV6sG3" name="db">
+        <mxGraphModel dx="807" dy="322" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="ek6_FsmLOM7s2_KUikUs-1" value="" style="swimlane;html=1;startSize=20;horizontal=1;containerType=tree;fillColor=none;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="130" width="670" height="380" as="geometry"/>
+                </mxCell>
+                <mxCell id="ek6_FsmLOM7s2_KUikUs-2" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" parent="ek6_FsmLOM7s2_KUikUs-1" source="ek6_FsmLOM7s2_KUikUs-6" target="ek6_FsmLOM7s2_KUikUs-7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ek6_FsmLOM7s2_KUikUs-6" value="db" style="ellipse;whiteSpace=wrap;html=1;align=center;container=1;recursiveResize=0;treeFolding=1;treeMoving=1;" parent="ek6_FsmLOM7s2_KUikUs-1" vertex="1">
+                    <mxGeometry x="10" y="140" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="ek6_FsmLOM7s2_KUikUs-7" value="postgresql" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" parent="ek6_FsmLOM7s2_KUikUs-1" vertex="1">
+                    <mxGeometry x="130" y="10" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="VdFFoIohoWg8-c-IuT1M-1" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="VdFFoIohoWg8-c-IuT1M-2" source="ek6_FsmLOM7s2_KUikUs-6" parent="ek6_FsmLOM7s2_KUikUs-1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="140" y="220" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="VdFFoIohoWg8-c-IuT1M-2" value="mariadb" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" vertex="1" parent="ek6_FsmLOM7s2_KUikUs-1">
+                    <mxGeometry x="130" y="70" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="VdFFoIohoWg8-c-IuT1M-3" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="VdFFoIohoWg8-c-IuT1M-4" source="ek6_FsmLOM7s2_KUikUs-6" parent="ek6_FsmLOM7s2_KUikUs-1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="140" y="220" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="VdFFoIohoWg8-c-IuT1M-4" value="redis" style="whiteSpace=wrap;html=1;rounded=1;arcSize=20;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" vertex="1" parent="ek6_FsmLOM7s2_KUikUs-1">
+                    <mxGeometry x="130" y="145" width="90" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="VdFFoIohoWg8-c-IuT1M-5" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="VdFFoIohoWg8-c-IuT1M-6" source="ek6_FsmLOM7s2_KUikUs-6" parent="ek6_FsmLOM7s2_KUikUs-1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="140" y="220" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="VdFFoIohoWg8-c-IuT1M-6" value="rabbitmq" style="whiteSpace=wrap;html=1;rounded=1;arcSize=20;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" vertex="1" parent="ek6_FsmLOM7s2_KUikUs-1">
+                    <mxGeometry x="130" y="220" width="90" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="VdFFoIohoWg8-c-IuT1M-7" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;" edge="1" target="VdFFoIohoWg8-c-IuT1M-8" source="ek6_FsmLOM7s2_KUikUs-6" parent="ek6_FsmLOM7s2_KUikUs-1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="140" y="220" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="VdFFoIohoWg8-c-IuT1M-8" value="ldap" style="whiteSpace=wrap;html=1;rounded=1;arcSize=17;align=center;verticalAlign=middle;container=1;recursiveResize=0;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;" vertex="1" parent="ek6_FsmLOM7s2_KUikUs-1">
+                    <mxGeometry x="130" y="280" width="80" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="bLB-15KIItHZLIwzvUtw" name="install">
+        <mxGraphModel dx="822" dy="322" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="r4bx7zmuQvU5lQe_M6j6-0"/>
+                <mxCell id="r4bx7zmuQvU5lQe_M6j6-1" parent="r4bx7zmuQvU5lQe_M6j6-0"/>
+                <mxCell id="QrZE1w03IrAIoicb0JWs-0" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;db&lt;/th&gt;&lt;th&gt;install and envs&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;postgresql&lt;/td&gt;&lt;td&gt;&lt;h3&gt;install&lt;/h3&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;PG_VERSION=10.5&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;PG_CHECKOUT=10_5&lt;/font&gt;&lt;/div&gt;&lt;h4&gt;dependencies&lt;/h4&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;//&amp;nbsp;systemd-devel&amp;nbsp;&lt;/font&gt;for &lt;font face=&quot;Courier New&quot;&gt;--with-systemd&lt;/font&gt;&amp;nbsp;option,&amp;nbsp;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 1em&quot;&gt;&lt;font face=&quot;Courier New&quot;&gt;// &lt;/font&gt;in &lt;font face=&quot;Courier New&quot;&gt;postgresql.service&lt;/font&gt;,&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 1em&quot;&gt;use &lt;font face=&quot;Courier New&quot;&gt;type=forking&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 1em&quot;&gt;&amp;nbsp;when &lt;font face=&quot;Courier New&quot;&gt;type=notify&lt;/font&gt;&amp;nbsp;fails&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;yum install bison systemd-devel&lt;/font&gt;&lt;/div&gt;&lt;h4&gt;source from git&lt;/h4&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;git clone git://git.postgresql.org/git/postgresql.git&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;git checkout REL${PG_CHECKOUT}&lt;/font&gt;&lt;/div&gt;&lt;h4&gt;source from tar&lt;/h4&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;wget https://ftp.postgresql.org/pub/source/v${PG_VERSION}/postgresql-${PG_VERSION}.tar.gz&lt;/font&gt;&lt;/div&gt;&lt;h4&gt;compile&lt;/h4&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;./configure --with-systemd &amp;amp;&amp;amp; make &amp;amp;&amp;amp; sudo make install&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;mariadb&lt;/td&gt;&lt;td&gt;row 2, cell 2&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" vertex="1" parent="r4bx7zmuQvU5lQe_M6j6-1">
+                    <mxGeometry x="40" y="20" width="780" height="440" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="MZl-0G_3J4n7ubKzjTsD" name="postgresql-config">
+        <mxGraphModel dx="822" dy="322" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="qboDq4KB_rDDjDLmzWdt-0"/>
+                <mxCell id="qboDq4KB_rDDjDLmzWdt-1" parent="qboDq4KB_rDDjDLmzWdt-0"/>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
