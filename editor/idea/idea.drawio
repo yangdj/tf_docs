@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-<mxfile host="17bf84ae-83c4-4ae0-8032-0d31d936cd9e" modified="2020-08-11T02:49:17.976Z" agent="5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36" etag="NeHbvIKehFUPL9VNUpWD" version="13.1.3" pages="2">
-=======
 <mxfile host="" modified="2020-08-10T16:27:35.493Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.46.1 Chrome/78.0.3904.130 Electron/7.3.1 Safari/537.36" etag="5rqzSM3_wY72zH-r2YlD" version="13.1.3" pages="2">
->>>>>>> 562d7dd261c11f154914606345cc667de6a7e203
     <diagram id="6hGFLwfOUW9BJ-s0fimq" name="keys">
         <mxGraphModel dx="646" dy="570" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
@@ -15,16 +11,12 @@
         </mxGraphModel>
     </diagram>
     <diagram id="eOGC3cOQI8E3ZeeCvC1s" name="settings">
-<<<<<<< HEAD
-        <mxGraphModel dx="623" dy="369" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
-=======
         <mxGraphModel dx="646" dy="570" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
->>>>>>> 562d7dd261c11f154914606345cc667de6a7e203
             <root>
                 <mxCell id="8SGcKjdPnPjHFKiKWoYB-0"/>
                 <mxCell id="8SGcKjdPnPjHFKiKWoYB-1" parent="8SGcKjdPnPjHFKiKWoYB-0"/>
-                <mxCell id="sHX6Xxc8vnRrFpT-HF0X-0" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;setting&lt;/th&gt;&lt;th&gt;content&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;editor&lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;Editor/Code Style/General/Line separator: \n&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;Editor/Code Style/File Encoding: UTF-8&lt;br&gt;&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;scala&lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li&gt;download&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;scala&lt;/font&gt;&amp;nbsp;plugin&lt;/li&gt;&lt;li&gt;may need&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;Add Framework Support for scala&lt;/font&gt; when not see Scala Class creating scala class file, just right click project folder&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;vim&lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;~/.ideavimrc (_ideavimrc for windows) - &lt;/font&gt;configuration file&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;:souece ~/.vimrc (_vimrc) - &lt;/font&gt;in configuration file&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" parent="8SGcKjdPnPjHFKiKWoYB-1" vertex="1">
-                    <mxGeometry x="20" y="10" width="800" height="220" as="geometry"/>
+                <mxCell id="sHX6Xxc8vnRrFpT-HF0X-0" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;setting&lt;/th&gt;&lt;th&gt;content&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;editor&lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;Editor/Code Style/General/Line separator: \n&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;Editor/Code Style/File Encoding: UTF-8&lt;br&gt;&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;scala&lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li&gt;download&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;scala&lt;/font&gt;&amp;nbsp;plugin&lt;/li&gt;&lt;li&gt;may need&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;Add Framework Support for scala&lt;/font&gt; when not see Scala Class creating scala class file, just right click project folder&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" parent="8SGcKjdPnPjHFKiKWoYB-1" vertex="1">
+                    <mxGeometry x="20" y="10" width="800" height="180" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
