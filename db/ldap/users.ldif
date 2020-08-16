@@ -1,0 +1,18 @@
+# https://docs.oracle.com/cd/E19693-01/819-0995/6n3cq3apv/index.html
+# ldappasswd -xWD "cn=admin,dc=zn,dc=com" -S "uid=jack,ou=users,dc=zn,dc=com"
+# ldappasswd -xW -h 192.168.1.1 -D "cn=admin,dc=zn,dc=com" "uid=userid,ou=users,dc=zn,dc=com" -s dacdfa
+# ldapadd -x -W -D "cn=admin,dc=zn,dc=com" -f base.ldif
+# ldapadd -xW -h 192.168.1.1 -D 'cn=admin,dc=zn,dc=com' -f add_users.ldif
+# ldapdelete -x -W -D "cn=admin,dc=zn,dc=com" "uid=adam,ou=users,dc=zn,dc=com"
+# ldapdelete -xW -h 192.168.1.1 -D 'cn=admin,dc=zn,dc=com' "uid=caroline.xu,ou=users,dc=zn,dc=com"
+# ldapmodify -x -W -D "cn=admin,dc=zn,dc=com" -f modify.ldif
+# ldapsearch -x -W -h 127.0.0.1 -p 389 -D "cn=admin,dc=zn,dc=com" -b "dc=zn,dc=com" "(uid=jack)"
+dn: uid=admin, ou=users, dc=zn, dc=com
+objectClass: inetOrgPerson
+uid: admin
+sn: admin
+cn: admin
+
+# delete user in the ldif file
+dn: uid=admin, ou=users, dc=zn, dc=com
+changetype: delete

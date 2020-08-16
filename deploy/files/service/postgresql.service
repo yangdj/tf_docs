@@ -1,0 +1,21 @@
+[Unit]
+Description=PostgreSQL database server
+After=network.target
+
+[Service]
+Type=forking
+# Type=notify
+
+User=postgres
+Environment=PGPORT=5432
+Environment=PGDATA=/server/proj/database/pgsql/data
+Environment=LOGFILE=/server/proj/database/pgsql/logs/log
+
+ExecStart=/usr/local/pgsql/bin/pg_ctl start -D ${PGDATA} -o "-p ${PGPORT}" -l ${LOGFILE}
+ExecReload=/usr/bin/kill -HUP $MAINPID
+KillMode=mixed
+KillSignal=SIGINT
+TimeoutSec=0
+
+[Install]
+WantedBy=multi-user.target

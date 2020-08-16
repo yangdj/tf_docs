@@ -1,0 +1,17 @@
+dn: dc=zn,dc=com
+objectClass: dcObject
+objectClass: organization
+o: zn.com
+dc: zn
+
+dn: ou=users,dc=zn,dc=com
+ou: users
+objectClass: organizationalUnit
+
+dn: ou=groups,dc=zn,dc=com
+ou: groups
+objectClass: organizationalUnit
+
+dn: ou=shiny,ou=groups,dc=zn,dc=com
+ou: shiny
+objectClass: organizationalUnit

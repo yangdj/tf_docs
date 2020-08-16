@@ -1,0 +1,20 @@
+# Adds the paid group underneath Groups
+dn: cn=shiny_admin, ou=shiny, ou=groups, dc=zn, dc=com
+cn: shiny_admin
+objectClass: groupOfUniqueNames
+uniqueMember: uid=jack, ou=users, dc=zn, dc=com
+uniqueMember: uid=ldap, ou=users, dc=zn, dc=com
+
+# modify group attribute
+dn: cn=shiny_admin, ou=shiny, ou=groups, dc=zn, dc=com
+changetype: modify
+add: uniqueMember
+uniqueMember: uid=hello, ou=users, dc=zn, dc=com
+uniqueMember: uid=world, ou=users, dc=zn, dc=com
+
+# delete group attribute
+dn: cn=shiny_admin, ou=shiny, ou=groups, dc=zn, dc=com
+changetype: modify
+delete: uniqueMember
+uniqueMember: uid=hello, ou=users, dc=zn, dc=com
+uniqueMember: uid=world, ou=users, dc=zn, dc=com
