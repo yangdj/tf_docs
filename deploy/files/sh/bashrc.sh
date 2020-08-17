@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-# root directory
+# root directory. the value can be override
 export LOCAL_PROJ_HOME=/server/proj
 
 export LOCAL_CONFIG_HOME=${LOCAL_PROJ_HOME}/tf_docs/deploy/files
