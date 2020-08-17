@@ -7,6 +7,7 @@ user = PasswordUser(models.User())
 user.username = 'airflow'
 user.email = 'new@example.com'
 user.password = 'airflow'
+# user.superuser = True
 session = settings.Session()
 session.add(user)
 session.commit()
