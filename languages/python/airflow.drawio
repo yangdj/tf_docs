@@ -1,4 +1,4 @@
-<mxfile host="dc7d3f85-39f5-4185-93c7-37ffe066cec4" modified="2020-08-17T12:54:25.531Z" agent="5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36" etag="mFM5v6X3X_ArfZATj9kR" version="13.1.3" pages="2">
+<mxfile host="dc7d3f85-39f5-4185-93c7-37ffe066cec4" modified="2020-08-17T13:01:24.035Z" agent="5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36" etag="NuOq1xlD4yL2h1igydy_" version="13.1.3" pages="2">
     <diagram id="6hGFLwfOUW9BJ-s0fimq" name="envs">
         <mxGraphModel dx="822" dy="226" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
@@ -11,12 +11,12 @@
         </mxGraphModel>
     </diagram>
     <diagram id="83Kg6QtAfk6DyS2B3ozi" name="how">
-        <mxGraphModel dx="822" dy="226" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="621" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="-H7gI0xGVidGR6TGDDq0-0"/>
                 <mxCell id="-H7gI0xGVidGR6TGDDq0-1" parent="-H7gI0xGVidGR6TGDDq0-0"/>
-                <mxCell id="-H7gI0xGVidGR6TGDDq0-2" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;steps&lt;/th&gt;&lt;th&gt;contents&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;setup&lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;export AIRFLOW_HOME= /YOUR/AIRFLOW/PROJECT/NAME/DIR&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;airflow initdb&lt;br&gt;&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;airflow.cfg - &lt;/font&gt;see &quot;envs&quot;, after modifing this file, rerun &lt;font face=&quot;Courier New&quot;&gt;airflow initdb&lt;/font&gt;&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;row 2, cell 1&lt;/td&gt;&lt;td&gt;row 2, cell 2&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" parent="-H7gI0xGVidGR6TGDDq0-1" vertex="1">
-                    <mxGeometry x="10" y="10" width="650" height="130" as="geometry"/>
+                <mxCell id="-H7gI0xGVidGR6TGDDq0-2" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;steps&lt;/th&gt;&lt;th&gt;contents&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;setup&lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;export AIRFLOW_HOME= /YOUR/AIRFLOW/PROJECT/NAME/DIR&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;airflow initdb&lt;br&gt;&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;airflow.cfg - &lt;/font&gt;see &quot;envs&quot;, after modifing this file, rerun &lt;font face=&quot;Courier New&quot;&gt;airflow initdb&lt;/font&gt;&lt;br&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;python create_user.py&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" parent="-H7gI0xGVidGR6TGDDq0-1" vertex="1">
+                    <mxGeometry x="10" y="10" width="650" height="140" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
