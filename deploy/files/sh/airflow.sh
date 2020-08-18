@@ -92,3 +92,17 @@ restart_airflow_server() {
     sudo systemctl restart airflow-worker
     sudo systemctl restart airflow-flower
 }
+
+start_airflow_server() {
+    sudo systemctl start airflow-webserver
+    sudo systemctl start airflow-scheduler
+    sudo systemctl start airflow-worker
+    sudo systemctl start airflow-flower
+}
+
+stop_airflow_server() {
+    sudo systemctl stop airflow-webserver
+    sudo systemctl stop airflow-scheduler
+    sudo systemctl stop airflow-worker
+    sudo systemctl stop airflow-flower
+}
