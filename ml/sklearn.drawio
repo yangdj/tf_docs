@@ -1,0 +1,34 @@
+<mxfile host="148a9549-1b07-49b5-80d7-1fe70fa89a23" modified="2020-08-19T12:55:07.885Z" agent="5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36" etag="YLROfJmjJ_l8FQP-bjem" version="13.1.3" pages="2">
+    <diagram id="6hGFLwfOUW9BJ-s0fimq" name="algs">
+        <mxGraphModel dx="602" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="1" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="6" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 12px ; width: 100% ; height: 100%&quot;&gt;&lt;tbody style=&quot;font-size: 12px&quot;&gt;&lt;tr style=&quot;font-size: 12px&quot;&gt;&lt;th style=&quot;font-size: 12px&quot;&gt;Type&lt;/th&gt;&lt;th style=&quot;font-size: 12px&quot;&gt;Eqution&lt;/th&gt;&lt;/tr&gt;&lt;tr style=&quot;font-size: 12px&quot;&gt;&lt;td style=&quot;font-size: 12px&quot;&gt;&lt;div style=&quot;font-size: 12px&quot;&gt;&lt;span style=&quot;font-size: 12px&quot;&gt;OLS&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px&quot;&gt;&lt;span style=&quot;font-size: 12px&quot;&gt;(Ordinary Least Squares)&lt;/span&gt;&lt;/div&gt;&lt;/td&gt;&lt;td style=&quot;font-size: 12px&quot;&gt;&lt;div style=&quot;text-align: left ; font-size: 12px&quot;&gt;&lt;span style=&quot;font-size: 12px&quot;&gt;\[\min_w ||Xw- y||_2^2\]&lt;/span&gt;&lt;/div&gt;&lt;span style=&quot;font-size: 12px&quot;&gt;&lt;div style=&quot;text-align: left ; font-size: 12px&quot;&gt;&lt;span style=&quot;font-size: 12px&quot;&gt;\(w = (w_1, w_2,&amp;nbsp; ..., w_p)\)&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;font-size: 12px&quot;&gt;&lt;td style=&quot;font-size: 12px&quot;&gt;&lt;div style=&quot;font-size: 12px&quot;&gt;&lt;span style=&quot;font-size: 12px&quot;&gt;MSE&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px&quot;&gt;&lt;span style=&quot;font-size: 12px&quot;&gt;(Mean Square Error)&lt;/span&gt;&lt;/div&gt;&lt;/td&gt;&lt;td style=&quot;font-size: 12px&quot;&gt;\[\text{MSE}(y, \hat{y}) = \frac{1}{n_\text{samples}} \sum_{i=0}^{n_\text {samples}-1}(y_i - \hat{y_i})^2\]&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;font-size: 12px&quot;&gt;&lt;td style=&quot;font-size: 12px&quot;&gt;R Square Score&lt;/td&gt;&lt;td style=&quot;text-align: left ; font-size: 12px&quot;&gt;\[R^{2}(y, \hat{y}) = 1 - \frac{\sum_{i=1}^{n}(y_i - \hat{y_i})^2}{\sum_{i=1}^{n}(y_i - \bar{y})^2}\]&lt;br&gt;\(y = \frac{1}{n}\sum_{i=1}^{n}y_i\)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=center;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" parent="1" vertex="1">
+                    <mxGeometry x="10" y="20" width="540" height="350" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="n1lHVNkYfh9JiUFZFuvl" name="imps">
+        &#xa;        
+        <mxGraphModel dx="588" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            &#xa;            
+            <root>
+                &#xa;                
+                <mxCell id="eif3WQCAAp5WqQWgN8v_-0"/>
+                &#xa;                
+                <mxCell id="eif3WQCAAp5WqQWgN8v_-1" parent="eif3WQCAAp5WqQWgN8v_-0"/>
+                &#xa;                
+                <mxCell id="aRTQ9jC5zIk2RVt1QCQq-0" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;usage&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Linear model&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;h3&gt;&lt;font face=&quot;Courier New&quot;&gt;from sklearn import linear_model&lt;/font&gt;&lt;/h3&gt;&lt;ol style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;LinearRegression&lt;br&gt;&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;h4&gt;methods&lt;/h4&gt;&lt;div&gt;&lt;ol style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;&lt;div&gt;fit()&lt;/div&gt;&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;div&gt;predict()&lt;/div&gt;&lt;/li&gt;&lt;/ol&gt;&lt;h4&gt;variables&lt;/h4&gt;&lt;div style=&quot;font-family: &amp;#34;courier new&amp;#34;&quot;&gt;&lt;ol&gt;&lt;li&gt;coef_&lt;/li&gt;&lt;li&gt;intercept_&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/div&gt;&lt;h3&gt;&lt;font face=&quot;Courier New&quot;&gt;example&lt;/font&gt;&lt;/h3&gt;&lt;font face=&quot;Courier New&quot;&gt;reg = linear_model.LinearRegression()&lt;br&gt;reg.fit([[0, 0], [1, 1], [2, 2]], [0, 1, 2])&lt;br&gt;reg.coef_&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;row 2, cell 1&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" vertex="1" parent="eif3WQCAAp5WqQWgN8v_-1">
+                    &#xa;                    
+                    <mxGeometry x="10" y="20" width="560" height="380" as="geometry"/>
+                    &#xa;                
+                </mxCell>
+                &#xa;            
+            </root>
+            &#xa;        
+        </mxGraphModel>
+        &#xa;    
+    </diagram>
+</mxfile>
