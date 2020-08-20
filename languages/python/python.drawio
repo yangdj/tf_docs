@@ -1,6 +1,6 @@
-<mxfile host="0b66b954-2f5e-4cf3-af04-59d4d5b500cc" modified="2020-08-16T14:18:38.921Z" agent="5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36" etag="7TUagssQ8K8LZPCtbkvV" version="13.1.3" pages="4">
+<mxfile host="77a09939-c70b-4cd7-afe7-c0149d54a7fc" modified="2020-08-20T04:14:31.597Z" agent="5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36" etag="evSatYG8tDlYruXDDatm" version="13.1.3" pages="5">
     <diagram id="CppiimKl54HrMkb4MtLi" name="envs">
-        <mxGraphModel dx="568" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="629" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="cBCK1MNRxC1xXqUHKGJP-0"/>
                 <mxCell id="cBCK1MNRxC1xXqUHKGJP-1" parent="cBCK1MNRxC1xXqUHKGJP-0"/>
@@ -11,7 +11,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="kd-X-27hpmRIkXkmFjoS" name="jupyter">
-        <mxGraphModel dx="568" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="629" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="vGBgGHMAZZWVsRmm8oDl-0"/>
                 <mxCell id="vGBgGHMAZZWVsRmm8oDl-1" parent="vGBgGHMAZZWVsRmm8oDl-0"/>
@@ -22,7 +22,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="oO5ik2dgjUzaUumrPrOO" name="base">
-        <mxGraphModel dx="568" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="629" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="E_lD1YyarEx3l_IE5Qs4-0"/>
                 <mxCell id="E_lD1YyarEx3l_IE5Qs4-1" parent="E_lD1YyarEx3l_IE5Qs4-0"/>
@@ -32,8 +32,19 @@
             </root>
         </mxGraphModel>
     </diagram>
+    <diagram id="pkRIOWLQjdbOFaUVDesV" name="db">
+        <mxGraphModel dx="629" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="vlL5MvciL2pP799zOfHA-0"/>
+                <mxCell id="vlL5MvciL2pP799zOfHA-1" parent="vlL5MvciL2pP799zOfHA-0"/>
+                <mxCell id="anLUWzV4gdDXxF_3hHiv-0" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;Db&lt;/th&gt;&lt;th&gt;Package&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;mysql&lt;/td&gt;&lt;td&gt;&lt;h3&gt;mysqlclient&lt;/h3&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;postgresql&lt;/td&gt;&lt;td&gt;&lt;h3&gt;psycopg2-binary&lt;/h3&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;sqlserver&lt;/td&gt;&lt;td&gt;&lt;h3&gt;pymssql&lt;/h3&gt;&lt;h3&gt;dependencies&lt;/h3&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;yum install&amp;nbsp;freetds-devel&amp;nbsp;unixODBC-devel&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;export C_INCLUDE_PATH=/usr/include&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;freetds-devel- &lt;/font&gt;for &lt;font face=&quot;Courier New&quot;&gt;sqlfont.h&lt;br&gt;&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;unixODBC-devel - &lt;/font&gt;for &lt;font face=&quot;Courier New&quot;&gt;sql.h&lt;br&gt;&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;C_INCLUDE_PATH - &lt;/font&gt;find &lt;font face=&quot;Courier New&quot;&gt;sql.h&lt;/font&gt;, or other path for head files&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;hive&lt;/td&gt;&lt;td&gt;&lt;h3&gt;pyhive[hive]&lt;/h3&gt;&lt;h3&gt;dependencies&lt;/h3&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;yum install cyrus-sasl-devel&amp;nbsp;cyrus-sasl-plain&amp;nbsp;&lt;/font&gt;&lt;span&gt;&lt;font face=&quot;Courier New&quot;&gt;thrift-sasl&lt;/font&gt;&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;thrift-sasl - &lt;/font&gt;when meets &quot;TSaslClientTransport' object has no attribute 'readAll'&quot;&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;SQLAlchemy&lt;/td&gt;&lt;td&gt;&lt;h3&gt;connection string&lt;/h3&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;prefix://username:password@host:port/databasename?parameter=value&lt;/font&gt;&lt;/div&gt;&lt;h4&gt;prefix&lt;/h4&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;postgresql+psycopg2 - &lt;/font&gt;postgresql&lt;br&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;mysql - &lt;/font&gt;mysql&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;mssql+pymssq - &lt;/font&gt;sqlserver&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;h4&gt;parameter&lt;/h4&gt;&lt;/div&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;charset=utf8 -&lt;/font&gt;&amp;nbsp;for mysql specifies encoding&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" vertex="1" parent="vlL5MvciL2pP799zOfHA-1">
+                    <mxGeometry x="10" y="10" width="720" height="720" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
     <diagram id="_El7k1EOV9T-uXvAMhDj" name="packages">
-        <mxGraphModel dx="568" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="629" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="vKEUba6q0JigRjRWASb1-0"/>
                 <mxCell id="vKEUba6q0JigRjRWASb1-1" parent="vKEUba6q0JigRjRWASb1-0"/>
