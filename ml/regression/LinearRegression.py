@@ -25,14 +25,23 @@ class LinearRegression:
 
     def predict(self, X_test, intercept = True):
         self.y_test_hat = np.dot(X_test, self.beta_hats)
+
 # %%
 from sklearn import datasets
 boston = datasets.load_boston()
 X = boston["data"]
 y = boston["target"]
+
 # %%
 model = LinearRegression()
 model.fit(X, y, intercept=False)
+
+# %%
+from sklearn import linear_model
+sklearn_model = linear_model.LinearRegression()
+sklearn_model.fit(X, y)
+sklearn_prediction = sklearn_model.predict(X)
+sns.scatterplot(y, sklearn_prediction)
 
 # %%
 sns.set_style(None, {"font.sans-serif":["SimHei", "Arial"]})
