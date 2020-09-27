@@ -8,17 +8,3 @@ site: bookdown::bookdown_site
 
 # Preface
 
-hello, world.
-
-| f1  | f3      |
-| :-- | :------ |
-| a   | c  dfd  |
-|     | f e     |
-| a   | c       |
-| c   | fddfdfd |
-
-Table: (\#tab:table) the world
-
-> hello
->> world ok
->> ok that is
