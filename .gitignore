@@ -2,3 +2,4 @@
 *.html
 *.tar.gz
 *.retry
+_book/

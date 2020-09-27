@@ -1,7 +1,0 @@
-### unimpaired
-
-* `[b` - `:bprevious`
-* `]b` - `:bnext`
-* `[B` - `:bfirst`
-* `]B` - `:blast`
-* `[q`, `]q` - quickfix

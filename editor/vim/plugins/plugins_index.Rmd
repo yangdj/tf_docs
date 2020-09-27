@@ -1,7 +1,0 @@
-## vim plugins
-
-```{r child = "emmet.Rmd"}
-```
-
-```{r child = "unimpaired.Rmd"}
-```
