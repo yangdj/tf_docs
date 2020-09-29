@@ -1,10 +1,14 @@
 ---
-title: "book title"
+title: "All In One"
 author: "tf"
 date: "`r Sys.Date()`"
-output: pdf_document
 site: bookdown::bookdown_site
+bibliography: [references.bib]
+biblio-style: apalike
+link-citations: yes
+nocite: "@*"
 ---
 
 # Preface
 
+use [@adv-R2]
