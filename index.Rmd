@@ -11,4 +11,4 @@ nocite: "@*"
 
 # Preface
 
-use @adv-R2 [@nse-so; @nse-et]
+use [@nse-so; @nse-et] R [@Rpkg-2]
