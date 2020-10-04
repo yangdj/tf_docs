@@ -3,3 +3,4 @@
 *.tar.gz
 *.retry
 _book/
+.Rhistory
