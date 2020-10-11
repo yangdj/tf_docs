@@ -1,4 +1,4 @@
-<mxfile host="3fb1ddf2-779c-495c-9298-e74a16f5cc6c" modified="2020-09-30T05:30:56.083Z" agent="5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36" etag="CPdncrzcTHAjdPhm243G" version="13.1.3" pages="6">
+<mxfile host="65bd71144e" modified="2020-10-11T12:37:37.999Z" agent="5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36" etag="7cPQT2QIIu9aZmfact40" version="13.6.5" pages="6">
     <diagram id="6hGFLwfOUW9BJ-s0fimq" name="R">
         <mxGraphModel dx="822" dy="480" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
@@ -60,25 +60,15 @@
         </mxGraphModel>
     </diagram>
     <diagram id="nSeY9lbZJ80yplURgxZ5" name="Install">
-        &#xa;        
-        <mxGraphModel dx="526" dy="1649" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
-            &#xa;            
+        <mxGraphModel dx="822" dy="1649" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
-                &#xa;                
                 <mxCell id="sl29WyDTLBE7U0arNcpx-0"/>
-                &#xa;                
                 <mxCell id="sl29WyDTLBE7U0arNcpx-1" parent="sl29WyDTLBE7U0arNcpx-0"/>
-                &#xa;                
                 <mxCell id="FPSPP7I0kuaueNv2cEEU-0" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Content&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;R&lt;/td&gt;&lt;td&gt;&lt;font face=&quot;Courier New&quot;&gt;yum install epel-release&lt;br&gt;yum install R&lt;br&gt;&lt;br&gt;# if [ ! /usr/lib64/libpq.so.5 ]&lt;br&gt;ln -s /usr/local/pgsql/lib/libpq.so.5 /usr/lib64&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;RStudio&lt;/td&gt;&lt;td&gt;&lt;p&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34; ; font-size: 1em&quot;&gt;wget https://download2.rstudio.org/rstudio-server-rhel-1.1.463-x86_64.rpm&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34; ; font-size: 1em&quot;&gt;yum install rstudio-server-rhel-1.1.463-x86_64.rpm&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size: 1em&quot;&gt;# verify&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34; ; font-size: 1em&quot;&gt;rstudio-server verify-installation&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;h3&gt;&lt;span style=&quot;font-size: 1em&quot;&gt;# firewall&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34; ; font-size: 1em&quot;&gt;firewall-cmd --permanent --add-port=8787/tcp&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34; ; font-size: 1em&quot;&gt;systemctl reload firewalld&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;shinyserver&lt;/td&gt;&lt;td&gt;&lt;font face=&quot;Courier New&quot;&gt;wget https://download3.rstudio.org/centos5.9/x86_64/shiny-server-1.5.5.872-rh5-x86_64.rpm&lt;br&gt;yum install --nogpgcheck shiny-server-1.5.5.872-rh5-x86_64.rpm&lt;/font&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=none;" parent="sl29WyDTLBE7U0arNcpx-1" vertex="1">
-                    &#xa;                    
                     <mxGeometry x="5" y="-1158" width="809" height="367" as="geometry"/>
-                    &#xa;                
                 </mxCell>
-                &#xa;            
             </root>
-            &#xa;        
         </mxGraphModel>
-        &#xa;    
     </diagram>
     <diagram id="CIw9ZEClu_fJkp-CBAcN" name="Configuration">
         <mxGraphModel dx="822" dy="480" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
@@ -92,46 +82,56 @@
         </mxGraphModel>
     </diagram>
     <diagram id="22iieayW9RzJdmLiZfhH" name="RStudio">
+        &#xa;
         <mxGraphModel dx="822" dy="480" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            &#xa;
             <root>
+                &#xa;
                 <mxCell id="zXDAXFK56HSB0MKz_IRw-0"/>
+                &#xa;
                 <mxCell id="zXDAXFK56HSB0MKz_IRw-1" parent="zXDAXFK56HSB0MKz_IRw-0"/>
+                &#xa;
                 <mxCell id="zXDAXFK56HSB0MKz_IRw-2" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Contents&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Notes&lt;/td&gt;&lt;td&gt;RStudio includes a copy of Pandoc, so there is no need to install Pandoc separately&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" parent="zXDAXFK56HSB0MKz_IRw-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="13" y="11" width="497" height="56" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
             </root>
+            &#xa;
         </mxGraphModel>
+        &#xa;
     </diagram>
     <diagram id="DEZDyBQhzGn40gvg28Lg" name="Syntax">
         <mxGraphModel dx="822" dy="1649" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="bmbrA65VG_Mxkz6htY8z-0"/>
                 <mxCell id="bmbrA65VG_Mxkz6htY8z-1" parent="bmbrA65VG_Mxkz6htY8z-0"/>
-                <mxCell id="-ZNGT6xIRW3v6wPCjdjX-0" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Content&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Shell&lt;/td&gt;&lt;td&gt;&lt;p&gt;&lt;/p&gt;&lt;font face=&quot;Courier New&quot;&gt;# foo.R&lt;br&gt;#!/usr/bin/env Rscript&lt;br&gt;...&lt;br&gt;&lt;br&gt;./foo.R&lt;br&gt;R -f foo.R&lt;br&gt;Rscript foo.R&lt;br&gt;Rscript -e &quot;bookdown::render_book('index.Rmd', 'bookdown::gitbook')&quot;&lt;br&gt;&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Basic&lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;SessionInfo()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;R.home()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;system.file()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;getwd()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;setwd()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;list.files()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;list.dirs()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;normalizePath()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;tempdir()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;tempfile()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;file.path()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;basename()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;dirname()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;lapply()&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=none;" parent="bmbrA65VG_Mxkz6htY8z-1" vertex="1">
-                    <mxGeometry x="10" y="-1161" width="780" height="427" as="geometry"/>
+                <mxCell id="-ZNGT6xIRW3v6wPCjdjX-0" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Content&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Shell&lt;/td&gt;&lt;td&gt;&lt;p&gt;&lt;/p&gt;&lt;font face=&quot;Courier New&quot;&gt;# foo.R&lt;br&gt;#!/usr/bin/env Rscript&lt;br&gt;...&lt;br&gt;&lt;br&gt;./foo.R&lt;br&gt;R -f foo.R&lt;br&gt;Rscript foo.R&lt;br&gt;Rscript -e &quot;bookdown::render_book('index.Rmd', 'bookdown::gitbook')&quot;&lt;br&gt;&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Basic&lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;SessionInfo()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;R.home()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;system.file()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;if (!requireNamespace(&quot;remotes&quot;))&amp;nbsp;install.packages(&quot;remotes&quot;)&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;getwd()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;setwd()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;list.files()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;list.dirs()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;normalizePath()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;tempdir()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;tempfile()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;file.path()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;basename()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;dirname()&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;lapply()&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=none;" parent="bmbrA65VG_Mxkz6htY8z-1" vertex="1">
+                    <mxGeometry x="10" y="-1161" width="780" height="518" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
     <diagram id="mm59DPON8xHfet0JRgF6" name="References">
-        &#xa;        
+        &#xa;        &#xa;        &#xa;
         <mxGraphModel dx="822" dy="1649" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
-            &#xa;            
+            &#xa;            &#xa;            &#xa;
             <root>
-                &#xa;                
+                &#xa;                &#xa;                &#xa;
                 <mxCell id="Gr6edN7ppNkgre0Q_z1g-0"/>
-                &#xa;                
+                &#xa;                &#xa;                &#xa;
                 <mxCell id="Gr6edN7ppNkgre0Q_z1g-1" parent="Gr6edN7ppNkgre0Q_z1g-0"/>
-                &#xa;                
+                &#xa;                &#xa;                &#xa;
                 <mxCell id="jqK3YuIMa9-6_V4bhgWz-0" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Content&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Writing&lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li&gt;&lt;a href=&quot;https://bookdown.org/yihui/rmarkdown/&quot;&gt;R Markdown: The Definitive Guide&lt;br&gt;&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://bookdown.org/yihui/bookdown/get-started.html&quot;&gt;Authoring Books and Technical Documents with R Markdown&lt;/a&gt;&lt;br&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://yihui.org/knitr/options/&quot;&gt;Knitr Options&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://yihui.org/tinytex/&quot;&gt;Tinytex&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;R-lang&lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li&gt;&lt;a href=&quot;https://rstudio-education.github.io/hopr/&quot;&gt;Hands-On Programming with R&lt;/a&gt;&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=none;" parent="Gr6edN7ppNkgre0Q_z1g-1" vertex="1">
-                    &#xa;                    
+                    &#xa;                    &#xa;                    &#xa;
                     <mxGeometry x="10" y="-1161" width="771" height="178" as="geometry"/>
-                    &#xa;                
+                    &#xa;                    &#xa;                &#xa;
                 </mxCell>
-                &#xa;            
+                &#xa;                &#xa;            &#xa;
             </root>
-            &#xa;        
+            &#xa;            &#xa;        &#xa;
         </mxGraphModel>
-        &#xa;    
+        &#xa;        &#xa;    &#xa;
     </diagram>
 </mxfile>
