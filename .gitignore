@@ -4,3 +4,5 @@
 *.retry
 _book/
 .Rhistory
+.Rproj.user
+.RData
