@@ -4,6 +4,5 @@
 
 ## Math {#math}
 
-MVU:
+MVU
 : Minimum Variance Unbiased Estimators
-
