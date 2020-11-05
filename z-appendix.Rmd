@@ -4,8 +4,13 @@
 
 ## Math {#math}
 
+## Stat {#stat}
+
 MVU
 : Minimum Variance Unbiased Estimators
+
+ROC
+: Receiver Operating Characteristics
 
 ## English {#en}
 
