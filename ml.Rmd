@@ -1,0 +1,15 @@
+# Machine Learning
+
+## Correlation and Similarity
+
+1. Pearson Correlation
+
+$$
+\rho = \frac {\sum(x_i - \bar{x})(y_i - \bar{y})} {\sqrt{\sum(x_i - \bar{x})^2\sum(y_i - \bar{y})^2}}
+$$
+
+2. Cosine Similarity
+
+$$
+\cos{\theta} = \frac{\sum{x_i y_i}}{\sqrt{\sum{x_i^2}\sum{y_i^2}}}
+$$
