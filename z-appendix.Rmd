@@ -12,6 +12,11 @@ MVU
 ROC
 : Receiver Operating Characteristics
 
+## Computer {#compute}
+
+POSIXct
+: Portable Operating System Interface, calendar time
+
 ## English {#en}
 
 WIP

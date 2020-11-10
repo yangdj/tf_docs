@@ -1,0 +1,28 @@
+<mxfile host="e8a84bca-537a-40f2-99ff-55234b197c6a" modified="2020-11-09T05:36:06.820Z" agent="5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36" etag="nFYxQh02_Ea8wyP_XXsH" version="13.1.3" pages="2">
+    <diagram id="6hGFLwfOUW9BJ-s0fimq" name="chars">
+        <mxGraphModel dx="822" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Content&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Unicode&lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li&gt;&lt;font face=&quot;Courier New&quot;&gt;[\u4e00-\u9fa5] -&lt;/font&gt;&amp;nbsp;20902&amp;nbsp;basic chinese characters&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;%s/\(\zs[^']\)\(\&amp;lt;[a-zA-Z]*[\u4e00-\u9fa5]\+[a-zA-Z]*\&amp;gt;\)/\1`\2`/g&lt;/font&gt;&lt;br&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" parent="1" vertex="1">
+                    <mxGeometry x="15" y="15" width="560" height="100" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="Ol-G6nrctbB2jy-eUN_P" name="numeric">
+        &#xa;        
+        <mxGraphModel dx="580" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            &#xa;            
+            <root>
+                &#xa;                
+                <mxCell id="uNl2L2AVMkV592199PZe-0"/>
+                &#xa;                
+                <mxCell id="uNl2L2AVMkV592199PZe-1" parent="uNl2L2AVMkV592199PZe-0"/>
+                &#xa;            
+            </root>
+            &#xa;        
+        </mxGraphModel>
+        &#xa;    
+    </diagram>
+</mxfile>
