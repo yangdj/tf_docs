@@ -6,3 +6,4 @@ _book/
 .Rhistory
 .Rproj.user
 .RData
+libs/
