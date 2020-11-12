@@ -7,6 +7,106 @@ Delimiters
 * block mode between `$$`
 * inline mode between `\(` and `\)` or between `\[` and `\]`
 
+Texts
+
+1. `{}` - group elements
+1. `\, \; \quad \qquad` - narrow and wide spaces
+1. \(\text{hello, world}\) <=> `\text{hello, world}`
+1. `\` - escaping
+1. `\backslash` - backslash itself
+1. `\\` - new line
+1. `\\[2ex]` - larger vertical space
+
+Fonts
+
+1. \(\mathbf{boldface: abcdxyzABCDXYZ}\) <=> `\mathbf`
+1. \(\mathit{italic: abcdxyzABCDXYZ}\) <=> `\mathit`
+1. \(\mathrm{roman: abcdxyzABCDXYZ}\) <=> `\mathrm`
+1. \(\mathcal{calligraphy: abcdxyzABCDXYZ}\) <=> `\mathcal`
+1. \(\mathbb{blackboard bold: abcdxyzABCDXYZ}\) <=> `\mathbb`
+
+Special characters:
+
+1. \(\LaTeX\) <=> `\LaTeX`
+1. \(l, \ell\) <=> `l, \ell`
+1. \(\because, \therefore\) <=> `\because, \therefore`
+1. \(\forall, \exists\) <=> `\forall, \exists`
+1. \(\angle, \prec\) <=> `\angle, \prec`
+1. \(\star, \ast\) <=> `\star, \ast`
+1. \(\circ, \bullet\) <=> `\circ, \bullet`
+1. \(\dot{x}, \ddot{x}, \dddot{x}\) <=> `\dot{x}, \ddot{x}, \dddot{x}`
+1. \(\cdot, \cdots\) <=> `\cdot, \cdots`
+1. \(\bar{x}, \hat{x}, \widehat{xy}\) <=> `\bar{x}, \hat{x}, \widehat{xy}`
+1. \(\overline{xyz}, \underline{xyz}\) <=> `\overline{xyz}, \underline{xyz}`
+1. \(\vec{a}, \overrightarrow{abcd}\) <=> `\vec{a}, \overrightarrow{abcd}`
+1. \(\overbrace{x+y}, \underbrace{x+y}\) <=> `\overbrace{x+y}, \underbrace{x+y}`
+1. \(\stackrel{\text{def}}{=}\) <=> `\stackrel{\text{def}}{=}`
+1. \(\top, \bot\) <=> `\top, \bot`
+1. \(\vdash, \Vdash\) <=> `\vdash, \Vdash`
+1. \(\oplus, \bigoplus, \otimes, \bigotimes\) <=> `\oplus, \bigoplus, \otimes, \bigotimes`
+
+Brackets
+
+1. \((, )\) <=> `() \left(, \right), \big[bigg, Big, Bigg](, \big[bigg, Big, Bigg])`
+1. \([, ]\) <=> `[], left[, \right]`
+1. \(\{, \}\) <=> `\{, \}`
+1. \(\langle, \rangle\) <=> `\langle, \rangle`
+1. \(\lceil, \rceil\) <=> `\lceil, \rceil`
+1. \(\lfloor, \rfloor\) <=> `\lfloor, \rfloor`
+1. \(\lvert, \rvert\) <=> `\lvert, \rvert`
+1. \(\lVert, \rVert\) <=> `\lVert, \rVert`
+
+Arrows
+
+1. \(\mapsto\) <=> `\mapsto`
+1. \(\to, \leftarrow, \rightarrow, \uparrow, \downarrow\) <=> `\to, \leftarrow, \rightarrow, \uparrow, \downarrow`
+1. \(\Leftarrow, \Rightarrow, \Uparrow, \Downarrow\) <=> `\Leftarrow, \RightArrow, \Uparrow, \Downarrow`
+1. \(\leftrightarrow, \Leftrightarrow, \iff\) <=> `\leftrightarrow, \Leftrightarrow, \iff`
+
+basic Operators
+
+1. `_, ^` - subscript and superscript
+1. \(+, -, \times, \div, \pm, \mp\) <=> `+, -, \times, \div, \pm, \mp`
+1. \(\lt, \gt, \le, \ge, \neg, =\) <=> `\lt, \gt, \le, \gt, \neg, =`
+1. \(\frac{a}{b}\) <=> `\frac{a}{b} or a \over b`
+1. \(\sim, \simeq, \cong\) <=> `\sim, \simeq, \cong`
+1. \(\propto, \approx, \equiv\) <=> `\propto, \approx, \equiv`
+
+Sets
+
+1. \(\emptyset, \varnothing\) <=> `\emptyset, \varnothing`
+1. \(\in, \notin\) <=> `\in, \notin`
+1. \(\cap, \cup, \setminus\) <=> `\cap, \cup, \setminus`
+1. \(\subset, \subseteq, \subsetneq\) <=> `\subset, \subseteq, \subsetneq`
+1. \(\supset \supseteq, \subsetneq\) <=> `\supset, \supseteq, \supsetneq`
+1. \(\land, \lor, \lnot\) <=> `\land, \lor, \lnot`
+
+Functions
+
+1. \(\max{x}, \min{x}, \sup{x}, \inf{x}\) <=> `\max{x}, \min{x}, \sup{x}, \inf{x}`
+1. \(x^n\) <=> `x^n`
+1. \(\sqrt{x}, \sqrt[4]{x}\) <=> `\sqrt{x}, \sqrt[4]{x}`
+1. \(a^x\) <=> `a^x`
+1. \(\log{x}, \ln{x}\) <=> `\log{x}, \ln{x}`
+1. \(\sin{x}\) <=> `\sin{x}`
+1. \(\cos{x}\) <=> `\cos{x}`
+1. \(\tan{x}\) <=> `\tan{x}`
+1. \(\cot{x}\) <=> `\cot{x}`
+1. \(\sec{x}\) <=> `\sec{x}`
+1. \(\csc{x}\) <=> `\csc{x}`
+1. \(\arcsin{x}\) <=> `\arcsin{x}`
+1. \(\arccos{x}\) <=> `\arccos{x}`
+1. \(\arctan{x}\) <=> `\arctan{x}`
+1. \(\mathrm{arccot\,x, arcsec\,x, arccsc\,x}\) <=> `\mathrm{arccot\,x, arcsec\,x, arccsc\,x}`
+
+Calcs
+
+1. \(\binom{n+1}{2k}\) <=> `\binom{n+1}{2k} or {n+1} \choose {2k}`
+1. \(\infty\) <=> `\infty`
+1. \(\partial\) <=> `\partial`
+1. \(\mathrm{d}x\) <=> `\mathrm{d}x`
+1. \(\nabla\) <=> `\nabla`
+
 Greeks
 
 1. \(A, \alpha\) <=> `A, \alpha`
@@ -19,7 +119,7 @@ Greeks
 1. \(\Theta, \theta\) <=> `\Theta, \theta`
 1. \(I, \iota\) <=> `I, \iota`
 1. \(K, \kappa\) <=> `K, \kappa`
-1. \(\Lambda, \lambda\) => `\lambda, \lambda`
+1. \(\Lambda, \lambda\) => `\Lambda, \lambda`
 1. \(M, \mu\) => `M, \mu`
 1. \(N, \nu\) => `N, \nu`
 1. \(\Xi, \xi\) <=> `\Xi, \xi`
