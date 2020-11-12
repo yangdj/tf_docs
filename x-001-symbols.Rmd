@@ -33,7 +33,7 @@ Special characters:
 1. \(\forall, \exists\) <=> `\forall, \exists`
 1. \(\angle, \prec\) <=> `\angle, \prec`
 1. \(\star, \ast\) <=> `\star, \ast`
-1. \(\circ, \bullet\) <=> `\circ, \bullet`
+1. \(\circ, \bullet, \odot\) <=> `\circ, \bullet, \odot`
 1. \(\dot{x}, \ddot{x}, \dddot{x}\) <=> `\dot{x}, \ddot{x}, \dddot{x}`
 1. \(\cdot, \cdots\) <=> `\cdot, \cdots`
 1. \(\bar{x}, \hat{x}, \widehat{xy}\) <=> `\bar{x}, \hat{x}, \widehat{xy}`
@@ -83,7 +83,6 @@ Sets
 
 Functions
 
-1. \(\max{x}, \min{x}, \sup{x}, \inf{x}\) <=> `\max{x}, \min{x}, \sup{x}, \inf{x}`
 1. \(x^n\) <=> `x^n`
 1. \(\sqrt{x}, \sqrt[4]{x}\) <=> `\sqrt{x}, \sqrt[4]{x}`
 1. \(a^x\) <=> `a^x`
@@ -98,14 +97,79 @@ Functions
 1. \(\arccos{x}\) <=> `\arccos{x}`
 1. \(\arctan{x}\) <=> `\arctan{x}`
 1. \(\mathrm{arccot\,x, arcsec\,x, arccsc\,x}\) <=> `\mathrm{arccot\,x, arcsec\,x, arccsc\,x}`
+1. \(\max{x}, \min{x}, \sup{x}, \inf{x}\) <=> `\max{x}, \min{x}, \sup{x}, \inf{x}`
+1. \(\text{non-standard name: }\operatorname{foo}(x)\) <=> `\operatorname{foo}(x)`
 
 Calcs
 
 1. \(\binom{n+1}{2k}\) <=> `\binom{n+1}{2k} or {n+1} \choose {2k}`
-1. \(\infty\) <=> `\infty`
-1. \(\partial\) <=> `\partial`
-1. \(\mathrm{d}x\) <=> `\mathrm{d}x`
-1. \(\nabla\) <=> `\nabla`
+1. \(\sum_{i=1}^{n}, \sum\limits_{i=1}^{n}, \sum\limits_{\substack{i \le m \\ j \le n}}\) <=> `\sum_{i=1}^{n}, \sum\limits_{i=1}^{n}, \sum\limits_{\substack{i \le m \\ j \le n}}`
+1. \(\prod\limits_{i=1}^{n}\) <=> `\prod\limits_{i=1}^{n}`
+1. \(\infty, \lim, \varliminf, \varlimsup\) <=> `\infty, \lim, \varliminf, \varlimsup`
+1. \(\mathrm{d}x, \partial, \frac{\partial f}{\partial x}, \nabla\) <=> `\mathrm{d}x, \partial, \frac{\partial f}{\partial x}, \nabla`
+1. \(\int, \iint, \iiint, \idotsint, \oint\) <=> `\int, \iint, \iiint, \idotsint, \oint`
+
+Table
+
+1. `\begin{array}{l|cr} ... \end{array}` - table block and specify alighment and vertical line
+1. `l, c, r` - left, center and right alignment
+1. `|` for vertical line
+1. `&, \\` - element separator and new line
+1. `\hline, \hdashline` - horizontal line and horizontal dash line
+
+```latex
+$$
+\begin{array}{l|cr}
+\hline
+Left & Center & Right \\
+\hline
+a1 & a2 & a3 \\
+\hdashline
+b1 & b2 & b3 \\
+\hline
+\end{array}
+$$
+```
+
+$$
+\begin{array}{l|cr}
+\hline
+Left & Center & Right \\
+\hline
+a1 & a2 & a3 \\
+\hdashline
+b1 & b2 & b3 \\
+\hline
+\end{array}
+$$
+
+Matrix
+
+Similar to table, addtional notations:
+
+1. `\begin{pmatrix} ... \end{pmatrix}`
+1. `{smallmatrix}, {matrix}, {pmatrix}, {bmatrix}, {Bmatrix}, {vmatrix}, {Vmatrix}`
+1. \(\cdots, \ddots, \vdots, \ldots\) <=> `\cdots, \ddots, \vdots, \ldots`
+
+```latex
+$$
+\begin{pmatrix}
+1 & a_1 & a_1^2 & \cdots & a_1^n \\
+1 & a_2 & a_2^2 & \cdots & a_2^n \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+1 & a_n & a_n^2 & \cdots & a_n^n \\
+\end{pmatrix}
+$$
+```
+
+$$
+\begin{pmatrix}
+1 & a_1 & a_1^2 & \cdots & a_1^n \\
+1 & a_2 & a_2^2 & \cdots & a_2^n \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+1 & a_n & a_n^2 & \cdots & a_n^n \\
+\end{pmatrix}
+$$
 
 Greeks
 
