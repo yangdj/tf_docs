@@ -32,6 +32,7 @@ h1, h2, h3 {
 .remark-inline-code,
 .book .book-body .page-wrapper .page-inner section.normal code { 
     font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;
+    background-color: transparent;
 }
 
 .book .book-body .page-wrapper .page-inner section.normal {

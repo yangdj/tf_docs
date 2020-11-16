@@ -11,7 +11,7 @@
         {
             "label": "r-bookdown",
             "type": "shell",
-            "command": "Rscript -e \"bookdown::render_book('index.Rmd', 'bookdown::gitbook')\""
+            "command": "Rscript -e \"bookdown::servr_book()\""
         }
     ]
 }
