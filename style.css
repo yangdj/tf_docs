@@ -35,6 +35,10 @@ h1, h2, h3 {
     background-color: transparent;
 }
 
+.book .book-body .page-wrapper .page-inner {
+    max-width: 960px;
+}
+
 .book .book-body .page-wrapper .page-inner section.normal {
     overflow: auto;
 }

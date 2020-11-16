@@ -1,24 +1,24 @@
-# Tools
+# (PART) Tools {-}
 
-## VSCODE
+# VS Code
 
-### Settings
+## Settings
 
 Settings have three levels for user, workspace and root folder, see [Settings](https://code.visualstudio.com/docs/getstarted/settings).
 
 1. User path:
-   1. `%APPDATA%\Code\User\`: Windows
-   2. `$HOME/.config/Code/User/`: Linux
-   3. `$HOME/Library/Application Support/Code/User/`: MacOS
-      1. `settings.json`
-      2. `keybindings.json`
-      3. `tasks.json`
+      1. `%APPDATA%\Code\User\`: Windows
+      2. `$HOME/.config/Code/User/`: Linux
+      3. `$HOME/Library/Application Support/Code/User/`: MacOS
+         1. `settings.json`
+         2. `keybindings.json`
+         3. `tasks.json`
 2. `ws.code-workspace`: workspace file
 3. `.vscode/`: root folder
-   1. `settings.json`
-   2. `keybindings.json`
-   3. `launch.json`
-   4. `tasks.json`
+      1. `settings.json`
+      2. `keybindings.json`
+      3. `launch.json`
+      4. `tasks.json`
 
 Settings.json
 
@@ -30,7 +30,9 @@ Settings.json
    "files.eol": "\n",
    "files.associations": {"*.rmd": "markdown"},
    "workbench.editor.enablePreview": false,
-   "editor.renameOnType": true
+   "editor.renameOnType": true,
+   "python.autoComplete.addBrackets": true,
+   "python.jediEnabled": false,
 }
 ```
 
@@ -98,7 +100,7 @@ launch.json
 }
 ```
 
-### Shortcuts
+## Shortcuts
 
 1. `Ctrl+P; Cmd+P`: go to file
 2. `Ctrl+Shift+P; Cmd+Shift+P	`: go to command
@@ -122,72 +124,90 @@ launch.json
 20. `Alt+Uparrow, Alt+Downarrow`: move line up and down
 21. `Alt+Shift+Uparrow, Alt+Shift+Downarrow`: copy line up and down
 
-### Plugins
+## Plugins
 
 1. Markdown All in One
 2. Markdown + Math
-   1. `"mdmath.delimiters": "brackets"`
-      1. inline: `\( ...\)`
-      2. block: `$$ ... $$`
+      1. `"mdmath.delimiters": "brackets"`
+         1. inline: `\( ...\)`
+         2. block: `$$ ... $$`
 3. Text Table
-   1. `Ctrl + q Ctrl + q`: toggle table mode
-   2. `Ctrl + q Ctrl + f`: format table under the cursor
-   3. `Tab`: go to next table in cell in table mode
+      1. `Ctrl + q Ctrl + q`: toggle table mode
+      2. `Ctrl + q Ctrl + f`: format table under the cursor
+      3. `Tab`: go to next table in cell in table mode
 4.  Simple Vim
-    1.  `_`: move to the begining of the line
-    2.  `rr`: yank and delete the line
-    3.  `dd`: delete the line, do not yank
-    4.  `C`: delete from the cursor to the end of line
+      1.  `_`: move to the begining of the line
+      2.  `rr`: yank and delete the line
+      3.  `dd`: delete the line, do not yank
+      4.  `C`: delete from the cursor to the end of line
 5. Draw.io Integration
-   1. `"hediet.vscode-drawio.theme: "atlas"`: set the theme
+      1. `"hediet.vscode-drawio.theme: "atlas"`: set the theme
 6. Remote development
-   1. install [git for windows](https://git-scm.com/download/win) for Windows
-   2. `ssh-keygen -t rsa`: create public key to the remote machine
-   3. `"Remote.SSH: Path": "/path/to/ssh.exe"`
-   4. `~/.ssh/config`:
+      1. install [git for windows](https://git-scm.com/download/win) for Windows
+      2. `ssh-keygen -t rsa`: create public key to the remote machine
+      3. `"Remote.SSH: Path": "/path/to/ssh.exe"`
+      4. `~/.ssh/config`:
    
-            Host server1
-               HostName 192.168.1.0
-               User hello
+               Host server1
+                  HostName 192.168.1.0
+                  User hello
                
 7. Python Microsoft
-   1. Settings
-      1. `"python.autoComplete.addBrackets": true`: append bracket following function name
-      2. `"python.pythonPath": "python"`: python intepreter path
-      3. `"python.autoComplete.extraPaths": ["pkg1", "pkg2", ...]`: additional package path
-      4. `"python.jediEnabled": false`: disable Jedi autocomplete, then use "python language server"
-      5. `"python.linting.enabled": true` - enable linting
-   2. Envirionment
-      1. `Python: Select Interpreter`
-      2. `Python: Start REPL`
-   3. Refactor
-      1. `Python Refactor: Extract Variable`
-      2. `Python Refactor: Extract Method`
-      3. `Python Refactor: Sort Imports`
-   4. Linting
-      1. `Python: Select Linter - use pylint default`
-      2. `Python: Enable Linting`
-      3. `Python: Run Linting`
-   5. Testing
-      1. `Python: Configure Tests`: select a test framework and configure it
-      2. `Python: Discover Tests`: discover test framework automatically when saving a test
-      3. `Python: Run All Tests`
-      4. `unittestAargs: ["-v", "-s", "./test", "-p", "test_*.py"] `:
-         1. `-v`: verbose output, remove this argument for simple output
-         2. `-s`: specify starting directory for testing files, e.g., `./test` directory
-         3. `-p`: pattern to look for test files in the `-s` directory, such as files starting with `test_`
-         4. details see [unittest command line](https://docs.python.org/3/library/unittest.html#command-line-interface)
-   6. Juypter
-      1. `"python.dataScience.themeMatplotlibPlots": true`
-      2. `Python: Create Blank New Jupyter Notebook`: create a notebook
-      3. `# %%`: define jupyter-like script cells within python files
-      4. `# %%[markdown]`: define juypter-like markdown cells
-      5. Shoutcuts:
-         1. `ESC`: edit mode to command mode
-         2. `Enter`: command mode to edit mode
-         3. `A `: add cell above
-         4. `B`: add cell below
-         5. `DD`: delete current cell
-         6. `j,k` - move up and down in command mode
-         7. `ctrl + enter`: run current cell
-         8. `shift + enter`: run current cell and insert a cell below
+      1. Settings
+         1. `"python.autoComplete.addBrackets": true`: append bracket following function name
+         2. `"python.pythonPath": "python"`: python intepreter path
+         3. `"python.autoComplete.extraPaths": ["pkg1", "pkg2", ...]`: additional package path
+         4. `"python.jediEnabled": false`: disable Jedi autocomplete, then use "python language server"
+         5. `"python.linting.enabled": true` - enable linting
+      2. Envirionment
+         1. `Python: Select Interpreter`
+         2. `Python: Start REPL`
+      3. Refactor
+         1. `Python Refactor: Extract Variable`
+         2. `Python Refactor: Extract Method`
+         3. `Python Refactor: Sort Imports`
+      4. Linting
+         1. `Python: Select Linter - use pylint default`
+         2. `Python: Enable Linting`
+         3. `Python: Run Linting`
+      5. Testing
+         1. `Python: Configure Tests`: select a test framework and configure it
+         2. `Python: Discover Tests`: discover test framework automatically when saving a test
+         3. `Python: Run All Tests`
+         4. `unittestAargs: ["-v", "-s", "./test", "-p", "test_*.py"] `:
+            1. `-v`: verbose output, remove this argument for simple output
+            2. `-s`: specify starting directory for testing files, e.g., `./test` directory
+            3. `-p`: pattern to look for test files in the `-s` directory, such as files starting with `test_`
+            4. details see [unittest command line](https://docs.python.org/3/library/unittest.html#command-line-interface)
+      6. Juypter
+         1. `"python.dataScience.themeMatplotlibPlots": true`
+         2. `Python: Create Blank New Jupyter Notebook`: create a notebook
+         3. `# %%`: define jupyter-like script cells within python files
+         4. `# %%[markdown]`: define juypter-like markdown cells
+         5. Shoutcuts:
+            1. `ESC`: edit mode to command mode
+            2. `Enter`: command mode to edit mode
+            3. `A `: add cell above
+            4. `B`: add cell below
+            5. `DD`: delete current cell
+            6. `j,k` - move up and down in command mode
+            7. `ctrl + enter`: run current cell
+            8. `shift + enter`: run current cell and insert a cell below
+
+## Usage
+
+Debug
+
+1. `F9`: set breakpoint
+2. `Shift + F9`: inline breakpoint
+3. `F5`: initiate debugging
+
+Path Matching
+
+1. `*`: match one or more characters
+2. `?`: match one character
+3. `**`: match any number of path segments including none
+4. `[]`: match one of characters group
+   1. `example.[0-9]` matches `example.0, example.1, ...`
+5. `!`: match negation of the characters
+6. `{}`: match a set of values, `{**/*.html,**/*.txt}` match all html and text files
