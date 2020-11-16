@@ -6,6 +6,7 @@ Delimiters
 
 * block mode between `$$`
 * inline mode between `\(` and `\)` or between `\[` and `\]`
+* text between `$` in `\text{}`
 
 Texts
 
@@ -19,11 +20,11 @@ Texts
 
 Fonts
 
-1. \(\mathbf{boldface: abcdxyzABCDXYZ}\) <=> `\mathbf`
-1. \(\mathit{italic: abcdxyzABCDXYZ}\) <=> `\mathit`
-1. \(\mathrm{roman: abcdxyzABCDXYZ}\) <=> `\mathrm`
-1. \(\mathcal{calligraphy: abcdxyzABCDXYZ}\) <=> `\mathcal`
-1. \(\mathbb{blackboard bold: abcdxyzABCDXYZ}\) <=> `\mathbb`
+1. \(\mathbf{boldface: abcrstxyzABCDEFGHIJKLMNOPQRSTUVWXYZ}\) <=> `\mathbf`
+1. \(\mathit{italic: abcrstxyzABCDEFGHIJKLMNOPQRSTUVWXYZ}\) <=> `\mathit`
+1. \(\mathrm{roman: abcrstxyzABCDEFGHIJKLMNOPQRSTUVWXYZ}\) <=> `\mathrm`
+1. \(\mathcal{calligraphy: abcrstxyzABCDEFGHIJKLMNOPQRSTUVWXYZ}\) <=> `\mathcal`
+1. \(\mathbb{blackboard bold: abcrstxyzABCDEFGHIJKLMNOPQRSTUVWXYZ}\) <=> `\mathbb`
 
 Special characters:
 
@@ -145,7 +146,7 @@ $$
 
 Matrix
 
-Similar to table, addtional notations:
+Similar to table, except:
 
 1. `\begin{pmatrix} ... \end{pmatrix}`
 1. `{smallmatrix}, {matrix}, {pmatrix}, {bmatrix}, {Bmatrix}, {vmatrix}, {Vmatrix}`
@@ -170,6 +171,62 @@ $$
 1 & a_n & a_n^2 & \cdots & a_n^n \\
 \end{pmatrix}
 $$
+
+Cases
+
+Simllar to table, except:
+
+1. `\begin{cases} ... \end{cases}`
+
+```latex
+$$
+f(n) = 
+\begin{cases}
+\frac{n}{2} & \text{if $n$ is even} \\
+3n+1 & \text{if $n$ is odd}
+\end{cases}
+$$
+```
+
+$$
+f(n) = 
+\begin{cases}
+\frac{n}{2} & \text{if n is even} \\
+3n+1 & \text{if n is odd}
+\end{cases}
+$$
+
+Multiline Equations
+
+Similar to table, except:
+
+1. `\begin{equation} ... \end{equation}` - one equation with line separation
+1. `\begin{split} ... \end{split}` - one eqution with line separtion and alignment using `&`
+1. `\begin{align*} ... \end{align*}` - multiple equations with line separtion and alignment, `{align}` prints line number, and `{align*}` without number
+
+```latex
+$$
+\begin{split}
+H(Y|X) &= \sum_{x \in X}p(x)H(Y|x) \\
+&=- \sum_{x \in X}p(x)\sum_{y \in Y}p(y|x)\log{p(y|x)} \\
+&=-\sum_{x \in X}\sum_{y \in Y}p(y, x)\log{p(y|x)}
+\end{split}
+$$
+```
+
+$$
+\begin{split}
+H(Y|X) &= \sum_{x \in X}p(x)H(Y|x) \\
+&=- \sum_{x \in X}p(x)\sum_{y \in Y}p(y|x)\log{p(y|x)} \\
+&=-\sum_{x \in X}\sum_{y \in Y}p(y, x)\log{p(y|x)}
+\end{split}
+$$
+
+Styles
+
+1. \(\color{red}{xy}\) <=> `\color{red}{xy}`
+1. \(\bbox[yellow]{xy}\) <=> `\bbox[yellow]{xy}`
+1. \(\bbox[yellow, 5px, border:2px solid red]{xy}\) <=> `\bbox[yellow, 5px, border:2px solid red]{xy}`
 
 Greeks
 
@@ -197,3 +254,40 @@ Greeks
 1. \(X, \chi\) <=> `X, \chi`
 1. \(\Psi, \psi\) <=> `\Psi, \psi`
 1. \(\Omega, \omega\) <=> `\Omega, \omega`
+
+## Analysis
+
+1. \(\mathbb{R}, \mathbb{R}^n\) - real number space using `\mathbb{R}`
+1. \(\max\limits_{x \in \mathbb{R}}f(x), \min\limits_{x \in \mathbb{R}}f(x)\)
+1. \(\sup\limits_{x \in \mathbb{R}}f(x), \inf\limits_{x \in \mathbb{R}}f(x)\)
+1. \(\lim\limits_{x \to a}f(x), \lim\limits_{x \to a^{\pm}}f(x)\)
+1. \(\lim\limits_{x \to \infty}f(x), \lim\limits_{x \to \pm\infty}f(x)\)
+1. \(g(x)=O(f(x)) \Leftrightarrow \sup\limits_{x \to \infty} |\frac{g(x)}{f(x)}|=A\)
+1. \(g(x)=o(f(x)) \Leftrightarrow \lim\limits_{x \to \infty} \frac{g(x)}{f(x)}=0\)
+1. \(f'(x), f''(x), f^{k}(x)\) - kth order derivative
+1. \(\frac{\partial{f}}{\partial{x}}, \frac{\partial^{2}f}{\partial{x^2}}, \frac{\partial^{k}f}{\partial{x^k}}\) - kth order partial derivative
+1. \(\int_{a}^{b}f(x)\mathrm{d}x, \int_{c}^{d}\int_{a}^{d}f(x,y)\mathrm{d}x\mathrm{d}y\)
+
+## Algebra
+
+1. uppercase and blackboard bold for vector space - \(\mathbb{R, S, T}, \mathbb{R}^n, \mathbb{R}^{m \times n}\)
+1. lowercase for scalar values - \(a, b, c\)
+1. lowercase and bold-face for vectors, and all vectors assumed to be column - \(\mathbf{a, b, c}\)
+1. uppercase and bold-face for matrix - \(\mathbf{A, B, C}\)
+1. uppercase T for transpose - \(\mathbf{x}^T\)
+1. \(\mathbf{I}, \mathbf{I}_{M}\) - an identity matrix with \(m \times m\) dimension
+
+## Prob and Stats
+
+1. uppercase for random variables - \(X,Y, Z\)
+1. lowercase for samples - \(x, y, z\)
+1. lowercase Greeks for parameters - \(\alpha, \beta, \gamma\)
+1. random error - \(e \text{ or } \epsilon\)
+1. hat lowercase Greeks for estimated parameters - \(\hat{\alpha}, \hat{\beta}, \hat{\gamma}\)
+1. random variable vector - \(\left(\substack{Y_1 \\ \vdots \\Y_n}\right)\)
+1. sample vector - \(\left(\substack{y_1 \\ \vdots \\y_n}\right)\)
+1. distribution - \(f(y; \theta)\)
+1. expectation - \(\mu = E(Y)\)
+1. variance - \(\sigma^2 = D(Y) = \mathrm{Var}(Y)\)
+1. covariance - \(\mathrm{Cov}(X,Y) = E(X-E(X))(Y-E(Y))\) 
+1. correlation coefficient - \(\rho_{XY} = \frac{\mathrm{Cov}(X,Y)}{\sqrt{D(X)}\sqrt{D(Y)}}\)
