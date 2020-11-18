@@ -42,3 +42,10 @@ h1, h2, h3 {
 .book .book-body .page-wrapper .page-inner section.normal {
     overflow: auto;
 }
+
+.book .book-body .page-wrapper .page-inner section.normal table td, .book .book-body .page-wrapper .page-inner section.normal table th {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+  white-space: nowrap;
+  text-align: left;
+}

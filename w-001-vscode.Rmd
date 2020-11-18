@@ -132,7 +132,7 @@ launch.json
       1. `"mdmath.delimiters": "brackets"`
          1. inline: `\( ...\)`
          2. block: `$$ ... $$`
-3. Text Table
+3. Text Tables
       1. `Ctrl + q Ctrl + q`: toggle table mode
       2. `Ctrl + q Ctrl + f`: format table under the cursor
       3. `Tab`: go to next table in cell in table mode
