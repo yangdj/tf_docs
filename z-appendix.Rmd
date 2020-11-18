@@ -1,21 +1,6 @@
 # (APPENDIX) Appendix {-}
 
-# Prob & Stats
-
-## Distributions
-
-: (\#tab:dist) Common Distributions
-
-| Type | name           | Description                  | Repr           | Dist                                                         | \(\mu\)          | \(\sigma^2\)                                 | MLE                         |
-| ---- | -------------- | ---------------------------- | -------------- | ------------------------------------------------------------ | ---------------- | -------------------------------------------- | --------------------------- |
-| Disc | Geometric      | First success times          | \(G(X)\)       | \(p(x=k) = (1-p)^{k-1}p\)                                    | \(\frac{1}{p}\)  | \(\frac{1-p}{p^2}\)                          |                             |
-| Disc | Binomial       | Sampling with replacement    | \(B(n, p)\)    | \(p(x=k)=\binom{n}{k}p^{k}(1-p)^{n-k}\)                      | \(np\)           | \(np(1-p)\)                                  | \(\hat{p} = \frac{x}{n}\)   |
-| Disc | Hypergeometric | Sampling without replacement | \(H(n, p)\)    | \(p(x=k)=\frac{\binom{M}{k}\binom{N-M}{n-k}}{\binom{N}{N}}\) | \(n\frac{M}{N}\) | \(\frac{N-n}{N-1}n\frac{M}{N}\frac{N-M}{N}\) |                             |
-| Disc | Poisson        | Occur times                  | \(P(\lambda)\) | \(p(x=k)=\frac{\lambda^{k}e^{-\lambda}}{k!}\)                | \(\lambda \)     | \(\lambda\)                                  | \(\hat{\lambda} = \bar{x}\) |
-
 # Terms
-
-## Math {#math}
 
 ## Stat {#stat}
 

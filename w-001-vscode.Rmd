@@ -105,24 +105,25 @@ launch.json
 1. `Ctrl+P; Cmd+P`: go to file
 2. `Ctrl+Shift+P; Cmd+Shift+P	`: go to command
 3. `Ctrl+K Ctrl+S; Cmd+K Cmd+S` - keyboard shortcuts
-4.  `Alt+<-, Alt+->`: go to other file
-5. `Ctrl+Click`: go to link or definition
-6. `Ctrl+G;`: go to line
-7. `Ctrl+Shift+\`: jump between brackets
-8. `Ctrl+Shift+O`: jump to symbols
-9. `Ctrl+[, Ctrl+]`: line indent
-10. `Shift+Alt`: column selection
-11. `Ctrl+D`: select current or next word under the cursor
-12. `Ctrl+Shift+L`: select all the same word uner the cursor
-13. `Ctrl+Space`: trigger autocompletion
-14. `Alt+Click`: add new cursor
-15. `Ctrl+Backspace`: delete left word
-16. `Ctrl+Delete`: delete right word
-17. `Ctrl+Shift+K`: delete current line
-18. `Ctrl+Enter`: insert line below
-19. `Ctrl+Shift+Enter`: insert line above
-20. `Alt+Uparrow, Alt+Downarrow`: move line up and down
-21. `Alt+Shift+Uparrow, Alt+Shift+Downarrow`: copy line up and down
+4. `Alt+Z`: toggle word wrap
+5.  `Alt+<-, Alt+->`: go to other file
+6. `Ctrl+Click`: go to link or definition
+7. `Ctrl+G;`: go to line
+8. `Ctrl+Shift+\`: jump between brackets
+9. `Ctrl+Shift+O`: jump to symbols
+10. `Ctrl+[, Ctrl+]`: line indent
+11. `Shift+Alt`: column selection
+12. `Ctrl+D`: select current or next word under the cursor
+13. `Ctrl+Shift+L`: select all the same word uner the cursor
+14. `Ctrl+Space`: trigger autocompletion
+15. `Alt+Click`: add new cursor
+16. `Ctrl+Backspace`: delete left word
+17. `Ctrl+Delete`: delete right word
+18. `Ctrl+Shift+K`: delete current line
+19. `Ctrl+Enter`: insert line below
+20. `Ctrl+Shift+Enter`: insert line above
+21. `Alt+Uparrow, Alt+Downarrow`: move line up and down
+22. `Alt+Shift+Uparrow, Alt+Shift+Downarrow`: copy line up and down
 
 ## Plugins
 
@@ -207,7 +208,6 @@ Path Matching
 1. `*`: match one or more characters
 2. `?`: match one character
 3. `**`: match any number of path segments including none
-4. `[]`: match one of characters group
-   1. `example.[0-9]` matches `example.0, example.1, ...`
+4. `[]`: match one of characters group, `example.[0-9]` matches `example.0, example.1, ...`
 5. `!`: match negation of the characters
 6. `{}`: match a set of values, `{**/*.html,**/*.txt}` match all html and text files
