@@ -11,7 +11,7 @@
         {
             "label": "r-bookdown",
             "type": "shell",
-            "command": "Rscript -e \"bookdown::servr_book()\""
+            "command": "R -e \"bookdown::servr_book()\""
         }
     ]
 }
