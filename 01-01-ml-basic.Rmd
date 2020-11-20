@@ -1,16 +1,14 @@
-# (PART) Math {-}
+# (PART) Machine Learning {-}
 
-# Machine Learning
+# Basic
 
-## Basic
-
-Scales
+## Scales
 
 1. Nominal: different categories, {"red", "yellow", "blue"}
 2. Ordinal: categories with natural ordering or ranking, {"small", "median", "big"}
 3. Continuous
 
-Exploration
+## Exploration
 
 1. Variables measurement scales, continuous or categorical? If categorical, nominal, or ordinal?
 2. Shape of the scales
@@ -22,7 +20,7 @@ Exploration
       2. Scatter plots for continuous variables, suggesting relations, linear or non-linear?
       3. Boxplots and Dotplots (density plot) for continuous grouped by categorial variable, suggesting whether group mean increse or decrease with an ordinal variable?
 
-Modeling
+## Modeling
 
 1. Model specification - specifying models in two parts: an equation linking the response and explanatory variables and the probability distribution of the response variable.
 2. Estimating parameters of the models.
