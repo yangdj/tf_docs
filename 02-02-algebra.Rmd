@@ -1,4 +1,4 @@
-# Algebra
+# Linear Algebra
 
 ## Operations
 

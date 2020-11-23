@@ -103,7 +103,15 @@ I(\theta) &= -E(H) \\
 \end{aligned}
 $$
 
-The variance of \(\hat\theta\) is the inverse of the Information matrix:
+```{theorem, label = "rc", name="Rao-Cramer Lower Bound"}
+The variance of any unbiased estimator of a parameter \(\theta\) must be at least as large as :
+
+$$
+\mathrm{Var}(\theta) >= I^{-1}(\theta)
+$$
+```
+
+The variance of mle estimation of \(\hat\theta\) is the inverse of the Information matrix, so it is efficient.
 
 $$
 \mathrm{Var}(\theta) = I(\theta)^{-1}
@@ -168,3 +176,45 @@ Bayes basic rule is:
 $$
 P(A|B) = \frac {P(B|A)P(A)} {P(B)}
 $$
+
+## EFD
+
+EFD(Exponential Family Distribution) has the following form, and \(a, b, s, t\) are known functions: 
+
+$$
+f(y, \theta) = s(y)t(\theta)e^{a(y)b(\theta)}
+$$
+
+or equivalent:
+
+$$
+\begin{aligned}
+f(y, \theta) &= e^{a(y)b(\theta) + c(\theta) + d(y)} \\
+s(y) &= e^{d(y)} \\
+t(\theta) &= e^{c(\theta)}
+\end{aligned}
+$$
+
+If \(a(y) = y\), the distribution is said to be in *canonical (standard)* form, and \(b(\theta)\) is sometimes called *natural parameter* of the distribution.
+
+If there are other parameters, in addition to \(\theta\), they are regarded as nuisance parameters forming parts of the functions \(a, b, c, d\), and treated as known.
+
+Properties
+
+$$
+\begin{aligned}
+E(a(y)) &= -\frac {c^{'}(\theta)} {b^{'}(\theta)} \\
+D(a(y)) &= \frac {b^{''}(\theta)c^{'}(\theta) - c^{''}(\theta)b^{'}(\theta)} {(b^{'}(\theta))^3}
+\end{aligned}
+$$
+
+The following distributions are all in the canonical form.
+
+: (\#tab:canonical) Common Canonical Distributions
+
+| Distribution (\@ref(tab:dist)) | \(b(\theta)\)                      | \(c(\theta)\)                                                 | \(d(y)\)                    |
+| ------------------------------ | ---------------------------------- | ------------------------------------------------------------- | --------------------------- |
+| Binomial                       | \(\log {(\frac {\pi} {1 - \pi})}\) | \(nlog(1 - \pi)\)                                             | \(log \binom {n}{y}\)       |
+| Poisson                        | \(\log \theta\)                    | \(-\theta\)                                                   | -\(\log y!\)                |
+| Normal                         | \(\frac {\mu} {\sigma^2}\)         | \(-\frac {\mu^2} {2\sigma^2} - \frac{1}{2}log(2\pi\sigma^2)\) | \(-\frac {y^2}{2\sigma^2}\) |
+| Exponential                    | \(-\lambda\)                       | \(\log(\lambda)\)                                             | 0                           |

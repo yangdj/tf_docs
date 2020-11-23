@@ -92,21 +92,21 @@ install.packages("odbc")
     ```
 
 * PostgreSQL
-  * Linux: `yum install postgresql-odbc`
-  * [Windows](https://www.postgresql.org/ftp/odbc/versions/msi/):
-    * when defines DNS, using driver `PostgreSQL Unicode (x64)`
-    * Set `Option -> Datasource -> Page2 -> Connect Strings: set client_encoding to 'UTF8'` when chinese characters do not display normally
+    * Linux: `yum install postgresql-odbc`
+    * [Windows](https://www.postgresql.org/ftp/odbc/versions/msi/):
+        * when defines DNS, using driver `PostgreSQL Unicode (x64)`
+        * Set `Option -> Datasource -> Page2 -> Connect Strings: set client_encoding to 'UTF8'` when chinese characters do not display normally
 
 * Hive
-  * [Linux ClouderaHiveODBC](https://www.cloudera.com/downloads/connectors/hive/odbc/2-6-1.html)
+    * [Linux ClouderaHiveODBC](https://www.cloudera.com/downloads/connectors/hive/odbc/2-6-1.html)
 
-    ```bash
-    wget https://downloads.cloudera.com/connectors/hive_odbc_2.6.1.1001/Linux/ClouderaHiveODBC-2.6.1.1001-1.x86_64.rpm
-    rpm -ivh ClouderaHiveODBC-2.6.1.1001-1.x86_64.rpm
-    ```
-  * [Microsoft Hive ODBC](https://www.microsoft.com/en-us/download/details.aspx?id=40886)
+        ```bash
+        wget https://downloads.cloudera.com/connectors/hive_odbc_2.6.1.1001/Linux/ClouderaHiveODBC-2.6.1.1001-1.x86_64.rpm
+        rpm -ivh ClouderaHiveODBC-2.6.1.1001-1.x86_64.rpm
+        ```
+    * [Microsoft Hive ODBC](https://www.microsoft.com/en-us/download/details.aspx?id=40886)
 
-    When defines DNS, setting "Advanced Options" -> "Unicode SQL character type" if chinese characters do not display normally.
+        When defines DNS, setting "Advanced Options" -> "Unicode SQL character type" if chinese characters do not display normally.
 
 ### Connections {-}
 
