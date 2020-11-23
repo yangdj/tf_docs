@@ -1,3 +1,173 @@
 # (PART) Languages {-}
 
 # R
+
+## ODBC
+
+```r
+install.packages("odbc")
+```
+
+### Configuration {-}
+
+`odbcinst -j` lists configuration files.
+
+1. `/etc/odbcinst.ini; ~/odbcinst.ini`: [drivers](#odbc-drivers) settings for system and local users
+
+    ```ini
+    [SQLite3]
+    Description = SQLite ODBC Driver
+    Driver = /usr/local/devart/odbcsqlite/libdevartodbcsqlite.3.0.1.x64.so
+    Setup = /usr/local/devart/odbcsqlite/libdevartodbcsqlite.3.0.1.x64.so
+
+    [Mariadb]
+    Description = Mariadb driver
+    Driver = /usr/lib64/libmaodbc.so
+
+    [PostgreSQL]
+    Description = Postgresql driver for GNU/Linux
+    Driver = /usr/lib64/psqlodbcw.so
+    Setup = /usr/lib64/libodbcpsqlS.so
+
+    [Hive]
+    Description = cloudera hive driver
+    Driver = /opt/cloudera/hiveodbc/lib/64/libclouderahiveodbc64.so
+    ```
+
+2. `/etc/odbc.ini; ~/.odbc.ini`: datasources for system and users (DNS)
+
+    ```ini
+    [sqlite3]
+    Description = My SQLite test database
+    Driver = SQLite3
+    Database = /path/to/file.db
+
+    [mariadb]
+    Driver = Mariadb
+    Server = localhost
+    Port = 3306
+    Database = db
+    Socket = /path/to/mysql.sock
+    User = user
+    Password = pwd
+
+    [postgresql]
+    Driver = PostgreSQL
+    Servername = localhost
+    Port = 5432
+    Database = db
+    UserName = user
+    Password = pwd
+
+    [hive]
+    Driver = Hive
+    Host = localhost
+    Port = 10000
+    Database = db
+    AuthMech = 3
+    Username = user
+    Password = pwd
+    ```
+
+### Drivers {-#odbc-drivers}
+
+* SQLite3
+
+    ```bash
+    wget https://www.devart.com/odbc/sqlite/devart-odbc-sqlite.x86_64.rpm
+    rpm -ivh devart-odbc-sqlite.x86_64.rpm
+    ```
+
+* MariaDB/MySQL
+
+    ```bash
+    # MySQL
+    wget https://dev.mysql.com/get/Downloads/Connector-ODBC/8.0/mysql-connector-odbc-8.0.14-1.el7.x86_64
+    rpm rpm -ivh mysql-connector-odbc-8.0.14-1.el7.x86_64.rpm
+
+    # MariaDB (recommended)
+    wget https://downloads.mariadb.com/Connectors/odbc/connector-odbc-3.0.8/mariadb-connector-odbc-3.0.8-ga-rhel7-x86_64.tar.gz
+    tar xf mariadb-connector-odbc-3.0.8-ga-rhel7-x86_64.tar.gz
+    cp lib64/libmaodbc.so /usr/lib64/
+    ```
+
+* PostgreSQL
+  * Linux: `yum install postgresql-odbc`
+  * [Windows](https://www.postgresql.org/ftp/odbc/versions/msi/):
+    * when defines DNS, using driver `PostgreSQL Unicode (x64)`
+    * Set `Option -> Datasource -> Page2 -> Connect Strings: set client_encoding to 'UTF8'` when chinese characters do not display normally
+
+* Hive
+  * [Linux ClouderaHiveODBC](https://www.cloudera.com/downloads/connectors/hive/odbc/2-6-1.html)
+
+    ```bash
+    wget https://downloads.cloudera.com/connectors/hive_odbc_2.6.1.1001/Linux/ClouderaHiveODBC-2.6.1.1001-1.x86_64.rpm
+    rpm -ivh ClouderaHiveODBC-2.6.1.1001-1.x86_64.rpm
+    ```
+  * [Microsoft Hive ODBC](https://www.microsoft.com/en-us/download/details.aspx?id=40886)
+
+    When defines DNS, setting "Advanced Options" -> "Unicode SQL character type" if chinese characters do not display normally.
+
+### Connections {-}
+
+When connecting to databases, choose odbc or R database packages.
+
+1. odbc
+
+    ```r
+    con <- DBI::dbConnect(odbc::odbc(), dsn = "dsn")
+    ...
+    DBI::dbDisconnect(con
+    ```
+
+2. database package
+
+    ```r
+    con <- DBI::dbConnect(driver, user, password, host, port, dbname, ...)
+    ...
+    DBI::dbDisconnect(con)
+    ```
+
+    drivers can be:
+
+    1. RSQLite::SQLite()
+    2. RMariaDB::MariaDB()
+    3. RPostgres::Postgres()
+    
+    ```r
+    con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+    con <- DBI::dbConnect(RPostgres::Postgres(), user="user", password="pwd", ...)
+    ```
+
+    For Windows, when using driver `RPostgreSQL::PostgreSQL()`, not `RPostgres::Postgres()`, it may need change client encoding before executing queries:
+
+    ```r
+    con <- ...
+    RPostgreSQL::postgresqlpqExec(con, "SET client_encoding = 'GBK'")
+    dbGetQuery(con, query)
+    ...
+    ```
+
+### Operations {-}
+
+Table:
+
+1. `DBI::Id(schema="schema_name", table="table_name")`: refer to table nested in a hierarchy, postgresql, e.g..
+2. `DBI::dbExistsTable()`
+    1. `DBI::dbExistsTable(con, "tos_os_p")`
+    2. `DBI::dbExistsTable(con, DBI::id(schema="dw", table="tos_os_p"))`
+3. `DBI::dbCreateTable()`
+4. `DBI::dbAppendTable()`
+5. `DBI::dbReadTable()`
+6. `DBI::dbWriteTable()`
+7. `DBI::dbRemoveTable()`
+8. `DBI::dbListFields()`
+
+Queries:
+
+1. `DBI::dbGetQuery()`: send query, retrieve results and clear result set, best for interactive use
+2. `DBI::dbSendQuery() DBI::dbFetch()`  `DBI::dbHasCompleted DBI::dbClearResult()`
+3. `DBI::dbExecute()`: execute an update query best for interactive
+4. `DBI::dbSendStatement()`: execute data manipulation (update, insert into, delete, drop table,...)
+5. `DBI::dbListTables()`: not supports schema, use DBI::dbGetQuery() when needed
+6. `DBI::dbBegin() DBI::dbCommit() DBI::dbRollback()`: for transactions
