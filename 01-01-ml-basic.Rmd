@@ -2,6 +2,8 @@
 
 # Basic
 
+This chapter consists of basic knowledge and steps for machine learning.
+
 ## Scales
 
 1. Nominal: different categories, {"red", "yellow", "blue"}
@@ -26,119 +28,3 @@
 2. Estimating parameters of the models.
 3. Checking the adequacy of the model--how well the model ﬁts the actual data.
 4. Making inferences; e.g., calculating conﬁdence intervals and testing hypotheses about the parameters.
-
-## Correlation and Similarity
-
-1. Pearson Correlation
-
-$$
-\rho = \frac {\sum(x_i - \bar{x})(y_i - \bar{y})} {\sqrt{\sum(x_i - \bar{x})^2\sum(y_i - \bar{y})^2}}
-$$
-
-2. Cosine Similarity
-
-$$
-\cos{\theta} = \frac{\sum{x_i y_i}}{\sqrt{\sum{x_i^2}\sum{y_i^2}}}
-$$
-
-
-## Maximum Likelihood Estimate
-
-The likelihood estimate is:
-
-$$
-L(\theta, y) = \prod_{i=1}^{n}f(y_i, \theta)
-$$
-
-Usually, log likelihood estimate is used:
-
-$$
-l(\theta, y) = \log L(\theta, y) = \sum_{i=1}^{n}\log f(yi, \theta)
-$$
-
-\(U(\theta)\) is called *Score Function*, and defined as follows. Its expection is zero: \(E(U(\theta)) = 0\)
-
-$$
-U(\theta) = \frac{\partial l(\theta, y)} {\partial \theta}\\
-$$
-
-\(I(\theta)\) is called *Information Matrix*, and defined as follows. Its values is: \(I(\theta) = -E(U')\)
-
-$$
-I(\theta) = D(U(\theta)) = E(U(\theta)^2)
-$$
-
-To make \(l(\theta, y)\) maximum, just finding \(\hat \theta\), which satifies:
-
-$$
-l(\hat \theta) \ge l(\theta, y)  \quad \forall \theta  \in \Omega
-$$
-
-\(\hat \theta\) can be generally solved using:
-
-$$
-\begin{aligned}
-&\frac {\partial{l(\theta, y)}}{\partial{\theta_j}} = 0 \quad j = 1,...,p \\
-&\frac {\partial^2 l(\theta, y)} {\partial \theta_j \partial \theta_k}\bigg \lvert_{\theta = \hat \theta} \text{ is negative definite}
-\end{aligned}
-$$
-
-MLE Properties
-
-1. Invariance
-
-      if \(\hat \theta\) is maximum likelihood value, and \(g(\theta)\) is any function of the parameters θ,then the maximum likelihood estimator of \(g(\theta)\) is \(g(\hat \theta)\).
-
-2. Consistent: \(\lim\limits_{n \to \infty}\hat \theta = \theta\)
-3. Asymptotically normal: \(\lim\limits_{n \to \infty}\hat \theta \sim N(\theta, I^{-1}(\theta))\)
-4. Efficient: Variance-Covariance is the Rao-Cramer lower bound
-
-Inference
-
-1. \(Z\)-Statistic Test
-
-    Special case of Wald test:  \(H_0: \theta_i = \theta^*\)
-
-    $$
-    z = \frac {\hat \theta_i - \theta^*} {\sqrt{V(\hat \theta)_i}} \stackrel{a} \sim N(0, 1)
-    $$
-
-2. Wald Test: \(H_0: \theta = \theta_0\)
-
-   $$
-   W = (\hat \theta - \theta_0)^T V^{-1}(\hat \theta)(\hat \theta - \theta_0) \stackrel {a} \sim \chi_p^2 \quad p \text{ is freedom of } \theta
-   $$
-
-3. Score Test
-
-    $$
-    U(\theta) \stackrel {a} \sim N_p(0, I(\theta))
-    $$
-
-    Under \(H_0 : \theta = \theta_0\), the quadratic form has approximately \(\chi_p^2\) distribution
-
-    $$
-    Q = u(\theta_0)^T I^{-1}(\theta_0)u(\theta_0)
-    $$
-
-4. Likelihood Ratio Test
-
-    $$
-    \lambda = \frac {L(\hat \theta_{\omega1}, y)} {L(\hat \theta_{\omega2}, y)} \quad \omega1 \subset \omega 2
-    $$
-
-    then, \(0 \le \lambda \le 1\)
-    $$ -2\log \lambda \stackrel {a} \sim \chi_v^2 \quad v = dim(\omega 2) - dim(\omega 1)
-    $$
-
-    LIkelihood ratio test may be better than Wald and Score methods in small samples.
-
-5. LM(Lagrange Multiplier) Test
-
-## Bayes
-
-Bayes basic rule is:
-
-$$
-P(A|B) = \frac {P(B|A)P(A)} {P(B)}
-$$
