@@ -8,6 +8,10 @@
 install.packages("odbc")
 ```
 
+References:
+    
+1. [rstudio-db](https://db.rstudio.com/)
+
 ### Configuration {-}
 
 `odbcinst -j` lists configuration files.
@@ -160,6 +164,7 @@ Table:
 4. `DBI::dbAppendTable()`
 5. `DBI::dbReadTable()`
 6. `DBI::dbWriteTable()`
+    1. `DBI::dbWriteTable(con, Id(schema="dw", "table="tos_os_p"), batch_rows = 10000, overwrite = TRUE)`
 7. `DBI::dbRemoveTable()`
 8. `DBI::dbListFields()`
 

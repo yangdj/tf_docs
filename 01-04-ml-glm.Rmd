@@ -1,41 +1,26 @@
 # GLM
 
-For GLM (generalized linear models), the probability distributions all belong to [exponential family distributions](#efd) and have the canonical form (\@ref(tab:canonical)), including:
+For GLM (generalized linear models), the probability distributions all belong to [exponential family distributions](#efd) and have the canonical form (\@ref(tab:canonical)).
 
-1. Binominal
-2. Poisson
-3. Exponential
-4. Normal
+## Link Function
 
-Link Function
+Function \(g\) is called link function when:
+
 $$
 g(E(y)) = \beta_0 + \beta_1x_1 + ... + \beta_mx_m = X\beta
 $$
-The function \(g\) is called link function.
-Model Selection
-When comparing two models, they should have the same probability distribution and the same
-link function, but the linear component of one model have more parameters than the other. The
-simple model, corresponding to then null hypothesis \(H_0\), must be a special case of the other
-more general model. If the simple model fits the data well as the more general model does, then
-it is preferred on the grounds of parsimony and \(H_0\) is retained, otherwise the general model
-is preferred. To make comparisons, summary statistics is used to describe how well the model
-fit the data. The goodness of fit statistics may be based on:
-Maximum value of the likelihood function
-Maximum value of the log-likelihood function
-Minimum value of the sum of square on residuals
+
+## Model Selection
+
+When comparing two models, they should have same probability distribution and same link function, but the linear component of one model have more parameters than the other. The simple model, corresponding to null hypothesis \(H_0\), must be a special case of the more general model. If the simple model fits the data well as the more general model does, then it is preferred on the grounds of parsimony and \(H_0\) is retained, otherwise the general model is preferred. To make comparisons, summary statistics is used to describe how well the model fits the data. The goodness of fit statistics may be based on:
+
+* Maximum value of the likelihood  or log-likelihood function
+* Minimum value of the sum of square on residuals
+
 The process and logic can be summarised as follows:
 
-1. Specify a model \(M_0\) corresponding to \(H_0\). Specify a more general model \(M_1\) (
-    with \(M_0\) as a special case of \(M_1\)
-
-2. Fit \(M_0\) and calculate the goodness of fit statistics \(G_0\). Fit \(M_1\) and calculate the
-    goodness of \(G_1\)
-
+1. Specify a model \(M_0\) corresponding to \(H_0\) and a more general model \(M_1\) (with \(M_0\) as a special case of \(M_1\))
+2. Fit \(M_0\) and calculate the goodness of fit statistics \(G_0\). Fit \(M_1\) and calculate the goodness of \(G_1\)
 3. Calculate the improvement in fit, usually \(G_1 - G_0\), \(G_1/G_0\) is another possibility
-
-4. Use the sampling distribution of \(G_1 - G_0\) (or some related statistics) to test the null
-    hypothesis that \(G_1 = G_0\) against the alternative hypothesis \(G_1 \ne G_0\)
-
-5. If the hypothesis that \(G_1 = G_0\) is not rejected, the \(H_0\) is not rejected and \(M_0\) is
-    the preferred model. If the hypothesis \(G_1 = G_0\) is rejected, then \(H_0\) is rejected and
-    \(M_0\) is regarded as the better model
+4. Use the sampling distribution of \(G_1 - G_0\) (or some related statistics) to test the null hypothesis that \(G_1 = G_0\) against the alternative hypothesis \(G_1 \ne G_0\)
+5. If the hypothesis \(G_1 = G_0\) is not rejected, then \(H_0\) is not rejected and \(M_0\) is the preferred model, otherwise \(M_1\) is the better model
