@@ -2,17 +2,7 @@
 
 ## Operations
 
-### Dot Product
-
-$$
-\mathbf{u} \cdot \mathbf{v} = \mathbf{u}^T \mathbf{v} = \sum_{i=1}^{n}u_iv_i
-$$
-
-### Norm
-
-$$
-\begin{align*}
-||\mathbf{u}||_1 &= \sum_{i=1}^{n}|u_i| \\
-||\mathbf{u}||_2 &= \sqrt{\sum_{i=1}^{n}u_{i}^{2}}
-\end{align*}
-$$
+1. Dot Product: \(\mathbf{u} \cdot \mathbf{v} = \mathbf{u}^T \mathbf{v} = \sum_{i=1}^{n}u_iv_i\)
+2. Norm:
+    1.  L1: \(||\mathbf{u}||_1 = \sum_{i=1}^{n}|u_i|\)
+    2.  L2: \(||\mathbf{u}||_2 = \sqrt{\sum_{i=1}^{n}u_{i}^{2}}\)

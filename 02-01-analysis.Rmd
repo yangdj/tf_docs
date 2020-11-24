@@ -1,1 +1,102 @@
 # (PART) Math {-}
+
+# Mathematical Analysis
+
+## Functions
+
+### Basic Functions {-}
+
+: (\#tab:basic-func) Basic functions
+
+| \(f(x)\)                | \(f'(x)\)                                        |
+| ----------------------- | ------------------------------------------------ |
+| \(c\)                   | 0                                                |
+| \(x^{a}\)               | \(ax^{a-1}\)                                     |
+| \(a^{x}, e^{x}\)        | \(a^{x}\ln{a}, e^{x}\)                           |
+| \(\log_{a}(x), \ln{x}\) | \(\frac{1}{x\ln{a}}, \frac{1}{x}\)               |
+| \(\sin(x)\)             | \(\cos(x)\)                                      |
+| \(\cos(x)\)             | \(-\sin(x)\)                                     |
+| \(\tan(x)\)             | \(\frac{1}{\cos^2{x}} = \sec^2(x)\)              |
+| \(\cot(x)\)             | \(-\frac{1}{\sin^2{x}} = -\csc^2(x)\)            |
+| \(\sec(x)\)             | \(\frac{\sin(x)}{\cos^2(x)} = \tan(x)\sec(x)\)   |
+| \(\csc(x)\)             | \(-\frac{\cos(x)}{\sin^2{x}} = -\cot(x)\csc(x)\) |
+| \(\arcsin(x)\)          | \(\frac{1}{\sqrt{1 - x^{2}}}\)                   |
+| \(\arccos(x)\)          | \(-\frac{1}{\sqrt{1 - x^{2}}}\)                  |
+| \(\arctan(x)\)          | \(\frac{1}{1 + x^{2}}\)                          |
+| \(\mathrm{arccot(x)}\)  | \(-\frac{1}{1 + x^{2}}\)                         |
+| \(\mathrm{arcsec(x)}\)  | \(\frac{1}{x\sqrt{x^{2} - 1}}\)                  |
+| \(\mathrm{arccsc(x)}\)  | \(-\frac{1}{x\sqrt{x^{2} - 1}}\)                 |
+| \(g(x) \pm h(x)\)       | \(g'(x) \pm h'(x)\)                              |
+| \(g(x) \cdot h(x) \)    | \(g'(x)h(x) + g(x)h'(x)\)                        |
+| \(g(x)/h(x) \)          | \(\frac {g'(x)h(x) - g(x)h'(x)} {h^2(x)}\)       |
+| \(g(h(x))\)             | \(g'(h(x))h'(x)\)                                |
+
+
+### Euler Function {-}
+
+Gamma
+
+$$
+\begin{aligned}
+&T(s) = \int_{0}^{+\infty}x^{s - 1}e^{-x}\mathrm{d}x \quad (s \gt 0) \\
+&T(s + 1) = sT(s) \\
+&T(\frac{1}{2}) = \sqrt{\pi}
+\end{aligned}
+$$
+
+Beta
+
+$$
+\begin{aligned}
+&B(p, q) = \int_{0}^{1}x^{p - 1}(1 - x)^{q - 1}\mathrm{d}x \quad (p \gt 0, q \gt 0) \\
+&B(p, q) = B(q, p) \\
+&B(p, q) = \frac {T(p)T(q)} {T(p + q)}
+\end{aligned}
+$$
+
+## Matrix Calculas
+
+### Definition {-}
+
+Let \(X\) be a \(N \times M\) matrix, \(\mathbf{u}\) and \(\mathbf{v}\) be a \(N\) and \(M\) dimension vectors, and \(a\) a scalar, then we have the following definitions:
+
+$$
+\begin{aligned}
+\frac {\partial a} {\partial {\mathbf u}} &= \left(\frac {\partial a} {\partial u_1}, \cdots, \frac {\partial a} {\partial u_n}\right) \in \mathbb{R^n}  \quad \text{e.g., Gradient: } \nabla f(x, y, z) = \left( \frac {\partial f} {\partial x}, \frac {\partial f} {\partial y}, \frac {\partial f} {\partial z}\right) \\ \\
+
+\frac {\partial \mathbf u} {\partial a} &= 
+\begin{pmatrix}
+\frac {\partial u_1}{\partial a} \\ \vdots \\ \frac {\partial u_n}{\partial a}
+\end{pmatrix} \in \mathbb{R^n} \\ \\
+
+\frac {\partial \mathbf u} {\partial \mathbf v} &= 
+\begin{pmatrix} 
+\frac {\partial u_1} {\partial v_1},&\cdots,&\frac{\partial u_1} {\partial v_m} \\ 
+&\cdots & \\
+\frac {\partial u_n} {\partial v_1},&\cdots,&\frac{\partial u_n} {\partial v_m} \\
+\end{pmatrix} \in \mathbb{R^{n \times m}} \\ \\
+
+\frac {\partial X} {\partial a} &= 
+\begin{pmatrix} 
+\frac {\partial X_{11}} {\partial a},&\cdots,&\frac{\partial X_{1m}} {\partial a} \\ 
+&\cdots & \\
+\frac {\partial X_{n1}} {\partial a},&\cdots,&\frac{\partial X_{nm}} {\partial a} \\
+\end{pmatrix} \in \mathbb{R^{n \times m}} \\ \\
+
+\frac {\partial a} {\partial X} &= 
+\begin{pmatrix} 
+\frac {\partial a} {\partial X_{11}},&\cdots,&\frac {\partial a} {\partial X_{1m}} \\ 
+&\cdots & \\
+\frac {\partial a} {\partial X_{n1}},&\cdots,&\frac {\partial a} {\partial X_{nm}} \\
+\end{pmatrix} \in \mathbb{R^{n \times m}}
+\end{aligned}
+$$
+
+Derivatives
+
+$$
+\begin{aligned}
+&y = \left(\mathbf{q - As}\right)^T \mathbf{W} \left( \mathbf{q - As}\right) \\
+&\frac {\partial y}{\partial \mathbf s} = \left(\mathbf{q - As}\right) ^T \left( \mathbf{W+W^{T}}\right)\mathbf{A}
+\end{aligned}
+$$
