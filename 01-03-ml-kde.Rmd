@@ -1,4 +1,4 @@
-## KDE
+# KDE
 
 KDE (Kernel Density Estimator) uses a kernel to estimate distribution of a sample:
 
