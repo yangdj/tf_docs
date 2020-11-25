@@ -1,0 +1,28 @@
+## KDE
+
+KDE (Kernel Density Estimator) uses a kernel to estimate distribution of a sample:
+
+$$
+\hat p_n(x) = \frac {1}{nh}\sum_{i=1}^{n}K(\frac{X_i - x}{h})
+$$
+
+\(K(x)\) is called kernel function, \(h\) is called bandwidth. \(K(x)\) has properties:
+
+$$
+K(x) = K(-x) \\
+\max_x K(x) = K(0) \\
+\int{K(x)}\mathrm{d}x=1 \\
+\lim_{x \to \infty}K(x) = 0
+$$
+
+The following kernels are often userd.
+
+: (\#tab:kernels) Kernel Functions
+
+| Name         | K(x)                                         |
+| ------------ | -------------------------------------------- |
+| Gaussian     | \(\frac{1}{\sqrt {2\pi}}e^{-\frac{x^2}{2}}\) |
+| Uniform      | \(\frac {1}{2}I(-1 \le x \le 1)\)            |
+| Epanechnikov | \(\frac {3}{4}\max\{1-x^2, 0\}\)             |
+
+Epanechnikov is a special kernel that has the lowest (asymptotic) mean square error.

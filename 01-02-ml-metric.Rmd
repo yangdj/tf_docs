@@ -1,6 +1,35 @@
 # Metrics
 
-1. Pearson Correlation
+## Normalization
+
+1. Standard with mean 0 and variance 1: 
+
+    $$
+    \begin{aligned}
+    x' &= \frac{x - u}{s} \\
+    u &= \frac{1}{n}{\sum_{i=1}^{n}x_i} \\
+    s &= \frac{1}{n}\sum_{i=1}^{n}(x_i - \bar{x})^2
+    \end{aligned}
+    $$
+
+## Loss Function
+
+### MSE {-}
+
+MSE (Mean Square Error) is often used for regression model:
+
+$$
+L = \frac{1}{2n} \sum_{i=1}^{n}(y_i - \hat{y_i})^2
+$$
+
+Its weighted form is:
+
+$$
+L = \sum_{i=1}^{n}w_i(y_i - \hat y_i)^2 \quad
+w_i = (\sigma_i^2)^{-1}
+$$
+
+2. Pearson Correlation
 
 $$
 \rho = \frac {\sum(x_i - \bar{x})(y_i - \bar{y})} {\sqrt{\sum(x_i - \bar{x})^2\sum(y_i - \bar{y})^2}}

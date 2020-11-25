@@ -62,27 +62,44 @@ Let \(X\) be a \(N \times M\) matrix, \(\mathbf{u}\) and \(\mathbf{v}\) be a \(N
 
 $$
 \begin{aligned}
-\frac {\partial a} {\partial {\mathbf u}} &= \left(\frac {\partial a} {\partial u_1}, \cdots, \frac {\partial a} {\partial u_n}\right) \in \mathbb{R^n}  \quad \text{e.g., Gradient: } \nabla f(x, y, z) = \left( \frac {\partial f} {\partial x}, \frac {\partial f} {\partial y}, \frac {\partial f} {\partial z}\right) \\ \\
+\frac {\partial a} {\partial {\mathbf u}} = \left(\frac {\partial a} {\partial u_1}, \cdots, \frac {\partial a} {\partial u_n}\right) \in \mathbb{R^n} \\
+\text{Gradient: } \nabla f(x, y, z) = \left( \frac {\partial f} {\partial x}, \frac {\partial f} {\partial y}, \frac {\partial f} {\partial z}\right)
+\end{aligned}
+$$
 
+$$
+\begin{aligned}
 \frac {\partial \mathbf u} {\partial a} &= 
 \begin{pmatrix}
 \frac {\partial u_1}{\partial a} \\ \vdots \\ \frac {\partial u_n}{\partial a}
-\end{pmatrix} \in \mathbb{R^n} \\ \\
+\end{pmatrix} \in \mathbb{R^n}
+\end{aligned}
+$$
 
+$$
+\begin{aligned}
 \frac {\partial \mathbf u} {\partial \mathbf v} &= 
 \begin{pmatrix} 
 \frac {\partial u_1} {\partial v_1},&\cdots,&\frac{\partial u_1} {\partial v_m} \\ 
 &\cdots & \\
 \frac {\partial u_n} {\partial v_1},&\cdots,&\frac{\partial u_n} {\partial v_m} \\
-\end{pmatrix} \in \mathbb{R^{n \times m}} \\ \\
+\end{pmatrix} \in \mathbb{R^{n \times m}} 
+\end{aligned}
+$$
 
+$$
+\begin{aligned}
 \frac {\partial X} {\partial a} &= 
 \begin{pmatrix} 
 \frac {\partial X_{11}} {\partial a},&\cdots,&\frac{\partial X_{1m}} {\partial a} \\ 
 &\cdots & \\
 \frac {\partial X_{n1}} {\partial a},&\cdots,&\frac{\partial X_{nm}} {\partial a} \\
-\end{pmatrix} \in \mathbb{R^{n \times m}} \\ \\
+\end{pmatrix} \in \mathbb{R^{n \times m}}
+\end{aligned}
+$$
 
+$$
+\begin{aligned}
 \frac {\partial a} {\partial X} &= 
 \begin{pmatrix} 
 \frac {\partial a} {\partial X_{11}},&\cdots,&\frac {\partial a} {\partial X_{1m}} \\ 
@@ -100,3 +117,19 @@ $$
 &\frac {\partial y}{\partial \mathbf s} = \left(\mathbf{q - As}\right) ^T \left( \mathbf{W+W^{T}}\right)\mathbf{A}
 \end{aligned}
 $$
+
+## Gradient Descent
+
+Steps:
+
+1. Choose a small learning rate \(\eta\)
+2. Randomly instantiate \(\hat \beta\)
+3. For a fixed number of iterations or until some stopping rules is reached:
+    1. Calculate \(\delta = \frac {\partial L} {\partial \hat \beta}\)
+    2. Adjust \(\beta\) with
+
+$$
+\hat \beta \leftarrow \beta - \eta\delta
+$$
+
+A potential stopping rule might be a minimum change in the magnitude of \(\beta\) or a minimum decrease in the loss function \(L\).

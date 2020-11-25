@@ -1,6 +1,6 @@
 # (PART) Machine Learning {-}
 
-# Basic
+# Preliminary
 
 This chapter consists of basic knowledge and steps for machine learning.
 
@@ -28,3 +28,23 @@ This chapter consists of basic knowledge and steps for machine learning.
 2. Estimating parameters of the models.
 3. Checking the adequacy of the model--how well the model ﬁts the actual data.
 4. Making inferences; e.g., calculating conﬁdence intervals and testing hypotheses about the parameters.
+
+## Overfitting
+
+To overcome overfitting, try following methods:
+
+1. Train with more data
+2. Regularization (shrinkage), loss + penalty:
+    1. Lasso (L1): \(\frac {1}{2}\sum\limits_{i=1}^{n}(y(x_n, \mathbf{w}) - y_n)^2+ \lambda ||w||_1 \quad \lambda \ge 0, ||w||_1=|w_1| + \cdots + |w_n|\)
+    2. Ridge (L2): \(\frac {1}{2}\sum\limits_{i=1}^{n}(y(x_n, \mathbf{w}) - y_n)^2+ \frac {\lambda}{2} ||w||_2^2 \quad \lambda \ge 0, ||w||_2^2=w_1^2+\cdots + w_n^2\)
+
+## Bootstrapping
+
+Boostrapping generates multiple samples by resampling from one sample to estimate standard error of an estimator \(\hat \theta\). Let \(\hat {\theta_1^*}, ..., \hat {\theta_B^*}\) denote estimates, \(B\) is resamping times, then the bootstrap variance for \(\hat{\theta}\) is:
+
+$$
+\begin{aligned}
+\mathrm{Var}(\hat \theta) &= \frac {1}{B - 1}\sum_{b = 1}^{B}{(\hat {\theta_b^*} - \bar {\theta^*})}^2 \\
+\bar {\theta^*} &= \frac {1}{B}\sum_{b = 1}^{B}\hat {\theta_b^*}
+\end{aligned}
+$$

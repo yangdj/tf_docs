@@ -6,3 +6,45 @@
 2. Norm:
     1.  L1: \(||\mathbf{u}||_1 = \sum_{i=1}^{n}|u_i|\)
     2.  L2: \(||\mathbf{u}||_2 = \sqrt{\sum_{i=1}^{n}u_{i}^{2}}\)
+
+## Decomposition
+
+### LU {-}
+
+For any matrix \(\mathbf{A}_{n \times n}\):
+
+$$
+\mathbf{A}_{n \times n} = \mathbf{L}_{n \times n} \mathbf{U}_{n \times n}
+$$
+
+\(\mathbf{L}\) is a lower triangular matrix, and \(\mathbf{U}\) is an upper triangular matrix.
+
+### QR {-}
+
+For any matrix \(\mathbf{A}_{m \times n}\):
+
+$$
+A _{m \times n} = Q_{m \times n} R_{n \times n} \quad (m \ge n)
+$$
+
+\(\mathbf{Q}^{T}\mathbf{Q} = \mathbf{I} \), and \(\mathbf{R}\) is a upper triangular matrix.
+
+### SVD {-}
+
+For any matrix \(\mathbf{A}_{m \times n}\), it has SVD (Singular Value Decomposition) decomposition:
+
+$$
+\mathbf{A}_{m \times n} = \mathbf{U}_{m \times m} \mathbf{S}_{m \times n} \mathbf{V}^T_{n \times n}
+$$
+
+\(\mathbf{U}^{T}\mathbf{U} = \mathbf{I}_{m \times m}\), \(\mathbf{V}^{T}\mathbf{V} = \mathbf{I}_{n \times n}\) and \(\mathbf{S}\) is diagonal.
+
+### PCA {-}
+
+For any matrix \(\mathbf{X}_{n \times n}\), it has PCA (Principal Components Analysis) decomposition:
+
+$$
+\mathbf{Z}_j = \sum_{i=1}^{p}\mathbf{X}_i\phi_{ij} \quad \sum_{i=1}^{p}\phi_{ij}^2 = 1
+$$
+
+\(\phi_{ij} (1\le i \le p)\) is \(i_{th}\) loading of \(j_{th}\) principal component. \(z_{ij} (1\le i \le n)\) is \(i_{th}\) score of \(j_{th}\) principal component.
