@@ -19,7 +19,7 @@ The following kernels are often userd.
 
 : (\#tab:kernels) Kernel Functions
 
-| Name         | K(x)                                         |
+| Name         | \(K(x)\)                                     |
 | ------------ | -------------------------------------------- |
 | Gaussian     | \(\frac{1}{\sqrt {2\pi}}e^{-\frac{x^2}{2}}\) |
 | Uniform      | \(\frac {1}{2}I(-1 \le x \le 1)\)            |
