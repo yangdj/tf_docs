@@ -29,7 +29,9 @@ L = \sum_{i=1}^{n}w_i(y_i - \hat y_i)^2 \quad
 w_i = (\sigma_i^2)^{-1}
 $$
 
-2. Pearson Correlation
+## Correlation and Similarity
+
+1. Pearson Correlation
 
 $$
 \rho = \frac {\sum(x_i - \bar{x})(y_i - \bar{y})} {\sqrt{\sum(x_i - \bar{x})^2\sum(y_i - \bar{y})^2}}

@@ -15,7 +15,7 @@ K(x) = K(-x) \\
 \lim_{x \to \infty}K(x) = 0
 $$
 
-The following kernels are often userd.
+The following kernels are often used.
 
 : (\#tab:kernels) Kernel Functions
 
