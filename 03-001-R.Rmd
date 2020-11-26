@@ -111,6 +111,12 @@ Then run it:
 
 ## Data Types
 
+Vectors are the base types in R, and the following three attributes are used to implement fundamental parts of R:
+
+1. Names: name the elements of a vector
+2. Dimensions: make a vector behave like a matrix or array
+3. Class: implement S3 object oriented system which controls how generic functions work
+
 ### Special Object {-}
 
 The following object have special meaning in R:
@@ -135,9 +141,9 @@ Use following functions to decide the object:
 
 So `is.finite(x) != is.infinite(x)` is `FALSE` when `x = NA` or `NaN`.
 
-### Basic Types {-}
+### Atomic Vector {-}
 
-R has six basic types, `.Machine` lists some data ranges.
+An vector consists of length and identical basic data type. R has six basic types, and `.Machine` lists numeric value ranges:
 
 1. logical: `[TRUE, FALSE, NA]`
 2. integer: `[1L, ..., NA_integer_, NA]`
@@ -148,9 +154,9 @@ R has six basic types, `.Machine` lists some data ranges.
 
 Integer and double are collectively called numeric, so `is.numeric()` is `TRUE` for both of them.
 
-Types implicit coersion order is: logical > integer > double > character.
+Types implicit conversion order is: logical > integer > double > character.
 
-: (\#tab:r-coersion) R Basic Types Implicit Coersion
+: (\#tab:r-conversion) R Basic Types Implicit Conversion
 
 | Types     | logical | integer | double | character |
 | --------- | ------- | ------- | ------ | --------- |
@@ -158,6 +164,125 @@ Types implicit coersion order is: logical > integer > double > character.
 | integer   | -       | 1L      | 1      | "1"       |
 | double    | -       | -       | 1      | "1"       |
 | character | -       | -       | -      | "1"       |
+
+### Recursive Vector {-}
+
+List
+
+List is generic vector, in which elements can have different types.
+
+```r
+x <- list(a=10, b=TRUE, c= "hello")
+```
+
+There are there way to get a list value:
+
+1. `x["a"]`: return a sublist containing `a`
+2. `x[["a"]]`: return the `a` value
+3. `x$a`: same as `x[["a"]]`
+
+### Augmented Vector {-}
+
+Vectors with additional attributes, including class.
+
+1. factor: builts on integer vectors
+2. date: builds on numeric vectors, represents days since 1970-01-01
+3. date-time: builds on numeric vectors with class POSIXct, represents seconds since 1970-01-01 00:00:00
+4. data.frame: builds on lists with attributes names, row.names and class
+
+### Other Types {-}
+
+1. function:
+    1. builtin
+    2. closure
+    3. special
+
+## Function Collection
+
+### Basic {-}
+
+1. `is()`: list all classes that an object inherits from
+2. `class()`
+3. `inherits()`
+4. `is.object()`: `FALSE` when an object is a pure base type, not S3, S4 or RC
+5. `object.size()`
+6. `str()`
+7. `typeof()`
+8. `length()`
+9. `names()`
+10. `setNames()`
+11. `attributes()`
+12. `attr()`
+13. `dim()`
+15. `sample()`
+16. `rep()`
+17. `sort()`
+18. `order()`
+19. `unlist()`
+
+### String {-}
+
+1. `strsplit()`
+2. `nchar()`
+3. `nzchar()`
+4. `grep()`
+
+### Set {-}
+
+1. `match()`
+2. `%in%`
+3. `unique()`
+4. `intersect()`
+5. `union()`
+6. `setdiff()`
+
+### Apply {-}
+
+1. `lapply()`
+2. `sapply()`
+
+### System {-}
+
+1. `require()`
+2. `library()`
+3. `getwd()`
+4. `setwd()`
+5. `R.home()`
+6. `SessionInfo()`
+
+### Exception {-}
+
+1. `stop()`
+2. `warning()`
+   
+### File {-}
+
+1. `basename()`
+2. `dirname()`
+3. `list.files()`
+4. `list.dirs()`
+5. `system.file()`
+6. `file.path("a", "b")`
+7. `path.expand("~")`
+8. `normalizePath(".")`
+9. `tempdir()`
+10. `tempfile()`
+
+## Control Structure
+
+### If-Else {-}
+
+```r
+if (logical) {...
+} else if (logical) {
+...
+} else {
+}
+```
+
+1. `ifelse()`
+2. `switch()`
+
 
 ## ODBC
 
