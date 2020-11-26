@@ -2,6 +2,163 @@
 
 # R
 
+## Start
+
+### Installation {-}
+
+1. R For Linux
+
+    ```bash
+    yum install epel-release
+    yum install R
+    # if [ ! /usr/lib64/libpq.so.5 ]
+    ln -s /usr/local/pgsql/lib/libpq.so.5 /usr/lib64
+    ```
+2. RStudio-Server
+
+    ```bash
+    wget https://download2.rstudio.org/rstudio-server-rhel-1.1.463-x86_64.rpm
+    yum install rstudio-server-rhel-1.1.463-x86_64.rpm
+    # verify
+    rstudio-server verify-installation
+    # firewall
+    firewall-cmd --permanent --add-port=8787/tcp
+    systemctl reload firewalld
+    ```
+3. ShinyServer
+
+    ```bash
+    wget https://download3.rstudio.org/centos5.9/x86_64/shiny-server-1.5.5.872-rh5-x86_64.rpm
+    yum install --nogpgcheck shiny-server-1.5.5.872-rh5-x86_64.rpm
+    ```
+
+### Configuration {-}
+
+`?Startup` describes initialization at start of an R session, and `usethis` package supplies useful functions for settings.
+
+1. `~/.Renviron	`
+
+    ```bash
+    # Install package path
+    R_LIBS_USER="~/R"
+
+    # Environment
+    JAVA_HOME=...
+    HADOOP_HOME=...
+    HADOOP_CONF_HOME=...
+    SPARK_HOME=...
+    SPARK_CONF_HOME=...
+    ...
+    ```
+
+2. `~/.Rprofile`
+
+    ```r
+    # CRAN mirror
+    # CRANextra mirror supports some packages compiled for windows
+    # local({code ...}) if code needs to be executed
+    # options(...)
+    local({
+        r <- getOption("repos")
+        r["CRAN"] <- "https://mirrors.tuna.tsinghua.edu.cn/CRAN/"
+        r["CRANextra"] <- "http://www.stats.ox.ac.uk/pub/RWin"
+        options(repos = r)
+    })
+
+    # shiny
+    local({ 
+        options(
+            shiny.port = 3838, 
+            shiny.host = "0.0.0.0",
+            DT.options = list(
+                scrollX = TRUE, 
+                language = list(url = "//cdn.datatables.net/plug-ins/1.10.11/i18n/Chinese.json")
+                )
+        )
+    })
+
+    # .First: executes when R starts
+    .First <- function() {
+    library(ggplot2)
+    ...
+    }
+
+    # .Last: executes when R quits
+    .Last <- function() {
+    cat("goodbye")
+    ...
+    }
+    ```
+
+### Running {-}
+
+Write an R scripts, e.g.,  `foo.R`:
+
+```r
+#!/usr/bin/env Rscript
+print("hello, world!")
+```
+
+Then run it:
+
+1. `./foo.R`
+2. `Rscript foo.R`  
+
+`Rscript` can also execute expressions with `-e` arguments:
+
+1. `Rscript -e "print('hello, world!')"`
+2. `Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook')"`
+
+## Data Types
+
+### Special Object {-}
+
+The following object have special meaning in R:
+
+1. `NULL`: absent object
+2. `NA`: Not Available, absent value, missing value
+3. `NaN`: Not a Number, without meaning
+    1. `log(-2)`
+    2. `0 / 0`
+4. `Inf`, `-Inf`: positive and negative infinity
+    1. `1 / 0 ` => `Inf`
+    2. `-1 / 0` => `-Inf`
+    3. `log(0)` => `-Inf`
+
+Use following functions to decide the object:
+
+1. `is.null()`
+2. `is.na()`: `TRUE` for `NA` and `NaN`
+3. `is.nan()`
+4. `is.infinite()`: `FALSE` for `NA` and `NaN`
+5. `is.finite()`: `FALSE` for `NA` and `NaN`
+
+So `is.finite(x) != is.infinite(x)` is `FALSE` when `x = NA` or `NaN`.
+
+### Basic Types {-}
+
+R has six basic types, `.Machine` lists some data ranges.
+
+1. logical: `[TRUE, FALSE, NA]`
+2. integer: `[1L, ..., NA_integer_, NA]`
+3. double: `[1, 1.0, ..., NaN, Inf, -Inf, NA_real, NA]`
+4. complex: `[1+1i, ..., NA_complex_, NA]`
+5. character: `["abc", ..., NA_character_, NA]`
+6. raw
+
+Integer and double are collectively called numeric, so `is.numeric()` is `TRUE` for both of them.
+
+Types implicit coersion order is: logical > integer > double > character.
+
+: (\#tab:r-coersion) R Basic Types Implicit Coersion
+
+| Types     | logical | integer | double | character |
+| --------- | ------- | ------- | ------ | --------- |
+| logical   | TRUE    | 1L      | 1      | TRUE      |
+| integer   | -       | 1L      | 1      | "1"       |
+| double    | -       | -       | 1      | "1"       |
+| character | -       | -       | -      | "1"       |
+
 ## ODBC
 
 ```r

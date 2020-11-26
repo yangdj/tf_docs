@@ -17,6 +17,10 @@ h1, h2, h3 {
     /* background-color: #f7f7f7; */
 }
 
+.book .book-body .page-wrapper .page-inner section.normal code:after, .book .book-body .page-wrapper .page-inner section.normal code:before {
+    content: "";
+}
+
 .book .book-body .page-wrapper .page-inner {
     max-width: 940px;
 }
