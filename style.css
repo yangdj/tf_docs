@@ -21,10 +21,6 @@ h1, h2, h3 {
     content: "";
 }
 
-.book .book-body .page-wrapper .page-inner {
-    max-width: 940px;
-}
-
 #dist {
   overflow: auto;
 }

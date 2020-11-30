@@ -283,6 +283,147 @@ if (logical) {...
 1. `ifelse()`
 2. `switch()`
 
+## OO
+
+R has several object implementations, including:
+
+1. S3
+2. S4
+3. RC
+
+### S3 {-}
+
+S3 objects are usually built on [lists](#recursive-vector), or [atomic vectors](#atomic-vector) with attributes. `is.object() & !isS4(x)` closely tests whether the object is an S3 object. Methods belong to functions, not classes. The functions are called *generic function*, and use *method dispatch* to call the object's specific function.
+
+```r
+foo <- structure(list(), class = "foo")
+foo <- list(); class(foo) <- "foo"
+
+inherits(foo, "foo")
+
+f <- function(x) UseMethod("f")
+f.foo <- function(x) "Class foo"
+f.default <- function(x) "Unknown class"
+
+f <- function(x, ...) UseMethods("f")
+f.foo <- function(x, y) paste("Class foo", y)
+```
+
+#### Generic Related Functions {-#gf}
+
+1. `UseMethod("as.Date")`
+2. `methods("as.Date"); methods(class = "data.frame")`
+3. `getS3method("as.Date", "default")`
+
+#### Group Generic Methods {-#ggm}
+
+Group Generic Methods group several related functions together, see `?groupGeneric`, including:
+
+1. Math
+    1. abs
+    2. sign
+    3. sqrt
+    4. floor
+    5. cos
+    6. sin
+    7. log
+    8. exp
+    9. ...
+2. Ops
+    1. `+ - * / ^ %% %/%`
+    2. `== != < <= >= >`
+    3. `& | !`: vector returns
+    4. `&& ||`: scalar returns
+3. Summary
+    1. all
+    2. any
+    3. sum
+    4. prod
+    5. min
+    6. max
+    7. range
+4. Complex
+    1. Arg
+    2. Conj
+    3. Im
+    4. Mod
+    5. Re
+
+### S4 {-}
+
+All S4 related code is stored in the `methods` package. `isS4()` can identify an S4 object.
+
+#### Class and Objects {-}
+
+```r
+setClass("Person",
+    slots = list(name = "character", age = "numeric")
+)
+
+setClass("Employee",
+    slots = list(boss = "Person"),
+    contains = "Person"
+)
+
+alice <- new("Person", name = "Alice", age = 40)
+john <- new("Employee", name = "John", age = 20, boss = alice)
+alice@age
+slot(john, "boss")
+```
+
+If an S4 ojbect contains (inherits from) an S3 class or a base type, it will have a `.Data` slot which contains the underlying base type or S3 object.
+
+```r
+setClass("RangeNumeric",
+    contains = "numeric",
+    slots = list(min = "numeric", max = "numeric")
+)
+
+rn <- new("RangeNumeric", 1:10, min = 1, max = 10)
+rn@.Data
+```
+
+#### Generics and Method Dispatch {-}
+
+`setGeneric()` creates a new generic or converts an existing function to a generic.
+
+```r
+setGeneric("myGeneric", function(x) {
+    standardGeneric("myGeneric") # equivalent to UseMethod()
+})
+
+setGeneric("union")
+```
+
+`setMethod()` takes the name of the generic, the classes the method should be associated with and a function that implements the method.
+
+```r
+setMethod("union",
+    c(x = "data.frame", y = "data.frame"),
+    function(x, y) {
+        unique(rbind(x, y))
+    }
+)
+```
+
+Related Functions
+
+1. `class?mle`: find the docs for a class
+2. `?S4groupGeneric`
+3. `isGeneric()`
+4. `getGenerics()`: get a list of all S4 generics
+5. `getClasses()`: get a list of all S4 classes
+6. `initialize()`
+7. `showClass()`
+8. `getMethod()`
+9. `showMethods()`: get a list of all S4 methods
+10. `callGeneric()`: call the current generic function from a method
+11. `selectMethod("nobs". list("mle"))`: select which method gets called
+12. `callNextMethod()`: call parent method
+13. `setAs()`
+14. `setValidity()`
+
+## debugging
 
 ## ODBC
 
