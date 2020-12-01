@@ -425,14 +425,31 @@ Related Functions
 
 ## Debugging
 
-Debugging functions:
+
+R has following tools for debugging, see [Debugging R Code](https://rstudio-education.github.io/hopr/debug.html).
 
 1. `traceback()`
 2. `browser()`
-3. `debug()`
-4. `debugonce`
-5. `trace()`
-6. `recover()`
+    1. `n`: execute next line
+    2. `c`: continue to the end or next breakpoint
+    3. `Q`: stop debugging
+    4. `get("n")`: get value from object `n`
+3. `debug(sample)`
+4. `isdebugged(sample)`
+5. `undebug(sample)`
+6. `debugonce`
+7. `trace("sample", browser, at = 4)`
+8. `untrace(sample)`
+9.  `recover()`
+
+## R Markdown
+
+References:
+
+1. [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+2. [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/)
+3. [Knitr Options](https://yihui.org/knitr/options/)
+4. [Tinytex](https://yihui.org/tinytex/)
 
 ## ODBC
 
