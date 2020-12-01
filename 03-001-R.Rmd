@@ -423,7 +423,16 @@ Related Functions
 13. `setAs()`
 14. `setValidity()`
 
-## debugging
+## Debugging
+
+Debugging functions:
+
+1. `traceback()`
+2. `browser()`
+3. `debug()`
+4. `debugonce`
+5. `trace()`
+6. `recover()`
 
 ## ODBC
 
