@@ -246,6 +246,7 @@ Vectors with additional attributes, including class.
 
 1. `lapply()`
 2. `sapply()`
+3. `vapply()`
 
 ### System {-}
 
@@ -440,7 +441,7 @@ R has following tools for debugging, see [Debugging R Code](https://rstudio-educ
     1. `n`: execute next line
     2. `s`: step into function
     3. `f`: finish current function/loop
-    4. `c`: continue to the end or next breakpoint
+    4. `c`: continue execution normally
     5. `Q`: stop debugging
     6. `where`: print current position
     7. `get("n")`: get value from object `n`
