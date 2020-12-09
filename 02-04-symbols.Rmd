@@ -1,5 +1,9 @@
 # Symbols
 
+References:
+
+1. [LaTeX/Mathematics](https://en.wikibooks.org/wiki/LaTeX/Mathematics)
+
 ## Mathjax
 
 Delimiters
