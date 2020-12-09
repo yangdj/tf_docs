@@ -7,3 +7,4 @@ _book/
 .Rproj.user
 .RData
 libs/
+test.R

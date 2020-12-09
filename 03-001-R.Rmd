@@ -228,10 +228,13 @@ Vectors with additional attributes, including class.
 
 ### String {-}
 
-1. `strsplit()`
-2. `nchar()`
-3. `nzchar()`
-4. `grep()`
+1. `nchar()`
+2. `nzchar()`
+3. `strrep()`
+4. `strwrap()`
+5. `strsplit()`
+6. `grep()`
+7. `gsub()`
 
 ### Set {-}
 
@@ -256,6 +259,9 @@ Vectors with additional attributes, including class.
 4. `setwd()`
 5. `R.home()`
 6. `SessionInfo()`
+7. `options()`
+8. `getOption()`
+9. `View()`
 
 ### Exception {-}
 
