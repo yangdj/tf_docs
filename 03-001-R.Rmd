@@ -223,8 +223,11 @@ Vectors with additional attributes, including class.
 20. `sort()`
 21. `order()`
 22. `unlist()`
-23. `any()`
-24. `all()`
+23. `which()`
+    1. `which.max()`
+    2. `which.min()`
+24. `any()`
+25. `all()`
 
 ### String {-}
 
