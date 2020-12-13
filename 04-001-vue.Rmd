@@ -1,0 +1,14 @@
+# (PART) FrameWork {-}
+
+# Vue3
+
+[Vue3](https://v3.vuejs.org/guide/introduction.html) is progressive JavaScript Framework.
+
+## VS Code Extensions
+
+Install following extensions for [VS Code](#vscode)
+
+1. [Vetur](https://vuejs.github.io/vetur/)
+2. [Sass](https://marketplace.visualstudio.com/items?itemName=Syler.sass-indented)
+3. [language-stylus](https://marketplace.visualstudio.com/items?itemName=sysoev.language-stylus)
+4. [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)

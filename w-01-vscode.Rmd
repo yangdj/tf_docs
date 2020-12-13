@@ -1,6 +1,6 @@
 # (PART) Tools {-}
 
-# VS Code
+# VS Code {#vscode}
 
 ## Settings
 
