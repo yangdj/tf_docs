@@ -1,16 +1,15 @@
 # HTML
 
-## Structure
-
 The following code is a basic structure of an HTML file:
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <link rel="icon" href="/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vite App</title>
 </head>
 <body>
@@ -20,24 +19,203 @@ The following code is a basic structure of an HTML file:
 </html>
 ```
 
-### Syntax {-}
+References:
+
+1. [MDN: Getting started with the Web](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web)
+
+## Syntax
 
 1. `<!-- -->`: comments
 2. `"", ''`: quotations for attributes
 3. A sequence of spaces will be reduced to a single space
 4. Escaping: `< > " ' &` and so on
 
-### Elements {-}
+## Elements
+
+Elements consist of three parts:
+
+* Tags: opening and closing tags  `<p>...</p>`
+* Attributes: `<p color="red">...</p>`
+    * boolean attributes have no values, e.g., 
+        * `disabled`
+        * `readonly`
+* Contents: `<p color="red">paragraph content</p>`
+
+Empty elements have no closing tag, therefore no contents:
+
+1. `<meta />`
+2. `<link />`
+3. `<br />`
+4. `<hr />`
+5. `<img />`
+6. `<input />`
+7. `<col />`
+
+### Basic {-}
    
 1. `<!DOCTYPE html>`
 2. `<html></html>`
-    1. `lang="en"` 
-    2. `lang="zh-Hans"`
+    1. `lang=["en", "zhan-Hans"]` 
 3. `<head></head>`
-    1. `<meta />`
-        1. `charset = "UTF-8"`
-        2. `name="Viewport" content = "width=device-width, initial-scale=1.0"` 
+    1. `<meta />`: data describes datas
+        1. `charset="UTF-8"`
+        2. `name="Viewport" content="width=device-width, initial-scale=1.0"` 
     2. `<link />`
-        1. `rel = "icon" href = "favicon.ico"` 
-    3. `<title></title>`
+        1. `rel="icon" href="favicon.ico"` 
+        2. `rel="stylesheet href="styles/style.css"`
+    3. `<script></script>`
+        1. `src="scripts/main.js"`   
+        2. `defer`: make js running after HTML file loaded completely
+    4. `<title></title>`
 4. `<body></body>`
+    1. `<a></a>`
+        1. `href="http://www.website.com" title="a website"`
+        2. `target="_blank"`: open the link in a new tab
+        3. `href="mailto:hello@world.org"`: open an email window with a destinatino address
+        4. `href="mailto:"`: open an email window without a destination address
+    2. `<img />`
+        1. `src="img/myimage.png"`  
+        2. `alt="my image"`
+        3. `title="image"`
+        4. `width=""` 
+        5. `height=""`
+    3. `<figure><img /><figcaption>...</figcaption></figure>`
+    4. `<hr />`: horizontal line
+    5. `<br />`: break line
+    6. `<h1></h1>`
+    7. `<h2></h2>`
+    8. `<h3></h3>`
+    9. `<h4></h4>`
+    10. `<h5></h5>`
+    11. `<h6></h6>`
+    12. `<p></p>`
+    13. `<em></em>`: emphasis different content
+    14. `<strong></strong>`: indicate importance, seriousness, or ugency
+    15. `<span></span>`
+    16. `<code></code>`
+    17. `<pre></pre>`: preserve source text
+    18. `<sup></sup>`
+    19. `<sub></sub>`
+    20. `<blockquote></blockquote>`: long external block-level quotation 
+        1.  `cite=""`
+    21. `<q>...</q>`: short inline quotation
+        1.  `cite=""`
+    22. `<cite></cite>`: refer to a creative work, author or resources, always around `<a>...</a>`
+    23. `<abbr></abbr>`
+        1. `title=""` 
+    24. `<address></address>`
+    25. `<var></var>`: mark up variable names
+    26. `<kbd></kbd>`: mark up keyboard input into the computer
+    27. `<samp></samp>`: mark up output of a computer program
+    28. `<time></time>`
+        1.  `datetime="2020-05-27"`
+
+### Structure {-}
+
+1. `<header></header>`
+2. `<nav></nav>`
+3. `<main></main>`
+4. `<article></article>`
+5. `<section></section>`
+6. `<div></div>`
+7. `<aside></aside>`
+8. `<footer></footer>`
+
+### List {-}
+
+1. `<ul></ul>`: unordered list
+2. `<ol></ol>`: ordered list
+    1. `start="4"`
+    2. `reversed` 
+3. `<li></li>`: list item
+    1. `value="10"`
+4. `<dl></dl>`: description list
+5. `<dt></dt>`: descrition title
+6. `<dd></dd>`: description data, one `<dt>` can have more than one `<dd>`
+
+```html
+<ul>
+    <li>Apple</li>
+    <li>Pear</li>
+    <li>...</li>
+</ul>
+
+<ol start="4" reversed>
+    <li>Apple</li>
+    <li value="10">Pear</li>
+    <li>...</li>
+</ol>
+
+<dl>
+    <dt>Fruits</dt>
+    <dd>Apple</dd>
+    <dt>Animal</dt>
+    <dd>Pig</dd>
+    <dd>Dog</dd>
+</dl>
+```
+
+### Table {-}
+
+1. `<table></table>`
+2. `<caption></caption>`
+3. `<colgroup></colgroup>` 
+4. `<col />`
+    1. `span="2"` 
+5. `<thead></thead>`
+6. `<tfoot></tfoot>`
+7. `<tbody></tbody>`
+8. `<tr></tr>`
+9. `<th></th>`
+10. `<td></td>`
+    1. `colspan="2"`
+    2. `rowspan="4"`
+
+```html
+<table>
+    <colgroup>
+        <col span="2" />
+        <col style="background-color:yellow" />
+    </colgroup>
+    <thead>
+        <tr>
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>3476896</td>
+            <td>My first HTML</td>
+            <td>$53</td>
+        </tr>
+        <tr>
+            <td>5869207</td>
+            <td>My first CSS</td>
+            <td>$49</td>
+        </tr>
+    </tbody>
+</table>
+```
+
+### Form {-}
+
+Controls are put in `<form></form>`, which has the following attributes:
+
+1. `method=["POST", "GET"]`
+2. `action="/"`: return back to current pages when action is omitted or has blank value
+3. `enctype="multipart/form-data"`: for binary data sending, e.g., file
+4. `novalidate`: turn off the browser's automatic validation
+
+1. `<fieldset></fieldset>`
+    1. `<legend></legend>`
+2. `<textarea></textarea>`
+    1. `cols=30`
+    2. `rows=10`
+3. `<select></select>`
+    1. `multiple`
+    2. `<option></option>`
+        1. `value="app"`
+4. `<label></label>`
+    1. `for="username"` 
