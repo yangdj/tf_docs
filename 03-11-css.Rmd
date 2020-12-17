@@ -1,0 +1,10 @@
+# CSS
+
+CSS is used to style HTML elements.
+
+## Syntax
+
+1. `/* ... */`: for comment
+1. `{}`: wraps all properties
+1. `,`: separates diferent selectors
+1. `;` separates different properties
