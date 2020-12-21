@@ -71,3 +71,25 @@ B: The initiation fee is `$99`. The monthly fee for one location is `$29`.
 A: That sounds fine. I'll sign up for one year.
 
 B: Great! Please fill out these forms.
+
+## RainStorm
+
+A: Wow, you're completely **soaked** (浸泡).
+
+B: It's terrible out there. I had an umbrella, but it was useless against the heavy rain.
+
+A: I can see that. Do you have a **change of clothes** (换衣服)?
+
+B: No, I don't.
+
+A: I have some extra clothes in my office. I started keeping shirts and pants in the office after I got soaked in a **rainstorm** (暴雨) last summer.
+
+B: What a great idea!
+
+A: We're about the same size. Let me get you a shirt and pants to change into.
+
+B; You're a lifesaver. Thanks.
+
+A: No worries, I'm happy to help. Make sure to check the weather forecast next time.
+
+B: I will, and I will definitely keep extra clothes in the office.
