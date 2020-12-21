@@ -1,0 +1,284 @@
+# JavaScript
+
+JS (JavaScript) is used to make web page dynamic.
+
+References:
+
+1. [JavaScript prototype](https://www.cnblogs.com/dolphinX/p/3286177.html)
+
+## Syntax
+
+### Basic {-}
+
+1. Comments
+    1. `//`
+    2. `/* ... */`
+2. Name Rules
+    1. `a-zA-Z0-9_` are valid characters
+    2. not start with `_` and numbers
+    3. lower camel case convention
+3. Declarations
+    1. `var`: need not initialization (undefined), scope to function and the value can be changed
+    2. `let`: similar to `var`, but scope to block `{}` and cannot be declared multiple times
+    3. `const`: need initialization, scope to block. the value cannot be modified, attributes in the value can be modified
+4. Data Types
+    1. String: `let myVariabe = "abc"`
+        1. Escaping: `\' \" \\ \b \t \n \v \f \r \xXX \uXXXX`
+        2. attributes and methods:
+            1. `.length`
+            2. `str[i]`
+            3. `.indexOf() - return -1 when not found`
+            4. `.slice()`
+            5. `.toLowerCase()`
+            6. `.toUpperCase()`
+            7. `.replace()`
+            8. `.split()`
+    2. Number: `let myVariable = 10`. It has the following methods:
+        1. `.toFixed()`
+        2. `.toString()`
+        3. `Number()`
+    3. Boolean: `[true, false]`, the following values will be evalated as `false` in braches and loops construction
+        1. `false`
+        2. `0`
+        3. `""`
+        4. `null`
+        5. `NaN`
+        6. `undefined`
+    4. NULL: a zero object, value has nothing, `let myVariable = null`
+        1. `Number(null) === 0`
+    5. NaN: Not a Number
+    6. undefined
+        1. when variable has not been initialized
+        2. when function parameter is not provided
+        3. when the function has no return value
+        4. when object has not the given attribute
+        5. `Number(undefind)` returns `NaN` default
+    7. Array: zero-indexed, `let myVariable = ["Bob", "Alan"]; myVariable[1] == "Alan"`
+        1. `.join()`
+        2. `.push()`: add element to the end of an array
+        3. `.pop()`: remove element from the end of an array
+        4. `.unshift()`: add element to the beginning of an array
+        5. `.shift()`: remove element from the beginning of an array
+        6. `.forEach(func)`
+    8. Object: `let myVariable = {name: "spot", breed: "Dalmatian"}; myVariable.name; myVariable["name"]`
+5.  Operators
+    1. Arithmetic: `+ - * / % ** << >> >>> & ^ | ++ --`
+    2. Assignment: `= += -= *= /= %= **= <<= >>= >>>= &= ^= |=`
+    3. Logical: `&& || !`
+    4. Equality: `=== !== > < >= <=`
+
+### Branch {-}
+
+1. `if`
+2. `switch`
+3. `expr?expr1:expr2`
+
+```javascript
+if (expr) {
+...
+} else if (expr) {
+...
+} else {
+...
+}
+
+switch (expr) {
+    case exp1:
+    ...
+    break;
+    case exp2:
+    ...
+    break;
+    ...
+    default:
+    ... 
+}
+```
+
+### Loops {-}
+
+1. `for (let i = 0; i < 10; i++) {...}`
+2. `for (... in ...)`
+3. `while(expr) {...}`
+4. `do {...} while (expr)`
+5. `break`: exit a loop
+6. `continue`: skip to next iteration of the loop
+
+### Function {-}
+
+JavaScript has a `Function` object which uses `return` to specify the value to return. Wihout `return`, in the case of constructor called with `new`, an object is returned; otherwise an `undefined` value is returned.
+
+```javascript
+function add(a, b) {
+    let result = a + b
+    return result
+}
+```
+
+### Common Functions {-}
+
+#### Number {-}
+
+1. `Math.random()`
+2. `Math.floor()`
+3. `Math.pow()`
+
+#### String {-}
+
+1. `+`: join strings, `"hello" + "world"`
+2. `` `hello, ${name}` ``: template literals, using backtick `` ` ``
+
+#### Window {-}
+
+1. `prompt()`
+2. `alert()`
+3. `console.log()`
+4. `typeof typeof()`
+
+### Object {-}
+
+```javascript
+function Teacher(first, last, age, gender, interests, subject) { 
+    Person.call(this, first, last, age); 
+    this.subject = subject;
+}
+
+Teacher.prototype = Object.create(Person.prototype);
+
+Object.defineProperty(Teacher.prototype, 'constructor', { 
+    value: Teacher, 
+    enumerable: false, // so that it does not appear in 'for in' loop 
+    writable: true
+    }
+);
+
+Teacher.prototype.greeting = function() { ... };
+```
+
+1. `this`: refer to the current object
+2. `.__proto__`: `.prototype`
+3. `.valueOf()`: return the value of the object it is called on
+4. `Object.getPrototype(obj)`
+5. `delete`: delete an attribute
+6. `hasOwnProperty()`: whether the object has its own property, not from prototype, e.g., `({})`.hasOwnProperty.call(foo, "bar")
+
+## DOM
+
+### Selectors {-}
+
+1. `document.querySelector("p")`
+2. `document.querySelectorAll("P")`
+3. `document.createElement("p")`
+4. `document.body.appendChild(para)`
+5. `document.body.removeChild(para)`
+6. `resetButton.parentNode.removeChild(resetButton)`
+7. `ele.children`
+8. `ele.setAttribute("class", "message")`
+
+### Styles {-}
+
+Use `ele.style` to specify element styles.
+
+1. `.backgroundColor = "red"`
+2. `.fontSize = "200%"`
+3. `.padding = "10px"`
+4. `.boxShadow = "3px 3px 6px solid"`
+5. `.backgroundImage = "url(icons/warning.png)"`
+
+### Elements {-}
+
+1. common
+    1. `.nodeName`
+    2. `.match()`
+2. `<p></p>`
+    1. `.textContent = "start it"`
+3. `<input />`
+    1. .value = "10"
+    2. `.focus()`
+    3. `.disable = [true, false]`
+4. `<button></button>`
+    1. `.textContent = "start it"`
+5. `<select></select>`
+    1. `.value`
+
+### Events {-}
+
+Event types:
+
+1. DOMContentLoaded
+2. click
+3. change
+
+Event objects:
+
+1. `e.target.nodeName`
+2. `e.target.style.backgroundColor = "black"`
+3. `e.preventDefault()`
+4. `e.stopPropagation()`: stop event bubbling further
+
+Event process
+
+1. `elm.addEventListener("click", function)`: different functions can add to the same event
+2. `elm.removeEventListener()`
+3. `elm.onclick = function() {}`
+4. `elm.ondblclick`
+5. `elm.onchange`
+6. `elm.onfocus`
+7. `elm.onblur`
+8. `elm.onmouseover`
+9. `elm.onmouseout`
+10. `elm.onsubmit`
+11. `window.onkeypress`
+12. `window.onkeydown`
+13. `window.onkeyup`
+
+## NPM
+
+1. `npm install (i)`
+    1. `--global (-g)`
+    2. `--save (-S)`: write to dependencies property in `package.json`
+    3. `--save-dev (-D)`: write to devDependencies property in `package.json`
+    4. `--registry=https://registry.npm.taobao.org`
+2.  `npm uninstall`
+3. `npm update`
+4. `npm list`
+5. `npm search`
+6. `npm cache clean [--force]`
+7. `npm config`
+    1. `set registry http://registry.npm.taobao.org/`
+
+### package.json
+
+1. `npm init`: create `package.json` file
+2. `npm help json`: docs about package.json
+3. `npm adduser`: register npm user
+4. `npm publish`: publish npm package
+
+```json
+{
+    "name": "package name",
+    "description": "detail info",
+    "version" : "0.0.1",
+    "license": "MIT",
+    "homepage" : "https://...",
+    "author": {"name": "bob", "email" : "mail@mail.com"},
+    "contributors": [{"name", "...", "email": "..."}, ...],
+    "keywords": ["web", "framework", ...],
+    "dependencies": {"accepts": "1.1.1", ...},
+    "devDependencies": {...},
+    "repository": {"type": "git", "url": "git+https://..."},
+}
+```
+
+## Vue3
+
+[Vue3](https://v3.vuejs.org/guide/introduction.html) is progressive JavaScript Framework.
+
+### VS Code Extensions {-}
+
+Install following extensions for [VS Code](#vscode)
+
+1. [Vetur](https://vuejs.github.io/vetur/)
+2. [Sass](https://marketplace.visualstudio.com/items?itemName=Syler.sass-indented)
+3. [language-stylus](https://marketplace.visualstudio.com/items?itemName=sysoev.language-stylus)
+4. [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
