@@ -266,13 +266,17 @@ Event process
     "keywords": ["web", "framework", ...],
     "dependencies": {"accepts": "1.1.1", ...},
     "devDependencies": {...},
-    "repository": {"type": "git", "url": "git+https://..."},
+    "repository": {"type": "git", "url": "git+https://..."}
 }
 ```
 
 ## Vue3
 
-[Vue3](https://v3.vuejs.org/guide/introduction.html) is progressive JavaScript Framework.
+[Vue3](https://v3.vuejs.org/guide/introduction.html) is progressive JavaScript Framework. For quickly start, just try via CDN:
+
+```js
+<script src="https://unpkg.com/vue@next"></script>
+```
 
 ### VS Code Extensions {-}
 
