@@ -311,7 +311,7 @@ Install following extensions for [VS Code](#vscode)
 
 At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax.
 
-1. `{{ counter }}`: text binding
+1. `{{ counter }}`: text binding, the data will be rendered as plain text compare to `v-html`
    
     ```html
     <div id="counter">
@@ -319,22 +319,35 @@ At the core of Vue.js is a system that enables us to declaratively render data t
     </div>
     ```
 
-2. `v-bind`: attribute binding directive 
+2. `v-bind`: attribute binding directive
+    1. `v-bind:title="message"`
+    2. `v-bind:[attrName]="message"`: dynamic attribute binding 
+    3. `:title="message"`: shorthand for `v-bind:title="message"`
+
     
     ```html
     <div id="bind-attribute">
         <span v-bind:title="message">
             Hover your mouse over to see my dynamically bound title!
         </span>
+        <span v-bind:[attr]="message">
+            Hover your mouse over to see my dynamically bound title!
+        </span>
     </div>
     ```
  
 3. `v-on`: event binding directive
+    1. `v-on:click="reverseMessage"`
+    2. `v-on:submit.prevent="onSubmit"`: event modifier using `"."`, bounding in some special way
+    3. `v-on:[eventName]="reverseMessage"`: dynamic event binding
+    4. `@click="reverseMessage"`: shorthand for  `v-on:click="reverseMessage"`
+    5. `@[eventName]="reverseMessage"` shorthand for `v-on:[eventName]="reverseMessage"`
    
     ```html
     <div id="event-handling">
         <p>{{ message }}</p>
         <button v-on:click="reverseMessage">Reverse Message</button>
+        <button v-on:[eventName]="reverseMessage">Reverse Message</button>
     </div>
     ```
 
@@ -365,6 +378,19 @@ At the core of Vue.js is a system that enables us to declaratively render data t
             </li>
         </ol>
     </div>
+    ```
+
+7. `v-once`: one-time interpolations, do not update on data change
+
+    ```html
+    <span v-once>This will never change: {{ msg }}</span>
+    ```
+
+8. `v-html`: real HTML directive
+
+    ```html
+    <p>Using mustaches: {{ rawHtml }}</p>
+    <p>Using v-html directive: <span v-html="rawHtml"></span></p>
     ```
 
     ```js
