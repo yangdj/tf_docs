@@ -213,9 +213,10 @@ Event types:
 Event objects:
 
 1. `e.target.nodeName`
-2. `e.target.style.backgroundColor = "black"`
-3. `e.preventDefault()`
-4. `e.stopPropagation()`: stop event bubbling further
+2. `e.target.tagName`
+3. `e.target.style.backgroundColor = "black"`
+4. `e.preventDefault()`
+5. `e.stopPropagation()`: stop event bubbling further
 
 Event process
 
