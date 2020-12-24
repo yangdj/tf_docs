@@ -5,6 +5,7 @@ JS (JavaScript) is used to make web page dynamic.
 References:
 
 1. [JavaScript prototype](https://www.cnblogs.com/dolphinX/p/3286177.html)
+2. [Learn ES2015](https://babeljs.io/docs/en/learn)
 
 ## Syntax
 
