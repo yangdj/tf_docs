@@ -19,8 +19,13 @@ Settings have three levels for user, workspace and root folder, see [Settings](h
     2. `keybindings.json`
     3. `launch.json`
     4. `tasks.json`
+   
+Variables:
 
-Settings.json
+1. `${workspaceFolder}`
+2. `${file}`
+
+### Settings.json {-}
 
 ```json
 {
@@ -38,7 +43,7 @@ Settings.json
 }
 ```
 
-keybindings.json
+### keybindings.json {-}
 
 ```json
 [
@@ -55,27 +60,13 @@ keybindings.json
 ]
 ```
 
-tasks.json
+### launch.json	{-}
 
-```json
-{
-    "version": "2.0.0",
-    "options": {
-        "shell": {
-        "args": ["-i"]
-        }
-    },
-    "tasks": [
-        {
-        "label": "r-bookdown",
-        "type": "shell",
-        "command": "Rscript -e \"bookdown::render_book('index.Rmd', 'bookdown::gitbook')\""
-        }
-    ]
-}
-```
+`launch.json` is a file for debugging configuration.
 
-launch.json	
+* request:
+    1. launch: start app in debug mode before VS Code attaches to it, e.g., for server and desktop app
+    2. attach: connect VS Code's debugger to an app or process that's already running, e.g., browser app
 
 ```json
 {
@@ -102,17 +93,39 @@ launch.json
 }
 ```
 
-## Shortcuts
+### tasks.json {-}
+
+```json
+{
+    "version": "2.0.0",
+    "options": {
+        "shell": {
+        "args": ["-i"]
+        }
+    },
+    "tasks": [
+        {
+        "label": "r-bookdown",
+        "type": "shell",
+        "command": "Rscript -e \"bookdown::render_book('index.Rmd', 'bookdown::gitbook')\""
+        }
+    ]
+}
+```
+
+## Editing
+
+### Shoutcuts {-}
 
 1. `Ctrl+P; Cmd+P`: go to file
 2. `Ctrl+Shift+P; Cmd+Shift+P	`: go to command
-3. `Ctrl+K Ctrl+S; Cmd+K Cmd+S` - keyboard shortcuts
-4. `Alt+Z`: toggle word wrap
-5. `Alt+<-, Alt+->`: go to other file
-6. `Ctrl+Click`: go to link or definition
-7. `Ctrl+G;`: go to line
-8. `Ctrl+Shift+\`: jump between brackets
-9. `Ctrl+Shift+O`: jump to symbols
+3. `Ctrl+Shift+O`: jump to symbols
+4. `Ctrl+K Ctrl+S; Cmd+K Cmd+S`: keyboard shortcuts
+5. `Alt+Z`: toggle word wrap
+6. `Alt+<-, Alt+->`: go to other file
+7. `Ctrl+Click`: go to link or definition
+8. `Ctrl+G;`: go to line
+9. `Ctrl+Shift+\`: jump between brackets
 10. `Ctrl+[, Ctrl+]`: line indent
 11. `Shift+Alt`: column selection
 12. `Ctrl+D`: select current or next word under the cursor
@@ -126,6 +139,73 @@ launch.json
 20. `Ctrl+Shift+Enter`: insert line above
 21. `Alt+Uparrow, Alt+Downarrow`: move line up and down
 22. `Alt+Shift+Uparrow, Alt+Shift+Downarrow`: copy line up and down
+
+###　Path Matching {-}
+
+Path matching uses a glob pattern to target files, including:
+
+1. `*`: match one or more characters
+2. `?`: match one character
+3. `**`: match any number of path segments including none
+4. `[]`: match one of characters group, `example.[0-9]` matches `example.0, example.1, ...`
+5. `!`: match negation of the characters
+6. `{}`: match a set of values, `{**/*.html,**/*.txt}` match all html and text files
+
+## Coding
+
+* Syntax Highlighting
+* Semantic Highlighting
+    * Symbol Type
+        * constants
+        * variable
+        * class
+        * method
+        * property
+        * interface
+        * typeParameter
+        * namespace
+    * variable property
+        * read-only
+        * modifiable
+        * callable
+* IntelliSense
+    * Code Completion
+    * Suggestion
+    * Hover Info: `Ctrl+K Ctrl+I`
+    * Signature Information: `Ctrl+Shift+Space`, automatically shown when type a `(` or `,`
+    * Auto Imports
+* Snippets
+    * `editor.snippetSuggestions: "none"` disables snippets
+* Formatting
+* Code Navigation
+    * Go to Definition: `Ctrl+mouse; F12`, go to the source code of a symbol definition
+    * Peek Definition: `Alt=F12`, bring up a peek window showing the definition of a symbol
+    * Go to References: `Shift+F12`, show all references to a symbol
+    * Go to Type Definition: go to the type that defines a symbol
+    * Go to Implementation: `Ctrl+F12`, go to the implementations of an interface or abstract method
+    * Go To Symbol in File: `Ctrl+Shift+O`
+    * Go to Symbol in Workspace: `Ctrl+T`
+* Refactoring
+    * Rename: `F2`
+    * Extract to Method or Function
+    * Extract to Constant
+    * Extract Type to Interface or Type Alias
+    * Move to New file
+    * Convert between Named Imports and Namespace Imports
+    * Convert between Default Export and Named Export
+    * Generate Get and Set Accessors
+    * Convert Parameters to Destructured Object
+* Quick Fixes: address coding errors, `Ctrl+.` triggers Quick Fix
+    * Adding a missing `this` to a member access
+    * Fixing a misspelled property name
+    * Removing unreachable code or unused imports
+    * Declaring
+* Linters
+* Debugging: `F5` starts
+    * Set Breakpoint: `F9`
+    * Inspect Objects
+    * Navigate the Call Stack
+    * Execute Code in the Debug Console
 
 ## Plugins
 
@@ -197,28 +277,33 @@ launch.json
             7. `ctrl + enter`: run current cell
             8. `shift + enter`: run current cell and insert a cell below
 
-## Features
 
-* IntelliSense
-    * Code Completion
-    * Hover Info
-    * Signature Information
-* debugging
-* Formatting
-* Code Navigation
-* Refactoring
+## Languages
 
-Debug
+### TypeScript {-#vs-ts}
 
-1. `F9`: set breakpoint
-2. `Shift + F9`: inline breakpoint
-3. `F5`: initiate debugging
+[`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) configures settings for TypeScript project and indicates the root directory of an project.
 
-Path Matching
+```json
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "allowJs": "true",
+    "checkJs": true
+  },
+  "exclude": ["node_modules", "**/node_modules/*"],
+  "include": ["src/**/*"]
+}
+```
 
-1. `*`: match one or more characters
-2. `?`: match one character
-3. `**`: match any number of path segments including none
-4. `[]`: match one of characters group, `example.[0-9]` matches `example.0, example.1, ...`
-5. `!`: match negation of the characters
-6. `{}`: match a set of values, `{**/*.html,**/*.txt}` match all html and text files
+* `"typescript.suggest.completeJSDocs": false`: disable JSDoc comment suggestions
+* `"typescript.autoImportSuggestions.enabled": false`: disable auto imports
+* `"typescript.format.*`: configure built-in formatter
+* `"typescript.format.enable": false`: disable formatter
+* `"typescript.referencesCodeLens.enabled": true`: enable codelens
+
+### JavaScript {-#vs-js}
+
+[`jsconfig.json`](https://code.visualstudio.com/docs/languages/jsconfig#_down-level-compilation-with-typescript-compiler) is the same as a `tsconfig.json` file. only with `allowJs` set to true.
+

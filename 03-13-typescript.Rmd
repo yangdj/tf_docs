@@ -1,3 +1,8 @@
 # TypeScript
 
-[TypeScript](https://www.typescriptlang.org/) extends JavaScript by adding types.
+[TypeScript](https://www.typescriptlang.org/) extends JavaScript by adding types. To install TypeScript, just install it using NPM:
+
+```bash
+npm install -g typescript
+tsc --version
+```
