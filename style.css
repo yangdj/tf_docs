@@ -13,8 +13,8 @@ h1, h2, h3 {
 .remark-inline-code,
 .book .book-body .page-wrapper .page-inner section.normal code { 
     font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;
-    background-color: transparent;
-    /* background-color: #f7f7f7; */
+    /* background-color: transparent; */
+    background-color: #f7f7f7;
 }
 
 .book .book-body .page-wrapper .page-inner section.normal code:after, .book .book-body .page-wrapper .page-inner section.normal code:before {

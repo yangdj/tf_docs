@@ -8,22 +8,24 @@ Settings have three levels for user, workspace and root folder, see [Settings](h
 
 1. User path:
     1. `%APPDATA%\Code\User\`: Windows
-    1. `$HOME/.config/Code/User/`: Linux
-    2. `$HOME/Library/Application Support/Code/User/`: MacOS
-        1. `settings.json`
-        1. `keybindings.json`
-        2. `tasks.json`
-2. `ws.code-workspace`: workspace file
-3. `.vscode/`: root folder
+    2. `$HOME/.config/Code/User/`: Linux
+    3. `$HOME/Library/Application Support/Code/User/`: MacOS
+2. User files
+    1. `settings.json`
+    2. `keybindings.json`
+    3. `tasks.json`
+3. `ws.code-workspace`: workspace file
+4. `.vscode/`: root folder
     1. `settings.json`
     2. `keybindings.json`
     3. `launch.json`
     4. `tasks.json`
    
-Variables:
+VS Code makes commonly used paths and other values as variables and supports variable substitution inside strings in [Debugging](#vs-launch) and [Task](#vs-tasks) configuration files and some select settings using `${variableName}`format. The following variables are often used, for a full list of predefined variables, see [Variables Reference](https://code.visualstudio.com/docs/editor/variables-reference):
 
-1. `${workspaceFolder}`
-2. `${file}`
+1. `${workspaceFolder}`: the root path of a workspace folder
+2. `${file}`: the open file in the active editor
+3. `${env:Name}`: the environment variable `Name`
 
 ### Settings.json {-}
 
@@ -40,6 +42,15 @@ Variables:
     "files.insertFinalNewline": true,
     "python.autoComplete.addBrackets": true,
     "python.jediEnabled": false,
+    "launch": {
+        "version": "0.2.0",
+        "configuration": [{
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${file}"
+        }]
+    }
 }
 ```
 
@@ -60,13 +71,41 @@ Variables:
 ]
 ```
 
-### launch.json	{-}
+### launch.json	{-#vs-launch}
 
-`launch.json` is a file for debugging configuration.
+[`launch.json`](https://code.visualstudio.com/docs/editor/debugging) is a file for debugging configuration.
 
-* request:
-    1. launch: start app in debug mode before VS Code attaches to it, e.g., for server and desktop app
-    2. attach: connect VS Code's debugger to an app or process that's already running, e.g., browser app
+Mandatory attributes for all:
+
+* `name`: the reader-friendly name to appear in the Debug launch configuration drop-down
+* `type`: the type of debugger to use, e.g.,
+    * `node`
+    * `python`
+* `request`: the request type of launch configuration
+    1. `launch`: start app in debug mode before VS Code attaches to it, e.g., for server and desktop app
+    2. `attach`: connect VS Code's debugger to an app or process that's already running, e.g., browser app
+
+Optional attributes for all:
+
+* `preLaunchTask`: launch a task before the start of a debug session, set this attribute to a task specified in `task.json` (in the workspace's `.vscode` folder)
+* `postDebugTask`: similar to `preLaunchTask`, but at the end of a debug session
+
+Other attributes:
+
+* `program`: executable or file to run when launching the debugger
+* `args`: arguments passed to the program to debug
+* `env`: environment variables (`null` used to an undefine variable)
+* `envFile`: path to dotenv file with environment variables
+* `cwd`: current working directory for finding dependencies and other files
+* `port`: port when attaching to a running process
+* `console`: what kind of console to use, e.g.,
+    * `integratedTerminal`
+    * `internalConsole`
+    * `externalTerminal`
+* Platform-specific attributes: define values depend on the operation system where the debugger is running
+    * `windows`
+    * `linux`
+    * `osx`
 
 ```json
 {
@@ -93,7 +132,26 @@ Variables:
 }
 ```
 
-### tasks.json {-}
+### tasks.json {-#vs-tasks}
+
+VS Code integerates with external tools via tasks. Tasks can be configured in the file `tasks.json` to run scripts and start processes so that many of exsiting tools can be used from within VS Code without having to enter a command line or write new code.
+
+Attributes:
+
+* `label`: task's label used in the user interface
+* `type`:
+    * `shell`: interpreted as shell command
+    * `proces`: interpreted as a process
+* `command`: actual command to execute
+* `group`: define which group the task belongs
+* `options`: override the default values
+    * `shell`
+    * `cwd`
+    * `env`
+* `dependsOn`: compose tasks out of simpler tasks
+* `dependsOrder`:
+    * `parallel`: tasks executed in parallel by default
+    * `sequence`: tasks executed in the order listed in `dependsOn`
 
 ```json
 {
@@ -140,7 +198,7 @@ Variables:
 21. `Alt+Uparrow, Alt+Downarrow`: move line up and down
 22. `Alt+Shift+Uparrow, Alt+Shift+Downarrow`: copy line up and down
 
-###　Path Matching {-}
+### Path Matching {-}
 
 Path matching uses a glob pattern to target files, including:
 
@@ -176,7 +234,6 @@ Path matching uses a glob pattern to target files, including:
     * Auto Imports
 * Snippets
     * `editor.snippetSuggestions: "none"` disables snippets
-* Formatting
 * Code Navigation
     * Go to Definition: `Ctrl+mouse; F12`, go to the source code of a symbol definition
     * Peek Definition: `Alt=F12`, bring up a peek window showing the definition of a symbol
@@ -185,6 +242,7 @@ Path matching uses a glob pattern to target files, including:
     * Go to Implementation: `Ctrl+F12`, go to the implementations of an interface or abstract method
     * Go To Symbol in File: `Ctrl+Shift+O`
     * Go to Symbol in Workspace: `Ctrl+T`
+* Formatting
 * Refactoring
     * Rename: `F2`
     * Extract to Method or Function
@@ -200,12 +258,24 @@ Path matching uses a glob pattern to target files, including:
     * Fixing a misspelled property name
     * Removing unreachable code or unused imports
     * Declaring
-* Linters
-* Debugging: `F5` starts
+* Linting
+* Debugging:
     * Set Breakpoint: `F9`
+    * Set Logpoint: using `{}` to incluede expression, e.g., `the msg value is: {msg}.`
+    * Conditional Breakpoint
+        * Expression Condition: the Breakpoint will be hit whenever the expression evaluates to `true`
+        * Hit Count: control how many times a break needs to be hit before it will break execution
+    * Function Breakpoint
+    * Data Breakpoint: get hit when the value changes
     * Inspect Objects
+    * Watch Objects and Expressions
     * Navigate the Call Stack
     * Execute Code in the Debug Console
+* Compiling
+* Testing
+* Building
+* Packaging
+* Deploying
 
 ## Plugins
 
@@ -283,6 +353,18 @@ Path matching uses a glob pattern to target files, including:
 ### TypeScript {-#vs-ts}
 
 [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) configures settings for TypeScript project and indicates the root directory of an project.
+
+`tsc --init` generates a `tsconfig.json` file.
+
+* `compilerOptions`
+    * `mudule`
+        * `commonjs`
+    * `target`
+        * `es6`
+        * `es5`
+    * `allowJs`
+* `exclude`
+* `include`
 
 ```json
 {
