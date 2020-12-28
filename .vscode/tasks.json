@@ -6,8 +6,11 @@
         {
             "label": "r-bookdown",
             "type": "shell",
-            "isBackground": true,
-            "command": "R -e bookdown::servr_book()"
+            "command": "Rscript",
+            "args": [
+                "-e",
+                "'bookdown::serve_book()'"
+            ]
         }
     ]
 }

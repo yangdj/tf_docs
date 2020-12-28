@@ -138,34 +138,47 @@ VS Code integerates with external tools via tasks. Tasks can be configured in th
 
 Attributes:
 
-* `label`: task's label used in the user interface
-* `type`:
-    * `shell`: interpreted as shell command
-    * `proces`: interpreted as a process
-* `command`: actual command to execute
-* `group`: define which group the task belongs
+* `version`: task format version
+* `tasks`: tasks array
+    * `label`: task's label used in the user interface
+    * `type`:
+        * `shell`: interpreted as shell command
+        * `proces`: interpreted as a process
+    * `command`: actual command to execute
+    * `args`: command args
+    * `group`: define which group the task belongs
+    * `dependsOn`: compose tasks out of simpler tasks
+    * `dependsOrder`:
+        * `parallel`: tasks executed in parallel by default
+        * `sequence`: tasks executed in the order listed in `dependsOn`
 * `options`: override the default values
     * `shell`
+        * `args`
+        * `executable`:
+            * `bash`
+            * `cmd.exe`
     * `cwd`
     * `env`
-* `dependsOn`: compose tasks out of simpler tasks
-* `dependsOrder`:
-    * `parallel`: tasks executed in parallel by default
-    * `sequence`: tasks executed in the order listed in `dependsOn`
+* Platform-specific attributes: define values depend on the operation system where the task is running
+    * `windows`
+    * `linux`
+    * `osx`
 
 ```json
 {
     "version": "2.0.0",
     "options": {
         "shell": {
-        "args": ["-i"]
+            "args": ["-i"]
         }
     },
     "tasks": [
         {
         "label": "r-bookdown",
         "type": "shell",
-        "command": "Rscript -e \"bookdown::render_book('index.Rmd', 'bookdown::gitbook')\""
+        "windows": {
+            "command": "Rscript -e \"bookdown::render_book('index.Rmd', 'bookdown::gitbook')\""
+            }
         }
     ]
 }
