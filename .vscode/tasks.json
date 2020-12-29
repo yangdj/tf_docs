@@ -7,10 +7,18 @@
             "label": "r-bookdown",
             "type": "shell",
             "command": "Rscript",
-            "args": [
-                "-e",
-                "bookdown::serve_book()"
-            ]
+            "windows": {
+                "args": [
+                    "-e",
+                    "bookdown::serve_book()"
+                ]
+            },
+            "osx": {
+                "args": [
+                    "-e",
+                    "'bookdown::serve_book()'"
+                ]
+            }
         }
     ]
 }
