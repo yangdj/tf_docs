@@ -9,7 +9,7 @@
             "command": "Rscript",
             "args": [
                 "-e",
-                "'bookdown::serve_book()'"
+                "bookdown::serve_book()"
             ]
         }
     ]

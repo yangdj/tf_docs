@@ -291,6 +291,9 @@ NPM is the Package Manager for Node.js modules.
 
     ```js
     npm install -g @vue/cli
+    vue create <project-name>
+    cd <project-name>
+    npm run serve
     ```
 
 3. Vite
