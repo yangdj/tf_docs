@@ -249,6 +249,14 @@ Path matching uses a glob pattern to target files, including:
     * Auto Imports
 * Snippets
     * `editor.snippetSuggestions: "none"` disables snippets
+* Navigation
+    * Go to Definition: `Ctrl+mouse; F12`, go to the source code of a symbol definition
+    * Peek Definition: `Alt=F12`, bring up a peek window showing the definition of a symbol
+    * Go to References: `Shift+F12`, show all references to a symbol
+    * Go to Type Definition: go to the type that defines a symbol
+    * Go to Implementation: `Ctrl+F12`, go to the implementations of an interface or abstract method
+    * Go To Symbol in File: `Ctrl+Shift+O`
+    * Go to Symbol in Workspace: `Ctrl+T`
 * Formatting
 * Refactoring
     * Rename: `F2`
@@ -260,20 +268,12 @@ Path matching uses a glob pattern to target files, including:
     * Convert between Default Export and Named Export
     * Generate Get and Set Accessors
     * Convert Parameters to Destructured Object
+* Linting
 * Quick Fixes: address coding errors, `Ctrl+.` triggers Quick Fix
     * Adding a missing `this` to a member access
     * Fixing a misspelled property name
     * Removing unreachable code or unused imports
     * Declaring
-* Linting
-* Code Navigation
-    * Go to Definition: `Ctrl+mouse; F12`, go to the source code of a symbol definition
-    * Peek Definition: `Alt=F12`, bring up a peek window showing the definition of a symbol
-    * Go to References: `Shift+F12`, show all references to a symbol
-    * Go to Type Definition: go to the type that defines a symbol
-    * Go to Implementation: `Ctrl+F12`, go to the implementations of an interface or abstract method
-    * Go To Symbol in File: `Ctrl+Shift+O`
-    * Go to Symbol in Workspace: `Ctrl+T`
 * Debugging:
     * Set Breakpoint: `F9`
     * Set Logpoint: using `{}` to incluede expression, e.g., `the msg value is: {msg}.`
