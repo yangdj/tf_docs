@@ -1,8 +1,61 @@
 # TypeScript
 
-[TypeScript](https://www.typescriptlang.org/) extends JavaScript by adding types. To install TypeScript, just install it using NPM:
+[TypeScript](https://www.typescriptlang.org/) extends JavaScript by adding types. It offers classes, modules, and interfaces to help building robust components.
+
+To install TypeScript, install it through NPM and test it by checking the version or help:
 
 ```bash
 npm install -g typescript
 tsc --version
+tsc --help
+```
+
+## tsconfig.json {#ts-tsconfig}
+
+[tsconfig.json](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) is used to define project settings such as the compiler options and the files that should be included.
+
+`tsc --init` generates configuration file `tsconfig.json` which has the following properties:
+
+* `compilerOptions`
+    * `mudule`
+        * `CommonJS`
+        * `AMD`
+        * `UMD`
+        * `ES6`
+        * `ES2015`
+        * `ES2020`
+        * `ES2020`
+        * `ESNext`
+    * `target`
+        * `ES5`
+        * `ES3`
+        * `ES6`
+        * `ES2015`
+        * `ES2016`
+        * `ES2017`
+        * `ES2018`
+        * `ES2019`
+        * `ES2020`
+        * `ES2020`
+        * `ESNext`
+    * `outDir`
+    * `allowJs`: when `true`, javascript files can be compiled
+    * `sourceMap`: when `true`, generates corresponding `.map` file
+* `exclude`
+* `include`
+
+```json
+// tsconfig.json
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "outDir": "out",
+    "allowJs": "true",
+    "checkJs": true,
+    "sourceMap": true
+  },
+  "exclude": ["node_modules", "**/node_modules/*"],
+  "include": ["src/**/*"]
+}
 ```

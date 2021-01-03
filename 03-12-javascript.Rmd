@@ -250,7 +250,8 @@ NPM is the Package Manager for Node.js modules.
 5. `npm search`
 6. `npm cache clean [--force]`
 7. `npm config`
-    1. `set registry http://registry.npm.taobao.org/`
+    1. `list`
+    2. `set registry http://registry.npm.taobao.org/`
 
 ### package.json {-}
 
@@ -274,6 +275,10 @@ NPM is the Package Manager for Node.js modules.
     "repository": {"type": "git", "url": "git+https://..."}
 }
 ```
+
+### jsconfig.json {-}
+
+[`jsconfig.json`](https://code.visualstudio.com/docs/languages/jsconfig#_down-level-compilation-with-typescript-compiler) works same as a [tsconfig.json](#ts-tsconfig) file, only with `allowJs` set to true.
 
 ## Vue3
 
