@@ -261,6 +261,7 @@ NPM is the Package Manager for Node.js modules.
 4. `npm publish`: publish npm package
 
 ```json
+// package.json
 {
     "name": "package name",
     "description": "detail info",
@@ -270,6 +271,7 @@ NPM is the Package Manager for Node.js modules.
     "author": {"name": "bob", "email" : "mail@mail.com"},
     "contributors": [{"name", "...", "email": "..."}, ...],
     "keywords": ["web", "framework", ...],
+    "scripts": {},
     "dependencies": {"accepts": "1.1.1", ...},
     "devDependencies": {...},
     "repository": {"type": "git", "url": "git+https://..."}
