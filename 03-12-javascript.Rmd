@@ -16,12 +16,12 @@ References:
     2. `/* ... */`
 2. Name Rules
     1. `a-zA-Z0-9_` are valid characters
-    2. not start with `_` and numbers
+    2. do not start with `_` and numbers
     3. lower camel case convention
 3. Declarations
-    1. `var`: need not initialization (undefined), scope to function and the value can be changed
+    1. `var`: need not initialization (`undefined`), scope to function and the value can be changed
     2. `let`: similar to `var`, but scope to block `{}` and cannot be declared multiple times
-    3. `const`: need initialization, scope to block. the value cannot be modified, attributes in the value can be modified
+    3. `const`: need initialization, scope to block. the value cannot be modified, attributes can
 4. Data Types
     1. String: `let myVariabe = "abc"`
         1. Escaping: `\' \" \\ \b \t \n \v \f \r \xXX \uXXXX`
@@ -63,6 +63,7 @@ References:
         6. `.shift()`: remove element from the beginning of an array
         7. `.forEach(func)`
     8. Object: `let myVariable = {name: "spot", breed: "Dalmatian"}; myVariable.name; myVariable["name"]`
+        1. use `delete` to remove properties, assigning `null` or `undefined` value will not work
 5.  Operators
     1. Arithmetic: `+ - * / % ** << >> >>> & ^ | ++ --`
     2. Assignment: `= += -= *= /= %= **= <<= >>= >>>= &= ^= |=`
