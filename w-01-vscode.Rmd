@@ -246,6 +246,7 @@ Path matching uses a glob pattern to target files, including:
         * interface
         * module
         * package
+        * lib
         * typeParameter
         * namespace
     * variable property

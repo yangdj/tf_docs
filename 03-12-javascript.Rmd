@@ -141,7 +141,7 @@ function add(a, b) {
 ### Object {-}
 
 ```javascript
-function Teacher(first, last, age, gender, interests, subject) { 
+function Teacher(first, last, age, subject) { 
     Person.call(this, first, last, age); 
     this.subject = subject;
 }
