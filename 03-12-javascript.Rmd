@@ -118,27 +118,34 @@ function add(a, b) {
 }
 ```
 
-### Common Functions {-}
+### Class {-}
 
-#### Number {-}
+#### Construction Function {-}
 
-1. `Math.random()`
-2. `Math.floor()`
-3. `Math.pow()`
+JavaScript uses *construction functions* to define and initialize objects and their features. It's JavaScript's version of a class and has following characteristics:
 
-#### String {-}
+1. name starts with a capital letter
+2. return nothing, just define properties and methods
+3. use `new` to create a new object instance
+4. use `this` to refer to the created object
 
-1. `+`: join strings, `"hello" + "world"`
-2. `` `hello, ${name}` ``: template literals, using backtick `` ` ``
+```javascript
+function Person(name) {
+    this.name = name;
+    this.greeting = function() {
+        alert("Hi, I'm " + this.name + ".")
+    };
 
-#### Window {-}
+let person1 = new Person("Bob")
+let person2 = new Person("Sarah")
+}
+```
 
-1. `prompt()`
-2. `alert()`
-3. `console.log()`
-4. `typeof typeof()`
+#### Prototypes {-}
 
-### Object {-}
+Prototypes are the mechanism by which JavaScript objects inherit features from one another. An object's prototype object may also have a prototype object, which it inherits methods and properties from, and so on. This is often referred to as *prototype chain*.
+
+In JavaScript, a link is made between the object instance and its prototype (`__proto__`, which is derived from the `prototype` property on the constructor)
 
 ```javascript
 function Teacher(first, last, age, subject) { 
@@ -164,6 +171,26 @@ Teacher.prototype.greeting = function() { ... };
 4. `Object.getPrototype(obj)`
 5. `delete`: delete an attribute
 6. `hasOwnProperty()`: whether the object has its own property, not from prototype, e.g., `({})`.hasOwnProperty.call(foo, "bar")
+
+### Common Functions {-}
+
+#### Number {-}
+
+1. `Math.random()`
+2. `Math.floor()`
+3. `Math.pow()`
+
+#### String {-}
+
+1. `+`: join strings, `"hello" + "world"`
+2. `` `hello, ${name}` ``: template literals, using backtick `` ` ``
+
+#### Browser {-}
+
+1. `prompt()`
+2. `alert()`
+3. `console.log()`
+4. `typeof typeof()`
 
 ## DOM
 
