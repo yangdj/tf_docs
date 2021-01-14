@@ -145,16 +145,19 @@ let person2 = new Person("Sarah")
 
 Prototypes are the mechanism by which JavaScript objects inherit features from one another. An object's prototype object may also have a prototype object, which it inherits methods and properties from, and so on. This is often referred to as *prototype chain*.
 
-In JavaScript, a link is made between the object instance and its prototype (`__proto__`, which is derived from the `prototype` property on the constructor)
+In JavaScript, a link is made between the object instance and its prototype (`__proto__`, which is derived from the `prototype` property on the constructor). Since ECMAScript2015, `Object.getPrototypeOf(obj)` can access object's prototype, similar to `__proto__`.
+
+[Object.create](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
 
 ```javascript
 function Teacher(first, last, age, subject) { 
-    Person.call(this, first, last, age); 
+    Person.call(this, first, last, age); // call super constructor
     this.subject = subject;
 }
 
-Teacher.prototype = Object.create(Person.prototype);
+Teacher.prototype = Object.create(Person.prototype); // subclass inherits superclass
 
+Teacher.prototype.constructor = Teacher // or the following
 Object.defineProperty(Teacher.prototype, 'constructor', { 
     value: Teacher, 
     enumerable: false, // so that it does not appear in 'for in' loop 
