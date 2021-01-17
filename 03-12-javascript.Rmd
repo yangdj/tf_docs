@@ -147,7 +147,7 @@ Prototypes are the mechanism by which JavaScript objects inherit features from o
 
 In JavaScript, a link is made between the object instance and its prototype (`__proto__`, which is derived from the `prototype` property on the constructor). Since ECMAScript2015, `Object.getPrototypeOf(obj)` can access object's prototype, similar to `__proto__`.
 
-[Object.create](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
+[Object.create()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create) method creates a new object, using an existing object as the prototype of the newly created object.
 
 ```javascript
 function Teacher(first, last, age, subject) { 
