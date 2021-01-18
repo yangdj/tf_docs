@@ -130,18 +130,27 @@ JavaScript uses *construction functions* to define and initialize objects and th
 4. use `this` to refer to the created object
 
 ```javascript
+// constructor function
 function Person(name) {
     this.name = name;
     this.greeting = function() {
         alert("Hi, I'm " + this.name + ".")
     };
 
-let person1 = new Person("Bob")
-let person2 = new Person("Sarah")
+// add new method to the constructor's prototype property
+Person.prototype.farewell = function() {
+  alert(this.name + ' has left the building. Bye for now!');
+};
+
+let person1 = new Person("Bob");
+let person2 = new Person("Sarah");
+person1.farewell();
 }
 ```
 
 #### Prototypes {-}
+
+Every construction function has a `prototype` property whose value is an object containing a `constructor` property. This `constructor` points to the original constructor function.
 
 Prototypes are the mechanism by which JavaScript objects inherit features from one another. An object's prototype object may also have a prototype object, which it inherits methods and properties from, and so on. This is often referred to as *prototype chain*.
 
