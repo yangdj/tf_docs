@@ -131,15 +131,19 @@ JavaScript uses *construction functions* to define and initialize objects and th
 
 ```javascript
 // constructor function
-function Person(name) {
-    this.name = name;
-    this.greeting = function() {
-        alert("Hi, I'm " + this.name + ".")
+function Person(first, last, age, gender, interests) {
+    this.name = {
+      'first': first,
+      'last' : last
     };
+    this.age = age;
+    this.gender = gender;
+    this.interests = interests;
+}
 
 // add new method to the constructor's prototype property
 Person.prototype.farewell = function() {
-  alert(this.name + ' has left the building. Bye for now!');
+  alert(this.name.first + ' has left the building. Bye for now!');
 };
 
 let person1 = new Person("Bob");
@@ -159,8 +163,8 @@ In JavaScript, a link is made between the object instance and its prototype (`__
 [Object.create()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create) method creates a new object, using an existing object as the prototype of the newly created object.
 
 ```javascript
-function Teacher(first, last, age, subject) { 
-    Person.call(this, first, last, age); // call super constructor
+function Teacher(first, last, age, gender, interest, subject) { 
+    Person.call(this, first, last, age, gender, interest); // call super constructor
     this.subject = subject;
 }
 
@@ -177,12 +181,42 @@ Object.defineProperty(Teacher.prototype, 'constructor', {
 Teacher.prototype.greeting = function() { ... };
 ```
 
-1. `this`: refer to the current object
-2. `.__proto__`: `.prototype`
-3. `.valueOf()`: return the value of the object it is called on
-4. `Object.getPrototype(obj)`
-5. `delete`: delete an attribute
-6. `hasOwnProperty()`: whether the object has its own property, not from prototype, e.g., `({})`.hasOwnProperty.call(foo, "bar")
+#### ECMAScript2015 {-#ecma2015}
+
+```javascript
+class Person {
+    constructor(first, last, age, gender, interests) {
+        this.name = {
+        first,
+        last
+    };
+    this.age = age;
+    this.gender = gender;
+    this.interests = interests;
+}
+
+    farewell() {
+        console.log(`${this.name.first} has left the building. Bye for now!`);
+    };
+
+class Teacher extends Person {
+    constructor(first, last, age, gender, interests, subject, grade) {
+        super(first, last, age, gender, interests); // `this` is initialized by calling the parent constructor.
+        this._subject = subject;
+        this._grade = grade;
+    }
+    
+    // getter
+    get subject() {
+        return this._subject;
+    }
+
+    // setter
+    set subject(newSubject) {
+        this._subject = newSubject;
+    }
+}
+```
 
 ### Common Functions {-}
 
