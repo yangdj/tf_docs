@@ -1,0 +1,125 @@
+# File Format
+
+## Json
+
+A json file consists of following elements:
+
+* basic
+    * `.json`: file extension
+    * `application/json`: MIME type
+* separators
+    * `:`: `key:value`
+    * `,`: `key:value` pairs
+    * `{}`: object
+    * `[]`: array
+* data types	
+    * keys: string
+    * value
+        * string: "purple", wrapped by double quotes
+        * number: `100`, `-10.2`
+        * boolean: `[true, false]`
+        * null: `{"age": null}`
+        * object: `{..., ...}`
+        * array: `[..., ...]`
+* object
+    * using `.` or  `[]` to get value: `auther.name` or `auther["name"]`
+    * using `=` to update values: auther.name = "othername"
+    * using `delete` to delete properties: `delete auther.name`
+* array
+    * using `[]` to get value: `auther.books[1]`
+    * using `=` to update values: `auther.books[1] = "hl"`
+    * using `delete` to delete items: `delete auther.books[1]`
+
+### Schema {-}
+
+Schema is used to describe json structure.
+
+```json
+// schema:
+{ 
+    "$schema": "http://json-schema.org/draft-04/schema#", 
+    "title": "Person", 
+    "description": "A person", 
+    "type": "object",
+    "properties": { 
+        "name": { 
+            "description": "A person's name", 
+            "type": "string" 
+         },
+         "age": {
+            "description": "A person's age",
+            "type": "number", 
+            "minimum": 18,
+            "maximum": 64
+            } 
+    },
+    "required": ["name", "age"]
+}
+```
+```json
+// object:
+{
+    "name": "John Doe",
+    "age": 35
+}
+```
+
+## YAML
+
+* basic
+    * all yaml files can optionally begin with `---` and end with `...` indicating the start and end of the file
+    * `: `: indicate a mapping
+    * `: {`: indicate a dictionry
+    * ` #`: indicate a comment
+    * when `: ` , `: {`, ` #` appear in the mid of value, use single or double quotes to quote the entire value, not part of it
+    * double quotes can use escapes
+* data types
+    * numeric: `1, 1.1`
+    * boolean: `yes | no | true | false | True, False | TRUE | FALSE`
+    * string: `"hello"`, needs single or double quotes when needed
+    * list: members begin at the same indentation level starting with a dash and a space `- `
+    * dictionray
+        * `key: value`: colon must be followed by a space
+        * value can span multiple lines using `|` or `>`
+            * `|` will include the new lines and any trailing spaces
+            * `>` will fold new lines to spaces making long line to read and edit easier
+            * both `|` and `>` will ignore the indentation
+
+```yaml
+# Employee records
+- martin: 
+    name: Martin D'vloper
+    job: Developer
+    skills:
+      - python
+      - perl
+      - pascal
+- tabitha:
+    name: Tabitha Bitumen
+    job: Developer
+    skills:
+      - lisp
+      - fortran
+      - erlang
+
+--- 
+# An employee record
+name: Martin D'vloper
+job: Developer
+skill: Elite
+employed: True
+foods:
+  - Apple
+  - Orange
+  - Strawberry
+  - Mango
+languages:
+  perl: Elite
+  python: Elite
+  pascal: Lame
+education: |
+  4 GCSEs
+  3 A-Levels
+  BSc in the Internet of Things
+...
+```

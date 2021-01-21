@@ -1,0 +1,66 @@
+# (PART) Computer Bases {-}
+
+# Data Storage
+
+## Characters
+
+### Unicode {-}
+
+* `[\u4e00-\u9fa5]`: 20902 basic chinese characters, ``%s/\(\zs[^']\)\(\<[a-zA-Z]*[\u4e00-\u9fa5]\+[a-zA-Z]*\>\)/\1`\2`/g``
+
+### Regular Expression {-#re}
+
+1. priority
+    1. repetition takes precedence over concatenation
+    2. concatenation precedence over alternation
+    3. subgroup override these precedence rules
+2.  `\`: escaping
+    1. `\\`: literal `\`
+    2. `BEL(7)`: `\a`
+    3. `TAB(9)`: `\t`
+    4. `LF(10)`: `\n`
+    5. `FF(12)`: `\f`
+    6. `CR(13)`: `\r`
+    7. `Esc(27)`: `\e`
+3. `^`: line start position
+4. `$`: line end position
+5. `.`: any character
+6. `[]`
+    1. `[...]`: include any character in it, `[1234abcd]`
+    2. `[^...]`: exclude any character in it, [^0-9]
+    3. `-` in `[]`: represent a range of characters, `[a-c]` matches `a` or `b` or `c`
+    4. to include literal `^`, `-` `[` or `]`
+        1. `[..^..]`: put `^` at any position except the start of `[]`
+        2. `[-...]` or `[...-]`: put `-` at the start or end of `[]`
+            1. R: when specifies `perl = TRUE`, using `\-` for literal `-`
+        3. `[]...]`: put `]` at the start of `[]`
+        4. `[` can be put directly in `[]`, no need for special treatment
+7. `?`: greedy repeating, 0 or 1 repeating times
+8. `*`: greedy repeating, \([0, \infty]\) times
+9.  `+`: greedy repeating, \([1, \infty]\) times
+10. `{m, n}, {m}, {m,}`: greedy repeating, [m, n], or m or \([m, \infty]\) times
+11. `|`: alternation, matches any part of it, `abc|ABC` matches `abc` or `ABC`
+12. `()`: subgroup, groups characters which has the highest priority
+    1. subgroup extraction: extract from `()`
+            1. R: using `\N N=[1-9]`
+13. non-greedy repeating
+    1. R: appending `?` after `?`, `*`, `+`, `{m, n}`, `??` or `*?` or `+?` or `{m, n}?`
+14. POSIX Classes
+    1. `[[:digit:]]`: `[0-9]`
+    2. `[[:xdigit:]]`: `[0-9a-fA-F]`
+    3. `[[:lower:]]`: `[a-z]` and locale lower letters
+    4. `[[:upper:]]`: `[A-Z]` and locale upper letters
+    5. `[[:alpha:]]`: `[[:lower:]]` and `[[:upper:]]`
+    6. `[[:alnum:]]`: `[[:alpha]]` and `[[:digit:]]`
+    7. `[[:cntr:]]`: `0-31` and `127(DEL)` in ASCII and other locale characters
+    8. `[[:blank:]]`: SPACE and TAB and locale blank characters
+    9. `[[:space:]]`: `\t, \n, \v, \f, \r, SPACE` and locale space characters
+    10. `[[:punct:]]`: ```~!@#$%^&*()-_+={}[]|\:;"'<>.,?/``
+    11. `[[:graph:]]`: `[[:alnum:]]` and `[[:punct:]]`
+    12. `[[:print:]]`: `[[:graph:]]` and space
+    13. `\w`, `\W`: `[[:alnum:]]`, `[^[[:alnum:]]]`
+    14. `\d`, `\D`: `[[:digit:]]`, `[^[[:digit:]]]`
+    15. `\s`, `\S`: `[[:space:]]`, `[^[[]:space:]]]`
+    16. `\<`, `\>`: empty character at the start and end of a word
+    17. `\b`, `\B`: be or not to be empty character at either end of a word
+

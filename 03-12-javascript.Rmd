@@ -218,6 +218,11 @@ class Teacher extends Person {
 }
 ```
 
+### Json {-#js-json}
+
+* `JSON.parse()`
+* `JSON.stringify()`
+
 ### Common Functions {-}
 
 #### Number {-}
