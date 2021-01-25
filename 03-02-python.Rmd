@@ -120,22 +120,64 @@ import pandas as pd
 Font install
 
 ```sh
-# Linux
 mkdir -p /usr/share/fonts/STSong 
 mv STSONG.ttf /usr/share/fonts/STSong
 mkfontscale 
 mkfontdir 
 fc-cache -fv
-```
 
-```sh
-# matplotlib
 cp STSONG.ttf site-packages/matplotlib/mpl-data/fonts/ttf
 rm -rf ${MPLCONFIGDIR}/{fontList.json,tex.cache}
 rm -rf ~/.cache/matplotlib - if exists
 ```
-config
-1. ${MPLCONFIGDIR}/matplotlibrc
+
+Configuration
+
+```
+# ${MPLCONFIGDIR}/matplotlibrc
 font.family: STSong
 axes.unicode_minus: False
+```
 
+### jupyter {-}
+
+Commands:
+
+1. `juypter notebook --generate-config`: generate config file in directory `${JUPYTER_CONFIG_DIR}`
+2. `jupyter notebook --no-browser --port=5000 --ip=0.0.0.0`: default port 8888
+3. `jupyter notebook password`:  set jupyter login password, or use the following method
+4. `python -c "from notebook.auth import passwd; print(passwd('jupyter'))"`
+
+Configuration
+
+```python
+# ${JUPYTER_CONFIG_DIR}/jupyter_notebook_config.py
+import os                                                                                 
+import sys                                                                                
+                                                                                          
+#  for Mac, set browser value definitely; otherwise jupyter will not open browser automatically                                 
+if sys.platform == "darwin":                                                              
+    c.NotebookApp.browser = "Safari"
+                                                    
+c.NotebookApp.notebook_dir = "/server/proj/py-lrn"
+#c.NotebookApp.password = "sha1:9e799b2236aa:01085662782c7813128637089192f836901b196d"
+```
+
+ipython-notebook.service
+
+```ini
+# /usr/lib/systemd/system/ipython-notebook.service
+[Unit]
+Description=Jupyter Notebook Server
+
+[Service]
+Type=simple
+Environment="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib"
+Environment="PATH=/usr/local/bin:/usr/bin:$PATH"
+ExecStart=/server/proj/.env/py-lrn/bin/jupyter notebook --ip=0.0.0.0 --no-browser                                                   
+User=yang
+Group=yang
+
+[Install]
+WantedBy=multi-user.target
+```
