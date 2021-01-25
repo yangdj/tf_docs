@@ -1,0 +1,141 @@
+# Python
+
+## Environment Management
+
+### venv {-}
+
+`venv` module can be used to create virtual environment.
+
+1. create virtual enviromeng
+
+    ```sh
+    python3 -m venv virtual-name
+    ```
+
+2. activate virtual environment
+
+    ```sh
+    source virtual-name/bin/activate; .virtual-name\scripts\activate
+    ```
+
+3. quit the environment
+
+    ```sh
+    deactivate
+    ```
+
+### pip {-}
+
+`pip` is used to manage packages.
+
+Configuration:
+
+* `~/.pip/pip.conf`: for Linux and OSX
+* `~\pip\pip.ini`: for Windows
+
+```ini
+[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+[install]
+trusted-host = https://pypi.tuna.tsinghua.edu.cn
+```
+
+Commands:
+
+1. `pip install package`
+2. `pip uninstall package`
+3. `pip install --upgrade package`
+4. `pip list package`
+5. `pip show package`
+6. `pip search package`
+7. `pip freeze > requirements.txt`
+8. `pip install -r requirements.txt`
+
+### Conda {-}
+
+Virtual environment:
+
+1. `conda --version`
+2. `conda update conda`
+3. `conda create --name vtl-name python=3.5`
+4. `conda activate vtl-name`
+5. `conda activate, conda deactivate`: switch back to default environment (base)
+6. `conda info --envs`: list all environments
+7. `conda remove --name vtl-name --all`: remove environment
+8. `conda config --append channels conda-forge` - adds new channel when "packages not available ..."
+
+Package management:
+
+1. `conda install pkg(=1.1.1)`
+2. `conda remove pkg`
+3. `conda update pkg`
+4. `conda list pkg`
+5. `conda search pkg`
+
+## Jupyter Deploy
+
+### Package Dependent {-}
+
+1. ipython
+2. line_profiler
+3. numpy
+4. matplotlib
+5. pandas
+6. jupyter
+7. scipy
+8. scikit-learn
+9. seaborn
+10. tensorflow
+11. keras
+
+### Environment Variable {-}
+
+```sh
+export IPYTHONDIR=~/.ipython - default value
+export MPLCONFIGDIR=~/.config/matplotlib - default value
+export JUPYTER_CONFIG_DIR=~/.jupyter - default value
+```
+
+### ipython {-}
+
+Commands:
+
+1. `ipython profile create <name>`: create configuration file under `$IPYTHONDIR `
+2. `ipython profile locate`
+3. `ipython profile list`
+
+Configuration: 
+
+```python
+# ${IPYTHONDIR}/profile_default/ipython_config.py
+c.InteractiveShellApp.extensions = ["line_profiler"]
+c.InteractiveShellApp.exec_lines = [
+import numpy as np
+import pandas as pd
+]
+```
+
+### matplotlib {-}
+
+Font install
+
+```sh
+# Linux
+mkdir -p /usr/share/fonts/STSong 
+mv STSONG.ttf /usr/share/fonts/STSong
+mkfontscale 
+mkfontdir 
+fc-cache -fv
+```
+
+```sh
+# matplotlib
+cp STSONG.ttf site-packages/matplotlib/mpl-data/fonts/ttf
+rm -rf ${MPLCONFIGDIR}/{fontList.json,tex.cache}
+rm -rf ~/.cache/matplotlib - if exists
+```
+config
+1. ${MPLCONFIGDIR}/matplotlibrc
+font.family: STSong
+axes.unicode_minus: False
+
