@@ -181,3 +181,73 @@ Group=yang
 [Install]
 WantedBy=multi-user.target
 ```
+
+## Database {#py-db}
+
+1. MySQL
+    * `mysqlclient`
+2. PostgreSQL
+    * `psycopg2-binary`
+3. SQLServer
+    * `pymssql`
+    * dependencies
+        * `freetds-devel`: for `sqlfont.h`
+        * `unixODBC-devel`: for sql.h
+        * `C_INCLUDE_PATH`: search `sql.h` and other header files
+
+        ```sh
+        yum install freetds-devel unixODBC-devel
+        export C_INCLUDE_PATH=/usr/include
+        ```
+4. Hive
+    * `pyhive[hive]`
+    * dependencies
+        * `thrift-sasl`: when meets "TSaslClientTransport' object has no attribute 'readAll'"
+
+        ```sh
+        yum install cyrus-sasl-devel cyrus-sasl-plain thrift-sasl
+        ```
+5. SQLAlchemy
+    * connection string: `prefix://username:password@host:port/databasename?parameter=value`
+    * prefix:
+        * PostgreSQL: `postgresql+psycopg2`
+        * MySQL: `mysql`
+        * SQLServer: `mssql+pymssql`
+    * parameter:
+        * MySQL: `charset=utf8`
+
+## Base {#py-base}
+
+Functions
+
+1. `id()`
+2.  `sys.getsizeof() - return the size of objects in bytes`
+3. `type()`
+4. `repr()`
+5. `str()`
+6. `dir()`
+7. `issubclass()`
+8. `isinstance()`: `isinstance(True, int) => True`
+9. `getattr()`
+10. `hasattr()`
+11. `class.__mro__`
+12. `class.mro()`
+13. `class.__bases__`
+14. `os.path.abspath(__file__)`
+15. `os.path.dirname()`
+16. `os.path.join()`
+17. `".".join()`
+
+False value
+
+1. `0; 0.0; 0j`
+2. `""`
+3. `False`
+4. `[]`
+5. `()`
+6. `{}`
+7. `None`
+
+Packages
+
+1. `http.server`: `python -m http.server 8888`
