@@ -216,6 +216,216 @@ WantedBy=multi-user.target
     * parameter:
         * MySQL: `charset=utf8`
 
+## Airlfow
+
+### Installation {-}
+
+1. `SLUGIFY_USES_TEXT_UNIDECODE=yes pip install apache-airflow`: since airflow >= 1.10
+2. `pip install Fernet cryptography`
+3. `pip install "apache-airflow[password]"`: for authentication
+4. `pip install "apache-airflow[hive]"`: for hive
+5. `pip install psycopg2-binary`: for postgresql
+6. `pip install "apache-airflow[mssql]"`: for mssql
+7. `pip install "apache-airflow[celery]"`
+8. `pip install "apache-airflow[redis]"`: when use redis for CeleryExecutor
+9. `pip install "apache-airflow[rabbitmq]"`: when use rabbitmq for CeleryExecutor
+
+Installing `apache-airflow[rabbitmq]` may encounter a source error, then:
+
+1. modify `except Exception, e` to `except Exception as e`
+2. `python setup.py build`
+3. `python setup.py install`
+
+### Setup {-}
+
+1. set `AIRFLOW_HOME` path
+
+    ```sh
+    export AIRFLOW_HOME= /YOUR/AIRFLOW/PROJECT/HOME/
+    ```
+
+2. initialization: 
+ 
+    ```sh
+    airflow initdb
+    ```
+    
+    in generated file `airflow.cfg`, update following values according to demands:
+
+    1. sql_alchemy_conn
+        1. postgresql:  `sql_alchemy_conn = postgresql+psycopg2://airflow:airflow@localhost:5432/proj`
+        2. mysql: `sql_alchemy_conn = mysql://airflow:airflow@localhost/airflow?charset=utf8`
+
+    2. executor
+        1. `executor = CeleryExecutor`
+            1. use redis: `broker_url = redis://127.0.0.1:6379/15`
+            2. use rabbigmq: `broker_url = amqp://myairflow:airflowpass@localhost:5672/myvhost`
+
+                ```sh
+                # set rabbimq airflow user when using rabbitmq
+                sudo rabbitmqctl add_user myairflow airflowpass
+                sudo rabbitmqctl add_vhost myvhost
+                sudo rabbitmqctl set_user_tags myairflow airflow
+                sudo rabbitmqctl set_permissions -p myvhost myairflow ".*" ".*" ".*"
+                ```
+
+    3. result_backend (celery_result_backend < 1.10)
+        1. postgresql: `result_backend = db+postgresql://airflow:airflow@localhost:5432/proj`
+        2. mysql: `result_backend = db+mysql://airflow:airflow@localhost/airflow?charset=utf8`
+        3. redis: `result_backend = redis://127.0.0.1:6379/15`
+
+    4. authenticate
+        1. `authenticate = True`
+        2. `auth_backend = airflow.contrib.auth.backends.password_auth`
+        
+    5. timezone
+        1. `default_timezone = Asia/Shanghai`
+
+3. create airflow user account
+
+    ```python
+    # create_user.py
+    import airflow
+    from airflow import models, settings
+    from airflow.contrib.auth.backends.password_auth import PasswordUser
+    user = PasswordUser(models.User())
+    user.username = 'airflow'
+    user.email = 'new@example.com'
+    user.password = 'airflow'
+    session = settings.Session()
+    session.add(user)
+    session.commit()
+    session.close()
+    ```
+
+    ```sh
+    python create_user.py
+    ```
+
+4. firewall
+    1. `sudo firewall-cmd --permanent --add-port=8000/tcp`: airflow webserver, 8000 default 
+    2. `sudo firewall-cmd --permanent --add-port=5555/tcp`: airflow flower, 5555 default
+    3. `sudo systemctl reload firewalld`
+
+### Deployment {-}
+
+Using systemd to deploy airflow server, and copy the following service file to `/usr/lib/systemd/system/`:
+
+```sh
+cp airflow-*er.service /usr/lib/systemd/system/
+```
+
+1. `airflow.conf` file
+
+    ```
+    D /run/airflow 0755 airflow airflow
+    ```
+
+    ```sh
+    cp airflow.conf /etc/tmpfiles.d/
+    mkdir /run/airflow
+    chown airflow: /run/airflow
+    ```
+
+2. `airflow` file
+
+    ```sh
+    AIRFLOW_HOME=/server/proj/airflow/test
+    SCHEDULER_RUNS=10
+    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+    PYTHONPATH=${AIRFLOW_HOME}:${AIRFLOW_HOME}/plugins:${PYTHONPATH}
+    PATH=/server/proj/.env/airflow/bin:/usr/bin:/user/local/bin:/usr/local/sbin:/usr/sbin:${PATH}
+    ```
+
+    ```sh
+    cp airflow /etc/sysconfig/
+    ```
+
+3. `airflow-webserver.service` file
+   
+    ```ini
+    [Unit]
+    Description=Airflow webserver daemon 
+    After=network.target postgresql.service redis.service
+    Wants=postgresql.service redis.service
+
+    [Service]
+    EnvironmentFile=/etc/sysconfig/airflow
+    User=airflow
+    Group=airflow
+    Type=simple
+    ExecStart=/server/proj/.env/airflow/bin/airflow webserver -p 8000 --pid /run/airflow/webserver.pid
+    Restart=on-failure
+    RestartSec=5s
+    PrivateTmp=true
+
+    [Install]
+    WantedBy=multi-user.target
+    ```
+
+4. `airflow-worker.service` file
+
+    ```ini
+    [Unit]
+    Description=Airflow celery worker daemon
+    After=network.target postgresql.service redis.service
+    Wants=postgresql.service redis.service
+
+    [Service]
+    EnvironmentFile=/etc/sysconfig/airflow
+    User=airflow
+    Group=airflow
+    Type=simple
+    ExecStart=/server/proj/.env/airflow/bin/airflow worker
+    Restart=on-failure
+    RestartSec=10s
+
+    [Install]
+    WantedBy=multi-user.target
+    ```
+
+5. `airflow-scheduler.service` file
+
+    ```ini
+    [Unit]
+    Description=Airflow scheduler daemon
+    After=network.target postgresql.service redis.service
+    Wants=postgresql.service redis.service
+
+    [Service]
+    EnvironmentFile=/etc/sysconfig/airflow
+    User=airflow
+    Group=airflow
+    Type=simple
+    ExecStart=/server/proj/.env/airflow/bin/airflow scheduler
+    Restart=always
+    RestartSec=5s
+
+    [Install]
+    WantedBy=multi-user.target
+    ```
+
+6. `airflow-flower.service` file 
+
+    ```ini
+    [Unit]
+    Description=Airflow celery flower
+    After=network.target postgresql.service redis.service
+    Wants=postgresql.service redis.service
+
+    [Service]
+    EnvironmentFile=/etc/sysconfig/airflow
+    User=airflow
+    Group=airflow
+    Type=simple
+    ExecStart=/server/proj/.env/airflow/bin/airflow flower
+    Restart=on-failure
+    RestartSec=5s
+
+    [Install]
+    WantedBy=multi-user.target
+    ```
+
 ## Base {#py-base}
 
 Functions

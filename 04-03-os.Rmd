@@ -1,0 +1,85 @@
+# OS
+
+## BASH
+
+Conditional
+
+```sh
+case $(uname -s) in
+Darwin|Linux)
+    ...
+    ;;
+MINGW*|MSYS_NT*)
+    ...
+    ;;
+
+*)
+    ...
+    ;;
+ecac
+```
+
+### Environment {-#os-env}
+
+1. `uname -s => [Linux, Darwin, MINGW*|MSYS_NT*]`
+2. `basename`
+3. `dirname`
+4. `set`: displays environment variables and shell functions
+5. `set -e`: exit whenever produces a false result 
+6. `set +e`: continues executing when meets false
+7. `exit 1`: exit with return value 1 immediately
+
+### User {-#os-user}
+
+1. `adduser user_name`
+    1. `-M`: no not create user's home directory
+2. `userdel user_name`
+3. `passwd user_name`: set password
+4. `chown -R user_name: user_home`
+5. `usermod -d user_home user_name`
+6. `usermod -s $(which zsh) user_name`
+7. `gpasswd -a user_namewheel`: `wheel` has sudo priviledge
+
+### SSH {-#os-ssh}
+
+1. `ssh-keygen -t rsa`: create ssh key
+2. `ssh-copy-id user@host`: copy public key to remote user
+3. `ssh user@host 'mkdir -p .ssh && cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub`: same as `2`
+
+### Systemd {-#os-systemd}
+
+Commands:
+
+1. `/usr/lib/systemd/system/: system path
+2. `/etc/systemd/system/`: customize path, overrides system config
+3. `systemctl edit service_name.service`: changes systemd parameters
+4. `systemctl set-default multi-user.target`: text mode
+5. `systemctl set-default graphical.target`: graphical mode
+6. `systemctl [start multi-user.target, graphical.target]`
+7. `systemctl [start, stop, status, restart, reload, enable, disenable] service_name.service`
+
+Service
+
+```ini
+# example
+#/usr/lib/systemd/system/postgresql.service
+...
+[Service]
+...
+Environment=PGPORT=5432
+...
+
+# /etc/systemd/system/postgresql.service
+.include /usr/lib/systemd/system/postgresql.service
+[Service]
+Environment=PGPORT=5433
+...
+```
+
+### Firewall {-#os-firewall}
+
+Command:
+
+1. `firewall-cmd --permanent --add-service=postgresql`
+2. `firewall-cmd --permanent --add-port=6379/tcp`
+3. `systemctl reload firewalld`
