@@ -1,5 +1,543 @@
 # OS
 
+## Environments {#os-envs}
+
+### Centos {-#os-centos}
+	
+1. download minimal centos image 
+3. install and partition disk
+    1. select **install centos7** after booting
+    2. click **tab** at the bottom of the information, append **inst.gpt**, then press **enter** key, the system will use **gpt** to partition the disk
+4. file system
+    1. **2M** for **biosboot**, using **standard partition**
+    2. **1G** for **/boot**, using **standard partition** and **xfs** filesystem
+    3. **/**, **/home**, **swap** using **lvm** and **xfs** filesystem, specify storage size
+
+### Basic Installation {-#os-basic}
+
+For minimal system, first install following tools:
+
+```sh
+sudo yum install gcc wget net-tools nss curl libcurl curl-devel epel-release
+```
+
+1. `gcc`, `wget`, `net-tools`: for minimal centos7
+2. `nss`, `curl`, `libcurl`, `curl-devel`: net protocals and avoid `peer reports incompatible or unsupported protocol version`
+3. `epel-release`: download software from epel-release repository, it contains new version software
+
+### Git {-#os-git}
+
+Dependencies
+
+ ```sh
+ sudo yum install autoconf zlib-devel perl-ExtUtils-MakeMaker asciidoc xmlto
+ ```
+
+1. `autoconf`: for generating configure file
+2. `asciidoc`, `xmlto`: for generating docs
+
+Source
+
+1. from tar file
+
+```sh
+GIT_VERSION = 2.9.5
+wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-${GIT_VERSION}.tar.xz
+tar xf git-${GIT_VERSION}.tar.xz && mv git-${GIT_VERSION} git
+```
+
+2. from git
+
+```sh
+git clone https://github.com/git/git.git
+```
+
+Install
+
+```sh
+make configure && ./configure --prefix=/usr/local && make all doc
+sudo make install install-doc install-html
+```
+
+Configiguration
+
+1. `git config --global user.name user_name`
+2. `git config --global user.email user_email`
+3. `git config --global core.editor vim`
+4. `git config --global push.default simple`
+
+### Tmux {-#os-tmux}
+
+Dependencies
+
+```sh
+sudo yum install automake libevent libevent-devel ncurses-devel
+```
+
+1. `automake`, `libevent`, `libevent-devel`: for generating `autogen.sh`
+
+Source from git
+
+```sh
+git clone https://github.com/tmux/tmux.git
+```
+
+Install
+
+```sh
+cd tmux && sh autogen.sh && ./configure 
+make && sudo make install
+```
+
+Configuration
+
+Create and config file `~.tmux.conf`.
+
+```sh
+# from deploy/rc/.tmux.conf
+
+# reset prifix key, mapping to C-a, when tmux does not use zsh, may need reboot
+unbind C-b
+set -g prefix C-a
+
+# r: reload config file
+bind r source-file ~/.tmux.conf
+
+# remap panel navigation like vim
+unbind-key j
+bind-key j select-pane -D
+unbind-key k
+bind-key k select-pane -U
+unbind-key h
+bind-key h select-pane -L
+unbind-key l
+bind-key l select-pane -R
+
+setw -g mode-keys vi
+```
+
+Operations
+
+1. `t`: display time in the current panel
+2. `[`: enter copy mode, press space-key to select content, then press enter-key to end copy
+3. `]`: paste the content
+4. `q`: exit 
+5. panel operation
+    1. `%`: add a vertical panel
+    2. `"`: add a horizontal panel
+    3. `x`: close current panel
+    4. `q`: list panel number
+    5. `o`: move between panels
+    6. `{`: move the current pane left
+    7. `}`: move the current pane right
+    8. ` `: toggle between layouts
+    9.  `!`: display panel in new window
+    10. arrow key: move between panels
+    11. Esc or `Alt + arrow`: resize panel size
+6. widow operation
+    1. `c`: create a window
+    2. `&`: kill window
+    3. `,`: rename current window
+    4. `w`: list all windows
+    5. `n`: select next window
+    6. `p`: select previous window
+    7. `number(1, 2, 3)`: move between windows
+7. session operation
+    1. `tmux new -s session-name`: add a session
+    2. `: new -s session-name`: add a session in an existing session
+    3. `tmux kill-session -t session-name`: close a session
+    4. `$`: rename current session
+    5. `: rename-session new-session-name`
+    6. `tmux ls`: list session
+    7. `s`: list session
+    8. `tmux attach`: enter existing sessions
+    9. `tmux a -t session-name`: attach a specified session
+    10. `tmux detach`: detach a session
+    11. `d`: also detach a session
+
+### Python {-#os-python}
+
+Dependencies
+
+```sh
+sudo yum install readline-devel openssl-devel sqlite-devel bzip2-devel libffi-devel
+```
+
+1. `readline-devel`:  for cursor moving, like backspace and direction key
+2. `openssl-devel`: for https protocal
+3. `sqlite-devel`: for ipython to record history
+4. `bzip2-devel`: for matplotlib use
+5. `libffi-devel`: for python since 3.7.0
+
+Source from tar
+
+```sh
+PYTHON_VERSION = 3.7.0
+wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz
+tar xf Python-${PYTHON_VERSION}.tgz
+```
+
+Install
+
+```sh
+# --enable-shared: generate dynamic python library, and ycm depends it
+./configure --enable-shared && make
+sudo make install
+# sudo make altinstall (instead of make install) support multiple python versions
+```
+
+### Vim {-#os-vim}
+
+Dependencies
+
+1. [python](#os-python)
+2. `export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}`: find libpython3.7m.so.1.0
+
+Source from git
+
+```sh
+git clone https://github.com/vim/vim.git
+```
+
+Install
+
+```sh
+./configure --enable-fail-if-missing --enable-multibyte --enable-python3interp=yes \
+  --with-python3-config-dir=/usr/local/lib/python3.7/config-3.7m-x86_64-linux-gnu
+ make && sudo make install
+# rm vim/src/auto/config.cache: if report cache error
+```
+
+Configuration
+
+1. create and config file `~/.vimrc`, see `deploy\files\rc\.vimrc`
+2. package management plugin `vundle`
+
+    ```sh
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    vim +PluginInstall +qall
+    ```
+
+### Zsh {-#os-zsh}
+
+Source from git
+
+```sh
+git clone git://git.code.sf.net/p/zsh/code zsh
+```
+
+Install
+
+```sh
+./Util/preconfig // genterates configuration file
+./configure && make && sudo make install
+config
+```
+
+Configurations
+
+1. modify default shell
+    
+    ```sh
+    sudo usermod -s `which zsh` ${USER}
+    ```
+
+2. omz
+    ```sh
+    sh -c "`curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh`"
+    ```
+
+3. autojump
+    ```sh
+    sudo yum install autojump-zsh
+    ```
+
+4. create and config file `.zshrc`, see `deploy/files/rc/.shrc`
+
+    ```sh
+    cat deploy/files/rc/.shrc >> ~/.zshrc
+    ```
+
+### Cmake {-#os-cmake}
+
+Dependencies
+
+```
+sudo yum install gcc-c++
+```
+
+Source from tar
+
+```sh
+CMAKE_VERSION=3.13.0
+wget https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}.tar.gz
+tar xf cmake-${CMAKE_VERSION}.tar.gz
+
+Install
+
+```sh
+./bootstrap && make && sudo make install
+```
+
+### SVN {-#os-svn}
+
+```sh
+sudo yum install svn
+```
+
+### Clang {-#os-clang}
+
+Dependencies
+
+1. [cmake](#os-cmake)
+2. [svn](#os-svn)
+
+Source
+
+1. structure
+
+    ```
+    llvm/
+    llvm/tools/clang
+    llvm/projects/compiler-rt
+    llvm/tools/clang/tools/extra
+    ```
+
+2. from svn
+
+    ```sh
+    svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm
+    cd llvm/tools && svn co http://llvm.org/svn/llvm-project/cfe/trunk clang
+    cd ../projects && svn co http://llvm.org/svn/llvm-project/compiler-rt/trunk compiler-rt
+    cd ../tools/clang/tools && svn co http://llvm.org/svn/llvm-project/clang-tools-extra/trunk extra
+    ```
+
+Install
+
+```sh
+LLVM_BUILD_HOME=/llvm/build/home # blank directory for compiled llvm
+cd ${LLVM_BUILD_HOME}
+cmake -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release src/llvm // #src/llvm is llvm source from svn
+make -j4 // build with 4 cores
+sudo make install
+```
+
+### YCM {-#os-ycm}
+
+Dependencies
+
+1. [python](#os-ycm)
+2. [clang](#os-clang)
+
+
+Source from git
+
+1. download YouCompleteMe from [vundle](#os-vim)
+2. download submodule
+
+    ```sh
+    cd ~/.vim/bundle/YouCompleteMe && git submodule update --init --recursive
+    ```
+
+Install
+
+```sh
+cd ~/.vim/bundle/YouCompleteMe
+python3 install.py --system-libclang --clang-completer --ts-completer
+```
+
+1. `--system-libclang`: use local clang, otherwise download upstream clang binary
+2. `--clang-completer`: support c-family languages
+3. `--ts-completer`: support javascript and typescript
+
+### NVM {-#os-nvm}
+
+```sh
+NVM_VERSION=0.33.11
+git clone https://github.com/creationix/nvm.git ~/.nvm
+cd ~/.nvm && git checkout v${NVM_VERSION}
+```
+
+### Node {-#os-node}
+
+Dependencies
+
+1. [nvm](#os-nvm)
+
+Install
+
+```sh
+nvm install node
+```
+
+### Pandoc {-#os-pandoc}
+
+Dependencies
+
+1. stack
+
+    ```sh
+    curl -sSL https://get.haskellstack.org/ | sh
+    ```
+
+Source from git
+
+```sh
+PANDOC_VERSION=2.5
+git clone https://github.com/jgm/pandoc
+cd pandoc && git checkout ${PANDOC_VERSION} && git submodule update --init
+```
+
+Install
+
+```sh
+stack setup && stack install --flag pandoc:embed_data_files
+```
+
+### Textlive {-#os-textlive}
+
+Dependencies
+
+```sh
+sudo yum install perl-Digest-MD5
+```
+
+Source from tar
+
+```sh
+wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+tar xf install-tl-unx.tar.gz
+```
+
+Install
+
+```sh
+sudo ./install-tl # may take long time
+```
+
+### Nginx {-#os-nginx}
+
+Install from repo
+
+```ini
+# nginx.repo
+[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/mainline/centos/7/$basearch/
+gpgcheck=0
+enabled=1
+```
+
+```sh
+cp nginx.repo /etc/yum.repos.d/
+install
+sudo yum install nginx
+```
+
+Install from source
+
+Dependencies
+
+1. prce
+
+    ```sh
+    PCRE_VERSION = 8.42
+    wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-${PCRE_VERSION}.tar.gz
+    tar xf pcre-${PCRE_VERSION}.tar.gz && mv pcre-${PCRE_VERSION} pcre && cd pcre
+    ./configure && make # && sudo make install
+    ```
+
+2. zlib
+    ```sh
+    ZLIB_VERSION = 1.2.11
+    wget http://zlib.net/zlib-${ZLIB_VERSION}.tar.gz
+    tar xf zlib-${ZLIB_VERSION}.tar.gz && mv zlib-${ZLIB_VERSION} zlib && cd zlib
+    ./configure && make # && sudo make install
+    ```
+
+3. openssl
+
+    ```sh
+    OPENSSL_VERSION = 1.1.1
+    wget http://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz
+    tar xf openssl-${OPENSSL_VERSION}.tar.gz && mv openssl-${OPENSSL_VERSION} openssl && cd openssl
+    ./config && make # && sudo make install
+    ```
+
+Source from tar
+
+```sh
+NGINX_VERSION = 1.15.5
+wget http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz
+```
+
+Install
+
+```sh
+./configure --with-http_ssl_module --with-openssl=../openssl --with-pcre=../pcre --with-zlib=../zlib --with-stream --with-mail=dynamic
+make && sudo make install
+```
+
+1. `/usr/local/nginx`: default installed directory
+2. `--with-stream` or `--with-stream=dynamic`: enable tcp proxy compiled dynamically
+3. `--with-mail` or `--with-mail=dynamic` - enables mail proxy which can also be compiled dynamically
+
+Configurations
+
+1. add user nginx
+
+    ```sh
+    sudo adduser nginx -M
+    sudo passwd nginx
+    sudo chown -R nginx: /usr/local/nginx
+    sudo usermod -d /usr/local/nginx nginx
+    ```
+
+2. nginx.service
+
+    ```ini
+    # nginx.service
+    [Unit]
+    Description=The nginx HTTP and reverse proxy server
+    After=network.target
+
+    [Service]
+    Type=forking
+    PIDFile=/usr/local/nginx/logs/nginx.pid
+    # Nginx will fail to start if /usr/local/nginx/logs/nginx.pid already exists but has the wrong
+    # SELinux context. This might happen when running `nginx -t` from the cmdline.
+    ExecStartPre=/usr/bin/rm -f /usr/local/nginx/logs/nginx.pid
+    ExecStartPre=/usr/local/nginx/sbin/nginx -t
+    ExecStart=/usr/local/nginx/sbin/nginx
+    ExecReload=/bin/kill -s HUP $MAINPID
+    KillSignal=SIGQUIT
+    TimeoutStopSec=5
+    KillMode=process
+    PrivateTmp=true
+
+    [Install]
+    WantedBy=multi-user.target
+    ```
+
+    ```sh
+    sudo cp nginx.service /usr/lib/systemd/system
+    sudo systemctl start nginx
+    ```
+ 
+3. firewall
+
+    ```sh
+    sudo firewall-cmd --permanent --add-port=80/tcp
+    sudo systemctl reload firewalld
+    ```
+
+4. nginx.conf
+
+    ```
+    user nginx
+    worker_process 4 # limit to the cores
+    ```
+
 ## BASH
 
 Conditional
