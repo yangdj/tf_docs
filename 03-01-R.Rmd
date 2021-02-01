@@ -32,6 +32,43 @@
     yum install --nogpgcheck shiny-server-1.5.5.872-rh5-x86_64.rpm
     ```
 
+4. shinyproxy
+
+    ```sh
+    SHINYPROXY_VERSION = 2.1.0
+    wget https://www.shinyproxy.io/downloads/shinyproxy-${SHINYPROXY_VERSION}.jar
+    ```
+
+    Operations
+
+    1. start: `java -jar shinyproxy-${SHINYPROXY_VERSION}.jar`
+    2. update jar file in `BOOT-INF` folder: `jar -uf0 shinyproxy-${SHINYPROXY_VERSION}.jar BOOT-INF`
+    3. localization
+
+        ```
+        # shinyproxy/BOOT-INF/lib/containerproxy...jar::templates/login.html
+        "Please sign in:" -> "请登录: " or give it a blank value
+        placeholder="User name" -> "用户名"
+        placeholder="Password" -> "密码"
+        "Sign in" -> "登录"
+        "<strong>Could not sign in!</strong><br><span th:text="${error}"></span>"
+        "<strong>无法登陆!</strong><br><span th:text="用户名或密码无效"></span>"
+    
+        # shinyproxy/BOOT-INF/classes/fragments/navbar.html
+        "Admin" -> "管理员"
+        "Sign Out" -> "退出"
+    
+        # shinyproxy/BOOT-INF/classes/templates/app.html
+        Launching -> "正在加载"
+        ```
+    
+    4. docker image
+
+        ```
+        FROM conoria/alpine-r-bookdown
+        RUN R -q -e 'bookdown::render_book("index.Rmd", "bookdown::gitbook")' && mv _book /public
+        ```
+
 ### Configuration {-}
 
 `?Startup` describes initialization at start of an R session, and `usethis` package supplies useful functions for settings.

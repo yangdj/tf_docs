@@ -480,7 +480,7 @@ make && sudo make install
 
 1. `/usr/local/nginx`: default installed directory
 2. `--with-stream` or `--with-stream=dynamic`: enable tcp proxy compiled dynamically
-3. `--with-mail` or `--with-mail=dynamic` - enables mail proxy which can also be compiled dynamically
+3. `--with-mail` or `--with-mail=dynamic`: enables mail proxy which can also be compiled dynamically
 
 Configurations
 
@@ -496,7 +496,7 @@ Configurations
 2. nginx.service
 
     ```ini
-    # nginx.service
+    # nginx.service: deploy/files/service/nginx.service
     [Unit]
     Description=The nginx HTTP and reverse proxy server
     After=network.target
@@ -537,6 +537,50 @@ Configurations
     user nginx
     worker_process 4 # limit to the cores
     ```
+
+### Docker {-#os-docker}
+
+Install from repo
+
+```sh
+sudo yum install yum-utils device-mapper-persistent-data lvm2
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum install docker-ce
+
+Configurations
+
+1. daemon.json
+
+    ```json
+    {
+        "bip": "192.168.188.1/24"
+    }
+    ```
+
+    ```sh
+    mkdir -p /etc/docker
+    cp daemon.json /etc/docker/
+    chmod 600 /etc/docker/daemon.json
+    ```
+ 
+2. override.conf
+
+    ```ini
+    #override.conf: deploy/files/conf/docker/override.conf
+    [Service]
+    ExecStart=
+    ExecStart=/usr/bin/dockerd -H unix:// -H tcp://127.0.0.1:2375
+    ```
+
+    ```sh
+    sudo cp override.conf /etc/systemd/system/docker.service.d # or systemctl edit docker.service
+    sudo systemctl daemon-reload
+    sudo systemctl restart docker
+    ```
+ 
+Operations
+
+1. `sudo systemctl start docker`
 
 ## BASH
 
