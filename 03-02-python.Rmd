@@ -248,6 +248,7 @@ Installing `apache-airflow[rabbitmq]` may encounter a source error, then:
  
     ```sh
     airflow initdb
+    airflow db init # >= 2.0
     ```
     
     in generated file `airflow.cfg`, update following values according to demands:
@@ -301,6 +302,16 @@ Installing `apache-airflow[rabbitmq]` may encounter a source error, then:
     ```sh
     python create_user.py
     ```
+    or directly create user
+
+    ```sh
+    airflow users create \
+        --username admin \
+        --firstname Peter \
+        --lastname Parker \
+        --role Admin \
+        --email spiderman@superhero.org
+    ```
 
 4. firewall
     1. `sudo firewall-cmd --permanent --add-port=8000/tcp`: airflow webserver, 8000 default 
@@ -308,6 +319,11 @@ Installing `apache-airflow[rabbitmq]` may encounter a source error, then:
     3. `sudo systemctl reload firewalld`
 
 ### Deployment {-}
+
+Start services directly:
+
+1. start webserver: `airflow webserver --port 8080`
+2. start scheduler: `airflow scheduler`
 
 Using systemd to deploy airflow server, and copy the following service file to `/usr/lib/systemd/system/`:
 
