@@ -1,0 +1,189 @@
+# (PART) Databases {-}
+
+# Postgres
+
+## Deployment
+
+### Dependencies {-}
+
+```sh
+yum install bison systemd-devel
+```
+
+1. `bison`: compile dept
+2. `systemd-devel`: for `--with-systemd` compile option
+
+### Source {-}
+
+1. from git
+
+    ```sh
+    PG_VERSION=10.5
+    PG_CHECKOUT=10_5
+    git clone git://git.postgresql.org/git/postgresql.git
+    git checkout REL${PG_CHECKOUT}
+    ```
+
+2. from tar
+
+    ```sh
+    wget https://ftp.postgresql.org/pub/source/v${PG_VERSION}/postgresql-${PG_VERSION}.tar.gz
+    tar xf postgresql-${PG_VERSION}.tar.gz
+    ```
+
+### Install {-}
+
+```sh
+# /usr/local/pgsql default
+./configure --with-systemd && make && sudo make install
+```
+
+### Configuration {-}
+
+1. add database user
+
+    ```sh
+    sudo adduser postgres -M # no need not create home directory
+    sudo passwd postgres
+    sudo usermod -d /usr/local/pgsql postgres # set home directory
+    sudo chown -R postgres: /usr/local/pgsql
+    ```
+
+2. initial database
+
+    ```sh
+    # set where to store log and data
+    PGDATA_HOME=/pg/data/home
+    # log directory
+    PGLOG_HOME=${PGDATA_HOME}/logdir
+    mkdir ${PGDATA_HOME} ${PGLOG_HOME}
+    # data directory
+    PGDATA=${PGDATA_HOME}/data
+    sudo chown -R postgres: ${PGDATA_HOME}
+    # initial data directory
+    su - postgres -c '/usr/local/pgsql/bin/initdb -D ${PGDATA} --locale=zh_CN.UTF8'
+    ```
+
+3. database settings
+    1. `postgresql.conf`
+        1. `listen_addresses = '*'`
+    2. `pg_hba.conf`
+
+        ```ini
+        # local for Unix domain socket connections only
+        # before start postgre, sets local login to trust; after login, alter user password, then changes trust back to md5
+        # alter user postgres with password your-password
+        local   all     all     md5
+        # IPv4 connections, allow remote access
+        host    all     all     0.0.0.0/0   md5
+        ```
+
+4. start server
+    1. use `pg_ctl`
+   
+        ```sh
+        LOGFILE=${PGLOG_HOME}/log
+        PGPORT=5432(default)
+        /usr/local/pgsql/bin/pg_ctl start -D ${PGDATA} -o "-p ${PGPORT}" -l ${LOGFILE}
+        /usr/local/pgsql/bin/pg_ctl stop -D ${PGDATA}
+        /usr/local/pgsql/bin/pg_ctl restart -D ${PGDATA} -o "-p ${PGPORT}"
+        /usr/local/pgsql/bin/pg_ctl reload -D ${PGDATA}
+        /usr/local/pgsql/bin/pg_ctl status-D ${PGDATA}
+        ```
+    2. use `systemctl`
+
+        ```ini
+        # postgresql.service
+        [Unit]
+        Description=PostgreSQL database server
+        After=network.target
+
+        [Service]
+        Type=forking
+        # Type=notify, use type=forking when type=notify fails
+
+        User=postgres
+        Environment=PGPORT=5432
+        Environment=PGDATA=/server/proj/database/pgsql/data
+        Environment=LOGFILE=/server/proj/database/pgsql/logs/log
+
+        ExecStart=/usr/local/pgsql/bin/pg_ctl start -D ${PGDATA} -o "-p ${PGPORT}" -l ${LOGFILE}
+        ExecReload=/usr/bin/kill -HUP $MAINPID 
+        KillMode=mixed
+        KillSignal=SIGINT
+        TimeoutSec=0
+
+        [Install]
+        WantedBy=multi-user.target
+        ```
+
+        ```sh
+        sudo systemctl start postgresql.service
+        ```
+
+5. firewall
+
+    ```sh
+    sudo firewall-cmd --permanent --add-service=postgresql
+    sudo systemctl reload firewalld
+    ```
+
+## Command line
+
+### Password {-}
+
+Postgres can use `pgpass` file to store password for connecting to database without inputting password, the format is `hostname:port:database:username:password`.
+
+```ini
+# .pgpass
+localhost:5432:postgres:postgres:root
+```
+
+The file path is:
+
+1. Linux: `~/.pgpass`
+
+    ```sh
+    chmod 600 ~/.pgpass # otherwise, this file will be ignored
+    ```
+2. Windows: `%APPDATA%\postgresql\pgpass.conf`
+3. `PGPASSFILE` can be set to refer to the file
+
+### Options {-}
+
+* `-h, --host=HOSTNAME`
+* `-p, --port=PORT`
+* `-d --dbname=DBNAME`
+* `-U, --username=USERNAME`
+* `-W, --password`: force password prompt
+* `-c --command=COMMAND`: run single command (SQL or internal) and exit
+* `-f --file=FILENAME`: execute commands from file, then exit
+* `-l --list`: list available databases, then exit
+* `-o, --output=FILENAME`
+* `-t, --tuples-only`: output only, without account messages
+* `-A, --no-align`: unaligned table output mode, without `|` separator
+* `-F, --field-separator=STRING`: default `|`
+* `-z, field-separator-zero`: set field separator to ASCII 0
+* `-R, --record-separator=STRING`: default newline
+* `-0, record-separator-zero`: set record separator to ASCII 0
+
+```bash
+psql -h localhost -p 5432 -U postgres -d postgres -W
+psql -h localhost -p 5432 -U postgres -d postgres -W -c "select * from dual limit 10" -t -A -F ',' -o 'data.csv'
+```
+
+### Queries {-}
+
+1. `\c dbname`: switch dataase to dbname
+2. `\du`: lists roles
+
+## SQL
+
+1. User
+    1. create: `create role airflow login password 'airflow'`
+    2. settings
+        1. schema search path: `alter user airflow set search_path=airflow,public`
+2. Database
+    1. create: `create database airflow owner airflow`
+3. Schema
+    1. create: `create schema airflow authorization airflow`
