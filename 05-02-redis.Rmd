@@ -1,0 +1,90 @@
+# Redis
+
+## Depolyment
+
+### Dependencies {-}
+
+```sh
+sudo yum install tcl
+```
+
+1. `tcl>=8.5`: for may need for`make test` for `5.0.2`, but `6.2.1` without this dependence
+
+### Source {-}
+
+From tar
+
+```sh
+#REDIS_VERSION=5.0.2
+REDIS_VERSION=6.2.1
+wget http://download.redis.io/releases/redis-${REDIS_VERSION}.tar.gz
+```
+
+### Install {-}
+
+```sh
+cd redis-${REDIS_VERSION}
+make && make test && sudo make install # /usr/local/bin
+```
+
+### Configuration {-}
+
+1. create user `redis`
+
+    ```sh
+    REDIS_HOME=/REDIS/HOME
+    REDIS_DATA_HOME=${REDIS_HOME}/data
+    sudo adduser redis -M
+    sudo passwd redis
+    mkdir -p ${REDIS_HOME} ${REDIS_DATA_HOME}
+    sudo chown -R redis: ${REDIS_HOME}
+    sudo usermod -d ${MY_REDIS_HOME} redis
+    ```
+
+2. `redis.conf`
+    
+    ```ini
+    # /etc/redis/redis.conf
+    daemonize yes 
+    supervised systemd # when use systemd
+    dir ${REDIS_DATA_HOME} # where store data
+    tcp-backlog 511 # change according to system
+    databases 64 # database number, 16 default, from 0 to 15
+    requirepass 123456 # set access password 123456
+    ```
+
+3. `redis.service`
+   
+    ```ini
+    # /usr/lib/systemd/system/
+    [Unit]
+    Description=Redis In-Memory Data Store
+    After=network.target
+
+    [Service]
+    User=redis
+    Group=redis
+    Type=forking
+    ExecStart=/usr/local/bin/redis-server /etc/redis/redis.conf
+    ExecStop=/usr/local/bin/redis-cli shutdown
+    Restart=always
+
+    [Install]
+    WantedBy=multi-user.target
+    ```
+4. server
+    1. `redis-server redis.conf`: start the server, default port `6379`
+    2. `redis-cli shutdown`: stop the server
+    3. `redis-cli`: connect to the server in interactive mode
+    4. `redis-cli get fool`: get key `fool` value
+
+5. notes
+    
+    1. "have Transparent Huge Pages support enabled"
+        
+        execute the following, and then put them into `/etc/rc.local`
+
+        ```sh
+        echo never > /sys/kernel/mm/transparent_hugepage/enabled
+        echo never > /sys/kernel/mm/transparent_hugepage/defrag
+        ```
