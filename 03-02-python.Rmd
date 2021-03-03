@@ -275,7 +275,7 @@ Installing `apache-airflow[rabbitmq]` may encounter a source error, then:
         2. mysql: `result_backend = db+mysql://airflow:airflow@localhost/airflow?charset=utf8`
         3. redis: `result_backend = redis://127.0.0.1:6379/15`
 
-    4. authenticate under `[webserver]` part
+    4. authenticate under `[webserver]` part, otherwise it may be report all kinds of error, e.g., not found `client_auth`
         1. `<2.0`
             1. `authenticate = True`
             2. `auth_backend = airflow.contrib.auth.backends.password_auth`
