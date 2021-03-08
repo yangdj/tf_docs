@@ -285,8 +285,12 @@ Installing `apache-airflow[rabbitmq]` may encounter a source error, then:
             1. `auth_backend = airflow.api.auth.backend.basic_auth`
         
     5. timezone
-        1. `default_timezone = Asia/Shanghai` (<2.0)
+        1. `default_timezone = Asia/Shanghai` (1.10)
         2. `default_ui_timezone = Asia/Shanghai` (>=2.0)
+
+    6. `load_examples = False`: hide example dags, config before first start webserver, otherwise:
+        1. manually delete example dag records in `dag` table
+        2. `airflow resetdb`: rebuild database, but will lose other useful settings, avoid in production environment
 
 3. create airflow user account
 
