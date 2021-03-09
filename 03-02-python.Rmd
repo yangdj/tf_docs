@@ -292,6 +292,33 @@ Installing `apache-airflow[rabbitmq]` may encounter a source error, then:
         1. manually delete example dag records in `dag` table
         2. `airflow resetdb`: rebuild database, but will lose other useful settings, avoid in production environment
 
+    7. email under `[email]` part
+        1. use `tls`
+
+            ```ini
+            smtp_starttls = True
+            smtp_ssl = False
+            smtp_port = 587
+            ```
+        2. use `ssl`
+
+            ```ini
+            smtp_starttls = False
+            smtp_ssl = True
+            smtp_port = 465
+            ```
+        
+        3. `smtp_host`
+            1. `smtp.exmail.qq.com`: for qq
+        
+        4. other settings
+
+            ```ini
+            smtp_user = hello@world.com
+            smtp_password = password
+            smtp_mail_from = hello@world.com
+            ```
+
 3. create airflow user account
 
     ```python
