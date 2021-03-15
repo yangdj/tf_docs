@@ -366,10 +366,10 @@ Installing `apache-airflow[rabbitmq]` may encounter a source error, then:
 4. start flower, with port `5555` default: `airflow flower`
    
 ```sh
-nohup airflow webserver >> /data/jst/airflow/server_logs/webserver.log &
-nohup airflow worker >> /data/jst/airflow/server_logs/worker.log &
-nohup airflow scheduler >> /data/jst/airflow/server_logs/scheduler.log &
-nohup airflow flower >> /data/jst/airflow/server_logs/flower.log &
+nohup airflow webserver >> /data/jst/airflow/server_logs/webserver.log 2>&1 &
+nohup airflow worker >> /data/jst/airflow/server_logs/worker.log 2>&1 &
+nohup airflow scheduler >> /data/jst/airflow/server_logs/scheduler.log 2>&1 &
+nohup airflow flower >> /data/jst/airflow/server_logs/flower.log 2>&1 &
 ```
 
 #### Systemd {-}
@@ -490,6 +490,215 @@ cp airflow-*er.service /usr/lib/systemd/system/
     [Install]
     WantedBy=multi-user.target
     ```
+
+### Concepts {-}
+
+#### DAG {-}
+
+In airflow, a `DAG` (Directed Acyclic Graph) is a collection of all the tasks you want to run, organized in a way that reflects their relationships and dependencies.
+
+DAGs are defined in standard python file placed in Airflow's `DAG_FOLDER`. Airflow will execute the code in each file to dynamically build the `DAG` objects.
+
+If a dictionary of `default_args` is passed to a DAG, it will apply them to any of its operators. This makes it easy to apply a common parameter to many operators without having to type it many times.
+
+1. `"owner" = "airflow"`: whom the tasks belong to, everything you can use
+2. `"start_date": datetime(2020, 3, 15)`: the **execution date** start date
+3. `"end_date": datetime(2020, 3, 20)`: the **execution date** end date
+4. `"depends_on_past" = False"`: whether individual task instances will depend on the success of the preceding task instance, except for the `start_date` specified itself, for which this dependency is disregarded
+5. `"email": ["airflow@example.com"]`: to who the mail sends to
+6. `"email_on_failure": True`: send the mail when the task fails
+7. `"email_on_retry: True`: whether retries when the task fails
+8. `"retries": 5`: how many times to retry
+9. `"retry_delay": timedelta(minutes=5)`: when to retry when the task fails
+10. `"queue": "bash_queue"`: tasks belong to which queue
+11. `"pool": "backfill"`: tasks belong to which pool
+12. `"priority_weight": 10`
+
+`schedule_interval` defines when to run the dag.
+
+1. `* * * * *`: similar to cron format
+
+```python
+# tutorial.py
+from airflow import DAG
+from datetime import datetime, timedelta
+
+default_args = {
+    "owner": "airflow",
+    "depends_on_past": False,
+    "start_date": datatime(2020, 3, 15),
+    "email": ["airflow@example.com],
+    "email_on_failure": True,
+    "email_on_retry": False,
+    "retries": 2,
+    "retry_delay": timedelta(minutes=5),
+}
+
+dag = DAG("tutorial", default_args = default_args, schedule_interval = "10 * * * *")
+```
+
+Since `1.8`, DAGs can be used as context managers to automatically assign new operators to that DAG.
+
+```python
+with DAG("tutorial", default_args=default_args) as dag:
+    op = DummyOperator("op")
+
+op.dag is dag # True
+```
+
+Dag operations:
+
+1. `python tutorial.py`: test whether the dag pipeline parses
+2. `airflow list_dags`: print the list of **active** dags
+3. `airflow list_tasks tutorial`: print the list of tasks in the dag_id tutorial
+4. `airflow list_tasks tutorial --tree`: print the hierarchy of tasks in the dag_id tutorial
+
+#### Task {-}
+
+Tasks are generated when instantiating operator objects. A task must include or inherit the
+arguments `task_id` and `owner`, otherwise Airflow will raise an exception.
+
+Arguments common for every tasks:
+
+1. `task_id="task_name"`: the first argument for every opeartor
+2. `owner="airflow"`: which owner the task belongs to, can be inherited from DAG's `default_args`
+3. `dag=dag`: which dag the task belongs to
+
+The dependencies between tasks can use:
+
+1. `t2.set_upstream(t1)` <=> `dag.set_dependency("task_id_t1", "task_id_t2")` <=> `t2 << t1 (since 1.8)`
+2. `t1.set_downstream(t2)` <=> `t1 >> t2 (since 1.8)`
+
+Task test
+
+`airflow test` command runs task instances locally, outputs their log to stdout (on screen), doesn’t bother with dependencies, and doesn’t communicate state (running, success, failed, …) to the database. It simply allows testing a single task instance.
+
+The actual task instances run on a specific date. The date specified in this context is an `execution_date`, which simulates the scheduler running your task or dag at a specific date + time:
+
+1. `airflow test tutorial print_date 2015-06-01`: test `print_date` on execution_date `2015-06-01`
+
+Task run
+
+Similar to task test, but runs as usual task
+
+1. `airflow run tutorial print_date 2015-01-01`
+
+Task backfill
+
+The date range in this context is a start_date and optionally an end_date, which are used to populate the run schedule with task instances from this dag.
+
+1. `airflow backfill tutorial -s 2015-06-01 -e 2015-06-07`
+
+#### Operators {-}
+
+Operators determines what actually gets done. It describes a single task in a workflow. Operators are only loaded by Airflow if they are assigned to a DAG.
+
+Airflow provides operators for many common tasks, including:
+
+1. `DummyOperator`:
+   
+   ```python
+   from airflow.operators.dummy_operator import DummyOperator
+   ```
+
+2. `BashOperator`: execute a bash command
+    1. `bash_command`: can be shell statements or a `.sh` file, or Jinja template. The file location is relative to the directory containing the pipeline file (`tutorial.py`)
+    2. `params={"my_param": "parameter I passed in"}`: allow to pass a dictionary of parameters or objects to templates
+
+    ```python
+    from airflow.operators.bash_operator import BashOperator
+
+    t1 = BashOperator(
+        task_id="print_hello",
+        bash_command="date",
+        dag=dag
+        )
+
+    templated_command = """
+        {% for i in range(5) %}
+            echo "{{ ds }}"
+            echo "{{ macros.ds_add(ds, 7) }}"
+            echo "{{ params.my_param }}"
+        {% endfor %}
+        """
+
+    t2 = BashOperator(
+        task_id='templated',
+        bash_command=templated_command,
+        params={'my_param': 'Parameter I passed in'},
+        dag=dag)
+    
+    t2.set_upstream(t1)
+    ```
+
+3. `PythonOperator`: calls an arbitary python function
+
+    ```python
+    from airflow.operators.python_operator import PythonOperator
+    ```
+
+4. `EmailOperator`: send an email
+
+    ```python
+    from airflow.operators.email_operator import EmailOperator
+    ```
+    
+5. `HTTPOperator`: send an HTTP request
+6. `SubDagOperator`
+
+    ```python
+    from airflow.operators.subdag_operator import SubDagOperator
+    ```
+
+7. `SSHOperator`
+
+    ```python
+    from airflow.contrib.operators.ssh_operator import SSHOperator
+    ```
+   
+8. SQL Operators:
+    1. `SqliteOperator`
+    2. `PostgresOperator`
+    3. `MySqlOperator`
+    4. `MsSqlOperator`
+    5. `OracleOperator`
+    6. `JdbcOperator`
+    7. `HiveOperator`
+9.  `Sensor`: wait for a certain time, file, database row, etc...
+   
+
+#### Default Variables {-}
+
+The Airflow engine passes a few variables by default that are accessible in all templates:
+
+1. `{{ ds }}`: the execution date as `YYYY-MM-DD`
+2. `{{ ds_nodash }}`: the execution date as `YYYYMMDD`
+3. `{{ execution_date }}`: the execution_date, (datetime.datetime)
+4. `{{ dag}}`: the DAG object
+5. `{{ task }}`: the Task object, `{{ task.owner}}`, `{{ task.task_id}}`, ...
+6. `{{ task_instance }}, {{ ti }}`: the task_instance object, `{{ ti.hostname}}`
+7. `{{ task_instance_key_str }}`: a unique, human-readable key to task instance formatted `{dag_id}_{task_id}_{ds}`
+8. `{{ params }}`: a reference to the user_defined params dictionary
+9. `{{ conf }}`: the full configuration object located at `airflow.configuration.conf` which represents the content of your `airflow.cfg`
+10. `{{ var.value.my_var }}`: global defined variables represented as a dictionary
+11. `{{ var.json.my_var.path }}`: global defined variables represented as a dictionary with deserialized JSON object, append the path to the key within the JSON object
+12. `{{ run_id }}`: the `run_id` of the current DAG run
+13. `{{ dag_run }}`: a reference to the DagRun object
+14. `{{ test_mode }}`: whether the task instance was called using the CLI’s `test` subcommand
+
+#### Macros {-}
+
+1. `macros.datetime`: The standard lib’s `datetime.datetime`
+1. `macros.timedelta`: The standard lib’s `datetime.timedelta`
+1. `macros.dateutil`: A reference to the `dateutil` package
+1. `macros.time`: The standard lib’s `time`
+1. `macros.uuid`: The standard lib’s `uuid`
+1. `macros.random`: The standard lib’s `random`
+
+### Operations {-}
+
+1. `airflow backfill dag_name -s 2021-01-01 -e 2021-01-02`
+2. `airflow run dag_name task_id 2021-01-01`
 
 ## Base {#py-base}
 
