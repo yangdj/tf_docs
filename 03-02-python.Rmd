@@ -185,6 +185,7 @@ WantedBy=multi-user.target
 ## Database {#py-db}
 
 1. MySQL
+    * `pymysql`
     * `mysqlclient`
 2. PostgreSQL
     * `psycopg2-binary`
@@ -856,6 +857,47 @@ False value
 6. `{}`
 7. `None`
 
-Packages
+## Packages {#py-pkgs}
 
-1. `http.server`: `python -m http.server 8888`
+### http.server {-}
+
+```sh
+python -m http.server 8888
+```
+
+### pytz {-}
+
+```python
+import pytz
+import datetime
+
+TZ = pytz.timezone("Asia/Shanghai")
+NOW = datetime.datetime.now(TZ)
+NOW_DATE = NOW.strftime("%Y-%m-%d")
+```
+
+### pillow {-}
+
+see [pillow](https://pillow.readthedocs.io/en/latest/index.html)
+
+```python
+from PIL import Image
+import imageio
+
+im = Image.open("ll.gif")
+try:
+    i = 0
+    while True:
+        im.seek(i)
+        im.save("{}.png".format(i))
+        i = i + 1
+except:
+    pass
+
+images = []
+
+for j in range(i):
+    images.append(imageio.imread("{}.png".format(j)))
+ 
+imageio.mimwrite("ll-out.gif", images, "GIF", duration=0.3)
+```
