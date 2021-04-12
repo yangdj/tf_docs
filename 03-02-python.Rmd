@@ -859,6 +859,57 @@ False value
 
 ## Packages {#py-pkgs}
 
+### logging {-}
+
+```python
+# logger name: spam_application
+logger = logging.getLogger("spam_application")
+logger.setLevel(logging.DEBUG)
+
+fh = logging.FileHandler("spam.log", "w")
+fh.setLevel(logging.DEBUG)
+
+ch = logging.StreamHandler()
+ch.setLevel(logging.ERROR)
+
+formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s", "%Y-%m-%d %H:%M:%S")
+
+fh.setFormatter(formatter)
+ch.setFormatter(formatter)
+
+logger.addHandler(fh)
+logger.addHandler(ch)
+
+logger.info("start running")
+```
+
+#### Levels
+
+1. CRITICAL(FATAL): 50
+2. ERROR: 40
+3. WARNING(WARN): default, 30
+4. INFO: 20
+5. DEBUG: 10
+6. NOTSET: 0
+
+#### Handlers {-}
+
+1. FileHandler
+    1. `filename`
+    2. `mode`: "w", "a"
+2. StreamHandler
+
+#### Formatter
+
+1. `fmt`
+    1. `%(asctime)s`: textual time when logrecord created
+    2. `%(name)s`: logger name, default `root`
+    3. `%(levelname)s`
+    4. `%(levelno)s`
+    5. `%(message)s`
+2. `datefmt`: `"%Y-%m-%d %H:%M:%S"`
+
+
 ### http.server {-}
 
 ```sh
