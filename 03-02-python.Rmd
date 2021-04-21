@@ -374,6 +374,89 @@ nohup airflow scheduler >> /data/jst/airflow/server_logs/scheduler.log 2>&1 &
 nohup airflow flower >> /data/jst/airflow/server_logs/flower.log 2>&1 &
 ```
 
+### Dependencies {-}
+
+```python
+def tables_in_query(sql_str):
+    # remove the /* */ comments
+    q = re.sub(r"/\*[^*]*\*+(?:[^*/][^*]*\*+)*/", "", sql_str)
+    # remove whole line -- and # comments
+    lines = [line for line in q.splitlines() if not re.match("^\s*(--|#)", line)]
+    # remove trailing -- and # comments
+    q = " ".join([re.split("--|#", line)[0] for line in lines])
+    # split on blanks, parens and semicolons
+    tokens = re.split(r"[\s)(;]+", q)
+
+    # scan the tokens. if we see a FROM or JOIN, we set the get_next
+    # flag, and grab the next one (unless it's SELECT).
+    result = set()
+    get_next = False
+    for tok in tokens:
+        if get_next:
+            if tok.lower() not in ["", "select"]:
+                result.add(tok)
+            get_next = False
+        get_next = tok.lower() in ["from", "join"]
+
+    return result
+```
+
+```python
+import sqlparse
+from sqlparse.sql import IdentifierList, Identifier
+from sqlparse.tokens import Keyword, DML
+
+def is_subselect(parsed):
+    if not parsed.is_group:
+        return False
+    for item in parsed.tokens:
+        if item.ttype is DML and item.value.upper() == 'SELECT':
+            return True
+    return False
+
+
+def extract_from_part(parsed):
+    from_seen = False
+    for item in parsed.tokens:
+        if from_seen:
+            if is_subselect(item):
+                yield from extract_from_part(item)
+            elif item.ttype is Keyword:
+                return
+            else:
+                yield item
+        elif item.ttype is Keyword and item.value.upper() == 'FROM':
+            from_seen = True
+
+
+def extract_table_identifiers(token_stream):
+    for item in token_stream:
+        if isinstance(item, IdentifierList):
+            for identifier in item.get_identifiers():
+                yield identifier.get_name()
+        elif isinstance(item, Identifier):
+            yield item.get_name()
+        # It's a bug to check for Keyword here, but in the example
+        # above some tables names are identified as keywords...
+        elif item.ttype is Keyword:
+            yield item.value
+
+
+def extract_tables(sql):
+    stream = extract_from_part(sqlparse.parse(sql)[0])
+    return list(extract_table_identifiers(stream))
+
+
+if __name__ == '__main__':
+    sql = """
+    select K.a,K.b from (select H.b from (select G.c from (select F.d from
+    (select E.e from A, B, C, D, E), F), G), H), I, J, K order by 1,2;
+    """
+
+    tables = ', '.join(extract_tables(sql))
+    print('Tables: {}'.format(tables))
+```
+
 #### Systemd {-}
 
 Using systemd to deploy airflow server, and copy the following service file to `/usr/lib/systemd/system/`:
@@ -830,22 +913,33 @@ The second call assumes json content and will be deserialized into bar. Note tha
 Functions
 
 1. `id()`
-2.  `sys.getsizeof() - return the size of objects in bytes`
+2.  `sys.getsizeof(): size of objects in bytes`
 3. `type()`
-4. `repr()`
-5. `str()`
+4. `str()`
+5. `repr()`
 6. `dir()`
 7. `issubclass()`
 8. `isinstance()`: `isinstance(True, int) => True`
-9. `getattr()`
-10. `hasattr()`
-11. `class.__mro__`
-12. `class.mro()`
-13. `class.__bases__`
-14. `os.path.abspath(__file__)`
-15. `os.path.dirname()`
-16. `os.path.join()`
-17. `".".join()`
+9.  `hasattr()`
+10. `getattr()`
+11. `setattr()`
+12. `class.__mro__`
+13. `class.mro()`
+14. `class.__bases__`
+15. `os.fspath(filename)`
+16. `os.path.normcase(filename)`
+17. `os.path.abspath(__file__)`
+18. `os.path.dirname()`
+19. `os.path.basename(dirname)`
+20. `os.path.splitext(filename)`
+21. `os.path.join(dirname, filename)`
+22. `os.getpid()`
+23. `threading.RLock(); lock.acquire(); lock.release()`
+24. `threading.get_ident()`
+25. `threading.current_thread().name`
+26. `sys.modules.get('multiprocessing')`
+27. `multiprocessing.current_process().name`
+28. `time.time()`
 
 False value
 
@@ -857,12 +951,37 @@ False value
 6. `{}`
 7. `None`
 
+Exception
+
+1. `sys.exc_info() => (etype, value, tb)`, `tb` now can be get from exception's `__traceback__` attribute since Python3
+2. `traceback.extract_tb(tb)`: return a `FrameSummary` object, which have following attributes:
+    1. `filename`: filename for the frame
+    2. `lineno`: the line within the filename for the frame
+    3. `name`: function name or method executing when the frame was captured
+    4. `line`: the corresponding line source code with leading and trailing whitespace stripped
+    5. `locals`: local variables in the current frame
+3. `traceback.print_tb(tb)`
+4. `traceback.format_tb(tb)`: return with strings, not print the result
+5. `traceback.print_exception(etype, value, tb)`
+6. `traceback.format_exception(etype, value, tb)`
+7. `traceback.print_exc() <=> traceback.print_exception(*sys.exc_info())`
+8. `trackback.format_exc()`
+9.  `traceback.extract_stack()`
+10. `traceback.format_stack()`
+11. `traceback.print_stack()`
+
 ## Packages {#py-pkgs}
 
 ### logging {-}
 
 ```python
-# logger name: spam_application
+import logging
+
+# basiConfig
+logging.basicConfig(filename=LOG_FILE, level=logging.INFO, format="%(asctime)s %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+logging.info("start running")
+
+# logger name config: spam_application
 logger = logging.getLogger("spam_application")
 logger.setLevel(logging.DEBUG)
 
@@ -883,7 +1002,32 @@ logger.addHandler(ch)
 logger.info("start running")
 ```
 
-#### Levels
+References:
+
+1. [howto-logging-tutorial](`https://docs.python.org/3/howto/logging.html#logging-advanced-tutorial`)
+2. [howto-logging-cookbook](https://docs.python.org/3/howto/logging-cookbook.html)
+3. [python-logging](https://realpython.com/python-logging/)
+4. [python-logging-source-code](https://realpython.com/python-logging-source-code/)
+5. [python-factory-method](https://realpython.com/factory-method-python/)
+6. [python-threading](https://realpython.com/intro-to-python-threading)
+7. [python-modules-packages](https://realpython.com/python-modules-packages/)
+8. [python-variables](https://realpython.com/python-variables/)
+   
+#### logger functions {-}
+
+1. `logger.debug()`
+2. `logger.info()`
+3. `logger.warning()`
+4. `logger.error()`
+5. `logger.fatal()`
+6. `logger.exception() <=> logger.error(exc_info = True)`
+7. `logging.basiConfig()`
+8. `logger.getLogger(__name__)`: using module-level `__name__` as the name parameter to `getLogger()` to create a logger object
+9. `logger.setLevel(logging.INFO)`
+10. `logger.addHandler(hdl)`
+11. `logger.removeHandler(hdl)`
+
+#### Levels {-}
 
 1. CRITICAL(FATAL): 50
 2. ERROR: 40
@@ -894,12 +1038,17 @@ logger.info("start running")
 
 #### Handlers {-}
 
-1. FileHandler
-    1. `filename`
-    2. `mode`: "w", "a"
-2. StreamHandler
+1. handlers type
+    * `FileHandler`
+        1. `filename`
+        2. `mode`:
+            1. `a`: default, append to the end of file
+            2. `w`: overwrite the original file
+    * `StreamHandler`
+2. `handler.setLevel(logging.INFO)`
+3. `handler.setFormatter(formatter)`
 
-#### Formatter
+#### Formatter {-}
 
 1. `fmt`
     1. `%(asctime)s`: textual time when logrecord created
