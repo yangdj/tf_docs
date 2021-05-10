@@ -1,0 +1,9 @@
+#  Decision Trees
+
+## Information Gain
+
+### Gini Index {-}
+
+### Entropy {-}
+
+*entropy* is used to measure the **impurity** of a dataset. Shannon (香农) uses logarithm \(log_{2}(p(x))\) to measure the entropy.

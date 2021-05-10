@@ -910,65 +910,660 @@ The second call assumes json content and will be deserialized into bar. Note tha
 
 ## Base {#py-base}
 
-Functions
+### Common Functions {-}
 
-1. `id()`
-2.  `sys.getsizeof(): size of objects in bytes`
-3. `type()`
-4. `str()`
-5. `repr()`
-6. `dir()`
-7. `issubclass()`
-8. `isinstance()`: `isinstance(True, int) => True`
-9.  `hasattr()`
-10. `getattr()`
-11. `setattr()`
-12. `class.__mro__`
-13. `class.mro()`
-14. `class.__bases__`
-15. `os.fspath(filename)`
-16. `os.path.normcase(filename)`
-17. `os.path.abspath(__file__)`
-18. `os.path.dirname()`
-19. `os.path.basename(dirname)`
-20. `os.path.splitext(filename)`
-21. `os.path.join(dirname, filename)`
-22. `os.getpid()`
-23. `threading.RLock(); lock.acquire(); lock.release()`
-24. `threading.get_ident()`
-25. `threading.current_thread().name`
-26. `sys.modules.get('multiprocessing')`
-27. `multiprocessing.current_process().name`
-28. `time.time()`
+1. builtins
+    1. `help()`
+    2. `input(prompt=None)`: read from standard input
+    3. `print(value, ..., sep=" ", end="\n", file=sys.stdout, flush=False)`: function in Pythone, while statement in Python2
+    4. `id()`: the identity of an object, memory address in CPython
+    5. `locals()`: return current scope's local variables
+    6. `type()`
+    7. `str()`
+    8. `len()`
+    9. `repr()`
+    10. `range()`
+        1. `range(stop)`: return s, where 1 <= s < stop
+        2. `range(start, stop)`: return s, where start <= s < stop
+        3. `range(start, stop, step=1)`: return s where start<= s < end, with every step
+    11. `dir()`:
+        1. `dir()`: list names in the current local scope
+        2. `dir(math)`: list valid attributes and methods within the module `math`
+    12. `enumerate(a, start)`: `start` default 0, can be any integer
+    13. `zip(a, b)`: `dict(zip(a,b))` returns a dict from a and b
+    14. `int(x, base=10)`: `base=0` means to interpret the base from the string as an integer literal
+    15. `ord()`: return the unicode code print for a one-character string
+    16. `hex()`: convert a number to hexadecimal strings
+    17. `oct()`: conver to octal strings
+    18. `bin()`: convert to binary strings
+    19. `issubclass()`
+    20. `isinstance()`: `isinstance(True, int) => True`
+    21. `hasattr()`
+    22. `getattr()`
+    23. `setattr()`
+    24. `class.__mro__`
+    25. `class.mro()`
+    26. `class.__bases__`
+2. locale
+    1. `locale.getpreferredencoding(False)`
+3.  sys
+    1.  `sys.stdin`
+    2.  `sys.stdout`
+    3.  `sys.stderr`
+    4.  `sys.exit(1)`: exit program
+    5.  `sys.argv`:
+        1. `sys.argv[0]`: script name
+        2. `sys.argv[1]`: the first argument
+        3. `sys.argv[2], ...`: the second and so on argument
+    6.  `sys.builtin_module_names`
+    7.  `sys.getsizeof(): size of objects in bytes`
+    8.  `sys.modules.get('multiprocessing')`
+    9.  `sys.exc_info() => (etype, value, tb)`: `tb` now can be get from exception's `__traceback__` attribute since Python3
+4. traceback
+    1.  `traceback.extract_tb(tb)`: return a `FrameSummary` object, which have following attributes:
+        1. `filename`: filename for the frame
+        2. `lineno`: the line within the filename for the frame
+        3. `name`: function name or method executing when the frame was captured
+        4. `line`: the corresponding line source code with leading and trailing whitespace stripped
+        5. `locals`: local variables in the current frame
+    2.  `traceback.print_tb(tb)`
+    3.  `traceback.format_tb(tb)`: return with strings, not print the result
+    4.  `traceback.print_exception(etype, value, tb)`
+    5.  `traceback.format_exception(etype, value, tb)`
+    6.  `traceback.print_exc() <=> traceback.print_exception(*sys.exc_info())`
+    7.  `trackback.format_exc()`
+    8.  `traceback.extract_stack()`
+    9.  `traceback.format_stack()`
+    10. `traceback.print_stack()`
+5.  os
+    1.  `os.fspath(filename)`
+    2.  `os.path.normcase(filename)`
+    3.  `os.path.abspath(__file__)`
+    4.  `os.path.dirname()`
+    5.  `os.path.basename(dirname)`
+    6.  `os.path.splitext(filename)`
+    7.  `os.path.join(dirname, filename)`
+    8.  `os.getpid()`
+6.  math
+    1.  `math.pi`
+    2.  `math.e`
+    3. `math.sqrt()`
+    4. `math.sin()`
+    5. `math.cos()`
+    6. `math.pow()`
+7.  time
+    1.  `time.time()`
+8.  itertools
+    1.  `itertools.zip_longest(a, b)`
+9.  random
+    1. `random.random()`: return s, that 0 <= s < 1
+    2.  `random.randint(m, n)`: return s, m <= s <= n
+    3.  `random.choice(seq)`: return s from seq
+    4.  `random.sample(population, k)`: choose k unique random elements from a population sequence or set
+10. thread
+    1.  `threading.RLock(); lock.acquire(); lock.release()`
+    2.  `threading.get_ident()`
+    3.  `threading.current_thread().name`
+11. multiprocessing
+    1.  `multiprocessing.current_process().name`
+12. string: a collection of string constants
+    1. `string.ascii_uppercase`: `'ABCDEFGHIJKLMNOPQRSTUVWXYZ'`
+    2. `string.ascii_lowercase`: `'abcdefghijklmnopqrstuvwxyz'`
+    3. `string.ascii_letters`: `ascii_lowercase + ascii_uppercase`
+    4. `string.digits`: `'0123456789'`
+    5.  `string.octdigits`: `'01234567'`
+    6.  `string.hexdigits`: `string.digits + 'abcdef' + 'ABCDEF'`
+    7.  `string.whitespace`: `' \t\n\r\v\f'`
+    8.  `string.punctuation`: `` r"""!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~""" ``
+    9.  `string.printable`: `string.digits + string.ascii_letters + string.punctuation + string.whitespace`
+13. copy
+    1. `copy.deepcopy()`
+14. dis
+    1. dis.dis()
 
-False value
+### Syntax {-}
 
-1. `0; 0.0; 0j`
-2. `""`
-3. `False`
-4. `[]`
-5. `()`
-6. `{}`
-7. `None`
+1. Variable
+    1. `[a-zA-Z0-9]` and other unicode characters
+    2. the first character should be digits, `[0-9]`
+    3.  case sensitive
+    4.  should not be keywords, that name can be with a trailing underscore `_`, `class_`
+2. Keywords
+    1. `help("keywords")`: list keywords
+3. Naming Conventions
+    1. never use the character `l` (lower case `L`, like one), `O` (like zero), `I` as single variable names
+    2. use ASCII-only characters and English words whenever feasible
+    3.  underscore notation
+        1. variable
+        2. function
+4. Operators
+   
+   The followings can be applied to all numeric types
 
-Exception
+    1. `+, -, * /, %`
+    2. `//`: floor division
+    3. `**`: exponentiation, `3 ** 2 => 9`
+    4. `+x, -x`: unary plus or minus number, `+3, -3`
+    5. `~x`: bitwise negation
+    6. `&, |, ^`: bitwise And, Or, XOR
+    7.  `<, <`: shift left, right
+    8.  `>, >=, <, <=, ==, !=`: comparision
+    9.  `and, or, not`: boolean And, Or, Not
+    10. `in`: element of
+    11. `=, +=, -=, *=, /=, ...`
 
-1. `sys.exc_info() => (etype, value, tb)`, `tb` now can be get from exception's `__traceback__` attribute since Python3
-2. `traceback.extract_tb(tb)`: return a `FrameSummary` object, which have following attributes:
-    1. `filename`: filename for the frame
-    2. `lineno`: the line within the filename for the frame
-    3. `name`: function name or method executing when the frame was captured
-    4. `line`: the corresponding line source code with leading and trailing whitespace stripped
-    5. `locals`: local variables in the current frame
-3. `traceback.print_tb(tb)`
-4. `traceback.format_tb(tb)`: return with strings, not print the result
-5. `traceback.print_exception(etype, value, tb)`
-6. `traceback.format_exception(etype, value, tb)`
-7. `traceback.print_exc() <=> traceback.print_exception(*sys.exc_info())`
-8. `trackback.format_exc()`
-9.  `traceback.extract_stack()`
-10. `traceback.format_stack()`
-11. `traceback.print_stack()`
+5. Conditional Statement
+
+    ```python
+    if condition_1:
+        statement1
+        statement2
+    elif condition_2:
+        statement3
+        statement4
+    elif condition_3:
+        ...
+    else:
+        ...
+    ```
+
+6. Looping Statement
+    1.  while: condition-controlled loop
+
+        ```python
+        while condition:
+            statement_1
+            ...
+            statement_n
+        else: # when condition becomes False
+            statement_1
+            ...
+            statement_n
+        ```
+    2.  for: collection-controlled loop
+
+        ```python
+        for e in c:
+            statement_1
+            ...
+            statement_n
+        else:
+            statement_1
+            ...
+            statement_n
+        ``` 
+    3.  break: exit the loop. If a loop is left by `break`, the `else` part is not executed
+    4.  continue: stop currrent iteration and start then next iteration by checking the condition
+
+7. Input & Output
+    1. console
+        1. `input()`
+        2. `print()`
+    2. file
+        1. `f = open(file, mode)`
+            1. `r`: read file in text mode
+            2. `rb`: read file in binary mode
+            3. `w`: writing, truncate the file if it already exists
+            4. `a`: append to the file
+        2. `f.read(n=None)`: read file into a one string object
+        3. `f.readline()`: read one line
+        4. `f.readlines()`: return all lines to a list
+        5. `f.write(str)`: write string to the file
+        6. `f.close()`
+        7. `f.tell()`: tell the position of the current stream
+            1. `0`: at the first character of the file
+        8. `f.seek(offset, start=0)`: move to specified position, for start value
+            1. `0`: beginning of the file
+            2. `1`: the current position for binary reading
+            3. `2`: the end of file for binary reading
+
+8. Functions
+
+    A function ia a structuring element in programming languages to group a bunch of statements, so they can be utilized more than once.
+
+    1. Definition: use `def` to define a function with a name
+
+        ```python
+        def func_name(parameters):
+            """ Docstring about the function """
+            statement_1
+            ...
+            statement_n
+        ```
+
+    2.  Argument: a parameter passed to when call the function
+        1. can be empty when defined
+        2. can be positional or keyword, `f(1, 2, a=3, b=4)`
+        3. can have default value when defined, `__defaults__` is created
+        4. `*args`: arbitrary number of parameters. `*` in the front of the last positional parameter name denote it as a tuple reference, `args` is a tuple
+        5. `**kwargs**`: arbitrary number of keyword parameters. `kwargs` is a dict
+    3.  Body
+        1. Return
+            1. `None` will return when no return used, or just return without an expression
+            2. `return expr` will return `expr` value
+            3. `return` will stop the function
+            4. `return (a, b)` can return multiple values using tuple, list or other types
+        2. Side Effect: in addition to produce a return value, the function modifies the caller's environment in other ways, including:
+            1. modify a global or static variable
+            2. modify one of its arguments
+            3. raise an exception
+            4. write data to a display or file
+            5. ...
+        3. Variable Scope: variable names are by default local to the function
+            1. `global`: made the vairable global, not local
+            2. `nonlocal`: a nonlocal variable has to be defined in the enclosing function scope
+            3. a variable can't be both local and global, otherwise `UnboundLocalError` will be raised
+    4.  `__doc__`: the first statement in the body of a function is usually a string statement called a Docstring
+9.  Modules: Every file with file extension `.py` and proper python code can be seen or is a module.
+    1. import: all objects in the module can be accessed using `import`:
+        1. `import math`: import a module
+        2. `import math as mathematics`: import a module with a new na
+        3. `import math, random`: import mutiple mudul
+        4. `from math import pi, sin`: import certain objects of a modu
+        5. `from math import pi, pow as power, sin as sinus`: import objects with a new na
+        6. `from math import *`: import everything from a module, except those beginning with an underscore `_`, not recommended, possible for interactive sessions
+    2. Search Path: modules should be on search path when import
+        1. the directory where the file is executed
+        2. `PYTHONPATH` environmental variable when set
+        3. standard installation path
+    3.  Reload: every module can only be imported once per interpreter session or in a program. Restart the interpreter or reload the module again when some code modified
+        1. `from importlib import reload; reload(a_module)`: python3.4+
+        2. `from imp import reload; reload(a_module)`: python3+, deprecated since 3.4
+        3. `reload(a_module)`: python2
+    4.  `__name__`: a module can be run as a script as if it had been imported, with exception that its `__name__` set to `__main__`. So it's possible to program different behaviour into a module for two cases according to `__name__` value:
+
+        ```python
+        if __name__ = "__main__"
+            pass
+        ```
+
+10. Packages
+
+    A package is basically a directory with python files and a file with the name `__init__.py`, which can be empty or contains valid code. It structures module namespace using **dotted modules names**. `A.B` stands for a submodule named `B` in a package named `A`.
+
+    An `__all__` list in the `__init__.py` can list module and packages names to be imported when import a package using `*` in the form `from package import *`.
+
+11. Exception
+    1. `try except`: start an exception handling
+    2. `else`: optional after all the exceplt clauses, executed if try clause does not raise an exception
+    3. `finally`: clean-up or termination clauses, they must be executed under all circumstances, whether an exception occurred or not
+    4. `raise`: raise an exception, when just raise, the exception will be thrown again
+
+    ```python
+    try:
+        statement_1
+        ...
+    except IOError as e:
+        statement_1
+        ...
+    except ValueError:
+        statement_1
+        ...
+    except (NameError, TypeError):
+        statement_1
+        ...
+    except:
+        statement_1
+        ...
+    else:
+        statement_1
+        ...
+    finally:
+        statement_1
+        ...
+    
+    class MyException(Exception):
+        pass
+    raise MyException("An exception doesn't always prove the rule")
+    ```
+
+12. Iterable & Iterator
+    
+    1. Iterable: object can be used in `for loop` statement. It should have method `__iter__` which returns an iterator or `__getitem__` with sequential indexes starting with 0
+    2. Iterator: subset of iterable. It should have methods `__iter__` which returns itself and `__next__` which will be used when the function `next()` is called
+
+    When a for loop is executed, the `for` statement calls `iter()` on the object. If successful, the `iter` will return an iterator that defines `__next__()`, which accesses elements of the object one at a time. the `__next__()` method will raise a `StopIteration` except if there are no further elements available. The `for` loop will terminate as soon as it catches a `StopIteration` exception.
+
+    ```python
+    letters = ["A", "B", "C"]
+    for letter in letters:
+        print(letter)
+
+    letters_iterator = iter(letters)
+    while True:
+        try:
+            letter = next(letters_iterator)
+            print(letter)
+        except StopIteration:
+            break
+    ```
+
+13. Generator
+
+    A generator is a function returning a generator object which is also an iterator (not vice versa) producing values lazily. The advantage of generators consist in automatically creating methods `__iter__()` and `__next__()`.
+    
+    There are two types of generators:
+    
+    1. generator function: use `yield` instead of `return` to produce values. If there is a `return` statement in the code of a generator, the execution will stop with a `StopIteration` exception
+    2. generator expressions: use `()` similar to list comprehension
+
+14. References
+    1. [python-course](https://www.python-course.eu/)
+
+### Data Structures {-}
+
+Different data types can have different properties. These properties can be:
+
+1. Collection
+   
+    Data contains several elements.
+
+    1.  `in, not in`: check if an element contained, `"hello" in s; "hello1" not in s`
+    2.  `len(s)`
+
+2. Sequential
+   
+   Elements are ordered in a defined sequence and they can be accessed via indices. The sequence implements `getitem()` and `len()` method. Python starts from 0.
+   
+    1. `s[0]`: get the first element
+    2. `s[-1]`: get the last element
+    3. `s[-1]`: get the second last element
+    4. `s[0][0]`: get the first element of first element
+    5. `s[start:end]`: get from `s[tart]` to `start[end]`, except `start[end]`
+    6. `s[start:end:step]`: get `s[start], s[start+1*step], ..., s[start+i*step]` where `start+i*step<end`
+    7. `s[:]`: a shallow copy
+    8. `len(s)`
+   
+   Functions:
+
+    1. `+`: concatenate two sequence
+    2. `*`: repeat sequence n times
+
+3. Mutable
+   
+   whether the elements can be modified.
+
+: (\#tab:py-data-types) Python Data Type Properties
+
+| type      | collection | Seq | Mapping | mutable |
+| --------- | ---------- | --- | ------- | ------- |
+| bool      | no         | no  | no      | no      |
+| int       | no         | no  | no      | no      |
+| float     | no         | no  | no      | no      |
+| complex   | no         | no  | no      | no      |
+| str       | yes        | yes | no      | no      |
+| bytes     | yes        | yes | no      | no      |
+| bytearray | yes        | yes | no      | yes     |
+| list      | yes        | yes | no      | yes     |
+| tuple     | yes        | yes | no      | no      |
+| dict      | yes        | no  | yes     | yes     |
+| set       | yes        | no  | no      | yes     |
+| frozenset | yes        | no  | no      | no      |
+
+* bool: subclass of `int`
+    1. `True`
+    2. `False`, following values will be considered as `False` value
+        1. `False`
+        2. `0`
+        3. `0.0`
+        4. `0j`
+        5. `""`
+        6. `()`
+        7. `[]`
+        8. `{}`
+        9. `None`
+* int: unlimited size in Python3, no `long` type as in Python2
+    1. `1234`: normal integer, base 10
+    2. `0b11`: binary, base 2, prefix by `0b` or `0B`
+    3. `0o1234`: octal, base 8, prefix by `0o` or `0O`
+    4. `0x1234`: hexadecimal, base 16, prefix by `0x` or `0X`
+* float: `1.0`
+* complex: `3+2j`
+* str
+    1. Properties
+        1. sequences of pure Unicode characters in Python3, no specific encoding like UTF-8
+        2. immutable
+    2. Represtentations
+        1. `"hello"`: double quotes
+        2. `'hello'`: single quotes
+        3. `"""hello"""`: triple double quotes
+        4. `'''hello'''`: triple single quotes
+    3. Escaping: use backslash `\`
+        1. `\\`: backslash
+        2. `\'`: single quote
+        3. `\"`: double quote
+        4. `\a`: BEL, Bell
+        5. `\b`: BS, Backspace
+        6. `\t`: TAB
+        7. `\n`: LF, Linefeed
+        8. `\f`: FF, formfeed
+        9. `\v`: VT, Vertical Tab
+        10. `\r`: CR, Carrige Return
+        11. `\ooo`: octal value `ooo`
+        12. `\xhh`: hex value `hh`
+        13. `\uxxxx`: 16-bit hex value `xxxx` (Unicode only)
+        14. `\Uxxxxxxxx`: 32-bit hex value `xxxxxxxx` (Unicode only)
+        15. `\N{name}`: named `name` in Unicode database (Unicode only)
+    4.  Operations
+        1. `.upper()`
+        2. `.lower()`
+        3. `.replace()`
+        4. `.find()`
+        5. `.join()`
+        6. `.split()`
+        7. `.captalize()`
+        8. `.ljust(width. fillchar= "")`
+        9. `.rjust(width. fillchar= "")`
+        10. `.center(width, fillchar=" ")`
+        11. `.zfill(width)`: pad a numeric string with zeros on the left, the string is never truncated
+        12. `.format(*args, **kwargs)`
+
+            the string template contains one or more format codes (fields to be replaced) embedded in constant text. They are surrounded by `{}`. if a brace character has to be printed, it has to be escaped by doubling it, `{{`, `}}`.
+
+            The format codes has structure `{index:[flags][options][width][.precision]type}`
+
+            1. index: `{0}, {1}, {2}, ...; {}, {}, {}...; {a}`: for the first, second and ... in `args`, and keys in `kwargs`
+            2. flags:
+                1. `#`: used with type `o`, `x`, `X`, the value is preceded with `0o`, `0x`, `0X` respecitively
+                2. `0`: zero padded for numeric values
+                3. `-`: the converted value is left adjusted, blank spaces is inserted
+                4. `+`: a sign `+` or `-` will preceded the conversion, overrides a space flag
+                5. other padding character, should specify options
+            3. options:
+                1. `>`: right justify, default for numbers
+                2. `<`: left justify: default for strings,
+                3. `^`: center aligned 
+                4. `0`: 0 will be padded for numbers
+                5. `,`: use commas for a thousand separator
+                6. `=`: force the padding to be placed after the sign (if any) and before the digits
+            4. width: total number of string length, including decimal point
+            5. precision: the number following decimal point
+            6. type:
+                1. `d`: decimal integer
+                2. `i, u`: same as `d`
+                3. `o`: octal
+                4. `x, X`: hexadecimal
+                5. `f, F`: float point
+                6. `e, E`: floting point exponential format
+                7. `g, G`: same as `e, E`, if exponent is greater than -4 or less than precision; otherwise `f, F` is used
+                8. `c`: single character, accepts integer or single character string
+                9. `r`: string from `repr()`
+                10. `s`: string from `str()`
+                11. `%`: percent number, when in `%` format, then just return `%` character
+            
+            Since Python3.6, `f""` sring literals is introduced:
+
+            ```python
+            price = 11.23
+            f"Price in Swiss Franks: {price * 1.086:5.2f}"
+            ```
+* bytes
+    1. immutable
+    2. a sequence of small integers. the elements are in the range 0 to 255
+    3. printed as a sequence of ASCII characters
+    4. not possible to mix text and data in Python3, otherwise raise TypeError
+    5.  `"hello".encode("UTF-8"); b"hello"`
+* bytearray
+    1. sequential
+    2. mutable
+* list:
+    1. Properties:
+        1. a sequence of elements, which can be arbitrary objects, and can be nested
+        2. mutable
+    2. initialization
+        1. `s = []`: empty list
+        2. `s = [1, "hello", False]`: a list of mixed data types
+        3. `s = [1, [1, 2, 3]]`: a nested list
+    3. operations
+        1. `.append()`: append object to the end of the list
+        2. `.pop(index=-1)`: remove and return element at index (default last)
+        3. `.insert(index, object)`: insert object before index
+        4. `.remove(value)`: remove the first occurrente of value
+        5. `.extend(iterable)`: extend list by appending elements from the iterable
+        6. `.clear()`: remove all items from list
+        7. `.copy()`: return a shallow copy of the list
+        8. `.count(value)`: return number of occurrences of value
+        9. `.index(value, start=0, stop=last)`: return the first index of value, raise ValueError if the value is not present
+        10. `.reverse()`
+        11. `.sort()`
+        12. `+`: not recommend for list, much slow, choose `.append()`, `.extend()`, or `+=`
+* tuple: like list, but immutable and faster
+    1. Initialization
+        1. `s = ()`: empty tuple
+        2. `s = (1, "hello", False)`
+* dict:
+    1. Properties
+        1. unordered
+        2. mutable
+        3. keys must be immutable data types
+    2. Initialization
+        1. `d = {}; d = dict()`: an empty dict
+        2. `d = {"a": 10, "b": 20}; d = d(a=10, b=20)`
+        3. `dict(mapping)`
+        4. `dict(iterable)`
+    3. Access: using keys
+        1. `d["a"]`
+        2. `d["a"] = 30`
+    4. Methods
+        1. `.keys()`
+        2. `.values()`
+        3. `.items()`
+        4. `list(.keys()), list(.values()), list(.itmes())`: turn the result to list
+        5. `del d["a"]`: delete key "a" together with its value
+        6. `k in d; k not in d`
+        7. `.get(key, default=None)`
+        8. `.pop(key), .pop(key, default)`
+        9. `.copy()`: a shallow copy
+        10. `.clear()`: clear the dict, set it to empty
+        11. `.update(dict)`: merge and overwritten the objects with given dict
+* set
+    1. Properties
+        1. unordered
+        2. mutable
+        3. elements are immutable and unique
+    2. Initialization
+        1. `set(); {"a", "b", "c"}`: an empty set, `{}` creates an empty dict
+        2. `set(iterable)`
+    3. Methods
+        1. `.add(el)`
+        2.  `.discard(el)`: an element removed from this set. If el is not in this set, nothing will be done
+        3.  `.remove(el)`: like `.discard()`, but a KeyError will be raised
+        4.  `.pop()`: remove and return an arbitray set element, a KeyError is raised if the set is empty
+        5. `.clear()`
+        6. `.copy()`: a shallow copy
+        7.  `.issubset(y); x <= y`:  True, if the object is a subset of y
+        8.  `x < y`: True if x is a proper set (真子集)of y
+        9.  `.issuperset(y); x >= y`: True, if the object is a superset of y
+        10. `x > y`: True if x is a proper superset of y
+        11. `.isdisjoint(y)`: return True if two sets have a null intersection
+        12. `.difference(y); x - y; x - y - z`: return difference of two or more sets as a new set, leaving the original set unchanged
+        13. `.difference_update(y)`: remove all elements of another set from this set
+        14. `.union(y); x | y`: return the union of two sets as a new set
+        15. `.intersection(y); x & y`: return the intersection of two sets as a new set
+* frozenset: like set, but immutable
+    1. Initialization
+        1. `frozenset()`: an empty frozenset
+        2. `frozenset(iterable)`
+
+### Decorators {-}
+
+References: [python3_decorators](https://www.python-course.eu/python3_decorators.php)
+
+When define decorators, take into account that the attributes of origininal functions will be lost after the decoration:
+
+1. `__name__`
+2. `__doc__`
+3. `__module__`
+
+It can be solved this way:
+
+```python
+def greeting(func):
+    def function_wrapper(x):
+        """ function wrapper of greeting """
+        print("Hi " + func.__name__ + " returns:")
+        return func(x)
+    function_wrapper.__name__ = func.__name__
+    function_wrapper.__doc__ = func.__doc__
+    function_wrapper.__module__ = func.__module__
+    return function_wrapper
+```
+
+or using `functools.wraps`:
+
+```python
+from functools import wraps
+def greeting(func):
+    @wraps(func)
+    def function_wrapper(x):
+        """ function wrapper of greeting """
+        print("Hi " + func.__name__ + " returns:")
+        return func(x)
+    return function_wrapper
+```
+
+Class-based decorator should make the class callable, which has `__call__()` method:
+
+```python
+class Memoize:
+    def __init__(self, fn):
+        self.fn = fn
+        self.memo = {}
+
+    def __call__(self, *args):
+        if args not in self.memo:
+            self.memo[args] = self.fn(*args)
+        return self.memo[args]
+
+@Memoize # fib = Memoize(fib)
+def fib(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fib(n-1) + fib(n-2)
+
+fib(40)
+
+# the corresponding function-based way:
+def memoize(f):
+    memo = {}
+    def helper(x):
+        if x not in memo:            
+            memo[x] = f(x)
+        return memo[x]
+    return helper
+    
+@memoize
+def fib(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fib(n-1) + fib(n-2)
+```
 
 ## Packages {#py-pkgs}
 
@@ -1101,3 +1696,157 @@ for j in range(i):
  
 imageio.mimwrite("ll-out.gif", images, "GIF", duration=0.3)
 ```
+
+### numpy {-}
+
+1. Constants
+    1. `np.pi`
+    2. `np.e`
+    3. `np.nan`: `log(-10)`
+    4. `np.inf`
+    5. `np.PINF`: postive infinity
+    6. `np.NINF`: negative infinity, `log(0)`
+    7. `np.newaxis`: `None`
+2. Ndarray Types
+    1. `np.bool`
+    2. `np.int16`
+    3. `np.int32`
+    4. `np.int64`: default
+    5. `np.float32`
+    6. `np.float64`: default
+    7. `np.coomplex`
+3. Initialization
+    1. `np.array([3, 4, 5], dtype=np.int64)`
+    2. `np.arange(15).reshape(3, 5)`
+    3. `np.zeros((3, 4), dtype=np.int16); np.zeros_like(a)`
+    4. `np.ones((3, 4)); np.ones_like(a)`
+    5. `np.empty((2, 3)); np.empty_like(a)`: uninitialized
+    6. `np.linspace(0, 2, 9)`: `[0, .25, .5, ..., 2]`
+    7. `np.fromfunction(f, shape, dtype)`
+4. Attributes
+    1. `.ndim`: axes (dimensions) number
+    2. `.shape`: dimensions
+    3. `.size`: elements number
+    4. `.dtype`: element type
+    5. `.itemsize` element memory size of bytes
+5. Methods
+    1. `.sum()`
+    2. `.cumsum(axis=1)`
+    3. `.min()`
+    4. `.max()`
+    5. `.reshape()`
+6. Slicing
+    1. `x[1:10] = x[1:10, :]`: the first axis array
+7. Operators
+    1. `+ - * /`
+    2. `+= *=`: modify an existing array rather than create a new one
+8. Functions
+    1. `np.concatenate()`
+    2. `np.diag()`
+    3. `np.sum()`
+    4. `lnp.sin()`
+    5. `np.cos()`
+    6. `np.exp()`
+    7. `np.log()`
+    8. `np.log2()`
+    9. `np.dot(); @`
+    10. `np.linalg.inv()`
+9. References
+    1. [numpy](https://numpy.org/devdocs/reference/index.html#reference)
+
+### pandas {-}
+
+1. `pd.DataFrame`
+
+### Sklearn {-}
+
+1. Dataset: `from sklearn import dataset`
+    1. `load_iris`
+    2. `load_diabetes`
+2. Preprocessing: `from sklearn import preprocessing`
+    1. `StandardScaler()`
+3. Metric: `from sklearn import metric`
+    1. `mean_square_error`
+    2. `r2_score`
+    3. `accuracy_score`
+4. Model Selection: `from sklearn import model_selection`
+    1. `train_test_split()`
+5. Pipeline: `from sklearn.pipeline import make_pipeline`
+    1. `make_pipeline()`
+6. Ensemble: `from sklearn import ensemble`
+    1. `RandomForestRegressor`
+    2. `GradientBoostingRegressor`
+    3. `VotingRegressor`
+7. Linear Model:
+    1. Models: `from sklearn import linear_model`
+        1. `LinearRegression`
+        2. `Ridge`
+        3. `LogisticRegression`
+    2. Methods:
+        1. `fit()`
+        2. `predict()`
+    3. Attributes
+        1. `coef_`
+        2. `intercept`
+    4. Examples
+
+        ```python
+        reg = linear_model.LinearRegression()
+        reg.fit([[0, 0], [1, 1], [2, 2]], [0, 1, 2])
+        reg.coef_ 
+        ```
+
+### Matplotlib
+
+1. `matplotlib.pyplot`
+    1. Geoms
+        1. `plot`
+        2. `scatter`
+    2. Parameters
+        1. color
+        2. linewidth
+    3.  Themes
+        1. title
+        2. xlabel
+        3. ylabel
+        4. legend
+        5. xtics
+        6. yticks
+
+### Seaborn
+
+1. Font
+
+    ```python
+    import seaborn as sns
+    sns.set_style(None, {"font.sans-serif":["SimHei", "Arial"]})
+    ```
+
+2. Geoms
+    1. `sns.barplot()`
+    2. `sns.lineplot()`
+    3. `sns.scatterplot()`
+    4. `sns.histplot()`
+    5. `sns.displot()`
+    6. `sns.lmplot()`: scatter plot with linear model
+    7. `sns.relplot()`: relationships visualization
+3. Style
+    1. hue
+    2. style
+    3. size
+4. Theme
+    1. `ax.set_xlabel(r"$y$", size = 16) `
+    2. `ax.set_ylabel(r"$\hat{y}$", size = 16, rotation = 0, labelpad = 15) `
+    3. `ax.set_title(r"$y$ vs. $\hat{y}$", size = 16, pad = 10)`
+5. Example
+
+    ```python
+    import seaborn as sns
+    import matplotlib.pyplot as plt
+
+    fig, ax = plt.subplots() 
+    sns.scatterplot(model.y, model.y_hat) 
+    ax.set_xlabel(r"$y$", size = 16) 
+    ax.set_ylabel(r"$\hat{y}$", size = 16, rotation = 0, labelpad = 15) 
+    ax.set_title(r"$y$ vs. $\hat{y}$", size = 16, pad = 10)
+    ```

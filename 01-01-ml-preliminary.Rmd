@@ -48,3 +48,13 @@ $$
 \bar {\theta^*} &= \frac {1}{B}\sum_{b = 1}^{B}\hat {\theta_b^*}
 \end{aligned}
 $$
+
+References:
+
+1. [Machine Learning from Scratch](https://dafriedman97.github.io/mlbook/content/introduction.html)
+2. [ljpzzz/machinelearning blog github](https://www.cnblogs.com/pinard)
+3. [The Matrix Cookbook](https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf)
+4. [A Complete Tutorial on Time Series Modeling in R](https://www.analyticsvidhya.com/blog/2015/12/complete-tutorial-time-series-modeling/)
+5. [Kernel functions in common use](https://en.wikipedia.org/wiki/Kernel_(statistics)#Kernel_functions_in_common_use)
+6. [Density Estimation: Histogram and Kernel Density Estimator](http://faculty.washington.edu/yenchic/18W_425/Lec6_hist_KDE.pdf)
+7. [ISLR EXERCISES](http://yahwes.github.io/ISLR/) and [SOLUTIONS](https://blog.princehonest.com/stat-learning/)
