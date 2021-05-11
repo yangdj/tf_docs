@@ -930,7 +930,7 @@ The second call assumes json content and will be deserialized into bar. Note tha
         1. `dir()`: list names in the current local scope
         2. `dir(math)`: list valid attributes and methods within the module `math`
     12. `enumerate(a, start)`: `start` default 0, can be any integer
-    13. `zip(a, b)`: `dict(zip(a,b))` returns a dict from a and b
+    13. `zip(a, b)`
     14. `int(x, base=10)`: `base=0` means to interpret the base from the string as an integer literal
     15. `ord()`: return the unicode code print for a one-character string
     16. `hex()`: convert a number to hexadecimal strings
@@ -944,9 +944,13 @@ The second call assumes json content and will be deserialized into bar. Note tha
     24. `class.__mro__`
     25. `class.mro()`
     26. `class.__bases__`
-2. locale
+    27. `map()`
+    28. `filter()`
+2.  functools
+    1.  `functools.reduce()`
+3. locale
     1. `locale.getpreferredencoding(False)`
-3.  sys
+4.  sys
     1.  `sys.stdin`
     2.  `sys.stdout`
     3.  `sys.stderr`
@@ -959,7 +963,7 @@ The second call assumes json content and will be deserialized into bar. Note tha
     7.  `sys.getsizeof(): size of objects in bytes`
     8.  `sys.modules.get('multiprocessing')`
     9.  `sys.exc_info() => (etype, value, tb)`: `tb` now can be get from exception's `__traceback__` attribute since Python3
-4. traceback
+5. traceback
     1.  `traceback.extract_tb(tb)`: return a `FrameSummary` object, which have following attributes:
         1. `filename`: filename for the frame
         2. `lineno`: the line within the filename for the frame
@@ -975,7 +979,7 @@ The second call assumes json content and will be deserialized into bar. Note tha
     8.  `traceback.extract_stack()`
     9.  `traceback.format_stack()`
     10. `traceback.print_stack()`
-5.  os
+6.  os
     1.  `os.fspath(filename)`
     2.  `os.path.normcase(filename)`
     3.  `os.path.abspath(__file__)`
@@ -984,29 +988,30 @@ The second call assumes json content and will be deserialized into bar. Note tha
     6.  `os.path.splitext(filename)`
     7.  `os.path.join(dirname, filename)`
     8.  `os.getpid()`
-6.  math
+7.  math
     1.  `math.pi`
     2.  `math.e`
     3. `math.sqrt()`
     4. `math.sin()`
     5. `math.cos()`
-    6. `math.pow()`
-7.  time
+    6. `math.tan()`
+    7. `math.pow()`
+8.  time
     1.  `time.time()`
-8.  itertools
+9.  itertools
     1.  `itertools.zip_longest(a, b)`
-9.  random
+10. random
     1. `random.random()`: return s, that 0 <= s < 1
     2.  `random.randint(m, n)`: return s, m <= s <= n
     3.  `random.choice(seq)`: return s from seq
     4.  `random.sample(population, k)`: choose k unique random elements from a population sequence or set
-10. thread
+11. thread
     1.  `threading.RLock(); lock.acquire(); lock.release()`
     2.  `threading.get_ident()`
     3.  `threading.current_thread().name`
-11. multiprocessing
+12. multiprocessing
     1.  `multiprocessing.current_process().name`
-12. string: a collection of string constants
+13. string: a collection of string constants
     1. `string.ascii_uppercase`: `'ABCDEFGHIJKLMNOPQRSTUVWXYZ'`
     2. `string.ascii_lowercase`: `'abcdefghijklmnopqrstuvwxyz'`
     3. `string.ascii_letters`: `ascii_lowercase + ascii_uppercase`
@@ -1016,9 +1021,9 @@ The second call assumes json content and will be deserialized into bar. Note tha
     7.  `string.whitespace`: `' \t\n\r\v\f'`
     8.  `string.punctuation`: `` r"""!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~""" ``
     9.  `string.printable`: `string.digits + string.ascii_letters + string.punctuation + string.whitespace`
-13. copy
+14. copy
     1. `copy.deepcopy()`
-14. dis
+15. dis
     1. dis.dis()
 
 ### Syntax {-}
@@ -1245,9 +1250,96 @@ The second call assumes json content and will be deserialized into bar. Note tha
     There are two types of generators:
     
     1. generator function: use `yield` instead of `return` to produce values. If there is a `return` statement in the code of a generator, the execution will stop with a `StopIteration` exception
-    2. generator expressions: use `()` similar to list comprehension
+    2. generator comprehension: use `()` similar to list comprehension
 
-14. References
+14. lambda
+
+    The general syntax of a lambda function is : `lambda argument_list: expression`
+
+    ```python
+    sum = lambda x, y: x + y
+    sum(3, 4)
+    ```
+
+15. Decorators
+
+    When define decorators, take into account that the attributes of origininal functions will be lost after the decoration:
+
+    1. `__name__`
+    2.  `__doc__`
+    3.  `__module__`
+
+    It can be solved this way:
+
+    ```python
+    def greeting(func):
+        def function_wrapper(x):
+            """ function wrapper of greeting """
+            print("Hi " + func.__name__ + " returns:")
+            return func(x)
+        function_wrapper.__name__ = func.__name__
+        function_wrapper.__doc__ = func.__doc__
+        function_wrapper.__module__ = func.__module__
+        return function_wrapper
+    ```
+
+    or using `functools.wraps`:
+
+    ```python
+    from functools import wraps
+    def greeting(func):
+        @wraps(func)
+        def function_wrapper(x):
+            """ function wrapper of greeting """
+            print("Hi " + func.__name__ + " returns:")
+            return func(x)
+        return function_wrapper
+    ```
+
+    Class-based decorator should make the class callable, which has `__call__()` method:
+
+    ```python
+    class Memoize:
+        def __init__(self, fn):
+            self.fn = fn
+            self.memo = {}
+
+        def __call__(self, *args):
+            if args not in self.memo:
+                self.memo[args] = self.fn(*args)
+            return self.memo[args]
+
+    @Memoize # fib = Memoize(fib)
+    def fib(n):
+        if n == 0:
+            return 0
+        elif n == 1:
+            return 1
+        else:
+            return fib(n-1) + fib(n-2)
+
+    fib(40)
+
+    # the corresponding function-based way:
+    def memoize(f):
+        memo = {}
+        def helper(x):
+            if x not in memo:            
+                memo[x] = f(x)
+            return memo[x]
+        return helper
+
+    @memoize
+    def fib(n):
+        if n == 0:
+            return 0
+        elif n == 1:
+            return 1
+        else:
+            return fib(n-1) + fib(n-2)
+    ```
+
+16. References
     1. [python-course](https://www.python-course.eu/)
 
 ### Data Structures {-}
@@ -1485,87 +1577,9 @@ Different data types can have different properties. These properties can be:
         1. `frozenset()`: an empty frozenset
         2. `frozenset(iterable)`
 
-### Decorators {-}
-
-References: [python3_decorators](https://www.python-course.eu/python3_decorators.php)
-
-When define decorators, take into account that the attributes of origininal functions will be lost after the decoration:
-
-1. `__name__`
-2. `__doc__`
-3. `__module__`
-
-It can be solved this way:
-
-```python
-def greeting(func):
-    def function_wrapper(x):
-        """ function wrapper of greeting """
-        print("Hi " + func.__name__ + " returns:")
-        return func(x)
-    function_wrapper.__name__ = func.__name__
-    function_wrapper.__doc__ = func.__doc__
-    function_wrapper.__module__ = func.__module__
-    return function_wrapper
-```
-
-or using `functools.wraps`:
-
-```python
-from functools import wraps
-def greeting(func):
-    @wraps(func)
-    def function_wrapper(x):
-        """ function wrapper of greeting """
-        print("Hi " + func.__name__ + " returns:")
-        return func(x)
-    return function_wrapper
-```
-
-Class-based decorator should make the class callable, which has `__call__()` method:
-
-```python
-class Memoize:
-    def __init__(self, fn):
-        self.fn = fn
-        self.memo = {}
-
-    def __call__(self, *args):
-        if args not in self.memo:
-            self.memo[args] = self.fn(*args)
-        return self.memo[args]
-
-@Memoize # fib = Memoize(fib)
-def fib(n):
-    if n == 0:
-        return 0
-    elif n == 1:
-        return 1
-    else:
-        return fib(n-1) + fib(n-2)
-
-fib(40)
-
-# the corresponding function-based way:
-def memoize(f):
-    memo = {}
-    def helper(x):
-        if x not in memo:            
-            memo[x] = f(x)
-        return memo[x]
-    return helper
-    
-@memoize
-def fib(n):
-    if n == 0:
-        return 0
-    elif n == 1:
-        return 1
-    else:
-        return fib(n-1) + fib(n-2)
-```
-
 ## Packages {#py-pkgs}
+
+### re {-}
 
 ### logging {-}
 
