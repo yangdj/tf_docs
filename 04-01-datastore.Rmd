@@ -21,13 +21,13 @@
     4. `LF(10)`: `\n`
     5. `FF(12)`: `\f`
     6. `CR(13)`: `\r`
-    7. `Esc(27)`: `\e`
+    7. `ESC(27)`: `\e`
 3. `^`: line start position
 4. `$`: line end position
 5. `.`: any character
 6. `[]`
-    1. `[...]`: include any character in it, `[1234abcd]`
-    2. `[^...]`: exclude any character in it, [^0-9]
+    1. `[...]`: include any character within it, `[1234abcd]`
+    2. `[^...]`: exclude any character within it, [^0-9]
     3. `-` in `[]`: represent a range of characters, `[a-c]` matches `a` or `b` or `c`
     4. to include literal `^`, `-` `[` or `]`
         1. `[..^..]`: put `^` at any position except the start of `[]`
@@ -53,14 +53,13 @@
     5. `[[:alpha:]]`: `[[:lower:]]` and `[[:upper:]]`
     6. `[[:alnum:]]`: `[[:alpha]]` and `[[:digit:]]`
     7. `[[:cntr:]]`: `0-31` and `127(DEL)` in ASCII and other locale characters
-    8. `[[:blank:]]`: SPACE and TAB and locale blank characters
+    8. `[[:blank:]]`: SPACE(0x20) and TAB(0x09) and locale blank characters
     9. `[[:space:]]`: `\t, \n, \v, \f, \r, SPACE` and locale space characters
-    10. `[[:punct:]]`: ```~!@#$%^&*()-_+={}[]|\:;"'<>.,?/``
+    10. `[[:punct:]]`: ```~!@#$%^&*()-_+={}[]|\:;"'<>.,?/``, 32 characters, ASCII `[33-126]`, except `[[::alnum::]]`
     11. `[[:graph:]]`: `[[:alnum:]]` and `[[:punct:]]`
-    12. `[[:print:]]`: `[[:graph:]]` and space
+    12. `[[:print:]]`: `[[:graph:]]` and SPACE
     13. `\w`, `\W`: `[[:alnum:]]`, `[^[[:alnum:]]]`
     14. `\d`, `\D`: `[[:digit:]]`, `[^[[:digit:]]]`
     15. `\s`, `\S`: `[[:space:]]`, `[^[[]:space:]]]`
-    16. `\<`, `\>`: empty character at the start and end of a word
-    17. `\b`, `\B`: be or not to be empty character at either end of a word
-
+    16. `\<`, `\>`: empty character at the start or end of a word
+    17. `\b`, `\B`: empty character at either end of a word

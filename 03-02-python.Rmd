@@ -1025,6 +1025,8 @@ The second call assumes json content and will be deserialized into bar. Note tha
     1. `copy.deepcopy()`
 15. dis
     1. dis.dis()
+16. urllib
+    1. `urllib.request.urlopen()`
 
 ### Syntax {-}
 
@@ -1444,11 +1446,12 @@ Different data types can have different properties. These properties can be:
         5. `.join()`
         6. `.split()`
         7. `.captalize()`
-        8. `.ljust(width. fillchar= "")`
-        9. `.rjust(width. fillchar= "")`
-        10. `.center(width, fillchar=" ")`
-        11. `.zfill(width)`: pad a numeric string with zeros on the left, the string is never truncated
-        12. `.format(*args, **kwargs)`
+        8. `.rstrip()`
+        9. `.ljust(width. fillchar= "")`
+        10. `.rjust(width. fillchar= "")`
+        11. `.center(width, fillchar=" ")`
+        12. `.zfill(width)`: pad a numeric string with zeros on the left, the string is never truncated
+        13. `.format(*args, **kwargs)`
 
             the string template contains one or more format codes (fields to be replaced) embedded in constant text. They are surrounded by `{}`. if a brace character has to be printed, it has to be escaped by doubling it, `{{`, `}}`.
 
@@ -1495,6 +1498,7 @@ Different data types can have different properties. These properties can be:
     3. printed as a sequence of ASCII characters
     4. not possible to mix text and data in Python3, otherwise raise TypeError
     5.  `"hello".encode("UTF-8"); b"hello"`
+    6.  `b"hello".decode("UTF-8")`
 * bytearray
     1. sequential
     2. mutable
@@ -1580,6 +1584,61 @@ Different data types can have different properties. These properties can be:
 ## Packages {#py-pkgs}
 
 ### re {-}
+
+1. Mode
+    1. `re.I. re.IGNORECASE`: make case-insensitive
+    2. `re.M, re.MULTILINE`
+    3. `re.S, re.DOTALL`: make `.` match every character plus the newline
+    4. `re.A, re.ASCII`: make `\d, \D,\w, \W, \s, \S, \b, \B` dependent on ASCII, not Unicode
+    5. `re.L, re.LOCALE`: make `\w, \W, \b, \B` and case sensitive dependent on the current locale, not recommended
+    6. `re.U, re.UNICODE`: default, make `\d, \D,\w, \W, \s, \S, \b, \B` dependent on Unicode character properties
+    7. `re.X, re.VERBOSE`
+    8. use `|` to set multiple mode, `re.I | re.M`
+2. Metacharacters
+    1. `^`: mark the beginning of string, when in `re.MULTILINE` mode, match immediately after each newline
+    2. `$`: mark the end of string, when in `re.MULTILINE` mode, match immediately before each newline
+    3. `.`: match any character excpet newline, when in `re.S` mode, include the newline
+    4. `[]`: match any character within it
+        1. `-`: when between two characters, mean a range characters from start to end, `[a-z]` means from a to z, when at the start of `[` or end of `]`, just means `-` character, `[-az]`, `[az-]` means `-` or `a` or `z`
+        2. `^`: when at the start of `[]`, means negation. `[^a-z]` means any other characters except `[a-z]`, other position has no special meaning, just means `^` character
+        3. `]`: using `[]...]` to include `]` character
+        4. `[`: `[...[...]`: put `[` at any position in `[]`, be care when `[` in front of `-`, `[[-a]` means character from `[` to `a`, not mean `[` or `-` or `a`
+    5. `*`: repeat 0 to any times
+    6. `+`: repeat 1 to any times
+    7. `?`: repeat 0 or 1 times
+    8. `{m, n},, {n}, {n, }`: repeat between m and n times, n times, or no less than n times 
+    9.  `(), (?P<hours>)`: numbered and named subgroup, `\1, \2, ..., (?P=hours)` back reference the subgroup, in `re.sub()`, use `\1, \g<1>, \g<hours>`
+    10. `|`: alternation, match any part of it, `abc|ABC` matches `abc` or `ABC`
+    11. `\\`: match a literal backslash `\`
+3. Predefined Character Classes
+    1. `\d`: `[0-9]`, match any decimal digit
+    2. `\D`: `[^0-9]`, match complement of `\d`
+    3. `\s`: `[ \t\n\r\f\v]`, match any whitespace character
+    4. `\S`: `[^ \t\n\r\f\v]`, match complement of `\s`
+    5. `\w`: `[a-zA-Z0-9_]`, match any alphanumeric character; with LOCALE, it will match the set `[a-zA-Z0-9_]` plus characters defined as letters for the current locale.
+    6. `\W`: match complement of `\w`.
+    7. `\b`: match the empty string, but only at the start or end of a word.
+    8. `\B`: match the empty string, but not at the start or end of a word
+4. Functions
+    1. `re.compile(pattern, flags)`: for use the same regexp more than once
+    2. `re.match(pattern, string, flags)`: return Match object or None, match pattern only at the beginning of string, not work for MULTILINE mode
+    3. `re.search()`: return Match object or None, return the first found substring
+    4. `re.fullmatch()`: return Match object or None, match pattern to the entire string
+    5. `re.findall()`: return a list of all non-overlapping matches in the string
+    6. `re.finditer()`: return an iterator Match object
+    7. `re.split()`: return a list of splited substrings
+    8. `re.sub()`: return the replacement string
+    9. `re.subn()`: return `(new_string, number)`
+    10. `re.purge()`: clear the regular expression caches
+5. `re.Match`
+    1. `.group(group=0), .group(1,3,5)`: return subgroup by indices or name, for 0 return the entire match
+    2. `.groups()`: return a tuple containing all the subgroups of the match from 1
+    3. `.start(group=0)`: return the start of subgroup
+    4. `.end(group=0)`: return the end of subgroup
+    5. `.span(group=0)`: return `(m.start(group), m.end(group))`
+    6. `..regs()`: return a tuple of span of entire group and subgroup
+    7. `.re`: return the pattern to match
+    8. `.string`: return the string to be matched
 
 ### logging {-}
 
