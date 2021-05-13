@@ -931,21 +931,22 @@ The second call assumes json content and will be deserialized into bar. Note tha
         2. `dir(math)`: list valid attributes and methods within the module `math`
     12. `enumerate(a, start)`: `start` default 0, can be any integer
     13. `zip(a, b)`
-    14. `int(x, base=10)`: `base=0` means to interpret the base from the string as an integer literal
-    15. `ord()`: return the unicode code print for a one-character string
-    16. `hex()`: convert a number to hexadecimal strings
-    17. `oct()`: conver to octal strings
-    18. `bin()`: convert to binary strings
-    19. `issubclass()`
-    20. `isinstance()`: `isinstance(True, int) => True`
-    21. `hasattr()`
-    22. `getattr()`
-    23. `setattr()`
-    24. `class.__mro__`
-    25. `class.mro()`
-    26. `class.__bases__`
-    27. `map()`
-    28. `filter()`
+    14. `ord()`: return the unicode code print for a one-character string
+    15. `chr()`: return a Unicode character from number, 0 <= i <= 0x10ffff
+    16. `int(x, base=10)`: `base=0` means to interpret the base from the string as an integer literal
+    17. `hex()`: convert a number to hexadecimal strings
+    18. `oct()`: conver to octal strings
+    19. `bin()`: convert to binary strings
+    20. `issubclass()`
+    21. `isinstance()`: `isinstance(True, int) => True`
+    22. `hasattr()`
+    23. `getattr()`
+    24. `setattr()`
+    25. `class.__mro__`
+    26. `class.mro()`
+    27. `class.__bases__`
+    28. `map()`
+    29. `filter()`
 2.  functools
     1.  `functools.reduce()`
 3. locale
@@ -1422,6 +1423,8 @@ Different data types can have different properties. These properties can be:
         2. `'hello'`: single quotes
         3. `"""hello"""`: triple double quotes
         4. `'''hello'''`: triple single quotes
+        5. `r"hello"`: raw string, backslashes are not handleed in any special way, useful in REs processing for simplicity
+        6. `b"hello"`: bytes, see `bytes`
     3. Escaping: use backslash `\`
         1. `\\`: backslash
         2. `\'`: single quote
@@ -1445,13 +1448,15 @@ Different data types can have different properties. These properties can be:
         4. `.find()`
         5. `.join()`
         6. `.split()`
-        7. `.captalize()`
-        8. `.rstrip()`
-        9. `.ljust(width. fillchar= "")`
-        10. `.rjust(width. fillchar= "")`
-        11. `.center(width, fillchar=" ")`
-        12. `.zfill(width)`: pad a numeric string with zeros on the left, the string is never truncated
-        13. `.format(*args, **kwargs)`
+        7. `m=str.maketrans("abc", "ABC")`
+        8. `.translate(m)`
+        9. `.captalize()`
+        10. `.rstrip()`
+        11. `.ljust(width. fillchar= "")`
+        12. `.rjust(width. fillchar= "")`
+        13. `.center(width, fillchar=" ")`
+        14. `.zfill(width)`: pad a numeric string with zeros on the left, the string is never truncated
+        15. `.format(*args, **kwargs)`
 
             the string template contains one or more format codes (fields to be replaced) embedded in constant text. They are surrounded by `{}`. if a brace character has to be printed, it has to be escaped by doubling it, `{{`, `}}`.
 
@@ -1544,7 +1549,7 @@ Different data types can have different properties. These properties can be:
         1. `.keys()`
         2. `.values()`
         3. `.items()`
-        4. `list(.keys()), list(.values()), list(.itmes())`: turn the result to list
+        4. `list(.keys()), list(.values()), list(.items())`: turn the result to list
         5. `del d["a"]`: delete key "a" together with its value
         6. `k in d; k not in d`
         7. `.get(key, default=None)`
@@ -1595,50 +1600,67 @@ Different data types can have different properties. These properties can be:
     7. `re.X, re.VERBOSE`
     8. use `|` to set multiple mode, `re.I | re.M`
 2. Metacharacters
-    1. `^`: mark the beginning of string, when in `re.MULTILINE` mode, match immediately after each newline
-    2. `$`: mark the end of string, when in `re.MULTILINE` mode, match immediately before each newline
+    1. `^`: match the beginning of string, when in `re.MULTILINE` mode, match immediately after each newline
+    2. `$`: match the end of string or just before the newline at the end of the string, when in `re.MULTILINE` mode, match immediately before each newline
     3. `.`: match any character excpet newline, when in `re.S` mode, include the newline
-    4. `[]`: match any character within it
+    4. `[]`: match any character within it, metacharacters are not active inside it
         1. `-`: when between two characters, mean a range characters from start to end, `[a-z]` means from a to z, when at the start of `[` or end of `]`, just means `-` character, `[-az]`, `[az-]` means `-` or `a` or `z`
         2. `^`: when at the start of `[]`, means negation. `[^a-z]` means any other characters except `[a-z]`, other position has no special meaning, just means `^` character
         3. `]`: using `[]...]` to include `]` character
         4. `[`: `[...[...]`: put `[` at any position in `[]`, be care when `[` in front of `-`, `[[-a]` means character from `[` to `a`, not mean `[` or `-` or `a`
-    5. `*`: repeat 0 to any times
-    6. `+`: repeat 1 to any times
-    7. `?`: repeat 0 or 1 times
-    8. `{m, n},, {n}, {n, }`: repeat between m and n times, n times, or no less than n times 
-    9.  `(), (?P<hours>)`: numbered and named subgroup, `\1, \2, ..., (?P=hours)` back reference the subgroup, in `re.sub()`, use `\1, \g<1>, \g<hours>`
-    10. `|`: alternation, match any part of it, `abc|ABC` matches `abc` or `ABC`
-    11. `\\`: match a literal backslash `\`
-3. Predefined Character Classes
-    1. `\d`: `[0-9]`, match any decimal digit
-    2. `\D`: `[^0-9]`, match complement of `\d`
-    3. `\s`: `[ \t\n\r\f\v]`, match any whitespace character
-    4. `\S`: `[^ \t\n\r\f\v]`, match complement of `\s`
-    5. `\w`: `[a-zA-Z0-9_]`, match any alphanumeric character; with LOCALE, it will match the set `[a-zA-Z0-9_]` plus characters defined as letters for the current locale.
-    6. `\W`: match complement of `\w`.
-    7. `\b`: match the empty string, but only at the start or end of a word.
-    8. `\B`: match the empty string, but not at the start or end of a word
-4. Functions
-    1. `re.compile(pattern, flags)`: for use the same regexp more than once
+    5. `*`: greedy repeat 0 to any times
+    6. `+`: greedy repeat 1 to any times
+    7. `?`: greedy repeat 0 or 1 times
+    8. `{m, n},, {n}, {n, }, {, n}`: greedy repeat between m and n times, n times, or no less or no more than n times 
+    9.  `|`: alternation, match any part of it, `abc|ABC` matches `abc` or `ABC`
+    10. `\\`: match a literal backslash `\`
+    11. `()`: numbered subgroup
+3. Extensions
+    1.  `*?,+?,??,{m, n}?`: non-greedy repeat
+    2.  `(?P<name>...)`: Python's specific named subgroup, the substring matched by the group is accessible by name.
+    3.  `\number, \1, \2, ..., (?P=name)`: back reference the subgroup, in `re.sub()`, use `\1, \g<1>, \g<hours>`
+    4.  `(?aiLmsux)`: set the `A, I, L, M, S, U, or X` flag for the RE, embed in the front of pattern
+    5.  `(?:...)`: non-grouping version of regular parentheses.
+    6.  `(?#...)`: a comment; ignored.
+    7.  `(?=...)`: positive lookahead assertion, match if ... matches next, but doesn't consume the string.
+    8.  `(?!...)`: negative lookahead assertion, match if ... doesn't match next.
+    9.  `(?<=...)`: positive backward assertion, match if preceded by ... (must be fixed length).
+    10. `(?<!...)`: negative backward assertion, match if not preceded by ... (must be fixed length).
+    11. `(?(id/name)yes|no)` match yes pattern if the group with id/name matched, or no pattern if the group not matched, no part can be omitted
+4. Predefined Character Classes
+    1. `\A`: match only at the start of the string.
+    2. `\Z`: match only at the end of the string.
+    3. `\d`: `[0-9]`, match any decimal digit, In string patterns without the ASCII flag, it will match the whole range of Unicode digits
+    4. `\D`: `[^\d]`, match complement of `\d`
+    5. `\s`: `[ \t\n\r\f\v]`, match any whitespace character
+    6. `\S`: `[^ \t\n\r\f\v]`, match complement of `\s`
+    7. `\w`: `[a-zA-Z0-9_]`, match any alphanumeric character; with LOCALE, it will match the set `[a-zA-Z0-9_]` plus characters defined as letters for the current locale.
+    8. `\W`: match complement of `\w`.
+    9.  `\b`: match the empty string, but only at the start or end of a word.
+    10. `\B`: match the empty string, but not at the start or end of a word
+5. Functions
+    1. `re.compile(pattern, flags)`: compile pattern first, for use the same pattern more than once
     2. `re.match(pattern, string, flags)`: return Match object or None, match pattern only at the beginning of string, not work for MULTILINE mode
-    3. `re.search()`: return Match object or None, return the first found substring
-    4. `re.fullmatch()`: return Match object or None, match pattern to the entire string
+    3. `re.fullmatch()`: return Match object or None, match pattern to the entire string
+    4. `re.search()`: return Match object or None, return the first found substring
     5. `re.findall()`: return a list of all non-overlapping matches in the string
     6. `re.finditer()`: return an iterator Match object
-    7. `re.split()`: return a list of splited substrings
+    7. `re.split()`: return a list of splited substrings, **when the pattern is grouped, the group also returned**
     8. `re.sub()`: return the replacement string
     9. `re.subn()`: return `(new_string, number)`
     10. `re.purge()`: clear the regular expression caches
-5. `re.Match`
+6. `re.Match` Object
     1. `.group(group=0), .group(1,3,5)`: return subgroup by indices or name, for 0 return the entire match
     2. `.groups()`: return a tuple containing all the subgroups of the match from 1
     3. `.start(group=0)`: return the start of subgroup
     4. `.end(group=0)`: return the end of subgroup
     5. `.span(group=0)`: return `(m.start(group), m.end(group))`
-    6. `..regs()`: return a tuple of span of entire group and subgroup
-    7. `.re`: return the pattern to match
-    8. `.string`: return the string to be matched
+    6. `.groupdict()`: return named group as a dict
+    7. `..regs()`: return a tuple of span of entire group and subgroup
+    8. `.re`: return the pattern to match
+    9. `.string`: return the string to be matched
+7. Notes
+    1. use `r"pattern"` to specify pattern
 
 ### logging {-}
 
@@ -1923,3 +1945,7 @@ imageio.mimwrite("ll-out.gif", images, "GIF", duration=0.3)
     ax.set_ylabel(r"$\hat{y}$", size = 16, rotation = 0, labelpad = 15) 
     ax.set_title(r"$y$ vs. $\hat{y}$", size = 16, pad = 10)
     ```
+
+## skills {#py-skills}
+
+1. `del _cache[next(iter(_cache))]`: delete the first dict key
