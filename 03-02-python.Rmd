@@ -922,31 +922,34 @@ The second call assumes json content and will be deserialized into bar. Note tha
     7. `str()`
     8. `len()`
     9. `repr()`
-    10. `range()`
+    10. `sorted()`
+    11. `range()`
         1. `range(stop)`: return s, where 1 <= s < stop
         2. `range(start, stop)`: return s, where start <= s < stop
         3. `range(start, stop, step=1)`: return s where start<= s < end, with every step
-    11. `dir()`:
+    12. `dir()`:
         1. `dir()`: list names in the current local scope
         2. `dir(math)`: list valid attributes and methods within the module `math`
-    12. `enumerate(a, start)`: `start` default 0, can be any integer
-    13. `zip(a, b)`
-    14. `ord()`: return the unicode code print for a one-character string
-    15. `chr()`: return a Unicode character from number, 0 <= i <= 0x10ffff
-    16. `int(x, base=10)`: `base=0` means to interpret the base from the string as an integer literal
-    17. `hex()`: convert a number to hexadecimal strings
-    18. `oct()`: conver to octal strings
-    19. `bin()`: convert to binary strings
-    20. `issubclass()`
-    21. `isinstance()`: `isinstance(True, int) => True`
-    22. `hasattr()`
-    23. `getattr()`
-    24. `setattr()`
-    25. `class.__mro__`
-    26. `class.mro()`
-    27. `class.__bases__`
-    28. `map()`
-    29. `filter()`
+    13. `enumerate(a, start)`: `start` default 0, can be any integer
+    14. `zip(a, b)`
+    15. `ord()`: return the unicode code print for a one-character string
+    16. `chr()`: return a Unicode character from number, 0 <= i <= 0x10ffff
+    17. `int(x, base=10)`: `base=0` means to interpret the base from the string as an integer literal
+    18. `hex()`: convert a number to hexadecimal strings
+    19. `oct()`: conver to octal strings
+    20. `bin()`: convert to binary strings
+    21. `issubclass()`
+    22. `isinstance()`: `isinstance(True, int) => True`
+    23. `callable`: whether the object can be called
+    24. `hasattr()`
+    25. `getattr()`
+    26. `setattr()`
+    27. `class.__mro__`
+    28. `class.mro()`
+    29. `class.__bases__`
+    30. `self.__class__.__name__`
+    31. `map()`
+    32. `filter()`
 2.  functools
     1.  `functools.reduce()`
 3. locale
@@ -1073,6 +1076,8 @@ The second call assumes json content and will be deserialized into bar. Note tha
         ...
     else:
         ...
+
+    expression if ... else expression
     ```
 
 6. Looping Statement
@@ -1619,14 +1624,14 @@ Different data types can have different properties. These properties can be:
     1.  `*?,+?,??,{m, n}?`: non-greedy repeat
     2.  `(?P<name>...)`: Python's specific named subgroup, the substring matched by the group is accessible by name.
     3.  `\number, \1, \2, ..., (?P=name)`: back reference the subgroup, in `re.sub()`, use `\1, \g<1>, \g<hours>`
-    4.  `(?aiLmsux)`: set the `A, I, L, M, S, U, or X` flag for the RE, embed in the front of pattern
+    4.  `(?aiLmsux)`: set `A, I, L, M, S, U, or X` flag for the RE, embed in the front of pattern, instead of a flag argument
     5.  `(?:...)`: non-grouping version of regular parentheses.
-    6.  `(?#...)`: a comment; ignored.
+    6.  `(?#...)`: a comment, ignored.
     7.  `(?=...)`: positive lookahead assertion, match if ... matches next, but doesn't consume the string.
     8.  `(?!...)`: negative lookahead assertion, match if ... doesn't match next.
-    9.  `(?<=...)`: positive backward assertion, match if preceded by ... (must be fixed length).
-    10. `(?<!...)`: negative backward assertion, match if not preceded by ... (must be fixed length).
-    11. `(?(id/name)yes|no)` match yes pattern if the group with id/name matched, or no pattern if the group not matched, no part can be omitted
+    9.  `(?<=...)`: positive lookbehind assertion, match if preceded by ... (must be fixed length).
+    10. `(?<!...)`: negative lookbehind assertion, match if not preceded by ... (must be fixed length).
+    11. `(?(id/name)yes-pattern|no-pattern)` match yes-pattern if the group id/name matched, or no-pattern if the group not matched, no-pattern can be omitted
 4. Predefined Character Classes
     1. `\A`: match only at the start of the string.
     2. `\Z`: match only at the end of the string.
@@ -1648,7 +1653,8 @@ Different data types can have different properties. These properties can be:
     7. `re.split()`: return a list of splited substrings, **when the pattern is grouped, the group also returned**
     8. `re.sub()`: return the replacement string
     9. `re.subn()`: return `(new_string, number)`
-    10. `re.purge()`: clear the regular expression caches
+    10. `re.escape()`: escape all the characters in pattern except ASCII `\w`, useful for matching an arbitrary literal string that may have regular expression metacharacters in it. It must not be used for replacement string in `re.sub()` and `re.subn()`
+    11. `re.purge()`: clear the regular expression caches
 6. `re.Match` Object
     1. `.group(group=0), .group(1,3,5)`: return subgroup by indices or name, for 0 return the entire match
     2. `.groups()`: return a tuple containing all the subgroups of the match from 1
@@ -1656,9 +1662,14 @@ Different data types can have different properties. These properties can be:
     4. `.end(group=0)`: return the end of subgroup
     5. `.span(group=0)`: return `(m.start(group), m.end(group))`
     6. `.groupdict()`: return named group as a dict
-    7. `..regs()`: return a tuple of span of entire group and subgroup
-    8. `.re`: return the pattern to match
-    9. `.string`: return the string to be matched
+    7. `.expand()`: return string obtained by doing backslash substitution on the template string, `.expand("hello\1\g<name>")`
+    8.  `.regs()`: return a tuple of span of entire group and subgroup
+    9. `.pos`: from which postition start to look for a match
+    10. `.endpos`: from which position not to go
+    11. `.lastindex`: the integer index of the last matched capturing group
+    12. `.lastgroup`: the name of the last matched capturing group
+    13. `.re`: return the pattern to match
+    14. `.string`: return the string to be matched
 7. Notes
     1. use `r"pattern"` to specify pattern
 
@@ -1891,7 +1902,7 @@ imageio.mimwrite("ll-out.gif", images, "GIF", duration=0.3)
         reg.coef_ 
         ```
 
-### Matplotlib
+### Matplotlib {-}
 
 1. `matplotlib.pyplot`
     1. Geoms
@@ -1908,7 +1919,7 @@ imageio.mimwrite("ll-out.gif", images, "GIF", duration=0.3)
         5. xtics
         6. yticks
 
-### Seaborn
+### Seaborn {-}
 
 1. Font
 
@@ -1945,6 +1956,64 @@ imageio.mimwrite("ll-out.gif", images, "GIF", duration=0.3)
     ax.set_ylabel(r"$\hat{y}$", size = 16, rotation = 0, labelpad = 15) 
     ax.set_title(r"$y$ vs. $\hat{y}$", size = 16, pad = 10)
     ```
+
+### networkx {-}
+
+```python
+import networkx as nx
+```
+
+* Graphs
+    * Common
+        * `G.graph`: get graph attributes
+        * `G.graph["day"] = "Monday"`: graph attributes setting
+        * `G.clear()`: remove all nodes and edges
+    * Undirected
+        * `G = nx.Graph()`: graph without direction
+        * `G = nx.Graph(day="Friday", ...)"`: graph with attributes
+        * `G = nx.Graph(edgelist)`
+        * `H = nx.path_graph(10)`
+    * Directed
+        * `DG = nx.Digraph(); DG = nx.Digraph(day="Friday"); DG = nx.Digraph(G)`
+        * `DG.out_edges`
+        * `DG.in_degree`
+        * `DG.out_degree; DG.out_degree(1, weight="weight")`
+        * `DG.predecessors(1)`
+        * `DG.successors(1)`
+        * `DG.to_undirected()`
+    * Multigraphs: allow multiple edges between any pair of nodes 
+        * `MG = nx.MultiGraph()`
+        * `MG = nx.MultiDiGraph()`
+    * Analyzing
+        * `nx.connected_components(G)`
+        * `nx.clustring(G)`
+    * Drawing
+* Nodes: can be any **hashable** objects, except `None`
+    * `G.add_node(1); G.add_node(2, color="red")`
+    * `G.add_node(H)`: use graph as a node, allow graphs of graphs
+    * `G.add_nodes_from([2,3])`: add nodes from iterable container
+    * `G.add_nodes_from((node, node_attributes_dict))`: add nodes with attributes
+    * `G.add_nodes_from(H)`: incorporate nodes from other graph
+    * `G.remove_node(2)`
+    * `G.remove_nodes_from([2, 3])`
+    * `G.nodes`
+    * `G.nodes[1]; G.nodes[1]["room"] = 714`: node 1 attributes
+    * `g.nodes.data()`: nodes attributes
+    * `G.number_of_nodes()`
+* Edges
+    * `G.add_edge(2, 3)`: add an edge from 2 to 3
+    * `G.add_edge(2, 3, weight = 3.14)`: add an edge with attributes
+    * `G.add_edges_from([(1, 2), (1, 3)])`: add a list of edges
+    * `G.add_edges_from(H.edges)`
+    * `G.add_weighted_edges_from([(1, 2, 0.125), (1, 3, 0.75)])`
+    * `G.remove_edge(2, 3)`
+    * `G.remove_edges_from([(1, 2), (1, 3)])`
+    * `G.number_of_edges()`
+    * `G.edges; G.edges[1, 2]; G.edges[1, 2]["color"] = "red"`
+    * `G.degree(); G.degree([1, 2]); G.degree[1]`: degree of node 1, number of adj edges
+    * `G.adj[1]; G[1]; G[1][2]`: neighbors of node 1
+    * `G.adjacency(); G.adj.items()`: all nodes adjacency pairs
+    * `G.edges.data(); G.edges.data("weight")`
 
 ## skills {#py-skills}
 
