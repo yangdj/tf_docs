@@ -578,335 +578,278 @@ cp airflow-*er.service /usr/lib/systemd/system/
 
 ### Concepts {-}
 
-#### DAG {-}
+1. DAG: `from airflow import DAG`
 
-In airflow, a `DAG` (Directed Acyclic Graph) is a collection of all the tasks you want to run, organized in a way that reflects their relationships and dependencies.
-
-DAGs are defined in standard python file placed in Airflow's `DAG_FOLDER`. Airflow will execute the code in each file to dynamically build the `DAG` objects.
-
-If a dict of `default_args` is passed to a DAG, it will apply them to any of its operators. This makes it easy to apply a common parameter to many operators without having to type it many times. It includes following values:
-
-1. `"owner": "airflow"`: `str`, whom the tasks belong to, everything you can use
-2. `"start_date": datetime(2020, 3, 15)`: `datetime`, the **execution date** start date, determine the first task instance
-3. `"end_date": datetime(2020, 3, 20)`: `datetime`, if specified, the scheduler won't go beyond this date
-4. `"depends_on_past": False"`: `bool`, when set to true, task instances will run sequentially while relying on the previous task’s schedule to succeed. The task instance for the start_date is allowed to run
-5. `"wait_for_downstream: False"`: `bool`, when set to true, an instance of task X will wait for tasks immediately downstream of the previous instance of task X to finish
-6. `"email": ["airflow@example.com"]`: to who the mail sends to
-7. `"email_on_failure": True`: `bool`, send the mail when the task fails
-8. `"email_on_retry: True`: `bool`, whether retries when the task fails
-9. `"retries": 5`: `int`, how many times to retry
-10. `"retry_delay": timedelta(minutes=5)`: `datetime.timedelta`, when to retry when the task fails
-11. `"execution_timeout": timedelta(hours=3)`: `datetime.timedelta`, max time allowed for the execution of this task instance, if it goes beyond it will raise and fail
-12. `"queue": "bash_queue"`: `str`, tasks belong to which queue
-13. `"pool": "backfill"`: `str`, default `"default pool"`, which pool tasks belong to
-14. `"priority_weight" =  10`: `int`, priority weight of this task against other task. This allows the executor to trigger higher priority tasks before others when things get backed up
-15. `"trigger_rule"`: `str`, `all_success` default,  define the rule by which dependencies are applied for the task to get triggered
-    * all_success
-    * all_failed
-    * all_done
-    * one_success
-    * one_failed
-    * dummy
-16. `"on_failure_callback"`: `callable`
-17. `"on_success_callback"`: `callble`
-18. `"on_retry_callback"`: `callble`
-19. `"task_concurrency": 10`: `int`, when set, a task will be able to limit the concurrent runs across execution_dates
-
-Other parameters for DAG:
-
-* `dag_id = "tutorial"`: `str`, the id of the DAG
-* `description`: `str`, the description for the DAG to be shown on the webserver 
-* `schedule_interval` defines when to run the dag.
-    1. `* * * * *`: similar to cron format
-    2. `datetime.timedelta`
-    3. preset cron
-        1. `None`: don't schedule, use for exclusively "externally triggered" DAGs
-        2. `@once`: schedule once and only once
-        3. `@hourly`: run once an hour at the beginning of the hour, `0 * * * *`
-        4. `@daily`: run once a day at midnight, `0 0 * * * `
-        5. `@weekly`: run once a week at midnight on **Sunday** morning, `0 0 * * 0`
-        6. `@monthly`: run once a month at midnight of the first day of the month, `0 0 1 * *`
-        7. `@yearly`: run once a year at midnight of January 1, `0 0 1 1 *`
-* `start_date`
-* `end_date`
-* `catchup = False`: `bool`, when `False`, the scheduler will only create a DAG Run for the most current instance of the DAG interval series, not all for any interval that has not been run or has been cleared
-* `dagrun_timeout`: `datetime.timedelta`, specify how long a DagRun should be up before timeout / failing, so that new DagRuns can be created
-* `parallelism`: glocal configuration `parallelism` in `airflow.cfg`, how many tasks to run for every airflow worker
-* `concurrency = 10`: `int`, the number of task instances allowed to run concurrently per DAG, read `dag_concurrency` from `airflow.cfg` if not set
-* `max_active_runs = 5`: `int`, maximum number of active DAG runs per DAG, read `max_active_runs_per_dag` from `airflow.cfg` if not set, beyond this number, the scheduler won’t create new active DAG runs. e.g., when using `backfill`, or manually trigger the dag, the running number dag will be controlled no more than this value. `max_active_runs = 1` will make sure the same DAG running sequencically, one after another, the later one will not start before the previous one successes
-
-```python
-# tutorial.py
-from airflow import DAG
-from datetime import datetime, timedelta
-
-default_args = {
-    "owner": "airflow",
-    "depends_on_past": False,
-    "start_date": datatime(2020, 3, 15),
-    "email": ["airflow@example.com],
-    "email_on_failure": True,
-    "email_on_retry": False,
-    "retries": 2,
-    "retry_delay": timedelta(minutes=5),
-}
-
-dag = DAG("tutorial", default_args = default_args, schedule_interval = "10 * * * *")
-```
-
-Since `1.8`, DAGs can be used as context managers to automatically assign new operators to that DAG.
-
-```python
-with DAG("tutorial", default_args=default_args) as dag:
-    op = DummyOperator("op")
-
-op.dag is dag # True
-```
-
-Dag operations:
-
-1. `python tutorial.py`: test whether the dag pipeline parses
-2. `airflow list_dags`: print the list of **active** dags
-3. `airflow list_tasks tutorial`: print the list of tasks in the dag_id tutorial
-4. `airflow list_tasks tutorial --tree`: print the hierarchy of tasks in the dag_id tutorial
-
-#### Task {-}
-
-Tasks are generated when instantiating operator objects. A task must include or inherit the
-arguments `task_id` and `owner`, otherwise Airflow will raise an exception.
-
-*Task instance* is a task with the following characters:
-
-1. has been assigned to a DAG
-2. has a state associated with a specific run of the DAG
-
-Tasks have following status:
-
-* success
-* running
-* failed
-* skipped
-* retry
-* queued
-* no status
-
-The dependencies between tasks can use:
-
-1. `t2.set_upstream(t1)` <=> `dag.set_dependency("task_id_t1", "task_id_t2")` <=> `t2 << t1 (since 1.8)`
-2. `t1.set_downstream(t2)` <=> `t1 >> t2 (since 1.8)`
-
-Task test
-
-`airflow test` command runs task instances locally, outputs their log to stdout (on screen), doesn’t bother with dependencies, and doesn’t communicate state (running, success, failed, …) to the database. It simply allows testing a single task instance.
-
-The actual task instances run on a specific date. The date specified in this context is an `execution_date`, which simulates the scheduler running your task or dag at a specific date + time:
-
-1. `airflow test tutorial print_date 2015-06-01`: test `print_date` on execution_date `2015-06-01`
-
-Task run
-
-Similar to task test, but runs as usual task
-
-1. `airflow run tutorial print_date 2015-01-01`
-
-Task backfill
-
-The date range in this context is a start_date and optionally an end_date, which are used to populate the run schedule with task instances from this dag.
-
-1. `airflow backfill tutorial -s 2015-06-01 -e 2015-06-07`
-
-#### Operators {-}
-
-Operators determines what actually gets done. It describes a single task in a workflow. Operators are only loaded by Airflow if they are assigned to a DAG.
-
-Arguments common for every operators:
-
-1. `task_id="task_name"`: a unique meaningful id for the task, first argument for every opeartor
-2. `owner="airflow"`: the owner of the task, using the unix username is recommended, can be inherited from DAG's `default_args`
-3. `dag=dag`: which dag the task belongs to
-
-Airflow provides operators for many common tasks, including:
-
-1. `DummyOperator`:
-   
-   ```python
-   from airflow.operators.dummy_operator import DummyOperator
-   ```
-
-2. `BashOperator`: execute a bash command
-    1. `bash_command`: can be shell statements or a `.sh` file, or Jinja template. The file location is relative to the directory containing the pipeline file (`tutorial.py`)
-    2. `params={"my_param": "parameter I passed in"}`: allow to pass a dictionary of parameters or objects to templates
+    DAGs are defined in standard python files placed in Airflow's `DAG_FOLDER` directory. Airflow will execute the code in each file recursively to build the DAG objects dynamically.
 
     ```python
-    from airflow.operators.bash_operator import BashOperator
-
-    t1 = BashOperator(
-        task_id="print_hello",
-        bash_command="date",
-        dag=dag
-        )
-
-    templated_command = """
-        {% for i in range(5) %}
-            echo "{{ ds }}"
-            echo "{{ macros.ds_add(ds, 7) }}"
-            echo "{{ params.my_param }}"
-        {% endfor %}
-        """
-
-    t2 = BashOperator(
-        task_id='templated',
-        bash_command=templated_command,
-        params={'my_param': 'Parameter I passed in'},
-        dag=dag)
+    # tutorial.py
+    from airflow import DAG
+    from datetime import datetime, timedelta
     
-    t2.set_upstream(t1)
-    ```
-
-3. `PythonOperator`: calls an arbitary python function
-
-    ```python
-    from airflow.operators.python_operator import PythonOperator
-    ```
-
-4. `EmailOperator`: send an email
-
-    ```python
-    from airflow.operators.email_operator import EmailOperator
-    ```
+    default_args = {
+        "owner": "airflow",
+        "depends_on_past": False,
+        "start_date": datatime(2020, 3, 15),
+        "email": ["airflow@example.com],
+        "email_on_failure": True,
+        "email_on_retry": False,
+        "retries": 2,
+        "retry_delay": timedelta(minutes=5),
+    }
     
-5. `HTTPOperator`: send an HTTP request
-6. `SubDagOperator`
-
-    ```python
-    from airflow.operators.subdag_operator import SubDagOperator
+    dag = DAG("tutorial", default_args = default_args, schedule_interval = "10 * * * *")
+    
+    # Since `1.8`, DAGs can be used as context managers to automatically assign new operators to that DAG.
+    with DAG("tutorial", default_args=default_args) as dag:
+        op = DummyOperator("op")
+    
+    op.dag is dag # True
     ```
 
-7. `SSHOperator`
+    1. Parameters
+        1. `dag_id = "tutorial"`: `str`, the id of the DAG
+        2. `description = "..."`: `str`, the description for the DAG to be shown on the webserver 
+        3. `schedule_interval` defines when to run the dag.
+            1. `"* * * * *"`: similar to cron format
+            2. `datetime.timedelta`
+            3. preset cron
+                1. `None`: don't schedule, use for exclusively "externally triggered" DAGs
+                2. `@once`: schedule once and only once
+                3. `@hourly`: run once an hour at the beginning of the hour, `0 * * * *`
+                4. `@daily`: run once a day at midnight, `0 0 * * * `
+                5. `@weekly`: run once a week at midnight on **Sunday** morning, `0 0 * * 0`
+                6. `@monthly`: run once a month at midnight of the first day of the month, `0 0 1 * *`
+                7. `@yearly`: run once a year at midnight of January 1, `0 0 1 1 *`
+        4. `start_date`
+        5. `end_date`: optional
+        6. `catchup = False`: `bool`, when `False`, the scheduler will only create a DAG Run for the most current instance of the DAG interval series, not all for any interval that has not been run or has been cleared
+        7. `dagrun_timeout`: `datetime.timedelta`, specify how long a DagRun should be up before timeout / failing, so that new DagRuns can be created
+        8. `parallelism`: global configuration `parallelism` in `airflow.cfg`, how many tasks to run for every airflow worker
+        9.  `concurrency = 10`: `int`, the number of task instances allowed to run concurrently per DAG, read `dag_concurrency` from `airflow.cfg` if not set
+        10. `max_active_runs = 5`: `int`, maximum number of active DAG runs per DAG, read `max_active_runs_per_dag` from `airflow.cfg` if not set, beyond this number, the scheduler won’t create new active DAG runs. e.g., when using `backfill`, or manually trigger the dag, the running number dag will be controlled no more than this value. `max_active_runs = 1` will make sure the same DAG running sequencically, one after another, the later one will not start before the previous one successes
+        11. `default_args`: apply common parameters to any of its operators
+            * `"owner": "airflow"`: `str`, the owner of the task, using the unix username is recommended
+            * `"start_date": datetime(2020, 3, 15)`: `datetime`, the **execution date** start date, determine the first task instance
+            * `"end_date": datetime(2020, 3, 20)`: `datetime`, if specified, the scheduler won't go beyond this date
+            * `"email": ["airflow@example.com"]`
+            * `"email_on_failure": True`: `bool`, send mail when task fails
+            * `"email_on_retry: True`: `bool`, whether retries when the task fails
+            * `"retries": 5`: `int`, how many times to retry before failing the task
+            * `"retry_delay": timedelta(minutes=5)`: `datetime.timedelta`, when to retry if task fails
+            * `"trigger_rule": "all_success"`: `str`, default `all_success`,  parent dependencies are applied for the task to get triggered
+                * all_success
+                * all_failed
+                * all_done
+                * one_success
+                * one_failed
+                * dummy
+            * `"execution_timeout": timedelta(hours=3)`: `datetime.timedelta`, max time allowed for the task instance execution, if it goes beyond it will raise and fail
+            * `"depends_on_past": False"`: `bool`, when `true`, task instances will run sequentially relying on previous task’s schedule to success. The task instance for the `start_date` is allowed to run
+            * `"wait_for_downstream: False"`: `bool`, when `true`, an instance of task X will wait for **tasks immediately downstream of the previous instance of task X to finish**, useful when different instances of X run, `depends_on_past` will be forced to `True`
+            * `"priority_weight": 10`: `int`, priority weight of this task against other task, allowing the executor to trigger higher priority tasks before others when things get backed up
+            * `"pool": "backfill"`: `str`, default `"default pool"`, which pool tasks belong to, limit concurrrency for certain tasks
+            * `"queue": "bash_queue"`: `str`, tasks belong to which queue, CeleryExecutor support it
+            * `"task_concurrency": 10`: `int`, when set, a task will be able to limit the concurrent runs across execution_dates
+            * `"on_failure_callback"`: `callable`
+            * `"on_success_callback"`: `callble`
+            * `"on_retry_callback"`: `callble`
+    
+    2. Operations
+        1. Shell
+            1. `python tutorial.py`: test whether the dag pipeline parses
+            2. `airflow list_dags`: print the list of **active** dags
+            3. `airflow list_tasks tutorial`: print the list of tasks in the dag_id tutorial
+            4. `airflow list_tasks tutorial --tree`: print the hierarchy of tasks in the dag_id tutorial
+        2. methods
+            1. `.has_task(task_id)`
+            2. `.get_task(task_id)`
+            3. `.add_task(task)`
+            4. `.add_tasks(tasks)`
+
+2. Operators:
+    1. Parameters, additional besides the `default_args` in dag, `task_id` and `owner` are necessary
+        1. `task_id = "a task"`:  `str`, a unique, meaning id for the task, first argument for every operator
+        2. `owner = "airflow"`
+        3. `dag = "dag_id"`: which DAG this task belong to
+        4. `resources = {"cpus": 8, "ram": 1024, "disk": 1024, "gpus": 8}`: MB unit for ram and disk
+    2. Tasks
+        1. task is instanced operators
+        2. task instance is a task and has been assign to a DAG and has a state with a DAG:
+            * success
+            * running
+            * failed
+            * skipped
+            * retry
+            * queued
+            * no status
+    3. Operations
+        1. dependencies
+            1. t1 before t2
+                1. `t2.set_upstream(t1)`
+                2. `dag.set_dependency("task_id_t1", "task_id_t2")`
+                3. `t1 >> t1 (since 1.8)`
+            2. t1 after t2
+                1. `t1.set_downstream(t2)`
+                2. `t1 << t2 (since 1.8)`
+        2. shell
+            1. `airflow test`: testing a single task instance at a specific `execute_date` locally, simulate the scheduler running task or dag at a specific date + time, output log to stdout, do not bother with dependencies and do not communicate state to database
+                1. `airflow test tutorial print_date 2015-06-01`: test `print_date` on execution_date `2015-06-01`
+            2. `airflow run`: similar to `airflow test`, but run as actual task
+                1. `airflow run tutorial print_date 2015-01-01`
+            3. `airflow backfill` 
+                1. `airflow backfill tutorial -s 2015-06-01 -e 2015-06-07`
+    4. Operators
+        1. `DummyOperator`: `airflow.operators.dummy_operator import DummyOperator`
+        2. `BashOperator`: `airflow.operators.bash_operator import BashOperator`
+            1. `bash_command`: shell statements or a `.sh` file or Jinja template, file location relative to the directory containing the pipeline file
+            2. `params={"my_param": "parameter I passed in"}`: pass a dict parameters to templates
+              ```python
+                t1 = BashOperator(
+                    task_id="print_hello",
+                    bash_command="date",
+                    dag=dag
+                    )
+            
+                templated_command = """
+                    {% for i in range(5) %}
+                        echo "{{ ds }}"
+                        echo "{{ macros.ds_add(ds, 7) }}"
+                        echo "{{ params.my_param }}"
+                    {% endfor %}
+                    """
+            
+                t2 = BashOperator(
+                    task_id='templated',
+                    bash_command=templated_command,
+                    params={'my_param': 'Parameter I passed in'},
+                    dag=dag)
+                
+                t2.set_upstream(t1)
+                ```
+
+        3. `PythonOperator`: `airflow.operators.python_operator import PythonOperator`
+        4. `EmailOperator`: `airflow.operators.email_operator import EmailOperator`
+        5. `SubDagOperator`: `airflow.operators.subdag_operator import SubDagOperator`
+        6. `SSHOperator`: `from airflow.contrib.operators.ssh_operator import SSHOperator`
+        7. Database:
+            1. `SqliteOperator`: `from airflow.operators.sqlite_operator import SqliteOperator`
+            2. `PostgresOperator`: `from airflow.operators.postgres_operator import PostgresOperator`
+            3. `MySqlOperator`: `airflow.operators.mysql_operator import MySqlOperator`
+            4. `MsSqlOperator`: `from airflow.operators.mssql_operator import MsSqlOperator`
+            5. `OracleOperator`: `from airflow.operators.oracle_operator import OracleOperator`
+            6. `JdbcOperator`: `from airflow.operators.jdbc_operator import JdbcOperator`
+            7. `HiveOperator`: `from airflow.operators.hive_operator import HiveOperator`
+        8. `Sensor`: wait for a certain time, file, database row, etc...
+3. Default Variables: Airflow engine passes a few variables by default that are accessible in all templates:
+    1. `{{ ds }}`: the execution date as `YYYY-MM-DD`
+    2. `{{ ds_nodash }}`: the execution date as `YYYYMMDD`
+    3. `{{ execution_date }}`: the execution_date, (datetime.datetime)
+    4. `{{ dag}}`: the DAG object
+    5. `{{ task }}`: the Task object, `{{ task.owner}}`, `{{ task.task_id}}`, ...
+    6. `{{ task_instance }}, {{ ti }}`: the task_instance object, `{{ ti.hostname}}`
+    7. `{{ task_instance_key_str }}`: a unique, human-readable key to task instance formatted `{dag_id}_{task_id}_{ds}`
+    8. `{{ params }}`: a reference to the user_defined params dictionary
+    9. `{{ conf }}`: the full configuration object located at `airflow.configuration.conf` which represents the content of your `airflow.cfg`
+    10. `{{ var.value.my_var }}`: global defined variables represented as a dictionary
+    11. `{{ var.json.my_var.path }}`: global defined variables represented as a dictionary with deserialized JSON object, append the path to the key within the     JSON object
+    12. `{{ run_id }}`: the `run_id` of the current DAG run
+    13. `{{ dag_run }}`: a reference to the DagRun object
+    14. `{{ test_mode }}`: whether the task instance was called using the CLI’s `test` subcommand
+4. Macros
+    1. `macros.datetime`: The standard lib’s `datetime.datetime`
+    2. `macros.timedelta`: The standard lib’s `datetime.timedelta`
+    3. `macros.dateutil`: A reference to the `dateutil` package
+    4. `macros.time`: The standard lib’s `time`
+    5. `macros.uuid`: The standard lib’s `uuid`
+    6. `macros.random`: The standard lib’s `random`
+
+5. Pools
+
+    Airflow pools can be used to limit the execution parallelism on arbitrary sets of tasks. The list of pools is managed in the UI (`Menu -> Admin -> Pools`) by giving the pools a name and assigning it a number of worker slots. The `pool` parameter can be used in conjunction with `priority_weight` to define priorities in the queue, and which tasks get executed first as slots open up in the pool. The default `priority_weight` is 1, and can be bumped to any number. When sorting the queue to evaluate which task should be executed next, Airflow use the `priority_weight`, summed up with all of the `priority_weight` values from tasks downstream from this task. You can use this to bump a specific important task and the whole path to that task gets prioritized accordingly.
+
+6. Queues
+
+    When using `CeleryExecutor`, the celery queues that tasks are sent to can be specified. `queue` is an attribute of BaseOperator, so any task can be assigned to any queue. The default queue for the environment is defined in the `airflow.cfg`'s `celery -> default_queue`. This defines the queue that tasks get assigned to when not specified, as well as which queue Airflow workers listen to when started.
+
+    Workers can listen to one or multiple queues of tasks. When a worker is started (using the command `airflow worker`), a set of comma delimited queue names can be specified (e.g. `airflow worker -q spark`). This worker will then only pick up tasks wired to the specified queue(s).
+
+7. Connections
+
+    The connection information to external systems is stored in the Airflow metadata database and managed in the UI (`Menu -> Admin -> Connections`). A `conn_id` is defined there and `hostname / login / password / schema(database)` information attached to it. Airflow pipelines can simply refer to the centrally managed `conn_id` without having to hard code any of this information anywhere.
+
+    Many connections with the same `conn_id` can be defined and when that is the case, and when the hooks uses the `get_connection` method from `BaseHook`, Airflow will choose one connection randomly, allowing for some basic load balancing and fault tolerance when used in conjunction with retries.
+
+    Airflow also has the ability to reference connections via environment variables from the operating system. The environment variable needs to be prefixed with `AIRFLOW_CONN_` to be considered a connection. When referencing the connection in the Airflow pipeline, the `conn_id` should be the name of the variable without the prefix. For example, if the `conn_id is` named `postgres_master` the environment variable should be named `AIRFLOW_CONN_POSTGRES_MASTER` (note that the environment variable must be all uppercase). Airflow assumes the value returned from the environment variable to be in a URI format (e.g. `postgres://user:password@localhost:5432/master` or `s3://accesskey:secretkey@S3`).
+
+    `airflow connections` operations:
+
+    1. `-l, --list`
+    1. `-a, --add`
+    2. `-d, delete`
+    3. `--conn_id`: required to add or delete a connection, use lowercase characters and separated words with underscores `_`
+    4. `--conn_type`: required to add a connection without conn_uri
+    5. `--conn_host`
+    1. `--conn_port`
+    2. `--conn_schema`: specify database name
+    3. `--conn_login`: login user
+    4.  `--conn_password`
+    5.  `conn_extra`: Extra field as json dictionary, optional when adding a connection, e.g. `{"charset": "utf8"}` for MySQL
+    1.  `--conn_uri`: required to add a connection without conn_type
+
+    ```sh
+    # add a connection
+    airflow connections -a --conn_id prd --conn_type 'postgres' --conn_host '127.0.0.1' --conn_port 5432 --conn_schema postgres --conn_login postgres --conn_password 1234
+    ```
 
     ```python
-    from airflow.contrib.operators.ssh_operator import SSHOperator
+    from airflow.hooks.base_hook import BaseHook
+
+    conn = BaseHook.get_connection("conn_id")
+    conn.conn_id
+    conn.conn_type
+    conn.host
+    conn.port
+    conn.schema
+    conn.login
+    conn.passowrd
+    conn.extra
+    conn.get_extra()
+    conn.get_url()
+    conn.extra_dejson.get('charset', False)
     ```
-   
-8. SQL Operators:
-    1. `SqliteOperator`
-    2. `PostgresOperator`
-    3. `MySqlOperator`
-    4. `MsSqlOperator`
-    5. `OracleOperator`
-    6. `JdbcOperator`
-    7. `HiveOperator`
-9.  `Sensor`: wait for a certain time, file, database row, etc...
-   
-#### Default Variables {-}
 
-The Airflow engine passes a few variables by default that are accessible in all templates:
+8. Hooks
 
-1. `{{ ds }}`: the execution date as `YYYY-MM-DD`
-2. `{{ ds_nodash }}`: the execution date as `YYYYMMDD`
-3. `{{ execution_date }}`: the execution_date, (datetime.datetime)
-4. `{{ dag}}`: the DAG object
-5. `{{ task }}`: the Task object, `{{ task.owner}}`, `{{ task.task_id}}`, ...
-6. `{{ task_instance }}, {{ ti }}`: the task_instance object, `{{ ti.hostname}}`
-7. `{{ task_instance_key_str }}`: a unique, human-readable key to task instance formatted `{dag_id}_{task_id}_{ds}`
-8. `{{ params }}`: a reference to the user_defined params dictionary
-9. `{{ conf }}`: the full configuration object located at `airflow.configuration.conf` which represents the content of your `airflow.cfg`
-10. `{{ var.value.my_var }}`: global defined variables represented as a dictionary
-11. `{{ var.json.my_var.path }}`: global defined variables represented as a dictionary with deserialized JSON object, append the path to the key within the JSON object
-12. `{{ run_id }}`: the `run_id` of the current DAG run
-13. `{{ dag_run }}`: a reference to the DagRun object
-14. `{{ test_mode }}`: whether the task instance was called using the CLI’s `test` subcommand
+    Hooks are interfaces to external platforms and databases like Hive, Postgres, HDFS. They also use `airflow.models.Connection` model to retrieve hostnames and authentication information. Hooks keep authentication code and information out of pipelines, centralized in the metadata database.
 
-#### Macros {-}
+    ```python
+    from airflow.hooks.postgres_hook import PostgresHook
+    pg = PostgresHook("prd_gp")
+    conn = pg.get_conn() # get a connection to the database
+    curr = conn.cursor()
+    ...
+    ```
 
-1. `macros.datetime`: The standard lib’s `datetime.datetime`
-2. `macros.timedelta`: The standard lib’s `datetime.timedelta`
-3. `macros.dateutil`: A reference to the `dateutil` package
-4. `macros.time`: The standard lib’s `time`
-5. `macros.uuid`: The standard lib’s `uuid`
-6. `macros.random`: The standard lib’s `random`
+9. Xcoms
+10. Variables
 
-#### Hooks {-}
+    Variables are a generic way to store and retrieve arbitrary content or settings as a simple key value stored within Airflow. Variables can be listed, created, updated and deleted from the UI (`Admin -> Variables`), code or CLI. While your pipeline code definition and most of your constants and variables should be defined in code and stored in source control, it can be useful to have some variables or configuration items accessible and modifiable through the UI.
 
-Hooks are interfaces to external platforms and databases like Hive, Postgres, HDFS. They also use `airflow.models.Connection` model to retrieve hostnames and authentication information. Hooks keep authentication code and information out of pipelines, centralized in the metadata database.
+    ```python
+    from airflow.models import Variable
+    foo = Variable.get("foo")
+    bar = Variable.get("bar", deserialize_json=True) # json content and will be deserialized into bar
+    ```
 
-#### Pools {-}
+    `airflow variables`:
 
-Airflow pools can be used to limit the execution parallelism on arbitrary sets of tasks. The list of pools is managed in the UI (`Menu -> Admin -> Pools`) by giving the pools a name and assigning it a number of worker slots. The `pool` parameter can be used in conjunction with `priority_weight` to define priorities in the queue, and which tasks get executed first as slots open up in the pool. The default `priority_weight` is 1, and can be bumped to any number. When sorting the queue to evaluate which task should be executed next, we use the `priority_weight`, summed up with all of the `priority_weight` values from tasks downstream from this task. You can use this to bump a specific important task and the whole path to that task gets prioritized accordingly.
-
-#### Queues {-}
-
-When using the CeleryExecutor, the celery queues that tasks are sent to can be specified. `queue` is an attribute of BaseOperator, so any task can be assigned to any queue. The default queue for the environment is defined in the `airflow.cfg`'s `celery -> default_queue`. This defines the queue that tasks get assigned to when not specified, as well as which queue Airflow workers listen to when started.
-
-Workers can listen to one or multiple queues of tasks. When a worker is started (using the command `airflow worker`), a set of comma delimited queue names can be specified (e.g. `airflow worker -q spark`). This worker will then only pick up tasks wired to the specified queue(s).
-
-#### Connections {-}
-
-The connection information to external systems is stored in the Airflow metadata database and managed in the UI (`Menu -> Admin -> Connections`) A `conn_id` is defined there and hostname / login / password / schema information attached to it. Airflow pipelines can simply refer to the centrally managed `conn_id` without having to hard code any of this information anywhere.
-
-Many connections with the same `conn_id` can be defined and when that is the case, and when the hooks uses the `get_connection` method from `BaseHook`, Airflow will choose one connection randomly, allowing for some basic load balancing and fault tolerance when used in conjunction with retries.
-
-Airflow also has the ability to reference connections via environment variables from the operating system. The environment variable needs to be prefixed with `AIRFLOW_CONN_` to be considered a connection. When referencing the connection in the Airflow pipeline, the `conn_id` should be the name of the variable without the prefix. For example, if the `conn_id is` named `postgres_master` the environment variable should be named `AIRFLOW_CONN_POSTGRES_MASTER` (note that the environment variable must be all uppercase). Airflow assumes the value returned from the environment variable to be in a URI format (e.g. `postgres://user:password@localhost:5432/master` or `s3://accesskey:secretkey@S3`).
-
-`airflow connections` operations:
-
-1. `-l, --list`
-2. `-a, --add`
-3. `-d, delete`
-4. `--conn_id`: required to add or delete a connection, use lowercase characters and separated words with underscores `_`
-5. `--conn_type`: required to add a connection without conn_uri
-6. `--conn_host`
-7. `--conn_port`
-8. `--conn_schema`: specify database name
-9. `--conn_login`: login user
-10. `--conn_password`
-11. `conn_extra`: Extra field as json dictionary, optional when adding a connection, e.g. `{"charset": "utf8"}` for MySQL
-12. `--conn_uri`: required to add a connection without conn_type
-
-```sh
-# add a connection
-airflow connections -a --conn_id prd --conn_type 'postgres' --conn_host '127.0.0.1' --conn_port 5432 --conn_schema postgres --conn_login postgres --conn_password 1234
-```
-
-```python
-from airflow.hooks.base_hook import BaseHook
-
-conn = BaseHook.get_connection("conn_id")
-conn.conn_id
-conn.conn_type
-conn.host
-conn.port
-conn.schema
-conn.login
-conn.passowrd
-conn.extra
-conn.get_extra()
-conn.extra_dejson.get('charset', False)
-conn.get_url()
-```
-
-#### Xcoms {-}
-
-#### Variables {-}
-
-Variables are a generic way to store and retrieve arbitrary content or settings as a simple key value store within Airflow. Variables can be listed, created, updated and deleted from the UI (`Admin -> Variables`), code or CLI. While your pipeline code definition and most of your constants and variables should be defined in code and stored in source control, it can be useful to have some variables or configuration items accessible and modifiable through the UI.
-
-```python
-from airflow.models import Variable
-foo = Variable.get("foo")
-bar = Variable.get("bar", deserialize_json=True)
-```
-
-The second call assumes json content and will be deserialized into bar. Note that Variable is a sqlalchemy model and can be used as such.
-
-`airflow variables` operations:
-
-1. `-s, --set`
-2. `-g, --get`
-3. `-x, --delete`: delete a variable
-4. `-i, --import`: import variables from JSON file
-5. `-e, --export`: export variables to JSON file
-6. `-d, --default`: default value returned if variable do not exist
+    1. `-s, --set`
+    2. `-g, --get`
+    3. `-x, --delete`: delete a variable
+    4. `-i, --import`: import variables from JSON file
+    5. `-e, --export`: export variables to JSON file
+    6. `-d, --default`: default value returned if variable do not exist
 
 ## Base {#py-base}
 
@@ -948,8 +891,9 @@ The second call assumes json content and will be deserialized into bar. Note tha
     28. `class.mro()`
     29. `class.__bases__`
     30. `self.__class__.__name__`
-    31. `map()`
-    32. `filter()`
+    31. `self.__class__.__module__`
+    32. `map()`
+    33. `filter()`
 2.  functools
     1.  `functools.reduce()`
 3. locale
@@ -963,10 +907,15 @@ The second call assumes json content and will be deserialized into bar. Note tha
         1. `sys.argv[0]`: script name
         2. `sys.argv[1]`: the first argument
         3. `sys.argv[2], ...`: the second and so on argument
-    6.  `sys.builtin_module_names`
-    7.  `sys.getsizeof(): size of objects in bytes`
-    8.  `sys.modules.get('multiprocessing')`
-    9.  `sys.exc_info() => (etype, value, tb)`: `tb` now can be get from exception's `__traceback__` attribute since Python3
+    6.  `sys.path`: `module search path; path[0] is the script directory, else ''`
+    7.  `sys.prefix`
+    8.  `sys.platform`
+    9.  `sys.version_info`
+    10. `sys.version.[major, minor, micro]`
+    11. `sys.builtin_module_names`
+    12. `sys.getsizeof(): size of objects in bytes`
+    13. `sys.modules.get('multiprocessing')`
+    14. `sys.exc_info() => (etype, value, tb)`: `tb` now can be get from exception's `__traceback__` attribute since Python3
 5. traceback
     1.  `traceback.extract_tb(tb)`: return a `FrameSummary` object, which have following attributes:
         1. `filename`: filename for the frame
@@ -984,14 +933,15 @@ The second call assumes json content and will be deserialized into bar. Note tha
     9.  `traceback.format_stack()`
     10. `traceback.print_stack()`
 6.  os
-    1.  `os.fspath(filename)`
-    2.  `os.path.normcase(filename)`
-    3.  `os.path.abspath(__file__)`
-    4.  `os.path.dirname()`
-    5.  `os.path.basename(dirname)`
-    6.  `os.path.splitext(filename)`
-    7.  `os.path.join(dirname, filename)`
-    8.  `os.getpid()`
+    1.  `os.environ`
+    2.  `os.fspath(filename)`
+    3.  `os.path.normcase(filename)`
+    4.  `os.path.abspath(__file__)`
+    5.  `os.path.dirname()`
+    6.  `os.path.basename(dirname)`
+    7.  `os.path.splitext(filename)`
+    8.  `os.path.join(dirname, filename)`
+    9.  `os.getpid()`
 7.  math
     1.  `math.pi`
     2.  `math.e`

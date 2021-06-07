@@ -662,7 +662,7 @@ When connecting to databases, choose odbc or R database packages.
 
 Table:
 
-1. `DBI::Id(schema="schema_name", table="table_name")`: refer to table nested in a hierarchy, postgresql, e.g..
+1. `DBI::Id(cluster="mycluster", catalog = "mycatalog", schema="schema_name", table="table_name")`: refer to table nested in a hierarchy, postgresql, sqlserver, e.g..
 2. `DBI::dbExistsTable()`
     1. `DBI::dbExistsTable(con, "tos_os_p")`
     2. `DBI::dbExistsTable(con, DBI::id(schema="dw", table="tos_os_p"))`
