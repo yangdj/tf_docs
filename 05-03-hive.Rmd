@@ -1,0 +1,74 @@
+# Hive
+
+1. Installation
+    1. configuration
+        1. `hive.metastore.warehouse.dir`:  where to store internal table data
+2. Data Types: see [hive data type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types)
+    1. Primitive
+        1. Integer 
+            1. tinyint: 1-byte signed, -2^7 ~ 2^7 - 1, `100Y`
+            2. smallint: 2-byte signed, -2^15 ~ 2^15 - 1, `100S`
+            3. int / integer: 4-byte signed, -2^31 ~ 2^21 - 1, default for integer literal
+            4. bigint: 8-byte signed, -2^63 ~ 2^63 - 1, `100L`
+                1. integer larger than bigint must be handled with `decimal(38, 0)` with postfix BD, `100BD`
+        2. Floating
+            1. float: 4-byte single precision
+            2. double: 8-byte double precision, default for floating literal
+            3. double precision: alias for double, only available from Hive 2.2.0
+            4. decimal(precision, scale):
+                1. default `decimal(10, 0)`
+                2. precision <=38, and should >= scale
+                3. precision is the total width except the point; scale is width after the point
+                4. if the integer part width `(precision - scale)` less than actual integer part width, `NULL` will be return
+            5. numeric: same as decimal from Hive 3.0
+        3. String
+            1. char: `char(10)`, fix length, no more than 255, spaces may be padded
+            2. varchar: `varchar(10)`, variable length, no more than 65535, no more than given length
+            3. string: recommended, could be 2GB size
+        4. Date & Time
+            1. timestamp: stored as an offset from the unix epoch
+                1. integer input interpreted as unix timestamp in **mileseconds when testing**, not seconds
+                2. floating input interpreted as unix timestamp in seconds
+                3. string input follow JDBC compliant `java.sql.Timestamp format` format `yyyy-mm-dd hh:mm:ss[.f{0,9}]` with optional nanoseconds
+            2. date: a particular year/month/day value in the `yyyy-mm-dd` format, without a time of day component, range `0000-01-01 ~ 9999-12-31`
+            3. interval: time units, `second(s)/minute(s)/hour(s)/day(s)/month(s)/year(s)`, `interval '1' day`, `interval '1-2' year to month` 
+        5. boolean: `[true, false]`
+        6. binary: array of bytes
+    2. NULL: for missing value, `LazySimpleSerDe` interprets the string `\N`as `NULL` when importing
+    3. Complex: collection type
+        1. array: collection of similar data type
+            1. `column[index]`: index starts from 0
+            2. `score array<string>`:  specify column data type
+            3. `collection items terminated by '$'`: specify elements separator when creating table
+        2. struct: collection of named fields where each field can be of any primitive type
+            1. `column.fieldname`
+            2. `gamescore struct<game_name:string, score:int>`: specify column type and fields name and type
+            3. `collection items terminated by '$'`: specify elements separator
+        3. map: collection of key value pairs
+            1. `column[keys]`
+            2. `score map<string, int>`
+            3. `collection items terminated by '$' map keys terminated by ':'`: specify elements and key separator
+3. Functions
+    1. explode
+    2. collect_list
+    3. collect_set
+4. Object Operations
+    1. column
+        1. change column: `ALTER TABLE foo CHANGE COLUMN dec_column_name dec_column_name DECIMAL(38,18)`
+    2. partition
+        1. add: `alter table foo add if not exists partition(year='2021', month='06', day='08')`
+        2. insert
+            1. all dynamic: `insert overwrite table foo partition(year, month, day) select ..., t.year, t.month, t.day from ...`
+            2. partial dynamic: `insert overwrite table foo partition(year='2021', month='06', day) ...`
+        3. alter
+            1. alter column in all partition : `alter table foo partition (ds, hr) change column dec_column_name dec_column_name decimal(38,18)`
+            2. alter column in specified partition column: `alter table foo partition (ds='2021-06-08', hr=12) change column dec_column_name dec_column_name decimal(38,18)`
+5. Settings
+    1. `set hive.strict.checks.cartesian.product=false`: support cartesian join
+    2. `set hive.exec.dynamic.partition=true`: enable dynamic partition
+    3. `set hive.exec.dynamic.partition.mode=nostrick`: support all partitions dynamically, otherwise at least one should be static
+    4. `set hive.exec.max.dynamic.partitions=100000`: max number for dynamic partitions in one SQL, default 1000
+    5. `set hive.exec.max.dynamic.partitions.pernode=100000`: max number partitions support by one mapper or reducer, default 100
+    6. `set hive.tez.container.size=6144`: set tez memory size
+    7. `set mapred.reduce.tasks=60`: set output file numbers
+    8. `set hive.execution.engine={mr,spark,tez}`: set execution engine
