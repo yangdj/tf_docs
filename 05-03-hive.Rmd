@@ -43,19 +43,98 @@
         2. struct: collection of named fields where each field can be of any primitive type
             1. `column.fieldname`
             2. `gamescore struct<game_name:string, score:int>`: specify column type and fields name and type
-            3. `collection items terminated by '$'`: specify elements separator
+            3. `collection items terminated by '$'`: specify element separator
         3. map: collection of key value pairs
             1. `column[keys]`
             2. `score map<string, int>`
-            3. `collection items terminated by '$' map keys terminated by ':'`: specify elements and key separator
+            3. `collection items terminated by '$'`: specify element separator
+            4. `map keys terminated by ':'`: specify key separator
 3. Functions
     1. explode
     2. collect_list
     3. collect_set
 4. Object Operations
-    1. column
-        1. change column: `ALTER TABLE foo CHANGE COLUMN dec_column_name dec_column_name DECIMAL(38,18)`
-    2. partition
+    1. database
+        1. `CREATE DATABASE db_name [LOCATION 'oss://bilog/hivedb/db_name.db']`
+    2. table
+        1. `CREATE TABLE`
+            1. `SHOW CREATE TABLE [db_name.]table_name`: show table creation statement
+            2. internal table
+                1. store data in `hive.metastore.warehourse.dir(/user/hive/warehouse/databasename.db)`
+                2. on `DROP`, Hive deletes both the metadata and actual data 
+                3. `TRUNCATE` works, but partitions remain as it is
+            3. external table
+                1. store data outside of Hive
+                2. on `DROP`, Hive only deletes metadata, but the actual data stays as it is
+                3. `TRUNCATE` does not work
+                4. `SHOW CREATE TABLE` tells whether the table is internal or external. If find keyword `external` then external, else internal
+                5. when creating external table without `LOCATION ...`, the table will be created like internal table
+            5. ROW FORMAT
+                1. `DELIMITED`: use **native SerDe**, `textfile` format, and specify delimiter, escape character, null character and so on
+                2. `SERDE`: specify a custom SerDe with optinally SerDe properties, how to split a row to columns and serialize columns to a row, and may need first `ADD JAR ***.jar`
+                    1. class
+                        1. `org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe`: native SerDe
+                            1. SERPROPERTIES
+                                1. `'field.delim'='\b'`: fields separator, use unicode `\u0008`
+                                2. `'serialization.format'='\b'`: fields separator for serialization
+                                3. `'colelction.delim'='$'`: colletion separator
+                                4. `'mapkey.delim'=':'`: map key separator
+                                5. `'line.delim'='\n'`: line separator
+                                6. `'serialization.null.format'='\\N'`: NULL identifier, `\N` default for `LazySimpleSerDe`
+            6. STORE AS: file format for the table
+                1. system format
+                    1. textfile: native format
+                    2. sequencefile
+                    3. rcfile
+                    4. orc
+                    5. parquet
+                    6. avro
+                2. custom format specifies `INPUTFORMAT` and `OUTPUTFORMAT` class, and use `ROW FORMAT SERDE`
+                    1. INPUTFORMAT
+                        1. `'org.apache.hadoop.mapred.TextInputFormat'`: native
+                    2. OUTPUTFORMAT
+                        1. `'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'`: native
+
+            ```sql
+            CREATE [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name
+                (col_name data_type [COMMENT 'col_comment'], ...)
+                [PARTITIONED BY (col_name data_type [COMMENT 'col_comment..'], ...)]
+                [COMMENT 'table_comment..']
+                [ROW FORMAT 
+                    (SERDE 'serde_class' [with SERDEPROPERTIES('key1'='value1', ...)])
+                    | (DELIMETED
+                        [FIELDS TERMINATED BY field_separator_char]
+                        [ESCAPED BY escape_char]
+                        [COLLECTION ITEMS TERMINATED BY collection_separator_char]
+                        [MAP KEYS TERMINATED BY map_key_separator_char]
+                        [LINES TERMINATED row_separator_char]
+                        [NULL DEFINED AS null_char]
+                    )
+                ]
+                [STORED AS (file_format | INPUTFORMAT 'inputformat_class' OUTPUTFORMAT 'outputformat_class')]
+                [LOCATION 'hdfs_path']
+                [TBLPROPERTIES ('key1'='value1', 'key2'='value2', ...)]
+            ```
+
+        2. `ALTER TABLE`
+            1. `ALTER TABLE table_name RENAME TO new_table_name`: rename table
+            2. `ALTER TABLE table_name SET TBLPROPERTIES('key'='value', ...)`: alter table properties, add or modify, not able to remove
+            3. `ALTER TABLE table_name SET FILEFORMAT file_type`: alter storage properties, see the previous system format
+            4. SerDe
+                1. `ALTER TABLE table_name [partition(...)] SET SERDE 'serde_class_name' WITH SERDEPROPERTIES ('prob1'="value1", ...)`: set serde class and properties
+                2. `ALTER TABLE table_name [partition(...)] SET SERDE 'serde_class_name'`: set serde class
+                3. `ALTER TABLE table_name [partition(...)] SET SERDEPROPERTIES ('prob1'="value1", ...)`: set serde properties
+
+    3. column
+        1. `DESC table_name`: show columns info, names ,data_type and comment
+        2. change column
+
+            ```sql
+            ALTER TABLE foo CHANGE [COLUMN] col_name new_column_name col_datatype
+                [COMMENT col_comment] [FIRST|AFTER col] [CASCADE|RESTRICT]
+            ```
+
+    4. partition
         1. add: `alter table foo add if not exists partition(year='2021', month='06', day='08')`
         2. insert
             1. all dynamic: `insert overwrite table foo partition(year, month, day) select ..., t.year, t.month, t.day from ...`
@@ -64,11 +143,13 @@
             1. alter column in all partition : `alter table foo partition (ds, hr) change column dec_column_name dec_column_name decimal(38,18)`
             2. alter column in specified partition column: `alter table foo partition (ds='2021-06-08', hr=12) change column dec_column_name dec_column_name decimal(38,18)`
 5. Settings
-    1. `set hive.strict.checks.cartesian.product=false`: support cartesian join
-    2. `set hive.exec.dynamic.partition=true`: enable dynamic partition
-    3. `set hive.exec.dynamic.partition.mode=nostrick`: support all partitions dynamically, otherwise at least one should be static
-    4. `set hive.exec.max.dynamic.partitions=100000`: max number for dynamic partitions in one SQL, default 1000
-    5. `set hive.exec.max.dynamic.partitions.pernode=100000`: max number partitions support by one mapper or reducer, default 100
-    6. `set hive.tez.container.size=6144`: set tez memory size
-    7. `set mapred.reduce.tasks=60`: set output file numbers
-    8. `set hive.execution.engine={mr,spark,tez}`: set execution engine
+    1. `set hive.mapred.mode=[nonstrict, strict]`:  when `strict`, SQL must add `limit` when using `order by`
+    2. `set hive.strict.checks.cartesian.product=false`: support cartesian join
+    3. `set hive.execution.engine={mr,spark,tez}`: set execution engine
+    4. `set hive.tez.container.size=6144`: set tez memory size
+    5. `set mapred.reduce.tasks=60`: set numbers of reducers
+    6. partition
+        1. `set hive.exec.dynamic.partition=true`: enable dynamic partition
+        2. `set hive.exec.dynamic.partition.mode=nostrick`: support all partitions dynamically, otherwise at least one should be static
+        3. `set hive.exec.max.dynamic.partitions=100000`: max number for dynamic partitions in one SQL, default 1000
+        4. `set hive.exec.max.dynamic.partitions.pernode=100000`: max number partitions support by one mapper or reducer, default 100
