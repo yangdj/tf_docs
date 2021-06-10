@@ -21,8 +21,12 @@ h1, h2, h3 {
     content: "";
 }
 
-#dist {
+#dist{
   overflow: auto;
+}
+
+#hive-format {
+    overflow: auto
 }
 
 .book .book-body .page-wrapper .page-inner section.normal table td, .book .book-body .page-wrapper .page-inner section.normal table th {

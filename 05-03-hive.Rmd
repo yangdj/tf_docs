@@ -49,11 +49,7 @@
             2. `score map<string, int>`
             3. `collection items terminated by '$'`: specify element separator
             4. `map keys terminated by ':'`: specify key separator
-3. Functions
-    1. explode
-    2. collect_list
-    3. collect_set
-4. Object Operations
+3. Object Operations
     1. database
         1. `CREATE DATABASE db_name [LOCATION 'oss://bilog/hivedb/db_name.db']`
     2. table
@@ -69,31 +65,36 @@
                 3. `TRUNCATE` does not work
                 4. `SHOW CREATE TABLE` tells whether the table is internal or external. If find keyword `external` then external, else internal
                 5. when creating external table without `LOCATION ...`, the table will be created like internal table
-            5. ROW FORMAT
+            4. ROW FORMAT
                 1. `DELIMITED`: use **native SerDe**, `textfile` format, and specify delimiter, escape character, null character and so on
-                2. `SERDE`: specify a custom SerDe with optinally SerDe properties, how to split a row to columns and serialize columns to a row, and may need first `ADD JAR ***.jar`
+                2. `SERDE`: specify class to split a row into columns and serialize columns to a row, may need first load JAR file using `ADD JAR ***.jar`
                     1. class
-                        1. `org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe`: native SerDe
+                        1. `org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe`: default SerDe
                             1. SERPROPERTIES
                                 1. `'field.delim'='\b'`: fields separator, use unicode `\u0008`
-                                2. `'serialization.format'='\b'`: fields separator for serialization
-                                3. `'colelction.delim'='$'`: colletion separator
-                                4. `'mapkey.delim'=':'`: map key separator
-                                5. `'line.delim'='\n'`: line separator
-                                6. `'serialization.null.format'='\\N'`: NULL identifier, `\N` default for `LazySimpleSerDe`
-            6. STORE AS: file format for the table
+                                2. `'colelction.delim'='$'`: colletion separator
+                                3. `'mapkey.delim'=':'`: map key separator
+                                4. `'line.delim'='\n'`: line separator
+                                5. `'serialization.null.format'='\\N'`: NULL identifier, `\N` default for `LazySimpleSerDe`
+                                6. `'serialization.format'='\b'`: fields separator for serialization
+            5. STORE AS: file format for the table
                 1. system format
-                    1. textfile: native format
-                    2. sequencefile
-                    3. rcfile
-                    4. orc
-                    5. parquet
-                    6. avro
-                2. custom format specifies `INPUTFORMAT` and `OUTPUTFORMAT` class, and use `ROW FORMAT SERDE`
-                    1. INPUTFORMAT
-                        1. `'org.apache.hadoop.mapred.TextInputFormat'`: native
-                    2. OUTPUTFORMAT
-                        1. `'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'`: native
+
+                    <div>
+                    : (\#tab:hive-format) Hive System format
+
+                    | Format       | SerDe                                                            | InputFormat                                                     | OutputFormat                                                     |
+                    | ------------ | ---------------------------------------------------------------- | --------------------------------------------------------------- | ---------------------------------------------------------------- |
+                    | textfile     | `org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe`             | `org.apache.hadoop.mapred.TextInputFormat`                      | `org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat`     |
+                    | sequencefile | `org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe`             | `org.apache.hadoop.mapred.SequenceFileInputFormat`              | `org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat`      |
+                    | rcfile       | `org.apache.hadoop.hive.serde2.columnar.LazyBinaryColumnarSerDe` | `org.apache.hadoop.hive.ql.io.RCFileInputFormat`                | `org.apache.hadoop.hive.ql.io.RCFileOutputFormat`                |
+                    | orc          | `org.apache.hadoop.hive.ql.io.orc.OrcSerde`                      | `org.apache.hadoop.hive.ql.io.orc.OrcInputFormat`               | `org.apache.hadoop.hive.ql.io.orc.OrcOutputFormat`               |
+                    | parquet      | `org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe`    | `org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat` | `org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat` |
+                    | avro         | `org.apache.hadoop.hive.serde2.avro.AvroSerDe`                   | `org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat`    | `org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat`    |
+                    
+                    </div>
+
+                2. custom format specifies `INPUTFORMAT` and `OUTPUTFORMAT` class, and choose `ROW FORMAT SERDE`
 
             ```sql
             CREATE [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name
@@ -112,44 +113,57 @@
                     )
                 ]
                 [STORED AS (file_format | INPUTFORMAT 'inputformat_class' OUTPUTFORMAT 'outputformat_class')]
-                [LOCATION 'hdfs_path']
+                [LOCATION 'file_path']
                 [TBLPROPERTIES ('key1'='value1', 'key2'='value2', ...)]
             ```
 
-        2. `ALTER TABLE`
+        2. `INSERT`
+            1. `INSERT INTO foo VALUES (...), (...), ...`
+            2. `INSERT INTO foo SELECT ...`
+            3. `insert into foo PARTITION(dt) ...`
+            4. `INSERT OVERWRITE TABLE foo SELECT ...` 
+        3. `ALTER TABLE`
             1. `ALTER TABLE table_name RENAME TO new_table_name`: rename table
             2. `ALTER TABLE table_name SET TBLPROPERTIES('key'='value', ...)`: alter table properties, add or modify, not able to remove
             3. `ALTER TABLE table_name SET FILEFORMAT file_type`: alter storage properties, see the previous system format
             4. SerDe
                 1. `ALTER TABLE table_name [partition(...)] SET SERDE 'serde_class_name' WITH SERDEPROPERTIES ('prob1'="value1", ...)`: set serde class and properties
-                2. `ALTER TABLE table_name [partition(...)] SET SERDE 'serde_class_name'`: set serde class
-                3. `ALTER TABLE table_name [partition(...)] SET SERDEPROPERTIES ('prob1'="value1", ...)`: set serde properties
+                2. `ALTER TABLE table_name [partition(...)] SET SERDE 'serde_class_name'`: set SerDe class
+                3. `ALTER TABLE table_name [partition(...)] SET SERDEPROPERTIES ('prob1'="value1", ...)`: set SerDe properties
 
     3. column
         1. `DESC table_name`: show columns info, names ,data_type and comment
-        2. change column
-
-            ```sql
-            ALTER TABLE foo CHANGE [COLUMN] col_name new_column_name col_datatype
-                [COMMENT col_comment] [FIRST|AFTER col] [CASCADE|RESTRICT]
-            ```
+        2. `ALTER TABLE foo ADD COLUMNS (col_name col_datatype, ...) [CASCADE|RESTRICT]`: add columns at the end of existing columns, if the table is partitioned, the columns get added at the end but before the partitioned column 
+        3. `ALTER TABLE foo CHANGE [COLUMN] col_name new_column_name col_datatype [COMMENT col_comment] [FIRST|AFTER col] [CASCADE|RESTRICT]`
+        4. `CASCADE` and `RESTRICT` are for alter columns in partitioned table
+            1. `CASCADE`: changes are propagated to all the existing and future partitions
+            2. `RESTRICT`: changes are visible for new partitions created, existing partitions are not impacted
 
     4. partition
-        1. add: `alter table foo add if not exists partition(year='2021', month='06', day='08')`
-        2. insert
+        1. `ADD`: `alter table foo add if not exists partition(year='2021', month='06', day='08') [location ...]`
+        2. `INSERT`
             1. all dynamic: `insert overwrite table foo partition(year, month, day) select ..., t.year, t.month, t.day from ...`
             2. partial dynamic: `insert overwrite table foo partition(year='2021', month='06', day) ...`
-        3. alter
+        3. `ALTER`
             1. alter column in all partition : `alter table foo partition (ds, hr) change column dec_column_name dec_column_name decimal(38,18)`
             2. alter column in specified partition column: `alter table foo partition (ds='2021-06-08', hr=12) change column dec_column_name dec_column_name decimal(38,18)`
-5. Settings
+4. Settings
     1. `set hive.mapred.mode=[nonstrict, strict]`:  when `strict`, SQL must add `limit` when using `order by`
-    2. `set hive.strict.checks.cartesian.product=false`: support cartesian join
+    2. `set hive.strict.checks.cartesian.product=false`: enable cartesian join
     3. `set hive.execution.engine={mr,spark,tez}`: set execution engine
     4. `set hive.tez.container.size=6144`: set tez memory size
     5. `set mapred.reduce.tasks=60`: set numbers of reducers
-    6. partition
+    6. `set mapred.job.queue.name=queue0`
+    7. `set tez.queue.name=queue0`
+    8. `set hive.auto.convert.join=true`: join in mapper by load small table into memory when big table joins small table, this reduces shuffle operations
+    9. `set hive.groupby.skewindata=true`: enable load balance when data skews, default false
+    10. partition
         1. `set hive.exec.dynamic.partition=true`: enable dynamic partition
         2. `set hive.exec.dynamic.partition.mode=nostrick`: support all partitions dynamically, otherwise at least one should be static
         3. `set hive.exec.max.dynamic.partitions=100000`: max number for dynamic partitions in one SQL, default 1000
         4. `set hive.exec.max.dynamic.partitions.pernode=100000`: max number partitions support by one mapper or reducer, default 100
+        5. `set hive.exec.max.created.files=100000`: max created file number globally ,default 100000
+5. Functions
+    1. explode
+    2. collect_list
+    3. collect_set
