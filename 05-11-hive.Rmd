@@ -3,7 +3,36 @@
 1. Installation
     1. configuration
         1. `hive.metastore.warehouse.dir`:  where to store internal table data
-2. Data Types: see [hive data type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types)
+2. Settings
+    1. `SET hive.default.fileformat=orc`
+    2. `SET hive.mapred.mode=[nonstrict, strict]`:  when `strict`, SQL must add `limit` when using `order by`
+    3. `SET hive.strict.checks.cartesian.product=false`: enable cartesian join
+    4. `SET hive.execution.engine={mr,spark,tez}`: set execution engine
+    5. `SET hive.tez.container.size=6144`: set tez memory size
+    6. `SET mapred.reduce.tasks=60`: set numbers of reducers
+    7. `SET mapred.job.queue.name=queue0`
+    8. `SET tez.queue.name=queue0`
+    9. `SET hive.auto.convert.join=true`: join in mapper by load small table into memory when big table joins small table, this reduces shuffle operations
+    10. `SET hive.groupby.skewindata=true`: enable load balance when data skews, default false
+    11. Compress
+        1.  `SET hive.exec.compress.output=true`: compress output
+        2.  `SET io.seqfile.compression.type=BLOCK [BLOCK,RECORD,NONE]` 
+            1. `RECORD`: compress each record individually
+            2. `BLOCK`: recommended, buffer up 1MB(default) before doing compression
+        3. `SET io.compression.codecs=org.apache.hadoop.io.compress.GzipCodec`
+        4. `SET mapred.output.compress=true;`
+        5. `SET mapreduce.output.fileoutputformat.compress=true`
+        6. `SET mapred.output.compression.type=BLOCK`
+        7. `SET mapred.output.compression.codec=org.apache.hadoop.io.compress.GzipCodec`
+        8. `SET mapreduce.output.fileoutputformat.compress.codec=com.hadoop.compression.lzo.LzoCodec`
+    12. Partition
+        1. `SET hive.exec.dynamic.partition=true`: enable dynamic partition
+        2. `SET hive.exec.dynamic.partition.mode=nostrick`: support all partitions dynamically, otherwise at least one should be static
+        3. `SET hive.exec.max.dynamic.partitions=100000`: max number for dynamic partitions in one SQL, default 1000
+        4. `SET hive.exec.max.dynamic.partitions.pernode=100000`: max number partitions support by one mapper or reducer, default 100
+        5. `SET hive.exec.max.created.files=100000`: max created file number for mapper and reducer in one job,default 100000
+        6. `SET hive.error.on.empty.partition=false`: whether allowing empty results, when `true` throw an error
+3. Data Types: see hive data type[1](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types), [2](https://understandingbigdata.com/hive-data-types/#:~:text=HIVE%20Primitive%20Data%20Types%201%20Numeric%20Data%20Types.,FALSE.%20Binary%20%E2%80%93%20This%20stores%20array%20of%20bytes.)
     1. Primitive
         1. Integer 
             1. tinyint: 1-byte signed, -2^7 ~ 2^7 - 1, `100Y`
@@ -17,7 +46,7 @@
             3. double precision: alias for double, only available from Hive 2.2.0
             4. decimal(precision, scale):
                 1. default `decimal(10, 0)`
-                2. precision <=38, and should >= scale
+                2. `precision` <=38, and should >= `scale`
                 3. precision is the total width except the point; scale is width after the point
                 4. if the integer part width `(precision - scale)` less than actual integer part width, `NULL` will be return
             5. numeric: same as decimal from Hive 3.0
@@ -31,7 +60,9 @@
                 2. floating input interpreted as unix timestamp in seconds
                 3. string input follow JDBC compliant `java.sql.Timestamp format` format `yyyy-mm-dd hh:mm:ss[.f{0,9}]` with optional nanoseconds
             2. date: a particular year/month/day value in the `yyyy-mm-dd` format, without a time of day component, range `0000-01-01 ~ 9999-12-31`
-            3. interval: time units, `second(s)/minute(s)/hour(s)/day(s)/month(s)/year(s)`, `interval '1' day`, `interval '1-2' year to month` 
+            3. interval: time units, `second(s)/minute(s)/hour(s)/day(s)/month(s)/year(s)`
+                1. `interval '1' day`
+                2. `interval '1-2' year to month` 
         5. boolean: `[true, false]`
         6. binary: array of bytes
     2. NULL: for missing value, `LazySimpleSerDe` interprets the string `\N`as `NULL` when importing
@@ -49,27 +80,29 @@
             2. `score map<string, int>`
             3. `collection items terminated by '$'`: specify element separator
             4. `map keys terminated by ':'`: specify key separator
-3. Object Operations
+4. Object Operations
     1. database
-        1. `CREATE DATABASE db_name [LOCATION 'oss://bilog/hivedb/db_name.db']`
+        1. `USE dbname`: switch to database dbname
+        2. `CREATE DATABASE db_name [LOCATION 'oss://bilog/hivedb/db_name.db']`
+        3. `DROP DATABASE [IF EXISTS] dbname`
     2. table
         1. `CREATE TABLE`
             1. `SHOW CREATE TABLE [db_name.]table_name`: show table creation statement
-            2. internal table
+            2. `SHOW TALBE LIKE '*tbl_name*'`: support wildchar
+            3. internal table
                 1. store data in `hive.metastore.warehourse.dir(/user/hive/warehouse/databasename.db)`
                 2. on `DROP`, Hive deletes both the metadata and actual data 
                 3. `TRUNCATE` works, but partitions remain as it is
-            3. external table
+            4. external table
                 1. store data outside of Hive
                 2. on `DROP`, Hive only deletes metadata, but the actual data stays as it is
                 3. `TRUNCATE` does not work
                 4. `SHOW CREATE TABLE` tells whether the table is internal or external. If find keyword `external` then external, else internal
                 5. when creating external table without `LOCATION ...`, the table will be created like internal table
-            4. ROW FORMAT
-                1. `DELIMITED`: use **native SerDe**, `textfile` format, and specify delimiter, escape character, null character and so on
-                2. `SERDE`: specify class to split a row into columns and serialize columns to a row, may need first load JAR file using `ADD JAR ***.jar`
-                    1. class
-                        1. `org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe`: default SerDe
+            5. ROW FORMAT
+                1. `DELIMITED`: textfile format, specify delimiter, escape character, null character and so on
+                2. `SerDe`: specify class to split rows into columns and serialize columns to rows, may need load JAR file using `ADD JAR ***.jar`
+                    1. `org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe`: textfile, default SerDe
                             1. SERPROPERTIES
                                 1. `'field.delim'='\b'`: fields separator, use unicode `\u0008`
                                 2. `'colelction.delim'='$'`: colletion separator
@@ -77,10 +110,11 @@
                                 4. `'line.delim'='\n'`: line separator
                                 5. `'serialization.null.format'='\\N'`: NULL identifier, `\N` default for `LazySimpleSerDe`
                                 6. `'serialization.format'='\b'`: fields separator for serialization
-            5. STORE AS: file format for the table
+                    2. 
+            6. STORE AS: file format for the table
                 1. system format
 
-                    <div>
+                    <div id="hive-format">
                     : (\#tab:hive-format) Hive System format
 
                     | Format       | SerDe                                                            | InputFormat                                                     | OutputFormat                                                     |
@@ -95,6 +129,17 @@
                     </div>
 
                 2. custom format specifies `INPUTFORMAT` and `OUTPUTFORMAT` class, and choose `ROW FORMAT SERDE`
+            7. TBLPROPERTIES:
+                1. General
+                    1. `'EXTERNAL'='false'`: make table internal
+                    2. `'auto.purge'='ture'`: remove data directly, not moved to trash firstly
+                    3. `'immutable'='true'`: from 0.13.0, default `false`, allow the first insert data
+                2. orc
+                    1. `orc.compress=[ZLIB, SNAPPY, NONE]`: default ZLIB
+                    2. `orc.compress.size=262144`: bytes in each compression chunk
+                    3. `orc.strip.size=268435456`: bytes in each stripe
+                    4. `orc.row.index.stride=10000`: number of rows between index entries, must be >= 1000
+                    5. `orc.create.index=true`: whether to create row indexe    s
 
             ```sql
             CREATE [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name
@@ -121,7 +166,8 @@
             1. `INSERT INTO foo VALUES (...), (...), ...`
             2. `INSERT INTO foo SELECT ...`
             3. `insert into foo PARTITION(dt) ...`
-            4. `INSERT OVERWRITE TABLE foo SELECT ...` 
+            4. `INSERT OVERWRITE TABLE foo VALUES (), () ...` 
+            5. `INSERT OVERWRITE TABLE foo SELECT ...` 
         3. `ALTER TABLE`
             1. `ALTER TABLE table_name RENAME TO new_table_name`: rename table
             2. `ALTER TABLE table_name SET TBLPROPERTIES('key'='value', ...)`: alter table properties, add or modify, not able to remove
@@ -130,40 +176,92 @@
                 1. `ALTER TABLE table_name [partition(...)] SET SERDE 'serde_class_name' WITH SERDEPROPERTIES ('prob1'="value1", ...)`: set serde class and properties
                 2. `ALTER TABLE table_name [partition(...)] SET SERDE 'serde_class_name'`: set SerDe class
                 3. `ALTER TABLE table_name [partition(...)] SET SERDEPROPERTIES ('prob1'="value1", ...)`: set SerDe properties
+        4. `LOAD`
+            1. `LOAD DATA [LOCAL] INPATH 'file_path' [OVERWRITE] INTO TABLE foo [PARTITION(year='2021', month='06')]`
+            2. `LOAD DATA [LOCAL] INPATH 'file_path' [OVERWRITE] INTO TABLE foo [PARTITION(year='2021', month='06')] [INPUTFORMAT 'input_format' SERDE 'serde']` (3.0 or later)
+            3. INPATH: path can be file or a directory, when directory, all files will be moved
+                1. `project/data1`: relative path
+                2. `/user/hive/project/data1`: absolute path
+                3. `file:///user/hive/project/data1`: complete file path point to local file
+                4. `hdfs://namenode:9000/user/hive/project/data1`: URI with schema and optional authorized info
+        5. `DROP`
+            1. `DROP TABLE [IF EXISTS] foo`: data moved to trash folder first
+            2. `DROP TABLE [IF EXISTS] foo PURGE`: data not moved to trash, but removed permanently, make sure the data is not needed
+            3. `ALTER TABLE foo SET TBLPROPERTIES('EXTERNAL'='false'); DROP TABLE foo`: to drop external table data, make the table internal first, then drop table
 
     3. column
         1. `DESC table_name`: show columns info, names ,data_type and comment
         2. `ALTER TABLE foo ADD COLUMNS (col_name col_datatype, ...) [CASCADE|RESTRICT]`: add columns at the end of existing columns, if the table is partitioned, the columns get added at the end but before the partitioned column 
         3. `ALTER TABLE foo CHANGE [COLUMN] col_name new_column_name col_datatype [COMMENT col_comment] [FIRST|AFTER col] [CASCADE|RESTRICT]`
-        4. `CASCADE` and `RESTRICT` are for alter columns in partitioned table
+        4. `ALTER TABLE foo REPLACE columns (col_name datatype, ...) [CASCADE|RESTRICT]: remove all columns and add new columns, the data is not dropped
+        5. `CASCADE` and `RESTRICT` are for alter columns in partitioned table
             1. `CASCADE`: changes are propagated to all the existing and future partitions
             2. `RESTRICT`: changes are visible for new partitions created, existing partitions are not impacted
 
     4. partition
-        1. `ADD`: `alter table foo add if not exists partition(year='2021', month='06', day='08') [location ...]`
-        2. `INSERT`
-            1. all dynamic: `insert overwrite table foo partition(year, month, day) select ..., t.year, t.month, t.day from ...`
-            2. partial dynamic: `insert overwrite table foo partition(year='2021', month='06', day) ...`
-        3. `ALTER`
-            1. alter column in all partition : `alter table foo partition (ds, hr) change column dec_column_name dec_column_name decimal(38,18)`
-            2. alter column in specified partition column: `alter table foo partition (ds='2021-06-08', hr=12) change column dec_column_name dec_column_name decimal(38,18)`
-4. Settings
-    1. `set hive.mapred.mode=[nonstrict, strict]`:  when `strict`, SQL must add `limit` when using `order by`
-    2. `set hive.strict.checks.cartesian.product=false`: enable cartesian join
-    3. `set hive.execution.engine={mr,spark,tez}`: set execution engine
-    4. `set hive.tez.container.size=6144`: set tez memory size
-    5. `set mapred.reduce.tasks=60`: set numbers of reducers
-    6. `set mapred.job.queue.name=queue0`
-    7. `set tez.queue.name=queue0`
-    8. `set hive.auto.convert.join=true`: join in mapper by load small table into memory when big table joins small table, this reduces shuffle operations
-    9. `set hive.groupby.skewindata=true`: enable load balance when data skews, default false
-    10. partition
-        1. `set hive.exec.dynamic.partition=true`: enable dynamic partition
-        2. `set hive.exec.dynamic.partition.mode=nostrick`: support all partitions dynamically, otherwise at least one should be static
-        3. `set hive.exec.max.dynamic.partitions=100000`: max number for dynamic partitions in one SQL, default 1000
-        4. `set hive.exec.max.dynamic.partitions.pernode=100000`: max number partitions support by one mapper or reducer, default 100
-        5. `set hive.exec.max.created.files=100000`: max created file number globally ,default 100000
-5. Functions
-    1. explode
-    2. collect_list
-    3. collect_set
+        1. `SHOW PARTITIONS foo`: show all partitions
+        2. `ADD`: `ALTER TABLE foo ADD IF NOT EXISTS PARTITION(year='2021', month='06', day='08') [location ...]`
+        3. `RENAME`: `ALTER TABLE foo PARTITION(year='2012') rename to PARTITION(year='2021')`
+        4. `DROP`: `ALTER TABLE foo DROP [IF EXISTS] PARTITION(year='2021', month='06', day='08') [location ...]`
+        5. `CHANGE`
+            1. alter column in all partition : `ALTER TABLE foo PARTITION(ds, hr) CHANGE COLUMN dec_column_name dec_column_name decimal(38,18)`
+            2. alter column in specified partition column: `ALTER TABLE foo PARTITION(ds='2021-06-08', hr=12) CHANGE COLUMN dec_column_name dec_column_name decimal(38,18)`
+        6. `INSERT`
+            1. all dynamic: 
+                1. `INSERT INTO foo partition(year, month, day) select ...`
+                2. `INSERT OVERWRITE TABLE foo PARTITION(year, month, day) SELECT ..., t.year, t.month, t.day from ...`
+            2. partial dynamic:
+                1. `INSERT INTO foo PARTITION(year='2021', month='06', day) SELECT ...`
+                2. `INSERT OVERWRITE TABLE foo PARTITION(year='2021', month='06', day) SELECT ...`
+
+5. SQL
+    1. BY
+        1. `ORDER BY`:
+            1. guarantee global ordering
+            2. but all data is pushed into one reducer, the output is a single sorted data
+            3. `SET hive.mapred.mode=strict` makes compulsory to use `LIMIT` with `ORDER BY` to reduce the burden from reducer
+        2. `SORT BY`
+            1. data is sent to N reducers. Before sending the data, they are sorted based on the sort column
+            2. the final output from all the reducers will not be a global sorted one
+            3. the data in each reducer can have overlapping ranges
+        3. `DISTRIBUTE BY`
+            1. ensure each of N reducers gets non-overlapping ranges
+            2. the same values in a distribute by column go to the same reducers
+            3. the each reducer output is not sorted, end up N or more unsorted files with non-overlapping
+        4. `CLUSTER BY`: `DISTRIBUTE BY` + `SORT BY`
+    2. Functions
+        1. Element-wise
+            1. `concat_ws()`
+            2. `greatest()`
+            3. `least()`
+            4. `split(str, sep)`
+        2. Aggregating
+            1. `count([DISTINCT ...])`
+            2. `sum()`
+            3. `max()`
+            4. `min()`
+            5. `avg()`
+            6. `collect_set()`
+            7. `collect_list()`
+        3. Over
+            1. `rank()`
+            2. `row_number()`
+        4. Transform
+            1. `explode`
+                1. `explode(array|map)`
+                2. `lateral view explode(split(col, delim)) n as nn`: `delim` in `split` support distinct characters
+                3. `lateral view out explode(split(col, delim)) n as nn`: keep `NULL` value rows
+            2. `posexplode`: similar to `explode`, but keep map join, not cartesian join
+
+                ```sql
+                select
+                    class,
+                    student_name,
+                    student_score
+                from
+                    default.classinfo
+                    lateral view posexplode(split(student,',')) sn as student_index_sn,student_name
+                    lateral view posexplode(split(score,',')) sc as student_index_sc,student_score
+                where
+                    student_index_sn = student_index_sc;
+                ```
