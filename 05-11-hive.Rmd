@@ -34,7 +34,7 @@
         6. `SET hive.error.on.empty.partition=false`: whether allowing empty results, when `true` throw an error
 3. Data Types: see hive data type[1](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types), [2](https://understandingbigdata.com/hive-data-types/#:~:text=HIVE%20Primitive%20Data%20Types%201%20Numeric%20Data%20Types.,FALSE.%20Binary%20%E2%80%93%20This%20stores%20array%20of%20bytes.)
     1. Primitive
-        1. Integer 
+        1. Integers 
             1. tinyint: 1-byte signed, -2^7 ~ 2^7 - 1, `100Y`
             2. smallint: 2-byte signed, -2^15 ~ 2^15 - 1, `100S`
             3. int / integer: 4-byte signed, -2^31 ~ 2^21 - 1, default for integer literal
@@ -54,19 +54,18 @@
             1. char: `char(10)`, fix length, no more than 255, spaces may be padded
             2. varchar: `varchar(10)`, variable length, no more than 65535, no more than given length
             3. string: recommended, could be 2GB size
-        4. Date & Time
+        4. boolean: `[true, false]`
+        5. Date & Time
             1. timestamp: stored as an offset from the unix epoch
-                1. integer input interpreted as unix timestamp in **mileseconds when testing**, not seconds
+                1. integer input interpreted as unix timestamp in seconds, but in `cast`, interpreted as **mileseconds not seconds**
                 2. floating input interpreted as unix timestamp in seconds
                 3. string input follow JDBC compliant `java.sql.Timestamp format` format `yyyy-mm-dd hh:mm:ss[.f{0,9}]` with optional nanoseconds
             2. date: a particular year/month/day value in the `yyyy-mm-dd` format, without a time of day component, range `0000-01-01 ~ 9999-12-31`
             3. interval: time units, `second(s)/minute(s)/hour(s)/day(s)/month(s)/year(s)`
                 1. `interval '1' day`
                 2. `interval '1-2' year to month` 
-        5. boolean: `[true, false]`
         6. binary: array of bytes
-    2. NULL: for missing value, `LazySimpleSerDe` interprets the string `\N`as `NULL` when importing
-    3. Complex: collection type
+    2. Complex: collection type
         1. array: collection of similar data type
             1. `column[index]`: index starts from 0
             2. `score array<string>`:  specify column data type
@@ -80,6 +79,7 @@
             2. `score map<string, int>`
             3. `collection items terminated by '$'`: specify element separator
             4. `map keys terminated by ':'`: specify key separator
+       1. NULL: for missing value, `LazySimpleSerDe` interprets the string `\N`as `NULL` when importing
 4. Object Operations
     1. database
         1. `USE dbname`: switch to database dbname
@@ -213,8 +213,12 @@
             2. partial dynamic:
                 1. `INSERT INTO foo PARTITION(year='2021', month='06', day) SELECT ...`
                 2. `INSERT OVERWRITE TABLE foo PARTITION(year='2021', month='06', day) SELECT ...`
+    5. buckets(cluster): data in each partition divided into buckets based on the value of a hash function of some column of the table
 
 5. SQL
+    1. Operators 
+        1. Precedenses
+            1. `[], .`: element selector, dot
     1. BY
         1. `ORDER BY`:
             1. guarantee global ordering
@@ -230,12 +234,31 @@
             3. the each reducer output is not sorted, end up N or more unsorted files with non-overlapping
         4. `CLUSTER BY`: `DISTRIBUTE BY` + `SORT BY`
     2. Functions
-        1. Element-wise
-            1. `concat_ws()`
-            2. `greatest()`
-            3. `least()`
-            4. `split(str, sep)`
-        2. Aggregating
+        1. Query
+            1. `SHOW FUNCTIONS`
+            2. `DESC FUNCTIONS func_name`
+            3. `DESC FUNCTIONS EXTENDED func_name`
+        2. UDFs: user defined functions
+            1. General
+                1. `version()`
+                2. `cast(from_type as another_type)`
+                3. `greatest(v1, v2, ...)`
+                4. `least(v1, v2, ...)`
+            2. str
+                1. `split(str, regex)`
+                2. `concat_ws(sep, [str | array(string)]+))`
+            3. Timestamp
+                1. `current_timestamp()`
+                2. `unix_timestamp([timestamp, 'yyyy-MM-dd hh:mm:ss])`
+                3. `from_unixtime(unixtime[, 'yyyy-MM-dd hh:mm:ss'])`
+            4. Date
+                1. `current_date()`
+                2. `to_date(timestamp)`
+                3. `date_add(start_date, days)`
+                4. `date_sub(start_date, days)`
+                5. `datediff(end_date, start_date)`
+                6. `last_day()`: last day of month
+        3. UDAFs: built-in aggregate functions
             1. `count([DISTINCT ...])`
             2. `sum()`
             3. `max()`
@@ -243,10 +266,10 @@
             5. `avg()`
             6. `collect_set()`
             7. `collect_list()`
-        3. Over
+        4. Over functions: `f() OVER (PARTITION BY f1, [f2, ...] [ORDER BY f1[, f2, ...]])`
             1. `rank()`
             2. `row_number()`
-        4. Transform
+        5. UDTFs: built-in table-generating functions
             1. `explode`
                 1. `explode(array|map)`
                 2. `lateral view explode(split(col, delim)) n as nn`: `delim` in `split` support distinct characters
