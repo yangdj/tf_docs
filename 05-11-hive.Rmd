@@ -1,9 +1,12 @@
 # Hive
 
-1. Installation
+1. References
+    1. [hive data types](https://understandingbigdata.com/hive-data-types)
+    2. [LanguageManual](https://cwiki.apache.org/confluence/display/Hive/LanguageManual)
+2. Installation
     1. configuration
         1. `hive.metastore.warehouse.dir`:  where to store internal table data
-2. Settings
+3. Settings
     1. `SET hive.default.fileformat=orc`
     2. `SET hive.mapred.mode=[nonstrict, strict]`:  when `strict`, SQL must add `limit` when using `order by`
     3. `SET hive.strict.checks.cartesian.product=false`: enable cartesian join
@@ -32,7 +35,7 @@
         4. `SET hive.exec.max.dynamic.partitions.pernode=100000`: max number partitions support by one mapper or reducer, default 100
         5. `SET hive.exec.max.created.files=100000`: max created file number for mapper and reducer in one job,default 100000
         6. `SET hive.error.on.empty.partition=false`: whether allowing empty results, when `true` throw an error
-3. Data Types: see hive data type[1](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types), [2](https://understandingbigdata.com/hive-data-types/#:~:text=HIVE%20Primitive%20Data%20Types%201%20Numeric%20Data%20Types.,FALSE.%20Binary%20%E2%80%93%20This%20stores%20array%20of%20bytes.)
+4. Data Type
     1. Primitive
         1. Integers 
             1. tinyint: 1-byte signed, -2^7 ~ 2^7 - 1, `100Y`
@@ -80,7 +83,7 @@
             3. `collection items terminated by '$'`: specify element separator
             4. `map keys terminated by ':'`: specify key separator
        1. NULL: for missing value, `LazySimpleSerDe` interprets the string `\N`as `NULL` when importing
-4. Object Operations
+5. Object Operations
     1. database
         1. `USE dbname`: switch to database dbname
         2. `CREATE DATABASE db_name [LOCATION 'oss://bilog/hivedb/db_name.db']`
@@ -191,10 +194,12 @@
 
     3. column
         1. `DESC table_name`: show columns info, names ,data_type and comment
-        2. `ALTER TABLE foo ADD COLUMNS (col_name col_datatype, ...) [CASCADE|RESTRICT]`: add columns at the end of existing columns, if the table is partitioned, the columns get added at the end but before the partitioned column 
-        3. `ALTER TABLE foo CHANGE [COLUMN] col_name new_column_name col_datatype [COMMENT col_comment] [FIRST|AFTER col] [CASCADE|RESTRICT]`
-        4. `ALTER TABLE foo REPLACE columns (col_name datatype, ...) [CASCADE|RESTRICT]: remove all columns and add new columns, the data is not dropped
-        5. `CASCADE` and `RESTRICT` are for alter columns in partitioned table
+        2. `DESC EXTENDED table_name`: list full info
+        3. `DESC EXTENDED table_name PARTITION(ds='2021-06-18')`: list specified partition
+        4. `ALTER TABLE foo ADD COLUMNS (col_name col_datatype, ...) [CASCADE|RESTRICT]`: add columns at the end of existing columns, if the table is partitioned, the columns get added at the end but before the partitioned column 
+        5. `ALTER TABLE foo CHANGE [COLUMN] col_name new_column_name col_datatype [COMMENT col_comment] [FIRST|AFTER col] [CASCADE|RESTRICT]`
+        6. `ALTER TABLE foo REPLACE COLUMNS (col_name datatype, ...) [CASCADE|RESTRICT]`: remove all columns and add new columns, the data is not dropped
+        7. `CASCADE` and `RESTRICT` are for alter columns in partitioned table
             1. `CASCADE`: changes are propagated to all the existing and future partitions
             2. `RESTRICT`: changes are visible for new partitions created, existing partitions are not impacted
 
@@ -215,11 +220,42 @@
                 2. `INSERT OVERWRITE TABLE foo PARTITION(year='2021', month='06', day) SELECT ...`
     5. buckets(cluster): data in each partition divided into buckets based on the value of a hash function of some column of the table
 
-5. SQL
+6. SQL
     1. Operators 
         1. Precedenses
             1. `[], .`: element selector, dot
-    1. BY
+            2. `+, -, ~`: unary prefix
+            3. `IS NULL, IS NOT NULL`: unary suffix
+            4. `^`: bitwise xor
+            5. `*, /, %, DIV`: multiply, float divide, mod, integer divide
+            6. `+, -`: plus and minus
+            7. `||`: string concatenation
+            8. `&`: bitwise and
+            9. `|`: bitwise or
+        2. Relational
+            1. `=, ==, <>, !=, <, <=, >, >=`
+            2. `A [NOT] BETWEEN B AND C`
+            3. `A IS [NOT] NULL`
+            4. `A [NOT] LIKE B`
+            5. `A RLIKE B`
+            6. `A REGEXP B`: same as `A RLIKE B`
+        3. Arithmetic
+            1. `+, -, *, /, DIV, %`
+            2. `&, |, ^, ~`
+        4. Logical
+            1. `AND, OR, NOT, !`
+            2. `IN, NOT IN`
+        5. String
+            1. `||`: short for `concat(A, B)`
+        6. Complex
+
+            | Type   | Constructor           | Operator |
+            | ------ | --------------------- | -------- |
+            | array  | (v1, v2, ...)         | A[n]     |
+            | map    | (k1, v1, k2, v2, ...) | M[key]   |
+            | struct | (v1, v2, ...)         | S.x      |
+
+    2. BY
         1. `ORDER BY`:
             1. guarantee global ordering
             2. but all data is pushed into one reducer, the output is a single sorted data
@@ -233,7 +269,7 @@
             2. the same values in a distribute by column go to the same reducers
             3. the each reducer output is not sorted, end up N or more unsorted files with non-overlapping
         4. `CLUSTER BY`: `DISTRIBUTE BY` + `SORT BY`
-    2. Functions
+    3. Functions
         1. Query
             1. `SHOW FUNCTIONS`
             2. `DESC FUNCTIONS func_name`
@@ -241,29 +277,112 @@
         2. UDFs: user defined functions
             1. General
                 1. `version()`
-                2. `cast(from_type as another_type)`
-                3. `greatest(v1, v2, ...)`
-                4. `least(v1, v2, ...)`
-            2. str
-                1. `split(str, regex)`
-                2. `concat_ws(sep, [str | array(string)]+))`
-            3. Timestamp
-                1. `current_timestamp()`
-                2. `unix_timestamp([timestamp, 'yyyy-MM-dd hh:mm:ss])`
-                3. `from_unixtime(unixtime[, 'yyyy-MM-dd hh:mm:ss'])`
-            4. Date
-                1. `current_date()`
-                2. `to_date(timestamp)`
-                3. `date_add(start_date, days)`
-                4. `date_sub(start_date, days)`
-                5. `datediff(end_date, start_date)`
-                6. `last_day()`: last day of month
+                2. `current_database()`
+                3. `current_user()`
+                4. `md5()`
+            2. Conversion
+                1. `cast(value as another_type)`
+                2. `binary(string|binary)`: cast parameter into a binary
+            3. Math
+                1. `round()`
+                2. `floor()`
+                3. `ceil(), ceiling()`
+                4. `rand(), rand(seed)`
+                5. `exp()`
+                6. `ln()`
+                7. `log10()`
+                8. `log2()`
+                9. `log(base, A)`
+                10. `pow(), power()`
+                11. `sqrt()`
+                12. `bin()`
+                13. `hex()`
+                14. `unhex()`
+                15. `conv(n, from_base, to_base)`
+                16. `abs()`
+                17. `pmod(a, b)`: positive value of `a mod b`
+                18. `sin(), asin()`
+                19. `cos(), acos()`
+                20. `tan(), atan()`
+                21. `degree()`: convert a from radians to degrees
+                22. `radians()`: convert a from degrees to radians
+                23. `positive()`
+                24. `negative()`
+                25. `sign()`
+                26. `e()`
+                27. `pi()`
+                28. `factorial()`: factorial of a, 0 <= a <= 20
+                29. `cbrt()`: cube root
+                30. `shiftleft()`
+                31. `shiftright()`
+                32. `shiftrightunsigned()`
+                33. `greatest()`
+                34. `least()`
+                35. `width_bucket()`
+            4. string
+                1. `length()`
+                2. `ascii(str)`: return the numeric value of first character of str
+                3. `chr(A)`
+                4. `lower(), lcase(), upper(), ucase()`
+                5. `concat(a, b, ...)`
+                6. `instr()`
+                7. `locate()`
+                8. `replace()`
+                9. `initcap()`
+                10. `lpad(), rpad()`
+                11. `ltrim(), rtrim(), trim()`
+                12. `repeat()`
+                13. `space(n)`
+                14. `split(str, regex)`
+                15. `concat_ws(sep, [str | array(string)]+))`
+                16. `elt(n, s1, s2, ...)`
+                17. `field(s, s1, s2, ...)`
+                18. `format_number()`
+                19. `quote()`
+                20. `reverse()`
+                21. `substr(), substring()`
+                22. `substring(str, sep, n)`
+                23. `translate()`
+                24. `regexp_extract()`
+                25. `regexp_replace()`
+                26. `parse_url()`
+            5. Timestamp
+                1. `current_timestamp`
+                2. `from_unixtime(unixtime[, 'yyyy-MM-dd hh:mm:ss'])`
+                3. `unix_timestamp([timestamp, 'yyyy-MM-dd hh:mm:ss])`
+                4. `date_format()`
+                5. `current_date`
+                6. `to_date(timestamp)`
+                7. `date_add(start_date, days)`
+                8. `date_sub(start_date, days)`
+                9. `datediff(end_date, start_date)`
+                10. `last_day()`: last day of month
+            6. Conditional
+                1. `if()`
+                2. `isnull()`
+                3. `isnotnull()`
+                4. `nvl(value, default_value)`: return default value if value is null else return value
+                5. `nullif(a, b)`: returns null if a=b, otherwise return a
+                6. `coalesce(v1, v2, ...)`
+                7. `CASE a WHEN b THEN c [WHEN d THEN e]* [ELSE f] END`
+                8. `CASE WHEN a THEN b [WHEN c THEN d]* [ELSE e] END`
+                9. `assert_true(boolean condition)`: throw an exception if condition not met, otherwise return null
+            7. Collection
+                1. `size(Map<K, V>)`
+                2. `size(Array<T>)`
+                3. `map_keys(Map<K,V>)`: unorder array keys in map
+                4. `map_values(Map<K,V>)`: unorder array values in map
+                5. `array_contains(Array<T>, value)`
+                6. `sort_array(Array<T>)`
+            8. Others
+                1. `get_json_object(json_txt, path)`
+                2. `xpath(xml_str, path)`
         3. UDAFs: built-in aggregate functions
             1. `count([DISTINCT ...])`
             2. `sum()`
-            3. `max()`
-            4. `min()`
-            5. `avg()`
+            3. `avg()`
+            4. `max()`
+            5. `min()`
             6. `collect_set()`
             7. `collect_list()`
         4. Over functions: `f() OVER (PARTITION BY f1, [f2, ...] [ORDER BY f1[, f2, ...]])`
@@ -275,6 +394,8 @@
                 2. `lateral view explode(split(col, delim)) n as nn`: `delim` in `split` support distinct characters
                 3. `lateral view out explode(split(col, delim)) n as nn`: keep `NULL` value rows
             2. `posexplode`: similar to `explode`, but keep map join, not cartesian join
+            3. `json_tuple(json_txt, k1, k2, ...)`
+            4. `parse_url_tuple()`
 
                 ```sql
                 select
