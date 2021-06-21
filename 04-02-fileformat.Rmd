@@ -66,60 +66,60 @@ Schema is used to describe json structure.
 
 ## YAML
 
-* basic
-    * all yaml files can optionally begin with `---` and end with `...` indicating the start and end of the file
-    * `: `: indicate a mapping
-    * `: {`: indicate a dictionry
-    * ` #`: indicate a comment
-    * when `: ` , `: {`, ` #` appear in the mid of value, use single or double quotes to quote the entire value, not part of it
-    * double quotes can use escapes
+* syntax
+    1. files can optionally begin with `---` and end with `...` indicating the start and end of the file
+    2. `: `: indicate a mapping
+    3. `: {`: indicate a dictionry
+    4. ` #`: indicate a comment
+    5. when `: ` , `: {`, ` #` appear in the mid of value, use single or double quotes to quote the entire value, not part of it
+    6. double quotes can use escapes
 * data types
-    * numeric: `1, 1.1`
-    * boolean: `yes | no | true | false | True, False | TRUE | FALSE`
-    * string: `"hello"`, needs single or double quotes when needed
-    * list: members begin at the same indentation level starting with a dash and a space `- `
-    * dictionray
-        * `key: value`: colon must be followed by a space
-        * value can span multiple lines using `|` or `>`
+    1. numeric: `1, 1.1`
+    2. boolean: `yes | no | true | false | True | False | TRUE | FALSE`
+    3. string: `"hello"`, needs single or double quotes when needed
+    4. list: members begin at the same indentation level starting with a dash and a space `- `
+    5. dictionray
+        1. `key: value`: colon must be followed by a space
+        2. value can span multiple lines using `|` or `>`
             * `|` will include the new lines and any trailing spaces
             * `>` will fold new lines to spaces making long line to read and edit easier
             * both `|` and `>` will ignore the indentation
 
-```yaml
-# Employee records
-- martin: 
+    ```yaml
+    # Employee records
+    - martin: 
+        name: Martin D'vloper
+        job: Developer
+        skills:
+          - python
+          - perl
+          - pascal
+    - tabitha:
+        name: Tabitha Bitumen
+        job: Developer
+        skills:
+          - lisp
+          - fortran
+          - erlang
+    
+    --- 
+    # An employee record
     name: Martin D'vloper
     job: Developer
-    skills:
-      - python
-      - perl
-      - pascal
-- tabitha:
-    name: Tabitha Bitumen
-    job: Developer
-    skills:
-      - lisp
-      - fortran
-      - erlang
-
---- 
-# An employee record
-name: Martin D'vloper
-job: Developer
-skill: Elite
-employed: True
-foods:
-  - Apple
-  - Orange
-  - Strawberry
-  - Mango
-languages:
-  perl: Elite
-  python: Elite
-  pascal: Lame
-education: |
-  4 GCSEs
-  3 A-Levels
-  BSc in the Internet of Things
-...
-```
+    skill: Elite
+    employed: True
+    foods:
+      - Apple
+      - Orange
+      - Strawberry
+      - Mango
+    languages:
+      perl: Elite
+      python: Elite
+      pascal: Lame
+    education: |
+      4 GCSEs
+      3 A-Levels
+      BSc in the Internet of Things
+    ...
+    ```

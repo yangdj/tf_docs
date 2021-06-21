@@ -217,6 +217,112 @@ WantedBy=multi-user.target
     * parameter:
         * MySQL: `charset=utf8`
 
+## Ansible
+
+1. References
+    1. [User Guide](https://docs.ansible.com/ansible/latest/user_guide/index.html)
+1. Dependencies
+    1. Packages
+        1. ansible
+    2. Problems
+        1. `libselinux-python aren't installed`: sets `SELINUX=disabled` in `/etc/selinux/config`
+    3. Settings
+        1. File
+            1. `~/.ansible.cfg`: home directory
+            2. `./ansible.cfg`: from current directory
+            3. `/etc/ansible/ansible.cfg`: default path
+            4. `ANSIBLE_CONFIG`: environment vairable to file path
+        2. Contents
+            1. `[defaults]`
+                1. `deprecation_warnings=False`
+                2. `inventory=/etc/ansible/hosts`
+                3. `log_path=/var/log/ansible.log`
+2. Concepts
+    1. Control node: any machine with ansible installed
+    2. Managed nodes: hosts managed with ansible, no need to install ansible
+    3. Inventory: a list of managed nodes, an inventory file is also called a hostfile
+        1. Settings
+            1. `/etc/ansible/hosts`: default inventory file
+            2. `ANSIBLE_INVENTORY`: environment variable to file path
+            3. `-i path`: specify inventory path in commands, can use multiple times
+        2. INI format
+            1. hosts
+                1. Types
+                    1. `foo.example.com`: url
+                    2. `192.168.0.122`: ip
+                    3. `192.168.0.122:9000`: ip with port
+                    4. `jumper ansible_host=192.168.0.122`: hosts with alias
+                    5. `www[01:50].example.com`: numeric ranges of hosts ranges are inclusive
+                    6. `www[01:50:2].example.com`: ranges with steps
+                    7. `db-[a:f].example.com`: alphabetic  ranges of hosts
+                2. Host variables
+                    1. define
+                       1. `var_name=value`: customized
+                       2. `/.../host_vars/jumper[.yml, .yaml]`: put in host variable directory relative to the inventory or playbook file
+                       3. `/.../host_vars/jumper/...`: put in host variable name directory
+                    2. settings
+                        1. `ansible_host=192.168.0.10`
+                        2. `ansible_port=5555`
+                        3. `ansible_user=myuser`
+                        4. `ansible_connection=[local, ssh]`
+            2. groups
+                1. Naming
+                    1. `all`: default group, containing all hosts
+                    2. `ungrouped`: default group, containing all hosts that don't have another group aside from group `all`
+                    3. `[server]`: customized group name
+                    4. `[server:children]`: make groups of groups using `:children`
+                2. Group variables
+                    1. define
+                        1. `[server:vars]`: put variables under `:vars` part
+                        2. `/.../group_vars/server[.yml, .yaml]`: put in group variable directory relative to inventory or playbook file
+                        3. `/.../group_vars/server/...`: put in group variable name directory
+                    2. settings
+                        1. `ansible_group_priority: 1`: change variable merge order, default 1 
+
+            ```ini
+            192.168.1.111 ansible_user=hadoop
+            jumper ansible_host=192.0.2.50 ansible_port=5555
+
+            [server]
+            aserver.example.com
+            bserver.example.com
+            jumper
+            ```
+    4. Collections: a distribution format including playbooks, roles, modules and plugins, using `ansible-galaxy` to install collections
+    5. Modules: the units of code ansible executes, since ansible 2.10, modules are grouped in collections
+    6. Tasks: the units of an action in ansible, can be executed once with an ad hoc command
+    7. Playbook: ordered lists of tasks, written in YAML, can be run repeatedly
+3. Commands
+    1. `ansible`
+        1. Paramters
+            1. `--version`
+            2. pattern
+                1. `all[*], ungroup`: for all hosts or just hosts not in group children
+                2. `host1` - one host
+                3. `host1:host[host1,host2]`: multiple hosts
+                4. `webserver`: one group
+                5. `websever:dbserver`: multiple group
+                6. `webserver:!dbserver`: hosts in webserver, excluding in dbserver
+                7. `webserver:&dbserver`: hosts in webserver and dbserver
+            3. `-i | --inventory host-file`: can use multiple times
+            4. `--limit[-l] pattern`: limits selected hosts to an additional pattern
+            5. `--list-hosts`: outputs matching hosts, do not execute anything
+            6. `-- playbook-dir basedir`
+            7. `-m | --module-name moudule_name`: default command module
+            8. `-a | --args "a1=v1 a2=v2"`: module arguments
+            9. `-e | --extra-vars extra_vars`: key=value format, if filename prepend with @
+            10. `--forks[-f] forks`: number of parallel process to use, default 5
+            11. `-u | --user remote_user`: specify remote user name, default using control node user
+            12. `-b | --become`: runs operations with become with sudo power (without password prompting)
+            13. `--become-user become_user`: runs operations as this user (default=root)
+            14. `-K | --ask-become-pass`: asks for privilege escalation password
+        2. Examples
+            1. `ansible all -a "/bin/echo hello"`: execute command for all hosts
+    2. `ansible-playbook`
+        1. Examples
+            1. `ansible-playbook mytask.yaml`
+    3. `ansible-galaxy`
+
 ## Airlfow
 
 ### Installation {-}

@@ -540,138 +540,124 @@ Configurations
 
 ### Docker {-#os-docker}
 
-Install from repo
-
-```sh
-sudo yum install yum-utils device-mapper-persistent-data lvm2
-sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-sudo yum install docker-ce
-
-Configurations
-
-1. daemon.json
-
-    ```json
-    {
-        "bip": "192.168.188.1/24"
-    }
-    ```
+1. Install from repo
 
     ```sh
-    mkdir -p /etc/docker
-    cp daemon.json /etc/docker/
-    chmod 600 /etc/docker/daemon.json
+    sudo yum install yum-utils device-mapper-persistent-data lvm2
+    sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    sudo yum install docker-ce
     ```
- 
-2. override.conf
+2. Configurations
+    1. daemon.json
 
-    ```ini
-    #override.conf: deploy/files/conf/docker/override.conf
-    [Service]
-    ExecStart=
-    ExecStart=/usr/bin/dockerd -H unix:// -H tcp://127.0.0.1:2375
-    ```
+        ```json
+        {
+            "bip": "192.168.188.1/24"
+        }
+        ```
 
-    ```sh
-    sudo cp override.conf /etc/systemd/system/docker.service.d # or systemctl edit docker.service
-    sudo systemctl daemon-reload
-    sudo systemctl restart docker
-    ```
- 
-Operations
+        ```sh
+        mkdir -p /etc/docker
+        cp daemon.json /etc/docker/
+        chmod 600 /etc/docker/daemon.json
+        ```
+    2. override.conf
 
-1. `sudo systemctl start docker`
+        ```ini
+        #override.conf: deploy/files/conf/docker/override.conf
+        [Service]
+        ExecStart=
+        ExecStart=/usr/bin/dockerd -H unix:// -H tcp://127.0.0.1:2375
+        ```
+        ```sh
+        sudo cp override.conf /etc/systemd/system/docker.service.d # or systemctl edit docker.service
+        sudo systemctl daemon-reload
+        sudo systemctl restart docker
+        ```
+3. Operations
+    1. `sudo systemctl start docker`
 
 ## BASH
 
-Conditional
+1. Conditional
 
-```sh
-case $(uname -s) in
-Darwin|Linux)
+    ```sh
+    case $(uname -s) in
+    Darwin|Linux)
+        ...
+        ;;
+    MINGW*|MSYS_NT*)
+        ...
+        ;;
+    
+    *)
+        ...
+        ;;
+    ecac
+    ```
+2. Environment Variable
+    1. `PATH`
+    2. `SHLVL`: shell level
+3. Basic
+    1. `uname -s => [Linux, Darwin, MINGW*|MSYS_NT*]`
+    2. `users`: current logging users
+    3. `basename`
+    4. `dirname`
+    5. `set`: displays environment variables and shell functions
+        1. `set -e`: exit whenever produces a false result 
+        2. `set +e`: continues executing when meets false
+    6. `exit 1`: exit with return value 1 immediately
+4. User
+    1. `/etc/passwd`: created users file
+    2. `adduser -M user_name`
+        1. `-M, --no-create-home`: create user without login directory
+        2. `-d, --home-dir`: login directory
+        3. `-s, --shell`: user's login shell
+    3. `userdel user_name`
+    4. `passwd user_name`: set password
+    5. `chown -R user_name: user_home`
+    6. `usermod`:
+        1. `usermod -d user_home user_name`: set login directory
+        2. `usermod -s $(which zsh) user_name`: set default shell
+    7. `gpasswd -a user_name wheel`: `wheel`, add sudo priviledge
+5. SSH
+    1. File structure
+        1. `id_rsa.pub`: public key, put this key to remote `authorized_keys` file, then you can use key to login remote without password
+        2. `id_rsa`: private key, must keep safely
+        3. `authorized_keys`: store public key, must have **mode 600**, otherwise it will not work, and you have to enter password
+        4. `known_hosts`: trust hosts
+    2. Operations
+        1. `ssh-keygen -t rsa`: create ssh keys, public and private
+        2. `ssh-copy-id user@host`: copy public key to remote user
+        3. `ssh user@host 'mkdir -p .ssh && cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub`: same as `2`
+    3. Problems
+        1. `/usr/bin/ssh-copy-id: ERROR: No identities found`: make sure public key has been generated, using `ssh-keygen`
+6. Systemd
+    1. `/usr/lib/systemd/system/`: system path
+    2. `/etc/systemd/system/`: customize path, overrides system config
+    3. `systemctl edit service_name.service`: changes systemd parameters
+    4. `systemctl set-default multi-user.target`: text mode
+    5. `systemctl set-default graphical.target`: graphical mode
+    6. `systemctl [start multi-user.target, graphical.target]`
+    7. `systemctl [start, stop, status, restart, reload, enable, disenable] service_name.service`
+
+    ```ini
+
+    # service file example
+    #/usr/lib/systemd/system/postgresql.service
     ...
-    ;;
-MINGW*|MSYS_NT*)
+    [Service]
     ...
-    ;;
-
-*)
+    Environment=PGPORT=5432
     ...
-    ;;
-ecac
-```
-
-### Environment {-#os-env}
-
-1. `uname -s => [Linux, Darwin, MINGW*|MSYS_NT*]`
-2. `basename`
-3. `dirname`
-4. `set`: displays environment variables and shell functions
-5. `set -e`: exit whenever produces a false result 
-6. `set +e`: continues executing when meets false
-7. `exit 1`: exit with return value 1 immediately
-
-### User {-#os-user}
-
-1. `adduser user_name`
-    1. `-M`: no not create user's home directory
-2. `userdel user_name`
-3. `passwd user_name`: set password
-4. `chown -R user_name: user_home`
-5. `usermod -d user_home user_name`
-6. `usermod -s $(which zsh) user_name`
-7. `gpasswd -a user_namewheel`: `wheel` has sudo priviledge
-
-### SSH {-#os-ssh}
-
-File structure
-
-1. `id_rsa.pub`: public key, put this key to remote `authorized_keys` file, then you can use key to login remote without password
-2. `id_rsa`: private key, must keep safely
-3. `authorized_keys`: store public key, must have **mode 600**, otherwise it will not work, and you have to enter password
-4. `known_hosts`: trust hosts
-
-Operations
-
-4. `ssh-keygen -t rsa`: create ssh keys, public and private
-5. `ssh-copy-id user@host`: copy public key to remote user
-6. `ssh user@host 'mkdir -p .ssh && cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub`: same as `2`
-7. `authorized_keys` file must have mode 600, otherwise it will not work, and you have to enter password
-
-### Systemd {-#os-systemd}
-
-Commands:
-
-1. `/usr/lib/systemd/system/: system path
-2. `/etc/systemd/system/`: customize path, overrides system config
-3. `systemctl edit service_name.service`: changes systemd parameters
-4. `systemctl set-default multi-user.target`: text mode
-5. `systemctl set-default graphical.target`: graphical mode
-6. `systemctl [start multi-user.target, graphical.target]`
-7. `systemctl [start, stop, status, restart, reload, enable, disenable] service_name.service`
-
-Service
-
-```ini
-# example
-#/usr/lib/systemd/system/postgresql.service
-...
-[Service]
-...
-Environment=PGPORT=5432
-...
-
-# /etc/systemd/system/postgresql.service
-.include /usr/lib/systemd/system/postgresql.service
-[Service]
-Environment=PGPORT=5433
-...
-```
-
-### Firewall {-#os-firewall}
-
-Command:
-
-1. `firewall-cmd --permanent --add-service=postgresql`
-2. `firewall-cmd --permanent --add-port=6379/tcp`
-3. `systemctl reload firewalld`
+    
+    # /etc/systemd/system/postgresql.service
+    .include /usr/lib/systemd/system/postgresql.service
+    [Service]
+    Environment=PGPORT=5433
+    ...
+    ```
+7. Firewall
+    1. `firewall-cmd --permanent --add-service=postgresql`
+    2. `firewall-cmd --permanent --add-port=6379/tcp`
+    3. `systemctl reload firewalld`
