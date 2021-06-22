@@ -64,7 +64,7 @@ Schema is used to describe json structure.
 }
 ```
 
-## YAML
+## YAML {#ff-yaml}
 
 * syntax
     1. files can optionally begin with `---` and end with `...` indicating the start and end of the file

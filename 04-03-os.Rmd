@@ -598,7 +598,9 @@ Configurations
 2. Environment Variable
     1. `PATH`
     2. `SHLVL`: shell level
-3. Basic
+3. System
+    1. `reboot`: reboot the computer
+4. Basic
     1. `uname -s => [Linux, Darwin, MINGW*|MSYS_NT*]`
     2. `users`: current logging users
     3. `basename`
@@ -607,7 +609,7 @@ Configurations
         1. `set -e`: exit whenever produces a false result 
         2. `set +e`: continues executing when meets false
     6. `exit 1`: exit with return value 1 immediately
-4. User
+5. User
     1. `/etc/passwd`: created users file
     2. `adduser -M user_name`
         1. `-M, --no-create-home`: create user without login directory
@@ -620,7 +622,7 @@ Configurations
         1. `usermod -d user_home user_name`: set login directory
         2. `usermod -s $(which zsh) user_name`: set default shell
     7. `gpasswd -a user_name wheel`: `wheel`, add sudo priviledge
-5. SSH
+6. SSH
     1. File structure
         1. `id_rsa.pub`: public key, put this key to remote `authorized_keys` file, then you can use key to login remote without password
         2. `id_rsa`: private key, must keep safely
@@ -632,7 +634,7 @@ Configurations
         3. `ssh user@host 'mkdir -p .ssh && cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub`: same as `2`
     3. Problems
         1. `/usr/bin/ssh-copy-id: ERROR: No identities found`: make sure public key has been generated, using `ssh-keygen`
-6. Systemd
+7. Systemd
     1. `/usr/lib/systemd/system/`: system path
     2. `/etc/systemd/system/`: customize path, overrides system config
     3. `systemctl edit service_name.service`: changes systemd parameters
@@ -657,7 +659,7 @@ Configurations
     Environment=PGPORT=5433
     ...
     ```
-7. Firewall
+8. Firewall
     1. `firewall-cmd --permanent --add-service=postgresql`
     2. `firewall-cmd --permanent --add-port=6379/tcp`
     3. `systemctl reload firewalld`

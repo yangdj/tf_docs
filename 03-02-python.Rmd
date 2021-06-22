@@ -244,7 +244,7 @@ WantedBy=multi-user.target
         1. Settings
             1. `/etc/ansible/hosts`: default inventory file
             2. `ANSIBLE_INVENTORY`: environment variable to file path
-            3. `-i path`: specify inventory path in commands, can use multiple times
+            3. `-i path`: specify inventory file or directory path in commands, can use multiple times
         2. INI format
             1. hosts
                 1. Types
@@ -260,11 +260,15 @@ WantedBy=multi-user.target
                        1. `var_name=value`: customized
                        2. `/.../host_vars/jumper[.yml, .yaml]`: put in host variable directory relative to the inventory or playbook file
                        3. `/.../host_vars/jumper/...`: put in host variable name directory
-                    2. settings
+                    2. connection settings
                         1. `ansible_host=192.168.0.10`
-                        2. `ansible_port=5555`
-                        3. `ansible_user=myuser`
-                        4. `ansible_connection=[local, ssh]`
+                        2. `ansible_port=5555`: default 22 for ssh
+                        3. `ansible_user=myuser`: user name to connect to the host
+                        4. `ansible_password`: not recommended, use vaulted variable
+                    3. ssh settings
+                        1. `ansible_connection=[local, ssh]`: connction type to managed hosts
+                    4. reomte settings
+                        1. `ansible_python_interpreter=/usr/local/bin/python`: the target host python path
             2. groups
                 1. Naming
                     1. `all`: default group, containing all hosts
@@ -290,38 +294,192 @@ WantedBy=multi-user.target
             ```
     4. Collections: a distribution format including playbooks, roles, modules and plugins, using `ansible-galaxy` to install collections
     5. Modules: the units of code ansible executes, since ansible 2.10, modules are grouped in collections
+        1. References
+            1. [builtin](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/)
+            2. [ansible examples](https://github.com/ansible/ansible-examples)
+            3. [YAML](#ff-yaml) and [YAML Syntax](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html#yaml-syntax)
+        1. `ansible.builtin.command`: default module, do not support piping and redirects, use `shell` module
+        2. `ansible.builtin.shell`
+        3. `ansible.builtin.file`
+            1. `dest`
+            2. `state`
+                1. `absent`: delete files or directories recursively
+                2. `directory`: similir to `mkdir -p`
+            3. `mode=600`
+            4. `owner`
+            5. `group`
+
+            ```yaml
+            file:
+              path: "{{ proj_home }}"
+              mode: 0755
+              state: directory
+              owner: "{{ remote_user }}"
+              group: "{{ remote_user }}"
+            ```
+        4. `ansible.builtin.copy`
+            1. `src`
+            2. `desc`
+        5. `ansible.builtin.template`
+            1. `src`
+            2. `dest`
+
+            ```yaml
+            template:
+              src: "conf/{{ hadoop_version }}/{{ item }}.j2"
+              dest: "{{ hadoop_base.conf_version }}/{{item}}"
+              loop:
+                - workers
+                - masters
+            ```
+        6. `synchronize`
+            1. `src`
+            2. `dest`
+
+            ```yaml
+            synchronize:
+              src: "{{ jdk_source_name }}"
+              dest: "{{ java_bin_home }}"
+            ```
+        7.  `blockinfile`
+            1. `path`
+            2. `create`
+            3. `marker`
+            4. `block`
+
+            ```yaml
+            blockinfile:
+              path: "{{ hp_bashrc }}"
+              create: yes
+              marker: "# {mark} java configuration"
+              block: |
+                export JAVA_HOME={{ java_home }}
+                export PATH=${JAVA_HOME}/bin:${PATH}
+            ```
+        8. `ansible.builtin.user`
+            1. `name`
+            2. `password`
+            3. `state`
+                1. `absent`
+        9. `ansible.builtin.yum`
+            1. `name`
+                1. `postgresql`: a package name
+                2. `postgresql-11.5`: a specific version of a package
+            2. `state`
+                1. `present`: ensure a package is installed
+                2. `absent`: ensure a package is not installed
+                3. `latest`: ensure the package is at the latest version
+
+            ```yaml
+            yum:
+              name: "{{ packages }}"
+              state: present
+            ```
+        10. `ansible.builtin.service`
+            1. `name`
+                1. `httpd`
+                2. `postgresql`
+            2. `state`
+                1. `started`: ensure a service is started
+                2. `restarted`: restart a service
+                3. `stopped`: ensure a service is stopped
+        11. `ansible.builtin.setup`: get system information
     6. Tasks: the units of an action in ansible, can be executed once with an ad hoc command
     7. Playbook: ordered lists of tasks, written in YAML, can be run repeatedly
+        1. Keywords
+            1. `name`
+            2. `hosts: <pattern>`: a list of one or more host and groups patterns
+                1. `all or *`: all hosts
+                2. `ungroup`: hosts not in group children
+                3. `host1`: one host
+                4. `host1:host2`: multiple hosts using `:` or `,`. The comma is preferrred when dealing with ranges and IPv6
+                5. `webserver`: one group
+                6. `websever:dbserver`: multiple group
+                7. `webserver:!dbserver`: hosts in webserver, excluding in dbserver
+                8. `webserver:&dbserver`: hosts in webserver and dbserver
+                9. `\*.example.com`: wildcard pattern
+                10. `one*.com:dbservers`: mix wildcard patterns and groups
+                11. `webserver[0], webserver[-1], webserver[0:2]`: use subscripts
+                12. `~(web|db).*\.example\.com`: use regexp starting with `~`
+            3. `remote_user`: user account for the SSH connection
+            4. `become: yes`
+            5. `become_method: [sudo, su]`
+            6. `vars`
+            7. `tasks`: the units of an action in ansible, can be executed once with an ad hoc command
+                1. Keywords
+                    1. `name:`
+                    2. `become: yes`
+                    3. `the_module_name`
+                    4. `notify`
+            8. `handlers`
+
+            ```yaml
+            - hosts: webserver
+              remote_user: username
+              become: yes
+              become_user: othername
+              become_method: sudo | su
+              vars:
+                workdir: /var/lib/ansible
+                logfile: /var/log/ansible-pull.log
+              tasks:
+                - name: test connection 
+                  ping:
+                  remote_user: username
+            ```
 3. Commands
     1. `ansible`
-        1. Paramters
+        1. Arguments
             1. `--version`
-            2. pattern
-                1. `all[*], ungroup`: for all hosts or just hosts not in group children
-                2. `host1` - one host
-                3. `host1:host[host1,host2]`: multiple hosts
-                4. `webserver`: one group
-                5. `websever:dbserver`: multiple group
-                6. `webserver:!dbserver`: hosts in webserver, excluding in dbserver
-                7. `webserver:&dbserver`: hosts in webserver and dbserver
+            2. `pattern`
             3. `-i | --inventory host-file`: can use multiple times
-            4. `--limit[-l] pattern`: limits selected hosts to an additional pattern
-            5. `--list-hosts`: outputs matching hosts, do not execute anything
-            6. `-- playbook-dir basedir`
-            7. `-m | --module-name moudule_name`: default command module
-            8. `-a | --args "a1=v1 a2=v2"`: module arguments
+            4. `-m | --module-name moudule_name`: default `command` module
+            5. `-a | --args "module options"`
+            6. `-l | --limit pattern`: limits selected hosts to an additional pattern
+            7. `--list-hosts`: output matching hosts, do not execute anything
+            8. `--playbook-dir basedir`
             9. `-e | --extra-vars extra_vars`: key=value format, if filename prepend with @
-            10. `--forks[-f] forks`: number of parallel process to use, default 5
+            10. `-f | --forks forks`: number of parallel process to use, default 5
             11. `-u | --user remote_user`: specify remote user name, default using control node user
             12. `-b | --become`: runs operations with become with sudo power (without password prompting)
             13. `--become-user become_user`: runs operations as this user (default=root)
             14. `-K | --ask-become-pass`: asks for privilege escalation password
+            15. `--ask-vault-pass`
+            16. `--vault-password-file file_name`
+            17. `--vault-id`
         2. Examples
             1. `ansible all -a "/bin/echo hello"`: execute command for all hosts
     2. `ansible-playbook`
-        1. Examples
+        1. Arguments besides from `ansible`
+            1. `playbook.yml`: specify a playbook file
+            2. `--check`
+            3. `--syntax-check`: performs a syntax check on the playbook, do not execute it
+            4. `--list-tasks`
+            5. `--list-hosts`
+            6. `--verbose`
+        2. Examples
             1. `ansible-playbook mytask.yaml`
-    3. `ansible-galaxy`
+    3. `ansible-lint`: test playbook syntax 
+    4. `ansible-galaxy`
+    5. `ansible-doc`:
+        1. Arguments
+            1. `-l`: list available modules
+            2. `module_name`: docs for the module
+        2. Examples
+            1. `ansible-doc command`
+    6. `ansible-vault`
+        1. Arguments
+            1. `--vault-id label@source`: specify a vault id and a source to obtain its password
+            2. `create`: create a vault file using editor `$EDITOR` (default vi). The file will be saved as encrypted data
+            3. `edit`: edit a vault file, decrypt it firstly
+            4. `view`: view contents of an encrypted file without editing
+            5. `rekey`: reset password
+            6. `encrypt`: encrypt files
+            7. `decrypt`
+        2. Examples
+            1. `ansible-vault create foo.yml`
+            2. `ansible-vault encrypt foo.yml zoo.yml`
+    7. `ansible-pull`
 
 ## Airlfow
 
