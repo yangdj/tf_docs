@@ -221,7 +221,10 @@ WantedBy=multi-user.target
 
 1. References
     1. [User Guide](https://docs.ansible.com/ansible/latest/user_guide/index.html)
-1. Dependencies
+    2. [builtin modules](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/)
+    3. [ansible examples](https://github.com/ansible/ansible-examples)
+    4. [YAML](#ff-yaml) and [YAML Syntax](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html#yaml-syntax)
+2. Dependencies
     1. Packages
         1. ansible
     2. Problems
@@ -237,7 +240,7 @@ WantedBy=multi-user.target
                 1. `deprecation_warnings=False`
                 2. `inventory=/etc/ansible/hosts`
                 3. `log_path=/var/log/ansible.log`
-2. Concepts
+3. Concepts
     1. Control node: any machine with ansible installed
     2. Managed nodes: hosts managed with ansible, no need to install ansible
     3. Inventory: a list of managed nodes, an inventory file is also called a hostfile
@@ -294,20 +297,18 @@ WantedBy=multi-user.target
             ```
     4. Collections: a distribution format including playbooks, roles, modules and plugins, using `ansible-galaxy` to install collections
     5. Modules: the units of code ansible executes, since ansible 2.10, modules are grouped in collections
-        1. References
-            1. [builtin](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/)
-            2. [ansible examples](https://github.com/ansible/ansible-examples)
-            3. [YAML](#ff-yaml) and [YAML Syntax](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html#yaml-syntax)
         1. `ansible.builtin.command`: default module, do not support piping and redirects, use `shell` module
         2. `ansible.builtin.shell`
         3. `ansible.builtin.file`
-            1. `dest`
-            2. `state`
+            1. `path`: alias `dest`, `name`
+            2. `src`
+            3. `state`
                 1. `absent`: delete files or directories recursively
                 2. `directory`: similir to `mkdir -p`
-            3. `mode=600`
-            4. `owner`
-            5. `group`
+                3. `link`
+            4. `mode=600`
+            5. `owner`
+            6. `group`
 
             ```yaml
             file:
@@ -361,6 +362,8 @@ WantedBy=multi-user.target
             2. `password`
             3. `state`
                 1. `absent`
+                2. `present`
+            4. `groups: "wheel"`
         9. `ansible.builtin.yum`
             1. `name`
                 1. `postgresql`: a package name
@@ -383,7 +386,13 @@ WantedBy=multi-user.target
                 1. `started`: ensure a service is started
                 2. `restarted`: restart a service
                 3. `stopped`: ensure a service is stopped
-        11. `ansible.builtin.setup`: get system information
+        11. `ansible.builtin.setup`: get raw system information, `ansible <hostname> -m ansible.builtin.setup`
+        12. `ansible.builtin.set_fact`
+        13. `ansible.builtin.debug`
+            1. `var: ansible_facts`
+            2. `msg: "the dirctory is empty"`
+        14. `ansible.builtin.fail`
+            1. `msg: ...`
     6. Tasks: the units of an action in ansible, can be executed once with an ad hoc command
     7. Playbook: ordered lists of tasks, written in YAML, can be run repeatedly
         1. Keywords
@@ -401,17 +410,30 @@ WantedBy=multi-user.target
                 10. `one*.com:dbservers`: mix wildcard patterns and groups
                 11. `webserver[0], webserver[-1], webserver[0:2]`: use subscripts
                 12. `~(web|db).*\.example\.com`: use regexp starting with `~`
-            3. `remote_user`: user account for the SSH connection
-            4. `become: yes`
-            5. `become_method: [sudo, su]`
-            6. `vars`
-            7. `tasks`: the units of an action in ansible, can be executed once with an ad hoc command
+            3. `remote_user`: user account for the SSH connection, can be defined per task
+            4. `gather_facts: no`: disable ansible facts
+            5. `become: yes`
+            6. `become_method: [sudo, su]`
+            7. `vars`: define variables in playbook
+            8. `vars_files`: include variables defined in an external file
+            9. `ignore_errors: true`
+            10. `import_tasks`
+            11. `include_tasks`
+            12. `tasks`: the units of an action in ansible, can be executed once with an ad hoc command
                 1. Keywords
                     1. `name:`
                     2. `become: yes`
                     3. `the_module_name`
-                    4. `notify`
-            8. `handlers`
+                    4. `register`: register a variable from the output of the task
+                    5. `notify`
+                    6. `ignore_errors: true`
+                    7. `when`: conditional
+                    8. `vars`
+                    9. `loop`
+                    10. `until`
+                    11. `retries: 5`: default 3, `until` must be defined, if not, `retries` is forced to 1
+                    12. `delay: 10`: seconds, default is 5
+            13. `handlers`
 
             ```yaml
             - hosts: webserver
@@ -427,7 +449,136 @@ WantedBy=multi-user.target
                   ping:
                   remote_user: username
             ```
-3. Commands
+4. Syntax
+    1. Variable
+        1. Naming: 
+            1. only include letters, numbers and underscore
+            2. cannot begin with numbers, can begin with underscore
+            3. python keywords and playbook keywords are not valid
+        2. Type
+            1. simple variable: have a single value
+                1. `remote_path: /opt/app_confg`
+                2. `{{ remote_path}}`
+                    1. use Jinja2 syntax to reference it
+                    2. if start a value with `{{ foo}}`, quote the whole expression like `"{{foo}}"`, otherwise, the YAML parser may interpret it start of a YAML dictionary
+            2. list: have multiple value
+                1. `{{ region[0]}}`: bracket notation, recommended, always work
+                2. `{{ region[1] }}`: dot notation, may collide with python dictionaries when
+                    1. start and end with two underscores
+                    2. any known public attributes
+
+                ```yaml
+                region:
+                  - northeast
+                  - southeast
+                  - midwest
+                ```
+            3. dict: have data in key-value pairs
+                1. `{{foo.field1}}`, `{{foo["field1"]}}`
+
+                ```yaml
+                foo:
+                  field1: one
+                  field2: two
+                ```
+        3. Builtin variables
+            1. `ansible_version`
+
+                ```yaml
+                "ansible_version": {
+                    "full": "2.11.1",
+                    "major": 2,
+                    "minor": 11,
+                    "revision": 1,
+                    "string": "2.11.1"
+                }
+                ```
+            2. `ansible_facts`: remote server infomation, use `gather_facts: no` to disable it in playbook
+                1. `{{ ansible_facts["nodename"] }}`: system hostname
+            3. `hostvars`: host information in the play
+                1. `{{ hostvars["asdf.example.com"]["ansible_facts"]["os_family"]}}`
+            4. `groups`: all groups and related hosts
+                1. `{{ groups["hp"] }}`
+
+                ```yaml
+                {% for host in groups['app_servers'] %}
+                    {{ hostvars[host]['ansible_facts']['eth0']['ipv4']['address'] }}
+                {% endfor %}
+                ```
+            5. `group_names`: a list of all the groups the current host is in
+
+                ```yaml
+                {% if 'webserver' in group_names %}
+                    # some part of a configuration file that only applies to webservers
+                {% endif %}
+                ```
+            6. `inventory_hostname`: the name of host configured in the inventory, an alternative to `ansible_hostname` when fact-gathering is disabled
+            7. `inventory_hostname_short`: contain the part up to the first period, without the rest of the domain
+            8. `inventory_dir`
+            9. `inventory_file`: the pathname and the filename pointing to the Ansible’s inventory host file
+            10. `ansible_play_hosts`: a list of all hosts still active in the current play
+            11. `ansible_play_batch`
+            12. `ansible_playbook_python`: the path to the python executable used to invoke the Ansible command line tool
+            13. `playbook_dir`: the playbook base directory
+            14. `role_path`: the current role’s pathname and only works inside a role
+            15. `ansible_check_mode`: boolean, set to `True` if you run Ansible with `--check`
+        4. Registering
+            1. create variables from the output of an Ansible task with the keyword `register`
+            2. host-level stored in memory, can be used in any later tasks in the play, cannot be be used for other play
+            3. each module includes a `return` section about the return value for that module
+            4. run playbook with `-v` to see the values for a particular task
+
+            ```yaml
+            - hosts: web_servers
+              tasks:
+                 - name: Run a shell command and register its output as a variable
+                   ansible.builtin.shell: /usr/bin/foo
+                   register: foo_result
+                   ignore_errors: true
+
+                 - name: Run a shell command using output of the previous task
+                   ansible.builtin.shell: /usr/bin/bar
+                   when: foo_result.rc == 5
+            ```
+        5. filtering
+        6. defining
+            1. in inventory
+            2. in a playbook
+            3. in included (external) files: using `vars_files` in the playbook
+            4. at runtime: using `--extra-vars (-e)`, having the highest precedence
+                1. key=value format: `ansible-playbook release.yml --extra-vars "version=1.23.45 other_variable=foo"`
+                2. JSON format: `ansible-playbook arcade.yml --extra-vars '{"pacman":"mrs","ghosts":["inky","pinky","clyde","sue"]}'`
+                3. from a JSON or YAML file using `@`: `ansible-playbook release.yml --extra-vars "@some_file.json"`
+            
+    2. Conditional
+        1. `when`: a raw Jinja2 expression without double curly braces
+            1. Operators
+                1. `or, and`
+                2. a list if multiple conditions need to be true
+            2. examples
+                1. `ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6"`
+                2. `when: motd_contents.stdout.find('hi') != -1`
+                3. `when: result is [faild, succeeded, skipped, defined, undefined]`
+                4. `when: epic or monumental | bool`
+        2. loops
+            1. `loop`: require a list as input
+                1. `item`: a list item
+                2. `item.key`: a list of dict item, `loop: "{{ tag_data | dict2items }}` for a dict variable to be used in a loop
+                3. `query`: return a list, `loop: {{ query("inventory_hostnames", "all")}}`
+                4. when use `register` with loop, the register variable will contain a `results` attribute which is a list of all responses
+            2. `until`
+                1. retry a task until a certain condition is met
+                2. a registered variable will include a key called `attempts` recording the number of the retries for the task
+
+                ```yaml
+                - name: Retry a task until a certain condition is met
+                  ansible.builtin.shell: /usr/bin/foo
+                  register: result
+                  until: result.stdout.find("all systems go") != -1
+                  retries: 5
+                  delay: 10
+                ```
+5. Commands
     1. `ansible`
         1. Arguments
             1. `--version`
@@ -438,7 +589,7 @@ WantedBy=multi-user.target
             6. `-l | --limit pattern`: limits selected hosts to an additional pattern
             7. `--list-hosts`: output matching hosts, do not execute anything
             8. `--playbook-dir basedir`
-            9. `-e | --extra-vars extra_vars`: key=value format, if filename prepend with @
+            9. `-e | --extra-vars extra_vars`: see variable defining
             10. `-f | --forks forks`: number of parallel process to use, default 5
             11. `-u | --user remote_user`: specify remote user name, default using control node user
             12. `-b | --become`: runs operations with become with sudo power (without password prompting)
