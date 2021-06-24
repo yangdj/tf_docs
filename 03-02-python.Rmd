@@ -303,9 +303,12 @@ WantedBy=multi-user.target
             1. `path`: alias `dest`, `name`
             2. `src`
             3. `state`
-                1. `absent`: delete files or directories recursively
-                2. `directory`: similir to `mkdir -p`
-                3. `link`
+                1. `directory`: similir to `mkdir -p`
+                2. `file`: default, return `path` state, but will not be created if it does not exist
+                3. `touch`: an empty file will be created if the `path` does not exist
+                4. `absent`: delete files or directories recursively
+                5. `link`
+                6. `hard`
             4. `mode=600`
             5. `owner`
             6. `group`
@@ -333,20 +336,22 @@ WantedBy=multi-user.target
                 - workers
                 - masters
             ```
-        6. `synchronize`
+        6. `ansible.posix.synchronize`
             1. `src`
             2. `dest`
 
             ```yaml
-            synchronize:
+            ansible.posix.synchronize:
               src: "{{ jdk_source_name }}"
               dest: "{{ java_bin_home }}"
             ```
-        7.  `blockinfile`
+        7.  `ansible.builtin.blockinfile`
             1. `path`
-            2. `create`
-            3. `marker`
-            4. `block`
+            2. `create: yes`: create a new file if not exist
+            3. `marker`: use `{mark}`, and it will be replaced with the value `marker_begin` and `marker_end`
+            4. `marker_begin`: default `BEGIN`
+            5. `marker_end`: default `END`
+            6. `block`
 
             ```yaml
             blockinfile:
@@ -357,14 +362,15 @@ WantedBy=multi-user.target
                 export JAVA_HOME={{ java_home }}
                 export PATH=${JAVA_HOME}/bin:${PATH}
             ```
-        8. `ansible.builtin.user`
+        8. `ansible.builtin.lineinfile`
+        9. `ansible.builtin.user`
             1. `name`
             2. `password`
             3. `state`
                 1. `absent`
                 2. `present`
             4. `groups: "wheel"`
-        9. `ansible.builtin.yum`
+        10. `ansible.builtin.yum`
             1. `name`
                 1. `postgresql`: a package name
                 2. `postgresql-11.5`: a specific version of a package
@@ -378,7 +384,7 @@ WantedBy=multi-user.target
               name: "{{ packages }}"
               state: present
             ```
-        10. `ansible.builtin.service`
+        11. `ansible.builtin.service`
             1. `name`
                 1. `httpd`
                 2. `postgresql`
@@ -386,15 +392,46 @@ WantedBy=multi-user.target
                 1. `started`: ensure a service is started
                 2. `restarted`: restart a service
                 3. `stopped`: ensure a service is stopped
-        11. `ansible.builtin.setup`: get raw system information, `ansible <hostname> -m ansible.builtin.setup`
-        12. `ansible.builtin.set_fact`
-        13. `ansible.builtin.debug`
+        12. `ansible.builtin.setup`: get raw system information, `ansible <hostname> -m ansible.builtin.setup`
+        13. `ansible.builtin.set_fact`
+        14. `ansible.builtin.debug`
             1. `var: ansible_facts`
             2. `msg: "the dirctory is empty"`
-        14. `ansible.builtin.fail`
+        15. `ansible.builtin.fail`
             1. `msg: ...`
     6. Tasks: the units of an action in ansible, can be executed once with an ad hoc command
-    7. Playbook: ordered lists of tasks, written in YAML, can be run repeatedly
+    7. Roles
+
+        automatically load related vars, file, tasks, handlers and other contents based on a known file structure. It can be easily reused and shared with other users
+
+        1. File Structure
+
+            have 8 main standard directories. By default, Ansible will look for a `main.yml` (`main.yaml`, `main`) in each directory within a role
+
+            1. roles/
+                1. common/
+                    1. tasks/
+                        1. main.yml: main tasks will be executed
+                        2. other.yml
+                    2. handlers/
+                        1. main.yml: handlers, which may be used within or outside this role
+                    3. library/
+                        1. my_module.py: maybe used within this role
+                    4. files/
+                        1. main.yml: files that the role deploys
+                    5. templates/
+                        1. main.yml: templates that the role deploys
+                    6. defaults/
+                        1. main.yml: default varialbles for this role
+                    7. vars/
+                        1. main.yml: other variables for this role
+                    8. meta/
+                        1. main.yml: metadata for the role, including role dependencies
+                2. webservers/
+                    1. tasks/
+                    2. defaults/
+                    3. meta/
+    8. Playbook: ordered lists of tasks, written in YAML, can be run repeatedly
         1. Keywords
             1. `name`
             2. `hosts: <pattern>`: a list of one or more host and groups patterns
@@ -422,17 +459,18 @@ WantedBy=multi-user.target
             12. `tasks`: the units of an action in ansible, can be executed once with an ad hoc command
                 1. Keywords
                     1. `name:`
-                    2. `become: yes`
-                    3. `the_module_name`
-                    4. `register`: register a variable from the output of the task
-                    5. `notify`
-                    6. `ignore_errors: true`
-                    7. `when`: conditional
-                    8. `vars`
-                    9. `loop`
-                    10. `until`
-                    11. `retries: 5`: default 3, `until` must be defined, if not, `retries` is forced to 1
-                    12. `delay: 10`: seconds, default is 5
+                    2. `import tasks`
+                    3. `become: yes`
+                    4. `the_module_name`
+                    5. `register`: register a variable from the output of the task
+                    6. `notify`
+                    7. `ignore_errors: true`
+                    8. `when`: conditional
+                    9.  `vars`
+                    10. `loop`
+                    11. `until`
+                    12. `retries: 5`: default 3, `until` must be defined, if not, `retries` is forced to 1
+                    13. `delay: 10`: seconds, default is 5
             13. `handlers`
 
             ```yaml

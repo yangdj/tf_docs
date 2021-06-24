@@ -1,0 +1,9 @@
+# MySQL
+
+1. reset password
+    1. `/etc/mysqld`, add `skip-grant-tables` under `[mysqld]` part
+    2. restart mysql server
+    3. `mysql -uroot -p` login the server
+    4. `update mysql.user set authentication_string=password('*****') where user='root'`
+    5. remove `skip-grant-tables` content
+    6. restart the server
