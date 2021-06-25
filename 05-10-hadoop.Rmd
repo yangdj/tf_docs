@@ -1,0 +1,118 @@
+# Hadoop
+
+Install
+
+
+1. References
+    1. [hadoop](http://hadoop.apache.org/)
+    2. [hadoop standalone](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html)
+    3. [hadoop cluster](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterSetup.html)
+2. Java
+    1. Envs
+
+        ```sh
+        export JAVA_HOME=/server/proj/hp/bin/java/jdk1.8.0_141
+        export PATH=$PATH:${JAVA_HOME}/bin
+        ```
+    2. JDBC
+        1. `mysql-connector-java`: `https://dev.mysql.com/downloads/connector/j/`
+3. Hadoop
+    1. Install
+
+        ```sh
+        HADOOP_VERSION=3.2.2
+        wget https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz
+        tar xf hadoop-${HADOOP_VERSION}.tar.gz
+
+        # validate
+        wget https://downloads.apache.org/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}-src.tar.gz.sha512
+        sha512 hadoop-${HADOOP_VERSION}.tar.gz > hadoop.sha512
+        diff hadoop.sha512 hadoop-${HADOOP_VERSION}.tar.gz.sha512
+        ```
+    2. Envs
+
+        ```sh
+        export HADOOP_HOME=/server/proj/hp/bin/hadoop/hadoop-3.1.2
+        export HADOOP_CONF_DIR=/server/proj/hp/config/hadoop/3.1.2
+        export HADOOP_PID_DIR=/server/proj/hp/pid/hadoop
+        export HADOOP_LOG_DIR=/server/proj/hp/log/hadoop
+        export PATH=${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:${PATH}
+        ```
+    3. Configurations
+        1. `hadoop-env.sh`
+            1. `export JAVA_HOME=...`
+        2. `masters`: specify hadoop master host, `hpmaster` for example
+        3. `workers`: `slaves` for hadoop2, spiecify hadoop worker hosts, one host per line
+        4. `core-site.xml`
+            1. `fs.defaultFS: hdfs://hpmaster:9000`: NameNode URI for access hadoop filesystem
+            2. `hadoop.tmp.dir: /server/proj/hp/tmp/hadoop/tmp`: temporary file directory
+            3. `[ io.file.buffer.size: 131072 ]`: size of read/write buffer used in SequenceFiles
+            4. `[dfs.blocksize: 268435456]`: HDFS blocksize of 256MB for large file-systems
+        5. `hdfs-site.xml`
+            1. `dfs.namenode.name.dir: file:///server/proj/hp/data/hadoop/name`
+            2. `dfs.datanode.data.dir: file:///server/proj/hp/data/hadoop/data`: comma separated list of paths on the local filesystem
+            3. `dfs.replication: 2`
+        6. `mapred-site.xml`
+            1. `mapreduce.framework.name: yarn`: execution framework set to Hadoop YARN
+            2. `mapreduce.application.classpath: $HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*`
+            3. `yarn.app.mapreduce.am.resource.mb: 2048`
+            4. `mapreduce.map.memory.mb: 1024`
+            5. `mapreduce.reduce.memory.mb: 1024`
+            6. `[ yarn.app.mapreduce.am.env: HADOOP_MAPRED_HOME=${HADOOP_HOME ]`
+            7. `[ mapreduce.map.env: HADOOP_MAPRED_HOME=${HADOOP_HOME ]`
+            8. `[ mapreduce.reduce.env: HADOOP_MAPRED_HOME=${HADOOP_HOME ]`
+        7. `yarn-site.xml`
+            1. `yarn.resourcemanager.hostname: hpmaster`
+            2. `yarn.nodemanager.aux-services: mapreduce_shuffle`
+            3. `yarn.nodemanager.resource.memory-mb: 6144`
+            4. `yarn.scheduler.maximum-allocation-mb: 6144`
+            5. `yarn.scheduler.minimum-allocation-mb: 512`
+            6. `[ yarn.resourcemanager.webapp.address: hpmaster:8088 ]`
+            7. `[ yarn.resourcemanager.address: hpmaster:8032 ]`
+            8. `[ yarn.resourcemanager.scheduler.address: hpmaster:8030 ]`
+            9.  `[ yarn.resourcemanager.resource-tracker.address: hpmaster:8031 ]`
+            10. `yarn.resourcemanager.scheduler.class: org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler`: for spark
+            11. `yarn.nodemanager.vmem-check-enabled: false`: disable virtual-memory checking and prevent containers from being allocated on JDK8
+            12. `yarn.nodemanager.pmem-check-enabled: false`
+        8. `capacity-scheduler.xml`
+            1 `[ yarn.scheduler.capacity.maximum-am-resource-percent: 0.5 ]`
+        9. `log4j.properties`
+    4. Service
+        1. filesystem format first
+            1. `hdfs namenode -format`
+        2. dfs
+            1. start: `$HADOOP_HOME/sbin/start-dfs.sh`
+            2. stop: `$HADOOP_HOME/sbin/stop-dfs.sh`
+            3. jps:
+                1. master
+                    1. Namenode
+                    2. SecondaryNamenode
+                    3. [Datanode]
+                2. slave
+                    1. Datanode
+        3. yarn
+            1. start: `$HADOOP_HOME/sbin/start-yarn.sh`
+            2. stop: `$HADOOP_HOME/sbin/stop-yarn.sh`
+            3. jps:
+                1. master
+                    1. ResourceManager
+                    2. [NodeManager]
+                2. slave
+                    1. NodeManager
+        4. problems
+            1. `jps` no return value, remove file `/tmp/hsper**_username`
+    5. Web UI
+        1. `http://hpmaser:9870`: NameNode info, `hpmaster:50070` for hadoop2
+        2. `http://hpmaster:8088`: ResourceManager info
+        3. `http://hpmaster:19888`: MapReduce job history
+    6. Commands
+        1. `hdfs dfs -ls path`
+            1. `hdfs://<namenode>:9000/path`: remote hdfs path
+        2. `hdfs dfs -mkdir [-p] path`
+        3. `hdfs dfs -rm [-r] path`
+        4. `hdfs dfs -mv oldpath newpath`
+        5. `hdfs dfs -cat file`
+        6. `hdfs dfs -touchz file`
+        7. `hdfs dfs -put from_local_path to_hadoop_path`
+        8. `hdfs dfs -get from_hadoop_path to_local_path`
+        9. `hadoop jar helloworld.jar`

@@ -535,6 +535,7 @@ WantedBy=multi-user.target
                 1. `{{ ansible_facts["nodename"] }}`: system hostname
             3. `hostvars`: host information in the play
                 1. `{{ hostvars["asdf.example.com"]["ansible_facts"]["os_family"]}}`
+                2. `{{ hostvars[item]["ansible_host"] }} {{ item }}`
             4. `groups`: all groups and related hosts
                 1. `{{ groups["hp"] }}`
 
