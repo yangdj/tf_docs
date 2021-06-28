@@ -1,0 +1,37 @@
+# Kafka
+
+
+1. References
+    1. [Kafka](http://kafka.apache.org/)
+2. About
+    1. Capabilities
+        1. to **publish** (write) and **subscribe** to (read) streams of events
+        2. to **store** streams of events durably and reliably for as long as you want
+        3. to **process** streams of events as they occur or retrospectively
+    2. Functions
+        1. distributed
+        2. high scalable
+        3. high available
+        4. fault-tolerant
+        5. secure manner
+3. Concepts
+    1. Architect
+        1. Servers
+            1. Broker: storage layer
+            2. Connector: import and export data as event streams to integrate Kafka with existing systems
+        2. Clients: talk to Kafka servers
+    2. Event: also called record or message, record data happened
+        1. Structure
+            1. events organized and durably stored in *topics*, similar to a folder in a filesystem, and the events are the files in that folder
+            2. topics are **partitioned**
+                1. a topic is spread over a number of buckets located on different brokers.
+                2. new event published to a topic, is actually appended one of the topic's partition
+                3. the same event key event are written to the same partition
+                4. any consumer of a given topic-partition will always read that partition's events in exactly the same order as they were written
+                5. every topic can be **replicated** at the level of topic partitions. a common production replication factor is 3
+            3. events are not deleted after assumption, the retaining time can be defined through a per-topic configuraiton setting
+        2. Contents
+            1. key
+            2. value
+            3. timestamp
+            4. headers: optional

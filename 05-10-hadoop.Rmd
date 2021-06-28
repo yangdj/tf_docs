@@ -106,13 +106,24 @@ Install
         2. `http://hpmaster:8088`: ResourceManager info
         3. `http://hpmaster:19888`: MapReduce job history
     6. Commands
-        1. `hdfs dfs -ls path`
-            1. `hdfs://<namenode>:9000/path`: remote hdfs path
-        2. `hdfs dfs -mkdir [-p] path`
-        3. `hdfs dfs -rm [-r] path`
-        4. `hdfs dfs -mv oldpath newpath`
-        5. `hdfs dfs -cat file`
-        6. `hdfs dfs -touchz file`
-        7. `hdfs dfs -put from_local_path to_hadoop_path`
-        8. `hdfs dfs -get from_hadoop_path to_local_path`
-        9. `hadoop jar helloworld.jar`
+        1. `hadoop fs`: `hdfs dfs` is a synonym
+            1. `-ls <path>`
+                1. `scheme://authority/path`
+                    1. `file:///user/hadoop`: file path
+                    2. `hdfs://<namenode>:9000/path`: hdfs path
+                2. relative path, the working directory is HDFS home directory `/user/<username>`, which should be created manually
+            2. `-mkdir [-p] <path>`
+            3. `-rm [-r] <path>`
+            4. `-mv <oldpath> <newpath>`
+            5. `-cat <file>`
+            6. `-head <file>`
+            7. `-tail <file>`
+            8. `-touchz <file>`
+            9. `-put <from_local_path> <to_hadoop_path>`
+            10. `-appendToFile <from_local> <to_remote>`
+            11. `-cp`
+            12. `-get <from_hadoop_path> <to_local_path>`
+            13. `-df`: display free space
+            14. `-du`
+            15. `-getmerge <src> <localdest>`
+       1. `hadoop jar <xxx.jar>`

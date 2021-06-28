@@ -579,7 +579,42 @@ Configurations
 
 ## BASH
 
-1. Conditional
+1. References
+    1. [docopt](http://docopt.org/)
+    2. [Command-line syntax key](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/command-line-syntax-key)
+2. Command Line Style
+    1. elements
+        1. program and (sub)command name
+        2. positional arguments
+        3. options
+            1. short: start with `-`
+                1. `-l`
+                2. `-o output.csv`: option with argument
+                3. `-abc`: use stacked way, equivalent to `-a -b -c`
+                4. `-fFILE`: equivalent to `-f FILE`, may ambiguous to stacked short options
+            2. long: start with `--`
+                1. `--list`
+                2. `--output=output.csv`: option with argument using `=`
+                3. `--output output.csv`: option with argument using space, may ambiguous whether the value is option's argument or a position argument
+    2. Format
+        1. `command_name`: text without brackets or braces that must type
+        2. `<text inside angle brackets>`: placeholder for which must supply a value
+        3. `(text inside a parentheses)`: required items
+        4. `[text inside a square brackets]`: optional items
+        5. `{Text inside braces}`: set of required items, must choose one
+        6. `|`: multual-exclusive elements
+            1. `(|)`: must choose one
+            2. `[|]`: optionally choose one
+        7. `element...`: repeating items
+        8. `[options]`: shortcut that allow to avoid listing all options
+        9. `[--]`: double dash, often used to separate options and positional arguments
+        10. `[-]`: s single dash, often used to signify the program can process `stdin` as opposed to a file
+        11. `[default: <value>]`: specify default value in the description, e.g., `[default: 10]`
+    3. Usage
+        1. `my_program (move | cp | delete) [-p | -r] <file>...`
+        2. `my_program [options] <path>`
+        3. `my_program [options] [--] <file>...`
+3. Conditional
 
     ```sh
     case $(uname -s) in
@@ -595,12 +630,12 @@ Configurations
         ;;
     ecac
     ```
-2. Environment Variable
+4. Environment Variable
     1. `PATH`
     2. `SHLVL`: shell level
-3. System
+5. System
     1. `reboot`: reboot the computer
-4. Basic
+6. Basic
     1. `uname -s => [Linux, Darwin, MINGW*|MSYS_NT*]`
     2. `users`: current logging users
     3. `basename`
@@ -609,7 +644,7 @@ Configurations
         1. `set -e`: exit whenever produces a false result 
         2. `set +e`: continues executing when meets false
     6. `exit 1`: exit with return value 1 immediately
-5. User
+7. User
     1. `/etc/passwd`: created users file
     2. `adduser -M user_name`
         1. `-M, --no-create-home`: create user without login directory
@@ -622,7 +657,7 @@ Configurations
         1. `usermod -d user_home user_name`: set login directory
         2. `usermod -s $(which zsh) user_name`: set default shell
     7. `gpasswd -a user_name wheel`: `wheel`, add sudo priviledge
-6. SSH
+8. SSH
     1. File structure
         1. `id_rsa.pub`: public key, put this key to remote `authorized_keys` file, then you can use key to login remote without password
         2. `id_rsa`: private key, must keep safely
@@ -634,7 +669,7 @@ Configurations
         3. `ssh user@host 'mkdir -p .ssh && cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub`: same as `2`
     3. Problems
         1. `/usr/bin/ssh-copy-id: ERROR: No identities found`: make sure public key has been generated, using `ssh-keygen`
-7. Systemd
+9. Systemd
     1. `/usr/lib/systemd/system/`: system path
     2. `/etc/systemd/system/`: customize path, overrides system config
     3. `systemctl edit service_name.service`: changes systemd parameters
@@ -659,7 +694,7 @@ Configurations
     Environment=PGPORT=5433
     ...
     ```
-8. Firewall
+10. Firewall
     1. `firewall-cmd --permanent --add-service=postgresql`
     2. `firewall-cmd --permanent --add-port=6379/tcp`
     3. `systemctl reload firewalld`
