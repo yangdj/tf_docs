@@ -1,8 +1,0 @@
-- name: install software os-specific
-  become: yes
-  yum:
-    name: "{{ packages }}"
-    state: present
-  vars:
-    packages:
-      - rsync

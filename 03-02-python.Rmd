@@ -605,6 +605,10 @@ WantedBy=multi-user.target
                 2. `item.key`: a list of dict item, `loop: "{{ tag_data | dict2items }}` for a dict variable to be used in a loop
                 3. `query`: return a list, `loop: {{ query("inventory_hostnames", "all")}}`
                 4. when use `register` with loop, the register variable will contain a `results` attribute which is a list of all responses
+                5. `loop.index`: current iteration of the loop, start from 1
+                6. `loop.index0`: current iteration of the loop, start from 0
+                7. `loop.length`: number of items in the sequence
+                8. `loop.cycle("odd", "even")`: cycle between a list of sequences
             2. `until`
                 1. retry a task until a certain condition is met
                 2. a registered variable will include a key called `attempts` recording the number of the retries for the task

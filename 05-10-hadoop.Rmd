@@ -7,6 +7,7 @@ Install
     1. [hadoop](http://hadoop.apache.org/)
     2. [hadoop standalone](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html)
     3. [hadoop cluster](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterSetup.html)
+    4. [zookeeper](https://zookeeper.apache.org/)
 2. Java
     1. Envs
 
@@ -127,3 +128,29 @@ Install
             14. `-du`
             15. `-getmerge <src> <localdest>`
        1. `hadoop jar <xxx.jar>`
+4. ZooKeeper
+    1. Install
+
+        ```sh
+        ZOOKEEPER_VERSION=3.6.3
+        wgt https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-${ZOOKEEPER_VERSION}/apache-zookeeper-${ZOOKEEPER_VERSION}-bin.tar.gz
+        ```
+    2. Envs
+        ```sh
+        EXPORT ZOOKEEPER_HOME=/data/hadoop/hadoop/bin/zookeeper/apache-zookeeper-3.6.3-bin/
+        export PATH=${ZOOKEEPER_HOME}/bin:${PATH}
+        ```
+    2. Configurations
+        1. `zoo.cfg`
+            1. `tickTime=2000`: time in milliseconds to do heartbeats between servers or between client and server, the minimum session timeout will be twice the tickTime
+            2. `dataDir=/path/to/data`: store in-memory database snapshots. unless specified otherwise, the transaction log of updates to the database
+            3. `dataLogDir=/path/to/log`: write the transaction log to the dataLogDir rather than the dataDir
+            4. `clientPort=2181`: `[default: 2181]`, listen port for client connections
+            5. `initLimit=10`: need for cluster, number of ticks that follower servers initially connect to the leader server. if more than half of followers not connect to the leader within this time, then the leader will be reelected
+            6. `synclimit=5`: need for cluster, ticks between sending a request and getting an acknowledgement between followers and leader. if timeout, the follower will be descarded, and the client will connect to another follower
+            7. `server.x=zoo1:2888:3888`: `x` is the server id number, `2888` is for connecting to other peers, and `3888` is used for leader election
+    3. Services
+        1. start: `bin/zkServer.sh start [--config <conf-dir>]`: `[default: conf/zoo.cfg]`
+        2. stop: `zkServer.sh stop`
+        3. status: `zkServer.sh status`
+        4. connect: `bin/zkCli.sh -server 127.0.0.1:2181`
