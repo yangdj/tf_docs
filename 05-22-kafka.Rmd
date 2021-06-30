@@ -1,9 +1,6 @@
 # Kafka
 
-
-1. References
-    1. [Kafka](http://kafka.apache.org/)
-2. About
+1. About
     1. Capabilities
         1. to **publish** (write) and **subscribe** to (read) streams of events
         2. to **store** streams of events durably and reliably for as long as you want
@@ -14,7 +11,7 @@
         3. high available
         4. fault-tolerant
         5. secure manner
-3. Concepts
+2. Concepts
     1. Architect
         1. Servers
             1. Broker: storage layer

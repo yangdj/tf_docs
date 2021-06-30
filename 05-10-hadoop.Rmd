@@ -8,6 +8,7 @@ Install
     2. [hadoop standalone](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html)
     3. [hadoop cluster](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterSetup.html)
     4. [zookeeper](https://zookeeper.apache.org/)
+    5. [Kafka](http://kafka.apache.org/)
 2. Java
     1. Envs
 
@@ -140,17 +141,47 @@ Install
         EXPORT ZOOKEEPER_HOME=/data/hadoop/hadoop/bin/zookeeper/apache-zookeeper-3.6.3-bin/
         export PATH=${ZOOKEEPER_HOME}/bin:${PATH}
         ```
-    2. Configurations
+    3. Configurations
         1. `zoo.cfg`
             1. `tickTime=2000`: time in milliseconds to do heartbeats between servers or between client and server, the minimum session timeout will be twice the tickTime
             2. `dataDir=/path/to/data`: store in-memory database snapshots. unless specified otherwise, the transaction log of updates to the database
-            3. `dataLogDir=/path/to/log`: write the transaction log to the dataLogDir rather than the dataDir
+            3. `dataLogDir=/path/to/log`: write the transaction log to the `dataLogDir` rather than the `dataDir`
             4. `clientPort=2181`: `[default: 2181]`, listen port for client connections
             5. `initLimit=10`: need for cluster, number of ticks that follower servers initially connect to the leader server. if more than half of followers not connect to the leader within this time, then the leader will be reelected
             6. `synclimit=5`: need for cluster, ticks between sending a request and getting an acknowledgement between followers and leader. if timeout, the follower will be descarded, and the client will connect to another follower
             7. `server.x=zoo1:2888:3888`: `x` is the server id number, `2888` is for connecting to other peers, and `3888` is used for leader election
-    3. Services
+        2. `myid`
+            1. for cluster
+            2. put in `dataDir` directory
+            3. same number `x` in `server.x` for the host
+    4. Services
         1. start: `bin/zkServer.sh start [--config <conf-dir>]`: `[default: conf/zoo.cfg]`
         2. stop: `zkServer.sh stop`
-        3. status: `zkServer.sh status`
-        4. connect: `bin/zkCli.sh -server 127.0.0.1:2181`
+        3. restart: `zkServer.sh restart`
+        4. status: `zkServer.sh status`
+    5. Commands
+        1. connect: `bin/zkCli.sh -server 127.0.0.1:2181`
+5. Kafka
+    1. Install
+
+        ```sh
+        KAFKA_VERSION=2.8.0
+        SCALA_VERSION=2.13
+        wget https://mirrors.tuna.tsinghua.edu.cn/apache/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz
+        ```
+    2. Configurations
+        1. `config/server.properties`
+            1. `broker.id=1`: the id of broker, must be unique integer for each broker
+            2. `listeners=PLAINTEXT://host:9092`: listen port for client connecting, `[default: 9092]`
+            3. `log.dirs=/path/1,/path/2`: where to store log files
+            4. `zookeeper.connect=zoo1:2181,zoo2:2181...`: connect to zookeeper
+            5. `num.partitions=2`: partitions per topic. more partitions allow greater parallelism for consumption, but result in more files across the brokers
+    3. Services
+        1. start: `kafka-server-start.sh [-daemon] config/server.properties`
+        2. stop: `kafka-server-stop.sh config/server.properties`
+        3. topic: `kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092`
+        4. jps: `kafka`
+    4. Commands
+        1. producer (write): `kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092`
+        2. consumer (read): `kafka-console-consumer.sh --topic quickstart-events --from-beginning --bootstrap-server localhost:9092`
+6. Spark
