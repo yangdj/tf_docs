@@ -9,6 +9,7 @@ Install
     3. [hadoop cluster](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterSetup.html)
     4. [zookeeper](https://zookeeper.apache.org/)
     5. [Kafka](http://kafka.apache.org/)
+    6. [Remote Spark Jobs on YARN](https://theckang.github.io/2015/12/31/remote-spark-jobs-on-yarn.html)
 2. Java
     1. Envs
 
@@ -79,7 +80,7 @@ Install
         8. `capacity-scheduler.xml`
             1 `[ yarn.scheduler.capacity.maximum-am-resource-percent: 0.5 ]`
         9. `log4j.properties`
-    4. Service
+    4. Services
         1. filesystem format first
             1. `hdfs namenode -format`
         2. dfs
@@ -103,10 +104,11 @@ Install
                     1. NodeManager
         4. problems
             1. `jps` no return value, remove file `/tmp/hsper**_username`
-    5. Web UI
-        1. `http://hpmaser:9870`: NameNode info, `hpmaster:50070` for hadoop2
-        2. `http://hpmaster:8088`: ResourceManager info
-        3. `http://hpmaster:19888`: MapReduce job history
+    5. Access
+        1. `hdfs://hpmaster:9000`: hdfs file system
+        2. `http://hpmaser:9870`: NameNode info, `hpmaster:50070` for hadoop2
+        3. `http://hpmaster:8088`: ResourceManager info
+        4. `http://hpmaster:19888`: MapReduce job history
     6. Commands
         1. `hadoop fs`: `hdfs dfs` is a synonym
             1. `-ls <path>`
@@ -166,22 +168,161 @@ Install
 
         ```sh
         KAFKA_VERSION=2.8.0
-        SCALA_VERSION=2.13
-        wget https://mirrors.tuna.tsinghua.edu.cn/apache/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz
+        KAFKA_SCALA_VERSION=2.13
+        wget https://mirrors.tuna.tsinghua.edu.cn/apache/kafka/${KAFKA_VERSION}/kafka_${KAFKA_SCALA_VERSION}-${KAFKA_VERSION}.tgz
         ```
-    2. Configurations
+    2. Envs
+
+        ```sh
+        export KAFKA_HOME=/data/hadoop/hadoop/bin/kafka/kafka_2.13-2.8.0
+        export PATH=${KAFKA_HOME}/bin:${PATH}
+        ```
+    3. Configurations
         1. `config/server.properties`
             1. `broker.id=1`: the id of broker, must be unique integer for each broker
             2. `listeners=PLAINTEXT://host:9092`: listen port for client connecting, `[default: 9092]`
             3. `log.dirs=/path/1,/path/2`: where to store log files
             4. `zookeeper.connect=zoo1:2181,zoo2:2181...`: connect to zookeeper
             5. `num.partitions=2`: partitions per topic. more partitions allow greater parallelism for consumption, but result in more files across the brokers
-    3. Services
+    4. Services
         1. start: `kafka-server-start.sh [-daemon] config/server.properties`
         2. stop: `kafka-server-stop.sh config/server.properties`
         3. topic: `kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092`
         4. jps: `kafka`
-    4. Commands
+    5. Commands
         1. producer (write): `kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092`
         2. consumer (read): `kafka-console-consumer.sh --topic quickstart-events --from-beginning --bootstrap-server localhost:9092`
-6. Spark
+6. Scala
+    1. Install
+
+        ```sh
+        SCALA_VERSION=2.12.14
+        wget https://downloads.lightbend.com/scala/${SCALA_VERSION}/scala-${SCALA_VERSION}.tgz
+        ```
+    2. Envs
+
+        ```sh
+        export SCALA_HOME=/data/hadoop/hadoop/bin/scala/scala-2.12.14
+        export PATH=${SCALA_HOME}/bin:${PATH}
+        ```
+7. Maven
+    1. Install
+
+        ```sh
+        MAVEN_VERSION=3.8.1
+        wget http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+        ```
+    2. Envs
+
+        ```sh
+        export M2_HOME=/data/hadoop/hadoop/bin/maven/apache-maven-3.6.1
+        export PATH=${M2_HOME}/bin:${PATH}
+        [export MAVEN_OPTS="-Xmx2g -XX:ReservedCodeCacheSize=1024m" # for java8+]
+        ```
+8. Spark
+    1. Install
+
+        ```sh
+        SPARK_VERSION=3.1.2
+        SPARK_HADOOP_VERSION=3.2
+        wget https://archive.apache.org/dist/spark/spark-3.1.2/spark-${SPARK_VERSION}-bin-hadoop${SPARK_HADOOP_VERSION}.tgz
+        ```
+    2. Envs
+
+        ```sh
+        export SPARK_HOME={{ spark_home }}
+        export SPARK_CONF_DIR={{ spark_base.conf }}
+        export SPARK_PID_DIR={{ spark_base.pid }}
+        export SPARK_LOG_DIR={{ spark_base.log }}
+        export SPARK_MASTER_HOST={{ spark_master_host }}
+        export PATH=${SPARK_HOME}/bin:${SPARK_HOME}/sbin:${PATH}
+        # when install spark free of hadoop jars, define SPARK_DIST_CLASSPATH
+        # export SPARK_DIST_CLASSPATH=$(hadoop classpath)
+
+        # avoid spark log saying ”Unable to load native-hadoop library for your platform, using builtin-java classes where applicable“  
+        export LD_LIBRARY_PATH=${HADOOP_HOME}/lib/native:${LD_LIBRARY_PATH}
+        ```
+    3. Configurations
+        1. `slaves`: spiecify spark worker hosts, one host per line
+        2. `spark-defaults.conf`
+            1. `spark.master yarn`
+            2. `spark.driver.memory 2g`
+            3. `spark.executor.memory 1g`
+            4. `spark.yarn.am.memory 1g `
+            5. `spark.eventLog.enabled true`
+            6. `spark.eventLog.dir hdfs://{{ fs_defaultFS }}:9000/user/spark/eventlog`: directory should be create manullay
+
+                ```sh
+                hadoop fs -mkdir -p /user/spark/eventlog
+                ```
+            7. `spark.yarn.jars hdfs://{{ fs_defaultFS }}:9000/user/spark/jars/*`: directory should be create manullay
+
+                ```sh
+                hadoop fs -put  $SPARK_HOME/jars/* /user/spark/jars/
+                ```
+            8. `spark.yarn.archive hdfs://{{ fs_defaultFS_host }}:9000/user/spark/archive/spark-libs.jar`: overwrite `spark.yarn.jars`
+
+                ```sh
+                jar cv0f spark-libs.jar -C $SPARK_HOME/jars/ .
+                hadoop fs -mkdir -p /user/spark/archive
+                hadoop fs -put spark-libs.jar /user/spark/archive
+                ```
+    4. Services
+        1. spark standalone cluster
+            1. start: `$SPARK_HOME/sbin/start-all.sh`
+            2. stop: `$SPARK_HOME/sbin/stop-all.sh`
+            3. jps:
+                1. `Master`: for master
+                2. `Worker`: for slaves
+        2. spark on yarn
+            1. no need to start spark
+            2. when submit locally, config client `HADOOP_CONF_DIR`, which should include `core-site.xml` and `yarn-site.xml` copied from the hadoop cluster
+        3. Problems
+            1. `No route to host`: try to close the client server firewall and make sure all server can visit each other
+    5. Access
+        1. spark standalone cluster
+            1. `spark://hpmaster:7077`: connect to spark standalone cluster
+            2. `http://hpmaster:8080`: master info
+            3. `http://hpslave:8081`: workder info
+            4. `http://hpmaster:4040`: driver application info
+    6. Commands
+        1. `./bin/run-example SparkPi 10`
+        2. `spark-shell`
+            1. `spark-shell --master local[2]`: run locally with 2 threads
+            2. `spark-shell --master spark://hpmaster:7077`: connect to  spark standalone cluster
+            3. `spark-shell --master yarn` - connects to a yarn cluster
+        3. `spark-submit`
+            1. examples
+                1. `spark-submit run-example SparkPi 10`
+                2. `spark-submit --master yarn --deploy-mode client --class org.apache.spark.examples.SparkPi spark-examples.jar 10`
+            2. arguments
+                1. `--master {local[2] | spark://host:port | yarn | ...}`
+                2. `--deploy-mode {client | cluster}`
+                3. `--conf key=value --conf key2=value2`
+                4. `--driver-memory 4g`
+                5. `--num-executors 50`
+                6. `--executor-memory 2g`
+                7. `--executor-cores 1`
+                8. `--total-executor-cores 10`
+                9. `--class org.apache.spark.examples.SparkPi`:  main class
+                10. `--driver-class-path postgresql-42.2.14.jar`
+                11. `--jars first.jar,second.jar`: dependent jars`
+                12. `--py-files {.py | .zip | .egg}`: for Python, mulpile python files can be packaged into a zip or egg file
+                13. `--queue thequeue`
+                14. `--supervise`: for spark standalone cluster, make sure the driver restart when fail with a none-zero exit code
+                15. `spark-examples.jar`: application jar
+                16. `arg1 arg2 ...`: application's options
+9. Hive
+    1. Install
+
+        ```sh
+        HIVE_VERSION=2.3.7
+        wget http://mirrors.hust.edu.cn/apache/hive/hive-${MY_HIVE_VERSION}/apache-hive-${MY_HIVE_VERSION}-bin.tar.gz
+        ```
+    2. Envs
+
+        ```sh
+        HIVE_HOME
+        HIVE_CONF_DIR
+        PATH=${HIVE_HOME}/bin:${PATH}
+        ```

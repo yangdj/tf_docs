@@ -1,3 +1,0 @@
-maven_version: 3.6.1
-maven_base:
-  bin: "{{ hp_base.bin }}/maven"

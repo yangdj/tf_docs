@@ -1,3 +1,0 @@
-scala_version: 2.12.8
-scala_base:
-  bin: "{{ hp_base.bin }}/scala"
