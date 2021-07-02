@@ -653,10 +653,12 @@ Configurations
     3. `userdel user_name`
     4. `passwd user_name`: set password
     5. `chown -R user_name: user_home`
-    6. `usermod`:
+    6. `groupadd groupname`
+    7. `usermod`:
         1. `usermod -d user_home user_name`: set login directory
         2. `usermod -s $(which zsh) user_name`: set default shell
-    7. `gpasswd -a user_name wheel`: `wheel`, add sudo priviledge
+        3. `usermod -a -G groupname username`
+    8. `gpasswd -a user_name wheel`: `wheel`, add sudo priviledge
 8. SSH
     1. File structure
         1. `id_rsa.pub`: public key, put this key to remote `authorized_keys` file, then you can use key to login remote without password

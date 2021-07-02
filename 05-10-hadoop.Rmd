@@ -7,9 +7,10 @@ Install
     1. [hadoop](http://hadoop.apache.org/)
     2. [hadoop standalone](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html)
     3. [hadoop cluster](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterSetup.html)
-    4. [zookeeper](https://zookeeper.apache.org/)
-    5. [Kafka](http://kafka.apache.org/)
-    6. [Remote Spark Jobs on YARN](https://theckang.github.io/2015/12/31/remote-spark-jobs-on-yarn.html)
+    4. [hadoop command](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/FileSystemShell.html)
+    5. [zookeeper](https://zookeeper.apache.org/)
+    6. [Kafka](http://kafka.apache.org/)
+    7. [Remote Spark Jobs on YARN](https://theckang.github.io/2015/12/31/remote-spark-jobs-on-yarn.html)
 2. Java
     1. Envs
 
@@ -55,6 +56,7 @@ Install
             1. `dfs.namenode.name.dir: file:///server/proj/hp/data/hadoop/name`
             2. `dfs.datanode.data.dir: file:///server/proj/hp/data/hadoop/data`: comma separated list of paths on the local filesystem
             3. `dfs.replication: 2`
+            4. `dfs.namenode.acls.enabled: true`: enable acls for `setfacl` command
         6. `mapred-site.xml`
             1. `mapreduce.framework.name: yarn`: execution framework set to Hadoop YARN
             2. `mapreduce.application.classpath: $HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*`
@@ -90,7 +92,6 @@ Install
                 1. master
                     1. Namenode
                     2. SecondaryNamenode
-                    3. [Datanode]
                 2. slave
                     1. Datanode
         3. yarn
@@ -99,9 +100,11 @@ Install
             3. jps:
                 1. master
                     1. ResourceManager
-                    2. [NodeManager]
                 2. slave
                     1. NodeManager
+            4. application
+                1. `yarn application -list`
+                2. `yarn application -kill application_id`
         4. problems
             1. `jps` no return value, remove file `/tmp/hsper**_username`
     5. Access
@@ -130,6 +133,8 @@ Install
             13. `-df`: display free space
             14. `-du`
             15. `-getmerge <src> <localdest>`
+            16. `-setfacl`: should set `dfs.namenode.acls.enabled: true` in `hdfs-site.xml`
+                1. `hadoop fs -setfacl -m user:hadoop:rwx /user`
        1. `hadoop jar <xxx.jar>`
 4. ZooKeeper
     1. Install
@@ -234,8 +239,9 @@ Install
         export SPARK_CONF_DIR={{ spark_base.conf }}
         export SPARK_PID_DIR={{ spark_base.pid }}
         export SPARK_LOG_DIR={{ spark_base.log }}
-        export SPARK_MASTER_HOST={{ spark_master_host }}
         export PATH=${SPARK_HOME}/bin:${SPARK_HOME}/sbin:${PATH}
+        # use in the standalone mode
+        export SPARK_MASTER_HOST={{ spark_master_host }}
         # when install spark free of hadoop jars, define SPARK_DIST_CLASSPATH
         # export SPARK_DIST_CLASSPATH=$(hadoop classpath)
 
@@ -267,6 +273,7 @@ Install
                 hadoop fs -mkdir -p /user/spark/archive
                 hadoop fs -put spark-libs.jar /user/spark/archive
                 ```
+        3. `log4j.properties`: originial `log4j.properties.template` file
     4. Services
         1. spark standalone cluster
             1. start: `$SPARK_HOME/sbin/start-all.sh`
@@ -276,9 +283,17 @@ Install
                 2. `Worker`: for slaves
         2. spark on yarn
             1. no need to start spark
-            2. when submit locally, config client `HADOOP_CONF_DIR`, which should include `core-site.xml` and `yarn-site.xml` copied from the hadoop cluster
+            2. client config `HADOOP_CONF_DIR` including following files
+                1. `core-site.xml`
+                    1. `fs.defaultFS: hdfs://hpmaster:9000`: hdfs path
+                2. `yarn-site.xml`
+                    1. `yarn.resourcemanager.hostname: hpmaster`: yarn server
+            3. client config `SPARK_CONF_DIR` including 
+                1. `spark-defaults.conf`
+                    1. `spark.yarn.archive: hdfs://hpmaster:9000/user/spark/archive/spark-libs.jar`: copy from server value
         3. Problems
             1. `No route to host`: try to close the client server firewall and make sure all server can visit each other
+            2. `org.apache.hadoop.security.AccessControlException`: use `setfacl` to add permission
     5. Access
         1. spark standalone cluster
             1. `spark://hpmaster:7077`: connect to spark standalone cluster
