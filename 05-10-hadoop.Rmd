@@ -1,8 +1,5 @@
 # Hadoop
 
-Install
-
-
 1. References
     1. [hadoop](http://hadoop.apache.org/)
     2. [hadoop standalone](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html)
@@ -288,6 +285,7 @@ Install
                     1. `fs.defaultFS: hdfs://hpmaster:9000`: hdfs path
                 2. `yarn-site.xml`
                     1. `yarn.resourcemanager.hostname: hpmaster`: yarn server
+                3. `log4j.properties`: avoid `WARNING: log4j.properties is not found. HADOOP_CONF_DIR may be incomplete.`
             3. client config `SPARK_CONF_DIR` including 
                 1. `spark-defaults.conf`
                     1. `spark.yarn.archive: hdfs://hpmaster:9000/user/spark/archive/spark-libs.jar`: copy from server value
