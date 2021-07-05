@@ -475,3 +475,4 @@
 
             myLoop(start = 5, end = 10) { i => println(s"i has value ${i}")}
             ```
+6. Class
