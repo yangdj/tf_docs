@@ -1,0 +1,477 @@
+# Scala
+
+## SBT
+
+1. References
+    1. [scaladex](https://index.scala-lang.org/)
+1. `build.sbt`
+    1. Project
+        * `scalaVersion := "2.13.1"`
+        * `name := "hello-world"`
+        * `organization := "ch.epfl.scala"`
+        * `version := "1.0"`
+        * `scalacOptions ++= Seq("-unchecked", "-deprecation")`
+    2. Library
+        1. stored path: `~/.ivy2/cache`
+        2. format: `groupID % artifactID % revision % test`
+            1. `%%` instead of `%` after groupID will add scala version to the artifactID name
+            2. `% test` just for test usage
+        3. adding: `libraryDependencies += "org.typelevel" %% "cats-core" % "2.0.0"`
+2. `build.properties`
+    * `sbt.version=1.3.2`
+3. `~/.sbt/repositories`
+
+    ```ini
+    [repositories]
+    local
+    huaweicloud-maven: https://repo.huaweicloud.com/repository/maven/
+    maven-central: https://repo1.maven.org/maven2/
+    sbt-plugin-repo: https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
+    ```
+4. `${SBT_HOME|/conf/sbtconfig.txt`
+    * `-XX:MaxPermSize=256m`: `Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=256m; support was removed in 8.0`
+
+## Scala Language
+
+1. Command
+    1. `scalac`
+        1. `scalac helloworld.scala`: compiles scala source
+        2. `scalac -d classes helloworld.scala`: compiles scala source, and stores in specified folder
+    2. `fsc`: fast scala compiler
+        1. `fsc helloworld.scala`
+        2. `fsc -shutdown`: shutdown daemon process
+    3. `jar`
+        1. `jar cvf helloworld.jar -C classes/ .`: package classes into helloworld.jar under the current directory
+        2. `jar tvf helloworld.jar`
+    4. `scala`
+        1. `scala helloworld.scala`: runs scala script
+        2. `scala helloworld`: runs compiled scala file
+        3. `scala helloworld.jar`
+        4. `scala -cp helloworld.jar Hello`: runs Hello in jar file
+2. Data Structure
+    1. Primitive
+        1. Numeric
+            1. Interger
+                1. Byte: 8 bits, `-2^7 ~ 2^7 -1`
+                2. Short: 16bits, `-2^15 ~ 2^15 - 1`
+                3. Int: 32 bits, `-2^31 ~ 2^31 - 1`
+                4. Long: 64 bits, `-2^63 ~ 2^63 - 1`
+            2. Float
+                1. Float: 32 bits IEEE 754 single-precision float
+                2. Double: 64 bits IEEE 754 single-precision float
+            3. Literal
+                1. `12, 012`: int, base 10
+                2. `0x5, 0xff`: int, base 16
+                3. `12L`: long
+                4. `1.0, 1.0e10, 1.0d 1.0D`: double
+                5. `1.0f 1.0F`: float
+            4. Methods
+                1. `.to()`: `(0).to(3), 0 to 3`, include 0 and 3
+                2. `0 unitl 3`: include 0, excluding 3
+                3. `.toString()`
+                4. `.toBinaryString()`
+                5. `.numberOfTrailingZeros()`
+                6. `.max(10)`
+                7. `.min(10)`
+                8. `.abs()`
+        2. Char: 16 bits unsigned unicode character, `0 ~ 2^16 - 1`
+            1. Literal
+                1. `'A'`: unicode character between single quote ''
+                2. `'\uxxxx'`: `x` is hex digit, '\u0041' '\u00fa'
+            2. Escaping
+                1. `'\b'`: backspace
+                2. `'\t'`: tab
+                3. `'\n'`: line feed
+                4. `'\f'`: form feed
+                5. `'\r'`: carrige return
+                6. `'\"'`: double quote
+                7. `'\''`: single quote
+                8. `'\\'`: backslash
+            3. Methods
+                1. `.toByte()`
+        3. Boolean: `[true, false]`
+    2. Complex
+        1. Unit
+            1. `()` value
+            2. `Unit` returned when function returns no value
+            3. `Unit == ""`: return `false`
+        2. Option
+            1. value
+                1. `Some(10), Some("hello")`
+                2. `None`
+            2. methods
+                1. `.getOrElse("unknown")`
+            
+            ```scala
+            optionValue match {
+                case some(v) => println("hello" + v")
+                case None => println("hello")
+            }
+            ```
+        3. String
+            1. Literal
+                1. single quote: `"hello, world"`
+                2. triple quotes
+
+                    ```scala
+                    """hello,
+                        world!"""
+                    =>
+                    hello,
+                        world!
+
+                    """|hello,
+                       |world!""".stripMargin
+                    =>
+                    hello,
+                    world!
+                    ```
+            2. Methods
+                1. `+`: concatenate strings
+                2. `*`: concatenate string multiple times
+                3. `.to[Byte, Short, Int, Long, Float, Double]()`
+                4. `.toLowerCase() .toUpperCase() .captalize()`
+                5. `.mkString()`
+                6. `.substring()`
+                7. `.endsWith()`
+                8. `.contains()`
+                9. `.matches()`
+                10. `.trim()`
+                11. `.length`
+                12. `.isEmpty`
+                13. `.drop(2)`
+                14. `s"hello, $name, age is: ${6 * 7}"`: string interpolates
+                15. `raw"no\\\\escape!" => no\\\\escape!`: raw string will not escape
+                16. `f"${math.pi}%.5f"`: printf-style formatting, when no `"%"`, then default is "%s", the toString value
+        4. List
+            1. Literal
+                1. `Nil`: same as `List()`, an emply list
+            2. Methods
+                1. `::`: prepend a new element to the beginning of an existing list and returns the new list
+                2. `:::`: concatenas list
+                3. `.length`: get the number of the elements
+                4. `.isEmpty`: determine whether the list is empty
+                5. `.head`: get the first element
+                6. `.last`: get the last element
+                7. `.init`: get all but the last element
+                8. `.tail`: get all but the first element
+                9. `.reverse` - gets a reversed list
+                10. `.sorted` - gets a sorted list
+                11. `.count(s => s.length == 4)`: get number of elements with length 4
+                12. `.exists(s => s == "util")`: determin whether exists a `"util"` element
+                13. `.contains("util")`
+                14. `.forall(s => s.endsWith("l"))`: determin whether all elements ends with "l"
+                15. `.mkString(",")`: makes a string using giving delemiter
+                16. `.map(s => s + "y")`
+                17. `.foreach(s => println(s)) <=> .foreach(println)`: execute on each elements
+                18. `.filter(s => s.length == 4)`
+                19. `.filterNot(s => s.length == 4)`: get the opposite elements of `.filter()`
+                20. `.reduceLeft((a, b) => if (a.length > b.length) a else b`
+                21. `.sortWith((s, t) => s.charAt(0).toLower < t.charAt(0).toLower)`: get list ordered by the first lowered char
+                22. `.drop(2)`: drop the first 2 elements
+                23. `.dropRight(2)`: drop the rightmost 2 elements
+            
+            ```scala
+            val oneTwo = List(1, 2)
+            val threeFour = List(3, 4)
+            oneTwo ::: threeFour
+            1 :: oneTwo <=> oneTwo.::(1)
+            val ontTwoThree = 1 :: 2 :: 3 :: Nil
+            ```
+        5. Array
+            1. Property
+                1. Arrays are mutable, but fixed-length
+                2. when using new Array, 0 for numeric array, false for Boolean, null for String, and other types
+            2. Initialization
+                1. `new Array[T](length)`
+                2. `Array(1, 3, 5)`
+                2. `Array("hello", "world")`
+        6. LIstBuffer
+            1. Methods
+                1. `.toList`
+        7. Tuple
+            1. Literal
+                1. `val pair = (99, "buffer")`: initialize using `()`
+                2. `pair._2`: accesse individual with ._N, N starts with 1, up to 22
+                3. `.productIterator`
+        8. Set & Map
+            1. Methods
+                1. `+=`: append a item, not apply for immutable
+                2. `.contains("A')`
+            
+            ```scala
+            val x = new HashMap[Int, String]()
+            var direct = Map("A" -> "About", "B" -> "Before")
+            direct += ("C" -> "Center")
+            direct("C")
+            ```
+        9. Range
+            1. Methods
+                1. `0 to 3`
+                2. `0 until 3`
+        10. Source
+            1. Methods
+                1. `Source.fromFile("hello.txt")`: read file from normal path
+                2. `Source.fromResource("hello.txt").getLines`: read file from `resources` folder, `scalaVersion >= 2.13`
+        11. Console
+            1. `Console.print()`
+            2. `Console.println()`: end with a linefeed
+            2. `Console.out.println()`
+            2. `Console.err.println()`
+        12. File
+            1. `.listFiles()`
+            2. `.getName()`
+3. Syntax
+    1. Base
+        1. `[// ...,  /* ... */]`: comments
+        2. `Summer.scala`: scala file name follows the class or object name
+    2. Identifiers
+        1. start with a letter or underscore, then letters, digits, or underscore
+        2. `$` also counts as a letter, reserved for compiler which should be avoided to use
+        3. avoid identifiers like `__init__` or `name_` for underscore has other non-identifiers usage in scala
+        4. use camel-case style, e.g., `toString`
+        5. constant names also follow camel-case, with the first character upper case, such as `XOffset`
+        6. followings should start with a lower case letter
+            1. variable
+            2. field
+            3. method parameter
+            4. function
+        7. following should start with an upper case letter
+            1. class
+            2. trait
+    3. Variable
+        1. `val`: initialized once, cannot be reassigned, similar to a final variable in Java
+        2. `var`: can be reassigned
+        3. same name variable can not be defined in the same scope, different scope can define same name
+    4. Operator
+        1. Infix Operator
+            1. infix operator invokes method to sit between the object and the parameter
+            2. when the method takes multiple arguments, the arguments should be placed in parentheses `()`
+
+            ```scala
+            val s = "hello, world"
+            s indexOf 'o' <=> s.indexOf('o')
+            s indexOf ("o", 5) <=> s.indexOf("o", 5)
+            ```
+        2. Prefix Operator: only the following four identifiers can be prefix operator
+            1. `+`
+            2. `-`
+            3. `!`
+            4. `~`
+
+            ```scala
+            -2.0 <=> (2.0).unary_-
+            !a <=> a.unary_!
+            ~1 <=> 1.unary_~
+            ```
+        3. Postfix Operator
+            1. postfix operators takes no arguments, which can be invoked without a dot or parentheses
+            2. if the method has side effects, the convention is to include parentheses, such as `.print()`
+
+            ```scala
+            val s = "hello, world"
+            s toLowerCase <=> s.toLowerCase
+            ```
+        4. Arithmetic Operator
+            1. `+ - * / %`
+            2. `+ -`: positive and negative sign
+        5. Relational Operator 
+            1. `> < >= <= != ==`
+            2. `this == that <=> if (this eq null) that eq null else this.equals(that)`: compares contents
+            3. `this eq that, this ne that`: determine whether this and that beging the same object reference
+            4. `null == null && null eq null <=> true`
+        6. Logical Operator
+            1. `&&, ||`: short-circuit
+            2. `&, |`: all will be evaluated
+            3. `!`: invert a boolean value
+        7. Bitwise Operator
+            1. `& | ^ ~`
+            2. `<<, >>`: signed left and right shift
+            2. `>>>`: unsigned right shift
+            2. `<<, >>>`: fill with zeroes
+            2. `>>`: fill with the highest sign bit of the left-hand value
+        8. Assignment Operator
+            1. `= += -+ *= /= %=`
+        9. Operator Precedence
+            1. Property
+                1. precedence is based on the first character of the methods used in operator notation
+                2. if the operator ends with `=`, and the operator is not in `<=, >=, ==, !=`, then the precedence is same as `=`
+            2. Order
+                1. all other special characters
+                2. `+ / %`
+                3. `+ -`
+                4. `:`
+                5. `== !=`
+                6. `< >`
+                7. `&`
+                8. `^`
+                9. `|`
+                10. all letters
+                11. all assignment operators
+            3. Examples
+                1. `2 << 2 + 2 <=> 2 << (2 + 2)`: the starting `<` is lower than `+`
+                2. `x *= y + 1 <=> x *= (y + 1)`: `*=` precedence is same as `=`
+        10. Operator Associativity
+            1. the associativity is based on the last character `:`
+            2. any operator ending with a `:` is invoked on its right operand, passing in the left operand
+            3. methods ending with other character are invoked on their left operand, passing in the right operand
+
+            ```scala
+            a * b <=> a.*(b)
+            a ::: b <=> b.:::(a)
+            ```
+4. Control Structure
+    1. Conditonal
+        1. If
+            1. `if (boolean) {...}`: `if` returns a value
+            2. `if (boolean) {...} else if {...} else {...}`
+        2. Match
+            1. return a value, which can be stored in a variable
+            2. any kind of constant can be used, not just integer-type, enum and string contants in Java's case statements
+            3. no break at the end of each case. it is implicit, therefore there is no fall through from one to the next
+            4. `_` for unknown value
+        
+        ```scala
+        val firstArg = if (args.length > 0) args(0) else ""    
+        firstArg match {
+            case "salt" => println("pepper")
+            case "chips" => println("salsa")
+            case "eggs" => println("bacon")
+            case _ => println("huh?")
+        }
+        
+        val firstArg = if (!args.isEmpty) args(0) else ""
+        val friend = firstArg match {
+                case "salt" => "pepper"
+                case "chips" => "salsa"
+                case "eggs" => "bacon"
+                case _ => "huh?"
+        }           
+        println(friend)
+        ```
+    2. Looping
+        1. while: return a `Unit` value
+            1. `while (boolean) {...}`
+            2. `do {...} while (boolean)`
+        2. for
+            1. `for (arg <- args) {...}`: arg is a val type generated in each iteration;  `<-` means `in`
+            2. `for (arg <- args if arg % 2 == 0) {...}`: with `if` filter
+            3. `for (arg <- args; brg <- brgs) {...}`: multiple `<-`
+            4. `for (...) yield {...}`: `yield` collects values in each iteration
+        3. Notes
+            1. scala leaves out break and continue command, they do not mesh well with function literals
+            2. the simplest approach is to replace every continue by an if and every break by a boolean variable
+
+            ```scala
+            // use ()
+            for (
+                file <- filesHere
+                if file.getName.endsWith(".scala");
+                line <- fileLines(file)
+                if line.trim.matches(pattern) 
+                ) println(file + ": " + line.trim)
+
+            // use {}, for multiple line ";" can be omitted
+            for {
+                 file <- filesHere
+                    if file.getName.endsWith(".scala")
+                    line <- fileLines(file)
+                    trimmed = line.trim
+                    if trimmed.matches(pattern)  
+                } println(file + ": " + trimmed)
+
+            // use yield 
+            val forLineLengths =
+                for {
+                    file <- filesHere
+                    if file.getName.endsWith(".scala")
+                    line <- fileLines(file)
+                    trimmed = line.trim
+                    if trimmed.matches(".*for.*")  
+                } yield trimmed.length
+
+            // java use break and continue
+            int i = 0;
+            boolean foundIt = false;
+            while (i < args.length) {
+                if (args[i].startsWith("-")) {
+                  i = i + 1;
+                  continue;
+                }
+                if (args[i].endsWith(".scala")) {
+                  foundIt = true;
+                  break;
+                }
+                i = i + 1;
+            }
+
+            // scala use var variables
+            var i = 0
+            var foundIt = false
+            while (i < args.length && !foundIt) {
+                if (!args(i).startsWith("-")) {
+                    if (args(i).endsWith(".scala"))
+                        foundIt = true
+                }
+                i = i + 1
+            }
+
+            // scala use a recursive function, without var variables
+            def searchFrom(i: Int): Int =
+                if (i >= args.length) -1
+                 else if (args(i).startsWith("-")) searchFrom(i + 1) 
+                 else if (args(i).endsWith(".scala")) i
+                 else searchFrom(i + 1)
+            val i = searchFrom(0)
+            ```
+5. Function
+    1. Properties
+        1. parameters are val type
+        2. `return` at the end of function can be omitted, then the last value is returned
+        3. a function's side effect is generally defined as mutating state external to the method or performing io action
+        4. a functional style prefers vals, immutable objects, and methods without side effects
+        5. use vars, mutable objects, and methods with side effects when you have a specific need and justification for them
+    2. Literal
+        1. `(x: Int, y: Int) => x + y`: specify parameter type
+        2. `someNumbers.filter(x => x > 0)`: without parameter type
+        3. `someNumbers.filter(_ > 0)`: `_` is placeholder for parameter syntax, when each parameter appears only once
+        4. `someNumbers.foreach(println _) <=> someNumbers.foreach(x => println(x))`: placeholder for an entire parameter list, not just a single parameter, require a space between function name and `_`
+        5. `someNumbers.foreach(println _) <=> someNumbers.foreach(println)`: `_` can be omitted when a function is invoked as a method reference, otherwise causes an error
+    3. Definition
+        1. regular
+
+            ```scala
+            def max(x: Int, y: Int): Int = {
+                if (x > y) x
+                else y
+            }
+            ```
+        2. with repeated parameters
+
+            ```scala
+            def echo(args: String*) = {}
+            echo(arr: _*)
+            ```
+        3. with named arguments
+
+            ```scala
+            def speed(distance: Float, time: Float): Float = distance / time
+            speed(distance = 100, time = 10)
+            ```
+        4. with default parameter values
+
+            ```scala
+            def printTime(out: java.io.PrintStream = Console.out) =
+                out.println("time = " + System.currentTimeMillis())
+            ```
+        5. multiple parameter lists
+
+            ```scala
+            def myLoop(start: Int, end: Int) (callback: Int => Unit) = {
+                for (i <- Range(start, end)) {
+                    callback(i)
+                }
+            }
+
+            myLoop(start = 5, end = 10) { i => println(s"i has value ${i}")}
+            ```
