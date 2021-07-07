@@ -292,15 +292,15 @@
             3. client config `SPARK_CONF_DIR` including 
                 1. `spark-defaults.conf`
                     1. `spark.yarn.archive: hdfs://hpmaster:9000/user/spark/archive/spark-libs.jar`: copy from server value
+            4. client config environment `LD_LIBRARY_PATH=$HADOOP_HOME/lib/native:${LD_LIBRARY_PATH}`
         3. Problems
             1. `No route to host`: try to close the client server firewall and make sure all server can visit each other
             2. `org.apache.hadoop.security.AccessControlException`: use `setfacl` to add permission
     5. Access
         1. spark standalone cluster
             1. `spark://hpmaster:7077`: connect to spark standalone cluster
-            2. `http://hpmaster:8080`: master info
-            3. `http://hpslave:8081`: workder info
-            4. `http://hpmaster:4040`: driver application info
+            3. `http://hpmaster:8088`: application info, hadoop yarn info
+            5. `http://client:4040`: driver application info
     6. Commands
         1. `./bin/run-example SparkPi 10`
         2. `spark-shell`
@@ -322,7 +322,7 @@
                 8. `--total-executor-cores 10`
                 9. `--class org.apache.spark.examples.SparkPi`:  main class
                 10. `--driver-class-path postgresql-42.2.14.jar`
-                11. `--jars first.jar,second.jar`: dependent jars`
+                11. `--jars first.jar,second.jar`: dependent jars
                 12. `--py-files {.py | .zip | .egg}`: for Python, mulpile python files can be packaged into a zip or egg file
                 13. `--queue thequeue`
                 14. `--supervise`: for spark standalone cluster, make sure the driver restart when fail with a none-zero exit code
@@ -345,7 +345,7 @@
 
 ## Spark
 
-1. Spark Cluster
+1. Using Scala
     1. Initialization
         1. `import org.apache.spark.sql.SparkSession`
         2. `val spark = SparkSession.builder.appName("spark example").config("spark.config.opiton", "config-value").getOrCreate()`
@@ -355,6 +355,9 @@
         3. `import spark.implicits._`: implicitly convert RDDs to DataFrames or use `$`notation
     3. Stop
         1. `spark.stop()`
+    4. Application
+        1. define a `main()` method instead of extending `scala.App`. Subclasses of `scala.App` may not work correctly
+
     ```scala
     import org.apache.spark.sql.SparkSession
     
@@ -382,12 +385,15 @@
         val fields = schemaString.split(" ").map(fieldName => StructField(fieldName, StringType, nullable = true))
         val schema = StructType(fields)
         ```
-    2. `org.apache.spark.sql.Row`: a generic untyped JVM object
-    3. `org.apache.spark.sql.types.StructField`
+    2. Cache: pull data sets into a cluster-wide in-memory cache
+        1. `.cache()`
+        2. `.persist()`
+    3. `org.apache.spark.sql.Row`: a generic untyped JVM object
+    4. `org.apache.spark.sql.types.StructField`
         1. `val field = StructField(fieldName, StringType, nullable = true]`
-    4. `org.apache.spark.sql.types.StructType`
+    5. `org.apache.spark.sql.types.StructType`
         1. `val schema = StructType(field1, field2, ...)`
-    5. `org.apache.spark.rdd.RDD`
+    6. `org.apache.spark.rdd.RDD`
         1. Properties
             1. an immutable distributed collection partitioned across nodes
             2. strong-typed and operate in parallel with low-level API transformations and actions
@@ -411,10 +417,7 @@
             3. `.take(10)`
             4. `.collect()`
             5. `.reduce()`
-        5. Cache
-            1. `.cache()`
-            2. `.persist()`
-    6. `org.apache.spark.sql.Dateset`
+    7. `org.apache.spark.sql.Dateset`
         1. Properties
             1. a collection of compile-time safety and strong-typed JVM objects dictated by a case class
             2. APIs are all expressed as lambda functions
@@ -436,14 +439,22 @@
             4. `.show`
             5. `.explain([true, false])`: `[default: false]`
         4. Type-Safe
-            1. `.map(d => (d.name, d.age == 10))`
-            2. `.flatMap()`
-            3. `.filter(d => d.age === 10)`
+            1. Transforms
+                1. `.map(d => (d.name, d.age == 10))`
+                2. `.flatMap()`
+                3. `.filter(d => d.age === 10)`
+                4. `groupByKey()`
+            2. Actions
+                1. `.count()`
+                2. `.first()`
+                3. `.take(10)`
+                4. `.show([10])`
+                5. `.reduce()`
         5. Untyped (aka DataFrame operations): `import spark.implicits._`
             1. `.select("name", "age"); .select($"name", $"age" + 1, $"age" > 20)`
             2. `.filter($"age" === 10)`
             3. `.groupBy("age", "name").count()`
-    7. `org.apache.spark.sql.DataFrame`
+    8. `org.apache.spark.sql.DataFrame`
         1. Properties
             1. an alias for a collection of generic objects of `Dataset[Row]` and organized into named columns
             2. faster and suitable for interactive analysis

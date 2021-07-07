@@ -5,16 +5,20 @@
 1. References
     1. [scaladex](https://index.scala-lang.org/)
     2. [download](https://www.scala-sbt.org/download.html)
+    3. [sbt-intro](https://zhuanlan.zhihu.com/p/82727108)
 2. Configurations
     1. `build.sbt`
         1. Project
-            * `name := "hello-world"`
-            * `version := "1.0"`
-            * `scalaVersion := "2.13.1"`
-            * `organization := "ch.epfl.scala"`
-            * `scalacOptions ++= Seq("-unchecked", "-deprecation")`
+            1. `name := "hello-world"`
+            2. `version := "1.0"`
+            3. `scalaVersion := "2.13.1"`
+            4. `organization := "ch.epfl.scala"`
+            5. `scalacOptions ++= Seq("-unchecked", "-deprecation")`
         2. Library
-            1. stored path: `~/.ivy2/cache`
+            1. stored path
+                1. windows: `%LOCALAPPDATA%\Coursier\Cache\v1`
+                2. Linux: `~/.cache/coursier/v1`
+                3. Mac: `~/Library/Caches/Coursier/v1`
             2. format: `groupID % artifactID % revision % test`
                 1. `%%` instead of `%` after groupID will add scala version to the artifactID name
                 2. `% test` just for test usage
@@ -23,15 +27,30 @@
         * `sbt.version=1.3.2`
     3. `~/.sbt/repositories`
 
-    ```ini
-    [repositories]
-    local
-    huaweicloud-maven: https://repo.huaweicloud.com/repository/maven/
-    maven-central: https://repo1.maven.org/maven2/
-    sbt-plugin-repo: https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
-    ```
-4. `${SBT_HOME|/conf/sbtconfig.txt`
-    * `-XX:MaxPermSize=256m`: `Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=256m; support was removed in 8.0`
+        ```ini
+        [repositories]
+        local
+        huaweicloud-maven: https://repo.huaweicloud.com/repository/maven/
+        maven-central: https://repo1.maven.org/maven2/
+        sbt-plugin-repo: https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases, [organization]/[module]/(scala_[scalaVersion]/)(sbt_    [sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
+        ```
+    4. Settings
+        1. File
+            1. windows: `${SBT_HOME|/conf/sbtconfig.txt` 
+            2. Linux: `${SBT_HOME|/conf/sbtopts
+        2. Contents
+            1. `-XX:MaxPermSize=256m`: `Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=256m; support was removed in 8.0`
+            2. `-Dsbt.override.build.repos=true`: use global repo
+3. Commands
+    1. `sbtVersion`
+    2. `show overrideBuildResolvers`: `true` when `-Dsbt.override.build.repos=true`
+    3. `show fullResolvers`: show `sbtconfig.txt` config
+    4. `compile`
+    5. `run`
+    6. `~run`: run automatically when files update
+    7. `package`: generate jar files
+4. Problems
+    1. `intellij sbt: Extracting structure failed`: make sure `sbt.version` is correct
 
 ## Scala Language
 
@@ -173,20 +192,23 @@
             2. Methods
                 1. `+`: concatenate strings
                 2. `*`: concatenate string multiple times
-                3. `.to[Byte, Short, Int, Long, Float, Double]()`
-                4. `.toLowerCase() .toUpperCase() .captalize()`
-                5. `.mkString()`
-                6. `.substring()`
-                7. `.endsWith()`
-                8. `.contains()`
-                9. `.matches()`
-                10. `.trim()`
-                11. `.length`
-                12. `.isEmpty`
-                13. `.drop(2)`
-                14. `s"hello, $name, age is: ${6 * 7}"`: string interpolates
-                15. `raw"no\\\\escape!" => no\\\\escape!`: raw string will not escape
-                16. `f"${math.pi}%.5f"`: printf-style formatting, when no `"%"`, then default is "%s", the toString value
+                3.  `.length`
+                4.  `.isEmpty`
+                5. `.toLowerCase()`
+                6. `.toUpperCase()`
+                7. `.captalize()`
+                8. `.[toByte, toShort, toInt, toLong, toFloat, toDouble]()`
+                9. `.mkString()`
+                10. `.substring()`
+                11. `.split()`
+                12. `.endsWith()`
+                13. `.matches()`
+                14. `.contains()`
+                15. `.trim()`
+                16. `.drop(2)`
+                17. `s"hello, $name, age is: ${6 * 7}"`: string interpolates
+                18. `raw"no\\\\escape!" => no\\\\escape!`: raw string will not escape
+                19. `f"${math.pi}%.5f"`: printf-style formatting, when no `"%"`, then default is "%s", the toString value
         3. List
             1. Literal
                 1. `Nil`: same as `List()`, an emply list
@@ -619,7 +641,7 @@
 
             val ca = ChecksumAccumulator.calculate("Every value is an object.")
             ```
-        3. APP trait
+        3. `scala.APP` trait
             1. work like a singleton object with a main method, use `args` to access command-line arguments
 
             ```scala
