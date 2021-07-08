@@ -581,7 +581,7 @@ Configurations
 
 1. References
     1. [docopt](http://docopt.org/)
-    2. [Command-line syntax key](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/command-line-syntax-key)
+    2. [Command-line syntax](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/command-line-syntax-key)
 2. Command Line Style
     1. elements
         1. program and (sub)command name
@@ -590,7 +590,7 @@ Configurations
             1. short: start with `-`
                 1. `-l`
                 2. `-o output.csv`: option with argument
-                3. `-abc`: use stacked way, equivalent to `-a -b -c`
+                3. `-abc`: stack way, equivalent to `-a -b -c`
                 4. `-fFILE`: equivalent to `-f FILE`, may ambiguous to stacked short options
             2. long: start with `--`
                 1. `--list`
@@ -614,89 +614,112 @@ Configurations
         1. `my_program (move | cp | delete) [-p | -r] <file>...`
         2. `my_program [options] <path>`
         3. `my_program [options] [--] <file>...`
-3. Conditional
+3. Conditional Structure
+    1. `if`
 
-    ```sh
-    case $(uname -s) in
-    Darwin|Linux)
-        ...
-        ;;
-    MINGW*|MSYS_NT*)
-        ...
-        ;;
+        ```sh
+        if expr; then
+            ...
+        elif expr; then
+            ...
+        else
+            ...
+        fi
+        ```
+
+    2. `case`
     
-    *)
-        ...
-        ;;
-    ecac
+        ```sh
+        case $(uname -s) in
+            Darwin|Linux)
+                ...
+                ;;
+            MINGW*|MSYS_NT*)
+                ...
+                ;;
+    
+            *)
+                ...
+                ;;
+        ecac
     ```
 4. Environment Variable
     1. `PATH`
     2. `SHLVL`: shell level
-5. System
-    1. `reboot`: reboot the computer
-6. Basic
-    1. `uname -s => [Linux, Darwin, MINGW*|MSYS_NT*]`
-    2. `users`: current logging users
-    3. `basename`
-    4. `dirname`
-    5. `set`: displays environment variables and shell functions
-        1. `set -e`: exit whenever produces a false result 
-        2. `set +e`: continues executing when meets false
-    6. `exit 1`: exit with return value 1 immediately
-7. User
-    1. `/etc/passwd`: created users file
-    2. `adduser -M user_name`
-        1. `-M, --no-create-home`: create user without login directory
-        2. `-d, --home-dir`: login directory
-        3. `-s, --shell`: user's login shell
-    3. `userdel user_name`
-    4. `passwd user_name`: set password
-    5. `chown -R user_name: user_home`
-    6. `groupadd groupname`
-    7. `usermod`:
-        1. `usermod -d user_home user_name`: set login directory
-        2. `usermod -s $(which zsh) user_name`: set default shell
-        3. `usermod -a -G groupname username`
-    8. `gpasswd -a user_name wheel`: `wheel`, add sudo priviledge
-8. SSH
-    1. File structure
-        1. `id_rsa.pub`: public key, put this key to remote `authorized_keys` file, then you can use key to login remote without password
-        2. `id_rsa`: private key, must keep safely
-        3. `authorized_keys`: store public key, must have **mode 600**, otherwise it will not work, and you have to enter password
-        4. `known_hosts`: trust hosts
-    2. Operations
-        1. `ssh-keygen -t rsa`: create ssh keys, public and private
-        2. `ssh-copy-id user@host`: copy public key to remote user
-        3. `ssh user@host 'mkdir -p .ssh && cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub`: same as `2`
-    3. Problems
-        1. `/usr/bin/ssh-copy-id: ERROR: No identities found`: make sure public key has been generated, using `ssh-keygen`
-9. Systemd
-    1. `/usr/lib/systemd/system/`: system path
-    2. `/etc/systemd/system/`: customize path, overrides system config
-    3. `systemctl edit service_name.service`: changes systemd parameters
-    4. `systemctl set-default multi-user.target`: text mode
-    5. `systemctl set-default graphical.target`: graphical mode
-    6. `systemctl [start multi-user.target, graphical.target]`
-    7. `systemctl [start, stop, status, restart, reload, enable, disenable] service_name.service`
-
-    ```ini
-
-    # service file example
-    #/usr/lib/systemd/system/postgresql.service
-    ...
-    [Service]
-    ...
-    Environment=PGPORT=5432
-    ...
+5. Commands
+    1. System
+        1. reboot the computer: `reboot`
+        2. cpu
+            1. Linux: `cat /proc/cpuinfo`
+                1. `physical id`: physical cpus
+                2. `cpu id`: cores in each phisical cpu
+                3. `processor`: threads in each core
+                4. total threads = `1 * 2 * 3`
+            2. Windows: `wmic` enter interactive shell, then execute `cpu get`
+                1. NumberOfCores
+                2. NumberOfLogicalProcessors
+    2. Basic
+        1. `uname -s => [Linux, Darwin, MINGW*|MSYS_NT*]`
+        2. `users`: current logging users
+        3. `basename`
+        4. `dirname`
+        5. `set`: displays environment variables and shell functions
+            1. `set -e`: exit whenever produces a false result 
+            2. `set +e`: continues executing when meets false
+        6. `exit 1`: exit with return value 1 immediately
+    3. User
+        1. `/etc/passwd`: created users file
+        2. `adduser -M user_name`
+            1. `-M, --no-create-home`: create user without login directory
+            2. `-d, --home-dir`: login directory
+            3. `-s, --shell`: user's login shell
+        3. `userdel user_name`
+        4. `passwd user_name`: set password
+        5. `chown -R user_name: user_home`
+        6. `groupadd groupname`
+        7. `usermod`:
+            1. `usermod -d user_home user_name`: set login directory
+            2. `usermod -s $(which zsh) user_name`: set default shell
+            3. `usermod -a -G groupname username`
+        8. `gpasswd -a user_name wheel`: `wheel`, add sudo priviledge
+    4. SSH
+        1. File structure
+            1. `id_rsa.pub`: public key, put this key to remote `authorized_keys` file, then you can use key to login remote without     password
+            2. `id_rsa`: private key, must keep safely
+            3. `authorized_keys`: store public key, must have **mode 600**, otherwise it will not work, and you have to enter password
+            4. `known_hosts`: trust hosts
+        2. Operations
+            1. `ssh-keygen -t rsa`: create ssh keys, public and private
+            2. `ssh-copy-id user@host`: copy public key to remote user
+            3. `ssh user@host 'mkdir -p .ssh && cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub`: same as `2`
+        3. Problems
+            1. `/usr/bin/ssh-copy-id: ERROR: No identities found`: make sure public key has been generated, using `ssh-keygen`
+    5. Systemd
+        1. `/usr/lib/systemd/system/`: system path
+        2. `/etc/systemd/system/`: customize path, overrides system config
+        3. `systemctl edit service_name.service`: changes systemd parameters
+        4. `systemctl set-default multi-user.target`: text mode
+        5. `systemctl set-default graphical.target`: graphical mode
+        6. `systemctl [start multi-user.target, graphical.target]`
+        7. `systemctl [start, stop, status, restart, reload, enable, disenable] service_name.service`
     
-    # /etc/systemd/system/postgresql.service
-    .include /usr/lib/systemd/system/postgresql.service
-    [Service]
-    Environment=PGPORT=5433
-    ...
-    ```
-10. Firewall
-    1. `firewall-cmd --permanent --add-service=postgresql`
-    2. `firewall-cmd --permanent --add-port=6379/tcp`
-    3. `systemctl reload firewalld`
+        ```ini
+    
+        # service file example
+        #/usr/lib/systemd/system/postgresql.service
+        ...
+        [Service]
+        ...
+        Environment=PGPORT=5432
+        ...
+        
+        # /etc/systemd/system/postgresql.service
+        .include /usr/lib/systemd/system/postgresql.service
+        [Service]
+        Environment=PGPORT=5433
+        ...
+        ```
+    6.  Firewall
+        1. `firewall-cmd --permanent --add-service=postgresql`
+        2. `firewall-cmd --permanent --add-port=6379/tcp`
+        3. `systemctl reload firewalld`

@@ -1,0 +1,206 @@
+# Spark
+
+1. References
+    [spark-notes](https://spoddutur.github.io/spark-notes/)
+2. Concepts
+    1. ApplicationMaster
+        1. negotiate resources from the ResourceManager
+        2. work with NodeManager to execute
+        3. monitor containers and resource their resources consumption
+        4. when run on yarn, may need 1G memory and 1 Executor
+    2. Task: smallest unit of execution working on a partition of data
+    2. Executor: slots where tasks run as threads
+        1. vcores: number of tasks (threads) running within the executor
+        2. memory: cached data within the executor
+            1. full memory requested to yarn per executor = `spark.executor.memory` + `spark.yarn.executor.memoryOverhead`
+            2. `spark.yarn.executor.memoryOverhead` = `Max(384MB, 7% of spark.executor-memory)`
+    3. MemoryOverhead
+3. Using Scala
+    1. Initialization
+        1. `import org.apache.spark.sql.SparkSession`
+        2. `val spark = SparkSession.builder.appName("spark example").config("spark.config.opiton", "config-value").getOrCreate()`
+    2. Configurations
+        1. `spark.conf.get("spark.config.option")`
+        2. `spark.conf.set("spark.config.option", "other-config-value")`
+        3. `import spark.implicits._`: implicitly convert RDDs to DataFrames or use `$`notation
+    3. Stop
+        1. `spark.stop()`
+    4. Application
+        1. define a `main()` method instead of extending `scala.App`. Subclasses of `scala.App` may not work correctly
+
+    ```scala
+    import org.apache.spark.sql.SparkSession
+    
+    object SimpleApp {
+        def main(args: Array[String]) {
+            val spark = SparkSession.builder.appName("Simple Application").getOrCreate()
+            // this import is needed to use the $-notation
+            import spark.implicits._
+            spark.read.textFile(logFile)
+            ...
+            spark.stop()
+        }
+    }
+    ```
+4. Data Structure
+    1. Examples
+
+        ```scala
+        case class Person(name: String, age: Long)
+
+        val peopleRDD = spark.sparkContext.textFile("people.txt")
+        val rowRDD = peopleRDD.map(_.split(",")).map(attrs => Row(attrs(0), attrs(1).trim.toInt))
+
+        val schemaString = "name age"
+        val fields = schemaString.split(" ").map(fieldName => StructField(fieldName, StringType, nullable = true))
+        val schema = StructType(fields)
+        ```
+    2. Cache: pull data sets into a cluster-wide in-memory cache
+        1. `.cache()`
+        2. `.persist()`
+    3. `org.apache.spark.sql.Row`: a generic untyped JVM object
+    4. `org.apache.spark.sql.types.StructField`
+        1. `val field = StructField(fieldName, StringType, nullable = true]`
+    5. `org.apache.spark.sql.types.StructType`
+        1. `val schema = StructType(field1, field2, ...)`
+    6. `org.apache.spark.rdd.RDD`
+        1. Properties
+            1. an immutable distributed collection partitioned across nodes
+            2. strong-typed and operate in parallel with low-level API transformations and actions
+        2. Initialization
+            1. From File: `sparkContext` is used to create RDD
+                1. `val peopleRDD = spark.sparkContext.textFile("people.txt")`
+            2. From Spark
+                1. `val peopleRDD = spark.sparkContext.makeRDD(1 to 5)`
+                2. `val peopleRDD = spark.sparkContext.parallelize(1 t0 5)`
+            3. From DataSet
+                1. `val peopleRDD = peopleDS.rdd`
+            4. From DataFrame
+                1. `val peopleRDD = peopleDF.rdd`
+        3. Transforms
+            1. `.map()`: `df.map(d => d.getAs[Long]("age"))`
+            2. `.flatMap()`
+            3. `.filter()`
+        4. Actions
+            1. `.count()`
+            2. `.first()`
+            3. `.take(10)`
+            4. `.collect()`
+            5. `.reduce()`
+    7. `org.apache.spark.sql.Dateset`
+        1. Properties
+            1. a collection of compile-time safety and strong-typed JVM objects dictated by a case class
+            2. APIs are all expressed as lambda functions
+            3. `Dataset[T]` typed API is optimized for data engineering tasks
+        2. Initialization
+            1. From Spark
+                1. `spark.range(100)`
+            2. From Scala
+                1. `val peopleDS = Seq(Person("Andy", 32)).toDS()`
+                2. `val peopleDS = spark.createDateset(List(Person("Andy", 32), Person("Bob", 12)))`
+            3. From RDD
+                1. `val peopleDS = peopleRDD.toDS()`
+            4. From DataFrame
+                1. `val peopleDS = peopleDF.as[Person]`
+        3. Metadata
+            1. `.columns`
+            2. `.schema`
+            3. `.printSchema`
+            4. `.show`
+            5. `.explain([true, false])`: `[default: false]`
+        4. Type-Safe
+            1. Transforms
+                1. `.map(d => (d.name, d.age == 10))`
+                2. `.flatMap()`
+                3. `.filter(d => d.age === 10)`
+                4. `groupByKey()`
+            2. Actions
+                1. `.count()`
+                2. `.first()`
+                3. `.take(10)`
+                4. `.show([10])`
+                5. `.reduce()`
+        5. Untyped (aka DataFrame operations): `import spark.implicits._`
+            1. `.select("name", "age"); .select($"name", $"age" + 1, $"age" > 20)`
+            2. `.filter($"age" === 10)`
+            3. `.groupBy("age", "name").count()`
+    8. `org.apache.spark.sql.DataFrame`
+        1. Properties
+            1. an alias for a collection of generic objects of `Dataset[Row]` and organized into named columns
+            2. faster and suitable for interactive analysis
+        2. Initialization
+            1. From Files
+                1. `val peopleDF = spark.read.json("people.json")`
+                2. `val userDF = spark.read.format("json").load("users.json")`
+                3. `val userDF = spark.read.load("users.parquet")`
+                4. `val userDF = spark.sql("select * from parquet.users.parquet")`
+            2. From Scala
+                1. `val PeopleDF = List(("Andy", 32)).toDF("name", "age")`
+                2. `val PeopleDF = spark.createDataFrame(List(Person("Andy", 32), Person("Bob", 12)))`
+            3. From RDD
+                1. `val peopelDF = peopleRDD.toDF`
+                2. `val peopelDF = spark.createDataFrame(rowRDD, schema)`
+5. SQL
+    1. `df.createOrReplaceTempView("people"); spark.sql("select * from people")`
+    2. `df.createGlobalTempView("people"); spark.sql("select * from global_temp.people")`
+    3. `spark.newSession().sql("select * from global_temp.people")`
+6. Source & Sink
+    1. Examples
+        1. `spark.read.format("csv").option("header", "true").load("users.csv")`
+        2. `usersDF.write.format("csv").option("header", "true").mode(modeValue).save("users.csv")`
+        3. `usersDF.write.partitionBy("color").bucketBy(10, "name").sortBy("age").saveAsTable("t_par_but")`
+    2. Path
+        1. `file:///home/...`
+        2. `hdfs://..`
+    3. Mode: `import org.apache.spark.sql.SaveMode`
+        1. `SaveMode.ErrorIfExists`: default
+        2. `SaveMode.Append`
+        3. `SaveMode.Overwrite`
+        4. `SaveMode.Ignore`: do nothing when exists
+    4. Format
+        1. csv
+            1. all
+                1. `.option("sep", ",")`
+                2. `.option("header", "true")`
+            2. load
+                1. `.option("inferSchema, "true")`
+                2. `.option("pathGlobalFilter", "*.parquet")`
+        2. json
+        3. parquet
+            1. load
+                1. `.option("mergeSchema", "true")`
+            2. write
+                1. `.partitionBy("name")`
+                2. `.parquet("data/test_table/key=1")`
+        4. orc
+            1. write
+                1. `option("orc.bloom.filter.columns", "color")`
+                2. `option("orc.dictionary.key.threshold", "1.0")`
+                3. `option("orc.column.encoding.direct", "name")`
+        5. jdbc
+            1. all
+                1. `.option("url", "jdbc:postgresql://host:post/dbname?user=u&password=p")`
+                    1. PostgreSQL: `jdbc:postgresql://host:post/dbname?user=u&password=p`
+                    2. MySQL: `jdbc:mysql://host:post/dbname?user=u&password=p`
+                    3. SQLServer 2000: `jdbc:sqlserver://host:port;database=dbname;user=u;password=p`
+                2. `.option("user", "username")`
+                3. `.option("password", "password")`
+                4. `.[option("driver","org.postgresql.Driver")]`: can omit
+                5. `.option("dbtable", "schema.tablename")`
+                6. `.option("numPartitions", 10)`
+                7. `.jdbc("url", "schema.table", connectionProperties)`
+                8. `.explain([true, false])`: execute plan
+            2. load
+                1. `option("query", "select * from t1")`
+                2. `option("partitionColumn", "column")`
+                3. `option("lowerBound", 10)`
+                4. `option("upperBound", 1000)`
+                5. `option("fetchsize", 100)`
+                6. `option("customSchema", "id DECIMAL(38, 0), name STRING")`
+            3. write
+                1. `option("createTableColumnTypes", "name CHAR(64), comments VARCHAR(1024)")`
+                2. `option("batchsize", 1000)`
+                3. `option("truncate", true)`: `[default: false]`, when `SaveMode.Overwrite` enabled, spark just truncate table, not drop
+                4. `option("isolationLevel", "READ_UNCOMMITED")`: `[default: READ_UNCOMMITED]`
+        6. libsvm
+
