@@ -7,7 +7,9 @@
     4. [hadoop command](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/FileSystemShell.html)
     6. [zookeeper](https://zookeeper.apache.org/)
     7. [Kafka](http://kafka.apache.org/)
-    8. [Remote Spark Jobs on YARN](https://theckang.github.io/2015/12/31/remote-spark-jobs-on-yarn.html)
+    8. [debezium-connector](https://debezium.io/releases/1.5/)
+    9. [kafka-connectors](https://www.confluent.io/product/connectors/)
+    10. [Remote Spark Jobs on YARN](https://theckang.github.io/2015/12/31/remote-spark-jobs-on-yarn.html)
 2. Java
     1. Envs
 
@@ -187,11 +189,66 @@
             3. `log.dirs=/path/1,/path/2`: where to store log files
             4. `zookeeper.connect=zoo1:2181,zoo2:2181...`: connect to zookeeper
             5. `num.partitions=2`: partitions per topic. more partitions allow greater parallelism for consumption, but result in more files across the brokers
+        2. `config/connect-distributed.properties`
+            1. `bootstrap.servers=host1:9092,host2:9092`: any available broker is enough
+            2. `group.id=connect-cluster`: unique name for the cluster, used in forming the connect cluster group, must not conflict with consumer group IDs
+            3. `key.converter=org.apache.kafka.connect.json.JsonConverter`: default
+            4. `value.converter=org.apache.kafka.connect.json.JsonConverter`: default
+            5. `key.converter.schemas.enable=true`: default
+            6. `value.converter.schemas.enable=true`: default
+            7. `offset.flush.interval.ms=10000`
+            8. `rest.port=8083`: `[default: 8083]`
+            9. `plugin.path=/usr/local/share/java,/usr/local/share/kafka/plugins,/opt/connectors`: set additional connector jar path
+            10. config storage
+                1. Notes
+                    1. `[default: connect-configs]`
+                    2. should be a single partition
+                    3. highly replicated, compacted, 3 or more, no more than broker numbers
+                2. Settings
+                    1. `config.storage.topic=connect-configs`
+                    2. `config.storage.replication.factor=1`: for one broker
+                3. Commands
+                    1. `kafka-topics.sh --create --topic connect-configs --bootstrap-server hpmaster:9092 --partitions 1 --replication-factor 2 --config cleanup.policy=compact`
+            11. offset storage
+                1. Notes
+                    1. `[default: connect-offsets]`
+                    2. should be multiple partition
+                    3. replicated, compact, no more than broker numbers
+                2. Settings
+                    1. `offset.storage.topic=connect-offsets`
+                    2. `offset.storage.replication.factor=1`: for one broker
+                    3. `offset.storage.partitions=25`
+                3. Commands
+                    1. `kafka-topics.sh --create --topic connect-offsets --bootstrap-server hpmaster:9092 --partitions 10 --replication-factor 2 --config cleanup.policy=compact`
+            12. status storage
+                1. Notes
+                    1. `[default: connect-status]`
+                    2. should be multiple partition
+                    3. replicated, compact, no more than broker numbers
+                2. Settings
+                    1. `status.storage.topic=connect-offsets`
+                    2. `status.storage.replication.factor=1`: for one broker
+                    3. `status.storage.partitions=5`
+                3. Commands
+                    1. `kafka-topics.sh --create --topic connect-status --bootstrap-server hpmaster:9092 --partitions 10 --replication-factor 2 --config cleanup.policy=compact`
     4. Services
-        1. start: `kafka-server-start.sh [-daemon] config/server.properties`
-        2. stop: `kafka-server-stop.sh config/server.properties`
-        3. topic: `kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092`
-        4. jps: `kafka`
+        1. start for every host: `kafka-server-start.sh [-daemon] <config/server.properties>`
+        2. stop for every host: `kafka-server-stop.sh <config/server.properties>`
+        3. topic:
+            1. list: `kafka-topics.sh --list --bootstrap-server localhost:9092`
+            2. create: `kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092`
+                1. `--topic <topic-name>`
+                2. `--replication-factor <num>`
+                3. `--partitions <num>`
+            3. describe: `kafka-topics.sh --describe --topic quickstart-events --bootstrap-server localhost:9092`
+            4. delete: `kafka-topics.sh --delete --topic quickstart-events --bootstrap-server localhost:9092`
+        4. connectors
+            1. standalone
+                1. start: `connect-standalone.sh <config/connect-standalone.properties> <connector1.properties> [<connector2.properties>...]`
+            2. cluster
+                1. start: `connect-distributed.sh [-daemon] <config/connect-distributed.properties>`
+                2. list connectors: `curl -X GET -H 'Content-Type: application/json' -i 'http://hpmaster:8083/connectors`
+        5. jps: `kafka`
     5. Commands
         1. producer (write): `kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092`
         2. consumer (read): `kafka-console-consumer.sh --topic quickstart-events --from-beginning --bootstrap-server localhost:9092`

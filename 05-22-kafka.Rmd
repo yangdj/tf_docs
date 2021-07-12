@@ -7,10 +7,12 @@
         3. to **process** streams of events as they occur or retrospectively
     2. Functions
         1. distributed
-        2. high scalable
-        3. high available
-        4. fault-tolerant
-        5. secure manner
+        2. high available
+        3. high scalable
+        4. high throughout
+        5. high performance
+        6. fault-tolerant
+        7. secure manner
 2. Concepts
     1. Architect
         1. Servers
@@ -19,9 +21,9 @@
         2. Clients: talk to Kafka servers
     2. Event: also called record or message, record data happened
         1. Structure
-            1. events organized and durably stored in *topics*, similar to a folder in a filesystem, and the events are the files in that folder
-            2. topics are **partitioned**
-                1. a topic is spread over a number of buckets located on different brokers.
+            1. events: organized and durably stored in *topics*, similar to a folder in a filesystem, and the events are the files in that folder
+            2. topics:
+                1. partitioned, spread over a number of buckets located on different brokers
                 2. new event published to a topic, is actually appended one of the topic's partition
                 3. the same event key event are written to the same partition
                 4. any consumer of a given topic-partition will always read that partition's events in exactly the same order as they were written
