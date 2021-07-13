@@ -243,11 +243,8 @@
             3. describe: `kafka-topics.sh --describe --topic quickstart-events --bootstrap-server localhost:9092`
             4. delete: `kafka-topics.sh --delete --topic quickstart-events --bootstrap-server localhost:9092`
         4. connectors
-            1. standalone
-                1. start: `connect-standalone.sh <config/connect-standalone.properties> <connector1.properties> [<connector2.properties>...]`
-            2. cluster
-                1. start: `connect-distributed.sh [-daemon] <config/connect-distributed.properties>`
-                2. list connectors: `curl -X GET -H 'Content-Type: application/json' -i 'http://hpmaster:8083/connectors`
+            1. standalone: `connect-standalone.sh <config/connect-standalone.properties> <connector1.properties> [<connector2.properties>...]`
+            2. cluster: `connect-distributed.sh [-daemon] <config/connect-distributed.properties>`
         5. jps: `kafka`
     5. Commands
         1. producer (write): `kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092`

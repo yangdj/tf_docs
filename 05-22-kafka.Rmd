@@ -1,6 +1,11 @@
 # Kafka
 
-1. About
+1. References
+    1. [Debezium Connector](https://debezium.io/releases/1.5/)
+    2. [Kafka Connectors](https://www.confluent.io/product/connectors/)
+    3. [Kafka Connector REST API](https://docs.confluent.io/3.0.0/connect/userguide.html)
+    4. [Debezium for MySQL Properties](https://debezium.io/documentation/reference/connectors/mysql.html#mysql-connector-properties)
+2. Usage
     1. Capabilities
         1. to **publish** (write) and **subscribe** to (read) streams of events
         2. to **store** streams of events durably and reliably for as long as you want
@@ -13,7 +18,7 @@
         5. high performance
         6. fault-tolerant
         7. secure manner
-2. Concepts
+3. Concepts
     1. Architect
         1. Servers
             1. Broker: storage layer
@@ -34,3 +39,53 @@
             2. value
             3. timestamp
             4. headers: optional
+4. Connectors
+    1. Command
+        1. list connectors: `curl -X GET http://ip:port/connectors`
+        2. crerate new connector: `curl -X POST -H "Content-Type:application/json" --data @mysql.properties.json http://hpmaster:8083/connectors`
+        3. delete a connector: `curl -X DELETE http://ip:port/connectors/<connector-name>`
+        4. restart a connector: `curl -X POST http://ip:port/connectors/<connector-name>/restart`
+        5. status: `curl -X GET http://ip:port/connectors/<connector-name>/status`
+        6. config: `curl -X GET http://ip:port/connectors/<connector-name>/config`
+        7. config change: `curl -X PUT -H "Content-Type:application/json" http://ip:port/connectors/<connector-name>/config`
+        8. topics: `curl -X PUT http://ip:port/connectors/<connector-name>/topics`
+        9. list tasks: `curl -X GET http://ip:port/connectors/<connector-name>/tasks`
+        10. get a task: `curl -X GET http://ip:port/connectors/<connector-name>/tasks/<task-id>`
+        11. task status: `curl -X GET http://ip:port/connectors/<connector-name>/tasks/<task-id>/status`
+    2. Common connectors
+        1. Debezium for MySQL
+            1. Configurations
+                1. `name: <debm_mysql_connctor>`: connector name
+                2.  `connector.class: io.debezium.connector.mysql.MySqlConnector`
+                3.  `database.hostname: <hpmaster>`
+                4.  `database.port: <3306>`
+                5.  `database.user: <ttl>`
+                6.  `database.password: <ttl>`
+                7.  `database.server.id: <1000>`
+                    1. a random number between 5400 and 6400 is generated, which can be specified explicitly
+                    2. this connector joins the MySQL database cluster as another server with this unique ID
+                    3. must unique across all currently-running database processes in the MySQL cluster
+                8.  `database.server.name: <debm_mysql>`:  topic for consumer recording DDL operation
+                9.  `database.whitelist: <debm>`: use `database.include.list`
+                10. `database.include.list: db1,db2`: a optional, comma-separated list of regular expressions
+                11. `database.exclude.list: db1,db2`: do not set `database.include.list` and `database.exclude.list` together
+                12. `table.include.list: tb1,tb2`
+                13. `table.exclude.list: tb1,tb2`
+                14. `column.include.list`
+                15. `column.exclude.list`
+                16. `database.history.kafka.topic: <his.debm_mysql>`: internal use only, should not used by consumers
+                17. `database.history.kafka.bootstrap.servers: <hpmaster:9092>`
+                18. `include.schema.changes: <true>`: monitor schema change, write to the topic `database.server.name`
+                19. `include.query: <true>`: record sql, need `binlog_rows_query_log_events=ON` in mysql
+                20. `snapshot.mode: {<default: initial>, when_needed, never, schema_only, schema_only_recovery}`
+            2. Topics
+                1. `<database.history.kafka.topic>`: record DDL operations (SQL and binlog position)
+                2. `<database.server.name>`: DDL topic
+                3. `<database.server.name>.<databasname>.<tablename>`: DML topic name for every table created by connector
+            3. Events
+                1. `op`: DML operation
+                    1. `c`: insert
+                    2. `u`: update
+                    3. `d`: delete
+                2. `ddl`
+                3. `databasename`

@@ -7,3 +7,19 @@
     4. `update mysql.user set authentication_string=password('*****') where user='root'`
     5. remove `skip-grant-tables` content
     6. restart the server
+2. open binlog
+    1. `/etc/my.cnf`: for 5.7
+        1. `[mysqld]`
+            1. `server-id=<1>`: 5.7+
+            2. `log_bin=mysql-bin`
+            3. `binlog_format=row`
+            4. `binlog_row_image={<default: FULL>, minimal, noblob}`: use default, only set according to demand, `show variables like 'binlog_row_image'`
+            5. `expire_logs_days=10`
+            6. `binlog_rows_query_log_events=ON`: make binlog containning original SQL statements
+    2. restart MySQL
+    3. check: `SELECT variable_value FROM information_schema.global_variables WHERE variable_name='log_bin'`
+    4. user access
+        1. `CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';`
+        2. `GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'user';`
+        3. `FLUSH PRIVILEGES;`
+
