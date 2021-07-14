@@ -1,20 +1,24 @@
 # Spark
 
 1. References
-    [spark-notes](https://spoddutur.github.io/spark-notes/)
+    1. [spark-notes](https://spoddutur.github.io/spark-notes/)
+    2. [spark-examples](https://github.com/apache/spark/blob/master/examples/src/main/scala/org/apache/spark/examples/streaming/DirectKafkaWordCount.scala)
 2. Concepts
-    1. ApplicationMaster
+    1. driver
+        1. run user's `main()` function
+        2. execute parallel operations on a cluster
+    3. ApplicationMaster
         1. negotiate resources from the ResourceManager
         2. work with NodeManager to execute
         3. monitor containers and resource their resources consumption
         4. when run on yarn, may need 1G memory and 1 Executor
-    2. Task: smallest unit of execution working on a partition of data
-    2. Executor: slots where tasks run as threads
+    4. Task: smallest unit of execution working on a partition of data
+    5. Executor: slots where tasks run as threads
         1. vcores: number of tasks (threads) running within the executor
         2. memory: cached data within the executor
             1. full memory requested to yarn per executor = `spark.executor.memory` + `spark.yarn.executor.memoryOverhead`
             2. `spark.yarn.executor.memoryOverhead` = `Max(384MB, 7% of spark.executor-memory)`
-    3. MemoryOverhead
+    6. MemoryOverhead
 3. Using Scala
     1. Initialization
         1. `import org.apache.spark.sql.SparkSession`
@@ -55,49 +59,106 @@
         val fields = schemaString.split(" ").map(fieldName => StructField(fieldName, StringType, nullable = true))
         val schema = StructType(fields)
         ```
-    2. Cache: pull data sets into a cluster-wide in-memory cache
-        1. `.cache()`
-        2. `.persist()`
-    3. `org.apache.spark.sql.Row`: a generic untyped JVM object
-    4. `org.apache.spark.sql.types.StructField`
+    2. `org.apache.spark.sql.Row`: a generic untyped JVM object
+    3. `org.apache.spark.sql.types.StructField`
         1. `val field = StructField(fieldName, StringType, nullable = true]`
-    5. `org.apache.spark.sql.types.StructType`
+    4. `org.apache.spark.sql.types.StructType`
         1. `val schema = StructType(field1, field2, ...)`
-    6. `org.apache.spark.rdd.RDD`
+    5. `org.apache.spark.rdd.RDD`
         1. Properties
-            1. an immutable distributed collection partitioned across nodes
+            1. an immutable distributed collection of JVM objects partitioned across nodes
             2. strong-typed and operate in parallel with low-level API transformations and actions
-        2. Initialization
-            1. From File: `sparkContext` is used to create RDD
+        2. Structure
+            1. Descriptions
+                1. record data information, only load them when take *action* functions
+                1. serve like a representation of a DAG of instructions, telling how to retrieve data and how to do with it, similar to a SQL execution plan
+            2. Members
+                1. a list of partitions to get data partitions
+                1. a function for computing each split
+                2. a list of dependencies on other RDDs
+                3. optionally, a Partitioner for key-value RDDs
+                4. optionally, a list of preferred locations to compute each split on (support data localization)
+        3. Initialization
+            1. From Driver
+                1. `val data = Array(1, 2, 3, 4, 5)`
+                2. `val peopleRDD = spark.sparkContext.makeRDD(data)`
+                3. `val peopleRDD = spark.sparkContext.parallelize(data)`
+            2. From File: `sparkContext` is used to create RDD
                 1. `val peopleRDD = spark.sparkContext.textFile("people.txt")`
-            2. From Spark
-                1. `val peopleRDD = spark.sparkContext.makeRDD(1 to 5)`
-                2. `val peopleRDD = spark.sparkContext.parallelize(1 t0 5)`
             3. From DataSet
                 1. `val peopleRDD = peopleDS.rdd`
             4. From DataFrame
                 1. `val peopleRDD = peopleDF.rdd`
-        3. Transforms
-            1. `.map()`: `df.map(d => d.getAs[Long]("age"))`
-            2. `.flatMap()`
-            3. `.filter()`
-        4. Actions
-            1. `.count()`
-            2. `.first()`
-            3. `.take(10)`
-            4. `.collect()`
+        4. Transforms: lazy, create a new dataset from an existing one, do not compute their results right away
+            1. Value
+                1. `.map()`: `df.map(d => d.getAs[Long]("age"))`
+                2. `.flatMap()`
+                3. `.filter()`
+                4. `.distinct()`
+                5. `.union()`
+            2. Key Value
+                1. `.reduceByKey()`
+                2. `.groupByKey()`
+                3. `.sortByKey()`
+        5. Actions: return a value to the driver program after running a computation on the dataset
+            1. `.collect()`: fetch entire RDD to the driver program
+            2. `.take([n])`: fetch first `n` number of elements, safer then `.collect()` when dataset is large
+            3. `.count()`
+            4. `.first()`
             5. `.reduce()`
+            6. `.foreach()`
+            7. `.countByKey()`
+        6. Cache: persist an RDD datasets into a cluster-wide in-memory cache
+            1. `.persist()`
+            2. `.cache()`: a shorthand for using the default storage level `StorageLevel.MEMORY_ONLY`
+        7. Shared Variable
+            1. Broadcast: keep a read-only variable cached on each machine rather than shipping a copy of it with tasks
+                1. `val v = sc.broadcast(Array(1, 2, 3))`
+                2. `v.value`
+                3. `v.unpersist()`: release resources that the broadcast variable copied onto executors. it will be re-broadcast when needed
+                4. `v.destroy()`: permanently release all resources used by the broadcast variable which can’t be used after that
+            2. Accumulator
+                1. Properties
+                    1. only added to through an associative and commutative operation
+                    2. used to implement counters or sums
+                    3. natively supports accumulators of numeric types
+                    4. tasks running on a cluster can add to it using `add()` method, but they cannot read its value.
+                    5. only the driver program can read the accumulator's value, using `value` method
+                    6. performed inside **actions only**, Spark guarantees that each task’s update to the accumulator will only be applied once, restarted tasks will not update the value. In transformations, each task's update may be applied more than once if re-executed
+                2. type
+                    1. `sc.longAccumulator("my accumulator')`
+                    2. `sc.DoubleAccumulator("my accumulator')`
+                3. Examples
+                    1. `val acc = sc.longAccumulator("My Accumulator")`
+                    2. `sc.parallelize(Array(1, 2, 3, 4)).foreach(x => acc.add(x))`
+                    3. `acc.value`
+    6. `org.apache.spark.sql.DataFrame`
+        1. Properties
+            1. an alias for a collection of generic objects of `Dataset[Row]` and organized into named columns
+            2. faster and suitable for interactive analysis
+        2. Initialization
+            1. From Driver
+                1. `val PeopleDF = List(("Andy", 32)).toDF("name", "age")`
+                2. `val PeopleDF = spark.createDataFrame(List(Person("Andy", 32), Person("Bob", 12)))`
+            2. From Files
+                1. `val peopleDF = spark.read.json("people.json")`
+                2. `val userDF = spark.read.format("json").load("users.json")`
+                3. `val userDF = spark.read.load("users.parquet")`
+                4. `val userDF = spark.sql("select * from parquet.users.parquet")`
+            3. From RDD
+                1. `val peopelDF = peopleRDD.toDF`
+                2. `val peopelDF = spark.createDataFrame(rowRDD, schema)`
     7. `org.apache.spark.sql.Dateset`
         1. Properties
             1. a collection of compile-time safety and strong-typed JVM objects dictated by a case class
             2. APIs are all expressed as lambda functions
             3. `Dataset[T]` typed API is optimized for data engineering tasks
         2. Initialization
-            1. From Spark
-                1. `spark.range(100)`
-            2. From Scala
+            1. From Driver
                 1. `val peopleDS = Seq(Person("Andy", 32)).toDS()`
                 2. `val peopleDS = spark.createDateset(List(Person("Andy", 32), Person("Bob", 12)))`
+            2. From Spark
+                1. `spark.range(100)`
             3. From RDD
                 1. `val peopleDS = peopleRDD.toDS()`
             4. From DataFrame
@@ -124,22 +185,6 @@
             1. `.select("name", "age"); .select($"name", $"age" + 1, $"age" > 20)`
             2. `.filter($"age" === 10)`
             3. `.groupBy("age", "name").count()`
-    8. `org.apache.spark.sql.DataFrame`
-        1. Properties
-            1. an alias for a collection of generic objects of `Dataset[Row]` and organized into named columns
-            2. faster and suitable for interactive analysis
-        2. Initialization
-            1. From Files
-                1. `val peopleDF = spark.read.json("people.json")`
-                2. `val userDF = spark.read.format("json").load("users.json")`
-                3. `val userDF = spark.read.load("users.parquet")`
-                4. `val userDF = spark.sql("select * from parquet.users.parquet")`
-            2. From Scala
-                1. `val PeopleDF = List(("Andy", 32)).toDF("name", "age")`
-                2. `val PeopleDF = spark.createDataFrame(List(Person("Andy", 32), Person("Bob", 12)))`
-            3. From RDD
-                1. `val peopelDF = peopleRDD.toDF`
-                2. `val peopelDF = spark.createDataFrame(rowRDD, schema)`
 5. SQL
     1. `df.createOrReplaceTempView("people"); spark.sql("select * from people")`
     2. `df.createGlobalTempView("people"); spark.sql("select * from global_temp.people")`

@@ -272,8 +272,8 @@
     3. Functions
         1. Query
             1. `SHOW FUNCTIONS`
-            2. `DESC FUNCTIONS func_name`
-            3. `DESC FUNCTIONS EXTENDED func_name`
+            2. `DESC FUNCTION func_name`
+            3. `DESC FUNCTION EXTENDED func_name`
         2. UDFs: user defined functions
             1. General
                 1. `version()`

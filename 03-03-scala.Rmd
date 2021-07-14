@@ -230,9 +230,10 @@
                 14. `.contains()`
                 15. `.trim()`
                 16. `.drop(2)`
-                17. `s"hello, $name, age is: ${6 * 7}"`: string interpolates
-                18. `raw"no\\\\escape!" => no\\\\escape!`: raw string will not escape
-                19. `f"${math.pi}%.5f"`: printf-style formatting, when no `"%"`, then default is "%s", the toString value
+                17. `.stripMargin()`
+                18. `s"hello, $name, age is: ${6 * 7}"`: string interpolates
+                19. `raw"no\\\\escape!" => no\\\\escape!`: raw string will not escape
+                20. `f"${math.pi}%.5f"`: printf-style formatting, when no `"%"`, then default is "%s", the toString value
         3. List
             1. Literal
                 1. `Nil`: same as `List()`, an emply list
@@ -716,3 +717,7 @@
         import scala.collection.mutable
         var helloSet = mutable.Set("hello", "world")
         ```
+9. Common Class
+    1. `System`
+        1. `System.exit(<n>)`
+        2. `System.err.println()`
