@@ -22,7 +22,7 @@
 3. Using Scala
     1. Initialization
         1. `import org.apache.spark.sql.SparkSession`
-        2. `val spark = SparkSession.builder.appName("spark example").config("spark.config.opiton", "config-value").getOrCreate()`
+        2. `val spark = SparkSession.builder().appName("spark example").config("spark.config.opiton", "config-value").getOrCreate()`
     2. Configurations
         1. `spark.conf.get("spark.config.option")`
         2. `spark.conf.set("spark.config.option", "other-config-value")`
@@ -132,27 +132,11 @@
                     1. `val acc = sc.longAccumulator("My Accumulator")`
                     2. `sc.parallelize(Array(1, 2, 3, 4)).foreach(x => acc.add(x))`
                     3. `acc.value`
-    6. `org.apache.spark.sql.DataFrame`
-        1. Properties
-            1. an alias for a collection of generic objects of `Dataset[Row]` and organized into named columns
-            2. faster and suitable for interactive analysis
-        2. Initialization
-            1. From Driver
-                1. `val PeopleDF = List(("Andy", 32)).toDF("name", "age")`
-                2. `val PeopleDF = spark.createDataFrame(List(Person("Andy", 32), Person("Bob", 12)))`
-            2. From Files
-                1. `val peopleDF = spark.read.json("people.json")`
-                2. `val userDF = spark.read.format("json").load("users.json")`
-                3. `val userDF = spark.read.load("users.parquet")`
-                4. `val userDF = spark.sql("select * from parquet.users.parquet")`
-            3. From RDD
-                1. `val peopelDF = peopleRDD.toDF`
-                2. `val peopelDF = spark.createDataFrame(rowRDD, schema)`
-    7. `org.apache.spark.sql.Dateset`
+    6. `org.apache.spark.sql.Dateset`
         1. Properties
             1. a collection of compile-time safety and strong-typed JVM objects dictated by a case class
             2. APIs are all expressed as lambda functions
-            3. `Dataset[T]` typed API is optimized for data engineering tasks
+            3. `Dataset[T]` typed API is optimized for data engineering tasks 
         2. Initialization
             1. From Driver
                 1. `val peopleDS = Seq(Person("Andy", 32)).toDS()`
@@ -185,6 +169,22 @@
             1. `.select("name", "age"); .select($"name", $"age" + 1, $"age" > 20)`
             2. `.filter($"age" === 10)`
             3. `.groupBy("age", "name").count()`
+    7. `org.apache.spark.sql.DataFrame`
+        1. Properties
+            1. an alias for a collection of generic objects of `Dataset[Row]` and organized into named columns
+            2. faster and suitable for interactive analysis
+        2. Initialization
+            1. From Driver
+                1. `val PeopleDF = List(("Andy", 32)).toDF("name", "age")`
+                2. `val PeopleDF = spark.createDataFrame(List(Person("Andy", 32), Person("Bob", 12)))`
+            2. From Files
+                1. `val peopleDF = spark.read.json("people.json")`
+                2. `val userDF = spark.read.format("json").load("users.json")`
+                3. `val userDF = spark.read.load("users.parquet")`
+                4. `val userDF = spark.sql("select * from parquet.users.parquet")`
+            3. From RDD
+                1. `val peopelDF = peopleRDD.toDF`
+                2. `val peopelDF = spark.createDataFrame(rowRDD, schema)`
 5. SQL
     1. `df.createOrReplaceTempView("people"); spark.sql("select * from people")`
     2. `df.createGlobalTempView("people"); spark.sql("select * from global_temp.people")`

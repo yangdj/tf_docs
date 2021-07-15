@@ -77,7 +77,12 @@
                 17. `database.history.kafka.bootstrap.servers: <hpmaster:9092>`
                 18. `include.schema.changes: <true>`: monitor schema change, write to the topic `database.server.name`
                 19. `include.query: <true>`: record sql, need `binlog_rows_query_log_events=ON` in mysql
-                20. `snapshot.mode: {<default: initial>, when_needed, never, schema_only, schema_only_recovery}`
+                20. `snapshot.mode`
+                    1. `<default: initial>`
+                    2. `when_needed`
+                    3. `never`: need the binlog contains all the data about table including DDL statements, otherwise cause an error
+                    4. `schema_only`: capture the current schema of the database, and then start reading the binlog at the latest position(most recent change), **suit for merging with history data**
+                    5. `schema_only_recovery`
             2. Topics
                 1. `<database.history.kafka.topic>`: record DDL operations (SQL and binlog position)
                 2. `<database.server.name>`: DDL topic
