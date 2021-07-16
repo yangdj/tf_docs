@@ -22,4 +22,30 @@
         1. `CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';`
         2. `GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'user';`
         3. `FLUSH PRIVILEGES;`
+3. Command
+    1. Grant: `grant <privilege>... on <dbname>.<table> to 'user'@'host'`
+    2. Revoke: `revoke <privilege>... on <dbname>.<table> from <user>`
+      1. Privileges
+        1. `all`
+        2. Table Level
+            1. `create`
+            2. `index`
+            3. `alter`
+            4. `drop`
+            5. `select`
+            6. `insert`
+            7. `update`
+            8. `delete`
+        3.  Administrative Level: for the whole database, should use `on *.*`
+            1. `create user`
+            2. `super`
+            3. `shutdown`
+            4. `show databases`
+            5. `process`
+            6. `reload`
+                1. `flush privileges`
+                2. `flush tables`
+                3. `flush logs`
+            7. `replication slave`
+            8. `replication client`
 

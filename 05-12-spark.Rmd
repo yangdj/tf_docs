@@ -26,7 +26,9 @@
     2. Configurations
         1. `spark.conf.get("spark.config.option")`
         2. `spark.conf.set("spark.config.option", "other-config-value")`
-        3. `import spark.implicits._`: implicitly convert RDDs to DataFrames or use `$`notation
+        3. `import spark.implicits._`
+            1. implicitly convert RDDs to DataFrames or use `$-notation`
+            2. provide Encoder for most common types automatically
     3. Stop
         1. `spark.stop()`
     4. Application
@@ -58,12 +60,15 @@
         val schemaString = "name age"
         val fields = schemaString.split(" ").map(fieldName => StructField(fieldName, StringType, nullable = true))
         val schema = StructType(fields)
+
+        val peopleDF = spark.createDataFrame(rowRDD, schema)
         ```
     2. `org.apache.spark.sql.Row`: a generic untyped JVM object
-    3. `org.apache.spark.sql.types.StructField`
-        1. `val field = StructField(fieldName, StringType, nullable = true]`
-    4. `org.apache.spark.sql.types.StructType`
-        1. `val schema = StructType(field1, field2, ...)`
+    3. `org.apache.spark.sql.types.StructField`: `val field = StructField(fieldName, StringType, nullable = true]`
+        1. Types
+            1. `StringType`
+            2. `LongType`
+    4. `org.apache.spark.sql.types.StructType`: `val schema = StructType(field1, field2, ...)`
     5. `org.apache.spark.rdd.RDD`
         1. Properties
             1. an immutable distributed collection of JVM objects partitioned across nodes
@@ -71,13 +76,13 @@
         2. Structure
             1. Descriptions
                 1. record data information, only load them when take *action* functions
-                1. serve like a representation of a DAG of instructions, telling how to retrieve data and how to do with it, similar to a SQL execution plan
+                2. serve like a representation of a DAG of instructions, telling how to retrieve data and how to do with it, similar to a SQL execution plan
             2. Members
                 1. a list of partitions to get data partitions
-                1. a function for computing each split
-                2. a list of dependencies on other RDDs
-                3. optionally, a Partitioner for key-value RDDs
-                4. optionally, a list of preferred locations to compute each split on (support data localization)
+                2. a function for computing each split
+                3. a list of dependencies on other RDDs
+                4. optionally, a Partitioner for key-value RDDs
+                5. optionally, a list of preferred locations to compute each split on (support data localization)
         3. Initialization
             1. From Driver
                 1. `val data = Array(1, 2, 3, 4, 5)`
@@ -151,7 +156,6 @@
             1. `.columns`
             2. `.schema`
             3. `.printSchema`
-            4. `.show`
             5. `.explain([true, false])`: `[default: false]`
         4. Type-Safe
             1. Transforms
@@ -161,14 +165,16 @@
                 4. `groupByKey()`
             2. Actions
                 1. `.count()`
-                2. `.first()`
+                2. `.collect()`
                 3. `.take(10)`
-                4. `.show([10])`
-                5. `.reduce()`
-        5. Untyped (aka DataFrame operations): `import spark.implicits._`
-            1. `.select("name", "age"); .select($"name", $"age" + 1, $"age" > 20)`
-            2. `.filter($"age" === 10)`
-            3. `.groupBy("age", "name").count()`
+                4. `.show([10])`: reformat data
+                5. `.first()`
+                6. `.reduce()`
+        5. Untyped (aka DataFrame operations): `import spark.implicits._` to use `$-notation`
+            1. `.select("name", "age")`
+            2. `.select($"name", $"age" + 1, $"age" > 20)`
+            3. `.filter($"age" === 10)`
+            4. `.groupBy("age", "name").count()`
     7. `org.apache.spark.sql.DataFrame`
         1. Properties
             1. an alias for a collection of generic objects of `Dataset[Row]` and organized into named columns
@@ -185,11 +191,11 @@
             3. From RDD
                 1. `val peopelDF = peopleRDD.toDF`
                 2. `val peopelDF = spark.createDataFrame(rowRDD, schema)`
-5. SQL
-    1. `df.createOrReplaceTempView("people"); spark.sql("select * from people")`
-    2. `df.createGlobalTempView("people"); spark.sql("select * from global_temp.people")`
-    3. `spark.newSession().sql("select * from global_temp.people")`
-6. Source & Sink
+        3. SQL
+            1. `df.createOrReplaceTempView("people"); spark.sql("select * from people")`: session scoped
+            2. `df.createOrReplaceGlobalTempView("people"); spark.sql("select * from global_temp.people")`: application scoped
+            3. `spark.newSession().sql("select * from global_temp.people")`
+5. Source & Sink
     1. Examples
         1. `spark.read.format("csv").option("header", "true").load("users.csv")`
         2. `usersDF.write.format("csv").option("header", "true").mode(modeValue).save("users.csv")`

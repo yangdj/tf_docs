@@ -134,7 +134,7 @@
             14. `-du`
             15. `-getmerge <src> <localdest>`
             16. `-setfacl`: should set `dfs.namenode.acls.enabled: true` in `hdfs-site.xml`
-                1. `hadoop fs -setfacl -m user:hadoop:rwx /user`
+                1. `hadoop fs -setfacl -m user:hadoop:rwx /user`: add `rwx` rights to user `hadoop`
        1. `hadoop jar <xxx.jar>`
 4. ZooKeeper
     1. Install

@@ -56,33 +56,39 @@
         1. Debezium for MySQL
             1. Configurations
                 1. `name: <debm_mysql_connctor>`: connector name
-                2.  `connector.class: io.debezium.connector.mysql.MySqlConnector`
-                3.  `database.hostname: <hpmaster>`
-                4.  `database.port: <3306>`
-                5.  `database.user: <ttl>`
-                6.  `database.password: <ttl>`
-                7.  `database.server.id: <1000>`
+                2. `connector.class: io.debezium.connector.mysql.MySqlConnector`
+                3. `tasks.max: <num>`
+                4. `database.hostname: <hpmaster>`
+                5. `database.port: <3306>`
+                6. `database.user: <ttl>`
+                7. `database.password: <ttl>`
+                8. `database.server.id: <1000>`
                     1. a random number between 5400 and 6400 is generated, which can be specified explicitly
                     2. this connector joins the MySQL database cluster as another server with this unique ID
                     3. must unique across all currently-running database processes in the MySQL cluster
-                8.  `database.server.name: <debm_mysql>`:  topic for consumer recording DDL operation
-                9.  `database.whitelist: <debm>`: use `database.include.list`
-                10. `database.include.list: db1,db2`: a optional, comma-separated list of regular expressions
-                11. `database.exclude.list: db1,db2`: do not set `database.include.list` and `database.exclude.list` together
-                12. `table.include.list: tb1,tb2`
-                13. `table.exclude.list: tb1,tb2`
-                14. `column.include.list`
-                15. `column.exclude.list`
-                16. `database.history.kafka.topic: <his.debm_mysql>`: internal use only, should not used by consumers
-                17. `database.history.kafka.bootstrap.servers: <hpmaster:9092>`
-                18. `include.schema.changes: <true>`: monitor schema change, write to the topic `database.server.name`
-                19. `include.query: <true>`: record sql, need `binlog_rows_query_log_events=ON` in mysql
-                20. `snapshot.mode`
+                9. `database.server.name: <debm_mysql>`:  topic for consumer recording DDL operation
+                10. `database.whitelist: <debm>`: use `database.include.list`
+                11. `database.include.list: db1,db2`: a optional, comma-separated list of regular expressions
+                12. `database.exclude.list: db1,db2`: do not set `database.include.list` and `database.exclude.list` together
+                13. `table.include.list: tb1,tb2`
+                14. `table.exclude.list: tb1,tb2`
+                15. `column.include.list`
+                16. `column.exclude.list`
+                17. `database.history.kafka.topic: <his.debm_mysql>`: internal use only, should not used by consumers
+                18. `database.history.kafka.bootstrap.servers: <hpmaster:9092>`
+                19. `include.schema.changes: <true>`: monitor schema change, write to the topic `database.server.name`
+                20. `include.query: <true>`: record sql, need `binlog_rows_query_log_events=ON` in mysql
+                21. `snapshot.locking.mode`
+                    1. `minimal`
+                    2. `minimal_percona`
+                    3. `extended`
+                    4. `None`: avoid locking when get table meta data, but may cause inconsistence when an DDL cause schema changes
+                22. `snapshot.mode`
                     1. `<default: initial>`
                     2. `when_needed`
-                    3. `never`: need the binlog contains all the data about table including DDL statements, otherwise cause an error
+                    3. `never`: need the binlog contains all the data about table including DDL statements, otherwise cause an error `Encountered change event for table some_db.some_table whose schema isn't known to this connector`
                     4. `schema_only`: capture the current schema of the database, and then start reading the binlog at the latest position(most recent change), **suit for merging with history data**
-                    5. `schema_only_recovery`
+                    5. `schema_only_recovery`: use this to recovery when `schema_only` canse an error
             2. Topics
                 1. `<database.history.kafka.topic>`: record DDL operations (SQL and binlog position)
                 2. `<database.server.name>`: DDL topic
