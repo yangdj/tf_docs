@@ -174,7 +174,8 @@
             1. `.select("name", "age")`
             2. `.select($"name", $"age" + 1, $"age" > 20)`
             3. `.filter($"age" === 10)`
-            4. `.groupBy("age", "name").count()`
+            4. `.where("sigal > 10")`
+            5. `.groupBy("age", "name").count()`
     7. `org.apache.spark.sql.DataFrame`
         1. Properties
             1. an alias for a collection of generic objects of `Dataset[Row]` and organized into named columns
