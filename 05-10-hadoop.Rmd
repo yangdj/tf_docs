@@ -10,6 +10,7 @@
     8. [debezium-connector](https://debezium.io/releases/1.5/)
     9. [kafka-connectors](https://www.confluent.io/product/connectors/)
     10. [Remote Spark Jobs on YARN](https://theckang.github.io/2015/12/31/remote-spark-jobs-on-yarn.html)
+    11. [Hive3.x](https://cwiki.apache.org/confluence/display/Hive/AdminManual+Metastore+3.0+Administration)
 2. Java
     1. Envs
 
@@ -249,7 +250,41 @@
     5. Commands
         1. producer (write): `kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092`
         2. consumer (read): `kafka-console-consumer.sh --topic quickstart-events --from-beginning --bootstrap-server localhost:9092`
-6. Scala
+6. Hive
+    1. Install
+
+        ```sh
+        HIVE_VERSION=3.1.2
+        wget https://mirrors.bfsu.edu.cn/apache/hive/hive-3.1.2/apache-hive-${HIVE_VERSION}-bin.tar.gz
+        ```
+    2. Envs
+
+        ```sh
+        export HIVE_HOME=/data/hadoop/hadoop/bin/hive/apche-hive-3.1.2
+        export PATH=${HIVE_HOME}/bin:${PATH}
+        ```
+    3. Configurations
+        1. `HIVE_CONF_DIR/hive-site.xml`
+            1. `hive.metastore.warehouse.dir: /user/hive/warehouse`: location of default database for the warehouse
+                1. `hadoop fs -mkdir /user/hive/warehouse`
+            2. `system:java.io.tmpdir: /tmp/hive/java`
+            3. `system:user.name: ${user.name}` 
+            4. `javax.jdo.option.ConnectionURL`
+                1. mysql: `jdbc:mysql://host:port/metastore?createDatabaseIfNotExist=true`
+                2. postgresql: `jdbc:postgresql://host:port/db`
+            5. `javax.jdo.option.ConnectionDriverName`: put driver jar in the folder `HIVE_HOME/lib`
+                1. mysql: `com.mysql.cj.jdbc.Driver`
+            6. `javax.jdo.option.ConnectionUserName: db_username`
+            7. `javax.jdo.option.ConnectionPassword: db_password`
+        2. `HIVE_CONF_DIR/hive-log4j2.properties`
+            1. `roperty.hive.log.dir: ${sys:java.io.tmpdir}/${sys:user.name}`
+    4. Services
+        1. initilize database: `schematool -initSchema -dbType mysql`
+            1. `Exception in thread "main" java.lang.NoSuchMethodError: com.google.common.base.Preconditions.checkArgument(ZLjava/lang/String;Ljava/lang/Object`: replace `apache-hive-3.1.2-bin/lib/guava-19.0.jar` with `hadoop-3.2.2/share/hadoop/common/lib/guava-27.0-jre.jar` 
+        2. use interactively: `$HIVE_HOME/bin/hive`
+        3. start server, default port `10000`: `$HIVE_HOME/bin/hiveserver2`
+        4. connect server: `$HIVE_HOME/bin/beeline -u jdbc:hive2://$HS2_HOST:$HS2_PORT`
+7. Scala
     1. Install
 
         ```sh
@@ -262,7 +297,7 @@
         export SCALA_HOME=/data/hadoop/hadoop/bin/scala/scala-2.12.14
         export PATH=${SCALA_HOME}/bin:${PATH}
         ```
-7. Maven
+8. Maven
     1. Install
 
         ```sh
@@ -276,7 +311,7 @@
         export PATH=${M2_HOME}/bin:${PATH}
         [export MAVEN_OPTS="-Xmx2g -XX:ReservedCodeCacheSize=1024m" # for java8+]
         ```
-8. Spark
+9. Spark
     1. Install
 
         ```sh
@@ -380,17 +415,3 @@
                 14. `--supervise`: for spark standalone cluster, make sure the driver restart when fail with a none-zero exit code
                 15. `spark-examples.jar`: application jar
                 16. `arg1 arg2 ...`: application's options
-9. Hive
-    1. Install
-
-        ```sh
-        HIVE_VERSION=2.3.7
-        wget http://mirrors.hust.edu.cn/apache/hive/hive-${MY_HIVE_VERSION}/apache-hive-${MY_HIVE_VERSION}-bin.tar.gz
-        ```
-    2. Envs
-
-        ```sh
-        HIVE_HOME
-        HIVE_CONF_DIR
-        PATH=${HIVE_HOME}/bin:${PATH}
-        ```

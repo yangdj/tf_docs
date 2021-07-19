@@ -69,7 +69,12 @@
             1. `StringType`
             2. `LongType`
     4. `org.apache.spark.sql.types.StructType`: `val schema = StructType(field1, field2, ...)`
-    5. `org.apache.spark.rdd.RDD`
+    5. `org.apache.spark.sql.SaveMode`
+        1. `SaveMode.ErrorIfExists`: default
+        2. `SaveMode.Append`
+        3. `SaveMode.Overwrite`
+        4. `SaveMode.Ignore`: do nothing when exists
+    6. `org.apache.spark.rdd.RDD`
         1. Properties
             1. an immutable distributed collection of JVM objects partitioned across nodes
             2. strong-typed and operate in parallel with low-level API transformations and actions
@@ -113,10 +118,10 @@
             5. `.reduce()`
             6. `.foreach()`
             7. `.countByKey()`
-        6. Cache: persist an RDD datasets into a cluster-wide in-memory cache
+        6.  Cache: persist an RDD datasets into a cluster-wide in-memory cache
             1. `.persist()`
             2. `.cache()`: a shorthand for using the default storage level `StorageLevel.MEMORY_ONLY`
-        7. Shared Variable
+        7.  Shared Variable
             1. Broadcast: keep a read-only variable cached on each machine rather than shipping a copy of it with tasks
                 1. `val v = sc.broadcast(Array(1, 2, 3))`
                 2. `v.value`
@@ -137,7 +142,7 @@
                     1. `val acc = sc.longAccumulator("My Accumulator")`
                     2. `sc.parallelize(Array(1, 2, 3, 4)).foreach(x => acc.add(x))`
                     3. `acc.value`
-    6. `org.apache.spark.sql.Dateset`
+    7. `org.apache.spark.sql.Dateset`
         1. Properties
             1. a collection of compile-time safety and strong-typed JVM objects dictated by a case class
             2. APIs are all expressed as lambda functions
@@ -156,7 +161,7 @@
             1. `.columns`
             2. `.schema`
             3. `.printSchema`
-            5. `.explain([true, false])`: `[default: false]`
+            4. `.explain([true, false])`: `[default: false]`
         4. Type-Safe
             1. Transforms
                 1. `.map(d => (d.name, d.age == 10))`
@@ -176,7 +181,7 @@
             3. `.filter($"age" === 10)`
             4. `.where("sigal > 10")`
             5. `.groupBy("age", "name").count()`
-    7. `org.apache.spark.sql.DataFrame`
+    8. `org.apache.spark.sql.DataFrame`
         1. Properties
             1. an alias for a collection of generic objects of `Dataset[Row]` and organized into named columns
             2. faster and suitable for interactive analysis
@@ -204,12 +209,7 @@
     2. Path
         1. `file:///home/...`
         2. `hdfs://..`
-    3. Mode: `import org.apache.spark.sql.SaveMode`
-        1. `SaveMode.ErrorIfExists`: default
-        2. `SaveMode.Append`
-        3. `SaveMode.Overwrite`
-        4. `SaveMode.Ignore`: do nothing when exists
-    4. Format
+    3. Format
         1. csv
             1. all
                 1. `.option("sep", ",")`
@@ -255,4 +255,3 @@
                 3. `option("truncate", true)`: `[default: false]`, when `SaveMode.Overwrite` enabled, spark just truncate table, not drop
                 4. `option("isolationLevel", "READ_UNCOMMITED")`: `[default: READ_UNCOMMITED]`
         6. libsvm
-
