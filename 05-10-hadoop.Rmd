@@ -260,12 +260,13 @@
     2. Envs
 
         ```sh
-        export HIVE_HOME=/data/hadoop/hadoop/bin/hive/apche-hive-3.1.2
+        export HIVE_HOME=/data/hadoop/hadoop/bin/hive/apche-hive-3.1.2-bin
+        export HIVE_CONF_DIR=/server/proj/hp/config/hive
         export PATH=${HIVE_HOME}/bin:${PATH}
         ```
     3. Configurations
         1. `HIVE_CONF_DIR/hive-site.xml`
-            1. `hive.metastore.warehouse.dir: /user/hive/warehouse`: location of default database for the warehouse
+            1. `hive.metastore.warehouse.dir: /user/hive/warehouse`: location of default database for the warehouse in the HDFS 
                 1. `hadoop fs -mkdir /user/hive/warehouse`
             2. `system:java.io.tmpdir: /tmp/hive/java`
             3. `system:user.name: ${user.name}` 
@@ -276,15 +277,43 @@
                 1. mysql: `com.mysql.cj.jdbc.Driver`
             6. `javax.jdo.option.ConnectionUserName: db_username`
             7. `javax.jdo.option.ConnectionPassword: db_password`
+            8. `hive.metastore.event.db.notification.api.auth: false`
+            9. `hive.server2.enable.doAs: false`
+            10. `[metastore.thrift.port: <default: 9083>]`
+            11. `[hive.server2.thrift.port: 10000]`
+            12. `[hive.server2.thrift.bind.host: hpmaster]`
         2. `HIVE_CONF_DIR/hive-log4j2.properties`
             1. `roperty.hive.log.dir: ${sys:java.io.tmpdir}/${sys:user.name}`
     4. Services
         1. initilize database: `schematool -initSchema -dbType mysql`
-            1. `Exception in thread "main" java.lang.NoSuchMethodError: com.google.common.base.Preconditions.checkArgument(ZLjava/lang/String;Ljava/lang/Object`: replace `apache-hive-3.1.2-bin/lib/guava-19.0.jar` with `hadoop-3.2.2/share/hadoop/common/lib/guava-27.0-jre.jar` 
-        2. use interactively: `$HIVE_HOME/bin/hive`
-        3. start server, default port `10000`: `$HIVE_HOME/bin/hiveserver2`
-        4. connect server: `$HIVE_HOME/bin/beeline -u jdbc:hive2://$HS2_HOST:$HS2_PORT`
-7. Scala
+            1. `Exception in thread "main" java.lang.NoSuchMethodError: com.google.common.base.Preconditions.checkArgument(ZLjava/lang/String;Ljava/lang/Object`: replace `${HIVE_HOME}/lib/guava-19.0.jar` with `${HADOOP_HOME}/share/hadoop/common/lib/guava-27.0-jre.jar`
+            2. `Class path contains multiple SLF4J bindings`: remove `${HIVE_HOME}/lib/log4j-slf4j-impl-2.10.0.jar`
+        2. start server
+            1. `nohup hive --service metastore &`: start metastore with default port `9083`
+            2. `nohup hive --service hiveserver2 &` or `hiveserver2`: start JDBC access with default port `10000`
+        3. connect server
+            1. beeline: `$HIVE_HOME/bin/beeline -u jdbc:hive2://hpmaster:10000 -n username -p passport`
+                1. `Concurrency mode is disabled, not creating a lock manager`: in `hive-site.xml`
+                    1. `hive.support.concurrency: true`
+                    2. `hive.txn.manager: org.apache.hadoop.hive.ql.lockmgr.DbTxnManager`
+            2. hive cli: `${HIVE_HOME}/bin/hive`
+7. Tez
+    1. Install
+
+        ```sh
+        TEZ_VERSION=0.10.0
+        wget https://mirrors.tuna.tsinghua.edu.cn/apache/tez/0.10.0/apache-tez-${TEZ_VERSION}-bin.tar.gz
+    2. Envs
+
+        ```sh
+        export TEZ_HOME=HIVE_HOME=/data/hadoop/hadoop/bin/hive/apche-tez-0.10.0-bin
+        export TEZ_CONF_DIR=/server/proj/hp/config/tez
+        ```
+    3. Configurations
+        1. put `${TEZ_HOME}/share/tez.tar.gz` to hdfs
+            1. `hadoop fs -mkdir /user/tez`
+            2. `hadoop fs -put tez.tar.gz /user/tez`
+8. Scala
     1. Install
 
         ```sh
@@ -297,7 +326,7 @@
         export SCALA_HOME=/data/hadoop/hadoop/bin/scala/scala-2.12.14
         export PATH=${SCALA_HOME}/bin:${PATH}
         ```
-8. Maven
+9. Maven
     1. Install
 
         ```sh
@@ -311,7 +340,7 @@
         export PATH=${M2_HOME}/bin:${PATH}
         [export MAVEN_OPTS="-Xmx2g -XX:ReservedCodeCacheSize=1024m" # for java8+]
         ```
-9. Spark
+10. Spark
     1. Install
 
         ```sh

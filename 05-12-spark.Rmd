@@ -229,7 +229,12 @@
                 1. `option("orc.bloom.filter.columns", "color")`
                 2. `option("orc.dictionary.key.threshold", "1.0")`
                 3. `option("orc.column.encoding.direct", "name")`
-        5. jdbc
+        5. hive
+            1. client `${HIVE_CONF_DIR}/hive-site.xml`
+                1. `hive.metastore.uris: thrift://hpmaster:9083`
+            2. `val spark = SparkSession.builder().enableHiveSupport().getOrCreate()`
+            3. `spark.sql(sql)`
+        6. jdbc
             1. all
                 1. `.option("url", "jdbc:postgresql://host:post/dbname?user=u&password=p")`
                     1. PostgreSQL: `jdbc:postgresql://host:post/dbname?user=u&password=p`
@@ -254,4 +259,4 @@
                 2. `option("batchsize", 1000)`
                 3. `option("truncate", true)`: `[default: false]`, when `SaveMode.Overwrite` enabled, spark just truncate table, not drop
                 4. `option("isolationLevel", "READ_UNCOMMITED")`: `[default: READ_UNCOMMITED]`
-        6. libsvm
+        7. libsvm
