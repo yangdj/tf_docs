@@ -51,7 +51,7 @@
         4. `core-site.xml`
             1. `fs.defaultFS: hdfs://hpmaster:9000`: NameNode URI for access hadoop filesystem
             2. `hadoop.tmp.dir: /server/proj/hp/tmp/hadoop/tmp`: temporary file directory
-            3. `[ io.file.buffer.size: 131072 ]`: size of read/write buffer used in SequenceFiles
+            3. `[io.file.buffer.size: 131072 ]`: size of read/write buffer used in SequenceFiles
             4. `[dfs.blocksize: 268435456]`: HDFS blocksize of 256MB for large file-systems
         5. `hdfs-site.xml`
             1. `dfs.namenode.name.dir: file:///server/proj/hp/data/hadoop/name`
@@ -108,7 +108,7 @@
                 2. `yarn application -kill application_id`
         4. problems
             1. `jps` no return value, remove file `/tmp/hsper**_username`
-    5. Access
+    5. Web UI
         1. `hdfs://hpmaster:9000`: hdfs file system
         2. `http://hpmaser:9870`: NameNode info, `hpmaster:50070` for hadoop2
         3. `http://hpmaster:8088`: ResourceManager info
@@ -277,8 +277,8 @@
                 1. mysql: `com.mysql.cj.jdbc.Driver`
             6. `javax.jdo.option.ConnectionUserName: db_username`
             7. `javax.jdo.option.ConnectionPassword: db_password`
-            8. `hive.metastore.event.db.notification.api.auth: false`
-            9. `hive.server2.enable.doAs: false`
+            8. `hive.server2.enable.doAs: false`
+            9. `hive.metastore.event.db.notification.api.auth: false`
             10. `[metastore.thrift.port: <default: 9083>]`
             11. `[hive.server2.thrift.port: 10000]`
             12. `[hive.server2.thrift.bind.host: hpmaster]`
@@ -297,22 +297,39 @@
                     1. `hive.support.concurrency: true`
                     2. `hive.txn.manager: org.apache.hadoop.hive.ql.lockmgr.DbTxnManager`
             2. hive cli: `${HIVE_HOME}/bin/hive`
+    5. Web UI
+        1. `http://hpmaster:10002`: hiveserver2
 7. Tez
     1. Install
 
         ```sh
-        TEZ_VERSION=0.10.0
-        wget https://mirrors.tuna.tsinghua.edu.cn/apache/tez/0.10.0/apache-tez-${TEZ_VERSION}-bin.tar.gz
+        TEZ_VERSION=0.9.2
+        wget https://mirrors.tuna.tsinghua.edu.cn/apache/tez/${TEZ_VERSION}/apache-tez-${TEZ_VERSION}-bin.tar.gz
+        ```
     2. Envs
 
         ```sh
-        export TEZ_HOME=HIVE_HOME=/data/hadoop/hadoop/bin/hive/apche-tez-0.10.0-bin
+        export TEZ_HOME=/data/hadoop/hadoop/bin/hive/apche-tez-0.10.0-bin
         export TEZ_CONF_DIR=/server/proj/hp/config/tez
+        export HADOOP_CLASSPATH=${HADOOP_HOME}/share/hadoop/common/lib/:${TEZ_HOME}/*:${TEZ_HOME}/lib/*
         ```
     3. Configurations
-        1. put `${TEZ_HOME}/share/tez.tar.gz` to hdfs
-            1. `hadoop fs -mkdir /user/tez`
-            2. `hadoop fs -put tez.tar.gz /user/tez`
+        1. `${TEZ_CONF_DIR}/tez-site.xml`
+            1. `tez.lib.uris: hdfs://hpmaster:9000/user/tez/tez.tar.gz`
+                1. `hadoop fs -mkdir /user/tez`
+                3. `hadoop fs -put ${TEZ_HOME}/share/tez.tar.gz /user/tez`
+            2. `hive.execution.engine: tez`
+            3. `[tez.use.cluster.hadoop-libs: false]`: when set, the value must be `false`
+            4. `[tez.runtime.compress: true]`
+            5. `[tez.runtime.compress.codec: org.apache.hadoop.io.compress.SnappyCodec]`
+        2. Problems
+            1. `hive Execution Error, return code -101 HADOOP_CLASSPATH`: for engine MR, add `${hadoop classpath}` to `HADOOP_CLASSPATH`
+            2. `SQL Error: Error running query: java.lang.NoClassDefFoundError: org/apache/tez/runtime/api/Event`: for engine Tez, add `${TEZ_HOME}/*:${TEZ_HOME}/lib/*` to `HADOOP_CLASSPATH`
+            3. `java.lang.NoSuchMethodError: com.google.common.base.Preconditions.checkArgument(ZLjava/lang/String;Ljava/lang/Object;)V`: switch use lower Tez version, e.g., from `0.10.0` to `0.9.2`
+            4. `java.lang.NumberFormatException: For input string: "30s"`
+                1. `hdfs-site.xml`
+                    1. `dfs.client.datanode-restart.timeout: 30`: the original value may be `30s`, not parsed to `30`, set it explicitly
+                2. no need to reboot hadoop, just restart hiverserver2 again
 8. Scala
     1. Install
 
