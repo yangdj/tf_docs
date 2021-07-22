@@ -1,0 +1,45 @@
+# LDAP
+
+1. References
+    1. [LDAP Operations](https://docs.oracle.com/cd/E19693-01/819-0995/6n3cq3apv/index.html)
+3. Install
+    ```sh
+    yum install -y openldap openldap-clients openldap-servers
+    ```
+4. Configurations
+    1. generate password olcRootPW: `slappasswd`
+    2. make file `config.ldif`, updaate olcRootPW with values from 1
+
+        ```ldif
+        # config.ldif
+        dn: olcDatabase={2}hdb,cn=config
+        changetype: modify
+        replace: olcRootDN 
+        olcRootDN: cn=admin,dc=zn,dc=com
+        -
+        replace: olcSuffix
+        olcSuffix: dc=zn,dc=com
+        -
+        replace: olcRootPW
+        olcRootPW: {SSHA}tx82Ps6erbeIFzR08Go7oeOjATkLxSuw
+        dn: olcDatabase={1}monitor,cn=config
+        changetype: modify
+        replace: olcAccess
+        olcAccess: {0}to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth"
+        read by dn.base="cn=admin,dc=zn,dc=com" read by * none
+        ```
+    3. update configurations from 2: `sudo ldapmodify -Q -Y EXTERNAL -H ldapi:/// -f config.ldif`
+    4. import schema: `for i in /etc/openldap/schema/*.ldif; do sudo ldapadd -Y EXTERNAL -H ldapi:/// -f $i;done`
+    5. test: `sudo slaptest -u`
+5. Service using `systemctl`
+6. Commands
+    1. `ldappasswd -xWD "cn=admin,dc=zn,dc=com" -S "uid=jack,ou=users,dc=zn,dc=com"`
+    2. `ldappasswd -xW -h 192.168.1.1 -D "cn=admin,dc=zn,dc=com" "uid=userid,ou=users,dc=zn,dc=com" -s dacdfa`
+    3. `ldapsearch -x -W -D "cn=admin,dc=zn,dc=com" -b "dc=zn,dc=com" "(objectclass=*)"`
+    4. `ldapsearch -x -W -h 127.0.0.1 -p 389 -D "cn=admin,dc=zn,dc=com" -b "dc=zn,dc=com" "(uid=jack)"`
+    5. `ldapadd -x -W -D "cn=admin,dc=zn,dc=com" -f base.ldif`
+    6. `ldapadd -x -W -D "cn=admin,dc=zn,dc=com" -f base.ldif`
+    7. `ldapadd -xW -h 192.168.1.1 -D 'cn=admin,dc=zn,dc=com' -f add_users.ldif`
+    8. `ldapdelete -x -W -D "cn=admin,dc=zn,dc=com" "uid=adam,ou=users,dc=zn,dc=com"`
+    9. `ldapdelete -xW -h 192.168.1.1 -D 'cn=admin,dc=zn,dc=com' "uid=caroline.xu,ou=users,dc=zn,dc=com"`
+    10. `ldapmodify -x -W -D "cn=admin,dc=zn,dc=com" -f modify.ldif`

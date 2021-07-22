@@ -269,19 +269,28 @@
             1. `hive.metastore.warehouse.dir: /user/hive/warehouse`: location of default database for the warehouse in the HDFS 
                 1. `hadoop fs -mkdir /user/hive/warehouse`
             2. `system:java.io.tmpdir: /tmp/hive/java`
-            3. `system:user.name: ${user.name}` 
-            4. `javax.jdo.option.ConnectionURL`
-                1. mysql: `jdbc:mysql://host:port/metastore?createDatabaseIfNotExist=true`
-                2. postgresql: `jdbc:postgresql://host:port/db`
-            5. `javax.jdo.option.ConnectionDriverName`: put driver jar in the folder `HIVE_HOME/lib`
-                1. mysql: `com.mysql.cj.jdbc.Driver`
-            6. `javax.jdo.option.ConnectionUserName: db_username`
-            7. `javax.jdo.option.ConnectionPassword: db_password`
-            8. `hive.server2.enable.doAs: false`
-            9. `hive.metastore.event.db.notification.api.auth: false`
-            10. `[metastore.thrift.port: <default: 9083>]`
-            11. `[hive.server2.thrift.port: 10000]`
-            12. `[hive.server2.thrift.bind.host: hpmaster]`
+            3. `system:user.name: ${user.name}`
+            4. metadata store
+                1. `javax.jdo.option.ConnectionURL`
+                    1. mysql: `jdbc:mysql://host:port/metastore?createDatabaseIfNotExist=true`
+                    2. postgresql: `jdbc:postgresql://host:port/db`
+                2. `javax.jdo.option.ConnectionDriverName`: put driver jar in the folder `HIVE_HOME/lib`
+                    1. mysql: `com.mysql.cj.jdbc.Driver`
+                3. `javax.jdo.option.ConnectionUserName: db_username`
+                4. `javax.jdo.option.ConnectionPassword: db_password`
+            5. password
+                1. without password
+                    1. `hive.server2.enable.doAs: false`
+                    2. `hive.metastore.event.db.notification.api.auth: false`
+                2. LDAP
+                    1. `hive.server2.authentication: LDAP`
+                    2. `hive.server2.authentication.ldap.url: <ldap://host:port>`
+                    3. `hive.server2.authentication.ldap.baseDN: <ou=users,dc=zn,dc=com>`
+            6.  `[metastore.thrift.port: [default: 9083]]`
+            7.  `[hive.server2.thrift.port: [default: 10000]]`
+            8.  `[hive.server2.thrift.bind.host: <hpmaster>]]`
+            9.  `[hive.server2.webui.host: <hpmaster>]`
+            10. `[hive.server2.webui.port: [default: 10002]]`
         2. `HIVE_CONF_DIR/hive-log4j2.properties`
             1. `roperty.hive.log.dir: ${sys:java.io.tmpdir}/${sys:user.name}`
     4. Services
@@ -317,7 +326,7 @@
         1. `${TEZ_CONF_DIR}/tez-site.xml`
             1. `tez.lib.uris: hdfs://hpmaster:9000/user/tez/tez.tar.gz`
                 1. `hadoop fs -mkdir /user/tez`
-                3. `hadoop fs -put ${TEZ_HOME}/share/tez.tar.gz /user/tez`
+                2. `hadoop fs -put ${TEZ_HOME}/share/tez.tar.gz /user/tez`
             2. `hive.execution.engine: tez`
             3. `[tez.use.cluster.hadoop-libs: false]`: when set, the value must be `false`
             4. `[tez.runtime.compress: true]`
@@ -343,7 +352,7 @@
         export SCALA_HOME=/data/hadoop/hadoop/bin/scala/scala-2.12.14
         export PATH=${SCALA_HOME}/bin:${PATH}
         ```
-9. Maven
+9.  Maven
     1. Install
 
         ```sh
