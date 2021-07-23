@@ -11,6 +11,7 @@
     9. [kafka-connectors](https://www.confluent.io/product/connectors/)
     10. [Remote Spark Jobs on YARN](https://theckang.github.io/2015/12/31/remote-spark-jobs-on-yarn.html)
     11. [Hive3.x](https://cwiki.apache.org/confluence/display/Hive/AdminManual+Metastore+3.0+Administration)
+    12. [HBASE](http://hbase.apache.org/book.html)
 2. Java
     1. Envs
 
@@ -339,7 +340,56 @@
                 1. `hdfs-site.xml`
                     1. `dfs.client.datanode-restart.timeout: 30`: the original value may be `30s`, not parsed to `30`, set it explicitly
                 2. no need to reboot hadoop, just restart hiverserver2 again
-8. Scala
+8. Hbase
+    1. Install
+
+        ```sh
+        HBASE_VERSION=2.3.5
+        wget https://mirrors.tuna.tsinghua.edu.cn/apache/hbase/${HBASE_VERSION}/hbase-${HBASE_VERSION}-bin.tar.gz
+        ```
+    2. Envs
+
+        ```sh
+        export HBASE_HOME={{ hbase_home }}
+        export HBASE_CONF_DIR={{ hbase_base.conf }}
+        export HBASE_LOG_DIR={{ hbase_base.log }}
+        export HBASE_MANAGES_ZK=false
+        export PATH=${HBASE_HOME}/bin:${PATH}
+        ```
+    3. Configurations
+        1. `hbase-site.xml`
+            1. `hbase.rootdir: <hdfs://hpmaster:9000/user/hbase>`: hbase will automatically create this directory
+            2. `hbase.cluster.distributed: true`
+            3. `hbase.zookeeper.quorum: <zoo1,zoo2,zoo3>`
+            4. `[hbase.zookeeper.property.dataDir: <zk.dataDir>]`
+        2. `regionservers`: list of hosts, one host per line
+        3. `[backup-masters]`: list of hosts, one host perline. run a backup master instance, they will sit idle unless the main Master becomes unavailable
+    4. Services
+        1. start: `start-hbase.sh`
+        2. stop: `stop-hbase.sh`
+        3. access: `hbase shell`
+            1. client remote: `hbase-site.xml` 
+                1. `hbase.zookeeper.quorum: zoo1,zoo2,zoo3`
+        4. jps:
+            1. `HMaster`
+            2. `HRegionServer`
+        5. Problems
+            1. `Class path contains multiple SLF4J bindings`: delete jar `${HBASE_HOME}/lib/client-facing-thirdparty/slf4j-log4j12-1.7.30.jar`
+    5. Web UI
+        1. `http://hpmaster:16010`: master
+        2. `http://node:16030`: regionServer
+    6. Commands
+        1. Table
+            1. create table: `create "<table_name>", "<column_family>"`
+            2. confirm table: `list "<table_name>"`
+            3. detail: `describe "<table_name>"`
+            4. disable table before deleting or changing its settings: `disable "<table_name>"`
+            5. enable table: `enable "<table_name>"`
+            6. drop table: `drop "<table_name>"`
+            7. put data: `put "<table_name>", "<row1>", "column_family:a", "value1"`
+            8. get data: `get "<table_name>", "<row1>"`
+            9. scan all data: `scan "<table_name>"`
+9. Scala
     1. Install
 
         ```sh
@@ -352,7 +402,7 @@
         export SCALA_HOME=/data/hadoop/hadoop/bin/scala/scala-2.12.14
         export PATH=${SCALA_HOME}/bin:${PATH}
         ```
-9.  Maven
+10. Maven
     1. Install
 
         ```sh
@@ -366,7 +416,7 @@
         export PATH=${M2_HOME}/bin:${PATH}
         [export MAVEN_OPTS="-Xmx2g -XX:ReservedCodeCacheSize=1024m" # for java8+]
         ```
-10. Spark
+11. Spark
     1. Install
 
         ```sh
