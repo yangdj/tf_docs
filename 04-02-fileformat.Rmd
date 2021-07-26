@@ -1,79 +1,70 @@
 # File Format
 
-## Json
+## Json {#ff-json}
 
-A json file consists of following elements:
+1. Basic
+    1. File Extension: `.json`
+    2. MIME Type: `application/json`
+2. Separators
+    1. `:`: `key:value`
+    2. `,`: `key:value` pairs
+3. Data Types	
+    1. keys: string
+    2. value
+        1. string: "purple", wrapped by double quotes
+        2. number: `100`, `-10.2`
+        3. boolean: `[true, false]`
+        4. null: `{"age": null}`
+        5. object: `{..., ...}`
+            1. using `.` or  `[]` to get value: `auther.name` or `auther["name"]`
+            2. using `=` to update values: auther.name = "othername"
+            3. using `delete` to delete properties: `delete auther.name`
+        6. array: `[..., ...]`
+            1. using `[]` to get value: `auther.books[1]`
+            2. using `=` to update values: `auther.books[1] = "hl"`
+            3. using `delete` to delete items: `delete auther.books[1]`
+4. Schema: describe json structure.
 
-* basic
-    * `.json`: file extension
-    * `application/json`: MIME type
-* separators
-    * `:`: `key:value`
-    * `,`: `key:value` pairs
-    * `{}`: object
-    * `[]`: array
-* data types	
-    * keys: string
-    * value
-        * string: "purple", wrapped by double quotes
-        * number: `100`, `-10.2`
-        * boolean: `[true, false]`
-        * null: `{"age": null}`
-        * object: `{..., ...}`
-        * array: `[..., ...]`
-* object
-    * using `.` or  `[]` to get value: `auther.name` or `auther["name"]`
-    * using `=` to update values: auther.name = "othername"
-    * using `delete` to delete properties: `delete auther.name`
-* array
-    * using `[]` to get value: `auther.books[1]`
-    * using `=` to update values: `auther.books[1] = "hl"`
-    * using `delete` to delete items: `delete auther.books[1]`
-
-### Schema {-}
-
-Schema is used to describe json structure.
-
-```json
-// schema:
-{ 
-    "$schema": "http://json-schema.org/draft-04/schema#", 
-    "title": "Person", 
-    "description": "A person", 
-    "type": "object",
-    "properties": { 
-        "name": { 
-            "description": "A person's name", 
-            "type": "string" 
-         },
-         "age": {
-            "description": "A person's age",
-            "type": "number", 
-            "minimum": 18,
-            "maximum": 64
-            } 
-    },
-    "required": ["name", "age"]
-}
-```
-```json
-// object:
-{
-    "name": "John Doe",
-    "age": 35
-}
-```
+    ```json
+    // schema:
+    { 
+        "$schema": "http://json-schema.org/draft-04/schema#", 
+        "title": "Person", 
+        "description": "A person", 
+        "type": "object",
+        "properties": { 
+            "name": { 
+                "description": "A person's name", 
+                "type": "string" 
+             },
+             "age": {
+                "description": "A person's age",
+                "type": "number", 
+                "minimum": 18,
+                "maximum": 64
+                } 
+        },
+        "required": ["name", "age"]
+    }
+    ```
+    ```json
+    // object:
+    {
+        "name": "John Doe",
+        "age": 35
+    }
+    ```
 
 ## YAML {#ff-yaml}
 
-* syntax
+1. syntax
     1. files can optionally begin with `---` and end with `...` indicating the start and end of the file
     2. `: `: indicate a mapping
     3. `: {`: indicate a dictionry
     4. ` #`: indicate a comment
     5. when `: ` , `: {`, ` #` appear in the mid of value, use single or double quotes to quote the entire value, not part of it
     6. double quotes can use escapes
-* data types
+2. data types
     1. numeric: `1, 1.1`
     2. boolean: `yes | no | true | false | True | False | TRUE | FALSE`
     3. string: `"hello"`, needs single or double quotes when needed

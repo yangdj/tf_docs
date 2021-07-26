@@ -78,6 +78,8 @@
 
 ## Scala Language
 
+1. References
+    1. [shapeless-guide](https://books.underscore.io/shapeless-guide/shapeless-guide.html)
 1. Command
     1. `scalac`
         1. `scalac helloworld.scala`: compiles scala source
@@ -568,10 +570,10 @@
             ```
 6. Class
     1. Initialization
-        1. new
+        1. New
             1. `val big = new java.math.BigInteger("12345")`: parameterize with value
             2. `val greetStrings = new Array[String](3)`: parameterize with type and length
-        2. factory method
+        2. Factory Method
             1. Properties
                 1. a factory method calls an `apply` method, which creates and returns the new object
                 2. the `apply` method is defined on the corresponding companion class which seems like calling a static method from the class
@@ -632,7 +634,7 @@
             3. the class is called the companion class of the singleton. they are defined in the same source file.
             4. the class and the singleton can access each other's private members
             5. a singleton wihout a companion class is a standalone object. it can collect utility methods or become an app's entry point
-            6. the entry point has a main method, takes an `Array[String]` parameter and returns a Unit value, e.g.,
+            6. the entry point has a `main` method, takes an `Array[String]` parameter and returns a `Unit` value, e.g.,
 
                 ```scala
                 import ChecksumAccumulator.calculate
@@ -666,8 +668,31 @@
 
             val ca = ChecksumAccumulator.calculate("Every value is an object.")
             ```
-        3. `scala.APP` trait
-            1. work like a singleton object with a main method, use `args` to access command-line arguments
+        3. Case Class
+            1. Properties
+                1. automatically create a singleton object, which has following methods and traits
+                    1. Methods
+                        1. `apply())`
+                        2. `unapply()`: for pattern match
+                        3. `copy()`: `val b = a.copy()`
+                        4. `toString()`
+                        5. `hashCode()`
+                        6. `equals()`: instances are compared by structure and not by reference
+                    2. Inherited Traits
+                        1. `Product`
+                        2. `Serializable`
+                2. suitable for immutable data, parameters are public val types
+            2. Definitions
+
+                ```scala
+                case class Person(name: String, age: Int)
+                ```
+        4. Case Object:
+            1. Properties
+                1. similar to case class, but without `apply()` and `unapply()` methods
+                2. use when no parameters are needed 
+        5. `scala.APP` Trait
+            1. work like a singleton object with a `main` method, use `args` to access command-line arguments
 
             ```scala
             import ChecksumAccumulator.calculate
@@ -708,10 +733,15 @@
     }
     ```
 8. Package
-    1. scala implicitly imports packages `java.lang`, `scala` and the members in the singleton object `Predef`
-    2. `println` invokes `Predef.println`, which invokes `Console.println`
-    3. `assert` invokes `Predef.assert`
-    4. `import` allows using a simple package element name
+    1. Implicit Imports
+        1. `java.lang`
+        2. `scala`
+        3. `Predef`
+            1. `println` invokes `Predef.println`, which invokes `Console.println`
+            2. `assert` invokes `Predef.assert`
+    2. Import: allow using a simple package element name
+        1. `import org.apache.spark.sql.SparkSession`
+        2. `import org.apache.spark.sql.{SparkSession, Row, SaveMode}`
 
         ```scala
         import scala.collection.mutable
@@ -721,3 +751,4 @@
     1. `System`
         1. `System.exit(<n>)`
         2. `System.err.println()`
+    2. `java.io.File`

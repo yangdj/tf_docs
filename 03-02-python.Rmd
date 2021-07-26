@@ -2001,7 +2001,7 @@ Different data types can have different properties. These properties can be:
 
 ## Packages {#py-pkgs}
 
-### re {-}
+### re {-#py-re}
 
 1. Mode
     1. `re.I. re.IGNORECASE`: make case-insensitive

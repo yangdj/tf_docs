@@ -8,7 +8,7 @@
 
 * `[\u4e00-\u9fa5]`: 20902 basic chinese characters, ``%s/\(\zs[^']\)\(\<[a-zA-Z]*[\u4e00-\u9fa5]\+[a-zA-Z]*\>\)/\1`\2`/g``
 
-### Regular Expression {-#re}
+### Regular Expression {-#ds-re}
 
 1. priority
     1. repetition takes precedence over concatenation
