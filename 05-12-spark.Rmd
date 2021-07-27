@@ -94,29 +94,31 @@
                 1. `val peopleRDD = peopleDS.rdd`
             3. From DataFrame
                 1. `val peopleRDD = peopleDF.rdd`
-        4. Transforms: lazy, create a new dataset from an existing one, do not compute their results right away
+        4. Properties
+            1. `getNumPartitions`
+        5. Transforms: lazy, create a new dataset from an existing one, do not compute their results right away
             1. Value
                 1. `.map()`: `df.map(d => d.getAs[Long]("age"))`
                 2. `.flatMap()`
-                1. `.filter()`
-                2. `.distinct()`
-                3. `.union()`
+                3. `.filter()`
+                4. `.distinct()`
+                5. `.union()`
             2. Key Value
                 1. `.reduceByKey()`
                 2. `.groupByKey()`
                 3. `.sortByKey()`
-        5. Actions: return a value to the driver program after running a computation on the dataset
+        6. Actions: return a value to the driver program after running a computation on the dataset
             1. `.collect()`: fetch entire RDD to the driver program
-            1. `.take([n])`: fetch first `n` number of elements, safer then `.collect()` when dataset is large
-            2. `.count()`
-            1. `.first()`
-            2. `.reduce()`
-            3. `.foreach()`
+            2. `.take([n])`: fetch first `n` number of elements, safer then `.collect()` when dataset is large
+            3. `.count()`
+            4. `.first()`
+            5. `.reduce()`
+            6. `.foreach()`
             7. `.countByKey()`
-        5.  Cache: persist an RDD datasets into a cluster-wide in-memory cache
+        7.  Cache: persist an RDD datasets into a cluster-wide in-memory cache
             1. `.persist()`
             2. `.cache()`: a shorthand for using the default storage level `StorageLevel.MEMORY_ONLY`
-        6.  Shared Variable
+        8.  Shared Variable
             1. Broadcast: keep a read-only variable cached on each machine rather than shipping a copy of it with tasks
                 1. `val v = sc.broadcast(Array(1, 2, 3))`
                 2. `v.value`
@@ -126,10 +128,10 @@
                 1. Properties
                     1. only added to through an associative and commutative operation
                     2. used to implement counters or sums
-                    1. natively supports accumulators of numeric types
-                    1. tasks running on a cluster can add to it using `add()` method, but they cannot read its value.
-                    2. only the driver program can read the accumulator's value, using `value` method
-                    3. performed inside **actions only**, Spark guarantees that each task’s update to the accumulator will only be applied once, restarted tasks will not update the value. In transformations, each task's update may be applied more than once if re-executed
+                    3. natively supports accumulators of numeric types
+                    4. tasks running on a cluster can add to it using `add()` method, but they cannot read its value.
+                    5. only the driver program can read the accumulator's value, using `value` method
+                    6. performed inside **actions only**, Spark guarantees that each task’s update to the accumulator will only be applied once, restarted tasks will not update the value. In transformations, each task's update may be applied more than once if re-executed
                 2. type
                     1. `sc.longAccumulator("my accumulator')`
                     2. `sc.DoubleAccumulator("my accumulator')`
@@ -145,24 +147,24 @@
         2. Initialization
             1. From Driver
                 1. `val peopleDS = Seq(Person("Andy", 32)).toDS()`
-                1. `val peopleDS = spark.createDateset(List(Person("Andy", 32), Person("Bob", 12)))`
-            1. From Spark
+                2. `val peopleDS = spark.createDateset(List(Person("Andy", 32), Person("Bob", 12)))`
+            2. From Spark
                 1. `spark.range(100)`
-            2. From RDD
+            3. From RDD
                 1. `val peopleDS = peopleRDD.toDS()`
-            3. From DataFrame
+            4. From DataFrame
                 1. `val peopleDS = peopleDF.as[Person]`
         3. Metadata
             1. `.columns`
-            1. `.schema`
+            2. `.schema`
             3. `.printSchema`
-            1. `.explain([true, false])`: `[default: false]`
+            4. `.explain([true, false])`: `[default: false]`
         4. Type-Safe
             1. Transforms
                 1. `.map(d => (d.name, d.age == 10))`
                 2. `.flatMap()`
-                1. `.filter(d => d.age === 10)`
-                2. `groupByKey()`
+                3. `.filter(d => d.age === 10)`
+                4. `groupByKey()`
             2. Actions
                 1. `.count()`
                 2. `.collect()`
@@ -187,12 +189,12 @@
             2. From Files
                 1. `val peopleDF = spark.read.json("people.json")`
                 2. `val userDF = spark.read.format("json").load("users.json")`
-                1. `val userDF = spark.read.load("users.parquet")`
-                2. `val userDF = spark.sql("select * from parquet.users.parquet")`
+                3. `val userDF = spark.read.load("users.parquet")`
+                4. `val userDF = spark.sql("select * from parquet.users.parquet")`
             3. From RDD
                 1. `val peopelDF = peopleRDD.toDF`
                 2. `val peopelDF = spark.createDataFrame(rowRDD, schema)`
-        5. SQL
+        3. SQL
             1. `df.createOrReplaceTempView("people"); spark.sql("select * from people")`: session scoped
             2. `df.createOrReplaceGlobalTempView("people"); spark.sql("select * from global_temp.people")`: application scoped
             3. `spark.newSession().sql("select * from global_temp.people")`
@@ -203,18 +205,23 @@
             2. `val peopleDF = spark.read.csv("people.csv")`
             3. `val peopleDF = spark.read.parquet("people.parquet")`
             4. `val peopleDF = spark.read.json("people.json")`
-            5. `val peopleDF = spark.read.format("csv").option("sep", ";").option("header", "true").option("inferSchema", "true").load("people.csv")`
-            6. `val peopleDF = spark.read.format("json").load("people.json")`
-            7. `val peopleDF = spark.read.format("parquet").load("dir1/", "dir2/")`
-            8. `val peopleDF = spark.read.load("people.parquet")`
-            9.  ``val sqlDF =spark.sql("select * from parquet.`people.parquet`")``
+            5.  `val peopleDF = spark.read.jdbc("jdbc:postgresql:dbserver", "schema.tablename", connectionProperties)`
+            6. `val peopleDF = spark.read.format("csv").option("sep", ";").option("header", "true").option("inferSchema", "true").load("people.csv")`
+            7. `val peopleDF = spark.read.format("json").load("people.json")`
+            8. `val peopleDF = spark.read.format("parquet").load("dir1/", "dir2/")`
+            9.  `val peopleDF = spark.read.format("jdbc").option(...).load()`
+            10. `val peopleDF = spark.read.load("people.parquet")`
+            11. ``val sqlDF =spark.sql("select * from parquet.`people.parquet`")``
         2. Save
-            1. `peopleDF.write.format("csv").option("header", "true").mode(modeValue).save("users.csv")`
-            2. `peopleDF.write.parquet("people.parquet")`
-            3. `peopleDF.write.parquet("data/people/key=1")`
-            4. `peopleDF.write.save("people.parquet")`
-            5. `peopleDF.write.partitionBy("color").bucketBy(10, "name").sortBy("age").saveAsTable("t_par_but")`: save to table
-            6. `peopleDF.write.format("orc").option("orc.bloom.filter.columns", "favorite_color").option("orc.dictionary.key.threshold","1.0").option("orc.column.encoding.direct", "name").save("users_with_options.orc")`
+            1. `peopleDF.write.parquet("people.parquet")`
+            2. `peopleDF.write.parquet("data/people/key=1")`
+            3. `peopleDF.write.jdbc("jdbc:postgresql:dbserver", "schema.tablename", connectionProperties)`
+            4. `peopleDF.write.format("csv").option("header", "true").mode(modeValue).save("users.csv")`
+            5. `peopleDF.write.format("jdbc").option(...).save()`
+            6. `peopleDF.write.save("people.parquet")`
+            7. `peopleDF.write.partitionBy("color").bucketBy(10, "name").sortBy("age").saveAsTable("t_par_but")`: save to table
+            8. `peopleDF.write.partitionBy("key").format("hive").saveAsTable("hive_part_tbl")`
+            9. `peopleDF.write.format("orc").option("orc.bloom.filter.columns", "favorite_color").option("orc.dictionary.key.threshold","1.0").option("orc.column.encoding.direct", "name").save("users_with_options.orc")`
     2. Configurations
         1. `org.apache.spark.sql.SaveMode`
             1. `[default: SaveMode.ErrorIfExists]`
@@ -271,32 +278,44 @@
                         1. `hive.metastore.uris: thrift://hpmaster:9083`
                     2. `val spark = SparkSession.builder().enableHiveSupport().getOrCreate()`
                     3. `spark.sql(sql)`
+                2. Write Options
+                    1. `spark.sqlContext.setConf("hive.exec.dynamic.partition", "true")`
+                    2. `spark.sqlContext.setConf("hive.exec.dynamic.partition.mode", "nonstrict")`
                 3. Save Options
                     1. `.saveAsTable("tbl_name")`
             3. `jdbc`
                 1. All Options
-                    1. `.option("url", "jdbc:postgresql://host:post/dbname?user=u&password=p")`
-                        1. PostgreSQL: `jdbc:postgresql://host:post/dbname?user=u&password=p`
-                        2. MySQL: `jdbc:mysql://host:post/dbname?user=u&password=p`
-                        3. SQLServer 2000: `jdbc:sqlserver://host:port;database=dbname;user=u;password=p`
+                    1. `.option("url", "jdbc:postgresql://host:port/dbname?user=u&password=p")`
+                        1. PostgreSQL: `jdbc:postgresql://host:port/dbname?user=u&password=p`
+                        2. MySQL: `jdbc:mysql://host:port/dbname?user=u&password=p`
+                        4. SQLServer 2000: `jdbc:sqlserver://host:port;database=dbname;user=u;password=p`
                     2. `.option("user", "username")`
                     3. `.option("password", "password")`
-                    4. `.[option("driver","org.postgresql.Driver")]`: can omit
-                    5. `.option("dbtable", "schema.tablename")`
+                    4. `.option("dbtable", "schema.tablename")`: allow subquery in parentheses
+                    5. `.option("driver","org.postgresql.Driver")`: when `spark-shell` or `spark-submit` speicify `--driver-class-path`, no need to config this option
+                        1. MySQL: `com.mysql.cj.jdbc.Driver`
+                        2. PostgreSQL: `org.postgresql.Driver`
                     6. `.option("numPartitions", 10)`
-                    7.  `.jdbc("url", "schema.table", connectionProperties)`
-                    8.  `.explain([true, false])`: execute plan
+                    7. `.jdbc("url", "schema.table", connectionProperties)`
+                        1. `val connectionProperties = new java.util.Properties()`
+                        2. `connectionProperties.put("user", "username")`
+                        3. `connectionProperties.put("password", "password")`
+                        4. `connectionProperties.put("driver", "com.mysql.cj.jdbc.Driver")`
+                    8. `.explain([true, false])`: execute plan
                 2. Load Options
-                    1. `option("query", "select * from t1")`
-                    2. `option("partitionColumn", "column")`
-                    3. `option("lowerBound", 10)`
-                    4. `option("upperBound", 1000)`
-                    5. `option("fetchsize", 100)`
-                    6. `option("customSchema", "id DECIMAL(38, 0), name STRING")`
+                    1. `option("query", "select * from t1")`: can not use with `dbtable` at the same time
+                    2. `option("partitionColumn", "column"); option("upperBound", 1000); option("lowerBound", 10)`: stride size `s = (upperBound-lowerBound)/numPartitions`, the range is `[[, s), [s, 2s), ...]`
+                    3. `option("fetchsize", [default: 1000])`
+                    4. `option("customSchema", "id DECIMAL(38, 0), name STRING")`
                 3.  Save Options
                     1. `option("createTableColumnTypes", "name CHAR(64), comments VARCHAR(1024)")`
                     2. `option("batchsize", 1000)`
                     3. `option("truncate", true)`: `[default: false]`, when `SaveMode.Overwrite` enabled, spark just truncate table, not drop
-                    4. `option("isolationLevel", "READ_UNCOMMITED")`: `[default: READ_UNCOMMITED]`
+                    4. `option("isolationLevel"])`
+                        1. `None`
+                        2. `READ_UNCOMMITED`
+                        3. `[default: READ_UNCOMMITED]`
+                        4. `REPEATABLE_READ`
+                        5. `SERIALIZABLE`
             4.  `libsvm`
 

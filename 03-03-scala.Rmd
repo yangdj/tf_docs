@@ -752,3 +752,6 @@
         1. `System.exit(<n>)`
         2. `System.err.println()`
     2. `java.io.File`
+        1. Methods
+            1. `getAbsolutePath()`
+    3. `java.util.Properties`

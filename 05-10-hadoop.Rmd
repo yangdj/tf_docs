@@ -1,17 +1,18 @@
 # Hadoop
 
 1. References
-    1. [hadoop](http://hadoop.apache.org/)
-    2. [hadoop standalone](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html)
-    3. [hadoop cluster](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterSetup.html)
-    4. [hadoop command](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/FileSystemShell.html)
-    6. [zookeeper](https://zookeeper.apache.org/)
+    1. [Hadoop](http://hadoop.apache.org/)
+    2. [Hadoop standalone](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html)
+    3. [Hadoop cluster](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterSetup.html)
+    4. [Hadoop command](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/FileSystemShell.html)
+    6. [Zookeeper](https://zookeeper.apache.org/)
     7. [Kafka](http://kafka.apache.org/)
     8. [debezium-connector](https://debezium.io/releases/1.5/)
     9. [kafka-connectors](https://www.confluent.io/product/connectors/)
     10. [Remote Spark Jobs on YARN](https://theckang.github.io/2015/12/31/remote-spark-jobs-on-yarn.html)
     11. [Hive3.x](https://cwiki.apache.org/confluence/display/Hive/AdminManual+Metastore+3.0+Administration)
-    12. [HBASE](http://hbase.apache.org/book.html)
+    12. [Hbase](http://hbase.apache.org/book.html)
+    13. [Hbase-intro](https://zhuanlan.zhihu.com/p/145551967)
 2. Java
     1. Envs
 
@@ -389,7 +390,18 @@
             7. put data: `put "<table_name>", "<row1>", "column_family:a", "value1"`
             8. get data: `get "<table_name>", "<row1>"`
             9. scan all data: `scan "<table_name>"`
-9. Scala
+9.  Phoenix
+    1. Install
+
+        ```sh
+        PHOENIX_VERSION=5.1.2
+        HBASE_VERSION=2.3
+        wget https://mirrors.tuna.tsinghua.edu.cn/apache/phoenix/phoenix-${PHOENIX_VERSION}/phoenix-hbase-${HBASE_VERSION}-${PHOENIX_VERSION}-bin.tar.gz
+        cp $PHOENIX_HOME/phoenix-server-hbase-${HBASE_VERSION}-${PHOENIX_VERSION}.jar ${HBASE_HOME}/lib
+        stop-hbase.sh && start-hbase.sh
+        # client usage: $PHOENIX_HOME/phoenix-client-hbase-${HBASE_VERSION}-${PHOENIX_VERSION}.jar
+        ```
+10. Scala
     1. Install
 
         ```sh
@@ -402,7 +414,7 @@
         export SCALA_HOME=/data/hadoop/hadoop/bin/scala/scala-2.12.14
         export PATH=${SCALA_HOME}/bin:${PATH}
         ```
-10. Maven
+11. Maven
     1. Install
 
         ```sh
@@ -416,7 +428,7 @@
         export PATH=${M2_HOME}/bin:${PATH}
         [export MAVEN_OPTS="-Xmx2g -XX:ReservedCodeCacheSize=1024m" # for java8+]
         ```
-11. Spark
+12. Spark
     1. Install
 
         ```sh
