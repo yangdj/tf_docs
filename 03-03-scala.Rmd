@@ -6,58 +6,71 @@
     1. [scaladex](https://index.scala-lang.org/)
     2. [sbt](https://www.scala-sbt.org/index.html)
     3. [sbt-intro](https://zhuanlan.zhihu.com/p/82727108)
-2. Configurations
-    1. File Structure
-        1. `project_name/`
-            1. `build.sbt`
-                1. `name := "hello-world"`
-                2. `version := "1.0"`
-                3. `scalaVersion := "2.13.1"`
-                4. `organization := "ch.epfl.scala"`
-                5. `scalacOptions ++= Seq("-unchecked", "-deprecation")`
-                6. `libraryDependencies += "org.typelevel" %% "cats-core" % "2.0.0"`: mananged jar dependencies
-                    1. format: `groupID % artifactID % revision % configuration`
-                        1. `%%` instead of `%` after groupID will add scala version to the artifactID name
-                        2. `% configuration`
-                            1. `test`: just for sbt `test` command , not for `compile`, useful for test dependencies package
-                    2. stored path
-                        1. windows: `%LOCALAPPDATA%\Coursier\Cache\v1`
-                        2. Linux: `~/.cache/coursier/v1`
-                        3. Mac: `~/Library/Caches/Coursier/v1`
-                7. `resolvers += <name> at <location>`: specify additinal dependencies download path
-                    1. `resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"`
-            2. `project/`
-                1. `build.properties`
-                    1. `sbt.version=1.3.2`
-            3. `scr/`
-                1. `main/`
-                    1. `scala/`
-                    2. `resources/`
-                2. `test/`
-                    1. `scala/`
-                    2. `resources/`
-            4. `target/`: build output, included in `.gitignore`
-            5. `lib/`: unmanaged jar dependencies which automatically added to `classpath` compared to mananged dependencies
-                1. `unmanagedBase := baseDirectory.value / "custom_lib"`: specify customized path
-                    1. `baseDirectory.value`: root directory
-                    2. `custom_lib`: customized path, `[default: lib]`
-    2. `~/.sbt/repositories`
+2. Install
+    
+    ```sh
+    SBT_VERSION=1.5.4
+    wget https://github.com/sbt/sbt/releases/download/v${SBT_VERSION}/sbt-${SBT_VERSION}.tgz
+    ```
+3. Envs
+
+    ```sh
+    export SBT_HOME=...
+    export PATH=${SBT_HOME}/bin:${PATH}
+    ```
+4. Configurations
+    1. `~/.sbt/repositories`
 
         ```ini
         [repositories]
         local
         huaweicloud-maven: https://repo.huaweicloud.com/repository/maven/
         maven-central: https://repo1.maven.org/maven2/
-        sbt-plugin-repo: https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases, [organization]/[module]/(scala_[scalaVersion]/)(sbt_    [sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
+        sbt-plugin-repo: https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases, [organization]/[module]/(scala_[scalaVersion]/)(sbt_ [sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
         ```
-    3. Settings
-        1. File
-            1. windows: `${SBT_HOME|/conf/sbtconfig.txt` 
-            2. Linux: `${SBT_HOME|/conf/sbtopts
+    2. Settings
+        1. Path
+            1. windows: `${SBT_HOME}/conf/sbtconfig.txt` 
+            2. Linux: `${SBT_HOME}/conf/sbtopts`
         2. Contents
             1. `-XX:MaxPermSize=256m`: `Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=256m; support was removed in 8.0`
             2. `-Dsbt.override.build.repos=true`: use global repo
-3. Commands
+5. File Structure
+    1. `project_name/`
+        1. `build.sbt`
+            1. `name := "hello-world"`
+            2. `version := "1.0"`
+            3. `scalaVersion := "2.13.1"`
+            4. `organization := "ch.epfl.scala"`
+            5. `scalacOptions ++= Seq("-unchecked", "-deprecation")`
+            6. `libraryDependencies += "org.typelevel" %% "cats-core" % "2.0.0"`: mananged jar dependencies
+                1. format: `groupID % artifactID % revision % configuration`
+                    1. `%%` instead of `%` after groupID will add scala version to the artifactID name
+                    2. `% configuration`
+                        1. `test`: just for sbt `test` command , not for `compile`, useful for test dependencies package
+                2. stored path
+                    1. windows: `%LOCALAPPDATA%\Coursier\Cache\v1`
+                    2. Linux: `~/.cache/coursier/v1; ~/.ivy2/cache`
+                    3. Mac: `~/Library/Caches/Coursier/v1`
+            7. `resolvers += <name> at <location>`: specify additinal dependencies download path
+                1. `resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"`
+        2. `project/`
+            1. `build.properties`
+                1. `sbt.version=1.5.4`
+                    1.  `intellij sbt: Extracting structure failed`: make sure `sbt.version` is correct
+        3. `scr/`
+            1. `main/`
+                1. `scala/`
+                2. `resources/`
+            2. `test/`
+                1. `scala/`
+                2. `resources/`
+        4. `target/`: build output, included in `.gitignore`
+        5. `lib/`: unmanaged jar dependencies which automatically added to `classpath` compared to mananged dependencies
+            1. `unmanagedBase := baseDirectory.value / "custom_lib"`: specify customized path
+                1. `baseDirectory.value`: root directory
+                2. `custom_lib`: customized path, `[default: lib]`
+6. Commands
     1. `sbtVersion`
     2. `show overrideBuildResolvers`: `true` when `-Dsbt.override.build.repos=true`
     3. `show fullResolvers`: show `sbtconfig.txt` config
@@ -66,15 +79,13 @@
     6. `help <command>`
     7. `reload`: reload build files, `build.sbt`, `project/{*.scala, *.sbt}`
     8. `clean`: clear output under `target/`
-    9. `update`: download dependencies manually, used by `compile`, so always no need to execute it
+    9.  `update`: download dependencies manually, used by `compile`, so always no need to execute it
     10. `compile`: files in `src/main/{scala, java}`
     11. `test`: compile and run test file
     12. `console`: enter scala shell with compiled environment
     13. `run [arguments]`: run main class
     14. `package`: generate a jar file from `scr/main/resources` and `scr/main/{scala,java}`,  need `name` and `version` in the file `build.sbt`
     15. `~<command>`: run the command automatically when files update, `~run`. `Enter` key will cancel it
-4. Problems
-    1. `intellij sbt: Extracting structure failed`: make sure `sbt.version` is correct
 
 ## Scala Language
 

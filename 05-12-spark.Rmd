@@ -198,7 +198,7 @@
             1. `df.createOrReplaceTempView("people"); spark.sql("select * from people")`: session scoped
             2. `df.createOrReplaceGlobalTempView("people"); spark.sql("select * from global_temp.people")`: application scoped
             3. `spark.newSession().sql("select * from global_temp.people")`
-5. Source
+5. Sources
     1. Methods
         1. Load
             1. `val peopleDF = spark.read.text("people.txt")`
@@ -318,4 +318,7 @@
                         4. `REPEATABLE_READ`
                         5. `SERIALIZABLE`
             4.  `libsvm`
-
+1. Structured Streaming
+    1. Kafka
+        1. Dependencies
+            1. `"org.apache.spark" % "spark-streaming-kafka-0-10_2.12" % "3.1.2"`

@@ -41,7 +41,7 @@
             4. headers: optional
 4. Connectors
     1. Command
-        1. list connectors: `curl -X GET http://ip:port/connectors`
+        1. list connectors: `curl -X GET http://ip:port/connectors`: port `[default:8083]`
         2. crerate new connector: `curl -X POST -H "Content-Type:application/json" --data @mysql.properties.json http://hpmaster:8083/connectors`
         3. delete a connector: `curl -X DELETE http://ip:port/connectors/<connector-name>`
         4. restart a connector: `curl -X POST http://ip:port/connectors/<connector-name>/restart`

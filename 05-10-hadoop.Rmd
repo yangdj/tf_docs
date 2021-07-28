@@ -197,8 +197,8 @@
             2. `group.id=connect-cluster`: unique name for the cluster, used in forming the connect cluster group, must not conflict with consumer group IDs
             3. `key.converter=org.apache.kafka.connect.json.JsonConverter`: default
             4. `value.converter=org.apache.kafka.connect.json.JsonConverter`: default
-            5. `key.converter.schemas.enable=true`: default
-            6. `value.converter.schemas.enable=true`: default
+            5. `key.converter.schemas.enable=false`: `[default: true]`
+            6. `value.converter.schemas.enable=false`: `[default: true]`
             7. `offset.flush.interval.ms=10000`
             8. `rest.port=8083`: `[default: 8083]`
             9. `plugin.path=/usr/local/share/java,/usr/local/share/kafka/plugins,/opt/connectors`: set additional connector jar path
