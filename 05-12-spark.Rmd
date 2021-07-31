@@ -2,23 +2,24 @@
 
 1. References
     1. [spark-notes](https://spoddutur.github.io/spark-notes/)
-    2. [spark-examples](https://github.com/apache/spark/blob/master/examples/src/main/scala/org/apache/spark/examples/streaming/DirectKafkaWordCount.scala)
+    2. [Structured Streaming + Kafka Integration Guide](https://spark.apache.org/docs/2.1.1/structured-streaming-kafka-integration.html)
+    3. [spark-examples](https://github.com/apache/spark/blob/master/examples/src/main/scala/org/apache/spark/examples/streaming/DirectKafkaWordCount.scala)
 2. Concepts
     1. driver
         1. run user's `main()` function
         2. execute parallel operations on a cluster
-    3. ApplicationMaster
+    2. ApplicationMaster
         1. negotiate resources from the ResourceManager
         2. work with NodeManager to execute
         3. monitor containers and resource their resources consumption
         4. when run on yarn, may need 1G memory and 1 Executor
-    4. Task: smallest unit of execution working on a partition of data
-    5. Executor: slots where tasks run as threads
+    3. Task: smallest unit of execution working on a partition of data
+    4. Executor: slots where tasks run as threads
         1. vcores: number of tasks (threads) running within the executor
         2. memory: cached data within the executor
             1. full memory requested to yarn per executor = `spark.executor.memory` + `spark.yarn.executor.memoryOverhead`
             2. `spark.yarn.executor.memoryOverhead` = `Max(384MB, 7% of spark.executor-memory)`
-    6. MemoryOverhead
+    5. MemoryOverhead
 3. Using Scala
     1. Initialization
         1. `import org.apache.spark.sql.SparkSession`
@@ -66,9 +67,14 @@
     2. `org.apache.spark.sql.Row`: a generic untyped JVM object
     3. `org.apache.spark.sql.types.StructField`: `val field = StructField(fieldName, StringType, nullable = true]`
         1. Types
-            1. `StringType`
-            2. `LongType`
-    4. `org.apache.spark.sql.types.StructType`: `val schema = StructType(field1, field2, ...)`
+            1. `LongType`
+            2. `IntegerType`
+            3. `StringType`
+            4. `StructType`
+            5. `MapType`
+    4. `org.apache.spark.sql.types.StructType`
+        1. `val schema = StructType(field1, field2, ...)`
+        2. `val schema = new StructType().add("name", StringType, true)...`
     5. `org.apache.spark.rdd.RDD`
         1. Properties
             1. an immutable distributed collection of JVM objects partitioned across nodes
@@ -76,7 +82,7 @@
         2. Structure
             1. Descriptions
                 1. record data information, only load them when take *action* functions
-                1. serve like a representation of a DAG of instructions, telling how to retrieve data and how to do with it, similar to a SQL execution plan
+                2. serve like a representation of a DAG of instructions, telling how to retrieve data and how to do with it, similar to a SQL execution plan
             2. Members
                 1. a list of partitions to get data partitions
                 2. a function for computing each split
@@ -86,13 +92,13 @@
         3. Initialization
             1. From Driver
                 1. `val data = Array(1, 2, 3, 4, 5)`
-                1. `val peopleRDD = spark.sparkContext.makeRDD(data)`
-                2. `val peopleRDD = spark.sparkContext.parallelize(data)`
-            1. From File: `sparkContext` is used to create RDD
+                2. `val peopleRDD = spark.sparkContext.makeRDD(data)`
+                3. `val peopleRDD = spark.sparkContext.parallelize(data)`
+            2. From File: `sparkContext` is used to create RDD
                 1. `val peopleRDD = spark.sparkContext.textFile("people.txt")`
-            2. From DataSet
+            3. From DataSet
                 1. `val peopleRDD = peopleDS.rdd`
-            3. From DataFrame
+            4. From DataFrame
                 1. `val peopleRDD = peopleDF.rdd`
         4. Properties
             1. `getNumPartitions`
@@ -169,7 +175,11 @@
                 1. `.count()`
                 2. `.collect()`
                 3. `.take(10)`
-                4. `.show([10])`: reformat data
+                4. `.show()`: reformat data
+                    1. `show()`
+                    2. `show(false)`
+                    3. `show(10)`
+                    4. `show(10, false)`
                 5. `.first()`
                 6. `.reduce()`
         5. Untyped (aka DataFrame operations): `import spark.implicits._` to use `$-notation`
@@ -288,7 +298,7 @@
                     1. `.option("url", "jdbc:postgresql://host:port/dbname?user=u&password=p")`
                         1. PostgreSQL: `jdbc:postgresql://host:port/dbname?user=u&password=p`
                         2. MySQL: `jdbc:mysql://host:port/dbname?user=u&password=p`
-                        4. SQLServer 2000: `jdbc:sqlserver://host:port;database=dbname;user=u;password=p`
+                        3. SQLServer 2000: `jdbc:sqlserver://host:port;database=dbname;user=u;password=p`
                     2. `.option("user", "username")`
                     3. `.option("password", "password")`
                     4. `.option("dbtable", "schema.tablename")`: allow subquery in parentheses
@@ -318,7 +328,63 @@
                         4. `REPEATABLE_READ`
                         5. `SERIALIZABLE`
             4.  `libsvm`
-1. Structured Streaming
-    1. Kafka
+6. Structured Streaming
+    1. All Options
+        1. `.option("checkpointLocation", "/path/to/HDFS/dir")`
+    2. Kafka
         1. Dependencies
-            1. `"org.apache.spark" % "spark-streaming-kafka-0-10_2.12" % "3.1.2"`
+            1. `"org.apache.spark" % "spark-sql-kafka-0-10_2.12" % "3.1.2"`
+        2. Deployment
+            1. `--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.2`
+        3. All Options
+                1. `.option("kafka.bootstrap.servers", "host1:9092,host2:port2...")`: comma separated list
+                2. `[.option("includeHeaders", "{[default: false], true})]`: whether to include the Kafka headers in the row
+        4. Load
+            1. Options
+                1. `.option("subscribe", "topic")`
+                    1. `topic1`: one topic
+                    2. `topic1,topic2`: multiple topics
+                    3. `topic.*`: a pattern, java regex string
+                2. `[.option("startingOffsets", "latest")]`
+                    1. `earliest`: default for batch, read all data available in the Kafka
+                    2. `latest`: only for streaming and is default value, not allowed for batch query, read only new data that's not been processed
+                    3. `"""{"topic1": {"0":23, "1": -1"}, "topic2":{"0":-2}}"""`: json string specifying a starting offset for a topic partition
+                        1. `-2`: as an offset to refer to `earliest`
+                        2. `-1`: to `lastest`, not allowed for batch query
+            2. Streaming: `val df = spark.readStream.format("kafka").load()`
+                1. Schema
+                    1. `key: binary`
+                    2. `value: binary`
+                    3. `topic: string`
+                    4. `partition: integer`
+                    5. `offset: long`
+                    6. `timestamp: timestamp`
+                    7. `timestampType: integer`
+                2. Processing
+                    1. `df.selectExpr("CAST(key as STRING) as id", "CAST(value as STRING)")`: convert binary data to String
+                    2. `var parseddf.select(from_json(col("value").cast("string"), schema).alias("parsed_value"))`: parse json string
+            3. Batch: use `read` instead of `readStream`, `val df = spark.read.format("kafka").load()`
+                1. Options
+                    1. `[.option("endingOffsets", "latest")]`
+                        1. `[default: latest]`
+                        2. `"""{"topic1": {"0":23, "1": -1"}, "topic2":{"0":-1}}"""`: json string specifying an ending offset for each topic partition
+                            1. `-1`: as an offset to refer to `latest`
+                            2. ~~`-2`: to `earliest`, not allowed~~
+        5. Write
+            1. Options
+                1. `[.option("topic", "topic1")]`: `[default: none]`, override any topic column existing in the data
+            2. Streaming
+                1. `val ds = df.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)").writeStream.format("kafka").option("topic", "topic1").start()`: specify a topic in an option
+                2. `val ds = df.selectExpr("topic", "CAST(key AS STRING)", "CAST(value AS STRING)").writeStream.format("kafka").start()`: specify a topic in the data
+            3. Batch: use `write` instead of `writeStream` 
+                1. `val ds = df.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)").write.format("kafka").option("topic", "topic1").start()`: specify a topic in an option
+                2. `val ds = df.selectExpr("topic", "CAST(key AS STRING)", "CAST(value AS STRING)").write.format("kafka").start()`: specify a topic in the data
+    3. Files
+        1. Write: `df.writeStream.format("json").start()`
+            1. Options
+                1. `.format()`
+                2. `.outputMode("append")`
+                    1. `[default: append]`
+                    2. `complete`
+                    3. `update`
+                3. `.option("path", "path")`

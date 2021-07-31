@@ -496,6 +496,7 @@
             3. client config `SPARK_CONF_DIR` including 
                 1. `spark-defaults.conf`
                     1. `spark.yarn.archive: hdfs://hpmaster:9000/user/spark/archive/spark-libs.jar`: copy from server value
+                    2. `[spark.master yarn]`: set default value for `--master`
             4. client config environment `LD_LIBRARY_PATH=$HADOOP_HOME/lib/native:${LD_LIBRARY_PATH}`
         3. Problems
             1. `No route to host`: try to close the client server firewall and make sure all server can visit each other
@@ -506,41 +507,49 @@
             2. `http://hpmaster:8088`: application info, hadoop yarn info
             3. `http://<driver-node>:4040`: driver application info
     6. Commands
-        1. `./bin/run-example SparkPi 10`
-        2. `spark-shell`
-            1. `spark-shell --master local[2]`: run locally with 2 threads
-            2. `spark-shell --master spark://hpmaster:7077`: connect to  spark standalone cluster
-            3. `spark-shell --master yarn` - connects to a yarn cluster
-        3. `spark-submit`
-            1. examples
-                1. `spark-submit run-example SparkPi 10`
-                2. `spark-submit --master yarn --deploy-mode client --class org.apache.spark.examples.SparkPi spark-examples.jar 10`
-            2. arguments
-                1. `--master`
-                    1. `yarn`
-                    2. `local`
-                    3. `local[K]`
-                    4. `local[*]`
-                    5. `spark://host:port`
-                    6. `spark://host1:port1,host2:port2`
-                    7. `mesos://host:7077`
-                    8. `k8s://xx.yy.zz.ww:443`
-                2. `--deploy-mode {client | cluster}`
-                3. `--conf key=value --conf key2=value2`
-                4. `--driver-memory 4g`
-                5. `--num-executors 50`
-                6. `--executor-memory 2g`
-                7. `--executor-cores 1`: number of tasks (threads) running within the executor
-                8. `--total-executor-cores 10`
-                9.  `--class org.apache.spark.examples.SparkPi`:  main class
-                10. `--driver-class-path postgresql-42.2.14.jar`
-                11. `--jars first.jar,second.jar`: dependent jars
-                    1. `file:///`
-                    2. `hdfs://`
-                    3. `http://; https://; ftp://`
-                    4. `local`: local file on each worker node, work well for large files and JAR  with no network IO
-                12. `--py-files {.py | .zip | .egg}`: for Python, mulpile python files can be packaged into a zip or egg file
-                13. `--queue thequeue`
-                14. `--supervise`: for spark standalone cluster, make sure the driver restart when fail with a none-zero exit code
-                15. `spark-examples.jar`: application jar
-                16. `arg1 arg2 ...`: application's options
+        1. `spark-shell`: use interactively, similar to `spark-submit`
+        2. `spark-submit`
+            1. `spark-submit run-example SparkPi 10`
+            2. `spark-submit --master yarn --deploy-mode client --class org.apache.spark.examples.SparkPi spark-examples.jar 10`
+            3. `spark-submit --kill submissionId --master yarn`
+            4. `spark-submit --status submissionId --master yarn`
+        3. Arguments
+            1. `--help`
+            2. `--verbose`
+            3. `--version`
+            4. `--master`
+                1. `yarn`
+                2. local
+                    1. `local`
+                    2. `local[K]`
+                    3. `local[*]`
+                3. `spark://host1:port1,host2:port2`: spark standalone cluster
+                4. `mesos://host:7077`
+                5. `k8s://xx.yy.zz.ww:443`
+            5. `--deploy-mode`
+                1. `[default: client]`
+                2. `cluster`: standable mode do not support cluster mode for Python applications
+            6. `--supervise`: for spark standalone with deploy-mode cluster, used to make the driver restart when fail with a none-zero exit code
+            7.  `--queue queue-name`
+            8. `--conf key1=value1 --conf key2=value2`
+            9. `--properties-file FILE`: look for `conf/spark-defaults.conf` default
+            10. `--driver-memory 4g`: `[default: 1G]`
+            11. `--driver-cores 1`: `[default: 1]`, only for cluster deploy mode, number of cores used by the driver
+            12. `--executor-memory 2g`: `[default: 1G]`, memory per executor
+            13. `--num-executors 10`: `[default: 2]`, only for yarn and k8s, number of executors to launch 
+            14. `--executor-cores 1`: `[default: 1]`, only for standalone, yarn and k8s, number of tasks (threads) running within the executor
+            15. `--total-executor-cores 10`: for standalone, mesos and k8s only
+            16. `--class org.apache.spark.examples.SparkPi`:  main class
+            17. `--driver-class-path postgresql-42.2.14.jar`
+            18. `--package groupId:artifactId:version,...`: list of maven coordinates of jars to include
+            19. `--repositories`
+            20. `--exclude-packages`
+            21. `--jars first.jar,second.jar`: dependent jars, directory expansion does not work
+                1. `file://`
+                2. `hdfs://`
+                3. `http://; https://; ftp://`
+                4. `local`: local file on each worker node, work well for large files and JAR  with no network IO
+            22. `--py-files {.py, .zip, .egg}`: for Python, mulpile python files can be packaged into a zip or egg file
+            23. `--files file`: access with `SparkFiles.get(filename)`
+            24. `spark-examples.jar`: application jar, path similar to `--jars`
+            25. `arg1 arg2 ...`: application's options
