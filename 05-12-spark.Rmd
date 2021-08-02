@@ -2,7 +2,7 @@
 
 1. References
     1. [spark-notes](https://spoddutur.github.io/spark-notes/)
-    2. [Structured Streaming + Kafka Integration Guide](https://spark.apache.org/docs/2.1.1/structured-streaming-kafka-integration.html)
+    2. [Structured Streaming + Kafka Integration Guide](http://spark.apache.org/docs/latest/structured-streaming-kafka-integration.html)
     3. [spark-examples](https://github.com/apache/spark/blob/master/examples/src/main/scala/org/apache/spark/examples/streaming/DirectKafkaWordCount.scala)
 2. Concepts
     1. driver
@@ -50,7 +50,7 @@
     }
     ```
 4. Data Structure
-    1. Examples
+    1. Prepare
 
         ```scala
         case class Person(name: String, age: Long)
@@ -64,18 +64,55 @@
 
         val peopleDF = spark.createDataFrame(rowRDD, schema)
         ```
-    2. `org.apache.spark.sql.Row`: a generic untyped JVM object
-    3. `org.apache.spark.sql.types.StructField`: `val field = StructField(fieldName, StringType, nullable = true]`
-        1. Types
-            1. `LongType`
-            2. `IntegerType`
-            3. `StringType`
-            4. `StructType`
-            5. `MapType`
-    4. `org.apache.spark.sql.types.StructType`
-        1. `val schema = StructType(field1, field2, ...)`
-        2. `val schema = new StructType().add("name", StringType, true)...`
-    5. `org.apache.spark.rdd.RDD`
+    2. `org.apache.spark.sql.types`
+        1. Numeric
+            1. Types
+                1. `ByteType`
+                2. `ShortType`
+                3. `IntegerType`
+                4. `LongType`
+                5. `FloatType`
+                6. `DoubleType`
+                7. `DecimalType`: backed internally by `java.math.BigDecimal`
+            2. Special Values
+                1. `Inf, +Inf, Infinity, +Infinity`: positive infinity
+                    1. `FloatType`: equivalent to Scala `Float.PositiveInfinity`
+                    2. `DoubleType`: equivalent to Scala `Double.PositiveInfinity`
+                2. `-Inf, -Infinity`: negative infinity
+                    1. `FloatType`: equivalent to Scala `Float.NegativeInfinity`
+                    2. `DoubleType`: equivalent to Scala `Double.NegativeInfinity`
+                3. `NaN`: not a number
+                    1. `FloatType`: equivalent to Scala `Float.NaN`
+                    2. `DoubleType`: equivalent to Scala `Double.NaN`
+        2. String
+            1. `StringType`
+            2. `Varchar(length)`
+                1. a variant of `StringTpe` which has a length limitation
+                2. data writing will fail if the input string exceeds the length
+                3. only be used in table schema, not functions or operations
+            3. `CharType`
+                1. a variant of `StringTpe` which has a fixed length
+                2. reading column of type `CharType(n)` always returns string values of length `n`
+                3. Char type column comparison will pad the short one to the longer length
+        3. Binary
+            1. `BinaryType`: represent byte sequence values
+        4. Boolean
+            1. `BooleanType`
+        5. datetime
+            1. `TimestampType`: represent an absolute point in time with fields year, month, day, hour, minute, and second, with the session local time-zone
+            2. `DateType`: represent values with fields year, month and day, without a time-zone
+        6. Complex
+            1. `ArrayType(elementType, containsNull: [default: true])`: a sequence of elements with type `elementType`
+                1. `containsNull`: indicate if elements can have null values
+            2. `MapType(keyType, valueType, valueContainsNull: [default: true])`: a set of key-value pairs
+                1. keys are not allowed to have null values
+                2. `valueContainsNull`: indicate if MapType values can have null values
+            3. `StructType(fields)`: a sequence of `StructFields(fields)`, two fields with the same name are not allowed
+                1. `org.apache.spark.sql.types.StructField(name, dataType, nullable: [default: true])`
+                2. Methods
+                    1. `val schema = StructType(field1, field2, ...)`
+                    2. `val schema = new StructType().add("name", StringType)...`
+    3. `org.apache.spark.rdd.RDD`
         1. Properties
             1. an immutable distributed collection of JVM objects partitioned across nodes
             2. strong-typed and operate in parallel with low-level API transformations and actions
@@ -145,7 +182,7 @@
                     1. `val acc = sc.longAccumulator("My Accumulator")`
                     2. `sc.parallelize(Array(1, 2, 3, 4)).foreach(x => acc.add(x))`
                     3. `acc.value`
-    6. `org.apache.spark.sql.Dateset`
+    4. `org.apache.spark.sql.Dateset`
         1. Properties
             1. a collection of compile-time safety and strong-typed JVM objects dictated by a case class
             2. APIs are all expressed as lambda functions
@@ -188,7 +225,8 @@
             3. `.filter($"age" === 10)`
             4. `.where("sigal > 10")`
             5. `.groupBy("age", "name").count()`
-    7. `org.apache.spark.sql.DataFrame`
+    5. `org.apache.spark.sql.Row`: a generic untyped JVM object
+    6. `org.apache.spark.sql.DataFrame`
         1. Properties
             1. an alias for a collection of generic objects of `Dataset[Row]` and organized into named columns
             2. faster and suitable for interactive analysis
@@ -377,8 +415,8 @@
                 1. `val ds = df.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)").writeStream.format("kafka").option("topic", "topic1").start()`: specify a topic in an option
                 2. `val ds = df.selectExpr("topic", "CAST(key AS STRING)", "CAST(value AS STRING)").writeStream.format("kafka").start()`: specify a topic in the data
             3. Batch: use `write` instead of `writeStream` 
-                1. `val ds = df.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)").write.format("kafka").option("topic", "topic1").start()`: specify a topic in an option
-                2. `val ds = df.selectExpr("topic", "CAST(key AS STRING)", "CAST(value AS STRING)").write.format("kafka").start()`: specify a topic in the data
+                1. `val ds = df.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)").write.format("kafka").option("topic", "topic1").save()`: specify a topic in an option
+                2. `val ds = df.selectExpr("topic", "CAST(key AS STRING)", "CAST(value AS STRING)").write.format("kafka").save()`: specify a topic in the data
     3. Files
         1. Write: `df.writeStream.format("json").start()`
             1. Options
@@ -388,3 +426,24 @@
                     2. `complete`
                     3. `update`
                 3. `.option("path", "path")`
+7. `org.apache.spark.sql.functions`
+    1. Array and Map
+        1. `size()`
+        2. `explode()`
+        3. `explode_outer()`
+    2. Array
+        1. `array_contains()`
+        2. `arrays_zip()`
+        3. `element_at()`
+        4. `reverse()`
+        5. `flatten()`
+        6. `shuffle()`
+        7. `slice()`
+    3. String
+        1. `split()`
+    4. Json
+        1. `get_json_object(e: Column, path: String)`
+            1. path: `$.key1.key2...`
+        2. `json_tuple`
+        3. `from_json()`
+        4. `to_json()`
