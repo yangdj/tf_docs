@@ -553,3 +553,43 @@
             23. `--files file`: access with `SparkFiles.get(filename)`
             24. `spark-examples.jar`: application jar, path similar to `--jars`
             25. `arg1 arg2 ...`: application's options
+13. Zeppelin
+    1. Install
+
+        ```sh
+        ZEPPELIN_VERSION=0.9.0
+        wget https://mirrors.tuna.tsinghua.edu.cn/apache/zeppelin/zeppelin-${ZEPPELIN_VERSION}/zeppelin-${ZEPPELIN_VERSION}-bin-all.tgz
+        ```
+    2. Envs
+
+        ```sh
+        export ZEPPELIN_HOME=
+        export ZEPPELIN_CONF_DIR=
+        export ZEPPELIN_LOG_DIR=
+        export ZEPPELIN_PID_DIR=
+        ```
+    3. Configurations
+        1. `${ZEPPELIN_CONF_DIR}/zeppelin-site.xml`
+            1. `zeppelin.server.addr: 0.0.0.0`
+            2. `zeppelin.server.port: 8080`
+            3. `zeppelin.anonymous.allowed: false`
+        2. `${ZEPPELIN_CONF_DIR}/shiro-ini`
+            
+            ```ini
+            [users]
+            user_name = password, role1, role2, admin
+            ```
+        3. `${ZEPPELIN_CONF_DIR}/zeppelin-env.sh`
+            1. `export HADOOP_CONF_DIR=/data/hadoop/hadoop_conf`
+            2. `export SPARK_HOME=/data/jst/ansible/hadoop/roles/spark/files/spark-3.1.2-bin-hadoop3.2`
+            3. `export SPARK_CONF_DIR=/data/hadoop/spark_conf`
+            4. `export JAVA_HOME=...`
+                1. `Apache Zeppelin requires either Java 8 update 151 or newer`
+                    1. `bin/common.sh`: may need modified when `JAVA_HOME` not used by zeppelin
+                        1. `java_ver_output=${JAVA:-java} -> ${JAVA:-/path/to/java}`
+    4. Services
+        1. `bin/zeppelin-daemon.sh status`
+        2. `bin/zeppelin-daemon.sh start`
+        3. `bin/zeppelin-daemon.sh stop`
+        4. `bin/zeppelin-daemon.sh restart`
+        5. `bin/zeppelin-daemon.sh reload`

@@ -1,0 +1,16 @@
+# Zeppelin 
+
+1. Interpreter
+    1. Spark
+        1. Glocal Config
+            1. `SPARK_HOME: ...`
+            2. `spark.master: yarn`
+            3. `spark.submit.deployMode: client`
+            4. `spark.jars: hdfs://hpmaster:9000/user/spark/archive/spark-libs.jar`
+            5. `zeppelin.spark.enableSupportedVersionCheck: false`: when Spark version is confilicted, for development
+            6. `zeppelin.spark.useHiveContext: true`
+                1. add client `hive-site.xml` to `SPARK_CONF_DIR`
+        2. `%spark.conf`: Inline config, put in the first place
+            1. `SPARK_HOME: ...`
+            2. `master: ...`
+            3. `zeppelin.spark.useHiveContext: true`
