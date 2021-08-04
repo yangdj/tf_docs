@@ -304,7 +304,23 @@
             2. `nohup hive --service hiveserver2 &` or `hiveserver2`: start JDBC access with default port `10000`
         3. connect server
             1. beeline: `$HIVE_HOME/bin/beeline -u jdbc:hive2://hpmaster:10000 -n username -p passport`
-                1. `Concurrency mode is disabled, not creating a lock manager`: in `hive-site.xml`
+                1. login config: client `hive-site.xml`
+
+                    ```xml
+                    <property>
+                      <name>beeline.hs2.connection.hosts</name>
+                      <value>localhost:10000</value>
+                    </property>
+                    <property>
+                      <name>beeline.hs2.connection.user</name>
+                      <value>hive</value>
+                    </property>
+                    <property>
+                      <name>beeline.hs2.connection.password</name>
+                      <value>hive</value>
+                    </property>
+                    ```
+                1. `Concurrency mode is disabled, not creating a lock manager`: in server `hive-site.xml`
                     1. `hive.support.concurrency: true`
                     2. `hive.txn.manager: org.apache.hadoop.hive.ql.lockmgr.DbTxnManager`
             2. hive cli: `${HIVE_HOME}/bin/hive`

@@ -336,13 +336,15 @@
                     1. `.option("url", "jdbc:postgresql://host:port/dbname?user=u&password=p")`
                         1. PostgreSQL: `jdbc:postgresql://host:port/dbname?user=u&password=p`
                         2. MySQL: `jdbc:mysql://host:port/dbname?user=u&password=p`
-                        3. SQLServer 2000: `jdbc:sqlserver://host:port;database=dbname;user=u;password=p`
+                        3. Hive: `jdbc:hive2://host:port/dbname`
+                        4. SQLServer 2000: `jdbc:sqlserver://host:port;database=dbname;user=u;password=p`
                     2. `.option("user", "username")`
                     3. `.option("password", "password")`
                     4. `.option("dbtable", "schema.tablename")`: allow subquery in parentheses
                     5. `.option("driver","org.postgresql.Driver")`: when `spark-shell` or `spark-submit` speicify `--driver-class-path`, no need to config this option
                         1. MySQL: `com.mysql.cj.jdbc.Driver`
                         2. PostgreSQL: `org.postgresql.Driver`
+                        3. Hive: `org.apache.hive.jdbc.HiveDriver`
                     6. `.option("numPartitions", 10)`
                     7. `.jdbc("url", "schema.table", connectionProperties)`
                         1. `val connectionProperties = new java.util.Properties()`

@@ -14,3 +14,7 @@
             1. `SPARK_HOME: ...`
             2. `master: ...`
             3. `zeppelin.spark.useHiveContext: true`
+    2. JDBC
+        1. Hive
+            1. put hive jdbc to `interpreter/jdbc` directory
+            2. create a new interpreter with group `jdbc`
