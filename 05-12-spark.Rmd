@@ -3,7 +3,8 @@
 1. References
     1. [spark-notes](https://spoddutur.github.io/spark-notes/)
     2. [Structured Streaming + Kafka Integration Guide](http://spark.apache.org/docs/latest/structured-streaming-kafka-integration.html)
-    3. [spark-examples](https://github.com/apache/spark/blob/master/examples/src/main/scala/org/apache/spark/examples/streaming/DirectKafkaWordCount.scala)
+    3. [Structured Streaming Kafka Integration](https://docs.databricks.com/_static/notebooks/structured-streaming-etl-kafka.html)
+    4. [Spark to PostgreSQL](https://3rdman.de/2019/08/spark-to-postgresql-real-time-data-processing-pipeline-part-5/)
 2. Concepts
     1. driver
         1. run user's `main()` function
@@ -336,8 +337,10 @@
                     1. `.option("url", "jdbc:postgresql://host:port/dbname?user=u&password=p")`
                         1. PostgreSQL: `jdbc:postgresql://host:port/dbname?user=u&password=p`
                         2. MySQL: `jdbc:mysql://host:port/dbname?user=u&password=p`
-                        3. Hive: `jdbc:hive2://host:port/dbname`
-                        4. SQLServer 2000: `jdbc:sqlserver://host:port;database=dbname;user=u;password=p`
+                        3. Hive
+                            1. `jdbc:hive2://host:port/dbname`
+                            2. `jdbc:hive2://host:port/dbname;user=<user>;password=<password>`: LDAP
+                        6. SQLServer 2000: `jdbc:sqlserver://host:port;database=dbname;user=u;password=p`
                     2. `.option("user", "username")`
                     3. `.option("password", "password")`
                     4. `.option("dbtable", "schema.tablename")`: allow subquery in parentheses
@@ -376,19 +379,19 @@
             1. `"org.apache.spark" % "spark-sql-kafka-0-10_2.12" % "3.1.2"`
         2. Deployment
             1. `--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.2`
-        3. All Options
+        1. All Options
                 1. `.option("kafka.bootstrap.servers", "host1:9092,host2:port2...")`: comma separated list
                 2. `[.option("includeHeaders", "{[default: false], true})]`: whether to include the Kafka headers in the row
-        4. Load
+        2. Load
             1. Options
                 1. `.option("subscribe", "topic")`
                     1. `topic1`: one topic
-                    2. `topic1,topic2`: multiple topics
-                    3. `topic.*`: a pattern, java regex string
+                    1. `topic1,topic2`: multiple topics
+                    2. `topic.*`: a pattern, java regex string
                 2. `[.option("startingOffsets", "latest")]`
                     1. `earliest`: default for batch, read all data available in the Kafka
                     2. `latest`: only for streaming and is default value, not allowed for batch query, read only new data that's not been processed
-                    3. `"""{"topic1": {"0":23, "1": -1"}, "topic2":{"0":-2}}"""`: json string specifying a starting offset for a topic partition
+                    2. `"""{"topic1": {"0":23, "1": -1"}, "topic2":{"0":-2}}"""`: json string specifying a starting offset for a topic partition
                         1. `-2`: as an offset to refer to `earliest`
                         2. `-1`: to `lastest`, not allowed for batch query
             2. Streaming: `val df = spark.readStream.format("kafka").load()`
@@ -410,7 +413,7 @@
                         2. `"""{"topic1": {"0":23, "1": -1"}, "topic2":{"0":-1}}"""`: json string specifying an ending offset for each topic partition
                             1. `-1`: as an offset to refer to `latest`
                             2. ~~`-2`: to `earliest`, not allowed~~
-        5. Write
+        3. Write
             1. Options
                 1. `[.option("topic", "topic1")]`: `[default: none]`, override any topic column existing in the data
             2. Streaming
@@ -428,6 +431,10 @@
                     2. `complete`
                     3. `update`
                 3. `.option("path", "path")`
+    4. Hbase
+        1. Dependencies  
+            1. `org.apache.hbase" % "hbase-client" % "2.3.5"`
+            2. `org.apache.hbase" % "hbase-common" % "2.3.5`
 7. `org.apache.spark.sql.functions`
     1. Array and Map
         1. `size()`

@@ -1,5 +1,7 @@
 # Hadoop
 
+## Deployment
+
 1. References
     1. [Hadoop](http://hadoop.apache.org/)
     2. [Hadoop standalone](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html)
@@ -320,7 +322,7 @@
                       <value>hive</value>
                     </property>
                     ```
-                1. `Concurrency mode is disabled, not creating a lock manager`: in server `hive-site.xml`
+                2. `Concurrency mode is disabled, not creating a lock manager`: in server `hive-site.xml`
                     1. `hive.support.concurrency: true`
                     2. `hive.txn.manager: org.apache.hadoop.hive.ql.lockmgr.DbTxnManager`
             2. hive cli: `${HIVE_HOME}/bin/hive`
@@ -396,16 +398,38 @@
         1. `http://hpmaster:16010`: master
         2. `http://node:16030`: regionServer
     6. Commands
-        1. Table
-            1. create table: `create "<table_name>", "<column_family>"`
-            2. confirm table: `list "<table_name>"`
-            3. detail: `describe "<table_name>"`
-            4. disable table before deleting or changing its settings: `disable "<table_name>"`
-            5. enable table: `enable "<table_name>"`
-            6. drop table: `drop "<table_name>"`
-            7. put data: `put "<table_name>", "<row1>", "column_family:a", "value1"`
-            8. get data: `get "<table_name>", "<row1>"`
-            9. scan all data: `scan "<table_name>"`
+        1. Namespace: similar to database a table belongs to
+            1. `list_namespace"`
+            2. `create_namespace "<ns>"`
+            3. `drop_namespace "<ns>"`
+            4. `describe_namespace "<ns>"`
+            5. `list_namespace_tables "<ns>"`
+        2. Table
+            1. list tables: `list`
+            2. exist table; `exists "<table_name>"`
+            3. confirm table: `list "<table_name>"`
+            4. detail: `desc[ribe] "<table_name>"`
+            5. create table: 
+                1. use default namespace: `create "<table_name>", "<column_family1>", "<column_family2>"...`
+                2. specify namespace: `create "<ns>:<table_name>", "<column_family1>", "<column_family2>"...`
+            6. disable table before droping or changing its settings
+                1. `disable "<table_name>"`
+                2. `is_disabled "<table_name>"`
+            7. enable table
+                1. `enable "<table_name>"`
+                2. `is_enabled "<table_name>"`
+            8. truncate table: `truncate "<table_name>"`
+            9.  drop table: `drop "<table_name>"`
+            10. scan table: `scan "<table_name>"`
+            11. scan columns
+                1. one column: `scan "<table_name>", {COLUMNS => "<column_family:column_name>"}`
+                2. multiple columns: `scan "<table_name>", {COLUMNS => ["<column_family1:column_name1>", "<column_family2:column_name2>"]}`
+            12. count table rows: `count "<table_name>"`
+            13. write a row: `put "<table_name>", "<row_key>", "<column_family:column_name>", "value"`
+            14. read a row: `get "<table_name>", "<row_key>"`
+            15. read a column: `get "<table_Name>", "<row_key>", "<column_family:column_name>"`
+            16. delete a row: `delete "<table_name>", "<row_key>"`
+            17. delete a column: `delete "<table_name>", "<row_key>", "<column_family:column_name>"`
 9.  Phoenix
     1. Install
 
@@ -604,8 +628,10 @@
                     1. `bin/common.sh`: may need modified when `JAVA_HOME` not used by zeppelin
                         1. `java_ver_output=${JAVA:-java} -> ${JAVA:-/path/to/java}`
     4. Services
-        1. `bin/zeppelin-daemon.sh status`
-        2. `bin/zeppelin-daemon.sh start`
-        3. `bin/zeppelin-daemon.sh stop`
+        1. `bin/zeppelin-daemon.sh start`
+            1. `${ZEPPELIN_CONF_DIR}/log4j.properties`: copy from `conf/log4j.properties`, otherwise cause `not found log4j.properties`
+            2. `lib/slf4j-log4j12-1.7.30.jar`: may need remove when confilic with other app's same jar file
+        2. `bin/zeppelin-daemon.sh stop`
+        3. `bin/zeppelin-daemon.sh status`
         4. `bin/zeppelin-daemon.sh restart`
         5. `bin/zeppelin-daemon.sh reload`

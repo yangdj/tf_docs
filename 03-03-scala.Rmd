@@ -48,6 +48,7 @@
                     1. `%%` instead of `%` after groupID will add scala version to the artifactID name
                     2. `% configuration`
                         1. `test`: just for sbt `test` command , not for `compile`, useful for test dependencies package
+                        2. `provided`: exclude the jars when packaging
                 2. stored path
                     1. windows: `%LOCALAPPDATA%\Coursier\Cache\v1`
                     2. Linux: `~/.cache/coursier/v1; ~/.ivy2/cache`
