@@ -86,7 +86,9 @@
     12. `console`: enter scala shell with compiled environment
     13. `run [arguments]`: run main class
     14. `package`: generate a jar file from `scr/main/resources` and `scr/main/{scala,java}`,  need `name` and `version` in the file `build.sbt`
-    15. `~<command>`: run the command automatically when files update, `~run`. `Enter` key will cancel it
+    15. `assembly`
+        1. `project_name/project/plugins.sbt`: `addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "1.0.0")`
+    16. `~<command>`: run the command automatically when files update, `~run`. `Enter` key will cancel it
 
 ## Scala Language
 

@@ -22,6 +22,8 @@
             2. `spark.yarn.executor.memoryOverhead` = `Max(384MB, 7% of spark.executor-memory)`
     5. MemoryOverhead
 3. Using Scala
+    1. Dependencies
+        1. `"org.apache.spark" %% "spark-sql" % "3.1.2" % "provided"`
     1. Initialization
         1. `import org.apache.spark.sql.SparkSession`
         2. `val spark = SparkSession.builder().appName("spark example").config("spark.config.opiton", "config-value").getOrCreate()`
