@@ -4,7 +4,8 @@
     1. [spark-notes](https://spoddutur.github.io/spark-notes/)
     2. [Structured Streaming + Kafka Integration Guide](http://spark.apache.org/docs/latest/structured-streaming-kafka-integration.html)
     3. [Structured Streaming Kafka Integration](https://docs.databricks.com/_static/notebooks/structured-streaming-etl-kafka.html)
-    4. [Spark to PostgreSQL](https://3rdman.de/2019/08/spark-to-postgresql-real-time-data-processing-pipeline-part-5/)
+    4. [Structured Streaming to PostgreSQL](https://3rdman.de/2019/08/spark-to-postgresql-real-time-data-processing-pipeline-part-5/)
+    5. [Structured Streaming to Hbase](https://blog.csdn.net/yuyinghua0302/article/details/96574860)
 2. Concepts
     1. driver
         1. run user's `main()` function
@@ -24,18 +25,18 @@
 3. Using Scala
     1. Dependencies
         1. `"org.apache.spark" %% "spark-sql" % "3.1.2" % "provided"`
-    1. Initialization
+    2. Initialization
         1. `import org.apache.spark.sql.SparkSession`
         2. `val spark = SparkSession.builder().appName("spark example").config("spark.config.opiton", "config-value").getOrCreate()`
-    2. Configurations
+    3. Configurations
         1. `spark.conf.get("spark.config.option")`
         2. `spark.conf.set("spark.config.option", "other-config-value")`
         3. `import spark.implicits._`
             1. implicitly convert RDDs to DataFrames or use `$-notation`
             2. provide Encoder for most common types automatically
-    3. Stop
+    4. Stop
         1. `spark.stop()`
-    4. Application
+    5. Application
         1. define a `main()` method instead of extending `scala.App`. Subclasses of `scala.App` may not work correctly
 
     ```scala
@@ -342,7 +343,7 @@
                         3. Hive
                             1. `jdbc:hive2://host:port/dbname`
                             2. `jdbc:hive2://host:port/dbname;user=<user>;password=<password>`: LDAP
-                        6. SQLServer 2000: `jdbc:sqlserver://host:port;database=dbname;user=u;password=p`
+                        4. SQLServer 2000: `jdbc:sqlserver://host:port;database=dbname;user=u;password=p`
                     2. `.option("user", "username")`
                     3. `.option("password", "password")`
                     4. `.option("dbtable", "schema.tablename")`: allow subquery in parentheses
@@ -381,19 +382,19 @@
             1. `"org.apache.spark" % "spark-sql-kafka-0-10_2.12" % "3.1.2"`
         2. Deployment
             1. `--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.2`
-        1. All Options
+        3. All Options
                 1. `.option("kafka.bootstrap.servers", "host1:9092,host2:port2...")`: comma separated list
                 2. `[.option("includeHeaders", "{[default: false], true})]`: whether to include the Kafka headers in the row
-        2. Load
+        4. Load
             1. Options
                 1. `.option("subscribe", "topic")`
                     1. `topic1`: one topic
-                    1. `topic1,topic2`: multiple topics
-                    2. `topic.*`: a pattern, java regex string
+                    2. `topic1,topic2`: multiple topics
+                    3. `topic.*`: a pattern, java regex string
                 2. `[.option("startingOffsets", "latest")]`
                     1. `earliest`: default for batch, read all data available in the Kafka
                     2. `latest`: only for streaming and is default value, not allowed for batch query, read only new data that's not been processed
-                    2. `"""{"topic1": {"0":23, "1": -1"}, "topic2":{"0":-2}}"""`: json string specifying a starting offset for a topic partition
+                    3. `"""{"topic1": {"0":23, "1": -1"}, "topic2":{"0":-2}}"""`: json string specifying a starting offset for a topic partition
                         1. `-2`: as an offset to refer to `earliest`
                         2. `-1`: to `lastest`, not allowed for batch query
             2. Streaming: `val df = spark.readStream.format("kafka").load()`
@@ -415,7 +416,7 @@
                         2. `"""{"topic1": {"0":23, "1": -1"}, "topic2":{"0":-1}}"""`: json string specifying an ending offset for each topic partition
                             1. `-1`: as an offset to refer to `latest`
                             2. ~~`-2`: to `earliest`, not allowed~~
-        3. Write
+        5. Write
             1. Options
                 1. `[.option("topic", "topic1")]`: `[default: none]`, override any topic column existing in the data
             2. Streaming
@@ -436,7 +437,6 @@
     4. Hbase
         1. Dependencies  
             1. `org.apache.hbase" % "hbase-client" % "2.3.5"`
-            2. `org.apache.hbase" % "hbase-common" % "2.3.5`
         2. Initialization
 
             ```scala
