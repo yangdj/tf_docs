@@ -80,7 +80,7 @@
     6. `help <command>`
     7. `reload`: reload build files, `build.sbt`, `project/{*.scala, *.sbt}`
     8. `clean`: clear output under `target/`
-    9.  `update`: download dependencies manually, used by `compile`, so always no need to execute it
+    9. `update`: download dependencies manually, used by `compile`, so always no need to execute it
     10. `compile`: files in `src/main/{scala, java}`
     11. `test`: compile and run test file
     12. `console`: enter scala shell with compiled environment
@@ -108,7 +108,7 @@
         1. `scala helloworld.scala`: runs scala script
         2. `scala helloworld`: runs compiled scala file
         3. `scala helloworld.jar`
-        4. `scala -cp helloworld.jar Hello`: runs Hello in jar file
+        4. `scala -cp helloworld.jar Hello`: runs class Hello in jar file
 2. Data Structure
     1. Architecture
         1. Relations
@@ -719,7 +719,7 @@
 7. Exception
     1. `throw new IllegalArgumentException`: `throw` has type `Nothing`
     2. `try{} catch{} finally {}`: returns a value, if exception thrown not caught, the expression has no result at all
-    3. the value computed in the `finally` clause, if there is one, is dropped, it usually does some clean work
+    3. the value computed in the `finally` clause will be dropped, it usually does some clean work
     4. if `finally` has explicit return, or throws an exception, the return value or exception will the final expression result
 
         ```scala
@@ -762,11 +762,155 @@
         import scala.collection.mutable
         var helloSet = mutable.Set("hello", "world")
         ```
-9. Common Class
-    1. `System`
+9. Libraries
+    1. IO
+        1. Streams
+        2. File
+        3. JDBC
+            1. General
+                1. Reference: [Java JDBC Documents](https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html)
+                2. import class: `import java.sql._`
+                3. register driver, no need since JDBC4: `Class.forName(driver)`
+                4. get connection: `connection = java.sql.DriverManager.getConnection(url, user, pwd)`
+                5. statements
+                    1. prepare statement
+
+                        ```scala
+                        sql = "insert into tbl (a, b) values (?, cast(?) as real)"
+                        statement = connection.prepareStatement(sql)
+                        statement.setString(1, value(1).toString)
+                        statement.setString(2, value(2).toString)
+                        statement.executeUpdate()
+                        ```
+                6. commit 
+
+                    ```scala
+                    connection = ...
+                    connection.setAutoCommit(false)
+                    ...
+                    connection.commit()
+                    ```
+
+            2. Database
+                1. PostgreSQL
+                    1. Dependencies: `"org.postgresql" % "postgresql" % "42.2.16"`
+                    2. Jar: [postgresql](https://jdbc.postgresql.org/download.html)
+                    3. Document: [PgJDBC driver documentation](https://jdbc.postgresql.org/documentation/head/)
+                    4. Driver: `org.postgresql.Driver`
+                    5. Url: `jdbc:postgresql://host:port/dbname?user=u&password=p`
+                2. MySQL
+                    1. Dependencies: `"mysql" % "mysql-connector-java" % "8.0.25"`
+                    2. Jar: [mysql-connector-java](https://dev.mysql.com/downloads/connector/j/)
+                    3. Driver: `com.mysql.cj.jdbc.Driver`
+                    4. Url: `jdbc:mysql://host:port/dbname?user=u&password=p`
+                3. SQL Server 
+                    1. Url SQL Server 2000: `jdbc:sqlserver://host:port;database=dbname;user=u;password=p`
+                4. Hive
+                    1. Dependencies: `"org.apache.hive" % "hive-jdbc" % "3.1.2"`
+                    2. Jar: [hive-jdbc-uber-jar](https://github.com/timveil/hive-jdbc-uber-jar/releases)
+                    3. Driver: `org.apache.hive.jdbc.HiveDriver`
+                    4. Url
+                        1. `jdbc:hive2://host:port/dbname`
+                        2. `jdbc:hive2://host:port/dbname;user=<user>;password=<password>`: LDAP
+        4. BigData
+            1. Hbase
+                1. Dependencies: `"org.apache.hbase" % "hbase-client" % "2.3.5"`
+                2. Initialization
+        
+                    ```scala
+                    import org.apache.hadoop.hbase.{HBaseConfiguration, HConstants, TableName, CellUtil}
+                    import org.apache.hadoop.hbase.client.{ConnectionFactory, Scan, Put, Get}
+                    import org.apache.hadoop.hbase.util.Bytes
+        
+                    val config = HBaseConfiguration.create()
+                    config.set(HConstants.ZOOKEEPER_QUORUM, "hpmaster")
+                    //conf.set("hbase.zookeeper.quorum", "hpmaster")
+        
+                    val connection = ConnectionFactory.createConnection(config)
+                    connection.close()
+                    ```
+                3. Operations
+                    1. Admin
+                        1. Admin Initialization
+        
+                            ```scala
+                            val admin = connection.getAdmin
+                            admin.tableExists(TableName.valueOf("ns:test"))
+                            ...
+                            admin.close()
+                            ```
+                        2. Operations
+                            1. exists:`admin.TableExists(TableName.valueOf(table_name))`
+                            2. create: `admin.createTable(...)`
+                            3. drop:
+                                1. `admin.disableTable(TableName.valueOf(table_name))`
+                                2. `admin.deleteTable(TableName.valueOf(table_name))`
+                    2. Table
+                        1. Table Initialization
+        
+                            ```scala
+                            val table = connection.getTable(TableName.valueOf("ns:test"))
+                            ...
+                            table.close()
+                            ```
+                        2. Scan Rows
+        
+                            ```scala
+                            def printRow(result : Result) = {
+                              val cells = result.rawCells();
+                              print( Bytes.toString(result.getRow) + " : " )
+                              for(cell <- cells){
+                                val col_name = Bytes.toString(CellUtil.cloneQualifier(cell))
+                                val col_value = Bytes.toString(CellUtil.cloneValue(cell))
+                                print("(%s,%s) ".format(col_name, col_value))
+                              }
+                              println()
+                            }
+        
+                            /**
+                            val scan = new Scan()
+                            scan.addFamily(columnFamily.getBytes())
+                            var scanner = table.getScanner(scan)
+                            var result = scanner.next()
+                            while (result != null) {
+                              println(Bytes.toString(result.getRow))
+                              result = scanner.next()
+                            }
+                            scanner.close()
+                            */
+                            var scan = table.getScanner(new Scan())
+                            scan.forEach(result => {printRow(result)})
+                            scan.close()
+                            ```
+                        3. Get Row
+        
+                            ```scala
+                            // Bytes.toBytes("ab") <=> "ab".getBytes()
+                            val get = new Get(Bytes.toBytes("rowid"))
+                            var result = table.get(get)
+                            println(Bytes.toString(result.getRow))
+                            println(Bytes.toString(result.getValue(Bytes.toBytes("column_family"), Bytes.toBytes("col_name"))))
+                            ```
+                        4. Put Row
+        
+                            ```scala
+                            var put = new Put(Bytes.toBytes("rowid"))
+                            put.addColumn(Bytes.toBytes("column_family"), Bytes.toBytes("col_name"), Bytes.toBytes("value"))
+                            table.put(put)
+                            ```
+                        5. Delete Row
+        
+                            ```scala
+                            val del = new Delete(Bytes.toBytes(rowkey))
+                            del.addColumn("column_family".getBytes(), "column_name".getBytes())
+                            table.delete(del)
+                            ```
+    2. `System`
         1. `System.exit(<n>)`
         2. `System.err.println()`
-    2. `java.io.File`
+    3. `java.io.File`
         1. Methods
             1. `getAbsolutePath()`
-    3. `java.util.Properties`
+    4. `java.util.Properties`
+        1. `val connectionProperties = new Properties()`
+        2. `connectionProperties.put("user", "username")`

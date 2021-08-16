@@ -22,9 +22,6 @@
         export JAVA_HOME=/server/proj/hp/bin/java/jdk1.8.0_141
         export PATH=$PATH:${JAVA_HOME}/bin
         ```
-    2. JDBC
-        1. mysql-connector-java: `https://dev.mysql.com/downloads/connector/j/`
-        2. postgrsql: `https://jdbc.postgresql.org/download.html`
 3. Hadoop
     1. Install
 

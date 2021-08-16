@@ -338,25 +338,19 @@
             3. `jdbc`
                 1. All Options
                     1. `.option("url", "jdbc:postgresql://host:port/dbname?user=u&password=p")`
-                        1. PostgreSQL: `jdbc:postgresql://host:port/dbname?user=u&password=p`
-                        2. MySQL: `jdbc:mysql://host:port/dbname?user=u&password=p`
-                        3. Hive
-                            1. `jdbc:hive2://host:port/dbname`
-                            2. `jdbc:hive2://host:port/dbname;user=<user>;password=<password>`: LDAP
-                        4. SQLServer 2000: `jdbc:sqlserver://host:port;database=dbname;user=u;password=p`
                     2. `.option("user", "username")`
                     3. `.option("password", "password")`
                     4. `.option("dbtable", "schema.tablename")`: allow subquery in parentheses
-                    5. `.option("driver","org.postgresql.Driver")`: when `spark-shell` or `spark-submit` speicify `--driver-class-path`, no need to config this option
-                        1. MySQL: `com.mysql.cj.jdbc.Driver`
-                        2. PostgreSQL: `org.postgresql.Driver`
-                        3. Hive: `org.apache.hive.jdbc.HiveDriver`
+                    5. `.option("driver","org.postgresql.Driver")`: JDBC database driver, when `spark-shell` or `spark-submit` speicify `--driver-class-path`, no need to config this option
                     6. `.option("numPartitions", 10)`
                     7. `.jdbc("url", "schema.table", connectionProperties)`
-                        1. `val connectionProperties = new java.util.Properties()`
-                        2. `connectionProperties.put("user", "username")`
-                        3. `connectionProperties.put("password", "password")`
-                        4. `connectionProperties.put("driver", "com.mysql.cj.jdbc.Driver")`
+
+                        ```scala
+                        val connectionProperties = new java.util.Properties()
+                        connectionProperties.put("user", "username")
+                        connectionProperties.put("password", "password")
+                        connectionProperties.put("driver", "com.mysql.cj.jdbc.Driver")
+                        ```
                     8. `.explain([true, false])`: execute plan
                 2. Load Options
                     1. `option("query", "select * from t1")`: can not use with `dbtable` at the same time
@@ -434,99 +428,12 @@
                     2. `complete`
                     3. `update`
                 3. `.option("path", "path")`
-    4. Hbase
-        1. Dependencies  
-            1. `org.apache.hbase" % "hbase-client" % "2.3.5"`
-        2. Initialization
-
-            ```scala
-            import org.apache.hadoop.hbase.{HBaseConfiguration, HConstants, TableName, CellUtil}
-            import org.apache.hadoop.hbase.client.{ConnectionFactory, Scan, Put, Get}
-            import org.apache.hadoop.hbase.util.Bytes
-
-            val config = HBaseConfiguration.create()
-            config.set(HConstants.ZOOKEEPER_QUORUM, "hpmaster")
-            //conf.set("hbase.zookeeper.quorum", "hpmaster")
-
-            val connection = ConnectionFactory.createConnection(config)
-            connection.close()
-            ```
-        3. Operations
-            1. Admin
-                1. Admin Initialization
-
-                    ```scala
-                    val admin = connection.getAdmin
-                    admin.tableExists(TableName.valueOf("ns:test"))
-                    ...
-                    admin.close()
-                    ```
-                2. Operations
-                    1. exists:`admin.TableExists(TableName.valueOf(table_name))`
-                    2. create: `admin.createTable(...)`
-                    3. drop:
-                        1. `admin.disableTable(TableName.valueOf(table_name))`
-                        2. `admin.deleteTable(TableName.valueOf(table_name))`
-            2. Table
-                1. Table Initialization
-
-                    ```scala
-                    val table = connection.getTable(TableName.valueOf("ns:test"))
-                    ...
-                    table.close()
-                    ```
-                2. Scan Rows
-
-                    ```scala
-                    def printRow(result : Result) = {
-                      val cells = result.rawCells();
-                      print( Bytes.toString(result.getRow) + " : " )
-                      for(cell <- cells){
-                        val col_name = Bytes.toString(CellUtil.cloneQualifier(cell))
-                        val col_value = Bytes.toString(CellUtil.cloneValue(cell))
-                        print("(%s,%s) ".format(col_name, col_value))
-                      }
-                      println()
-                    }
-
-                    /**
-                    val scan = new Scan()
-                    scan.addFamily(columnFamily.getBytes())
-                    var scanner = table.getScanner(scan)
-                    var result = scanner.next()
-                    while (result != null) {
-                      println(Bytes.toString(result.getRow))
-                      result = scanner.next()
-                    }
-                    scanner.close()
-                    */
-                    var scan = table.getScanner(new Scan())
-                    scan.forEach(result => {printRow(result)})
-                    scan.close()
-                    ```
-                3. Get Row
-
-                    ```scala
-                    // Bytes.toBytes("ab") <=> "ab".getBytes()
-                    val get = new Get(Bytes.toBytes("rowid"))
-                    var result = table.get(get)
-                    println(Bytes.toString(result.getRow))
-                    println(Bytes.toString(result.getValue(Bytes.toBytes("column_family"), Bytes.toBytes("col_name"))))
-                    ```
-                4. Put Row
-
-                    ```scala
-                    var put = new Put(Bytes.toBytes("rowid"))
-                    put.addColumn(Bytes.toBytes("column_family"), Bytes.toBytes("col_name"), Bytes.toBytes("value"))
-                    table.put(put)
-                    ```
-                5. Delete Row
-
-                    ```scala
-                    val del = new Delete(Bytes.toBytes(rowkey))
-                    del.addColumn("column_family".getBytes(), "column_name".getBytes())
-                    table.delete(del)
-                    ```
+    5. Other Sinks
+        1. extend class: `org.apache.spark.sql.ForeachWriter`
+        2. override functions
+            1. `open(partitionId: Long, epochId: Long): Boolean`
+            2. `process(value: T): Unit`
+            3. `close(errorOrNull: Throwable): Unit`
 7. `org.apache.spark.sql.functions`
     1. Array and Map
         1. `size()`
