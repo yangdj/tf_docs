@@ -717,10 +717,42 @@
             }
             ```
 7. Exception
-    1. `throw new IllegalArgumentException`: `throw` has type `Nothing`
-    2. `try{} catch{} finally {}`: returns a value, if exception thrown not caught, the expression has no result at all
-    3. the value computed in the `finally` clause will be dropped, it usually does some clean work
-    4. if `finally` has explicit return, or throws an exception, the return value or exception will the final expression result
+    1. Catch or Specify Requirement: code that might throw exceptions must be enclosed by either of the following
+        1. A `try` statement that catches the excpetion. The `try` must privide a handle for the exception
+        2. A method specifies it can throw the exception. The method must provide a `throws` clause listing the exception
+    2. Exception Handlers
+        1. try-catch-finally
+        2. try-with-resources
+    3. Types
+        1. Structure
+            1. Throwable
+                1. Error
+                    1. subclass
+                2. Exception
+                    1. RuntimeException
+                        1. subclass
+                    2. Others subclass
+        2. Checked Exception
+            1. Exception
+                1. Should anticipate and recover from these exceptions
+                2. All exceptions are checked exceptions, except for `Error` and `RuntimeException` and their subclass
+                3. **Subject to the Catch or Specify Requirement**
+                4. A well-written program will catch this exception and notify the mistake
+        3. Unchecked Exceptions
+            1. Error
+                1. External to the application which usually cannot anticipate or recover from
+                2. Indicated by `Error` and its subclasses
+                3. **Not subject to the Catch or Specify Requirement**
+                4. Might catch this exception in order to notify the problem, but makes sense to print a stack trace and exit
+            2. Runtime Exception
+                1. Internal to the application that cannot anticipate or recover from ndicating bugs such as logic error or improper use of API
+                2. Indicated by `RuntimeException` and its subclasses
+                3. **Not subject to the Catch or Specify Requirement**
+                4. Can catch this exception, but it probably makes more sense to eliminate the bug that caused the excption
+    4. `throw new IllegalArgumentException`: `throw` has type `Nothing`
+    5. `try{} catch{} finally {}`: returns a value, if exception thrown not caught, the expression has no result at all
+    6. the value computed in the `finally` clause will be dropped, it usually does some clean work
+    7. if `finally` has explicit return, or throws an exception, the return value or exception will the final expression result
 
         ```scala
         def f(): Int = try return 1 finally return 2 => f() => 2
@@ -776,13 +808,24 @@
                     1. prepare statement
 
                         ```scala
-                        sql = "insert into tbl (a, b) values (?, cast(?) as real)"
-                        statement = connection.prepareStatement(sql)
+                        query = "insert into tbl (a, b) values (?, cast(?) as real)"
+                        statement = connection.prepareStatement(query)
                         statement.setString(1, value(1).toString)
                         statement.setString(2, value(2).toString)
                         statement.executeUpdate()
                         ```
-                6. commit 
+                6. Executtion
+                    1. `statement.executeQuery()`
+                    2. `statement.executeUpdate`
+                7. ResultSet
+
+                    ```scala
+                    rs = stmt.executeQuery(query)
+                    while (rs.next()) {
+                        rs.getInt("cof_name")
+                    }
+                    ```
+                8. commit 
 
                     ```scala
                     connection = ...
