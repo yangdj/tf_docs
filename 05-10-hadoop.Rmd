@@ -16,7 +16,8 @@
     12. [Hbase](http://hbase.apache.org/book.html)
     13. [Hbase-intro](https://zhuanlan.zhihu.com/p/145551967)
 2. Java
-    1. Envs
+    1. Install: [download](https://www.oracle.com/java/technologies/javase-downloads.html)
+    2. Envs
 
         ```sh
         export JAVA_HOME=/server/proj/hp/bin/java/jdk1.8.0_141

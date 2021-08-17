@@ -88,6 +88,14 @@
     14. `package`: generate a jar file from `scr/main/resources` and `scr/main/{scala,java}`,  need `name` and `version` in the file `build.sbt`
     15. `assembly`
         1. `project_name/project/plugins.sbt`: `addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "1.0.0")`
+        2. `project_name/build.sbt`: create this file if not exists
+
+            ```scala
+            //build.sbt
+            import AssemblyKeys._ // put this at the top of the file
+
+            assemblySettings
+            ```
     16. `~<command>`: run the command automatically when files update, `~run`. `Enter` key will cancel it
 
 ## Scala Language
@@ -717,42 +725,50 @@
             }
             ```
 7. Exception
-    1. Catch or Specify Requirement: code that might throw exceptions must be enclosed by either of the following
+    1. Catch or Specify Requirement: code that might throw exceptions must be enclosed by either of the following, otherwise the code will not be compiled
         1. A `try` statement that catches the excpetion. The `try` must privide a handle for the exception
         2. A method specifies it can throw the exception. The method must provide a `throws` clause listing the exception
-    2. Exception Handlers
-        1. try-catch-finally
-        2. try-with-resources
+    2. Structure
+        1. Throwable
+            1. Error
+                1. `java.io.IOError`
+                2. other subclasses
+            2. Exception
+                1. RuntimeException
+                    1. `NullPointerException`
+                    2. other subclasses
+                2. Other subclasses
+                    1. `java.io.FileNotFoundException`
     3. Types
-        1. Structure
-            1. Throwable
-                1. Error
-                    1. subclass
-                2. Exception
-                    1. RuntimeException
-                        1. subclass
-                    2. Others subclass
-        2. Checked Exception
+        1. Checked Exception
             1. Exception
-                1. Should anticipate and recover from these exceptions
-                2. All exceptions are checked exceptions, except for `Error` and `RuntimeException` and their subclass
+                1. Should anticipate and recover from
+                2. All exceptions are checked exceptions, except for `Error` and `RuntimeException` and their subclasses
                 3. **Subject to the Catch or Specify Requirement**
                 4. A well-written program will catch this exception and notify the mistake
-        3. Unchecked Exceptions
+        2. Unchecked Exceptions
             1. Error
                 1. External to the application which usually cannot anticipate or recover from
                 2. Indicated by `Error` and its subclasses
                 3. **Not subject to the Catch or Specify Requirement**
                 4. Might catch this exception in order to notify the problem, but makes sense to print a stack trace and exit
             2. Runtime Exception
-                1. Internal to the application that cannot anticipate or recover from ndicating bugs such as logic error or improper use of API
+                1. Internal to the application that cannot anticipate or recover from, indicating bugs such as logic error or improper use of API
                 2. Indicated by `RuntimeException` and its subclasses
                 3. **Not subject to the Catch or Specify Requirement**
                 4. Can catch this exception, but it probably makes more sense to eliminate the bug that caused the excption
-    4. `throw new IllegalArgumentException`: `throw` has type `Nothing`
-    5. `try{} catch{} finally {}`: returns a value, if exception thrown not caught, the expression has no result at all
-    6. the value computed in the `finally` clause will be dropped, it usually does some clean work
-    7. if `finally` has explicit return, or throws an exception, the return value or exception will the final expression result
+    4. Exception Handlers
+        1. try-catch-finally
+            1. `try`: work with at least one of `catch` or `finally`
+            2. `catch`
+                1. `catch (Exception e) {...}`
+                1. `catch (Exception1|Exception2 e) {...}`
+            3. `finally`
+        2. try-with-resources: since Jave7, suit to situations using `Closeable` resources
+    5. `throw new IllegalArgumentException`: `throw` has type `Nothing`
+    6. `try{} catch{} finally {}`: returns a value, if exception thrown not caught, the expression has no result at all
+    7. the value computed in the `finally` clause will be dropped, it usually does some clean work
+    8. if `finally` has explicit return, or throws an exception, the return value or exception will the final expression result
 
         ```scala
         def f(): Int = try return 1 finally return 2 => f() => 2
