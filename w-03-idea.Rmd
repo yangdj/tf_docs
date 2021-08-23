@@ -1,0 +1,6 @@
+# Idea
+
+1. Settings
+    1. `Code Style.java.Imports`
+        1. `Class count to use import with '*': 500`
+        1. `Names count to use static import with '*': 500`

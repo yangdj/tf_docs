@@ -99,26 +99,150 @@
             ```
     17. `~<command>`: run the command automatically when files update, `~run`. `Enter` key will cancel it
 
-## Scala Language
+## JVM Language
 
 1. References
     1. [shapeless-guide](https://books.underscore.io/shapeless-guide/shapeless-guide.html)
 1. Command
-    1. `scalac`
-        1. `scalac helloworld.scala`: compiles scala source
-        2. `scalac -d classes helloworld.scala`: compiles scala source, and stores in specified folder
-    2. `fsc`: fast scala compiler
-        1. `fsc helloworld.scala`
-        2. `fsc -shutdown`: shutdown daemon process
-    3. `jar`
-        1. `jar cvf helloworld.jar -C classes/ .`: package classes into helloworld.jar under the current directory
-        2. `jar tvf helloworld.jar`
-    4. `scala`
-        1. `scala helloworld.scala`: runs scala script
-        2. `scala helloworld`: runs compiled scala file
-        3. `scala helloworld.jar`
-        4. `scala -cp helloworld.jar Hello`: runs class Hello in jar file
-2. Data Structure
+    1. Common
+        1. `jar`
+            1. `jar cvf helloworld.jar -C classes/ .`: package classes into helloworld.jar under the current directory
+            2. `jar tvf helloworld.jar`
+    2. Java
+        1. `java -cp helloworld.jar HelloWorld`
+    3. Scala
+        1. `scalac`
+            1. `scalac helloworld.scala`: compiles scala source
+            2. `scalac -d classes helloworld.scala`: compiles scala source, and stores in specified folder
+        2. `fsc`: fast scala compiler
+            1. `fsc helloworld.scala`
+            2. `fsc -shutdown`: shutdown daemon process
+        3. `scala`
+            1. `scala helloworld.scala`: runs scala script
+            2. `scala helloworld`: runs compiled scala file
+            3. `scala helloworld.jar`
+            4. `scala -cp helloworld.jar Hello`: runs class Hello in jar file
+2. Basic
+    1. Java
+        1. Variables
+            1. Naming
+                1. Rules
+                    1. case sensitive
+                    2. no length limit, sequence of Unicode letters and digits
+                    3. begin with a letter (convention) or `_` or `$` but `_` and `$` not encouraged
+                    4. subsequent characters may be letters, digits, dollar signs or underscore characters
+                2. Styles
+                    1. use camelCase
+                    2. constant value capitalizes every letter and separates subsequent workds with underscore
+            2. Primitive Data Types
+                1. Numeric
+                    1. Common
+                        1. Since Java SE 7, any number of underscore character `_` can appear anywhere between digits in a numerical literals
+                            1. `long creditCardNumber = 1234_5678_9012_3456L;`
+                            2. `long hexBytes = 0xFF_EC_DE_5E;`
+                            3. `long bytes = 0b11010010_01101001_10010100_10010010;`
+                            4. `float pi =  3.14_15F;`
+                    2. Integer
+                        1. common
+                            1. default literal type `int` unless ends with `l` or `L`
+                            2. decimal: base 10, `26`
+                            3. hexadecimal base 16, `0x1a`
+                            4. binary: base 2, `0b11010`
+                        2. `byte`
+                            1. field default `0`
+                            2. 8-bit signed two's complement integer
+                            3. range `[-2^7, 2^7 -1]`
+                        3. `short`
+                            1. field default `0`
+                            2. 16-bit signed two's complement integer
+                            3. range `[-2^-15, 2^15 - 1]`
+                        4. `int`
+                            1. field default `0`
+                            2. 32-bit signed two's complement integer
+                            3. range `[-2^-31, 2^31 - 1]`
+                        5. `long`
+                            1. field default `0L`
+                            2. 64-bit signed two's complement integer
+                            3. range `[-2^-63, 2^63 - 1]`
+                    3. Float
+                        1. Common
+                            1. default literal type `double` unless ends with `f` or `F`
+                            2. double value can optionally end with `d` or `D`
+                            3. decimal notation: `123.4`, `123.4f`
+                            4. scientific notation: `1.234e+2`
+                        2. `float`
+                            1. field default `0.0f`
+                            2. a single-precision 32-bit IEEE 754 floating point
+                        3. `double`
+                            1. field default `0.0d`
+                            2. a double-precision 64-bit IEEE 754 floating point
+                2. Others
+                    1. `boolean`
+                        1. field default `false`
+                        2. value `{true, false}`
+                    2. `char`
+                        1. field default `\u0000`
+                        2. 16-bit Unicode character
+                        3. range `[\u0000, \uffff] ([0, 2^16 - 1])`
+                        4. use single quotes
+                        5. escape characters 
+                            1. `\b`
+                            2. `\t`
+                            3. `\n`
+                            4. `\f`
+                            5. `\r`
+                            6. `\"`
+                            7. `\'`
+                            8. `\\`
+            3. Array: hold a fix number of values of a single type
+                1. the length is established when created. after creation, the length is fixed
+                2. element index begins with 0
+                3. declaration
+                    1. `int[] anArray`
+                    2. `int anArray[]`: discouraged
+                5. creation: `anArray = new int[10]`
+                6. initialization: `anArray[0] = 100`
+                7. access: `anArray[0]`
+                8. creation and initialization: `int[] anArray = {100, 200, ..., 1000}`, length is determined by element number in the brace separated by commas
+                9. multidimensional array
+                    1. use multiple brackets: `int[][] counts`
+                    2. each element is an array
+                    3. rows can vary in length: `String[][] names = {{"Mr. ", "Mrs. ", "Ms. "}, {"Smith", "Jones"}}`
+                10. members
+                    1. `.length`
+3. Class and Objects
+    1. Java
+        1. Class
+            1.  Modifier
+                1. top level
+                    1. `public`: visible to all classes everywhere
+                    2. no modifier: package-private, visible only within its own package
+                2. Member level
+                    1. `public`: same as top level
+                    2. no modifier: package-private, same as top level
+                    3. `private`: visible to its own class
+                    4. `protected`: visible within ist own package (package-private) and subclass of its class in another package
+                3. Member Variables
+                    1. `static`: see *Class Variables*
+                    2. `final`: value can not be changed
+            2. Member
+                1. Variables
+                    1. Instance Variables: fields, non-static fields, unique to each instance of class
+                        1. uninitialized default value
+                            1. primitive: see primitive data types
+                            2. objects: `null`
+                    2. Class Variables: static fields, declared with `static` modifier, only one copy of this variable
+                2. Methods
+                    1. Parameters
+                    2. Local Variables
+                        1. compiler never assigns a default value to an uninitialized local variable
+                        2. access uninitialized local variable results in compile-time error
+        2. Object
+            1. `null`
+                1. can be assigned to any variable, except primitive types
+                2. often used in program as a marker to indicate some object is unavailable
+            2. `.class`: refer to object's class
+4. Data Structure
     1. Architecture
         1. Relations
             1. `scala.Any`
@@ -156,7 +280,7 @@
                 3. `scala.collection.mutable.Set("About", "Before")`
                 4. `scala.collection.mutable.HashSet("About", "Before")`
                 5. `scala.collection.mutable.Map("A" -> "Abuout", "B" -> "Before")`
-                6. `scala.collection.mutable.HashaMap("A" -> "Abuout", "B" -> "Before")`
+                6.  `scala.collection.mutable.HashaMap("A" -> "Abuout", "B" -> "Before")`
             3. IO
                 1. `scala.io.Source`
                 2. `Console`
@@ -196,9 +320,9 @@
                 3. `'\n'`: line feed
                 4. `'\f'`: form feed
                 5. `'\r'`: carrige return
-                6. `'\"'`: double quote
-                7. `'\''`: single quote
-                8. `'\\'`: backslash
+                6.  `'\"'`: double quote
+                7.  `'\''`: single quote
+                8.  `'\\'`: backslash
             3. Methods
                 1. `.toByte()`
         3. Boolean: `[true, false]`
@@ -245,9 +369,9 @@
                 4.  `.isEmpty`
                 5. `.toLowerCase()`
                 6. `.toUpperCase()`
-                7. `.captalize()`
-                8. `.[toByte, toShort, toInt, toLong, toFloat, toDouble]()`
-                9. `.mkString()`
+                7.  `.captalize()`
+                8.  `.[toByte, toShort, toInt, toLong, toFloat, toDouble]()`
+                9.  `.mkString()`
                 10. `.substring()`
                 11. `.split()`
                 12. `.endsWith()`
@@ -270,8 +394,8 @@
                 5. `.head`: get the first element
                 6. `.last`: get the last element
                 7. `.init`: get all but the last element
-                8. `.tail`: get all but the first element
-                9. `.reverse` - gets a reversed list
+                8.  `.tail`: get all but the first element
+                9.  `.reverse` - gets a reversed list
                 10. `.sorted` - gets a sorted list
                 11. `.count(s => s.length == 4)`: get number of elements with length 4
                 12. `.exists(s => s == "util")`: determin whether exists a `"util"` element
@@ -337,7 +461,7 @@
         11. File
             1. `.listFiles()`
             2. `.getName()`
-3. Syntax
+5. Syntax
     1. Base
         1. `[// ...,  /* ... */]`: comments
         2. `Summer.scala`: scala file name follows the class or object name
@@ -408,7 +532,7 @@
             5. `>>`: fill with the highest sign bit of the left-hand value
         8. Assignment Operator
             1. `= += -+ *= /= %=`
-        9. Operator Precedence
+        9.  Operator Precedence
             1. Property
                 1. precedence is based on the first character of the methods used in operator notation
                 2. if the operator ends with `=`, and the operator is not in `<=, >=, ==, !=`, then the precedence is same as `=`
@@ -436,7 +560,7 @@
             a * b <=> a.*(b)
             a ::: b <=> b.:::(a)
             ```
-4. Control Structure
+6. Control Structure
     1. Conditonal
         1. If
             1. `if (boolean) {...}`: `if` returns a value
@@ -540,7 +664,7 @@
                  else searchFrom(i + 1)
             val i = searchFrom(0)
             ```
-5. Function
+7. Function
     1. Properties
         1. parameters are val type
         2. `return` at the end of function can be omitted, then the last value is returned
@@ -591,141 +715,142 @@
 
             myLoop(start = 5, end = 10) { i => println(s"i has value ${i}")}
             ```
-6. Class
-    1. Initialization
-        1. New
-            1. `val big = new java.math.BigInteger("12345")`: parameterize with value
-            2. `val greetStrings = new Array[String](3)`: parameterize with type and length
-        2. Factory Method
-            1. Properties
-                1. a factory method calls an `apply` method, which creates and returns the new object
-                2. the `apply` method is defined on the corresponding companion class which seems like calling a static method from the class
-            2. Examples
-                1. `arr(2) <=> arr.apply(2)`: a variable surrounded by `()` invocates an `apply` method on that variable
-                2. `val greetStrings = Array("zero", "one", "two") <=> Apply.apply("zero", "one", "two")`
-                3. `arr(2) =  "hello" <=> arr.update(2, "hello")`: an assignment invocates an update method
-                4. `1 -> "Go" <=> (1).->("Go")`: `->` can be invoked on any object, returns a two-element tuple, see Map
-    2. Modifiers
-        1. `public`: default, no need to specify
-        2. `private`
-        3. `protected`: only accesible for subclasses of the class in which the member is defined
-        4. `override`
-        5. `require`: `require(d != 0)` defined in standalone object `Predef`
-        6. `this`: self reference
-        7. `this(n: Int) = this(n, 1)`: auxiliary constructor must invoke another constructor of the same class first. the primary construction is the final single point of entry of a class, and the only calls supclass constructor
-    3. Definition
-        1. Regular
-
-            ```scala
-            class ChecksumAccumulator {
-                private var sum = 0
-                def add(b: Byte): Unit = { sum += b }
-                def checusum(): Int = ~(sum & 0xff) + 1
-            }
-
-            class Rational(n: Int, d: Int) {
-                require(d != 0)
-                val numer: Int = n
-                val denom: Int = d
-
-                def this(n: Int) = this(n, 1) // auxiliary constructor
-
-                override def toString = numer + "/" + denom
-
-                def add(that: Rational): Rational =
-                    new Rational(
-                      numer * that.denom + that.numer * denom,
-                      denom * that.denom
-                    )
-
-                def + (that: Rational): Rational =
-                    new Rational(
-                      numer * that.denom + that.numer * denom,
-                      denom * that.denom
-                    )
-
-                def lessThan(that: Rational) = 
-                    this.numer * that.denom < that.numer * this.denom
-
-                def max(that: Rational) = 
-                    if (this.lessThan(that)) that else this
-            }
-            ```
-        2. singleton object
-            1. a singleton function behavies like a static method in Java
-            2. share same name with a class, it is called that class's companion object. 
-            3. the class is called the companion class of the singleton. they are defined in the same source file.
-            4. the class and the singleton can access each other's private members
-            5. a singleton wihout a companion class is a standalone object. it can collect utility methods or become an app's entry point
-            6. the entry point has a `main` method, takes an `Array[String]` parameter and returns a `Unit` value, e.g.,
-
+8. Class
+    1. Scala
+        1. Initialization
+            1. New
+                1. `val big = new java.math.BigInteger("12345")`: parameterize with value
+                2. `val greetStrings = new Array[String](3)`: parameterize with type and length
+            2. Factory Method
+                1. Properties
+                    1. a factory method calls an `apply` method, which creates and returns the new object
+                    2. the `apply` method is defined on the corresponding companion class which seems like calling a static method     from the class
+                2. Examples
+                    1. `arr(2) <=> arr.apply(2)`: a variable surrounded by `()` invocates an `apply` method on that variable
+                    2. `val greetStrings = Array("zero", "one", "two") <=> Apply.apply("zero", "one", "two")`
+                    3. `arr(2) =  "hello" <=> arr.update(2, "hello")`: an assignment invocates an update method
+                    4. `1 -> "Go" <=> (1).->("Go")`: `->` can be invoked on any object, returns a two-element tuple, see Map
+        2. Modifiers
+            1. `public`: default, no need to specify
+            2. `private`
+            3. `protected`: only accesible for subclasses of the class in which the member is defined
+            4. `override`
+            5. `require`: `require(d != 0)` defined in standalone object `Predef`
+            6. `this`: self reference
+            7. `this(n: Int) = this(n, 1)`: auxiliary constructor must invoke another constructor of the same class first. the     primary construction is the final single point of entry of a class, and the only calls supclass constructor
+        3. Definition
+            1. Regular
+    
                 ```scala
-                import ChecksumAccumulator.calculate
-  
-                object Summer {
-                    def main(args: Array[String]): Unit = {
-                        for (arg <- args)
-                            println(arg + ": " + calculate(arg))
-                        }
+                class ChecksumAccumulator {
+                    private var sum = 0
+                    def add(b: Byte): Unit = { sum += b }
+                    def checusum(): Int = ~(sum & 0xff) + 1
+                }
+    
+                class Rational(n: Int, d: Int) {
+                    require(d != 0)
+                    val numer: Int = n
+                    val denom: Int = d
+    
+                    def this(n: Int) = this(n, 1) // auxiliary constructor
+    
+                    override def toString = numer + "/" + denom
+    
+                    def add(that: Rational): Rational =
+                        new Rational(
+                          numer * that.denom + that.numer * denom,
+                          denom * that.denom
+                        )
+    
+                    def + (that: Rational): Rational =
+                        new Rational(
+                          numer * that.denom + that.numer * denom,
+                          denom * that.denom
+                        )
+    
+                    def lessThan(that: Rational) = 
+                        this.numer * that.denom < that.numer * this.denom
+    
+                    def max(that: Rational) = 
+                        if (this.lessThan(that)) that else this
                 }
                 ```
-            
-            ```scala
-            import scala.collection.mutable
-  
-            object ChecksumAccumulator {
-                private val cache = mutable.Map.empty[String, Int]
-
-                def calculate(s: String): Int = 
-                    if (cache.contains(s))
-                        cache(s)
-                    else {
-                        val acc = new ChecksumAccumulator
-                        for (c <- s)
-                            acc.add(c.toByte)
-                        val cs = acc.checksum()
-                        cache += (s -> cs)
-                        cs
-                      }
-            }
-
-            val ca = ChecksumAccumulator.calculate("Every value is an object.")
-            ```
-        3. Case Class
-            1. Properties
-                1. automatically create a singleton object, which has following methods and traits
-                    1. Methods
-                        1. `apply())`
-                        2. `unapply()`: for pattern match
-                        3. `copy()`: `val b = a.copy()`
-                        4. `toString()`
-                        5. `hashCode()`
-                        6. `equals()`: instances are compared by structure and not by reference
-                    2. Inherited Traits
-                        1. `Product`
-                        2. `Serializable`
-                2. suitable for immutable data, parameters are public val types
-            2. Definitions
-
+            2. singleton object
+                1. a singleton function behavies like a static method in Java
+                2. share same name with a class, it is called that class's companion object. 
+                3. the class is called the companion class of the singleton. they are defined in the same source file.
+                4. the class and the singleton can access each other's private members
+                5. a singleton wihout a companion class is a standalone object. it can collect utility methods or become an app's     entry point
+                6. the entry point has a `main` method, takes an `Array[String]` parameter and returns a `Unit` value, e.g.,
+    
+                    ```scala
+                    import ChecksumAccumulator.calculate
+      
+                    object Summer {
+                        def main(args: Array[String]): Unit = {
+                            for (arg <- args)
+                                println(arg + ": " + calculate(arg))
+                            }
+                    }
+                    ```
+                
                 ```scala
-                case class Person(name: String, age: Int)
+                import scala.collection.mutable
+      
+                object ChecksumAccumulator {
+                    private val cache = mutable.Map.empty[String, Int]
+    
+                    def calculate(s: String): Int = 
+                        if (cache.contains(s))
+                            cache(s)
+                        else {
+                            val acc = new ChecksumAccumulator
+                            for (c <- s)
+                                acc.add(c.toByte)
+                            val cs = acc.checksum()
+                            cache += (s -> cs)
+                            cs
+                          }
+                }
+    
+                val ca = ChecksumAccumulator.calculate("Every value is an object.")
                 ```
-        4. Case Object:
-            1. Properties
-                1. similar to case class, but without `apply()` and `unapply()` methods
-                2. use when no parameters are needed 
-        5. `scala.APP` Trait
-            1. work like a singleton object with a `main` method, use `args` to access command-line arguments
-
-            ```scala
-            import ChecksumAccumulator.calculate
-  
-            object FallWinterSpringSummer extends App {
-                for (season <- List("fall", "winter", "spring"))
-                    println(season + ": " + calculate(season))
-            }
-            ```
-7. Exception
+            3. Case Class
+                1. Properties
+                    1. automatically create a singleton object, which has following methods and traits
+                        1. Methods
+                            1. `apply())`
+                            2. `unapply()`: for pattern match
+                            3. `copy()`: `val b = a.copy()`
+                            4. `toString()`
+                            5. `hashCode()`
+                            6. `equals()`: instances are compared by structure and not by reference
+                        2. Inherited Traits
+                            1. `Product`
+                            2. `Serializable`
+                    2. suitable for immutable data, parameters are public val types
+                2. Definitions
+    
+                    ```scala
+                    case class Person(name: String, age: Int)
+                    ```
+            4. Case Object:
+                1. Properties
+                    1. similar to case class, but without `apply()` and `unapply()` methods
+                    2. use when no parameters are needed 
+            5. `scala.APP` Trait
+                1. work like a singleton object with a `main` method, use `args` to access command-line arguments
+    
+                ```scala
+                import ChecksumAccumulator.calculate
+      
+                object FallWinterSpringSummer extends App {
+                    for (season <- List("fall", "winter", "spring"))
+                        println(season + ": " + calculate(season))
+                }
+                ```
+9.  Exception
     1. Java
         1. Catch or Specify Requirement: code that might throw exceptions must be enclosed by either of the following, otherwise the code will not be compiled
             1. A `try` statement that catches the excpetion. The `try` must privide a handle for the exception
@@ -863,47 +988,130 @@
             file.close()
         }
         ```
-8. Package
-    1. Scala Implicit Imports
-        1. `java.lang`
-        2. `scala`
-        3. `Predef`
-            1. `println` invokes `Predef.println`, which invokes `Console.println`
-            2. `assert` invokes `Predef.assert`
+10. Package & Import
+    1. Package
+        1. Create 
+            1. name convention is using reversed Internet domain names to avoid potential name conflicts
+            2. statement must be placed at the top of every source file: `package com.test`
+            3. source file must be placed in directories matching the package name
     2. Import: allow using a simple package element name
+        1. Usage
 
-        ```scala
-        import scala.collection.mutable
-        var helloSet = mutable.Set("hello", "world")
-        ```
-9. Libraries
-    1. System
-        1. `System`
-            1. `.exit(n)`
-            2. `.getProperty("line.separator")`
-        2. `System.out`
-            1. `.println()`
-            2. `.format()`: specifiers begin with `%`
-                1. `%d`: integer value
-                2. `%x`: hexadecimal value
-                3. `%f`: floting value
-                    1. `%f+20.10f`: precision 10, width 20,  use sign flags padding with 0
-                    2. `%1$+20.10f`: use argument index 1 with `1$`
-                    3. `%<+20.10f`: use the same argument as the previous specifier 1 with `<`
-                4. `%s`: format as a string
-                5. `%n`: platform-specific line terminator
-                6. `%%`: output `%`
-        3. `System.err`: similar to `System.out`
-    2. Utils
-        1. `java.util.Properties`
+            ```scala
+            import scala.collection.mutable
+            var helloSet = mutable.Set("hello", "world")
+            ```
+        2. Automatically import packages
+            1. Java
+                1. `java.lang`: but its sub packages are not included
+                2. the package the current class is located
+            2. Scala
+                1. `java.lang`
+                2. `scala`
+                3. `Predef`
+                    1. `println` invokes `Predef.println`, which invokes `Console.println`
+                    2. `assert` invokes `Predef.assert`
+11. Libraries
+    1. `java.lang`
+        1. System
+            1. `System`
+                1. `.exit(n)`: `System.exit(1)`
+                2. `.arraycopy()`: `System.arraycopy(copyFrom, 2, copyTo, 0, 7)`
+                3. `.getProperty(name)`
+                    1. `.getProperty("line.separator")`
+                    2. `.getProperty("file.encoding")`
+                    3. `.getProperty("user.home")`
+            2. `System.in` 
+                1. `InputStreamReader cin = new InputStreamReader(System.in)`: use standard input as a character stream
+            3. `System.out`
+                1. `.println()`
+                2. `.format()`: specifiers begin with `%`
+                    1. `%d`: integer value
+                    2. `%x`: hexadecimal value
+                    3. `%f`: floting value
+                        1. `%f+20.10f`: precision 10, width 20,  use sign flags padding with 0
+                        2. `%1$+20.10f`: use argument index 1 with `1$`
+                        3. `%<+20.10f`: use the same argument as the previous specifier 1 with `<`
+                    4. `%s`: format as a string
+                    5. `%n`: platform-specific line terminator
+                    6. `%%`: output `%`
+            4. `System.err`: similar to `System.out`
+            5. `Console: System.console()`
+                1. `.readLine()`
+                2. `.readPassword()`
+                3. `.format()`
+        2. `Object`
+        3. `Character`
+            1. `Character.isLetter(ch)`
+        4. `String`
+            1. Properties
+                1. immutable, once created, never change
+            2. Constructor
+                1. literal: `String greet = "hello";`
+                2. new: `String greet = new String("hello");`
+            3. Members
+                1. `+`: concatenate strings, create a new string, `"hello" + "world"`
+                2. `.length()`
+                3. `.charAt(0)`
+                4. `.indexOf(target)`: return the first index number found, or `-1` returned when not found
+                    1. `.indexOf(target)`
+                    2. `.indexOf(target, fromIndex)`
+                5. `.lastIndexOf(target)`: search from right to left
+                    1. `.lastIndexOf(target)`
+                    2. `.lastIndexOf(target, fromIndex)`
+                6. `.equals(anotherString)`
+                7. `.equalsIgnoreCase(anotherString)`
+                8. `.toLowerCase()`
+                9. `.toUpperCase()`
+                10. `.trim()`
+                11. `.substring(start, end)`:  between `.charAt(start)` and `.charAt(end)`
+                12. `.sbustring(start)`: equal `.substring(start, .length() -1)`
+                13. `.toCharArray()`
+    2. `java.math`
+        1. `BigDecimal`: used for precise values, such as currency
+            1. Constructor
+                1. `BigDecimal("19.99")`
+            2. members
+                1. `.add()`
+                2. `.multiply()`
+    3. `java.util`
+        1. `Calendar`
+            1. Members
+                1. `Calendar.getInstance()`: get a calendar using the default time zone and locale
+            2. Formats
+                1. `tY`: year `yyyy`
+                2. `ty`: year `yy`
+                3. `tm`: month, `mm`
+                4. `tB`: month name `November`
+                5. `tb`: month name abbr `Nov`
+                6. `tA`: weekday `Monday`
+                7. `ta`: weekday abbr `Mon`
+                8. `td`: day `dd`
+                9. `te`: day `d`
+                10. `tH, tk`: hour `hh`, base on 24
+                11. `tl`: hour `hh` based on 12
+                12. `tM`: minutes `mm`
+                13. `tS`: seconds `ss`
+                14. `tL`: milliseconds `490`
+                15. `tN`: nanoseconds `570000000`
+                16. `tp`: `am/pm`
+                17. `tz`: timezone `+0800`
+                18. `tZ`: timezone abbr `CST`
+                19. `ts`: timestamp seconds
+                20. `tQ`: timestamp milliseconds
+                21. `tF`: `yyyy-mm-dd`
+                22. `tR`: `hh:mm` based on 24
+                23. `tT`: `hh:mm:ss` based on 24
+                24. `tr`: `hh:mm:ss am/pm`
+        2. `Properties`
 
             ```scala
             val connectionProperties = new Properties()
             connectionProperties.put("user", "username")
             ```
-        2. `java.util.Locale`
+        3. `Locale`
             1. `Locale.SIMPLIFIED_CHINESE`
-        3. `java.util.Scanner`: use while space to separate tokens, including blanks, tabs and line terminators
+        4. `Scanner`: use while space to separate tokens, including blanks, tabs and line terminators
             1. `.useDelimiter(",\\s*")`
             2. `.useLocale(Locale.SIMPLIFIED_CHINESE)`
             3. `.hasnext()`
@@ -911,192 +1119,278 @@
             5. `.next()`
             6. `.nextDouble()`
             7. `.close()`
-        4. `java.util.List`
-        5. `java.util.ArrayList`
-    3. IO
+
+            ```java
+            s = new Scanner(new BufferReader(new FileReader("hello.txt")));
+            while (s.hasNext()) {
+                System.out.println(s.next());
+            }
+            ```
+        5. `Arrays`
+            1. `Arrays.equals()`: `Arrays.equals(chars, "123".toCharArray())`
+            2. `Arrays.fill()`: `Arrays.fill(name, ' ')`
+            3. `Arrays.copyOfRange()`: `String[] copyTo = java.util.Arrays.copyOfRange(copyFrom, 2, 9);`, include start, exclude end
+            4. `Arrays.binarySearch()`
+            5. `Arrays.sort()`
+            6. `Arrays.parallelSort`: since Java SE8, concurrently execute
+        6. `List`
+        7. `ArrayList`
+    4. `java.io`
         1. Byte Streams
-            1. `java.io.InputStream`
-                1. `java.io.FileInputStream`
-                2. `java.io.ByteArrayInputStream`
-                3. `java.io.FilterInputStream`
-                    1. `java.io.BufferedInputStream`
-                    2. `java.io.DataInputStream`
-                    3. `java.io.PushbackInputStream`
-            2. `java.io.OutputStream`
-                1. `java.io.FileOutputStream`
-                2. `java.io.ByteArrayOutputStream`
-                3. `java.io.FilterOutputStream`
-                    1. `java.io.BufferedOutputStream`
-                    2. `java.io.DataOutputStream`
+            1. `InputStream`
+                1. `FileInputStream`
+                2. `ByteArrayInputStream`
+                3. `ObjectInputStream`
+                    1. implement interface `ObjectInput` which implements `DataInput`
+                    2. support primitive types and objects which implements interface `Serializable`
+                    3. methods
+                        1. `.readObject()`
+                4. `FilterInputStream`
+                    1. `BufferedInputStream`
+                    2. `DataInputStream`
+                        1. implement interface `DataInput`
+                        2. detect an end-of-file condition by catching `EOFException`
+                        3. support primitive types and String values
+                            1. `.readUTF()`: read string value
+                            2. `.readDouble()`
+                    3. `PushbackInputStream`
+            2. `OutputStream`
+                1. `FileOutputStream`
+                2. `ByteArrayOutputStream`
+                3. `ObjectOutputStream`
+                    1. implement interface `ObjectOutput` which implements interface `DataOutput`
+                    2. support primitive types and objects which implements interface `Serializable`
+                    3. methods
+                        1. `writeObject()`
+                4. `FilterOutputStream`
+                    1. `BufferedOutputStream`
+                    2. `DataOutputStream`
+                        1. implement interface `DataOutput`
+                        2. support primitive types and String values
+                            1. `.writeUTF()`: write out string values in a modified of UTF-8
+                            2. `.writeDouble()`
+                    3. `PrintStream`
         2. Chracter Streams
-            1. `java.io.Reader`
-                1. `java.io.InputStreamWriter`
-                    1. `java.io.FileReader`
-                2. `java.io.CharArrayReader`
-                3. `java.io.StringReader`
-                4. `java.io.BufferedReader`
-                    1. `java.io.LineNumberReader`
-                5. `java.io.FilterReader`
-                    1. `java.io.PushbackReader`
-                6. `java.io.PipedReader`
-            2. `java.io.Writer`
-                1.  `java.io.OutputStreamWriter`
-                    1. `java.io.FileWriter`
-                2. `java.io.CharArrayWriter`
-                3. `java.io.StringWriter`
-                4. `java.io.BufferedWriter`
-                5. `java.io.PrintWriter`
-                6. `java.io.FilterWriter`
-                7. `java.io.PipedWriter`
-        3. File
-                1. `java.io.File`
-        4. JDBC
-            1. General
-                1. Reference: [Java JDBC Documents](https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html)
-                2. import class: `import java.sql._`
-                3. register driver, no need since JDBC4: `Class.forName(driver)`
-                4. get connection: `connection = java.sql.DriverManager.getConnection(url, user, pwd)`
-                5. statements
-                    1. prepare statement
-
+            1. `Reader`
+                1. `InputStreamReader`
+                    1. `FileReader`
+                2. `CharArrayReader`
+                3. `StringReader`
+                4. `BufferedReader`
+                    1. Members
+                        1. `.readLine()`
+                    2. Subclasses
+                        1. `LineNumberReader`
+                5. `FilterReader`
+                    1. `PushbackReader`
+                6. `PipedReader`
+            2. `Writer`
+                1.  `OutputStreamWriter`
+                    1. `FileWriter`
+                2. `CharArrayWriter`
+                3. `StringWriter`
+                4. `BufferedWriter`
+                5. `PrintWriter`
+                6. `FilterWriter`
+                7. `PipedWriter`
+        3. `File`
+    5. `java.nio`: since Jave SE7
+        1. `java.nio.charset`
+            1. `Charset`
+                1. `Charset.forName("US-ASCII")`
+                    1. `US-ASCII`
+                    2. `UTF-8`
+        2. `java.nio.file`
+            1. `Path`
+                1. Properties
+                    1. store names as a sequence, from the highest element in the directory stucture with index 0 (the element closet to the root, `home` in `/    home/tom`), and the lowest element with index `n-1`
+                2. Members
+                    1. `path = Paths.get("/home/tom")`
+                    2. `.toString()`
+                    3. `.toUri()`
+                    4. `.toAbsolutePath()`
+                    5. `.toRealPath()`
+                    6. `.resolve(path_name)`: join two path, append to original path
+                    7. `.relative(p2)`: path between two paths
+                    8. `.equals(otherPath)`
+                    9. `.startsWith(beginPath)`
+                    10. `.endsWith(endPath)`
+                    11. `.getFileName()`
+                    12. `.getName(0)`
+                    13. `.getNameCount()`
+                    14. `.subpath(0, 2)`: exclude a root element, `home/tom` in `/home/tom`
+                    15. `.getParent()`
+                    16. `.getRoot()`
+            2. `Files`
+                1. Properties
+                    1. glob
+                        1. `*`: match none or any number characters of a name without crossing directory boundaries
+                        2. `**`: work like `*` but crosses directory boundaries, generally used for matching complete paths
+                        3. `?`: match exactly one character
+                        4. `{}`: specify a collection of subpatterns separated by `,`
+                            1. `{sun, moon, stars}`
+                            2. `{temp*, tmp*}`
+                        5. `[]`: match a character in a set, `-` used for a range. within `[]`, `*`, `?` and `\`. `-` matches itself when it is the first character within the brackets, or the first character after the `!` if negating
+                            1. `[aeiou]`
+                            2. `[0-9]`
+                            3. `[a-zA-Z]`
+                            4. `[!a-c]`
+                        6. `\`: excape some characters
+                        7. all other characters match themselves
+                2. Methods
+                    1. `Files.newBufferedWriter()`
+                    2. `Files.move()`
+            3. Exception
+                1. `FileSystemException`
+                    1. Members
+                        1. `.getFile()`
+                        2. `.getMessage()`
+                        3. `.getReason()`
+                    2. Subclasses
+                        1. `NoSuchFileException`
+    6. JDBC
+        1. General
+            1. Reference: [Java JDBC Documents](https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html)
+            2. import class: `import java.sql._`
+            3. register driver, no need since JDBC4: `Class.forName(driver)`
+            4. get connection: `connection = java.sql.DriverManager.getConnection(url, user, pwd)`
+            5. statements
+                1. prepare statem
+                    ```scala
+                    query = "insert into tbl (a, b) values (?, cast(?) as real)"
+                    statement = connection.prepareStatement(query)
+                    statement.setString(1, value(1).toString)
+                    statement.setString(2, value(2).toString)
+                    statement.executeUpdate()
+                    ```
+            6. Executtion
+                1. `statement.executeQuery()`
+                2. `statement.executeUpdate`
+            7. Result
+                ```scala
+                rs = stmt.executeQuery(query)
+                while (rs.next()) {
+                    rs.getInt("cof_name")
+                }
+                ```
+            8. comm
+                ```scala
+                connection = ...
+                connection.setAutoCommit(false)
+                ...
+                connection.commit()
+                
+        2. Database
+            1. PostgreSQL
+                1. Dependencies: `"org.postgresql" % "postgresql" % "42.2.16"`
+                2. Jar: [postgresql](https://jdbc.postgresql.org/download.html)
+                3. Document: [PgJDBC driver documentation](https://jdbc.postgresql.org/documentation/head/)
+                4. Driver: `org.postgresql.Driver`
+                5. Url: `jdbc:postgresql://host:port/dbname?user=u&password=p`
+            2. MySQL
+                1. Dependencies: `"mysql" % "mysql-connector-java" % "8.0.25"`
+                2. Jar: [mysql-connector-java](https://dev.mysql.com/downloads/connector/j/)
+                3. Driver: `com.mysql.cj.jdbc.Driver`
+                4. Url: `jdbc:mysql://host:port/dbname?user=u&password=p`
+            3. SQL Server 
+                1. Url SQL Server 2000: `jdbc:sqlserver://host:port;database=dbname;user=u;password=p`
+            4. Hive
+                1. Dependencies: `"org.apache.hive" % "hive-jdbc" % "3.1.2"`
+                2. Jar: [hive-jdbc-uber-jar](https://github.com/timveil/hive-jdbc-uber-jar/releases)
+                3. Driver: `org.apache.hive.jdbc.HiveDriver`
+                4. Url
+                    1. `jdbc:hive2://host:port/dbname`
+                    2. `jdbc:hive2://host:port/dbname;user=<user>;password=<password>`: LDAP
+    7. Other Databases
+        1. Hbase
+            1. Dependencies: `"org.apache.hbase" % "hbase-client" % "2.3.5"`
+            2. Initialization
+    
+                ```scala
+                import org.apache.hadoop.hbase.{HBaseConfiguration, HConstants, TableName, CellUtil}
+                import org.apache.hadoop.hbase.client.{ConnectionFactory, Scan, Put, Get}
+                import org.apache.hadoop.hbase.util.Bytes
+    
+                val config = HBaseConfiguration.create()
+                config.set(HConstants.ZOOKEEPER_QUORUM, "hpmaster")
+                //conf.set("hbase.zookeeper.quorum", "hpmaster")
+    
+                val connection = ConnectionFactory.createConnection(config)
+                connection.close()
+                ```
+            3. Operations
+                1. Admin
+                    1. Admin Initialization
+    
                         ```scala
-                        query = "insert into tbl (a, b) values (?, cast(?) as real)"
-                        statement = connection.prepareStatement(query)
-                        statement.setString(1, value(1).toString)
-                        statement.setString(2, value(2).toString)
-                        statement.executeUpdate()
+                        val admin = connection.getAdmin
+                        admin.tableExists(TableName.valueOf("ns:test"))
+                        ...
+                        admin.close()
                         ```
-                6. Executtion
-                    1. `statement.executeQuery()`
-                    2. `statement.executeUpdate`
-                7. ResultSet
-
-                    ```scala
-                    rs = stmt.executeQuery(query)
-                    while (rs.next()) {
-                        rs.getInt("cof_name")
-                    }
-                    ```
-                8. commit 
-
-                    ```scala
-                    connection = ...
-                    connection.setAutoCommit(false)
-                    ...
-                    connection.commit()
-                    ```
-
-            2. Database
-                1. PostgreSQL
-                    1. Dependencies: `"org.postgresql" % "postgresql" % "42.2.16"`
-                    2. Jar: [postgresql](https://jdbc.postgresql.org/download.html)
-                    3. Document: [PgJDBC driver documentation](https://jdbc.postgresql.org/documentation/head/)
-                    4. Driver: `org.postgresql.Driver`
-                    5. Url: `jdbc:postgresql://host:port/dbname?user=u&password=p`
-                2. MySQL
-                    1. Dependencies: `"mysql" % "mysql-connector-java" % "8.0.25"`
-                    2. Jar: [mysql-connector-java](https://dev.mysql.com/downloads/connector/j/)
-                    3. Driver: `com.mysql.cj.jdbc.Driver`
-                    4. Url: `jdbc:mysql://host:port/dbname?user=u&password=p`
-                3. SQL Server 
-                    1. Url SQL Server 2000: `jdbc:sqlserver://host:port;database=dbname;user=u;password=p`
-                4. Hive
-                    1. Dependencies: `"org.apache.hive" % "hive-jdbc" % "3.1.2"`
-                    2. Jar: [hive-jdbc-uber-jar](https://github.com/timveil/hive-jdbc-uber-jar/releases)
-                    3. Driver: `org.apache.hive.jdbc.HiveDriver`
-                    4. Url
-                        1. `jdbc:hive2://host:port/dbname`
-                        2. `jdbc:hive2://host:port/dbname;user=<user>;password=<password>`: LDAP
-        5. Others
-            1. Hbase
-                1. Dependencies: `"org.apache.hbase" % "hbase-client" % "2.3.5"`
-                2. Initialization
-        
-                    ```scala
-                    import org.apache.hadoop.hbase.{HBaseConfiguration, HConstants, TableName, CellUtil}
-                    import org.apache.hadoop.hbase.client.{ConnectionFactory, Scan, Put, Get}
-                    import org.apache.hadoop.hbase.util.Bytes
-        
-                    val config = HBaseConfiguration.create()
-                    config.set(HConstants.ZOOKEEPER_QUORUM, "hpmaster")
-                    //conf.set("hbase.zookeeper.quorum", "hpmaster")
-        
-                    val connection = ConnectionFactory.createConnection(config)
-                    connection.close()
-                    ```
-                3. Operations
-                    1. Admin
-                        1. Admin Initialization
-        
-                            ```scala
-                            val admin = connection.getAdmin
-                            admin.tableExists(TableName.valueOf("ns:test"))
-                            ...
-                            admin.close()
-                            ```
-                        2. Operations
-                            1. exists:`admin.TableExists(TableName.valueOf(table_name))`
-                            2. create: `admin.createTable(...)`
-                            3. drop:
-                                1. `admin.disableTable(TableName.valueOf(table_name))`
-                                2. `admin.deleteTable(TableName.valueOf(table_name))`
-                    2. Table
-                        1. Table Initialization
-        
-                            ```scala
-                            val table = connection.getTable(TableName.valueOf("ns:test"))
-                            ...
-                            table.close()
-                            ```
-                        2. Scan Rows
-        
-                            ```scala
-                            def printRow(result : Result) = {
-                              val cells = result.rawCells();
-                              print( Bytes.toString(result.getRow) + " : " )
-                              for(cell <- cells){
-                                val col_name = Bytes.toString(CellUtil.cloneQualifier(cell))
-                                val col_value = Bytes.toString(CellUtil.cloneValue(cell))
-                                print("(%s,%s) ".format(col_name, col_value))
-                              }
-                              println()
-                            }
-        
-                            /**
-                            val scan = new Scan()
-                            scan.addFamily(columnFamily.getBytes())
-                            var scanner = table.getScanner(scan)
-                            var result = scanner.next()
-                            while (result != null) {
-                              println(Bytes.toString(result.getRow))
-                              result = scanner.next()
-                            }
-                            scanner.close()
-                            */
-                            var scan = table.getScanner(new Scan())
-                            scan.forEach(result => {printRow(result)})
-                            scan.close()
-                            ```
-                        3. Get Row
-        
-                            ```scala
-                            // Bytes.toBytes("ab") <=> "ab".getBytes()
-                            val get = new Get(Bytes.toBytes("rowid"))
-                            var result = table.get(get)
-                            println(Bytes.toString(result.getRow))
-                            println(Bytes.toString(result.getValue(Bytes.toBytes("column_family"), Bytes.toBytes("col_name"))))
-                            ```
-                        4. Put Row
-        
-                            ```scala
-                            var put = new Put(Bytes.toBytes("rowid"))
-                            put.addColumn(Bytes.toBytes("column_family"), Bytes.toBytes("col_name"), Bytes.toBytes("value"))
-                            table.put(put)
-                            ```
-                        5. Delete Row
-        
-                            ```scala
-                            val del = new Delete(Bytes.toBytes(rowkey))
-                            del.addColumn("column_family".getBytes(), "column_name".getBytes())
-                            table.delete(del)
-                            ```
+                    2. Operations
+                        1. exists:`admin.TableExists(TableName.valueOf(table_name))`
+                        2. create: `admin.createTable(...)`
+                        3. drop:
+                            1. `admin.disableTable(TableName.valueOf(table_name))`
+                            2. `admin.deleteTable(TableName.valueOf(table_name))`
+                2. Table
+                    1. Table Initialization
+    
+                        ```scala
+                        val table = connection.getTable(TableName.valueOf("ns:test"))
+                        ...
+                        table.close()
+                        ```
+                    2. Scan Rows
+    
+                        ```scala
+                        def printRow(result : Result) = {
+                          val cells = result.rawCells();
+                          print( Bytes.toString(result.getRow) + " : " )
+                          for(cell <- cells){
+                            val col_name = Bytes.toString(CellUtil.cloneQualifier(cell))
+                            val col_value = Bytes.toString(CellUtil.cloneValue(cell))
+                            print("(%s,%s) ".format(col_name, col_value))
+                          }
+                          println()
+                        }
+    
+                        /**
+                        val scan = new Scan()
+                        scan.addFamily(columnFamily.getBytes())
+                        var scanner = table.getScanner(scan)
+                        var result = scanner.next()
+                        while (result != null) {
+                          println(Bytes.toString(result.getRow))
+                          result = scanner.next()
+                        }
+                        scanner.close()
+                        */
+                        var scan = table.getScanner(new Scan())
+                        scan.forEach(result => {printRow(result)})
+                        scan.close()
+                        ```
+                    3. Get Row
+    
+                        ```scala
+                        // Bytes.toBytes("ab") <=> "ab".getBytes()
+                        val get = new Get(Bytes.toBytes("rowid"))
+                        var result = table.get(get)
+                        println(Bytes.toString(result.getRow))
+                        println(Bytes.toString(result.getValue(Bytes.toBytes("column_family"), Bytes.toBytes("col_name"))))
+                        ```
+                    4. Put Row
+    
+                        ```scala
+                        var put = new Put(Bytes.toBytes("rowid"))
+                        put.addColumn(Bytes.toBytes("column_family"), Bytes.toBytes("col_name"), Bytes.toBytes("value"))
+                        table.put(put)
+                        ```
+                    5. Delete Row
+    
+                        ```scala
+                        val del = new Delete(Bytes.toBytes(rowkey))
+                        del.addColumn("column_family".getBytes(), "column_name".getBytes())
+                        table.delete(del)
+                        ```
