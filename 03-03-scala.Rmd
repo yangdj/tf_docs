@@ -1203,7 +1203,7 @@
         2. `java.nio.file`
             1. `Path`
                 1. Properties
-                    1. store names as a sequence, from the highest element in the directory stucture with index 0 (the element closet to the root, `home` in `/    home/tom`), and the lowest element with index `n-1`
+                    1. store names as a sequence, from the highest element in the directory stucture with index 0 (the element closet to the root, `home` in `/home/tom`), and the lowest element  `tom` with index `n-1`
                 2. Members
                     1. `path = Paths.get("/home/tom")`
                     2. `.toString()`
@@ -1220,7 +1220,7 @@
                     13. `.getNameCount()`
                     14. `.subpath(0, 2)`: exclude a root element, `home/tom` in `/home/tom`
                     15. `.getParent()`
-                    16. `.getRoot()`
+                    16. `.getRoot()`: `/`, `C:\`
             2. `Files`
                 1. Properties
                     1. glob
