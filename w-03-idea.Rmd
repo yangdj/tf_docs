@@ -1,6 +1,16 @@
 # Idea
 
 1. Settings
-    1. `Code Style.java.Imports`
+    1. Code
+        1. File Encoding: `Editor/Code Style/File Encoding: UTF-8`
+        2. Line Separator: `Editor/Code Style/General/Line separator: \n`
+    2. Shortcuts
+        1. `Ctrl + click`: jump to definition
+        2. `Ctrl + Shift + N`: open file
+    3. Imports: `Code Style.java.Imports`
         1. `Class count to use import with '*': 500`
-        1. `Names count to use static import with '*': 500`
+        2. `Names count to use static import with '*': 500`
+    4. Project
+        1. Scala
+            1. download scala plugin
+            2. may need `Add Framework Support for scala` when not see `Scala Class` creating scala class file, just right click project folder

@@ -59,7 +59,7 @@
             1. `build.properties`
                 1. `sbt.version=1.5.4`
                     1.  `intellij sbt: Extracting structure failed`: make sure `sbt.version` is correct
-        3. `scr/`
+        3. `src/`
             1. `main/`
                 1. `scala/`
                 2. `resources/`

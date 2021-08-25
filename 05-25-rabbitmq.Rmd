@@ -1,0 +1,25 @@
+# RabbitMQ
+
+1. Deployment
+    1. Dependencies
+
+        ```sh
+        wget https://packages.erlang-solutions.com/erlang-solutions-1.0-1.noarch.rpm
+        sudo rpm -Uvh erlang-solutions-1.0-1.noarch.rpm
+        sudo yum install erlang socat
+        ```
+    2. Install 
+
+        ```sh
+        wget https://dl.bintray.com/rabbitmq/all/rabbitmq-server/3.7.4/rabbitmq-server-3.7.4-1.el7.noarch.rpm
+        sudo rpm -ivh rabbitmq-server-3.7.4-1.el7.noarch.rpm
+        ```
+    3. Services
+        1. `sudo systemctl enable rabbitmq-server`
+        2. `sudo systemctl start rabbitmq-server`
+    4. Commands
+        1. `sudo rabbitmq-plugins enable rabbitmq_management`
+        2. `sudo rabbitmqctl add_user myroot myroot_password`
+        3. `sudo rabbitmqctl add_vhost myvhost`
+        4. `sudo rabbitmqctl set_user_tags myroot administrator`
+        5. `sudo rabbitmqctl set_permissions -p myvhost myairflow ".*" ".*" ".*"`

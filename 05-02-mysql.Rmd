@@ -1,13 +1,96 @@
 # MySQL
 
-1. reset password
+1. Deployment
+    1. Mariadb
+        1. Dependencies
+            1. MariaDB.repo
+
+                ```
+                # MariaDB 10.3 CentOS repository list
+                # http://downloads.mariadb.org/mariadb/repositories/
+                
+                [mariadb] name = MariaDB
+                baseurl = http://yum.mariadb.org/10.3/centos7-amd64 
+                gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+                gpgcheck=1
+                ```
+        2. Install
+
+            ```sh
+            cp MariaDB.repo /etc/yum.repos.d/
+            sudo yum install MariaDB-server MariaDB-client
+            mysql_secure_installation
+            ```
+        3. Configurations
+            1. change datadir and port
+                1. make new datadir and give permission to the account
+
+                    ```sh
+                    MARIADB_DATA_HOME=/mariadb/home
+                    mysql -u root -p -e "select @@datadir, @@port"
+                    sudo chown -R mysql: ${MARIADB_DATA_HOME}
+                    sudo cp -R -p /var/lib/mysql/* ${MARIADB_DATA_HOME}
+                    ```
+                2. may need selinux settings for centos
+
+                    ```sh
+                    sudo semanage fcontext -a -t mysqld_db_t "${MARIADB_DATA_HOME}(/.*)?"
+                    sudo restorecon -R ${MARIADB_DATA_HOME}
+                    ```
+                3. set new port in the file `/etc/my.cnf.d/server.cnf`, may need the following settings
+
+                    ```sh
+                    MARIADB_PORT=3308 # 3306 default
+                    sudo yum install policycoreutils-python
+                    sudo semanage port -a -t mysqld_port_t -p tcp ${MARIADB_PORT}
+                    ```
+            2. `/etc/my.cnf`
+
+                ```ini
+                # /etc/my.cnf
+                [client-server]
+
+                [mysqld]
+                datadir=${MARIADB_DATA_HOME} # use actual value, not variable
+                socket=${MARIADB_DATA_HOME}/mysql.sock
+
+                [client]
+                socket=${MARIADB_DATA_HOME}/mysql.sock
+
+                !includedir /etc/my.cnf.d
+                ```
+            3. `/etc/my.cnf.d/server.cnf`
+
+                ```ini
+                # /etc/my.cnf.d/server.cnf
+                [mysqld]
+                port=3308
+                ```
+            4. `~/.my.cnf`: set login info, and connect to the db using `mysql --defaults-group-suffix=host1`
+
+                ```ini
+                # ~/.my.conf
+                [clienthost1] # or [client]
+                host=localhost
+                port=port
+                socket=/tmp/mysql.sock
+                database=dbname
+                user=username
+                password=passwd
+
+                [clienthost2]
+                ...
+                ```
+        4. Services
+            1. start: `systemctl start mariadb.service`
+2. reset password
     1. `/etc/mysqld`, add `skip-grant-tables` under `[mysqld]` part
     2. restart mysql server
     3. `mysql -uroot -p` login the server
     4. `update mysql.user set authentication_string=password('*****') where user='root'`
     5. remove `skip-grant-tables` content
     6. restart the server
-2. open binlog
+3. open binlog
     1. `/etc/my.cnf`: for 5.7
         1. `[mysqld]`
             1. `server-id=<1>`: 5.7+
@@ -22,9 +105,15 @@
         1. `CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';`
         2. `GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'user';`
         3. `FLUSH PRIVILEGES;`
-3. Command
-    1. Grant: `grant <privilege>... on <dbname>.<table> to 'user'@'host'`
-    2. Revoke: `revoke <privilege>... on <dbname>.<table> from <user>`
+4. Command
+    1. Database
+        1. create: `create database flow default character set utf8mb4 default collate utf8mb4_unicode_ci`
+    2. User
+        1. create: `create user flow identified by 'flow';`
+    3. Grant: `grant <privilege>... on <dbname>.<table> to 'user'@'host'`, need flush `flush privileges`
+        1. list: `show grants for 'flow'`
+        2. add: `grant all privileges on flow.* to 'flow'@'%'`
+    4. Revoke: `revoke <privilege>... on <dbname>.<table> from <user>`
       1. Privileges
         1. `all`
         2. Table Level

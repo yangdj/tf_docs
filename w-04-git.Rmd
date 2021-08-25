@@ -1,0 +1,30 @@
+# Git
+
+1. Configurations
+    1. Ignorance
+        1. Files
+            1. `.gitignore`
+            2. `.git/info/exclude`
+        2. Rules
+            1. ignore directory: `/.idea/`
+    2. Github
+
+        ```sh
+        git remote add origin git@github.com:<user>/<repo>.git
+        git push -u origin master
+        ```
+2. Commands
+    1. `git add`: stage files
+        1. `git add <file>...`
+        2. `git add *`
+    2. `git rm`: remove files
+        1. `git rm --cache <file>...`: unstage files, leave working area no change
+    3. `git commit`: commit files
+        1. `git commit -m "first commit"`
+    4. `git remote`
+        1. `git remote add origin git@github.com:<user>/<repo>.git`
+    5. `git push`
+        1. `git push -u origin master`
+    6. `git branch`
+        1. `git branch -m main`: rename or move a branch name to another `main`
+        2. `git branch -M main`: rename or move a branch name to another, even target exists
