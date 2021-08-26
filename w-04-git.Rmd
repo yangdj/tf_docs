@@ -1,7 +1,19 @@
 # Git
 
 1. Configurations
-    1. Repo's Structure
+    1. Settings
+        1. Level
+            1. local: `.git/config`, for a specified repo
+            2. global: `~/.gitconfig`, for current user's all repos
+            3. system: `/etc/gitconfig`, for all users' all repos
+        2. Options
+            1. `git config --global -l`
+            2. `git config --global user.name <user_name>`
+            3. `git config --global user.email <user_email>`
+            4. `git config --global core.editor <vim>`
+            5. `git config --global push.default simple`
+            6. `git config --global core.excludesfile <~/.gitignore>`: if not specified, then default `$XDG_CONFIG_HOME/git/ignore`, if `$XDG_CONFG_HOME` not set or empty, use `$HOME/.config/git/ignore`
+    2. Repo's Structure
         1. Project/
             1. `.git/`: auto created
             2. `.gitignore`
@@ -11,19 +23,26 @@
                 1. `.gitignore`
                 2. `...`
             6. `...`
-    2. Ignorance
-        1. Files
+    3. Ignorance: specify untracked files to ignore
+        1. Rules
+            1. files already tracked are not affected
+            2. a line beginning with `#` serves as a comment line
+            3. a blank line matches no files, serves as a separator for readability
+            4. each line specifies a pattern
+            5. trailing spaces are ignored unless they are quoted with backslash `\ `
+            6. `!` negates the pattern, **but if parent directory has been excluded, it will not work**, literal `!` can be excaped, `\!`
+            7. `/` serves as a directory separator
+                1. at the end of the pattern, the pattern will only match directories, otherwise match both files and directories
+                2. at the beginning or middle (or both) of the pattern, the pattern is relative to the directory level of the particular `.gitignore` file itself
+                3. Otherwise the pattern may match at any level below the `.gitignore` level
+            8. `*` matches anything except `/`
+            9. `?` matches anything except `/`
+            10. `[a-zA-Z]` matches a range
+            11. the last matching pattern wins
+        2. Files
             1. `.gitignore`: put in the repo's any directory, can be commited and shared with others
             2. `.git/info/exclude`: work locally, not commited and shared with others
-            3. `core.excludesFile`: configuration variable, work locally for every repo, not stored in the repo and shared
-                
-                ```sh
-                git config --global core.excludesfile ~/.gitignore
-                ```
-        2. Rules
-            1. each line specifies a pattern
-            2. the last matching pattern wins
-            3. files already tracked by Git are not affected
+            3. `core.excludesFile`: work locally for every repo, not stored in the repo and shared
         3. Precedence from highest to lowest
             1. command line
             2. `.gitignore`: the lower directory level containing the files overrides the higher one
@@ -31,7 +50,7 @@
             4. `core.excludesFile`
         4. Pattern
             1. ignore directory: `/.idea/`
-    3. Github
+    4. Github
 
         ```sh
         git remote add origin git@github.com:<user>/<repo>.git
@@ -41,17 +60,84 @@
     1. `git init`
         1. `git init`: initialize current directory to be a repo
         2. `git init <repo>`: create a new repo
-    2. `git add`: stage files
+    2. `git clone`
+        1. Usage
+            1. `git clone <remote-repo> [<local_repo_name>]`: clone remote repo, optionally give persional directory path
+            2. `git clone -b branch-name <remote-repo> [<local_repo_name>]`: clone and checkout to specified branch
+    3. `git add`: stage files
         1. `git add <file>...`
         2. `git add *`
-    3. `git rm`: remove files
-        1. `git rm --cache <file>...`: unstage files, leave working area no change
-    4. `git commit`: commit files
+    4. `git restore`
+        1. `git restore --staged <files>...`: unstage files, similar to `git rm --cached <file>...`
+        2. `git restore <files>...`: discard changes in working directory since stage
+    5. `git rm`: remove files
+        1. `git rm --cached <file>...`: unstage files
+        2. `git rm -r --cached <file>...`: unstege files recursively
+    6. `git branch`
+        1. `git branch`: list local branches 
+        2. `git branch -r`: list remote branches 
+        3. `git branch -a`: list all branches, remote and local 
+        4. `git branch -vv`: list local and tracking branches 
+        5. `git branch <new-branch>`: create a new branch based on current branch 
+        6. `git branch -d <branch>`: delete a branch
+        7. `git branch -m <main>`: rename current branch name
+        8. `git branch -M main`: rename current branch name to another, even that name exists
+        9. `git branch --set-upstream <local-branch-name> <remote/branch-name>`: set tracking between local and remote branch 
+    7. `git checkout`
+        1. `git checkout <branch>`: switch to a branch 
+        2. `git chechout -b <new-branch>`: create a new branch based on current branch and switches to it
+        3. `git chechout -b <to-branch> <from-branch>`: create a new branch from a specified branch and switch to it
+        4. `git checkout --track <origin/branch-name>`: create a local same branch tracking the remote branch, opposite to `git branch --set-upstream`
+    8. `git commit`: commit files
         1. `git commit -m "first commit"`
-    5. `git remote`
-        1. `git remote add origin git@github.com:<user>/<repo>.git`
-    6. `git push`
-        1. `git push -u origin master`
-    7. `git branch`
-        1. `git branch -m main`: rename or move a branch name to another `main`
-        2. `git branch -M main`: rename or move a branch name to another, even target exists
+    9. `git merge`
+        1. `git merge <local-branch>`: merge local branch with current branch
+        2. `git merge <remote-name/remote-branch>`: merge remote branch with current branch
+    10. `git diff`
+        1. `git diff`: diff between working tree and staged
+        2. `git diff --stat`: add summary diff
+        3. `git diff {--cached, --staged}`: diff between staged and HEAD (last commit)
+        4. `git diff HEAD`: diff between working tree and HEAD (last commit)
+        5. `git diff HEAD^ HEAD`: diff between last commit and last's last commits
+        6. `git diff <SHA1> <SHA2>`: diff any two commits
+        7. `git diff <source_branch> <target_branch>`: between different latest branches
+    11. `git remote`
+        1. Uri
+            1. local: `/opt/git/project.git`
+            2. git: `git://example.com/path/to/repo.git/`
+            3. http: `https://example.com/path/to/repo.git/`
+            4. https: `https://example.com/path/to/repo.git/`
+            5. ssh
+                1. `ssh://example.com/path/to/repo.git/`
+                2. `user@example.com:path/to/repo.git`
+            6. ftp: `ftps://example.com/path/to/repo.git/`
+            7. ftps: `git clone ftps://example.com/path/to/repo.git/`
+            8. rsync: `rsync://example.com/path/to/repo.git/`
+            9. file: `file:///opt/git/project.git`
+        2. Usage
+            1. `git remote`: list remotes
+            2. `git remote -v`: list remotes information 
+            3. `git remote show <name>`: list detail information abount the host
+            4. `git remote add <origin> <git@github.com:your/repo.git>`: add a remote 
+            5. `git remote rm <origin>`: remove a remote 
+            6. `git remote rename <before> <after>`: rename a remote 
+    12. `git fetch`
+        1. `git fetch <origin>`: fetch all updates from remote
+        2. `git fetch <origin> <master>`: fetch updates from a specified remote branch
+    13. `git pull`: fetch remote updates and merge with them
+        1. `git pull <remote> <remote-branch:local-branch>`: fetch specified remote branch and merge with local specified branch
+        2. `git pull --rebase <remote> <remote-branch:local-branch>`: use rebase way
+        3. `git pull <remote> <reomote-branch>`: fetch specified remote branch and merge with current local branch, same as `git fetch <remote>; git merge <remote/remote-branch>`
+        4. `git pull <remote>`: current branch merges ites remote traching branch
+        5. `git pull`: remote can be ommitted if current local branch has only one tracking branch
+        6. `git pull -p`: remove local branch if that branch is removed from remote
+    14. `git push`: push local updates to remote
+        1. `git push <remote> <local-branch:remote-branch>`: push specified local branch to specified remote branch
+        2. `git push <remote> <local>`: push a local branch to its remote tracking branch, create one if that does not exists
+        3. `git push <remote>`: push current local local branch to its traching branch
+        4. `git push`: push to current local tracking branch if it has only one tracking branch
+        5. `git push <remote> <:remote-branch>`: remove a remote branch if local branch is ommited, equivalent ot push an empty branch to the specified remote branch
+        6. `git push <remote> --delete <remote-branch>`: remove a remote branch
+        7. `git push -u <remote> <local-branch>`: set a default tracking remote branch if current local branch has no or multiple tracking branches, equivalent to `git push origin master; git branch --set-upstream master reomte/master`
+        8. `git push -all <remote>`: push all local branches to remote
+        9. `git push <remote> --tags`: push tags to remote

@@ -59,13 +59,6 @@ make configure && ./configure --prefix=/usr/local && make all doc
 sudo make install install-doc install-html
 ```
 
-Configiguration
-
-1. `git config --global user.name user_name`
-2. `git config --global user.email user_email`
-3. `git config --global core.editor vim`
-4. `git config --global push.default simple`
-
 ### Tmux {-#os-tmux}
 
 Dependencies
