@@ -1,6 +1,8 @@
 # Git
 
-1. Configurations
+1. References
+    1. [Git Documentation](https://git-scm.com/doc)
+2. Configurations
     1. Settings
         1. Level
             1. local: `.git/config`, for a specified repo
@@ -29,16 +31,20 @@
             2. a line beginning with `#` serves as a comment line
             3. a blank line matches no files, serves as a separator for readability
             4. each line specifies a pattern
-            5. trailing spaces are ignored unless they are quoted with backslash `\ `
-            6. `!` negates the pattern, **but if parent directory has been excluded, it will not work**, literal `!` can be excaped, `\!`
-            7. `/` serves as a directory separator
+            5. the last matching pattern in the same file wins
+            6. trailing spaces are ignored unless they are quoted with backslash `\ `
+            7. `!` negates the pattern, **but if parent directory has been excluded, it will not work**, literal `!` can be excaped, `\!`
+            8. `/` serves as a directory separator
                 1. at the end of the pattern, the pattern will only match directories, otherwise match both files and directories
-                2. at the beginning or middle (or both) of the pattern, the pattern is relative to the directory level of the particular `.gitignore` file itself
+                2. at the beginning or middle (or both) of the pattern, the pattern is relative to the directory level of the particular `.gitignore` file itself, **so a leading `/` is not relevant if there is already a middle slash in the pattern**
                 3. Otherwise the pattern may match at any level below the `.gitignore` level
-            8. `*` matches anything except `/`
-            9. `?` matches anything except `/`
-            10. `[a-zA-Z]` matches a range
-            11. the last matching pattern wins
+            9. `*` matches anything except `/`
+            10. `?` matches anything except `/`
+            11. `[a-zA-Z]` matches a range
+            12. `**` matches full pathname
+                1. a leading `**` followed by a slash means match in all directories
+                2. a trailing `/**` matches everything inside
+                3. a slash followed `**` then a slash matches zero or more directories
         2. Files
             1. `.gitignore`: put in the repo's any directory, can be commited and shared with others
             2. `.git/info/exclude`: work locally, not commited and shared with others
@@ -56,7 +62,7 @@
         git remote add origin git@github.com:<user>/<repo>.git
         git push -u origin master
         ```
-2. Commands
+3. Commands
     1. `git init`
         1. `git init`: initialize current directory to be a repo
         2. `git init <repo>`: create a new repo
