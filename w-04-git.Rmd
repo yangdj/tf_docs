@@ -2,6 +2,7 @@
 
 1. References
     1. [Git Documentation](https://git-scm.com/doc)
+    2. [Git-rebase-notes](https://blog.yorkxin.org/posts/git-rebase.html)
 2. Configurations
     1. Settings
         1. Level
@@ -99,11 +100,13 @@
     9. `git merge`
         1. `git merge <local-branch>`: merge local branch with current branch
         2. `git merge <remote-name/remote-branch>`: merge remote branch with current branch
+    10. `git rebase`
+        1. `git rebase <local-branch>`: rebase local branch with current branch
     10. `git diff`
         1. `git diff`: diff between working tree and staged
         2. `git diff --stat`: add summary diff
-        3. `git diff {--cached, --staged}`: diff between staged and HEAD (last commit)
-        4. `git diff HEAD`: diff between working tree and HEAD (last commit)
+        3. `git diff HEAD`: diff between working tree and HEAD (last commit)
+        4. `git diff {--cached, --staged}`: diff between staged and HEAD (last commit)
         5. `git diff HEAD^ HEAD`: diff between last commit and last's last commits
         6. `git diff <SHA1> <SHA2>`: diff any two commits
         7. `git diff <source_branch> <target_branch>`: between different latest branches
@@ -144,6 +147,6 @@
         4. `git push`: push to current local tracking branch if it has only one tracking branch
         5. `git push <remote> <:remote-branch>`: remove a remote branch if local branch is ommited, equivalent ot push an empty branch to the specified remote branch
         6. `git push <remote> --delete <remote-branch>`: remove a remote branch
-        7. `git push -u <remote> <local-branch>`: set a default tracking remote branch if current local branch has no or multiple tracking branches, equivalent to `git push origin master; git branch --set-upstream master reomte/master`
+        7. `git push -u <remote> <local-branch>`: set a default tracking remote branch if current local branch has no or multiple tracking branches, equivalent to `git push origin <remote-branch>; git branch --set-upstream <current-branch> <reomte/remote-branch>`
         8. `git push -all <remote>`: push all local branches to remote
         9. `git push <remote> --tags`: push tags to remote
