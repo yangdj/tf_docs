@@ -1,0 +1,36 @@
+# Vim
+
+1. Plugins
+    1. `VundleVim/Vundle.vim`: a vim plugin manager
+        1. Configurations
+
+            ```vim
+            set nocompatible
+            filetype off
+            set rtp+=~/.vim/bundle/Vundle.vim
+            
+            call vundle#begin()
+            Plugin 'VundleVim/Vundle.vim'
+            Plugin 'tpope/vim-surround'
+            ...
+            call vundle#end()
+            filetype plugin on
+            ```
+        2. Commands
+            1. `:PluginInstall`
+    2. `tpope/vim-surround`
+    3. `tpope/vim-abolish`
+    4. `tpope/vim-unimpaired`
+    5. `scrooloose/nerdtree`
+    6. `scrooloose/nerdcommenter`
+    7. `mattn/emmet-vim`
+    8. `mattn/webapi-vim`
+    9. `vim-scripts/ZoomWin`
+    10. `godlygeek/tabular`
+    11. `plasticboy/vim-markdown`
+    12. `jiangmiao/auto-pairs`
+    13. `jlanzarotta/bufexplorer`
+    14. `vim-scripts/winmanager`
+    15. `SirVer/ultisnips`
+    16. `tweekmonster/django-plus.vim`
+    17. `vim-scripts/dbext.vim`

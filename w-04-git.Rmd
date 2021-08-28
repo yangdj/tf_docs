@@ -1,8 +1,9 @@
 # Git
 
 1. References
-    1. [Git Documentation](https://git-scm.com/doc)
-    2. [Git-rebase-notes](https://blog.yorkxin.org/posts/git-rebase.html)
+    1. [git for windows](https://git-scm.com/download/win)
+    2. [Git Documentation](https://git-scm.com/doc)
+    3. [Git-rebase-notes](https://blog.yorkxin.org/posts/git-rebase.html)
 2. Configurations
     1. Settings
         1. Level
@@ -102,7 +103,7 @@
         2. `git merge <remote-name/remote-branch>`: merge remote branch with current branch
     10. `git rebase`
         1. `git rebase <local-branch>`: rebase local branch with current branch
-    10. `git diff`
+    11. `git diff`
         1. `git diff`: diff between working tree and staged
         2. `git diff --stat`: add summary diff
         3. `git diff HEAD`: diff between working tree and HEAD (last commit)
@@ -110,7 +111,7 @@
         5. `git diff HEAD^ HEAD`: diff between last commit and last's last commits
         6. `git diff <SHA1> <SHA2>`: diff any two commits
         7. `git diff <source_branch> <target_branch>`: between different latest branches
-    11. `git remote`
+    12. `git remote`
         1. Uri
             1. local: `/opt/git/project.git`
             2. git: `git://example.com/path/to/repo.git/`
@@ -130,17 +131,17 @@
             4. `git remote add <origin> <git@github.com:your/repo.git>`: add a remote 
             5. `git remote rm <origin>`: remove a remote 
             6. `git remote rename <before> <after>`: rename a remote 
-    12. `git fetch`
+    13. `git fetch`
         1. `git fetch <origin>`: fetch all updates from remote
         2. `git fetch <origin> <master>`: fetch updates from a specified remote branch
-    13. `git pull`: fetch remote updates and merge with them
+    14. `git pull`: fetch remote updates and merge with them
         1. `git pull <remote> <remote-branch:local-branch>`: fetch specified remote branch and merge with local specified branch
         2. `git pull --rebase <remote> <remote-branch:local-branch>`: use rebase way
         3. `git pull <remote> <reomote-branch>`: fetch specified remote branch and merge with current local branch, same as `git fetch <remote>; git merge <remote/remote-branch>`
         4. `git pull <remote>`: current branch merges ites remote traching branch
         5. `git pull`: remote can be ommitted if current local branch has only one tracking branch
         6. `git pull -p`: remove local branch if that branch is removed from remote
-    14. `git push`: push local updates to remote
+    15. `git push`: push local updates to remote
         1. `git push <remote> <local-branch:remote-branch>`: push specified local branch to specified remote branch
         2. `git push <remote> <local>`: push a local branch to its remote tracking branch, create one if that does not exists
         3. `git push <remote>`: push current local local branch to its traching branch

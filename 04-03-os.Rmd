@@ -676,15 +676,32 @@ Configurations
             3. `usermod -a -G groupname username`
         8. `gpasswd -a user_name wheel`: `wheel`, add sudo priviledge
     4. SSH
-        1. File structure
-            1. `id_rsa.pub`: public key, put this key to remote `authorized_keys` file, then you can use key to login remote without     password
-            2. `id_rsa`: private key, must keep safely
-            3. `authorized_keys`: store public key, must have **mode 600**, otherwise it will not work, and you have to enter password
-            4. `known_hosts`: trust hosts
-        2. Operations
-            1. `ssh-keygen -t rsa`: create ssh keys, public and private
-            2. `ssh-copy-id user@host`: copy public key to remote user
+        1. Operations
+            1. `ssh-keygen -t rsa`: create keys, stored default `~/.ssh` directotry
+                1. `id_rsa.pub`: public key file, put this key to remote `authorized_keys` file, then login without password
+                2. `id_rsa`: private key file, must keep safely
+                3. `authorized_keys`: file storing login's public key, must have **mode 600**, otherwise will not work
+                4. `known_hosts`: trust hosts
+            2. `ssh-copy-id user@host`: copy public key to remote host
             3. `ssh user@host 'mkdir -p .ssh && cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub`: same as `2`
+        2. Configurations: see `man ssh_config`
+            1. Files
+                1. `/etc/ssh/ssh_config`: system-wide file
+                2. `~/.ssh/config`: user's file
+            2. Options
+
+                ```
+                Host server1
+                    HostName 192.168.1.0
+                    User hello
+                    Port 2322
+                    IdentityFile ~/.ssh/id_rsa
+
+                Host server2
+                    HostName 192.168.2.0
+                    User world
+                ```
+            3. login: `ssh server1`
         3. Problems
             1. `/usr/bin/ssh-copy-id: ERROR: No identities found`: make sure public key has been generated, using `ssh-keygen`
     5. Systemd
