@@ -133,7 +133,9 @@
                     4. subsequent characters may be letters, digits, dollar signs or underscore characters
                 2. Styles
                     1. use camelCase
-                    2. constant value capitalizes every letter and separates subsequent workds with underscore
+                    2. class name captitalizes the initial letter
+                    3. constant value capitalizes every letter and separates subsequent words with underscore
+                    4. method names should be a verb in lowercase or a multi-word name beginning with a verb in lowercase followed by adjectives, nouns, etc.
             2. Primitive Data Types
                 1. Numeric
                     1. Common
@@ -200,48 +202,80 @@
                 3. declaration
                     1. `int[] anArray`
                     2. `int anArray[]`: discouraged
-                5. creation: `anArray = new int[10]`
-                6. initialization: `anArray[0] = 100`
-                7. access: `anArray[0]`
-                8. creation and initialization: `int[] anArray = {100, 200, ..., 1000}`, length is determined by element number in the brace separated by commas
-                9. multidimensional array
+                4. creation: `anArray = new int[10]`
+                5. initialization: `anArray[0] = 100`
+                6. access: `anArray[0]`
+                7. creation and initialization: `int[] anArray = {100, 200, ..., 1000}`, length is determined by element number in the brace separated by commas
+                8. multidimensional array
                     1. use multiple brackets: `int[][] counts`
                     2. each element is an array
                     3. rows can vary in length: `String[][] names = {{"Mr. ", "Mrs. ", "Ms. "}, {"Smith", "Jones"}}`
-                10. members
+                9.  members
                     1. `.length`
 3. Class and Objects
     1. Java
-        1. Class
-            1.  Modifier
+        1.  Modifier
+            1. Access
                 1. top level
                     1. `public`: visible to all classes everywhere
                     2. no modifier: package-private, visible only within its own package
+                    3. `private`: only applied to nested class
                 2. Member level
                     1. `public`: same as top level
                     2. no modifier: package-private, same as top level
-                    3. `private`: visible to its own class
-                    4. `protected`: visible within ist own package (package-private) and subclass of its class in another package
-                3. Member Variables
-                    1. `static`: see *Class Variables*
-                    2. `final`: value can not be changed
-            2. Member
-                1. Variables
-                    1. Instance Variables: fields, non-static fields, unique to each instance of class
+                    3. `private`: visible within its own class
+                    4. `protected`: visible within its own package (package-private) and subclass of its class in another package
+            2. Value
+                1. `static`
+                    1. Member: belong to class, not instances
+                2. `final`: value can not be changed
+                    1. class: cannot be extended
+                    2. method: can not be ovririded
+                    3. variable: value can not be change
+        2. Class
+            1. Member
+                1. Variable
+                    1. Instance Variable: fields, non-static fields, unique to each instance of class
                         1. uninitialized default value
                             1. primitive: see primitive data types
                             2. objects: `null`
-                    2. Class Variables: static fields, declared with `static` modifier, only one copy of this variable
-                2. Methods
-                    1. Parameters
-                    2. Local Variables
+                    2. Class Variable: static fields, declared with `static` modifier, only one copy of this variable
+                2. Method
+                    1. Parameters: variables in method declaration
+                    2. Arguments: actual values passed to the invoked method. When pass an arbitary number of values to a method, use varargs following the type of last parameter by an ellipsis (three dots, `...`), then a space and the paremeter name and the parameter is treated as an array
+
+                        ```java
+                        public int sum(int... a) {
+                            int total = 0;
+                            for (int i: a ) {
+                                total += j;
+                            }
+                            return total;
+                        }
+                        ```
+                    3. Return Type: value returned by the method, or `void` if the method does not return a value
+                    4. Local Variables: variables in a method body
                         1. compiler never assigns a default value to an uninitialized local variable
                         2. access uninitialized local variable results in compile-time error
-        2. Object
+                    5. Signature
+                        1. a method's name and the parameter types comprise method signature
+                        2. different signatures distinguish different methods
+                        3. the return type is not considered
+                    6. Overloading
+                        1. a method has same name as others, but have different parameters
+                        2. different parameters means the number or types are different
+                3. Constructor: create objects from the class blueprint, like method declarations
+                    1. use class name and have no return type
+                    2. use `new` to create a new object
+                    3. the compiler automatically provide a no-argument, default constructor for any class without constructors. This default constructor will call the no-argument constructor of the superclass. The compiler will complain if the superclass doesnot have a no-argument constructor. If class has no explicit superclass, then it has an implicit superclass of `Object`, which does have a no-argument constructor
+        3. Subclass: use `extends` to extend its superclass, a class can only extend one parent
+        4. Interface: use `implements` to imlement interface, multiple interfaces can be implements separated by commas
+        5. Object
             1. `null`
                 1. can be assigned to any variable, except primitive types
                 2. often used in program as a marker to indicate some object is unavailable
-            2. `.class`: refer to object's class
+            2. Members
+                1. `.class`: refer to object's class
 4. Data Structure
     1. Architecture
         1. Relations
@@ -995,22 +1029,26 @@
             2. statement must be placed at the top of every source file: `package com.test`
             3. source file must be placed in directories matching the package name
     2. Import: allow using a simple package element name
-        1. Usage
-
-            ```scala
-            import scala.collection.mutable
-            var helloSet = mutable.Set("hello", "world")
-            ```
-        2. Automatically import packages
-            1. Java
-                1. `java.lang`: but its sub packages are not included
-                2. the package the current class is located
-            2. Scala
+        1. Java
+            1. Auto import
+                1. Java
+                    1. `java.lang`: but its sub packages are not included
+                    2. the package the current class is located
+            2. Usage
+                1. `import java.util.List`
+                2. `import java.util.*`
+                3. `import static java.lang.Math.pow`
+        2. Scala
+            1. auto import
                 1. `java.lang`
                 2. `scala`
                 3. `Predef`
                     1. `println` invokes `Predef.println`, which invokes `Console.println`
                     2. `assert` invokes `Predef.assert`
+            2. Usage
+                1. `import scala.collection.mutable`
+                2. `import scala.collection._`
+
 11. Libraries
     1. `java.lang`
         1. System
@@ -1067,6 +1105,8 @@
                 11. `.substring(start, end)`:  between `.charAt(start)` and `.charAt(end)`
                 12. `.sbustring(start)`: equal `.substring(start, .length() -1)`
                 13. `.toCharArray()`
+        5. `Math`
+            1. `Math.pow(a, b)`: `a^b`
     2. `java.math`
         1. `BigDecimal`: used for precise values, such as currency
             1. Constructor
