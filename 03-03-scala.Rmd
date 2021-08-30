@@ -103,7 +103,11 @@
 
 1. References
     1. [shapeless-guide](https://books.underscore.io/shapeless-guide/shapeless-guide.html)
-1. Command
+    2. [The Java Language Specification](https://docs.oracle.com/javase/specs/jls/se8/html/index.html)
+    3. [Java Tutorial](https://docs.oracle.com/javase/tutorial/)
+    4. [Java Concurrency](http://tutorials.jenkov.com/java-concurrency/volatile.html)
+    5. [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern#Lazy_initialization)
+2. Command
     1. Common
         1. `jar`
             1. `jar cvf helloworld.jar -C classes/ .`: package classes into helloworld.jar under the current directory
@@ -122,7 +126,7 @@
             2. `scala helloworld`: runs compiled scala file
             3. `scala helloworld.jar`
             4. `scala -cp helloworld.jar Hello`: runs class Hello in jar file
-2. Basic
+3. Basic
     1. Java
         1. Variables
             1. Naming
@@ -212,34 +216,45 @@
                     3. rows can vary in length: `String[][] names = {{"Mr. ", "Mrs. ", "Ms. "}, {"Smith", "Jones"}}`
                 9.  members
                     1. `.length`
-3. Class and Objects
+4. Class and Objects
     1. Java
         1.  Modifier
             1. Access
-                1. top level
+                1. Class
                     1. `public`: visible to all classes everywhere
                     2. no modifier: package-private, visible only within its own package
                     3. `private`: only applied to nested class
-                2. Member level
-                    1. `public`: same as top level
-                    2. no modifier: package-private, same as top level
+                2. Member
+                    1. `public`: visible to all
+                    2. no modifier: package-private
                     3. `private`: visible within its own class
                     4. `protected`: visible within its own package (package-private) and subclass of its class in another package
-            2. Value
+            2. Others
                 1. `static`
                     1. Member: belong to class, not instances
                 2. `final`: value can not be changed
                     1. class: cannot be extended
-                    2. method: can not be ovririded
+                    2. method: can not be overrided
                     3. variable: value can not be change
         2. Class
             1. Member
                 1. Variable
-                    1. Instance Variable: fields, non-static fields, unique to each instance of class
+                    1. Instance Variable: fields, non-static fields, unique to each instance of class, can be initialized in constructors
                         1. uninitialized default value
                             1. primitive: see primitive data types
                             2. objects: `null`
-                    2. Class Variable: static fields, declared with `static` modifier, only one copy of this variable
+                    2. Class Variable: static fields, declared with `static` modifier, only one copy of this variable, can be initialized in static initialization blocks or through a private static mathod
+
+                        ```java
+                        static {
+                           ... 
+                        }
+
+                        public static varType myVar = initializeClassVariable();
+                        private static varType initializeClassVariable() {
+                            ...
+                        }
+                        ```
                 2. Method
                     1. Parameters: variables in method declaration
                     2. Arguments: actual values passed to the invoked method. When pass an arbitary number of values to a method, use varargs following the type of last parameter by an ellipsis (three dots, `...`), then a space and the paremeter name and the parameter is treated as an array
@@ -253,7 +268,12 @@
                             return total;
                         }
                         ```
-                    3. Return Type: value returned by the method, or `void` if the method does not return a value
+                    3. Return
+                        1. Type: value returned by the method, or `void` if the method does not return a value
+                        2. When
+                            1. complete all the statements
+                            2. reach a `return` statement
+                            3. throw an exception
                     4. Local Variables: variables in a method body
                         1. compiler never assigns a default value to an uninitialized local variable
                         2. access uninitialized local variable results in compile-time error
@@ -267,16 +287,41 @@
                 3. Constructor: create objects from the class blueprint, like method declarations
                     1. use class name and have no return type
                     2. use `new` to create a new object
-                    3. the compiler automatically provide a no-argument, default constructor for any class without constructors. This default constructor will call the no-argument constructor of the superclass. The compiler will complain if the superclass doesnot have a no-argument constructor. If class has no explicit superclass, then it has an implicit superclass of `Object`, which does have a no-argument constructor
-        3. Subclass: use `extends` to extend its superclass, a class can only extend one parent
-        4. Interface: use `implements` to imlement interface, multiple interfaces can be implements separated by commas
-        5. Object
+                    3. default constructor
+                        1. The compiler automatically provide a no-argument constructor for any class without constructors
+                        2. This default constructor will call the no-argument constructor of its superclass
+                        3. The compiler will complain if the superclass doesnot have a no-argument constructor
+                        4. If a class has no explicit superclass, then it has an implicit superclass `Object`, which has a no-argument constructor
+                    4. `this()` method can invoke other constructor, but should be the first line of in the constructor
+        4. Nested Class: classes defined within another class
+            1. Type
+                1. static nested class
+                    1. declared with `static`
+                    2. a member of its enclosing class, can not access to other members of the enclosing class
+                    3. can be declared `private`, `public`, `protected` and package private with no modifier
+
+                    ```java
+                    StaticNestedClass staticNestedObject = new StaticNestedClass()
+                    ```
+                2. inner class
+                    1. non-static class, associate with an instance of its enclosing class
+                    2. cannot define any static members itself
+                    3. can access to other members of the enclosing class, even if they are private
+
+                    ```java
+                    OuterClass outerObject = new OuterClass();
+                    OuterClass.InnerClass innerObject = outerObject.new InnerClass();
+                    ```
+        5. Subclass: use `extends` to extend its superclass, a class can only extend one parent
+        6. Interface: use `implements` to imlement interface, multiple interfaces can be implements separated by commas
+        7. Object
             1. `null`
                 1. can be assigned to any variable, except primitive types
                 2. often used in program as a marker to indicate some object is unavailable
-            2. Members
+            2. `this`: current object
+            3. Members
                 1. `.class`: refer to object's class
-4. Data Structure
+5. Data Structure
     1. Architecture
         1. Relations
             1. `scala.Any`
@@ -495,7 +540,7 @@
         11. File
             1. `.listFiles()`
             2. `.getName()`
-5. Syntax
+6. Syntax
     1. Base
         1. `[// ...,  /* ... */]`: comments
         2. `Summer.scala`: scala file name follows the class or object name
@@ -594,7 +639,7 @@
             a * b <=> a.*(b)
             a ::: b <=> b.:::(a)
             ```
-6. Control Structure
+7. Control Structure
     1. Conditonal
         1. If
             1. `if (boolean) {...}`: `if` returns a value
@@ -698,7 +743,7 @@
                  else searchFrom(i + 1)
             val i = searchFrom(0)
             ```
-7. Function
+8. Function
     1. Properties
         1. parameters are val type
         2. `return` at the end of function can be omitted, then the last value is returned
@@ -749,7 +794,7 @@
 
             myLoop(start = 5, end = 10) { i => println(s"i has value ${i}")}
             ```
-8. Class
+9. Class
     1. Scala
         1. Initialization
             1. New
@@ -884,7 +929,7 @@
                         println(season + ": " + calculate(season))
                 }
                 ```
-9.  Exception
+10. Exception
     1. Java
         1. Catch or Specify Requirement: code that might throw exceptions must be enclosed by either of the following, otherwise the code will not be compiled
             1. A `try` statement that catches the excpetion. The `try` must privide a handle for the exception
@@ -1022,7 +1067,7 @@
             file.close()
         }
         ```
-10. Package & Import
+11. Package & Import
     1. Package
         1. Create 
             1. name convention is using reversed Internet domain names to avoid potential name conflicts
@@ -1049,7 +1094,7 @@
                 1. `import scala.collection.mutable`
                 2. `import scala.collection._`
 
-11. Libraries
+12. Libraries
     1. `java.lang`
         1. System
             1. `System`

@@ -13,13 +13,22 @@
     3. Imports: `Code Style.java.Imports`
         1. `Class count to use import with '*': 500`
         2. `Names count to use static import with '*': 500`
-    4. Plugins
-        1. IdeaVim
-            1. `~/.ideavimrc`
-    5. Project
-        1. Scala
-            1. download scala plugin
-            2. may need `Add Framework Support for scala` when not see `Scala Class` creating scala class file, just right click project oolder
-            3. build sbt
-                1. JRE: sbt install home
-                2. VM parameters: `-Duser.language=en`
+2. Plugins
+    4. IdeaVim
+        1. `~/.ideavimrc`
+3. Project
+    1. Notes
+        1. `Command line is too long`
+
+            ```xml
+            <!-- .idea/workspace.xml add item "dynamic.classpath" -->
+            <component name="PropertiesComponent">
+            <property name="dynamic.classpath" value="true" />`
+            </component>
+            ```
+    2. Scala
+        1. download scala plugin
+        2. may need `Add Framework Support for scala` when not see `Scala Class` creating scala class file, just right clproject oolder
+        3. build sbt
+            1. JRE: sbt install home path
+            2. VM parameters: `-Duser.language=en`
