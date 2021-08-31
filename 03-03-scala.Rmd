@@ -201,21 +201,23 @@
                             7. `\'`
                             8. `\\`
             3. Array: hold a fix number of values of a single type
-                1. the length is established when created. after creation, the length is fixed
-                2. element index begins with 0
-                3. declaration
-                    1. `int[] anArray`
-                    2. `int anArray[]`: discouraged
-                4. creation: `anArray = new int[10]`
-                5. initialization: `anArray[0] = 100`
-                6. access: `anArray[0]`
-                7. creation and initialization: `int[] anArray = {100, 200, ..., 1000}`, length is determined by element number in the brace separated by commas
-                8. multidimensional array
+                1. Properties
+                    1. the length is established when created. after creation, the length is fixed
+                    2. element index begins with 0
+                2.  members
+                    1. `.length`
+                3. Operations
+                    1. declaration
+                        1. `int[] anArray`
+                        2. `int anArray[]`: discouraged
+                    2. Constructor: `anArray = new int[10]`
+                    3. initialization: `anArray[0] = 100`
+                    4. declaration and initialization: `int[] anArray = {100, 200, ..., 1000}`, length is determined by element number     in the brace separated by commas
+                    5. access: `anArray[0]`
+                4. multidimensional array
                     1. use multiple brackets: `int[][] counts`
                     2. each element is an array
                     3. rows can vary in length: `String[][] names = {{"Mr. ", "Mrs. ", "Ms. "}, {"Smith", "Jones"}}`
-                9.  members
-                    1. `.length`
 4. Class and Objects
     1. Java
         1.  Modifier
@@ -236,6 +238,7 @@
                     1. class: cannot be extended
                     2. method: can not be overrided
                     3. variable: value can not be change
+                3. `transient`: specify variable not to be serialized
         2. Class
             1. Member
                 1. Variable
@@ -293,11 +296,11 @@
                         3. The compiler will complain if the superclass doesnot have a no-argument constructor
                         4. If a class has no explicit superclass, then it has an implicit superclass `Object`, which has a no-argument constructor
                     4. `this()` method can invoke other constructor, but should be the first line of in the constructor
-        4. Nested Class: classes defined within another class
-            1. Type
+        3. Nested Class
+            1. defined within class
                 1. static nested class
                     1. declared with `static`
-                    2. a member of its enclosing class, can not access to other members of the enclosing class
+                    2. a member of its enclosing class, can not access to other members of the enclosing class because it is an instance of the enclosing class, but only access static members of the enclosing class
                     3. can be declared `private`, `public`, `protected` and package private with no modifier
 
                     ```java
@@ -312,9 +315,39 @@
                     OuterClass outerObject = new OuterClass();
                     OuterClass.InnerClass innerObject = outerObject.new InnerClass();
                     ```
-        5. Subclass: use `extends` to extend its superclass, a class can only extend one parent
-        6. Interface: use `implements` to imlement interface, multiple interfaces can be implements separated by commas
-        7. Object
+            2. defined within method: access modifiers apply
+                1. local
+                    1. local classes are non-static because they have access to instance members of the enclosing block
+                    2. local classes cannot define or declare any static members similar to inner class
+                    3. local classes can have static members privided that they are constant variables (a variable of primitive type or string that is defined final and initialized with a compile-time constant expression)
+                    4. local classes in static methods can only refer to static members of the enclosing class
+                    5. local classes can access to the members of its enclosing class
+                    6. local classes can access the method's parameters since Java SE8
+                    7. local classes can access local variables and parameters of the enclosing block since that are final or effectively final Java SE 8. A variable or parameter whose value is never changed after it is initialized is effectively finala
+                    8. an interface cannot be declared inside a block; interfaces are inherently static
+                2. anonymous
+                    1. like a local class except do not have a name
+                    1. make code more concise if only use only once
+                    2. is an expression, enable to declare and instantiate a class at the same time
+                    3. cannot declare constructors
+                3. lambda expression
+                    1. express a single-method classes more compactly
+                    2. work like an anonymous methods, methods without a name
+                    3. method references, e.g., `Person::compareName`
+
+                    ```java
+                    public static void printpersionWithPredicate(List<Persion> roster, Predicate<Persion> tester) {
+                        for (Person p: roster) {
+                            if (tester.test(p)) {
+                                p.printPerson();
+                            }
+                        }
+                    }
+                    printpersionWithPredicate(roster, p -> p.getAge >= 10)
+                    ```
+        4. Subclass: use `extends` to extend its superclass, a class can only extend one parent
+        5. Interface: use `implements` to imlement interface, multiple interfaces can be implements separated by commas
+        6. Object
             1. `null`
                 1. can be assigned to any variable, except primitive types
                 2. often used in program as a marker to indicate some object is unavailable
@@ -1147,9 +1180,11 @@
                 8. `.toLowerCase()`
                 9. `.toUpperCase()`
                 10. `.trim()`
-                11. `.substring(start, end)`:  between `.charAt(start)` and `.charAt(end)`
-                12. `.sbustring(start)`: equal `.substring(start, .length() -1)`
-                13. `.toCharArray()`
+                11. `.replace()`
+                12. `.replaceAll()`
+                13. `.substring(start, end)`:  between `.charAt(start)` and `.charAt(end)`
+                14. `.sbustring(start)`: equal `.substring(start, .length() -1)`
+                15. `.toCharArray()`
         5. `Math`
             1. `Math.pow(a, b)`: `a^b`
     2. `java.math`
@@ -1220,7 +1255,14 @@
             6. `Arrays.parallelSort`: since Java SE8, concurrently execute
         6. `List`
         7. `ArrayList`
-    4. `java.io`
+            1. Constructor
+                1. `List<Integer> list = new ArrayList<>(10)`
+    4. `java.util.function`
+        1. `Predicate<T>`
+            1. `boolean test(T t)`
+        2. `Predicate<T, R>`: return an r object from apply method to t
+            1. `R apply(T t)`
+    5. `java.io`
         1. Byte Streams
             1. `InputStream`
                 1. `FileInputStream`
@@ -1279,7 +1321,7 @@
                 6. `FilterWriter`
                 7. `PipedWriter`
         3. `File`
-    5. `java.nio`: since Jave SE7
+    6. `java.nio`: since Jave SE7
         1. `java.nio.charset`
             1. `Charset`
                 1. `Charset.forName("US-ASCII")`
@@ -1333,7 +1375,7 @@
                         3. `.getReason()`
                     2. Subclasses
                         1. `NoSuchFileException`
-    6. JDBC
+    7. JDBC
         1. General
             1. Reference: [Java JDBC Documents](https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html)
             2. import class: `import java.sql._`
@@ -1386,7 +1428,7 @@
                 4. Url
                     1. `jdbc:hive2://host:port/dbname`
                     2. `jdbc:hive2://host:port/dbname;user=<user>;password=<password>`: LDAP
-    7. Other Databases
+    8. Other Databases
         1. Hbase
             1. Dependencies: `"org.apache.hbase" % "hbase-client" % "2.3.5"`
             2. Initialization
