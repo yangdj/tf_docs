@@ -5,16 +5,18 @@
         1. File Encoding: `Editor/File Encoding: UTF-8`
         2. Line Separator: `Editor/Code Style/Line separator: \n`
     2. Shortcuts
-        1. `Ctrl + click`: jump to definition
-        2. `Ctrl + Shift + N`: open file
-        3. `Ctrl + Alt + L`: format code
-        4. `Ctrl + /`: line comment
-        5. `Ctrl + Shift + /`: block comment
+        1. `Ctrl + N`: next item
+        2. `Ctrl + P`: previous item
+        3. `Ctrl + click`: jump to definition
+        4. `Ctrl + Shift + N`: open file
+        5. `Ctrl + Alt + L`: format code
+        6. `Ctrl + /`: line comment
+        7. `Ctrl + Shift + /`: block comment
     3. Imports: `Code Style.java.Imports`
         1. `Class count to use import with '*': 500`
         2. `Names count to use static import with '*': 500`
 2. Plugins
-    4. IdeaVim
+    1. IdeaVim
         1. `~/.ideavimrc`
 3. Project
     1. Notes

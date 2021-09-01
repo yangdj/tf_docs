@@ -239,6 +239,7 @@
                     2. method: can not be overrided
                     3. variable: value can not be change
                 3. `transient`: specify variable not to be serialized
+                4. `default`: for interface's default method
         2. Class
             1. Member
                 1. Variable
@@ -327,9 +328,9 @@
                     8. an interface cannot be declared inside a block; interfaces are inherently static
                 2. anonymous
                     1. like a local class except do not have a name
-                    1. make code more concise if only use only once
-                    2. is an expression, enable to declare and instantiate a class at the same time
-                    3. cannot declare constructors
+                    2. make code more concise if only use only once
+                    3. is an expression, enable to declare and instantiate a class at the same time
+                    4. cannot declare constructors
                 3. lambda expression
                     1. express a single-method classes more compactly
                     2. work like an anonymous methods, methods without a name
@@ -345,9 +346,46 @@
                     }
                     printpersionWithPredicate(roster, p -> p.getAge >= 10)
                     ```
-        4. Subclass: use `extends` to extend its superclass, a class can only extend one parent
-        5. Interface: use `implements` to imlement interface, multiple interfaces can be implements separated by commas
-        6. Object
+        4. Inheritance and SubClass
+            1. Properties
+                1. use `extends` to extend its superclass
+                2. except class `Object` which has no superclass, every class has one and only one direct superclass (single inheritance). In the absence of any other explicitly superclass, every class is implicitly a subclass of `Object`
+            2. Members
+                1. inherit all of the `public` and `protected` members of its parent, no matter what package the subclass is in
+                2. inherit *package-private* members of the parent in the same package
+                3. for `private` parent members
+                    1. if the superclass has public or protected methods for accessing its private fields, these can also be used by the subclass
+                    2. a nested class has access to all the private members of its enclosing class both fields and methods. Therefore, a public or protected nested class inherited by a subclass has indirect access to all of the private members of the superclass
+                4. declare fields with the same name as the ones in the superclass, thus **hiding them, not recommended**
+                5. declare new fields not in the superclass
+                6. write new *insance* methods have the same signature as the ones in the superclass, thus **overriding them**. It can return a subtype of the type returned by the overridden method. This subtype is called a *covariant return type*
+                7. write new *static* methods have the same signature as the ones in the superclass, thus **hiding them**
+                8. write new methods not in the superclass
+                9. write subclass constructors that invoke superclass's constructor using keyword `super`
+            3. Operations
+                1. `instanceof`: operator to test the type of an object, `obj instanceof Bicycle`
+        5. Interface
+            1. Properties
+                1. cannot be instantiated
+                2. can only be implemented by classes and extended by other interfaces
+                3. only default and static methods can have implementations
+                4. all methods in an interface are implicitly `public`
+            2. Members
+                1. constants:  implicitly `public`, `static`, and `final`
+                2. method signatures: abstract methods, have no bodies and are terminated with a semicolon
+                3. default methods
+                    1. use `default` modifier
+                    2. add new functionality and ensure binary compatibility with code written for older versions
+                    3. when extending interfaces that contain default mothods, there are three choices:
+                        1. not mention the default method at all, letting the extended interface inherit the default method
+                        2. redeclare the default, which makes it abstract again
+                        3. redefine the default method overriding it
+                4. static methods
+                    1. use `stattic` modifier
+                    2. easier to organize helper methods in libraries, keep static methods specific to an interface in the same interface rather than in a separate class
+                5. nested types
+        6. Enum
+        7. Object
             1. `null`
                 1. can be assigned to any variable, except primitive types
                 2. often used in program as a marker to indicate some object is unavailable
@@ -1156,6 +1194,9 @@
                 1. `.readLine()`
                 2. `.readPassword()`
                 3. `.format()`
+            6. `Integer`
+                1. `Integer.compare(x, y)`
+                2. `Inteter.parseInt("10", base)`
         2. `Object`
         3. `Character`
             1. `Character.isLetter(ch)`
