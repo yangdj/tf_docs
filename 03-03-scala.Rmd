@@ -62,10 +62,14 @@
         3. `src/`
             1. `main/`
                 1. `scala/`
-                2. `resources/`
+                2. `java/`
+                3. `resources/`
+                    1. Read File
+                        1. `ClassName.class.getResourceAsStream("/a.txt")`: start with `/`
             2. `test/`
                 1. `scala/`
-                2. `resources/`
+                2. `java/`
+                3. `resources/`
         4. `target/`: build output, included in `.gitignore`
         5. `lib/`: unmanaged jar dependencies which automatically added to `classpath` compared to mananged dependencies
             1. `unmanagedBase := baseDirectory.value / "custom_lib"`: specify customized path
@@ -235,9 +239,9 @@
                 1. `static`
                     1. Member: belong to class, not instances
                 2. `final`: value can not be changed
-                    1. class: cannot be extended
-                    2. method: can not be overrided
-                    3. variable: value can not be change
+                    1. variable: value can not be change
+                    2. method: can not be overridden by subclasses. methods called from constructors should generally be declared final. If a constructor calls a non-final method, a subclass may redefine that method with surprising or undesirable results
+                    3. class: cannot be extended. useful, for example, when creating an immutable class like the `String` class
                 3. `transient`: specify variable not to be serialized
                 4. `default`: for interface's default method
         2. Class
@@ -356,15 +360,31 @@
                 3. for `private` parent members
                     1. if the superclass has public or protected methods for accessing its private fields, these can also be used by the subclass
                     2. a nested class has access to all the private members of its enclosing class both fields and methods. Therefore, a public or protected nested class inherited by a subclass has indirect access to all of the private members of the superclass
-                4. declare fields with the same name as the ones in the superclass, thus **hiding them, not recommended**
+                4. declare fields with the same name as the ones in the superclass, type can be different, thus **hiding them** not recommended for it makes code difficult to read
                 5. declare new fields not in the superclass
                 6. write new *insance* methods have the same signature as the ones in the superclass, thus **overriding them**. It can return a subtype of the type returned by the overridden method. This subtype is called a *covariant return type*
-                7. write new *static* methods have the same signature as the ones in the superclass, thus **hiding them**
-                8. write new methods not in the superclass
-                9. write subclass constructors that invoke superclass's constructor using keyword `super`
+                7. static methods in interfaces are never inherited
+                8. write new *static* methods have the same signature as the ones in the superclass, thus **hiding them**
+                9. write new methods not in the superclass. write overloaded methods inherited from the superclass. such overloaded methods neither hide nor override the superclass instance methods, they are new methods, unique to the subclass
+                10. a compile-time error occurs when to change an instance method in the superclass to a static method in the subclass, and vice versa
+                11. write subclass constructors that invoke superclass's constructor using keyword `super`. if a constructor does not explicitly invoke a superclass constructor, the Java compiler automatically inserts a call to the no-argument constructor of the superclass. if the super class does not have a no-argument constructor,  a compile-time error occurs. `Object` does have such a constructor, so if `Object` is the only superclass, there is no problem
+                12. the access specifier for an overriding method can allow more, but not less, access than the overridden method. e.g., a protected instance method in the superclass can be made public, but not private, in the subclass
             3. Operations
                 1. `instanceof`: operator to test the type of an object, `obj instanceof Bicycle`
-        5. Interface
+                2. `super.methodA()`: invoke superclass's method
+                3. `ClassA.super.methodA()`: invoke specified superclass's method
+        5. Abstract Methods and Classes
+            1. Abstract Classes
+                1. declared `abstract`
+                2. can declare fields that are not static and final, and use all kinds of access modifiers
+                3. can declare `statci` fields and methods
+                4. may or may not include abstract methods
+                5. if a class includes abstract methods, then the class itself must be declared abstract
+                6. can not be instantiated, but can be subclassed
+                7. when an abstract class is subclassed, the subclass usually provides implementations for all of the abstract methods in its parent class. However, if it does not, then the subclass must also be declared `abstract`
+                8. no need to implement all of the interface's methods when declared to be `abstract` class
+            2. Abstract Methods: declared `abstract` without an implementation
+        6. Interface
             1. Properties
                 1. cannot be instantiated
                 2. can only be implemented by classes and extended by other interfaces
@@ -384,8 +404,8 @@
                     1. use `stattic` modifier
                     2. easier to organize helper methods in libraries, keep static methods specific to an interface in the same interface rather than in a separate class
                 5. nested types
-        6. Enum
-        7. Object
+        7. Enum
+        8. Object
             1. `null`
                 1. can be assigned to any variable, except primitive types
                 2. often used in program as a marker to indicate some object is unavailable
@@ -1167,7 +1187,38 @@
 
 12. Libraries
     1. `java.lang`
-        1. System
+        1. `Object`
+            1. `.clone()`: create and copy this object
+            2. `.hashCode()`
+                1. hash value for the object, which is an integer value generated by a hashing algorithm
+                2. by definition, if two objects are equal, their hash code must also be equal
+                3. if override the `equals()` method, then it changes the way two objects are equated and `Object`'s implementation of `hashCode()` is no longer valid, so need override the `hashCode()` method as well
+            3. `.equals()`
+                1. indicate whether some other object is equal to this one
+                2. The `equals()` method provided by the `Object` uses the identity operator `==` to determine whether two objects are equal (the object references are equal). For primitive data types, this gives the correct result, but for objects, however, it does not.
+                3. Class should always override the `equals()` method if the identity operator is not appropriate.
+                4. if override `equals()`, must override `hashCode()` as well.
+            4. `.finalize()`: called by garbage collector when determines there are no more references to the object
+            5. `.getClass()`: get runtime class of the object, can not be overidden
+            6. `.toString()`
+                1. string representation of the object.
+                2. should always consider overriding the `toString()` method
+            7. `.notify()`
+            8. `.notifyAll()`
+            9.  `.wait()`
+            10. `.wait(timeout)`
+            11. `.wait(timeout, nanos)`
+        2. `Class`
+            1. `.getName()`
+            2. `.getSimpleName()`
+            3. `.getSuperclass()`
+            4. `.getInterfaces()`
+            5. `.isAnnotation()`
+            6. `.isInterface()`
+            7. `.isEnum()`
+            8. `.getFields()`
+            9. `.getMethods()`
+        3. System
             1. `System`
                 1. `.exit(n)`: `System.exit(1)`
                 2. `.arraycopy()`: `System.arraycopy(copyFrom, 2, copyTo, 0, 7)`
@@ -1197,10 +1248,10 @@
             6. `Integer`
                 1. `Integer.compare(x, y)`
                 2. `Inteter.parseInt("10", base)`
-        2. `Object`
-        3. `Character`
+                3. `Integer.toHexString(hashCode())`
+        4. `Character`
             1. `Character.isLetter(ch)`
-        4. `String`
+        5. `String`
             1. Properties
                 1. immutable, once created, never change
             2. Constructor
@@ -1226,7 +1277,7 @@
                 13. `.substring(start, end)`:  between `.charAt(start)` and `.charAt(end)`
                 14. `.sbustring(start)`: equal `.substring(start, .length() -1)`
                 15. `.toCharArray()`
-        5. `Math`
+        6. `Math`
             1. `Math.pow(a, b)`: `a^b`
     2. `java.math`
         1. `BigDecimal`: used for precise values, such as currency
@@ -1236,7 +1287,20 @@
                 1. `.add()`
                 2. `.multiply()`
     3. `java.util`
-        1. `Calendar`
+        1. `Properties`: both key and value are `String` values
+            1. `.load(inStream)`
+            2. `.store(outStream, comments)`
+            3. `.size()`
+            4. `.getProperty(key)`
+            5. `.getPorperty(key, default)`
+            6. `.keys()`
+            7. `.elements()`
+            8. `.contains(value)`
+            9. `.containsKey(key)`
+            10. `.setProperty(key, value)`: invoke `put()` from `Hashtable`
+            11. `.remove(key)`
+            12. `.clear()`
+        2. `Calendar`
             1. Members
                 1. `Calendar.getInstance()`: get a calendar using the default time zone and locale
             2. Formats
@@ -1264,12 +1328,6 @@
                 22. `tR`: `hh:mm` based on 24
                 23. `tT`: `hh:mm:ss` based on 24
                 24. `tr`: `hh:mm:ss am/pm`
-        2. `Properties`
-
-            ```scala
-            val connectionProperties = new Properties()
-            connectionProperties.put("user", "username")
-            ```
         3. `Locale`
             1. `Locale.SIMPLIFIED_CHINESE`
         4. `Scanner`: use while space to separate tokens, including blanks, tabs and line terminators
