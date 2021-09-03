@@ -65,7 +65,8 @@
                 2. `java/`
                 3. `resources/`
                     1. Read File
-                        1. `ClassName.class.getResourceAsStream("/a.txt")`: start with `/`
+                        1. `ClassName.class.getResourceAsStream("/a.txt")`: static method start with `/`
+                        2. `getClass().getResourceAsStream("/a.txt")`: instance method
             2. `test/`
                 1. `scala/`
                 2. `java/`
@@ -1034,7 +1035,8 @@
                     1. RuntimeException
                         1. `NullPointerException`: occur when a method access a member of an object through a null reference
                         2. `IndexOutOfBoundsException`
-                        3. other subclasses
+                        3. `IllegalArgumentException`
+                        4. other subclasses
                     2. Other subclasses
                         1. `java.io.IOException`
                         2. `java.io.FileNotFoundException`
@@ -1058,7 +1060,7 @@
                     3. **Not subject to the Catch or Specify Requirement**
                     4. Can catch this exception, but it probably makes more sense to eliminate the bug that caused the excption
         4. Exception Handlers
-            1. Exception Methods
+            1. Methods
                 1. `e.getMessage()`
                 2. `e.printStackTrace()`
                 3. `e.getSuppressed()`
@@ -1221,11 +1223,30 @@
         3. System
             1. `System`
                 1. `.exit(n)`: `System.exit(1)`
+                    1. cause JVM to shutdown
+                    2. the exit status is available to the process that launched the application
+                    3. by convention, 0 indicates normal termination, while any other value is an error code
                 2. `.arraycopy()`: `System.arraycopy(copyFrom, 2, copyTo, 0, 7)`
-                3. `.getProperty(name)`
-                    1. `.getProperty("line.separator")`
-                    2. `.getProperty("file.encoding")`
-                    3. `.getProperty("user.home")`
+                3. `.currentTimeMillis()`
+                4. `.nanoTime()`: time recorded by JVM, not for recording actual time, better for measuring time lapsed in nanoseconds
+                5. `.getenv()`
+                6. `.setProperties()`
+                7. `.getProperties()`
+                8. `.getProperty(name, [default])`
+                    1. `"java.home"`
+                    2. `"java.version"`
+                    3. `"file.encoding"`
+                    4. `"file.separator"`
+                        1. `\` Windows
+                        2. `/`: Linux
+                    5. `"path.separator"`: character used in java.class.path `;` for windows
+                    6. `"line.separator"`
+                    7. `"user.name"`
+                    8. `"user.home"`: user home directory
+                    9. `"user.dir"`: user working directory
+                    10. `"user.language"`: `zh`
+                    11. `"user.timezone"`
+                        1. `Asia/Shanghai`
             2. `System.in` 
                 1. `InputStreamReader cin = new InputStreamReader(System.in)`: use standard input as a character stream
             3. `System.out`
@@ -1293,13 +1314,16 @@
             3. `.size()`
             4. `.getProperty(key)`
             5. `.getPorperty(key, default)`
-            6. `.keys()`
-            7. `.elements()`
-            8. `.contains(value)`
-            9. `.containsKey(key)`
-            10. `.setProperty(key, value)`: invoke `put()` from `Hashtable`
-            11. `.remove(key)`
-            12. `.clear()`
+            6. `.propertyNames()`
+            7. `.stringPropertyNames()`
+            8. `.keys()`
+            9. `.elements`
+            10. `.contains(value)`
+            11. `.containsKey(key)`
+            12. `.list(outStream)`
+            13. `.setProperty(key, value)`: invoke `put()` from `Hashtable`
+            14. `.remove(key)`
+            15. `.clear()`
         2. `Calendar`
             1. Members
                 1. `Calendar.getInstance()`: get a calendar using the default time zone and locale
@@ -1346,12 +1370,13 @@
             }
             ```
         5. `Arrays`
-            1. `Arrays.equals()`: `Arrays.equals(chars, "123".toCharArray())`
-            2. `Arrays.fill()`: `Arrays.fill(name, ' ')`
-            3. `Arrays.copyOfRange()`: `String[] copyTo = java.util.Arrays.copyOfRange(copyFrom, 2, 9);`, include start, exclude end
-            4. `Arrays.binarySearch()`
-            5. `Arrays.sort()`
-            6. `Arrays.parallelSort`: since Java SE8, concurrently execute
+            1. `Arrays.asList()`
+            2. `Arrays.equals()`: `Arrays.equals(chars, "123".toCharArray())`
+            3. `Arrays.fill()`: `Arrays.fill(name, ' ')`
+            4. `Arrays.copyOfRange()`: `String[] copyTo = java.util.Arrays.copyOfRange(copyFrom, 2, 9);`, include start, exclude end
+            5. `Arrays.binarySearch()`
+            6. `Arrays.sort()`
+            7. `Arrays.parallelSort`: since Java SE8, concurrently execute
         6. `List`
         7. `ArrayList`
             1. Constructor
