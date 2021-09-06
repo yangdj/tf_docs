@@ -110,8 +110,9 @@
     1. [shapeless-guide](https://books.underscore.io/shapeless-guide/shapeless-guide.html)
     2. [The Java Language Specification](https://docs.oracle.com/javase/specs/jls/se8/html/index.html)
     3. [Java Tutorial](https://docs.oracle.com/javase/tutorial/)
-    4. [Java Concurrency](http://tutorials.jenkov.com/java-concurrency/volatile.html)
-    5. [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern#Lazy_initialization)
+    4. [Type Wildcard in Java Generics](http://ted-gao.blogspot.com/search/label/Java%20Generics)
+    5. [Java Concurrency](http://tutorials.jenkov.com/java-concurrency/volatile.html)
+    6. [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern#Lazy_initialization)
 2. Command
     1. Common
         1. `jar`
@@ -1307,7 +1308,61 @@
             2. members
                 1. `.add()`
                 2. `.multiply()`
-    3. `java.util`
+    3. `java.time`
+        1. Common Methods
+            1. Static
+                1. `of()`
+                2. `from()`
+                3. `parse()`
+                4. `now()`
+            2. Instance
+                1. `format()`
+                2. `get()`
+                3. `is()`
+                4. `with()`
+                5. `plus()`
+                6. `minus()`
+                7. `to()`
+                8. `at()`
+        2. `LocalDate`
+            1. `LocalDate.now()`
+            2. `LocalDate.from(datetime)`
+            3. `LocalDate.of(day, month, year)`
+            4. `.plusYears(1)`
+            5. `.getDayOfWeek()`
+        3. `LocalTime`
+            1. `LocalTime.now()`
+            2. `LocalTime.of(hour, minute, second)`
+            3. `LocalDate.from(datetime)`
+        4. `LocalDateTime`
+            1. `LocalDateTime.now()`
+            2. `LocalDateTime.of(date, time)`
+        5. `ZonedDatetime`
+            1. `ZonedDateTime.of(datetime, zoneid)`
+        6. `ZoneId`
+            1. `ZoneId.of(zoneString)`
+            2. `ZoneId.systemDefault()`
+        7. `DayOfWeek`: constants from 1 (Monday) through 7 (Sunday)
+            1. Enums
+                1. `DayOfWeek.MONDAY`
+                2. `DayOfWeek.TUESDAY`
+                3. `DayOfWeek.WEDNESDAY`
+                4. `DayOfWeek.THURSDAY`
+                5. `DayOfWeek.FRIDAY`
+                6. `DayOfWeek.SATURDAY`
+                7. `DayOfWeek.SUNDAY`
+            2. Methods
+                1. `getDisplayName(textstyle, locale)`
+        8. `Month`
+            1. Enums: from 1 (January) to 12 (December)
+                1. `JANUARY`
+                2. `...`
+        9. `format.TextStyle`
+            1. Enums
+                1. `FULL`
+                2. `NARROW`
+                3. `SHORT`
+    4. `java.util`
         1. `Properties`: both key and value are `String` values
             1. `.load(inStream)`
             2. `.store(outStream, comments)`
@@ -1353,7 +1408,11 @@
                 23. `tT`: `hh:mm:ss` based on 24
                 24. `tr`: `hh:mm:ss am/pm`
         3. `Locale`
-            1. `Locale.SIMPLIFIED_CHINESE`
+            1. Constants
+                1. `Locale.SIMPLIFIED_CHINESE`
+                2. `Locale.ENGLISH`
+            2. Methods
+                1. `Locale.getDefault()`
         4. `Scanner`: use while space to separate tokens, including blanks, tabs and line terminators
             1. `.useDelimiter(",\\s*")`
             2. `.useLocale(Locale.SIMPLIFIED_CHINESE)`
@@ -1381,12 +1440,12 @@
         7. `ArrayList`
             1. Constructor
                 1. `List<Integer> list = new ArrayList<>(10)`
-    4. `java.util.function`
+    5. `java.util.function`
         1. `Predicate<T>`
             1. `boolean test(T t)`
         2. `Predicate<T, R>`: return an r object from apply method to t
             1. `R apply(T t)`
-    5. `java.io`
+    6. `java.io`
         1. Byte Streams
             1. `InputStream`
                 1. `FileInputStream`
@@ -1445,7 +1504,7 @@
                 6. `FilterWriter`
                 7. `PipedWriter`
         3. `File`
-    6. `java.nio`: since Jave SE7
+    7. `java.nio`: since Jave SE7
         1. `java.nio.charset`
             1. `Charset`
                 1. `Charset.forName("US-ASCII")`
@@ -1499,7 +1558,7 @@
                         3. `.getReason()`
                     2. Subclasses
                         1. `NoSuchFileException`
-    7. JDBC
+    8. JDBC
         1. General
             1. Reference: [Java JDBC Documents](https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html)
             2. import class: `import java.sql._`
@@ -1552,7 +1611,7 @@
                 4. Url
                     1. `jdbc:hive2://host:port/dbname`
                     2. `jdbc:hive2://host:port/dbname;user=<user>;password=<password>`: LDAP
-    8. Other Databases
+    9. Other Databases
         1. Hbase
             1. Dependencies: `"org.apache.hbase" % "hbase-client" % "2.3.5"`
             2. Initialization

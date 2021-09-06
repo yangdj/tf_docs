@@ -1,0 +1,5 @@
+# Locale
+
+1. Java
+    1. `Locale.SIMPLIFIED_CHINESE`
+    2. `zh_CN`

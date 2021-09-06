@@ -1,0 +1,4 @@
+# TimeZone
+
+1. `Asia/Shanghai`
+2. `Asia/Tokyo`
