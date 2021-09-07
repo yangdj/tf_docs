@@ -1311,10 +1311,10 @@
     3. `java.time`
         1. Common Methods
             1. Static
-                1. `of()`
-                2. `from()`
-                3. `parse()`
-                4. `now()`
+                1. `now()`
+                2. `of()`
+                3. `from()`
+                4. `parse()`
             2. Instance
                 1. `format()`
                 2. `get()`
@@ -1340,9 +1340,14 @@
         5. `ZonedDatetime`
             1. `ZonedDateTime.of(datetime, zoneid)`
         6. `ZoneId`
-            1. `ZoneId.of(zoneString)`
-            2. `ZoneId.systemDefault()`
-        7. `DayOfWeek`: constants from 1 (Monday) through 7 (Sunday)
+            1. Properties
+                1. identified by *region/city*, e.g., `Asia/Shanghai`
+            2. Methods
+                1. `ZoneId.of(zoneString)`
+                2. `ZoneId.systemDefault()`
+                3. `ZoneId.getAvailableZoneIds()`
+        7. `ZoneOffset`: offset from Greenwich/UTC time
+        8. `DayOfWeek`: constants from 1 (Monday) through 7 (Sunday)
             1. Enums
                 1. `DayOfWeek.MONDAY`
                 2. `DayOfWeek.TUESDAY`
@@ -1353,11 +1358,11 @@
                 7. `DayOfWeek.SUNDAY`
             2. Methods
                 1. `getDisplayName(textstyle, locale)`
-        8. `Month`
+        9. `Month`
             1. Enums: from 1 (January) to 12 (December)
                 1. `JANUARY`
                 2. `...`
-        9. `format.TextStyle`
+        10. `format.TextStyle`
             1. Enums
                 1. `FULL`
                 2. `NARROW`
