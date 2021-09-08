@@ -3,6 +3,7 @@
 1. References
     1. [hive data types](https://understandingbigdata.com/hive-data-types)
     2. [LanguageManual](https://cwiki.apache.org/confluence/display/Hive/LanguageManual)
+    3. [Skewdata](https://juejin.cn/post/6844904165752176648)
 2. Installation
     1. configuration
         1. `hive.metastore.warehouse.dir`:  where to store internal table data
@@ -14,8 +15,8 @@
     5. `SET hive.tez.container.size=6144`: set tez memory size
     6. `SET mapred.reduce.tasks=60`: set numbers of reducers
     7. `SET mapred.job.queue.name=queue0`
-    8. `SET tez.queue.name=queue0`
-    9. `SET hive.auto.convert.join=true`: join in mapper by load small table into memory when big table joins small table, this reduces shuffle operations
+    8.  `SET tez.queue.name=queue0`
+    9.  `SET hive.auto.convert.join=true`: join in mapper by load small table into memory when big table joins small table, this reduces shuffle operations
     10. `SET hive.groupby.skewindata=true`: enable load balance when data skews, default false
     11. Compress
         1.  `SET hive.exec.compress.output=true`: compress output
@@ -35,6 +36,19 @@
         4. `SET hive.exec.max.dynamic.partitions.pernode=100000`: max number partitions support by one mapper or reducer, default 100
         5. `SET hive.exec.max.created.files=100000`: max created file number for mapper and reducer in one job,default 100000
         6. `SET hive.error.on.empty.partition=false`: whether allowing empty results, when `true` throw an error
+    13. Skew Data
+        1. `SET hive.map.aggr=true`: set map combiner, need more memory
+        2. `SET hive.groupby.skewindata=true`: use two-stage job, first randomly distribute map data to reducers, then process according the keys
+        3. MAPJOIN: when use small table to join big table, store small table into memory, then join in the map stage, not reduce stage
+
+            ```sql
+            select /*+ MAPJOIN(c) */  
+                c.channel_name,count(t.requesturl) PV  
+            from ods.cms_channel c  
+            inner join  ods.tracklog_5min t  on c.channel_name = t.host  
+            group by c.channel_name  
+            order by c.channel_name
+            ```
 4. Data Type
     1. Primitive
         1. Integers 
