@@ -15,9 +15,9 @@
     5. `SET hive.tez.container.size=6144`: set tez memory size
     6. `SET mapred.reduce.tasks=60`: set numbers of reducers
     7. `SET mapred.job.queue.name=queue0`
-    8.  `SET tez.queue.name=queue0`
-    9.  `SET hive.auto.convert.join=true`: join in mapper by load small table into memory when big table joins small table, this reduces shuffle operations
-    10. `SET hive.groupby.skewindata=true`: enable load balance when data skews, default false
+    8. `SET tez.queue.name=queue0`
+    9. `SET hive.mapjoin.smalltable.filesize=...`: set filesize for mapjoin, `[default: 25M]`
+    10. `SET hive.auto.convert.join=true`: join in mapper by load small table into memory when big table joins small table, this reduces shuffle operations
     11. Compress
         1.  `SET hive.exec.compress.output=true`: compress output
         2.  `SET io.seqfile.compression.type=BLOCK [BLOCK,RECORD,NONE]` 
@@ -39,10 +39,11 @@
     13. Skew Data
         1. `SET hive.map.aggr=true`: set map combiner, need more memory
         2. `SET hive.groupby.skewindata=true`: use two-stage job, first randomly distribute map data to reducers, then process according the keys
-        3. MAPJOIN: when use small table to join big table, store small table into memory, then join in the map stage, not reduce stage
+        3. `group by` instead of `count(distinct)`
+        4. MAPJOIN: use small table to join big table, store small table into memory, then join in the map stage, not reduce stage
 
             ```sql
-            select /*+ MAPJOIN(c) */  
+            select /*+ MAPJOIN(c), hint not needed since Hive 0.7 */  
                 c.channel_name,count(t.requesturl) PV  
             from ods.cms_channel c  
             inner join  ods.tracklog_5min t  on c.channel_name = t.host  
