@@ -1709,3 +1709,32 @@
                         del.addColumn("column_family".getBytes(), "column_name".getBytes())
                         table.delete(del)
                         ```
+
+## Collection
+
+1. `Collections`
+    1. `Collections.sort()`
+2. `Dictionary`
+3. `Map`
+    1. `AbstractMap`
+        1. `HashMap`
+        2. `TreeMap`
+        3. `WeakHashMap`
+    2. `HashTable extends Dictioanry`
+    3. `SortedMap`
+        1. `NavigableMap`
+            1. `TreeMap`
+4. `java.lang.Iterable`
+    1. `Collection`
+        1. `List`
+            1. `AbstractList`
+                1. `ArrayList`
+                2. `Vector`
+                    1. `Stack`
+                3. `AbstractSequentialList`
+                    1. `LinkedList`
+        2. `Set`
+            1. `AbstractSet`
+                1. `HashSet`
+                2. `TreeSet`
+            2. `SortedSet`
