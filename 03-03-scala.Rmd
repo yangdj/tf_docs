@@ -243,7 +243,7 @@
                 2. `final`: value can not be changed
                     1. variable: value can not be change
                     2. method: can not be overridden by subclasses. methods called from constructors should generally be declared final. If a constructor calls a non-final method, a subclass may redefine that method with surprising or undesirable results
-                    3. class: cannot be extended. useful, for example, when creating an immutable class like the `String` class
+                    3. class: cannot be extended. useful, for example, when creating an immutable class such as the class `String`
                 3. `transient`: specify variable not to be serialized
                 4. `default`: for interface's default method
         2. Class
