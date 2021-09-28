@@ -1,22 +1,169 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="203px" height="64px" viewBox="-0.5 -0.5 203 64" content="&lt;mxfile host=&quot;61c25082-c868-48ab-84e1-2b4a9e229c23&quot; modified=&quot;2021-09-24T07:58:56.324Z&quot; agent=&quot;5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36&quot; etag=&quot;Au1WlOsXdnvXmOo_37s2&quot; version=&quot;13.1.3&quot;&gt;&lt;diagram id=&quot;6hGFLwfOUW9BJ-s0fimq&quot; name=&quot;Page-1&quot;&gt;rZXfb5swEID/GqTtYRM/kqx7LKTdHtKqWirt+QoOWDU+ZC4l6V+/MxgIJdVSbVIe7M9nw913MV6UlIcfBqriDjOhvNDPDl609sLwKgw9+/OzYwcWV34HciOzDp2ArXwVHQx6upeZqB3rECEqktUUpqi1SGnCwBhspmE7VNkEVJCLGdimoOb0t8yo6NP6NvKfQuZF/+Rg9b1bKaEPdpnUBWTYnKDoxosSg0jdqDwkQtnaTety+87q8GJGaLpkgxPxAmrvcnssjIDMvR0d+5TrRpYKNM/iHWraupWA56Bkrnmc8jOFYfAiDEmu1rVbIKyYpoVU2QaOuLdvVhOkz/0sLtDIVz4WlDuTlw058eFqErG1Oxn7TI2oOeahTzd4g+7gMAncQE0OpKgUVLV8GtIoweRSx0iEpQtyxeF0xOHdAgeDNm53gaUgc+QQt2HlRLtO7703Y9uEvpNQnLRMvw1cp+bDwaNMHjif590uZm5nVpVsjdZk8HloZVuMnVQqQYWsc62xDeo1K7GjM5JLmWWqPayCVOr80UpffwlGsmk3rqOR/HIJW2SQgKDTYWuv4EmoB6wlSbTnmy42rlBqaquyjL3luiWGEtScBMhWimDNjbCqLzMYnjfYK1tdpuzq340tzxiL7QUlNdi4LRmumr0ABd1DKT59nhnlPGkw+sbgx6V2/9ypv8Xcn0XIe3eqvcsKbgWhzziduou5xxP/69JaDBOeB+P8r2LtJXQLpVTWUoJ7I/nqCf170fwf69HiMut9d3xAO0/HC75dO/lKRjd/AA==&lt;/diagram&gt;&lt;/mxfile&gt;">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="798px" height="486px" viewBox="-0.5 -0.5 798 486" content="&lt;mxfile host=&quot;d5f37274-15d7-4f91-bf87-aabc29b0521e&quot; modified=&quot;2021-09-28T03:20:04.670Z&quot; agent=&quot;5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36&quot; etag=&quot;aoie9cUZGx5fIbI0A1Hy&quot; version=&quot;13.1.3&quot;&gt;&lt;diagram id=&quot;6hGFLwfOUW9BJ-s0fimq&quot; name=&quot;Page-1&quot;&gt;7Vnbjts2EP0aAe1DCl18fVzLu2mB3XQRB+gzV6ItJhSpUpQv+/UdUpQsWbQtJyoQBAYWsDQXcjhnZg6FdYIw3X8UKEteeIyp47vx3gmWju/7ru876s+ND6XEm8zcUrIRJC5lDcGKvGNjWEkLEuPcyEqR5JxKkrWFEWcMR7IlQ0LwXdtszWncEmRog1thKMEqQhR3zP4hsUxK6cyfHuV/YrJJqp29ybzUpKgyNgvnCYr5riEKHp0gFJzL8indh5iq7LXz8nRGWwcmMJO9HEzIW0QLc7i/376qnJXhyUN15nxHUooYvC3WnMmV0XjwjijZMHiOYFMsQLDFQhJI14NRSJ6BNEoIjZ/RgRcqtFyi6Fv1tki4IO+wLKJmTVALaZD3Jy2LlfIEsQtSgXOwea3O652IXtC+ZfiMcmkEEacUZTl5q4+RIrEhbMGl5KkxMsmB4+D92Qx7NW5Q8ZinWIoDmBiHDzN3VvocKsHUgL871k4wH5eypFE3db0jU6+bevUjpPBgUD2D8KyDcAdbSjSuuRT8W13RKiVrQmnIKQdQl4xrowpsitfSAnVK4pjqxTIUEbb5oqBffvCOkmftuAyOks/myEokuEQSlaAoBCh6w/SV50QSrtYXpe0i44RJnZbxwhkvtUTIkDM4BCIaGgxg77ACvCeOUzuQBjeowl6ozQbAbG7BLAABQ5JsMTxUTepGFGD57XdHRRd4Zc0umpYqFxAgypMIBrHF8g0mJ0YMnvC/BaL5iYnadsshMpiThAH677ZFtKq5bUhRnoMZ1ekPnuBxUyLhbrDUWssyKymgHvQ4Lx/7bGWiMz87ROQNXtoccqg3JSmGcfRDzo4f1klniPG8/2qMS7I+9I499J0H4/NA6YnbSYND2cu6wU8a+vYeL8d5u51H3XZWIg6+a6oZLoHJgJmlxdutvICZF7p/jFVTQy7HC+/4frXPFTM9oZRQ1bMhLwQBPvLdT3g30BAIRv2GgDedDDAGRp0x8CURGMV3cv7fyHni9yXnwB8A4fGdnHviOPppyHliwWyhMYP5HDXndNWtblQIdZTy/cKEr/kPOPITSi8xbUkxYPcqCHSf7BKHJogOdxzpnuRQF9vuHtpPUUyu8suiRHAG7WkYR/c++AQP6lxIp0YUzBKpoTW7shnGX2oyiSKT2JYbswypjOzxdpNv/HKKcVaRNDADJR1KvnmBqyTfSr1Z5ys0xWWM8may237X4791kStnuN8lBrhLXJ5Zve8S8wGmlt+9S5gr+v0qMcxVIpgFPb7zp74F4MrzhwC+XyV64ujffpWwoTZEU9qvEm0+uvAlveZC3xLqa0OkbJWoS6PnbxSgWZE0o/iCvsiwiM58tINeM/gaRdimh3sGYwpuQNaqrr2t2kdWpPZdnwim8ZmIXrBMeKm889d38teVRrHxl3W8jeYDtIpraRXTE+aXVGV07JD6t6qPzwVjOt0/Ee0F81+K9iYV8TTqwptNunUx9wYoC+/Oej2b2bXjWDXzvB9oQ7Cef+YDuv3BeB/b3zu2LyM9mvZDejS6GWp4Pf7rUusa/wEOHv8D&lt;/diagram&gt;&lt;/mxfile&gt;">
     <defs>
-        <clipPath id="mx-clip-4-39-194-26-0">
-            <rect x="4" y="39" width="194" height="26"/>
+        <clipPath id="mx-clip-4-39-387-176-0">
+            <rect x="4" y="39" width="387" height="176"/>
+        </clipPath>
+        <clipPath id="mx-clip-4-289-387-198-0">
+            <rect x="4" y="289" width="387" height="198"/>
+        </clipPath>
+        <clipPath id="mx-clip-429-39-364-149-0">
+            <rect x="429" y="39" width="364" height="149"/>
+        </clipPath>
+        <clipPath id="mx-clip-429-300-178-44-0">
+            <rect x="429" y="300" width="178" height="44"/>
         </clipPath>
     </defs>
     <g>
-        <path d="M 0 26 L 0 0 L 202 0 L 202 26" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
-        <path d="M 0 26 L 0 60 L 202 60 L 202 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 0 26 L 202 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 26 L 0 0 L 395 0 L 395 26" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 0 26 L 0 210 L 395 210 L 395 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 26 L 395 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
         <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
-            <text x="100.5" y="17.5">
+            <text x="197" y="17.5">
+                Object
+            </text>
+        </g>
+        <path d="M 0 30 L 395 30" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-4-39-387-176-0)" font-size="12px">
+            <text x="5.5" y="51.5">
+                # native Object clone()
+            </text>
+            <text x="5.5" y="65.5">
+                + native int hashcode()
+            </text>
+            <text x="5.5" y="79.5">
+                + boolean equals()
+            </text>
+            <text x="5.5" y="93.5">
+                # void finalize()
+            </text>
+            <text x="5.5" y="107.5">
+                + final native Class&lt;?&gt; getClass()
+            </text>
+            <text x="5.5" y="121.5">
+                + String toString()
+            </text>
+            <text x="5.5" y="135.5">
+                + final native void void wait()
+            </text>
+            <text x="5.5" y="149.5">
+                + final native void wait(long timeout)
+            </text>
+            <text x="5.5" y="163.5">
+                + final native void wait(long timeout, int nanos)
+            </text>
+            <text x="5.5" y="177.5">
+                + final native void notify()
+            </text>
+            <text x="5.5" y="191.5">
+                + final native void notifyAll()
+            </text>
+        </g>
+        <path d="M 0 276 L 0 250 L 395 250 L 395 276" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 276 L 0 482 L 395 482 L 395 276" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 276 L 395 276" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
+            <text x="197" y="267.5">
                 Thread
             </text>
         </g>
-        <path d="M 0 30 L 202 30" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-4-39-194-26-0)" font-size="12px">
-            <text x="5.5" y="51.5">
+        <path d="M 0 280 L 395 280" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-4-289-387-198-0)" font-size="12px">
+            <text x="5.5" y="301.5">
+                + static native Thread currentThread()
+            </text>
+            <text x="5.5" y="315.5">
                 + final String getName()
+            </text>
+            <text x="5.5" y="329.5">
+                + final int getPriority()
+            </text>
+            <text x="5.5" y="343.5">
+                + final native boolean isAlive()
+            </text>
+            <text x="5.5" y="357.5">
+                + voids ynchronized start(): call run()
+            </text>
+            <text x="5.5" y="371.5">
+                + void run()
+            </text>
+            <text x="5.5" y="385.5">
+                + boolean isInterrupted()
+            </text>
+            <text x="5.5" y="399.5">
+                + void interrupt()
+            </text>
+            <text x="5.5" y="413.5">
+                + static native void sleep(long millis)
+            </text>
+            <text x="5.5" y="427.5">
+                + static native void sleep(long millis, int nanos)
+            </text>
+            <text x="5.5" y="441.5">
+                + final void join()
+            </text>
+            <text x="5.5" y="455.5">
+                + final synchronized void join(long millis)
+            </text>
+            <text x="5.5" y="469.5">
+                + final synchronized void join(long millis, int nanos)
+            </text>
+        </g>
+        <path d="M 425 26 L 425 0 L 797 0 L 797 26" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 425 26 L 425 183 L 797 183 L 797 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 425 26 L 797 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
+            <text x="610.5" y="17.5">
+                Class
+            </text>
+        </g>
+        <path d="M 425 30 L 797 30" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-429-39-364-149-0)" font-size="12px">
+            <text x="430.5" y="51.5">
+                + static Class&lt;?&gt; forName(String className)
+            </text>
+            <text x="430.5" y="65.5">
+                + getName()
+            </text>
+            <text x="430.5" y="79.5">
+                + getSimpleName()
+            </text>
+            <text x="430.5" y="93.5">
+                + getSuperclass()
+            </text>
+            <text x="430.5" y="107.5">
+                + getInterfaces()
+            </text>
+            <text x="430.5" y="121.5">
+                + isAnnotation()
+            </text>
+            <text x="430.5" y="135.5">
+                + isInterface()
+            </text>
+            <text x="430.5" y="149.5">
+                + isEnum()
+            </text>
+            <text x="430.5" y="163.5">
+                + getFields()
+            </text>
+            <text x="430.5" y="177.5">
+                + getMethods()
+            </text>
+        </g>
+        <path d="M 425 287 L 425 248 L 611 248 L 611 287" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 425 287 L 425 339 L 611 339 L 611 287" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 425 287 L 611 287" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
+            <text x="517.5" y="265.5">
+                &lt;&lt;interface&gt;&gt;
+            </text>
+            <text x="517.5" y="279.5">
+                Runnable
+            </text>
+        </g>
+        <path d="M 425 291 L 611 291" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-429-300-178-44-0)" font-size="12px">
+            <text x="430.5" y="312.5">
+                + void run()
             </text>
         </g>
     </g>
