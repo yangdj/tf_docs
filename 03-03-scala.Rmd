@@ -113,6 +113,8 @@
     4. [Type Wildcard in Java Generics](http://ted-gao.blogspot.com/search/label/Java%20Generics)
     5. [Java Concurrency](http://tutorials.jenkov.com/java-concurrency/volatile.html)
     6. [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern#Lazy_initialization)
+    7. [How to Stop a Thread or a Task](http://forward.com.au/javaProgramming/HowToStopAThread.html)
+    8. [Why Are Thread.stop, Thread.suspend, Thread.resume and Runtime.runFinalizersOnExit Deprecated?](https://docs.oracle.com/javase/1.5.0/docs/guide/misc/threadPrimitiveDeprecation.html)
 2. Command
     1. Common
         1. `jar`
