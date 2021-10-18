@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="808px" height="324px" viewBox="-0.5 -0.5 808 324" content="&lt;mxfile host=&quot;bab58c7f-212a-4d99-8711-f969a2e5b65d&quot; modified=&quot;2021-10-18T09:09:18.478Z&quot; agent=&quot;5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36&quot; etag=&quot;0kGVnju5hjEIF3ok2CeE&quot; version=&quot;13.1.3&quot;&gt;&lt;diagram id=&quot;6hGFLwfOUW9BJ-s0fimq&quot; name=&quot;Page-1&quot;&gt;7VjJcuM2EP0aVXkO4+KihT5alJ2kyp5MRVOVM0xCJGZANANCm78+DQIkRQmWpUi56STgdTeWfr0IHIRxsflNkjJ/hZTyQeClm0E4GwRBMJyM8UcjW4P44+GDQTLJUoN5HTBn79QqNuiSpbSymIEUAFes7IMJCEET1cOIlLDuqy2Apz2gJBk9AOYJ4Yfo3yxVuUGjYNLhv1OW5c3O/tjeryCNsr1JlZMU1jtQ+DQIYwmgzKjYxJRr7/X98vyBtD2YpEKdYhAYgxXhS3u3n2RF7jkR2f2fbz+188w51ba5fLVmBcpxNl2AUHMr8XFOOMsEjhPcnUoEVlQqhn57tAIFJaJJznj6Qraw1GesFEl+NbNpDpK947KE2zVRLJUNgWDc05hrS4Q9RCWtUOd7c3F/D3olm57iC6mUBRLgnJQVe2uvURCZMTEFpaCwStZNeB26+dDVfksghj6Fgiq5RRVr8NUfB6Ex2jaIPxwZZN2FUfhgsXwnhNqAITZ0s3b9jl0cWILdZIcHZB+Qy1lNbKUk/GpjW/tkwTiPgQOyOhNQKzVsc7pQDq4Llqa8XqwkCRPZD8397KvfIS+14SzskL/sjTUkQRFFDCuaAk7eKP8OFVMM9PrS6E5LYELVXhlNB6NZjUgVg8BLEFZzQ5HtNdWMn0Zk4CbS0haMT+MsupyxoYMxZNETRLEVxUGTo17CkZS7LwN9uNA3ITvd1dSewPORKk+wIDs037CCUiJwRP9ZEl7tqehtV4AHw3rJBHL/7lqkFu1uG3NSVajGa+eHzzjMDA9eRlUtdSwzVxKjoS7rZnjKVvZ09mdNmDrDqlZHH9absoJiNbrIeBDErdMFEVCdvpoAxRbbk88eB4NHa/PI+Z6Ze7iX9JgKqk36vSQ/P+9Nje+n+PAwxTUEaLvgdf/LsVpQ4Uj7fnpPsQzG3v1IJzp6eDT1u/mnua/b1TMpGNeJHMNSMmxSgfeNrq9TGMLhaYXBj8aXl4bRkc5tk+7WuK/UuP0oOqVxTwIX1+HlXI9vjfs0IkdnN24XZ1do3BMHY1NTqjEv0N3HW+MC5DdS0Lu2DyZaV0OHXQHbaK3rlMxZUXJ6RL4sqUw+6MIo/0PXgwVJqEvOqkchNNnIq1PcWjulT2JZuHd9ZpSnH5zolaocjPDWxv5jGzueJq425ixtzav9kkSJjrQxHSC3LuZ1Qddi0f/2JI0ewgP2A8/xJ2biX05+8z3n1tg+4zE6t7E5ObtCY/N9Z2frHifmyQMy1fMjjxijl0Chr/kD7p70w/PL7ZnySX3frwSj60SQo+Y7IyicnB1COO2+Z9aync/C4dO/&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs>
+        <clipPath id="mx-clip-4-39-387-186-0">
+            <rect x="4" y="39" width="387" height="186"/>
+        </clipPath>
+        <clipPath id="mx-clip-439-39-364-149-0">
+            <rect x="439" y="39" width="364" height="149"/>
+        </clipPath>
+        <clipPath id="mx-clip-4-291-197-32-0">
+            <rect x="4" y="291" width="197" height="32"/>
+        </clipPath>
+    </defs>
+    <g>
+        <path d="M 0 26 L 0 0 L 395 0 L 395 26" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 0 26 L 0 220 L 395 220 L 395 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 26 L 395 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
+            <text x="197" y="17.5">
+                java.lang.Object
+            </text>
+        </g>
+        <path d="M 0 30 L 395 30" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-4-39-387-186-0)" font-size="12px">
+            <text x="5.5" y="51.5">
+                # native Object clone()
+            </text>
+            <text x="5.5" y="65.5">
+                + native int hashcode()
+            </text>
+            <text x="5.5" y="79.5">
+                + boolean equals()
+            </text>
+            <text x="5.5" y="93.5">
+                # void finalize()
+            </text>
+            <text x="5.5" y="107.5">
+                + final native Class&lt;?&gt; getClass()
+            </text>
+            <text x="5.5" y="121.5">
+                + String toString()
+            </text>
+            <text x="5.5" y="135.5">
+                + final native void void wait()
+            </text>
+            <text x="5.5" y="149.5">
+                + final native void wait(long timeout)
+            </text>
+            <text x="5.5" y="163.5">
+                + final native void wait(long timeout, int nanos)
+            </text>
+            <text x="5.5" y="177.5">
+                + final native void notify()
+            </text>
+            <text x="5.5" y="191.5">
+                + final native void notifyAll()
+            </text>
+        </g>
+        <path d="M 435 26 L 435 0 L 807 0 L 807 26" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 435 26 L 435 183 L 807 183 L 807 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 435 26 L 807 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
+            <text x="620.5" y="17.5">
+                java.lang.Class
+            </text>
+        </g>
+        <path d="M 435 30 L 807 30" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-439-39-364-149-0)" font-size="12px">
+            <text x="440.5" y="51.5">
+                + static Class&lt;?&gt; forName(String className)
+            </text>
+            <text x="440.5" y="65.5">
+                + getName()
+            </text>
+            <text x="440.5" y="79.5">
+                + getSimpleName()
+            </text>
+            <text x="440.5" y="93.5">
+                + getSuperclass()
+            </text>
+            <text x="440.5" y="107.5">
+                + getInterfaces()
+            </text>
+            <text x="440.5" y="121.5">
+                + isAnnotation()
+            </text>
+            <text x="440.5" y="135.5">
+                + isInterface()
+            </text>
+            <text x="440.5" y="149.5">
+                + isEnum()
+            </text>
+            <text x="440.5" y="163.5">
+                + getFields()
+            </text>
+            <text x="440.5" y="177.5">
+                + getMethods()
+            </text>
+        </g>
+        <path d="M 0 278 L 0 252 L 205 252 L 205 278" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 278 L 0 323 L 205 323 L 205 278" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 278 L 205 278" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
+            <text x="102" y="269.5">
+                java.lang.Enum
+            </text>
+        </g>
+        <path d="M 0 282 L 205 282" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-4-291-197-32-0)" font-size="12px">
+            <text x="5.5" y="303.5">
+                + final int ordinal()
+            </text>
+            <text x="5.5" y="317.5">
+                + final int compareTo(E e)
+            </text>
+        </g>
+    </g>
+</svg>
