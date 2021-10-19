@@ -1,117 +1,288 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="808px" height="324px" viewBox="-0.5 -0.5 808 324" content="&lt;mxfile host=&quot;bab58c7f-212a-4d99-8711-f969a2e5b65d&quot; modified=&quot;2021-10-18T09:09:18.478Z&quot; agent=&quot;5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36&quot; etag=&quot;0kGVnju5hjEIF3ok2CeE&quot; version=&quot;13.1.3&quot;&gt;&lt;diagram id=&quot;6hGFLwfOUW9BJ-s0fimq&quot; name=&quot;Page-1&quot;&gt;7VjJcuM2EP0aVXkO4+KihT5alJ2kyp5MRVOVM0xCJGZANANCm78+DQIkRQmWpUi56STgdTeWfr0IHIRxsflNkjJ/hZTyQeClm0E4GwRBMJyM8UcjW4P44+GDQTLJUoN5HTBn79QqNuiSpbSymIEUAFes7IMJCEET1cOIlLDuqy2Apz2gJBk9AOYJ4Yfo3yxVuUGjYNLhv1OW5c3O/tjeryCNsr1JlZMU1jtQ+DQIYwmgzKjYxJRr7/X98vyBtD2YpEKdYhAYgxXhS3u3n2RF7jkR2f2fbz+188w51ba5fLVmBcpxNl2AUHMr8XFOOMsEjhPcnUoEVlQqhn57tAIFJaJJznj6Qraw1GesFEl+NbNpDpK947KE2zVRLJUNgWDc05hrS4Q9RCWtUOd7c3F/D3olm57iC6mUBRLgnJQVe2uvURCZMTEFpaCwStZNeB26+dDVfksghj6Fgiq5RRVr8NUfB6Ex2jaIPxwZZN2FUfhgsXwnhNqAITZ0s3b9jl0cWILdZIcHZB+Qy1lNbKUk/GpjW/tkwTiPgQOyOhNQKzVsc7pQDq4Llqa8XqwkCRPZD8397KvfIS+14SzskL/sjTUkQRFFDCuaAk7eKP8OFVMM9PrS6E5LYELVXhlNB6NZjUgVg8BLEFZzQ5HtNdWMn0Zk4CbS0haMT+MsupyxoYMxZNETRLEVxUGTo17CkZS7LwN9uNA3ITvd1dSewPORKk+wIDs037CCUiJwRP9ZEl7tqehtV4AHw3rJBHL/7lqkFu1uG3NSVajGa+eHzzjMDA9eRlUtdSwzVxKjoS7rZnjKVvZ09mdNmDrDqlZHH9absoJiNbrIeBDErdMFEVCdvpoAxRbbk88eB4NHa/PI+Z6Ze7iX9JgKqk36vSQ/P+9Nje+n+PAwxTUEaLvgdf/LsVpQ4Uj7fnpPsQzG3v1IJzp6eDT1u/mnua/b1TMpGNeJHMNSMmxSgfeNrq9TGMLhaYXBj8aXl4bRkc5tk+7WuK/UuP0oOqVxTwIX1+HlXI9vjfs0IkdnN24XZ1do3BMHY1NTqjEv0N3HW+MC5DdS0Lu2DyZaV0OHXQHbaK3rlMxZUXJ6RL4sqUw+6MIo/0PXgwVJqEvOqkchNNnIq1PcWjulT2JZuHd9ZpSnH5zolaocjPDWxv5jGzueJq425ixtzav9kkSJjrQxHSC3LuZ1Qddi0f/2JI0ewgP2A8/xJ2biX05+8z3n1tg+4zE6t7E5ObtCY/N9Z2frHifmyQMy1fMjjxijl0Chr/kD7p70w/PL7ZnySX3frwSj60SQo+Y7IyicnB1COO2+Z9aync/C4dO/&lt;/diagram&gt;&lt;/mxfile&gt;">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="984px" height="676px" viewBox="-0.5 -0.5 984 676" content="&lt;mxfile host=&quot;bab58c7f-212a-4d99-8711-f969a2e5b65d&quot; modified=&quot;2021-10-19T10:39:39.070Z&quot; agent=&quot;5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36&quot; etag=&quot;sGhD6BXvYHSMm9xmhl-c&quot; version=&quot;13.1.3&quot;&gt;&lt;diagram id=&quot;6hGFLwfOUW9BJ-s0fimq&quot; name=&quot;Page-1&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;">
     <defs>
-        <clipPath id="mx-clip-4-39-387-186-0">
-            <rect x="4" y="39" width="387" height="186"/>
+        <clipPath id="mx-clip-4-39-471-201-0">
+            <rect x="4" y="39" width="471" height="201"/>
         </clipPath>
-        <clipPath id="mx-clip-439-39-364-149-0">
-            <rect x="439" y="39" width="364" height="149"/>
+        <clipPath id="mx-clip-4-291-224-47-0">
+            <rect x="4" y="291" width="224" height="47"/>
         </clipPath>
-        <clipPath id="mx-clip-4-291-197-32-0">
-            <rect x="4" y="291" width="197" height="32"/>
+        <clipPath id="mx-clip-528-40-416-185-0">
+            <rect x="528" y="40" width="416" height="185"/>
+        </clipPath>
+        <clipPath id="mx-clip-4-455-475-175-0">
+            <rect x="4" y="455" width="475" height="175"/>
         </clipPath>
     </defs>
     <g>
-        <path d="M 0 26 L 0 0 L 395 0 L 395 26" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
-        <path d="M 0 26 L 0 220 L 395 220 L 395 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 0 26 L 395 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 26 L 0 0 L 479 0 L 479 26" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 0 26 L 0 235 L 479 235 L 479 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 26 L 479 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
         <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
-            <text x="197" y="17.5">
+            <text x="239" y="17.5">
                 java.lang.Object
             </text>
         </g>
-        <path d="M 0 30 L 395 30" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-4-39-387-186-0)" font-size="12px">
-            <text x="5.5" y="51.5">
+        <path d="M 0 30 L 479 30" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-4-39-471-201-0)" font-size="14px">
+            <text x="5.5" y="53.5">
                 # native Object clone()
             </text>
-            <text x="5.5" y="65.5">
+            <text x="5.5" y="70.5">
                 + native int hashcode()
             </text>
-            <text x="5.5" y="79.5">
+            <text x="5.5" y="87.5">
                 + boolean equals()
             </text>
-            <text x="5.5" y="93.5">
+            <text x="5.5" y="104.5">
                 # void finalize()
             </text>
-            <text x="5.5" y="107.5">
+            <text x="5.5" y="121.5">
                 + final native Class&lt;?&gt; getClass()
             </text>
-            <text x="5.5" y="121.5">
+            <text x="5.5" y="138.5">
                 + String toString()
             </text>
-            <text x="5.5" y="135.5">
+            <text x="5.5" y="155.5">
                 + final native void void wait()
             </text>
-            <text x="5.5" y="149.5">
+            <text x="5.5" y="172.5">
                 + final native void wait(long timeout)
             </text>
-            <text x="5.5" y="163.5">
+            <text x="5.5" y="189.5">
                 + final native void wait(long timeout, int nanos)
             </text>
-            <text x="5.5" y="177.5">
+            <text x="5.5" y="206.5">
                 + final native void notify()
             </text>
-            <text x="5.5" y="191.5">
+            <text x="5.5" y="223.5">
                 + final native void notifyAll()
             </text>
         </g>
-        <path d="M 435 26 L 435 0 L 807 0 L 807 26" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 435 26 L 435 183 L 807 183 L 807 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 435 26 L 807 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 278 L 0 252 L 232 252 L 232 278" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 278 L 0 338 L 232 338 L 232 278" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 278 L 232 278" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
         <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
-            <text x="620.5" y="17.5">
-                java.lang.Class
-            </text>
-        </g>
-        <path d="M 435 30 L 807 30" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-439-39-364-149-0)" font-size="12px">
-            <text x="440.5" y="51.5">
-                + static Class&lt;?&gt; forName(String className)
-            </text>
-            <text x="440.5" y="65.5">
-                + getName()
-            </text>
-            <text x="440.5" y="79.5">
-                + getSimpleName()
-            </text>
-            <text x="440.5" y="93.5">
-                + getSuperclass()
-            </text>
-            <text x="440.5" y="107.5">
-                + getInterfaces()
-            </text>
-            <text x="440.5" y="121.5">
-                + isAnnotation()
-            </text>
-            <text x="440.5" y="135.5">
-                + isInterface()
-            </text>
-            <text x="440.5" y="149.5">
-                + isEnum()
-            </text>
-            <text x="440.5" y="163.5">
-                + getFields()
-            </text>
-            <text x="440.5" y="177.5">
-                + getMethods()
-            </text>
-        </g>
-        <path d="M 0 278 L 0 252 L 205 252 L 205 278" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 0 278 L 0 323 L 205 323 L 205 278" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 0 278 L 205 278" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
-            <text x="102" y="269.5">
+            <text x="115.5" y="269.5">
                 java.lang.Enum
             </text>
         </g>
-        <path d="M 0 282 L 205 282" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-4-291-197-32-0)" font-size="12px">
-            <text x="5.5" y="303.5">
+        <path d="M 0 282 L 232 282" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-4-291-224-47-0)" font-size="14px">
+            <text x="5.5" y="305.5">
                 + final int ordinal()
             </text>
-            <text x="5.5" y="317.5">
+            <text x="5.5" y="322.5">
                 + final int compareTo(E e)
             </text>
         </g>
+        <path d="M 524 27 L 524 1 L 948 1 L 948 27" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 524 27 L 524 220 L 948 220 L 948 27" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 524 27 L 948 27" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
+            <text x="735.5" y="18.5">
+                java.lang.Class
+            </text>
+        </g>
+        <path d="M 524 31 L 948 31" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-528-40-416-185-0)" font-size="14px">
+            <text x="529.5" y="54.5">
+                + static Class&lt;?&gt; forName(String className)
+            </text>
+            <text x="529.5" y="71.5">
+                + getName()
+            </text>
+            <text x="529.5" y="88.5">
+                + getSimpleName()
+            </text>
+            <text x="529.5" y="105.5">
+                + getSuperclass()
+            </text>
+            <text x="529.5" y="122.5">
+                + getInterfaces()
+            </text>
+            <text x="529.5" y="139.5">
+                + isAnnotation()
+            </text>
+            <text x="529.5" y="156.5">
+                + isInterface()
+            </text>
+            <text x="529.5" y="173.5">
+                + isEnum()
+            </text>
+            <text x="529.5" y="190.5">
+                + getFields()
+            </text>
+            <text x="529.5" y="207.5">
+                + getMethods()
+            </text>
+        </g>
+        <path d="M 483 537.5 L 588.76 538.04" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="none"/>
+        <path d="M 582.86 541.51 L 589.88 538.05 L 582.9 534.51" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 383 L 0 357 L 483 357 L 483 383" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 383 L 0 625 L 483 625 L 483 383" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 383 L 483 383" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
+            <text x="241" y="374.5">
+                java.lang.System
+            </text>
+        </g>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 1px; height: 1px; padding-top: 412px; margin-left: 6px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
+                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: none; white-space: nowrap; ">
+                                <font face="Courier New" style="font-size: 14px">
+                                    + final static in
+                                    <br style="font-size: 14px"/>
+                                    + 
+                                </font>
+                                <span style="font-family: &quot;courier new&quot; ; font-size: 14px">
+                                    final static 
+                                </span>
+                                <font face="Courier New" style="font-size: 14px">
+                                    out
+                                    <br style="font-size: 14px"/>
+                                    + 
+                                </font>
+                                <span style="font-family: &quot;courier new&quot; ; font-size: 14px">
+                                    final static 
+                                </span>
+                                <font face="Courier New" style="font-size: 14px">
+                                    err
+                                </font>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="6" y="416" fill="#000000" font-family="Helvetica" font-size="14px">
+                    + final static in...
+                </text>
+            </switch>
+        </g>
+        <path d="M 0 445.5 L 483 445.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-4-455-475-175-0)" font-size="14px">
+            <text x="5.5" y="469.5">
+                + static void exit(int status)
+            </text>
+            <text x="5.5" y="486.5">
+                + static String getenv(String name)
+            </text>
+            <text x="5.5" y="503.5">
+                + static getProperty(String key, String defaultValue)
+            </text>
+            <text x="5.5" y="520.5">
+                + static Properties getProperties()
+            </text>
+            <text x="5.5" y="537.5">
+                + static void setProperties(Properties props)
+            </text>
+            <text x="5.5" y="554.5">
+                + static native long currentTimeMillis()
+            </text>
+            <text x="5.5" y="571.5">
+                + static native long nanoTime()
+            </text>
+            <text x="5.5" y="588.5">
+                + static native void arraycopy(Object src, int srcPos,
+            </text>
+            <text x="5.5" y="605.5">
+                                  Object dest, int destPos, int length) 
+            </text>
+        </g>
+        <path d="M 591 383 L 591 357 L 983 357 L 983 383" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 591 383 L 591 675 L 983 675 L 983 383" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 591 383 L 983 383" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
+            <text x="786.5" y="374.5">
+                getProperties.keys
+            </text>
+        </g>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 1px; height: 1px; padding-top: 529px; margin-left: 597px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
+                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: none; white-space: nowrap; ">
+                                <span style="font-family: &quot;courier new&quot;">
+                                    java.home
+                                </span>
+                                <br/>
+                                <span style="font-family: &quot;courier new&quot;">
+                                    java.version
+                                </span>
+                                <br/>
+                                <span style="font-family: &quot;courier new&quot;">
+                                    file.encoding
+                                </span>
+                                <br/>
+                                <span style="font-family: &quot;courier new&quot;">
+                                    file.separator
+                                    <br/>
+                                      1. "\": Windows
+                                    <br/>
+                                      2. "/": Linux
+                                    <br/>
+                                </span>
+                                <span style="font-family: &quot;courier new&quot;">
+                                    path.separator: 
+                                </span>
+                                separator for
+                                <span style="font-family: &quot;courier new&quot;">
+                                     java.class.path
+                                    <br/>
+                                </span>
+                                <font face="Courier New">
+                                      1. ";": 
+                                </font>
+                                Windows
+                                <br/>
+                                <font face="Courier New">
+                                      2. ":": 
+                                </font>
+                                Linux
+                                <br/>
+                                <font face="courier new">
+                                    line.separator
+                                    <br/>
+                                    user.home
+                                    <br/>
+                                    user.dir: 
+                                </font>
+                                working directory
+                                <br/>
+                                <font face="courier new">
+                                    user.language
+                                </font>
+                                <br/>
+                                <font face="courier new">
+                                      1. "zh"
+                                </font>
+                                <br/>
+                                <font face="courier new">
+                                    user.timezone
+                                </font>
+                                <br/>
+                                <font face="courier new">
+                                      1. "Asia/Shanghai"
+                                </font>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="597" y="533" fill="#000000" font-family="Helvetica" font-size="14px">
+                    java.home...
+                </text>
+            </switch>
+        </g>
     </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://desk.draw.io/support/solutions/articles/16000042487" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Viewer does not support full SVG 1.1
+            </text>
+        </a>
+    </switch>
 </svg>
