@@ -1,132 +1,206 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1141px" height="273px" viewBox="-0.5 -0.5 1141 273" content="&lt;mxfile host=&quot;43bdbbc6-53c6-4912-92b1-23cc05e0d1c5&quot; modified=&quot;2021-10-19T08:52:53.748Z&quot; agent=&quot;5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36&quot; etag=&quot;YTGerCRW3gwTBbE-ocrN&quot; version=&quot;13.1.3&quot; pages=&quot;4&quot;&gt;&lt;diagram id=&quot;6hGFLwfOUW9BJ-s0fimq&quot; name=&quot;inputstream&quot;&gt;7Zprb5swFIZ/DdL2YRWYXMjHkjRdpXar1k777IIT3BocGadJ9ut3DCaExm3IZWkiIVVq/PpSfJ7zYjiN5fbj+bXAk+iOh4RZyA7nljuwEPIQstSPHS5yoeXZuTAWNMylFeGB/iW56BTqlIYk1VouSc6ZpJOqGPAkIYGsaFgIPqsOG3EWVoQJHpPKZSjhIcCMrA37Q0MZFdvqlvp3QsdR8ZedTi/viXExWC+cRjjksxXJvbLcvuBc5p/ieZ8wFbtqXIbv9C4vTJBE1pqgZ7xiNtWbs1CHwVz/JpFEjHBAQBgrAX5byAUGrj+kjNwkk6l8kILgWO9FLooApTMaM5xAyx/xBEblPQ60MaPjBD4HRK0PwisRkkJsL3WH5BNQg4iy8BYv+FTtI5U4eClafsQF/QvLYqbXhG4hdZq4ncqIBzUTZHXVgqQw5r4IjvNGusPzysBbnEotBJwxPEnp03IbMRZjmvhcSh7rQeuxL4ILOyTzFUmzuCY8JlIsYIjudXVaaF84qJW3Z2WWOR09JlrJsJYeh3Vij5crl+zhg8b/TiogQyq84cpoxjSVgr8sU1+FY0QZ63PGAegg4dmgAjQjI2nAHNMwZNliExzQZPyosA++OaVym00cuKXyS+9YSYJLLHEOREWf4SfC7nlKJeVqfZGP9SecJjILS9u32oNMEbLPE9gEphkpAqBnJJVmhvUhamqQgbWgefsz6+7kXn8hyaUQeHGqFm6fsYWR4230MLJNHnb3zwevsbCBYbc2w8LB7XrIDuBg0013s4Of8Su+oPziVA181mew260YGK0nw387g1uNfw0IUW2Exz+Bjcg2G/jn0zO8mJyqfT/5/F0DbXD0u/ZtdWo8Q3uGZCje0fbKhnZj4HoQcyrbnMBGaIdwcMfADDZhgy3D3Kdfvq5RhL3JJcU31LYHmRu2yqy1zkxJHOaOWFYziAA/SQwcq7x8iFvfvmgrcqgPbadsb4S5eu+xdXuIY8oUqD6fCgp3IGT/ILMDkS8egzeRL7Dtg7630717SBl0nuq9+5wfvbpe9dHruPUPu7l3GyD2akM8/sOXs2P9YzoaEUHCxsKHt3Dbq5Y/lmXFo1i4qX8YIW5fADmih3c7hO+naeSDMRoPH97DPa/1eR5GzTFshHjK5/CO/4cYQORO1b/nXALpeu3d/FvM2ysXmjO47otw92P/1qw7H8K/pjO4KIH8fhyq+sfStWXPgE8hcE1x5JDFkY9zwlQcMR7EaOukgGb5tZOsb+W7O+7VPw==&lt;/diagram&gt;&lt;diagram id=&quot;0ftqWE2-lg_BMTl5Giv2&quot; name=&quot;outputstream&quot;&gt;7Vptb9o6GP01SHcfWiUOAfqRQOF2azcG3abty5WbOImZE+c6prz8+tmJA6S4I0VljRhSpeLjJwY/5/HxsaFh9aLFkMEkvKMeIg1geIuG1W8A0AGgIf8Mb5kDzY6RAwHDXg5tARO8QjloFugMeyhVWA5xSgnHSRl0aRwjl5cwyBidl8N8SrwSkMAAlT6GBCYuJGgn7Bv2eFhMq73B/0U4CIt3NltXeU8Ei2A1cBpCj863IOu6YfUYpTx/FS16iMjcFXkJu6teZ/X4+cP1eDX4Oox/pGN0kQ82eMkj6ykwFPODh+6O3wffu537e/PGvW6D8ZBaX9UjxiMkM5WvBmgR8SbOTcwR86GLBBBIQPxvAEvQajkDTNCnGU9mfMIZgpHKD18WSU/nOCIwFi3Hp7GIyntM0YYEB7F47SL5BgJ4RIxjwVdXdXCaCNQNMfFu4ZLO5IxTDt2fRcsJKcMrMSwkakzRzbgqPatVipjIJwUsPzZDqYgZFWk0n0B3cFEKvIUpV4BLCYFJih/W04ggC3DsUM5ppIIqsqTYlNNGi60aVawNEY0QZ0sRonotRZJagCZo5u35ppzNlooJt0q5qeKgWkHBeuRNlYgXqlBeUDSmpmieFADBGfkpZ/Tnet3JvPmYkB4lVDDfj2kWVFQEQT7X1EOEPY9kgyXQxXFwL+ujf2FukNvswb61QcYqCxJilEMOc+YkTQQ+IDKiKeaYyvFZHuskFMc8S5XtNOx+hjDeo7GYBMQZpUhUxBylXEv2b9fXfrIVu6J8K5HbORK34CBBcJYcdRmDy9qqgn1qqgDMzl5ZAIZOFqwjlY51loWqsgAqs13Igl2N3GPJgtk8SBem8BFeYnpZW1k4PbNgtUuyAHYL5w+bBfssC1VlYb3K6mgXblY+tO0P/4+upvPv6X88pHcPB54fPj1MxVGvtqLwxl5hh/2qOvGsKDRte/8RoqMpm+Is/Op1cz5CVGT7+VX3Eq+gJfdYmqA7QojJGt8Y5ihf+v+826FbJIGv6X5C78sZzyWgTG5zl1wJUfGsT7KLnVDUCYo1hJeJdUQye8alLSkGPdE2N+29rG+rmaHaAxhhItnr0RnDQtOA8RHNj1gixRlgX4mA1rFcwWEbhzPzfcSQV9ut4+T8pG1bZT9pgrc2lOe9o7qhrPP9k1a3dJcI+3WhL1JcW004OTvZbpdvpLWaoHUc4EhVo7ud+Dsl4RCvYNXaTuruD6SdnEs7+eV+IL3kWgi2uvp0JlJ8dprHdpq/r56qTtN6hZOmdgtsHbShDDARnbXdUk7OZj7dUt7+S872eUup6jJbldn+8yZzOm53v7wP8JSN4AUdjvyJi7S3T/s1YcRwXEcxODl/eXX1hv5SWzC6K62/Uwz2sP38cquDv9R+Ot2JU5rIRC53jbnMcBKfjeUrGssDyuaIxlI0N7/qy/q2fhppXf8C&lt;/diagram&gt;&lt;diagram id=&quot;0r8EaBUKEYbfuPFbGaUO&quot; name=&quot;reader&quot;&gt;7Zpdb6M4FIZ/TaTdi1RgyEcvB9J0Ok2z0aQ7szs3kQMGvDUYGeerv35tMElo0ilBExKNkCoVvz6Y2O/xgwG3DDtc3zMYB0/URaQFNHfdMgYtAPoAtOSf5m4ywexrmeAz7GbSnjDFrygT9VxdYBclSsskTinhOC6KDo0i5PCCBhmjq2KYR4lbEGLoo8LPkMLUgQQdhH3HLg/ybvV2+meE/SC/st69zWpCmAerhpMAunS1Jxl3LcNmlPLsKFzbiMixy8dl+ngP/npw2zN7tHo0e/EMfPHbWWPDU07ZdoGhiFdueuJ+o8/fvfmDmbxM7MHjUhs+qFO0JSQLNV4t0CXiItZDxBHzoIOE4EtB/G8BQ9gq6+IFn3KGYPgVQRcxNUB8k496ssIhgZEoWR6NRGxWo4syJNiPxLGD5BWEsESMY2HYJ1XBaSxUJ8DEHcENXcguJxw6L3nJCijDr6JZSFSboppxlXtGtxAxlWcKWf5uhhIRM8nHUX8jPcF1IXAEE64EhxIC4wTPt90IIfNxZFHOaaiCStqk7JTdRuu9JFW23SMaIs42IkTVGsolNQN1YGbl1S6f9a6KCfZy2VRxUE0hf9vyLk3EgcqUE7JGP5I1bxKA4NT8hDP6sp14ctw8TIhNCRXODyKaBuUZQZDHj+RDiF2XpI3F0MGR/yzzY9DWd8ooPXFg7JSvahSkxCiHHGbOSZsInCMyoQnmmMr2WRZrxRRHPB2qjtXqDFKFcZtGohMQp5YikRErlPCjZv90gn1stnJXpG8pc/tn8hZUIoIdQPaJMbi5Qh50fjceAL3/IRCAdgwIxpmSxmiAUBYIoLTbORA65cw9FxDMSkAQqwM56tdHg99udWDmt/ktDYySNDjX8qDT0KAsDczSbr+/PKiVBno1HPwHl/AG05sGCDU8Lhi9AhDA4Q2k5seFBgilgaD/CiLU+sCgdysRYYgJamhQ+8sDoOuXpkGvoUFpGnRL230lNOhXhYGobHBwfhzcat0Pnxbq5cFtg4OyOOiXdvtKaKBXe5s4WSSBJaZaA4Q6gHBbXCBoF18gNG8Tyy8QTn+dWB8S5vT521O3b1uz5PUp+jGeTYN/Kn5fmOAYuQ0Ozo8DXc+/mF9igXA0YxocHLP7p5PrGmnw79/LoTeetMcR0O6sxxn6smhX3H9gLTwPsasEwoU/Nh44X5YR7wKhp1XkQb6P5pfnTLP7oKTb78+4Uz421sqDY6sD0VmNiZk+Eqb+8eeB12IE+NbrN96ebnc2/4vOmofOSomKcz2S7ggLRJKg6IjbRVctMZK2dtOR/gJblPVd+UPL91GmqfIQhphI62y6YFiiUBuj1Rnzwyw5+UH3XA8H1e4YMnfGi3DevGSqYxH59p4BtIvvWGtuGuWfKa9oz5oo7jbYpnV7u5SNu/8B&lt;/diagram&gt;&lt;diagram id=&quot;BjUA0GNWmaVJz6Q3lmvj&quot; name=&quot;writer&quot;&gt;7Zpdb5swFIZ/DZerwkcIvSxJ221Ntahpl2o30yk44NVgZJwm6a+fDSYfXba6aCRphVSp8Ppg4vMentgmht1PFpcMsviahogYVidcGPbAsCzPsgz51wmXpeB4nVKIGA5LaUMY42dUimalznCIcqWVEqeUcJxtiwFNUxTwLQ0Yo/PtsCkl4ZaQQYS2PoYUxgEQ9EfYBIc8robVW+ufEY7i6s6me1q2JFAFq47zGEI635Dsc8PuM0p5eZQs+ojI3FV5uees9zW/O7vi98x3rtyOD4NPZWcXb7lkNQSGUl67a+z9vD2/c537+WD4Y+5eTh4n39UlnScgM5Uvw3KJuIn/JeWITSFAQoikIP4bli1stf1vM57N+JgzBMkNghAxlSG+rNKez3FCIBVn/pSmIrZsMcU5EByl4jhA8hZCeEKMY+HYmWrgNBNqEGMSDmFJZ3LMOYfgsTrzY8rws+gWiOpTNDOuis92tyLG8kohyw/OUC5iRlUizRfSNSy2AoeQcyUElBDIcvywGkYCLMKpTzmniQrS9En5KYeNFhtVqny7RDRBnC1FiGq1lU3qETQtpzyfrwvadFVMvFHMjooD9QxFq57XdSIOVKm8oWzMHWXzogAILszPOaOPqydP5m2KCelTQoXzg5QWQVVFEDTlO+ohwWFIis4yCHAa3cr6kGlcKcPiwoG9Vm5UFqTEKAcOpXPSJgIPiIxojjmmsn9WxvoZxSkvUtX1je6gUBjv01QMAnBhKRIVMUc532n2P5+w181W7ory1TLXa8hbqxYS+jGwM8ZgOWGYHxkPuh+NB5bpvQoEq7MLCHZDRWO3QNAFgqXtdgWErp65TQHBqQUEMTsQWT9CGny42YFTfc2vaGBr0qCp6UG3pYEuDRxtt/8+PdgrDbxaNLjABLUs2PtKQSxnD7xSOG1RoIsCT9vsI1kpmPV2D/zZdIoYClseNM8D99R+dW6w562Ddu9Amwjmu9s8MOstFsT0QDS2QGgeCGbH7R0bEdrlgj4R/sd6Yb9EqLdgGOGsnSHsBQiWZx0bENpFgz4Q3t+qod4LhhETKWqB0DwQPO/lduLB3za2bxf0efD21wsH5oFbCwe/4AlOMD1pibD/TQTn0JuKvZYHujxwtc1uHAfidP1jqaJt4xdn9vlv&lt;/diagram&gt;&lt;/mxfile&gt;">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1327px" height="594px" viewBox="-0.5 -0.5 1327 594" content="&lt;mxfile host=&quot;43bdbbc6-53c6-4912-92b1-23cc05e0d1c5&quot; modified=&quot;2021-10-22T07:11:41.012Z&quot; agent=&quot;5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36&quot; etag=&quot;Op2k754nm1-uxSxBaCj1&quot; version=&quot;13.1.3&quot; pages=&quot;5&quot;&gt;&lt;diagram id=&quot;6hGFLwfOUW9BJ-s0fimq&quot; name=&quot;inputstream&quot;&gt;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&lt;/diagram&gt;&lt;diagram id=&quot;0ftqWE2-lg_BMTl5Giv2&quot; name=&quot;outputstream&quot;&gt;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&lt;/diagram&gt;&lt;diagram id=&quot;0r8EaBUKEYbfuPFbGaUO&quot; name=&quot;reader&quot;&gt;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&lt;/diagram&gt;&lt;diagram id=&quot;BjUA0GNWmaVJz6Q3lmvj&quot; name=&quot;writer&quot;&gt;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&lt;/diagram&gt;&lt;diagram id=&quot;eV1f3PIwPVZCG4Zsw7k9&quot; name=&quot;scanner&quot;&gt;7Vfbcts4DP0az6QP8ViW7SSPldS0nUkz2XX2Mn1DJFpiQ5EqBcV2vr7gRZZlu7Wzu932oTOZmDwEIAI4gKBBGJertxqq4oPKmBiMR9lqECaD8fjyKqD/Blg7IJhNrhySa545bNQBc/7MvGCLNjxjtccchEoJ5FUfTJWULMUeBlqrZV9soUTWAyrI2R4wT0Hso3/xDAvv1/iiw98xnhftk4OZ96+EVth7UheQqeUWFL4ZhLFWCt2qXMVMmOC1cbloeB5dZfeYaHERX95PMKrPnbHrl6hsXNBM4j82/Wn9+LyW5cfmEUe/ZfN0/PxH4VVGTyAaH69P8ATDBrkYUhApJdo7j+s2ovWSlwIk7aKFkjj3JwHtQfBc0jqli5JmGD0xjZyS8dofoKoITQsushtYq8a4UyOkj+0uKpTmz2QWhLdJxxo9r8JZT2JuNAkeEapZTTJ3bYyCHegDrHqCN1CjB1IlBFQ1f9i4UYLOuYwUoiq9kI8TucNWO8Q6kpVgQxWqMaZKhnpNeq2VS2fGl9d5EEw9M5cdWyfTqcOKLaaGl2NfJb5C8o3xjgW08ER4ASmCPVLscUBwm/8atXrc1JUJ3YILESuhKPmJVFaoJYVgCzxAiZJnmbDGKki5zO8NRZLzoENurGISdsjvPgwG0goBwSXPZErAAxN3qubIlbGvnWxUKS7RhmoaDaaJRTTGSpITwG0KGZFiyQwxTsv310tqP98+wcTgk7IbXH2n5I4PJHcm0Bez6bCQuoPZ58a0tihWjeamD4xu2bKDaZW7X/ob+WZx9l5WDbUEzaA0jCHVlL1qn/CgT1cajGMjgZrSbV4PBeia4S2Ux81dcyLDyQ/vSf9XT3V2YqeesJReqyaAGUuP2rkz752Tb9+T/he3P2DH374zdNCIQ4iKjj59mMpV9hpHSx4jfL6Akguqi9cD8z6dQVlZ1TCc2K7csk5a1vVPD9HwsINPisqBXBCqZmff9sDd9gd6sJUQWjU1S5jgJUeXH/qRtgHZ1asjFzce/q+B/1kitaH/bqB2mfFAYyizdy6gvmUrfC/xMEOMNLfNUX5L7Oci0p57f5/94kyXxePR+KHNazgcvoBiO9MZzSx2lMayHaJPncHscLw1TO0PTdCgqt00HvhY+OE8mPj9tQ9N8ifTGUj4juNUOzodHZbb770XzFO07T7u7NnWJ3L45gs=&lt;/diagram&gt;&lt;/mxfile&gt;">
     <defs>
-        <clipPath id="mx-clip-429-147-172-26-0">
-            <rect x="429" y="147" width="172" height="26"/>
+        <clipPath id="mx-clip-573-294-172-26-0">
+            <rect x="573" y="294" width="172" height="26"/>
         </clipPath>
-        <clipPath id="mx-clip-744-235-172-39-0">
-            <rect x="744" y="235" width="172" height="39"/>
+        <clipPath id="mx-clip-503-39-377-144-0">
+            <rect x="503" y="39" width="377" height="144"/>
         </clipPath>
-        <clipPath id="mx-clip-964-235-172-39-0">
-            <rect x="964" y="235" width="172" height="39"/>
+        <clipPath id="mx-clip-808-388-333-207-0">
+            <rect x="808" y="388" width="333" height="207"/>
         </clipPath>
     </defs>
     <g>
-        <path d="M 0 135 L 0 99 L 160 99 L 160 135" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
-        <path d="M 0 135 L 0 143 L 160 143 L 160 135" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 0 135 L 160 135" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 327 280 L 327 258 L 527 258 L 527 280" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 327 280 L 327 288 L 527 288 L 527 280" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 327 280 L 527 280" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
         <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
-            <text x="79.5" y="116.5">
-                &lt;Interface&gt;
-            </text>
-            <text x="79.5" y="130.5">
-                FileOutputStream
+            <text x="426.5" y="275.5">
+                ByteArrayInputStream
             </text>
         </g>
-        <path d="M 0 139 L 160 139" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 188 134 L 188 99 L 388 99 L 388 134" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 188 134 L 188 142 L 388 142 L 388 134" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 188 134 L 388 134" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 327 284 L 527 284" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 569 281 L 569 258 L 749 258 L 749 281" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 569 281 L 569 315 L 749 315 L 749 281" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 569 281 L 749 281" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
         <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
-            <text x="287.5" y="116.5">
-                &lt;Interface&gt;
-            </text>
-            <text x="287.5" y="130.5">
-                ByteArrayOutputStream
+            <text x="658.5" y="275.5">
+                ObjectInputStream
             </text>
         </g>
-        <path d="M 188 138 L 388 138" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 307 36 L 307 0 L 467 0 L 467 36" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 307 36 L 307 44 L 467 44 L 467 36" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 307 36 L 467 36" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 569 285 L 749 285" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-573-294-172-26-0)" font-size="12px">
+            <text x="574.5" y="306.5">
+                + readObject()
+            </text>
+        </g>
+        <path d="M 856 285 L 856 261 L 1016 261 L 1016 285" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 856 285 L 856 293 L 1016 293 L 1016 285" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 856 285 L 1016 285" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
         <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
-            <text x="386.5" y="17.5">
-                &lt;Interface&gt;
-            </text>
-            <text x="386.5" y="31.5">
-                java.io.OutputStream
+            <text x="935.5" y="278.5">
+                FilterInputStream
             </text>
         </g>
-        <path d="M 307 40 L 467 40" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 425 134 L 425 99 L 605 99 L 605 134" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 425 134 L 425 168 L 605 168 L 605 134" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 425 134 L 605 134" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 856 289 L 1016 289" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 156 258 L 491.58 109.29" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 497.98 106.45 L 493 112.49 L 490.16 106.09 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 427 258 L 559.17 182.04" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 565.24 178.56 L 560.92 185.08 L 557.43 179.01 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 665.31 258 L 681.27 185.93" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 682.79 179.09 L 684.69 186.68 L 677.86 185.17 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 499 26 L 499 0 L 884 0 L 884 26" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 499 26 L 499 178 L 884 178 L 884 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 499 26 L 884 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
         <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
-            <text x="514.5" y="116.5">
-                &lt;Interface&gt;
-            </text>
-            <text x="514.5" y="130.5">
-                ObjectOutputStream
+            <text x="691" y="17.5">
+                java.io.InputStream
             </text>
         </g>
-        <path d="M 425 138 L 605 138" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-429-147-172-26-0)" font-size="12px">
-            <text x="430.5" y="159.5">
-                + WriteObject()
+        <path d="M 499 30 L 884 30" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-503-39-377-144-0)" font-size="14px">
+            <text x="504.5" y="53.5">
+                + void close()
+            </text>
+            <text x="504.5" y="70.5">
+                + int available()
+            </text>
+            <text x="504.5" y="87.5">
+                + void synchronized void mark(int readlimit)
+            </text>
+            <text x="504.5" y="104.5">
+                + void synchronized void reset()
+            </text>
+            <text x="504.5" y="121.5">
+                + boolean markSupported()
+            </text>
+            <text x="504.5" y="138.5">
+                + long skip(long n)
+            </text>
+            <text x="504.5" y="155.5">
+                + abstract int read()
+            </text>
+            <text x="504.5" y="172.5">
+                + int read(byte buf[])
+            </text>
+            <text x="504.5" y="189.5">
+                + int read(byte buf[], int off, int len)
             </text>
         </g>
-        <path d="M 523 223 L 523 187 L 683 187 L 683 223" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 523 223 L 523 231 L 683 231 L 683 223" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 523 223 L 683 223" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 936 261 L 811.93 182.35" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 806.02 178.6 L 813.8 179.39 L 810.06 185.3 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 710 353 L 888.27 295.49" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 894.94 293.34 L 889.35 298.82 L 887.2 292.16 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 974.5 353 L 940.38 299.83" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 936.6 293.94 L 943.33 297.94 L 937.44 301.72 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 1246 353 L 983.92 294.76" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 977.09 293.24 L 984.68 291.34 L 983.17 298.18 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 630 376 L 630 353 L 790 353 L 790 376" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 630 376 L 630 384 L 790 384 L 790 376" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 630 376 L 790 376" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
         <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
-            <text x="602.5" y="204.5">
-                &lt;Interface&gt;
-            </text>
-            <text x="602.5" y="218.5">
-                BufferedOutputStream
+            <text x="709.5" y="370.5">
+                BufferedInputStream
             </text>
         </g>
-        <path d="M 523 227 L 683 227" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 740 222 L 740 187 L 920 187 L 920 222" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 740 222 L 740 269 L 920 269 L 920 222" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 740 222 L 920 222" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 630 380 L 790 380" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 804 375 L 804 353 L 1145 353 L 1145 375" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 804 375 L 804 590 L 1145 590 L 1145 375" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 804 375 L 1145 375" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
         <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
-            <text x="829.5" y="204.5">
-                &lt;Interface&gt;
-            </text>
-            <text x="829.5" y="218.5">
-                DataOutputStream
+            <text x="974" y="370.5">
+                DataInputStream
             </text>
         </g>
-        <path d="M 740 226 L 920 226" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-744-235-172-39-0)" font-size="12px">
-            <text x="745.5" y="247.5">
-                + writeUTF()
+        <path d="M 804 379 L 1145 379" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-808-388-333-207-0)" font-size="14px">
+            <text x="809.5" y="402.5">
+                + DataInputStream(InputStream in)
             </text>
-            <text x="745.5" y="261.5">
-                + writeDouble()
+            <text x="809.5" y="436.5">
+                + final String readUTF()
+            </text>
+            <text x="809.5" y="453.5">
+                + final boolean readBoolean()
+            </text>
+            <text x="809.5" y="470.5">
+                + final char readChar()
+            </text>
+            <text x="809.5" y="487.5">
+                + final byte readeByte()
+            </text>
+            <text x="809.5" y="504.5">
+                + final short readShort()
+            </text>
+            <text x="809.5" y="521.5">
+                + final int readInt()
+            </text>
+            <text x="809.5" y="538.5">
+                + final long readLong()
+            </text>
+            <text x="809.5" y="555.5">
+                + final float readFloat()
+            </text>
+            <text x="809.5" y="572.5">
+                + final double readDouble()
             </text>
         </g>
-        <path d="M 740 135 L 740 99 L 900 99 L 900 135" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 740 135 L 740 143 L 900 143 L 900 135" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 740 135 L 900 135" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 282 L 0 258 L 312 258 L 312 282" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 282 L 0 342 L 312 342 L 312 282" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 282 L 312 282" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
         <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
-            <text x="819.5" y="116.5">
-                &lt;Interface&gt;
-            </text>
-            <text x="819.5" y="130.5">
-                FilterOutputStream
+            <text x="155.5" y="275.5">
+                FileInputStream
             </text>
         </g>
-        <path d="M 740 139 L 900 139" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 960 222 L 960 187 L 1140 187 L 1140 222" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 960 222 L 960 269 L 1140 269 L 1140 222" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 960 222 L 1140 222" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 287 L 312 287" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 1px; height: 1px; padding-top: 317px; margin-left: 2px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Verdana; color: #000000; line-height: 1.2; pointer-events: none; white-space: nowrap; ">
+                                <font style="font-size: 14px">
+                                    <font face="Courier New" style="font-size: 14px">
+                                        + FileInputStream(String name)
+                                        <br/>
+                                    </font>
+                                    <span style="font-family: &quot;courier new&quot;">
+                                        + FileInputStream(File file)
+                                        <br/>
+                                    </span>
+                                    <span style="font-family: &quot;courier new&quot;">
+                                        + FileInputStream(FileDescriptor fd)
+                                    </span>
+                                </font>
+                                <font face="Courier New">
+                                    <br/>
+                                </font>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="2" y="321" fill="#000000" font-family="Verdana" font-size="12px">
+                    + FileInputStream(String name)...
+                </text>
+            </switch>
+        </g>
+        <path d="M 1166 377 L 1166 353 L 1326 353 L 1326 377" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 1166 377 L 1166 385 L 1326 385 L 1326 377" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 1166 377 L 1326 377" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
         <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
-            <text x="1049.5" y="204.5">
-                &lt;Interface&gt;
-            </text>
-            <text x="1049.5" y="218.5">
-                PrintStream
+            <text x="1245.5" y="370.5">
+                PushBackInputStream
             </text>
         </g>
-        <path d="M 960 226 L 1140 226" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-964-235-172-39-0)" font-size="12px">
-            <text x="965.5" y="247.5">
-                + print()
-            </text>
-            <text x="965.5" y="261.5">
-                + println()
-            </text>
-        </g>
+        <path d="M 1166 381 L 1326 381" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
     </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://desk.draw.io/support/solutions/articles/16000042487" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Viewer does not support full SVG 1.1
+            </text>
+        </a>
+    </switch>
 </svg>

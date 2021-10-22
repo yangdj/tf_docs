@@ -1029,22 +1029,7 @@
         1. Catch or Specify Requirement: code that might throw exceptions must be enclosed by either of the following, otherwise the code will not be compiled
             1. A `try` statement that catches the excpetion. The `try` must privide a handle for the exception
             2. A method specifies it can throw the exception. The method must provide a `throws` clause listing the exception
-        2. Structure
-            1. Throwable
-                1. Error
-                    1. `java.io.IOError`
-                    2. other subclasses
-                2. Exception
-                    1. RuntimeException
-                        1. `NullPointerException`: occur when a method access a member of an object through a null reference
-                        2. `IndexOutOfBoundsException`
-                        3. `IllegalArgumentException`
-                        4. other subclasses
-                    2. Other subclasses
-                        1. `java.io.IOException`
-                        2. `java.io.FileNotFoundException`
-                        3. other subclasses
-        3. Types
+        2. Types
             1. Checked Exception
                 1. Exception
                     1. Should anticipate and recover from
@@ -1058,16 +1043,12 @@
                     3. **Not subject to the Catch or Specify Requirement**
                     4. Might catch this exception in order to notify the problem, but makes sense to print a stack trace and exit
                 2. Runtime Exception
-                    1. Internal to the application that cannot anticipate or recover from, indicating bugs such as logic error or     improper use of API
+                    1. Internal to the application that cannot anticipate or recover from, indicating bugs such as logic error or improper use of API
                     2. Indicated by `RuntimeException` and its subclasses
                     3. **Not subject to the Catch or Specify Requirement**
                     4. Can catch this exception, but it probably makes more sense to eliminate the bug that caused the excption
-        4. Exception Handlers
-            1. Methods
-                1. `e.getMessage()`
-                2. `e.printStackTrace()`
-                3. `e.getSuppressed()`
-            2. try-catch-finally
+        3. Exception Handlers
+            1. try-catch-finally
                 1. `try`: work with at least one of `catch` or `finally`
                 2. `catch`
                     1. a single handler with one exception
@@ -1111,28 +1092,19 @@
                 3. `finally`: always execute when the try block exits
                     1.  if the JVM exits while the `try` or `catch` code is being executed, then the `finally` block may not execute
                     2.  if the thread executing the `try` or `catch` code is interrupted or killed, the `finally` block may not     execute even though the application as a whole continues
-            3. try-with-resources
+            2. try-with-resources
                 1. since Jave SE7
                 2. any object that implements `java.lang.AutoCloseable`, including all objects which implement `java.io.Closeable`,     can be used as a resource. The `Closeable` interface extends the `AutoCloseable` interface
                     1.  the `close` method of the `AutoCloseable` interface throws exceptions of type `Exception`
                     2.  the `close` method of the `Closeable` interface throws exceptions of type `IOException`
                 3. multiple resources can be separated by a semicolon `;`. `close` methods of resources are called in the opposite     order of their creation
                 4. a try-with-resources statement can have `catch` and `finally` blocks just like an ordinary `try` statement. in a try-with-resources statement, any `catch` or `finally` block is run after the resources declared have been closed
-    
-                ```java
-                try (inputStream = new FileReader("in.txt");
-                    outputStream = new FileWriter("out.txt")) {
-                    ...
-                } catch (Exception e) {
-                    ...
-                }
-                ```
-            4. Method Throws Exceptions: not catch the exception, but allow further up the call stack to handle it
+            3. Method Throws Exceptions: not catch the exception, but allow further up the call stack to handle it
 
                 ```java
                 public void writeList() throws IOException, OtherException, ... { ...}
                 ```
-            5. Throw statement: `throw new IOException()`
+            4. Throw statement: `throw new IOException()`
     2. Scala
         1. `throw new IllegalArgumentException`: `throw` has type `Nothing`
         2. `try{} catch{} finally {}`: returns a value, if exception thrown not caught, the expression has no result at all
@@ -1229,53 +1201,13 @@
                     1. cause JVM to shutdown
                     2. the exit status is available to the process that launched the application
                     3. by convention, 0 indicates normal termination, while any other value is an error code
-                2. `.arraycopy()`: `System.arraycopy(copyFrom, 2, copyTo, 0, 7)`
-                3. `.currentTimeMillis()`
-                4. `.nanoTime()`: time recorded by JVM, not for recording actual time, better for measuring time lapsed in nanoseconds
-                5. `.getenv()`
-                6. `.setProperties()`
-                7. `.getProperties()`
-                8. `.getProperty(name, [default])`
-                    1. `"java.home"`
-                    2. `"java.version"`
-                    3. `"file.encoding"`
-                    4. `"file.separator"`
-                        1. `\` Windows
-                        2. `/`: Linux
-                    5. `"path.separator"`: character used in java.class.path `;` for windows
-                    6. `"line.separator"`
-                    7. `"user.name"`
-                    8. `"user.home"`: user home directory
-                    9. `"user.dir"`: user working directory
-                    10. `"user.language"`: `zh`
-                    11. `"user.timezone"`
-                        1. `Asia/Shanghai`
-            2. `System.in` 
-                1. `InputStreamReader cin = new InputStreamReader(System.in)`: use standard input as a character stream
-            3. `System.out`
-                1. `.println()`
-                2. `.format()`: specifiers begin with `%`
-                    1. `%d`: integer value
-                    2. `%x`: hexadecimal value
-                    3. `%f`: floting value
-                        1. `%f+20.10f`: precision 10, width 20,  use sign flags padding with 0
-                        2. `%1$+20.10f`: use argument index 1 with `1$`
-                        3. `%<+20.10f`: use the same argument as the previous specifier 1 with `<`
-                    4. `%s`: format as a string
-                    5. `%n`: platform-specific line terminator
-                    6. `%%`: output `%`
-            4. `System.err`: similar to `System.out`
-            5. `Console: System.console()`
-                1. `.readLine()`
-                2. `.readPassword()`
-                3. `.format()`
-            6. `Integer`
-                1. `Integer.compare(x, y)`
-                2. `Inteter.parseInt("10", base)`
-                3. `Integer.toHexString(hashCode())`
-        4. `Character`
+        4. `Integer`
+            1. `Integer.compare(x, y)`
+            2. `Inteter.parseInt("10", base)`
+            3. `Integer.toHexString(hashCode())`
+        5. `Character`
             1. `Character.isLetter(ch)`
-        5. `String`
+        6. `String`
             1. Properties
                 1. immutable, once created, never change
             2. Constructor
@@ -1301,7 +1233,7 @@
                 13. `.substring(start, end)`:  between `.charAt(start)` and `.charAt(end)`
                 14. `.sbustring(start)`: equal `.substring(start, .length() -1)`
                 15. `.toCharArray()`
-        6. `Math`
+        7. `Math`
             1. `Math.pow(a, b)`: `a^b`
     2. `java.math`
         1. `BigDecimal`: used for precise values, such as currency
@@ -1420,21 +1352,6 @@
                 2. `Locale.ENGLISH`
             2. Methods
                 1. `Locale.getDefault()`
-        4. `Scanner`: use while space to separate tokens, including blanks, tabs and line terminators
-            1. `.useDelimiter(",\\s*")`
-            2. `.useLocale(Locale.SIMPLIFIED_CHINESE)`
-            3. `.hasnext()`
-            4. `.hasNextDouble()`
-            5. `.next()`
-            6. `.nextDouble()`
-            7. `.close()`
-
-            ```java
-            s = new Scanner(new BufferReader(new FileReader("hello.txt")));
-            while (s.hasNext()) {
-                System.out.println(s.next());
-            }
-            ```
         5. `ArrayList`
             1. Constructor
                 1. `List<Integer> list = new ArrayList<>(10)`
@@ -1443,66 +1360,7 @@
             1. `boolean test(T t)`
         2. `Predicate<T, R>`: return an r object from apply method to t
             1. `R apply(T t)`
-    6. `java.io`
-        1. Byte Streams
-            1. `InputStream`
-                1. `FileInputStream`
-                2. `ByteArrayInputStream`
-                3. `ObjectInputStream`
-                    1. implement interface `ObjectInput` which implements `DataInput`
-                    2. support primitive types and objects which implements interface `Serializable`
-                    3. methods
-                        1. `.readObject()`
-                4. `FilterInputStream`
-                    1. `BufferedInputStream`
-                    2. `DataInputStream`
-                        1. implement interface `DataInput`
-                        2. detect an end-of-file condition by catching `EOFException`
-                        3. support primitive types and String values
-                            1. `.readUTF()`: read string value
-                            2. `.readDouble()`
-                    3. `PushbackInputStream`
-            2. `OutputStream`
-                1. `FileOutputStream`
-                2. `ByteArrayOutputStream`
-                3. `ObjectOutputStream`
-                    1. implement interface `ObjectOutput` which implements interface `DataOutput`
-                    2. support primitive types and objects which implements interface `Serializable`
-                    3. methods
-                        1. `writeObject()`
-                4. `FilterOutputStream`
-                    1. `BufferedOutputStream`
-                    2. `DataOutputStream`
-                        1. implement interface `DataOutput`
-                        2. support primitive types and String values
-                            1. `.writeUTF()`: write out string values in a modified of UTF-8
-                            2. `.writeDouble()`
-                    3. `PrintStream`
-        2. Chracter Streams
-            1. `Reader`
-                1. `InputStreamReader`
-                    1. `FileReader`
-                2. `CharArrayReader`
-                3. `StringReader`
-                4. `BufferedReader`
-                    1. Members
-                        1. `.readLine()`
-                    2. Subclasses
-                        1. `LineNumberReader`
-                5. `FilterReader`
-                    1. `PushbackReader`
-                6. `PipedReader`
-            2. `Writer`
-                1.  `OutputStreamWriter`
-                    1. `FileWriter`
-                2. `CharArrayWriter`
-                3. `StringWriter`
-                4. `BufferedWriter`
-                5. `PrintWriter`
-                6. `FilterWriter`
-                7. `PipedWriter`
-        3. `File`
-    7. `java.nio`: since Jave SE7
+    6. `java.nio`: since Jave SE7
         1. `java.nio.charset`
             1. `Charset`
                 1. `Charset.forName("US-ASCII")`
@@ -1556,7 +1414,7 @@
                         3. `.getReason()`
                     2. Subclasses
                         1. `NoSuchFileException`
-    8. JDBC
+    7. JDBC
         1. General
             1. Reference: [Java JDBC Documents](https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html)
             2. import class: `import java.sql._`
@@ -1609,7 +1467,7 @@
                 4. Url
                     1. `jdbc:hive2://host:port/dbname`
                     2. `jdbc:hive2://host:port/dbname;user=<user>;password=<password>`: LDAP
-    9. Other Databases
+    8. Other Databases
         1. Hbase
             1. Dependencies: `"org.apache.hbase" % "hbase-client" % "2.3.5"`
             2. Initialization
