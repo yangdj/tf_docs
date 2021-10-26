@@ -1,311 +1,65 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1481px" height="679px" viewBox="-0.5 -0.5 1481 679" content="&lt;mxfile host=&quot;bab58c7f-212a-4d99-8711-f969a2e5b65d&quot; modified=&quot;2021-10-22T06:38:17.934Z&quot; agent=&quot;5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36&quot; etag=&quot;i9CnQh8l-WQ_Y8iPoWI9&quot; version=&quot;13.1.3&quot;&gt;&lt;diagram id=&quot;6hGFLwfOUW9BJ-s0fimq&quot; name=&quot;java.lang&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;">
-    <defs>
-        <clipPath id="mx-clip-501-39-471-201-0">
-            <rect x="501" y="39" width="471" height="201"/>
-        </clipPath>
-        <clipPath id="mx-clip-501-291-224-47-0">
-            <rect x="501" y="291" width="224" height="47"/>
-        </clipPath>
-        <clipPath id="mx-clip-1025-40-416-185-0">
-            <rect x="1025" y="40" width="416" height="185"/>
-        </clipPath>
-        <clipPath id="mx-clip-501-455-475-183-0">
-            <rect x="501" y="455" width="475" height="183"/>
-        </clipPath>
-        <clipPath id="mx-clip-4-553-430-84-0">
-            <rect x="4" y="553" width="430" height="84"/>
-        </clipPath>
-    </defs>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1142px" height="213px" viewBox="-0.5 -0.5 1142 213" content="&lt;mxfile host=&quot;3bb38edf-0978-41db-9373-dcf5e0a3ea29&quot; modified=&quot;2021-10-25T08:57:46.945Z&quot; agent=&quot;5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36&quot; etag=&quot;tPaYqzlZ1KXKr_LozF0o&quot; version=&quot;13.1.3&quot; pages=&quot;5&quot;&gt;&lt;diagram id=&quot;5vzfUgMpSCeZAofNSQsm&quot; name=&quot;syntax&quot;&gt;rVdtb9owEP41kbYPnUhgjH4ctN1b201DU6V9mYxtEm+OndoOkP763dkOJLRspUJCkf34fHe+d5LhrNx8MKQqbjTjMskGbJMML5IsyyZZluBvwJqApOPJICC5ESxgHWAuHngkbNFaMG4jFiCntXSi6oNUK8Wp62HEGL3uky21ZD2gIjnvqYHAnBLJH5HdCeaKgE6ydzv8Ixd50UpOx+fhpCQtcWRsC8L0ugMNL5PhzGjtwqrczLhE67V22fyw9Punh3dfHub17eZ6efHp5/lZYHZ1zJXtEwxX7sWs6/uzD18nF/zL/PPdN33e3GRUxSuDFZF1tJdtlCOb+GLXtGa0a1FKomA3XWrl5vEkhT2RIlewpqAdNwCsuHECPPA+HjhdAUoLIdk1aXSNb7CO0D/tblpoIx6ALZGRJxwbF4MpG/co5ngT4AGghlug+dYaJt2DbsimR3hNrIsA1VKSyorF9hklMblQU+2cLiNRNA48h2/2ouk/rki38QGZxXXJnWngXuRylo6Ho8CpaZF0HDNtvYvSNB1FgUUnRLM0UpKYGvlWwM79sIgRcEQ0pI+iIX0D+1tSCpUn2ViirxYGVrnz5nkCISU6Wy1s5fcDz+F7LaEGHGRgK6L+weIQV0osxyjlygonVrxlB2/f43hALhOr48RmKFZp+EiucnATLEQpXJLNvCL3NVcUddJL+PxQgkJB9dQOUsOizxTDaipy4WxH374mL1NuiMotOASxjyKvHdkKh8UrqLEriFuh1WvU0QQ+9zVWsOmv3fLxYZKNuht87QIy9/D98M6DDMCIeBuspWsDJZid2BYjtIWtF8ElKIoWxBAavVCSxtuq65pZxy9+jRUCrWChitnWJLViQE214Xs8T6n+83k9J3180PqC3VXzqQw5kfF9ctY+NykpuZz5PD2pCP8mKolFxygQ4mVVTkCDgEKPqCsQFApKA5GdNDh9zkFaQb/yURZKp9elowqHFtJ0MzFkh+XQR4jzJL1YXWvD7C6JuzF3+iyB1lFoFs3oVSl0LVmbHyR0wIW3Jb5Br7mJlddnBBKUNQx0Z6j2zh2+EinfOLrV6BAvGOxw6+WirQj7DeMgVPWYjkrXKi65o28OWWJvbIHG7ecLV8q9aUXypXtiVikFY3g5TAwkjAc4C1RaKOcb7ttp8vYCOdVO2zCipHEsuoJOKbGlz6CsCe/qW75+7iRxeEJ7PEnEuQFmo+cNDelkfPTQANvddOvPOn8Shpd/AQ==&lt;/diagram&gt;&lt;diagram id=&quot;BpFeiJQ-kLKUxnonfmKp&quot; name=&quot;basetype&quot;&gt;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&lt;/diagram&gt;&lt;diagram id=&quot;6hGFLwfOUW9BJ-s0fimq&quot; name=&quot;class&quot;&gt;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&lt;/diagram&gt;&lt;diagram id=&quot;aEhWKmcC9UUlnXEVZpsc&quot; name=&quot;interface&quot;&gt;7VjbbuIwEP2aSLsPIJJAgEcu7VYVvSwgtbsvK5OY4OJkIttcv37HiUOgUC3dFpUHnpIcz0ziOWeOrFhuJ1r+ECSZ3EFAueVUgqXldi3Hcap1Dy8aWWWI7VWbGRIKFmRYpQAGbE1NYI7OWEClwTJIAXDFkl3QhzimvtrBiBCw2A0bAw92gISEdA8Y+ITvo08sUJMMbTj1Ar+hLJzkb7Y9s7+I5MFmJ3JCAlhsQe6V5XYEgMruomWHct29vC9r1RL95v2v340gCh9YD+pPpJQVu35PymYLgsbqv0tPBy9PrvPs/2nx21ErkM98nJiUypzwmemX5XgcX9LOryxWVIyJTxEIzUJ+tRwXaXbbL2ROygzKAyoY4WxNRpxuLZv2qVXOiVywiJMYn9pjiNXArNj4jOlhjPc+1e9FYE6FYkhnyywoSBD1J4wHPbKCmW6IVMSf5k/tCQi2xrKEm5q4LJRRplvfiRjoTIT1ZwoqMeYx77L9Crojy53AHpHKAD5wThLJRpttRESELG6DUhCZIJkQn8XhBmtsOqO3SJev5PoPru2NAHF0KURUiRXmmSolHFNTaZUjds0Ie1GMgeM6GTbZGoFqzUyfmbxwU75QF94Ygb1DbPYBsb1SBmepKqQSMN3Mq27omHHeAQ4oiW4MaVAuFU7H6oBQIhYEnBaNH2rhdEt2gfTSxK5bIH3TBQ0JUESRjFLNHycjyh9BMsVA1xdZbDsBHJG0VbW2VeumiFAdiHEThKUkUpTKgkp1LONvj+o+44Zft34cuY0Tcet+npGgM4TlDkeSLz7y5T7iNryz85HqxUc+4CPuWftI7fN8ZKYYL/dJHEDU8n0q5cVKzuxIUmk4X2wl3sVKPmAltXOxkodrWeuum6oO/ZvlfHz7cxq8lJzPPpJAhB0xZ5I0f3gg/uIs53BIOdpZvOqJ1HfoQHxxlgOMvz27H3aW5om43T+AJrMRZ77Ow23pn1naKugQvqFFVOD7HvXYkHR6VZTP7bEEp/O4xdQ+I2SmQGYGYBvTuSYR47p5HZgJhlbjVO7p4oQMVb3jGLLfb/74WPxzS9e2fl26V38B&lt;/diagram&gt;&lt;diagram id=&quot;Hfod2cTCU8Jp9o4EAJpJ&quot; name=&quot;enum&quot;&gt;tZZRc5swDMc/DXfdQ3tgQto9DpJuD+nWLr3tceeCA26NxRmlSfrpJ4OBkuSuzW19CvpbUpD0sxIvTMrtV8Or4gYyoTzmZ1svnHmMscnllD6ssmuVYDr53Cq5kVmr+YOwlC/COXbqWmaidlorIYBCWY3FFLQWKY40bgxsxm4rUNlIqHguDoRlytWh+ltmWLTqFbsc9G9C5kX3zcHU1VfyztlVUhc8g80rKZx7YWIAsH0qt4lQtntdX+4Dtpjdwc0vVNHdI25//FncnbfJrk8J6UswQuP/Tc3a1M9crV2/Hvkzv1Bc5xdzvS5d5bjr2llvZEmnZMUr0Lh0JwHZXMlc03NKbykMCc/CoKRJfHEHCBWpaSFVtuA7WNtaauTpU2fFBRj5Qmm5cjnp2KCDik1HHksbSbJPqhE1+dx2DQr2pBu+HTkueI1OSEEpXtXyoS+j5CaXOgZEKJ1TXfFU6rzXrkhzjaMSxXaPtDfGFPTs0K0TUAo0O4pzWc6DacfmrlOCyOXeDASz0M2ueEXvlbut3F2avE8/gEEPjo0TOAkPODkgQ8mGihoNPPVXzTZ0JZVKQAEhMdPQOHWoKLHCI6CUMsuUGBp/b8GZnQeDsmgCZ+Gg/HRdsJIB5Mjbkdr5Kf4g1C3UEiXY/Kb1jSuQGptWRbEXzRrFYAKaiuCyGaIgVDbC4vIPE2fHJ+7my6bvHO4HzXZyZLaxXbVS8yaYamM+mMzaZ588+75h4DcdOfRLobT9uIezOVli7L6HDDUSe2T2EDmdmna9jAGZHAJiJaDYlWqWeUGsCX0EmjEcMS3XxL+ILCYsITsY7DfJsZvympdS2YknsDaS9iPzv4vNkeUSdau13XrB5APRCyfvQy9iJ7NH5vDT2Jy9+ocRzv8C&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
     <g>
-        <path d="M 497 26 L 497 0 L 976 0 L 976 26" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
-        <path d="M 497 26 L 497 235 L 976 235 L 976 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 497 26 L 976 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 26 L 0 0 L 1141 0 L 1141 26" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 0 26 L 0 212 L 1141 212 L 1141 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 26 L 1141 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
         <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
-            <text x="736" y="17.5">
-                java.lang.Object
-            </text>
-        </g>
-        <path d="M 497 30 L 976 30" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-501-39-471-201-0)" font-size="14px">
-            <text x="502.5" y="53.5">
-                # native Object clone()
-            </text>
-            <text x="502.5" y="70.5">
-                + native int hashcode()
-            </text>
-            <text x="502.5" y="87.5">
-                + boolean equals()
-            </text>
-            <text x="502.5" y="104.5">
-                # void finalize()
-            </text>
-            <text x="502.5" y="121.5">
-                + final native Class&lt;?&gt; getClass()
-            </text>
-            <text x="502.5" y="138.5">
-                + String toString()
-            </text>
-            <text x="502.5" y="155.5">
-                + final native void void wait()
-            </text>
-            <text x="502.5" y="172.5">
-                + final native void wait(long timeout)
-            </text>
-            <text x="502.5" y="189.5">
-                + final native void wait(long timeout, int nanos)
-            </text>
-            <text x="502.5" y="206.5">
-                + final native void notify()
-            </text>
-            <text x="502.5" y="223.5">
-                + final native void notifyAll()
-            </text>
-        </g>
-        <path d="M 497 278 L 497 252 L 729 252 L 729 278" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 497 278 L 497 338 L 729 338 L 729 278" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 497 278 L 729 278" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
-            <text x="612.5" y="269.5">
-                java.lang.Enum
-            </text>
-        </g>
-        <path d="M 497 282 L 729 282" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-501-291-224-47-0)" font-size="14px">
-            <text x="502.5" y="305.5">
-                + final int ordinal()
-            </text>
-            <text x="502.5" y="322.5">
-                + final int compareTo(E e)
-            </text>
-        </g>
-        <path d="M 1021 27 L 1021 1 L 1445 1 L 1445 27" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 1021 27 L 1021 220 L 1445 220 L 1445 27" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 1021 27 L 1445 27" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
-            <text x="1232.5" y="18.5">
-                java.lang.Class
-            </text>
-        </g>
-        <path d="M 1021 31 L 1445 31" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-1025-40-416-185-0)" font-size="14px">
-            <text x="1026.5" y="54.5">
-                + static Class&lt;?&gt; forName(String className)
-            </text>
-            <text x="1026.5" y="71.5">
-                + getName()
-            </text>
-            <text x="1026.5" y="88.5">
-                + getSimpleName()
-            </text>
-            <text x="1026.5" y="105.5">
-                + getSuperclass()
-            </text>
-            <text x="1026.5" y="122.5">
-                + getInterfaces()
-            </text>
-            <text x="1026.5" y="139.5">
-                + isAnnotation()
-            </text>
-            <text x="1026.5" y="156.5">
-                + isInterface()
-            </text>
-            <text x="1026.5" y="173.5">
-                + isEnum()
-            </text>
-            <text x="1026.5" y="190.5">
-                + getFields()
-            </text>
-            <text x="1026.5" y="207.5">
-                + getMethods()
-            </text>
-        </g>
-        <path d="M 980 541.5 L 1085.76 541.06" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="none"/>
-        <path d="M 1079.9 544.59 L 1086.88 541.06 L 1079.87 537.59" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 497 383 L 497 357 L 980 357 L 980 383" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 497 383 L 497 633 L 980 633 L 980 383" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 497 383 L 980 383" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
-            <text x="738" y="374.5">
-                java.lang.System
+            <text x="570" y="17.5">
+                syntax
             </text>
         </g>
         <g transform="translate(-0.5 -0.5)">
             <switch>
                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 1px; height: 1px; padding-top: 412px; margin-left: 503px;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 1px; height: 1px; padding-top: 119px; margin-left: 2px;">
                         <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
-                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: none; white-space: nowrap; ">
-                                <font face="Courier New" style="font-size: 14px">
-                                    + final static InputStream in
-                                    <br style="font-size: 14px"/>
-                                    + 
-                                </font>
-                                <span style="font-family: &quot;courier new&quot; ; font-size: 14px">
-                                    final static PrintStream 
+                            <div style="display: inline-block; font-size: 12px; font-family: Courier New; color: #000000; line-height: 1.2; pointer-events: none; white-space: nowrap; ">
+                                1. Naming
+                                <br/>
+                                <br/>
+                                  1. Rules
+                                <br/>
+                                <span>
+                                        1. case sensitive
                                 </span>
-                                <font face="Courier New" style="font-size: 14px">
-                                    out
-                                    <br style="font-size: 14px"/>
-                                    + 
-                                </font>
-                                <span style="font-family: &quot;courier new&quot; ; font-size: 14px">
-                                    final static PrintStream 
-                                </span>
-                                <font face="Courier New" style="font-size: 14px">
-                                    err
-                                </font>
+                                <br/>
+                                <div>
+                                        2. no length limit, sequence of Unicode letters and digits
+                                </div>
+                                <div>
+                                        3. begin with a letter (convention) or "_" or "$", but "_" and "$" not encouraged
+                                </div>
+                                <div>
+                                        4. subsequent characters may be letters, digits, dollar signs or underscore characters
+                                </div>
+                                <div>
+                                </div>
+                                <div>
+                                    <span>
+                                          2. Styles
+                                    </span>
+                                </div>
+                                <div>
+                                        1. use camelCase
+                                </div>
+                                <div>
+                                        2. class name captitalizes the initial letter
+                                </div>
+                                <div>
+                                        3. constant value capitalizes every letter and separates subsequent words with underscore
+                                </div>
+                                <div>
+                                        4. method names should be a verb in lowercase or a multi-word name beginning with a verb in lowercase followed by adjectives, nouns, etc.
+                                </div>
                             </div>
                         </div>
                     </div>
                 </foreignObject>
-                <text x="503" y="416" fill="#000000" font-family="Helvetica" font-size="14px">
-                    + final static InputStream in...
+                <text x="2" y="123" fill="#000000" font-family="Courier New" font-size="12px">
+                    1. Naming...
                 </text>
             </switch>
-        </g>
-        <path d="M 497 445.5 L 980 445.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-501-455-475-183-0)" font-size="14px">
-            <text x="502.5" y="469.5">
-                + static void exit(int status)
-            </text>
-            <text x="502.5" y="486.5">
-                + static String getenv(String name)
-            </text>
-            <text x="502.5" y="503.5">
-                + static getProperty(String key, String defaultValue)
-            </text>
-            <text x="502.5" y="520.5">
-                + static Properties getProperties()
-            </text>
-            <text x="502.5" y="537.5">
-                + static void setProperties(Properties props)
-            </text>
-            <text x="502.5" y="554.5">
-                + static native long currentTimeMillis()
-            </text>
-            <text x="502.5" y="571.5">
-                + static native long nanoTime()
-            </text>
-            <text x="502.5" y="588.5">
-                + static Console console()
-            </text>
-            <text x="502.5" y="605.5">
-                + static native void arraycopy(Object src, int srcPos,
-            </text>
-            <text x="502.5" y="622.5">
-                                  Object dest, int destPos, int length) 
-            </text>
-        </g>
-        <path d="M 1088 386 L 1088 360 L 1480 360 L 1480 386" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 1088 386 L 1088 678 L 1480 678 L 1480 386" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 1088 386 L 1480 386" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
-            <text x="1283.5" y="377.5">
-                getProperties.keys
-            </text>
-        </g>
-        <g transform="translate(-0.5 -0.5)">
-            <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 1px; height: 1px; padding-top: 532px; margin-left: 1094px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
-                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: none; white-space: nowrap; ">
-                                <span style="font-family: &quot;courier new&quot;">
-                                    java.home
-                                </span>
-                                <br/>
-                                <span style="font-family: &quot;courier new&quot;">
-                                    java.version
-                                </span>
-                                <br/>
-                                <span style="font-family: &quot;courier new&quot;">
-                                    file.encoding
-                                </span>
-                                <br/>
-                                <span style="font-family: &quot;courier new&quot;">
-                                    file.separator
-                                    <br/>
-                                      1. "\": Windows
-                                    <br/>
-                                      2. "/": Linux
-                                    <br/>
-                                </span>
-                                <span style="font-family: &quot;courier new&quot;">
-                                    path.separator: 
-                                </span>
-                                separator for
-                                <span style="font-family: &quot;courier new&quot;">
-                                     java.class.path
-                                    <br/>
-                                </span>
-                                <font face="Courier New">
-                                      1. ";": 
-                                </font>
-                                Windows
-                                <br/>
-                                <font face="Courier New">
-                                      2. ":": 
-                                </font>
-                                Linux
-                                <br/>
-                                <font face="courier new">
-                                    line.separator
-                                    <br/>
-                                    user.home
-                                    <br/>
-                                    user.dir: 
-                                </font>
-                                working directory
-                                <br/>
-                                <font face="courier new">
-                                    user.language
-                                </font>
-                                <br/>
-                                <font face="courier new">
-                                      1. "zh"
-                                </font>
-                                <br/>
-                                <font face="courier new">
-                                    user.timezone
-                                </font>
-                                <br/>
-                                <font face="courier new">
-                                      1. "Asia/Shanghai"
-                                </font>
-                                <br/>
-                            </div>
-                        </div>
-                    </div>
-                </foreignObject>
-                <text x="1094" y="536" fill="#000000" font-family="Helvetica" font-size="14px">
-                    java.home...
-                </text>
-            </switch>
-        </g>
-        <path d="M 494.1 592.19 L 440.24 592.49" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="none"/>
-        <path d="M 446.1 588.96 L 439.12 592.49 L 446.14 595.96" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 0 540 L 0 514 L 438 514 L 438 540" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 0 540 L 0 637 L 438 637 L 438 540" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 0 540 L 438 540" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
-            <text x="218.5" y="531.5">
-                java.io.Console
-            </text>
-        </g>
-        <path d="M 0 544 L 438 544" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="#000000" font-family="Courier New" clip-path="url(#mx-clip-4-553-430-84-0)" font-size="14px">
-            <text x="5.5" y="567.5">
-                + String readLine()
-            </text>
-            <text x="5.5" y="584.5">
-                + String readLine(String fmt, Object... args)
-            </text>
-            <text x="5.5" y="601.5">
-                + char[] readPassword()
-            </text>
-            <text x="5.5" y="618.5">
-                + char[] readPassword(String fmt, Object... args)
-            </text>
         </g>
     </g>
     <switch>

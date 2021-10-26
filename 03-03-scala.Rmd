@@ -134,99 +134,7 @@
             2. `scala helloworld`: runs compiled scala file
             3. `scala helloworld.jar`
             4. `scala -cp helloworld.jar Hello`: runs class Hello in jar file
-3. Basic
-    1. Java
-        1. Variables
-            1. Naming
-                1. Rules
-                    1. case sensitive
-                    2. no length limit, sequence of Unicode letters and digits
-                    3. begin with a letter (convention) or `_` or `$` but `_` and `$` not encouraged
-                    4. subsequent characters may be letters, digits, dollar signs or underscore characters
-                2. Styles
-                    1. use camelCase
-                    2. class name captitalizes the initial letter
-                    3. constant value capitalizes every letter and separates subsequent words with underscore
-                    4. method names should be a verb in lowercase or a multi-word name beginning with a verb in lowercase followed by adjectives, nouns, etc.
-            2. Primitive Data Types
-                1. Numeric
-                    1. Common
-                        1. Since Java SE 7, any number of underscore character `_` can appear anywhere between digits in a numerical literals
-                            1. `long creditCardNumber = 1234_5678_9012_3456L;`
-                            2. `long hexBytes = 0xFF_EC_DE_5E;`
-                            3. `long bytes = 0b11010010_01101001_10010100_10010010;`
-                            4. `float pi =  3.14_15F;`
-                    2. Integer
-                        1. common
-                            1. default literal type `int` unless ends with `l` or `L`
-                            2. decimal: base 10, `26`
-                            3. hexadecimal base 16, `0x1a`
-                            4. binary: base 2, `0b11010`
-                        2. `byte`
-                            1. field default `0`
-                            2. 8-bit signed two's complement integer
-                            3. range `[-2^7, 2^7 -1]`
-                        3. `short`
-                            1. field default `0`
-                            2. 16-bit signed two's complement integer
-                            3. range `[-2^-15, 2^15 - 1]`
-                        4. `int`
-                            1. field default `0`
-                            2. 32-bit signed two's complement integer
-                            3. range `[-2^-31, 2^31 - 1]`
-                        5. `long`
-                            1. field default `0L`
-                            2. 64-bit signed two's complement integer
-                            3. range `[-2^-63, 2^63 - 1]`
-                    3. Float
-                        1. Common
-                            1. default literal type `double` unless ends with `f` or `F`
-                            2. double value can optionally end with `d` or `D`
-                            3. decimal notation: `123.4`, `123.4f`
-                            4. scientific notation: `1.234e+2`
-                        2. `float`
-                            1. field default `0.0f`
-                            2. a single-precision 32-bit IEEE 754 floating point
-                        3. `double`
-                            1. field default `0.0d`
-                            2. a double-precision 64-bit IEEE 754 floating point
-                2. Others
-                    1. `boolean`
-                        1. field default `false`
-                        2. value `{true, false}`
-                    2. `char`
-                        1. field default `\u0000`
-                        2. 16-bit Unicode character
-                        3. range `[\u0000, \uffff] ([0, 2^16 - 1])`
-                        4. use single quotes
-                        5. escape characters 
-                            1. `\b`
-                            2. `\t`
-                            3. `\n`
-                            4. `\f`
-                            5. `\r`
-                            6. `\"`
-                            7. `\'`
-                            8. `\\`
-            3. Array: hold a fix number of values of a single type
-                1. Properties
-                    1. the length is established when created. after creation, the length is fixed
-                    2. element index begins with 0
-                2.  members
-                    1. `.length`
-                3. Operations
-                    1. declaration
-                        1. `int[] anArray`
-                        2. `int anArray[]`: discouraged
-                    2. Constructor: `anArray = new int[10]`
-                    3. initialization: `anArray[0] = 100`
-                    4. declaration and initialization: `int[] anArray = {100, 200, ..., 1000}`, length is determined by element number     in the brace separated by commas
-                    5. access: `anArray[0]`
-                4. multidimensional array
-                    1. use multiple brackets: `int[][] counts`
-                    2. each element is an array
-                    3. rows can vary in length: `String[][] names = {{"Mr. ", "Mrs. ", "Ms. "}, {"Smith", "Jones"}}`
-4. Class and Objects
+3. Class and Objects
     1. Java
         1.  Modifier
             1. Access
@@ -416,7 +324,7 @@
             2. `this`: current object
             3. Members
                 1. `.class`: refer to object's class
-5. Data Structure
+4. Data Structure
     1. Architecture
         1. Relations
             1. `scala.Any`
@@ -635,7 +543,7 @@
         11. File
             1. `.listFiles()`
             2. `.getName()`
-6. Syntax
+5. Syntax
     1. Base
         1. `[// ...,  /* ... */]`: comments
         2. `Summer.scala`: scala file name follows the class or object name
@@ -734,7 +642,7 @@
             a * b <=> a.*(b)
             a ::: b <=> b.:::(a)
             ```
-7. Control Structure
+6. Control Structure
     1. Conditonal
         1. If
             1. `if (boolean) {...}`: `if` returns a value
@@ -838,7 +746,7 @@
                  else searchFrom(i + 1)
             val i = searchFrom(0)
             ```
-8. Function
+7. Function
     1. Properties
         1. parameters are val type
         2. `return` at the end of function can be omitted, then the last value is returned
@@ -889,7 +797,7 @@
 
             myLoop(start = 5, end = 10) { i => println(s"i has value ${i}")}
             ```
-9. Class
+8. Class
     1. Scala
         1. Initialization
             1. New
@@ -1024,7 +932,7 @@
                         println(season + ": " + calculate(season))
                 }
                 ```
-10. Exception
+9.  Exception
     1. Java
         1. Catch or Specify Requirement: code that might throw exceptions must be enclosed by either of the following, otherwise the code will not be compiled
             1. A `try` statement that catches the excpetion. The `try` must privide a handle for the exception
@@ -1135,7 +1043,7 @@
             file.close()
         }
         ```
-11. Package & Import
+10. Package & Import
     1. Package
         1. Create 
             1. name convention is using reversed Internet domain names to avoid potential name conflicts
@@ -1162,7 +1070,7 @@
                 1. `import scala.collection.mutable`
                 2. `import scala.collection._`
 
-12. Libraries
+11. Libraries
     1. `java.lang`
         1. `Object`
             1. `.clone()`: create and copy this object
@@ -1352,9 +1260,6 @@
                 2. `Locale.ENGLISH`
             2. Methods
                 1. `Locale.getDefault()`
-        5. `ArrayList`
-            1. Constructor
-                1. `List<Integer> list = new ArrayList<>(10)`
     5. `java.util.function`
         1. `Predicate<T>`
             1. `boolean test(T t)`
