@@ -1,0 +1,98 @@
+# Vue3
+
+1. Start
+    1. docs: [introduction](https://vuejs.org/guide/introduction.html)
+    2. node: [download](https://nodejs.org/en/)
+    3. VSCode Extensions
+        1. Volar
+        2. TypeScript Vue Plugin
+    4. installation
+        1. cdn: `<script src="https://unpkg.com/vue@3"></script>`
+        2. `npm init vue@latest`
+    5. npm: the nodejs package manager
+        1. cil
+            1. `npm install(i)`
+                1. `--global(-g)`
+                2. `--save(-S)`: write to dependencies property in `package.json`
+                3. `--save-dev(-D)`: write to devDependencies property in `package.json`
+                4. `--registry=https://registry.npm.taobao.org`
+            2. `npm uninstall`
+            3. `npm update`
+            4. `npm list`
+            5. `npm search`
+            6. `npm cache clean [--force]`
+            7. `npm config`
+                1. `list`
+                2. `set registry http://registry.npm.taobao.org/`
+            8. `npm run`
+                1. `dev`
+                2. `build`
+            9. `npx serve`: start local server
+        2. package.json
+            1. `npm init`: create `package.json` file
+            2. `npm help json`: docs about package.json
+            3. `npm adduser`: register npm user
+            4. `npm publish`: publish npm package
+    
+            ```json
+            // package.json
+            {
+                "name": "package name",
+                "description": "detail info",
+                "version" : "0.0.1",
+                "license": "MIT",
+                "homepage" : "https://...",
+                "author": {"name": "bob", "email" : "mail@mail.com"},
+                "contributors": [{"name", "...", "email": "..."}, ...],
+                "keywords": ["web", "framework", ...],
+                "scripts": {},
+                "dependencies": {"accepts": "1.1.1", ...},
+                "devDependencies": {...},
+                "repository": {"type": "git", "url": "git+https://..."}
+            }
+            ```
+2. Components
+    1. Templates
+        1. `{{ counter }}`: text binding
+        2. `v-bind`: attribute binding directive
+            1. `v-bind:title="message"`
+            2. `v-bind:[attrName]="message"`: dynamic attribute binding 
+            3. `:title="message"`: shorthand for `v-bind:title="message"`
+        3. `v-on`: event binding directive
+            1. `v-on:click="reverseMessage"`
+            2. `v-on:submit.prevent="onSubmit"`: event modifier using `"."`, bounding in some special way
+            3. `v-on:[eventName]="reverseMessage"`: dynamic event binding
+            4. `@click="reverseMessage"`: shorthand for  `v-on:click="reverseMessage"`
+            5. `@[eventName]="reverseMessage"` shorthand for `v-on:[eventName]="reverseMessage"`
+        4. `v-model`: two-way binding directive between form input and app state
+        
+            ```html
+            <div id="two-way-binding">
+                <p>{{ message }}</p>
+                <input v-model="message" />
+            </div>
+            ```
+        5. `v-if`: conditional directive        
+
+            ```html
+            <div id="conditional-rendering">
+                <span v-if="seen">Now you see me</span>
+            </div>
+            ```        
+        6. `v-for`: loops directive
+           
+            ```html
+            <div id="list-rendering">
+                <ol>
+                    <li v-for="todo in todos">
+                        {{ todo.text }}
+                    </li>
+                </ol>
+            </div>
+            ```        
+        7. `v-once`: one-time interpolations, do not update on data change        
+
+            ```html
+            <span v-once>This will never change: {{ msg }}</span>
+            ```        
+        8. `v-html`: real HTML directive        

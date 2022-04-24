@@ -1,0 +1,10 @@
+# Flink
+
+1. install
+    1. dependencies
+        1. java
+    2. download: [flink](https://mirrors.tuna.tsinghua.edu.cn/apache/flink/)
+    3. service
+        1. start: `./bin/start-cluster.sh`
+        2. stop: `/bin/stop-cluster.sh`
+        3. submit: `flink run hello.jar`

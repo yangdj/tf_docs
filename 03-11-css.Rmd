@@ -146,7 +146,7 @@ Properties:
 
 Color settings:
 
-1. kewwords: `[red, green, blue ...]`
+1. keywords: `[red, green, blue ...]`
 2. hexademical RGB: `#ff0000`
 3. RGB and RGBA: `rgb(255, 255, 255); rgba(255, 255, 255, 0.2)`
 4. HSL and HSLA: `hsl(188, 80%, 90%)`

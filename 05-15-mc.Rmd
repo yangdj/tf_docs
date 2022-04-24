@@ -1,0 +1,47 @@
+# Maxcompute
+
+1. Connection
+    1. Dbeaver
+        1. Sqlite
+            1. download and install `odps-jdbc-3.2.21-jar-with-dependencies.jar`
+            2. Driver Class Name: `com.aliyun.odps.jdbc.OdpsDriver`
+            3. URL Template: `jdbc:odps:{file}`
+            4. PATH: `http://service.cn-shanghai.maxcompute.aliyun.com/api?project=name&accessId=id&accessKey=key&interactiveMode=true&enableLimit=false`
+2. Settings
+    1. `set odps.sql.allow.fullscan=true`: scan table without specifing partition
+    2. `set odps.sql.mapjoin.memory.max=2048`: set memory size for mapjoin table
+    3. `/*+mapjoin(p)*/`: add this hint when cross join
+3. DataType
+   
+    | hive                      | mc                                        |
+    | ------------------------- | ----------------------------------------- |
+    | string                    | string                                    |
+    | varchar                   | string                                    |
+    | int                       | bigint (default)                          |
+    | decimal(precision, scale) | decimal(presion, scale) ((38,18) default) |
+    | double                    | double                                    |
+    | double                    | decimal(38, 18)                           |
+    | timestamp                 | datetime                                  |
+4. Functions [?](https://help.aliyun.com/document_detail/48969.html)
+    1. `now()`
+    2. `current_timestamp()`
+    3. `to_date(now())`
+    4. `dateadd('2021-01-01', 1, 'dd')`
+    5. `date_sub(now(), 1)`
+    6. `to_char(now(), 'yyyy-mm-dd hh:mi:ss')`
+    7. `find_in_set('b', 'a,b,c')`
+    8. `instr('abc', 'b')`
+    9. `regexp_instr('abc', 'a|b') > 0`
+5. DDL
+    1. create partition table: `CREATE TABLE table_name (...) PARTITIONED BY (created_day STRING);`
+    2. create transactional table: `tblproperties("transactional"="true")`
+    3. alter table name: `alter table pica.dwd_study_course rename to dwd_study_dim_course`
+6. Grant
+    1. `show grants for RAM$wuxiventures:user_name`
+    2. read table
+
+        ```sql
+        use pica;
+        grant CreateInstance, List ON PROJECT pica TO user RAM$wuxiventures:user_name;
+        grant select ON table picalog_trace_app_part TO user RAM$wuxiventures:user_name;
+        ```

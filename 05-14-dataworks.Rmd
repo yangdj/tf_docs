@@ -1,0 +1,56 @@
+# Dataworks
+
+1. 数据源
+    1. 创建工作空间: [URL](https://di2-cn-shanghai.data.aliyun.com/)
+    2. 选择工作空间创建数据源
+	    1. hive
+	    	1. 连接串模式
+	    		1. HIVE JDBC URL: jdbc:hive2://172.19.137.130:10000
+	    		2. 元数据类型: Hive MetaStore
+	    		3. HIVE版本: 如果是CDH, 版本选带CDH的
+	    		4. metastoreUris: thrift://172.19.137.127:9083
+	    2. OSS
+	    	1. Endpoint: http://oss-cn-shanghai.aliyuncs.com
+	    	2. Bucket: pica-dataworks
+	    	3. AccessKey ID
+	    	4. AccessKey Secret
+2. 标准模式
+    1. 流程
+        1. 开发环境编辑, 无法修改生产环境代码
+        2. 提交任务会进入开发环境调度系统, 不会自动调度, 仅作为冒烟测试使用
+        3. 如果需要自动调度任务，需发布至生产环境
+        4. 发布任务前, 需要项目管理员或运维角色的成员审批通过, 才能发布成
+    2. 开发配置
+        5. 调度资源组
+        6. 重跑属性: 运行成功后不可重跑, 运行失败后可重跑
+            1. 重跑次数: 2次
+            2. 重跑间隔: 5分钟
+        7. 提交备注
+            1. pica_trade库同步开始节点
+            2. ods_picatrade_trade_order同步任务
+            3. pica_trade库同步结束节点
+3. 角色
+    1. 开发角色: 所绑定MaxCompute项目(dev环境)的Role_Project_Dev Role进行了映射
+        1. 能够读取MaxCompute项目(dev环境)内的所有数据
+        2. 由于没有和MaxCompute项目(PROD环境)的role映射，因此默认情况下DataWorks开发角色无MaxCompute(PROD环境)的数据权限
+4. 命名
+    1. ods表名: ods_dbname_table_name, 库名不包含分隔符, 如pica_trade库名称改为picatrade 
+    2. 同步表时新增同步数据时间: `now() <-> sync_time DATETIME COMMENT '数据同步时间'`
+5. 任务
+    1. 参数
+        1. `${yyyy-mm-dd}`: 业务日期，当前日期前一天
+        2. `$[yyyy-mm-dd]`: 当前日期
+    2. Schema
+        1. parquet: `message: {optional binary log_date;optional INT32 project_id;}`
+            1. format: `message: {optional binary log_date;optional INT32 project_id;}`
+            2. type mapping
+
+                | parquet | hive      |
+                | ------- | --------- |
+                | BINARY  | STRING    |
+                | BOOLEAN | BOOLEAN   |
+                | DOUBLE  | DOUBLE    |
+                | FLOAT   | FLOAT     |
+                | INT32   | INT       |
+                | INT64   | BIGINT    |
+                | INT96   | TIMESTAMP |

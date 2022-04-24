@@ -64,6 +64,8 @@ Virtual environment:
 7. `conda remove --name vtl-name --all`: remove environment
 8. `conda config --append channels conda-forge` - adds new channel when "packages not available ..."
 
+**Use Anoconda Prompt to execute when faild in cmd environment**
+
 Package management:
 
 1. `conda install pkg(=1.1.1)`

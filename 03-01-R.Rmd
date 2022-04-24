@@ -589,17 +589,19 @@ References:
     ```
 
 * MariaDB/MySQL
+    * Linux
 
-    ```bash
-    # MySQL
-    wget https://dev.mysql.com/get/Downloads/Connector-ODBC/8.0/mysql-connector-odbc-8.0.14-1.el7.x86_64
-    rpm rpm -ivh mysql-connector-odbc-8.0.14-1.el7.x86_64.rpm
-
-    # MariaDB (recommended)
-    wget https://downloads.mariadb.com/Connectors/odbc/connector-odbc-3.0.8/mariadb-connector-odbc-3.0.8-ga-rhel7-x86_64.tar.gz
-    tar xf mariadb-connector-odbc-3.0.8-ga-rhel7-x86_64.tar.gz
-    cp lib64/libmaodbc.so /usr/lib64/
-    ```
+        ```bash
+        # MySQL
+        wget https://dev.mysql.com/get/Downloads/Connector-ODBC/8.0/mysql-connector-odbc-8.0.14-1.el7.x86_64
+        rpm rpm -ivh mysql-connector-odbc-8.0.14-1.el7.x86_64.rpm
+    
+        # MariaDB (recommended)
+        wget https://downloads.mariadb.com/Connectors/odbc/connector-odbc-3.0.8/mariadb-connector-odbc-3.0.    8-ga-rhel7-x86_64.tar.gz
+        tar xf mariadb-connector-odbc-3.0.8-ga-rhel7-x86_64.tar.gz
+        cp lib64/libmaodbc.so /usr/lib64/
+        ```
+    * [Windows](https://dev.mysql.com/downloads/connector/odbc/)
 
 * PostgreSQL
     * Linux: `yum install postgresql-odbc`
@@ -617,6 +619,8 @@ References:
     * [Microsoft Hive ODBC](https://www.microsoft.com/en-us/download/details.aspx?id=40886)
 
         When defines DNS, setting "Advanced Options" -> "Unicode SQL character type" if chinese characters do not display normally.
+* [Impala](https://www.cloudera.com/downloads/connectors/impala/odbc/2-6-5.html)
+    * Windows: `DSN -> Advanced Options -> Use SQL Unicode Types`
 
 ### Connections {-}
 

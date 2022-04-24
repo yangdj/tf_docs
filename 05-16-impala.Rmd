@@ -1,0 +1,5 @@
+# Impala
+
+1. Functions
+    1. `regexp_replace('123', '.(.)|.', '\1*')`
+    2. `regexp_like('abc', 'a|b')`
