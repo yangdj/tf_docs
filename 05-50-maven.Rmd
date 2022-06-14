@@ -1,0 +1,26 @@
+# Maven
+
+1. Settings
+    1. path:
+        1. global: `MVN_HOME/conf/settings.xml`
+        2. user: `$HOME/.m2/settings.xml`
+    2. contents
+        1. add new mirros
+
+            ```xml
+            <mirrors>
+                <mirror>
+                  <id>aliyun</id>
+                  <mirrorOf>central</mirrorOf>
+                  <name>aliyun</name>
+                  <url>https://maven.aliyun.com/repository/public</url>
+                </mirror>
+                <mirror>
+                  <id>huaweicloud</id>
+                  <name>mirror from maven huaweicloud</name>
+                  <mirrorOf>central</mirrorOf>
+                  <url>https://repo.huaweicloud.com/repository/maven/</url>
+                </mirror>
+                ...
+            </mirrors>
+            ```

@@ -1,24 +1,30 @@
 # Idea
 
 1. Settings
-    1. Code
+    1. Editor
         1. File Encoding: `Editor/File Encoding: UTF-8`
         2. Line Separator: `Editor/Code Style/Line separator: \n`
-    2. Shortcuts
-        1. `Ctrl + N`: next item
-        2. `Ctrl + P`: previous item
-        3. `Ctrl + click`: jump to definition
-        4. `Ctrl + Shift + N`: open file
-        5. `Ctrl + Alt + L`: format code
-        6. `Ctrl + /`: line comment
-        7. `Ctrl + Shift + /`: block comment
-    3. Imports: `Code Style.java.Imports`
+    2. Imports: `Code Style.java.Imports`
         1. `Class count to use import with '*': 500`
         2. `Names count to use static import with '*': 500`
-2. Plugins
+    3. Maven mirrors
+        1. `Build Tools -> Maven -> User settings file`
+    4. Run
+        1. add command line arguments: `Run -> Edit Configurations -> select Application -> Program Arguments`
+2. Shortcuts
+    1. `Ctrl + N`: next item
+    2. `Ctrl + P`: previous item
+    3. `Ctrl + Click`: jump to definition
+    4. `Ctrl + Shift + N`: open file
+    5. `Ctrl + Alt + L`: format code
+    6. `Ctrl + /`: line comment
+    7. `Ctrl + Shift + /`: block comment
+    8. `Alt + Ins`: insert dependencie
+    9. `Ctrl + H`: show type hierarchy
+3. Plugins
     1. IdeaVim
         1. `~/.ideavimrc`
-3. Project
+4. Project
     1. Notes
         1. `Command line is too long`
 
@@ -28,7 +34,8 @@
             <property name="dynamic.classpath" value="true" />`
             </component>
             ```
-    2. Scala
+    2. Run output not work in Vim mode: select some output, then works
+    3. Scala
         1. download scala plugin
         2. may need `Add Framework Support for scala` when not see `Scala Class` creating scala class file, just right clproject oolder
         3. build sbt

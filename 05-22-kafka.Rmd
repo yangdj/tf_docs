@@ -5,26 +5,13 @@
     2. [Kafka Connectors](https://www.confluent.io/product/connectors/)
     3. [Kafka Connector REST API](https://docs.confluent.io/3.0.0/connect/userguide.html)
     4. [Debezium for MySQL Properties](https://debezium.io/documentation/reference/connectors/mysql.html#mysql-connector-properties)
-2. Usage
-    1. Capabilities
-        1. to **publish** (write) and **subscribe** to (read) streams of events
-        2. to **store** streams of events durably and reliably for as long as you want
-        3. to **process** streams of events as they occur or retrospectively
-    2. Functions
-        1. distributed
-        2. high available
-        3. high scalable
-        4. high throughout
-        5. high performance
-        6. fault-tolerant
-        7. secure manner
-3. Concepts
-    1. Architect
-        1. Servers
-            1. Broker: storage layer
-            2. Connector: import and export data as event streams to integrate Kafka with existing systems
-        2. Clients: talk to Kafka servers
-    2. Event: also called record or message, record data happened
+    5. [Understand Kafka as if you had designed it — Part 1](https://towardsdatascience.com/understanding-kafka-as-if-you-had-designed-it-part-1-3f9316cb8fd8)
+    6. [Understanding Kafka as If You Had Designed It — Part 2](https://towardsdatascience.com/understanding-kafka-as-if-you-had-designed-it-part-2-33d0d24c79f1)
+2. Concepts
+    1. Broker: storage layer
+    2. Connector: import and export data as event streams to integrate Kafka with existing systems
+    3. Clients: talk to Kafka servers
+    4. Event: also called record or message, record data happened
         1. Structure
             1. events: organized and durably stored in *topics*, similar to a folder in a filesystem, and the events are the files in that folder
             2. topics:
@@ -39,7 +26,85 @@
             2. value
             3. timestamp
             4. headers: optional
-4. Connectors
+3. Install
+    1. [download](https://mirrors.tuna.tsinghua.edu.cn/apache/kafka/)
+    2. set `KAFKA_HOME=kafka_2.12-2.8.1` 
+4. Service
+    1. standalone
+        1. start zookeeper: `bin/zookeeper-server-start.sh config/zookeeper.properties`
+            1. `-daemon`
+        2. stop zookeeper: `bin/zookeeper-server-stop.sh config/zookeeper.properties`
+        3. start kafka: `bin/kafka-server-start.sh config/server.properties`
+        4. stop kafka: `kafka-server-stop.sh <config/server.properties>`
+    2. cluster
+        1. start and stop every host
+    3. topics
+        1. list: `bin/kafka-topics.sh --list --bootstrap-server localhost:9092`
+        2. describe: `bin/kafka-topics.sh --describe --topic quickstart-events --bootstrap-server localhost:9092`
+        3. create: `bin/kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092`
+            1. `--partitions <num>`
+        4. delete: `bin/kafka-topics.sh --delete --topic quickstart-events --bootstrap-server localhost:9092`
+    4. events
+        1. produce: `bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092`
+        2. consume: ` bin/kafka-console-consumer.sh --topic quickstart-events --from-beginning --bootstrap-server localhost:9092`
+        3. view group consume
+            1. list groups: `kafka-consumer-groups.sh --bootstrap-server localhost:9092 --list`
+            2. one group: `kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group group1`
+            3. all group: `kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --all-groups`
+    5. delete local data and topics events: `rm -rf /tmp/kafka-logs /tmp/zookeeper`
+    6.  connectors
+        1. standalone: `connect-standalone.sh <config/connect-standalone.properties> <connector1.properties> [<connector2.properties]`
+        2. cluster: `connect-distributed.sh [-daemon] <config/connect-distributed.properties>`
+5. Configurations
+    1. `config/server.properties`
+        1. `broker.id=1`: the id of broker, must be unique integer for each broker
+        2. `listeners=PLAINTEXT://host:9092`: listen port for client connecting, `[default: 9092]`
+        3. `log.dirs=/path/1,/path/2`: where to store log files
+        4. `zookeeper.connect=zoo1:2181,zoo2:2181...`: connect to zookeeper
+        5. `num.partitions=2`: partitions per topic. more partitions allow greater parallelism for consumption, but result in more files across the brokers
+    2. `config/connect-distributed.properties`
+        1. `bootstrap.servers=host1:9092,host2:9092`: any available broker is enough
+        2. `group.id=connect-cluster`: unique name for the cluster, used in forming the connect cluster group, must not conflict with consumer group IDs
+        3. `key.converter=org.apache.kafka.connect.json.JsonConverter`: default
+        4. `value.converter=org.apache.kafka.connect.json.JsonConverter`: default
+        5. `key.converter.schemas.enable=false`: `[default: true]`
+        6. `value.converter.schemas.enable=false`: `[default: true]`
+        7. `offset.flush.interval.ms=10000`
+        8. `rest.port=8083`: `[default: 8083]`
+        9. `plugin.path=/usr/local/share/java,/usr/local/share/kafka/plugins,/opt/connectors`: set additional connector jar path
+        10. config storage
+            1. Notes
+                1. `[default: connect-configs]`
+                2. should be a single partition
+                3. highly replicated, compacted, 3 or more, no more than broker numbers
+            2. Settings
+                1. `config.storage.topic=connect-configs`
+                2. `config.storage.replication.factor=1`: for one broker
+            3. Commands
+                1. `kafka-topics.sh --create --topic connect-configs --bootstrap-server hpmaster:9092 --partitio --replication-factor 2 --config cleanup.policy=compact`
+        11. offset storage
+            1. Notes
+                1. `[default: connect-offsets]`
+                2. should be multiple partition
+                3. replicated, compact, no more than broker numbers
+            2. Settings
+                1. `offset.storage.topic=connect-offsets`
+                2. `offset.storage.replication.factor=1`: for one broker
+                3. `offset.storage.partitions=25`
+            3. Commands
+                1. `kafka-topics.sh --create --topic connect-offsets --bootstrap-server hpmaster:9092 --partition --replication-factor 2 --config cleanup.policy=compact`
+        12. status storage
+            1. Notes
+                1. `[default: connect-status]`
+                2. should be multiple partition
+                3. replicated, compact, no more than broker numbers
+            2. Settings
+                1. `status.storage.topic=connect-offsets`
+                2. `status.storage.replication.factor=1`: for one broker
+                3. `status.storage.partitions=5`
+            3. Commands
+                1. `kafka-topics.sh --create --topic connect-status --bootstrap-server hpmaster:9092 --partition --replication-factor 2 --config cleanup.policy=compact`
+6. Connectors
     1. Command
         1. list connectors: `curl -X GET http://ip:port/connectors`: port `[default:8083]`
         2. crerate new connector: `curl -X POST -H "Content-Type:application/json" --data @mysql.properties.json http://hpmaster:8083/connectors`
@@ -88,7 +153,7 @@
                     2. `when_needed`
                     3. `never`: need the binlog contains all the data about table including DDL statements, otherwise cause an error `Encountered change event for table some_db.some_table whose schema isn't known to this connector`
                     4. `schema_only`: capture the current schema of the database, and then start reading the binlog at the latest position(most recent change), **suit for merging with history data**
-                    5. `schema_only_recovery`: use this to recovery when `schema_only` canse an error
+                    5. `schema_only_recovery`: use this to recovery when `schema_only` causes an error
             2. Topics
                 1. `<database.history.kafka.topic>`: record DDL operations (SQL and binlog position)
                 2. `<database.server.name>`: DDL topic

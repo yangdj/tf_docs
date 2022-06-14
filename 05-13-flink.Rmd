@@ -5,6 +5,13 @@
         1. java
     2. download: [flink](https://mirrors.tuna.tsinghua.edu.cn/apache/flink/)
     3. service
-        1. start: `./bin/start-cluster.sh`
+        1. start with default port 8081: `./bin/start-cluster.sh`
         2. stop: `/bin/stop-cluster.sh`
         3. submit: `flink run hello.jar`
+            1. `-Dexecution.runtime-mode={STREAMING<defualt>, BATCH, AUTOMATIC}`
+2. Start
+    1. quickstart: `mvn archetype:generate -DarchetypeGroupId=org.apache.flink -DarchetypeArtifactId=flink-quickstart-java -DarchetypeVersion=1.14.4`
+    2. run including **provided** dependencies: `Run > Edit Configurations > Modify options > Select include dependencies with "Provided" scope`
+3. Connector
+    1. kafka: `flink-connector-kafka_2.12`
+

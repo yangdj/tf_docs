@@ -1,223 +1,686 @@
 # Python
 
-## Environment Management
+1. Environment Management
+    1. venv
+        1. create virtual environment: `python3 -m venv virtual-name`
+        2. remove virtual environment: `rm -rf virtual-name/`
+        3. activate virtual environment: `source virtual-name/bin/activate`
+        4. quit the environment: `deactivate`
+    2. conda
+        1. version info: `conda --version`
+        2. update: `conda update conda`
+        3. list all environments: `conda info --envs`
+        4. create virtual environment: `conda create --name vtl-name python=3.5`
+        5. activate virtual environment: `conda activate vtl-name`
+        6. quit virtual environment: `conda deactivate`
+        7. remove virtual environment: `conda remove --name vtl-name --all`
+        8. add new channel when `packages not available`: `conda config --append channels conda-forge`
+        9. **Use Anoconda Prompt to execute when faild in cmd environment**
+2. Package Management
+    1. conda
+        1. `conda list pkg`
+        2. `conda search pkg`
+        3. `conda install pkg(=1.1.1)`
+        4. `conda remove pkg`
+        5. `conda update pkg`
+    2. pip
+        1. Configuraton
+            1. `~/.pip/pip.conf`: for Linux and OSX
+            2. `~\pip\pip.ini`: for Windows
 
-### venv {-}
-
-`venv` module can be used to create virtual environment.
-
-1. create virtual enviromeng
-
-    ```sh
-    python3 -m venv virtual-name
-    ```
-
-2. activate virtual environment
-
-    ```sh
-    source virtual-name/bin/activate; .virtual-name\scripts\activate
-    ```
-
-3. quit the environment
-
-    ```sh
-    deactivate
-    ```
-
-### pip {-}
-
-`pip` is used to manage packages.
-
-Configuration:
-
-* `~/.pip/pip.conf`: for Linux and OSX
-* `~\pip\pip.ini`: for Windows
-
-```ini
-[global]
-index-url = https://pypi.tuna.tsinghua.edu.cn/simple
-[install]
-trusted-host = https://pypi.tuna.tsinghua.edu.cn
-```
-
-Commands:
-
-1. `pip install package`
-2. `pip uninstall package`
-3. `pip install --upgrade package`
-4. `pip list package`
-5. `pip show package`
-6. `pip search package`
-7. `pip freeze > requirements.txt`
-8. `pip install -r requirements.txt`
-
-### Conda {-}
-
-Virtual environment:
-
-1. `conda --version`
-2. `conda update conda`
-3. `conda create --name vtl-name python=3.5`
-4. `conda activate vtl-name`
-5. `conda activate, conda deactivate`: switch back to default environment (base)
-6. `conda info --envs`: list all environments
-7. `conda remove --name vtl-name --all`: remove environment
-8. `conda config --append channels conda-forge` - adds new channel when "packages not available ..."
-
-**Use Anoconda Prompt to execute when faild in cmd environment**
-
-Package management:
-
-1. `conda install pkg(=1.1.1)`
-2. `conda remove pkg`
-3. `conda update pkg`
-4. `conda list pkg`
-5. `conda search pkg`
-
-## Jupyter Deploy
-
-### Package Dependent {-}
-
-1. ipython
-2. line_profiler
-3. numpy
-4. matplotlib
-5. pandas
-6. jupyter
-7. scipy
-8. scikit-learn
-9. seaborn
-10. tensorflow
-11. keras
-
-### Environment Variable {-}
-
-```sh
-export IPYTHONDIR=~/.ipython - default value
-export MPLCONFIGDIR=~/.config/matplotlib - default value
-export JUPYTER_CONFIG_DIR=~/.jupyter - default value
-```
-
-### ipython {-}
-
-Commands:
-
-1. `ipython profile create <name>`: create configuration file under `$IPYTHONDIR `
-2. `ipython profile locate`
-3. `ipython profile list`
-
-Configuration: 
-
-```python
-# ${IPYTHONDIR}/profile_default/ipython_config.py
-c.InteractiveShellApp.extensions = ["line_profiler"]
-c.InteractiveShellApp.exec_lines = [
-import numpy as np
-import pandas as pd
-]
-```
-
-### matplotlib {-}
-
-Font install
-
-```sh
-mkdir -p /usr/share/fonts/STSong 
-mv STSONG.ttf /usr/share/fonts/STSong
-mkfontscale 
-mkfontdir 
-fc-cache -fv
-
-cp STSONG.ttf site-packages/matplotlib/mpl-data/fonts/ttf
-rm -rf ${MPLCONFIGDIR}/{fontList.json,tex.cache}
-rm -rf ~/.cache/matplotlib - if exists
-```
-
-Configuration
-
-```
-# ${MPLCONFIGDIR}/matplotlibrc
-font.family: STSong
-axes.unicode_minus: False
-```
-
-### jupyter {-}
-
-Commands:
-
-1. `juypter notebook --generate-config`: generate config file in directory `${JUPYTER_CONFIG_DIR}`
-2. `jupyter notebook --no-browser --port=5000 --ip=0.0.0.0`: default port 8888
-3. `jupyter notebook password`:  set jupyter login password, or use the following method
-4. `python -c "from notebook.auth import passwd; print(passwd('jupyter'))"`
-
-Configuration
-
-```python
-# ${JUPYTER_CONFIG_DIR}/jupyter_notebook_config.py
-import os                                                                                 
-import sys                                                                                
-                                                                                          
-#  for Mac, set browser value definitely; otherwise jupyter will not open browser automatically                                 
-if sys.platform == "darwin":                                                              
-    c.NotebookApp.browser = "Safari"
-                                                    
-c.NotebookApp.notebook_dir = "/server/proj/py-lrn"
-#c.NotebookApp.password = "sha1:9e799b2236aa:01085662782c7813128637089192f836901b196d"
-```
-
-ipython-notebook.service
-
-```ini
-# /usr/lib/systemd/system/ipython-notebook.service
-[Unit]
-Description=Jupyter Notebook Server
-
-[Service]
-Type=simple
-Environment="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib"
-Environment="PATH=/usr/local/bin:/usr/bin:$PATH"
-ExecStart=/server/proj/.env/py-lrn/bin/jupyter notebook --ip=0.0.0.0 --no-browser                                                   
-User=yang
-Group=yang
-
-[Install]
-WantedBy=multi-user.target
-```
-
-## Database {#py-db}
-
-1. MySQL
-    * `pymysql`
-    * `mysqlclient`
-2. PostgreSQL
-    * `psycopg2-binary`
-3. SQLServer
-    * `pymssql`
-    * dependencies
-        * `freetds-devel`: for `sqlfont.h`
-        * `unixODBC-devel`: for sql.h
-        * `C_INCLUDE_PATH`: search `sql.h` and other header files
-
-        ```sh
-        yum install freetds-devel unixODBC-devel
-        export C_INCLUDE_PATH=/usr/include
+        ```ini
+        [global]
+        index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+        [install]
+        trusted-host = https://pypi.tuna.tsinghua.edu.cn
         ```
-4. Hive
-    * `pyhive[hive]`
-    * dependencies
-        * `thrift-sasl`: when meets "TSaslClientTransport' object has no attribute 'readAll'"
+        1. Commands
+            1. `pip install package`
+            2. `pip uninstall package`
+            3. `pip install --upgrade package`
+            4. `pip list package`
+            5. `pip show package`
+            6. `pip search package`
+            7. `pip freeze > requirements.txt`
+            8. `pip install -r requirements.txt`
+3. Common Packages
+    1. Databases
+        1. MySQL
+            1. `pymysql`
+            2. `mysqlclient`
+        2. PostgreSQL: `psycopg2-binary`
+        3. SQLServer
+            1. `pymssql`
+            2. dependencies
+                1. `freetds-devel`: for `sqlfont.h`
+                2. `unixODBC-devel`: for sql.h
+                3. `C_INCLUDE_PATH`: search `sql.h` and other header files
+        
+                ```sh
+                yum install freetds-devel unixODBC-devel
+                export C_INCLUDE_PATH=/usr/include
+                ```
+        4. Hive
+            1. `pyhive[hive]`
+            2. dependencies
+                * `thrift-sasl`: when meets `TSaslClientTransport' object has no attribute 'readAll'`
+        
+                ```sh
+                yum install cyrus-sasl-devel cyrus-sasl-plain thrift-sasl
+                ```
+        5. SQLAlchemy
+            1. connection string: `prefix://username:password@host:port/databasename?parameter=value`
+            2. prefix:
+                1. MySQL: `mysql+pymysql`
+                    1. parameters: `charset=utf8`
+                2. PostgreSQL: `postgresql+psycopg2`
+                3. SQLServer: `mssql+pymssql`
+    2. Data Processing
+        1. ipython
+            1. `ipython profile create <name>`: create configuration file under `$IPYTHONDIR `
+            2. `ipython profile locate`
+            3. `ipython profile list`
+        2. numpy
+        3. pandas
+        4. line_profiler
+    3. visualization
+        1. matplotlib
+        2. seaborn
+    4. ML
+        1. scipy
+        2. scikit-learn
+        3. tensorflow
+        4. keras
+    5. Tools
+        1. jupyter
+            1. commands
+                1. `juypter notebook --generate-config`: generate config file in directory `${JUPYTER_CONFIG_DIR}`
+                2. `jupyter notebook --no-browser --port=5000 --ip=0.0.0.0`: default port 8888
+                3. `jupyter notebook password`:  set jupyter login password, or use the following method
+                4. `python -c "from notebook.auth import passwd; print(passwd('jupyter'))"`
+            2. configurations
+                1. `${JUPYTER_CONFIG_DIR}/jupyter_notebook_config.py`
 
-        ```sh
-        yum install cyrus-sasl-devel cyrus-sasl-plain thrift-sasl
+                    ```python
+                    # ${JUPYTER_CONFIG_DIR}/jupyter_notebook_config.py
+                    import os                                                                                 
+                    import sys                                                                                
+                                                                                                              
+                    #  for Mac, set browser value definitely; otherwise jupyter will not open browser automatically                                 
+                    if sys.platform == "darwin":                                                              
+                        c.NotebookApp.browser = "Safari"
+                                                                        
+                    c.NotebookApp.notebook_dir = "/server/proj/py-lrn"
+                    #c.NotebookApp.password = "sha1:9e799b2236aa:01085662782c7813128637089192f836901b196d"
+                    ```
+                2. `ipython-notebook.service`
+
+                    ```ini
+                    # /usr/lib/systemd/system/ipython-notebook.service
+                    [Unit]
+                    Description=Jupyter Notebook Server
+                    
+                    [Service]
+                    Type=simple
+                    Environment="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib"
+                    Environment="PATH=/usr/local/bin:/usr/bin:$PATH"
+                    ExecStart=/server/proj/.env/py-lrn/bin/jupyter notebook --ip=0.0.0.0 --no-browser                                                   
+                    User=yang
+                    Group=yang
+                    
+                    [Install]
+                    WantedBy=multi-user.target
+                    ```
+4. Syntax
+    1. Variable
+        1. `[a-zA-Z0-9]` and other unicode characters
+        2. the first character should be digits, `[0-9]`
+        3.  case sensitive
+        4.  should not be keywords, that name can be with a trailing underscore `_`, `class_`
+    2.  Keywords
+        1. `help("keywords")`: list keywords
+    3.  Naming Conventions
+        1. never use the character `l` (lower case `L`, like one), `O` (like zero), `I` as single variable names
+        2. use ASCII-only characters and English words whenever feasible
+        3.  underscore notation
+            1. variable
+            2. function
+    4. Operators
+        1. `+, -, * /, %`
+        2. `//`: floor division
+        3. `**`: exponentiation, `3 ** 2 => 9`
+        4. `+x, -x`: unary plus or minus number, `+3, -3`
+        5. `~x`: bitwise negation
+        6. `&, |, ^`: bitwise And, Or, XOR
+        7.  `<, <`: shift left, right
+        8.  `>, >=, <, <=, ==, !=`: comparision
+        9.  `and, or, not`: boolean And, Or, Not
+        10. `in`: element of
+        11. `=, +=, -=, *=, /=, ...`
+    5. Controls
+        1. Conditional Statement: `if: ... elif: ... else: ...`
+        2. Loops
+            1. `while conditin: ... else: ...`
+            2. `for a in c: ... else: ...`
+        3. break: exit the loop. If a loop is left by `break`, the `else` part is not executed
+        4. continue: stop currrent iteration and start then next iteration by checking the condition
+    6. Input & Output
+        1. console
+            1. `input()`
+            2. `print()`
+        2. file
+            1. `f = open(file, mode)`
+                1. `r`: read file in text mode
+                2. `rb`: read file in binary mode
+                3. `w`: writing, truncate the file if it already exists
+                4. `a`: append to the file
+            2. `f.read(n=None)`: read file into a one string object
+            3. `f.readline()`: read one line
+            4. `f.readlines()`: return all lines to a list
+            5. `f.write(str)`: write string to the file
+            6. `f.close()`
+            7. `f.tell()`: tell the position of the current stream
+                1. `0`: at the first character of the file
+            8. `f.seek(offset, start=0)`: move to specified position, for start value
+                1. `0`: beginning of the file
+                2. `1`: the current position for binary reading
+                3. `2`: the end of file for binary reading
+    7.  Function:
+        1. Definition: use `def` to define a function with a name
+        1. Parameters:
+            1. can be empty when defined
+            2. can be positional or keyword, `f(1, 2, a=3, b=4)`
+            3. can have default value when defined, `__defaults__` is created
+            4. `*args`: arbitrary number of parameters. `*` in the front of the last positional parameter name denote it as a tuple reference, `args` is a tuple
+            5. `**kwargs**`: arbitrary number of keyword parameters. `kwargs` is a dict
+        2. Body
+            1. Return
+                1. `None` will return when no return used, or just return without an expression
+                2. `return expr` will return `expr` value
+                3. `return` will stop the function
+                4. `return (a, b)` can return multiple values using tuple, list or other types
+            2. Side Effect: in addition to produce a return value, the function modifies the caller's environment in other ways, including:
+                1. modify a global or static variable
+                2. modify one of its arguments
+                3. raise an exception
+                4. write data to a display or file
+                5. ...
+            3. Variable Scope: variable names are by default local to the function
+                1. `global`: made the vairable global, not local
+                2. `nonlocal`: a nonlocal variable has to be defined in the enclosing function scope
+                3. a variable can't be both local and global, otherwise `UnboundLocalError` will be raised
+    5.  Modules: Every file with file extension `.py` and proper python code can be seen or is a module.
+        1. import: all objects in the module can be accessed using `import`:
+            1. `import math`: import a module
+            2. `import math as mathematics`: import a module with a new na
+            3. `import math, random`: import mutiple mudul
+            4. `from math import pi, sin`: import certain objects of a modu
+            5. `from math import pi, pow as power, sin as sinus`: import objects with a new na
+            6. `from math import *`: import everything from a module, except those beginning with an underscore `_`, not recommended, possible for interactive sessions
+        2. Search Path: modules should be on search path when import
+            1. the directory where the file is executed
+            2. `PYTHONPATH` environmental variable when set
+            3. standard installation path
+        3.  Reload: every module can only be imported once per interpreter session or in a program. Restart the interpreter or reload the module again when some code modified
+            1. `from importlib import reload; reload(a_module)`: python3.4+
+            2. `from imp import reload; reload(a_module)`: python3+, deprecated since 3.4
+            3. `reload(a_module)`: python2
+        4.  `__name__`: a module can be run as a script as if it had been imported, with exception that its `__name__` set to `__main__`
+    6. Packages
+        1. A package is basically a directory with python files and a file with the name `__init__.py`, which can be empty or contains valid code. It structures module namespace using **dotted modules names**. `A.B` stands for a submodule named `B` in a package named `A`.
+        2. An `__all__` list in the `__init__.py` can list module and packages names to be imported when import a package using `*` in the form `from package import *`.
+    7. Exception
+        1. `try except`: start an exception handling
+        2. `else`: optional after all the exceplt clauses, executed if try clause does not raise an exception
+        3. `finally`: clean-up or termination clauses, they must be executed under all circumstances, whether an exception occurred or not
+        4. `raise`: raise an exception, when just raise, the exception will be thrown again
+    
+        ```python
+        try:
+            statement_1
+            ...
+        except IOError as e:
+            statement_1
+            ...
+        except ValueError:
+            statement_1
+            ...
+        except (NameError, TypeError):
+            statement_1
+            ...
+        except:
+            statement_1
+            ...
+        else:
+            statement_1
+            ...
+        finally:
+            statement_1
+            ...
         ```
-5. SQLAlchemy
-    * connection string: `prefix://username:password@host:port/databasename?parameter=value`
-    * prefix:
-        * PostgreSQL: `postgresql+psycopg2`
-        * MySQL: `mysql`
-        * SQLServer: `mssql+pymssql`
-    * parameter:
-        * MySQL: `charset=utf8`
+    8. Iterable & Iterator
+        1. Iterable: object can be used in `for loop` statement. It should have method `__iter__` which returns an iterator or `__getitem__` with sequential indexes starting with 0
+        2. Iterator: subset of iterable. It should have methods `__iter__` which returns itself and `__next__` which will be used when the  function `next()` is called. When a for loop is executed, the `for` statement calls `iter()` on the object. If successful, the `iter` will return an iterator that defines `__next__()`, which accesses elements of the object one at a time. the `__next__()` method will raise a `StopIteration` except if there are no further elements available. The `for` loop will terminate as soon as it catches a `StopIteration` exception.
+    
+        ```python
+        letters = ["A", "B", "C"]
+        for letter in letters:
+            print(letter)
+    
+        letters_iterator = iter(letters)
+        while True:
+            try:
+                letter = next(letters_iterator)
+                print(letter)
+            except StopIteration:
+                break
+        ```
+    9. Generator: A generator is a function returning a generator object which is also an iterator (not vice versa) producing values lazily. The advantage of generators consist in automatically creating methods `__iter__()` and `__next__()`. There are two types of generators:
+        1. generator function: use `yield` instead of `return` to produce values. If there is a `return` statement in the code of a generator, the execution will stop with a `StopIteration` exception
+        2. generator comprehension: use `()` similar to list comprehension
+    10. lambda: `lambda argument_list: expression`
+    11. Decorators
+        When define decorators, take into account that the attributes of origininal functions will be lost after the decoration
+        1. `__name__`
+        2.  `__doc__`
+        3.  `__module__`
+        it can be solved this way:
+
+        ```python
+        def greeting(func):
+            def function_wrapper(x):
+                """ function wrapper of greeting """
+                print("Hi " + func.__name__ + " returns:")
+                return func(x)
+            function_wrapper.__name__ = func.__name__
+            function_wrapper.__doc__ = func.__doc__
+            function_wrapper.__module__ = func.__module__
+            return function_wrapper
+        ```
+        or using `functools.wraps`:
+        ```python
+        from functools import wraps
+        def greeting(func):
+            @wraps(func)
+            def function_wrapper(x):
+                """ function wrapper of greeting """
+                print("Hi " + func.__name__ + " returns:")
+                return func(x)
+            return function_wrapper
+        ```
+        Class-based decorator should make the class callable, which has `__call__()` method:
+    
+        ```python
+        class Memoize:
+            def __init__(self, fn):
+                self.fn = fn
+                self.memo = {}
+    
+            def __call__(self, *args):
+                if args not in self.memo:
+                    self.memo[args] = self.fn(*args)
+                return self.memo[args]
+    
+        @Memoize # fib = Memoize(fib)
+        def fib(n):
+            if n == 0:
+                return 0
+            elif n == 1:
+                return 1
+            else:
+                return fib(n-1) + fib(n-2)
+    
+        fib(40)
+    
+        # the corresponding function-based way:
+        def memoize(f):
+            memo = {}
+            def helper(x):
+                if x not in memo:            
+                    memo[x] = f(x)
+                return memo[x]
+            return helper
+    
+        @memoize
+        def fib(n):
+            if n == 0:
+                return 0
+            elif n == 1:
+                return 1
+            else:
+                return fib(n-1) + fib(n-2)
+        ```
+1. Datatypes 
+    1. basic
+        1. bool: subclass of `int`
+            1. `True`
+            2.  `False`, following values will be considered as `False` value
+                1. `False`
+                2. `0`
+                3. `0.0`
+                4. `0j`
+                5. `""`
+                6. `()`
+                7. `[]`
+                8. `{}`
+                9. `None`
+        2. int: unlimited size in Python3, no `long` type as in Python2
+            1.  `1234`: normal integer, base 10
+            2.  `0b11`: binary, base 2, prefix by `0b` or `0B`
+            3.  `0o1234`: octal, base 8, prefix by `0o` or `0O`
+            4.  `0x1234`: hexadecimal, base 16, prefix by `0x` or `0X`
+        3. float: `1.0`
+        4. complex: `3+2j`
+        5. str
+            1. Properties
+                1. sequences of pure Unicode characters in Python3, no specific encoding like UTF-8
+                2. immutable
+            2. Represtentations
+                1. `"hello"`: double quotes
+                2. `'hello'`: single quotes
+                3. `"""hello"""`: triple double quotes
+                4. `'''hello'''`: triple single quotes
+                5. `r"hello"`: raw string, backslashes are not handleed in any special way, useful in REs processing for simplicity
+                6. `b"hello"`: bytes, see `bytes`
+            3.  Escaping: use backslash `\`
+                2. `\\`: backslash
+                3. `\'`: single quote
+                2. `\"`: double quote
+                3. `\a`: BEL, Bell
+                4. `\b`: BS, Backspace
+                5. `\t`: TAB
+                6. `\n`: LF, Linefeed
+                7. `\f`: FF, formfeed
+                8.  `\v`: VT, Vertical Tab
+                9.  `\r`: CR, Carrige Return
+                10. `\ooo`: octal value `ooo`
+                11. `\xhh`: hex value `hh`
+                12. `\uxxxx`: 16-bit hex value `xxxx` (Unicode only)
+                13. `\Uxxxxxxxx`: 32-bit hex value `xxxxxxxx` (Unicode only)
+                14. `\N{name}`: named `name` in Unicode database (Unicode only)
+            4.  Operations
+                1. `.upper()`
+                2. `.lower()`
+                3. `.replace()`
+                4. `.find()`
+                5. `.join()`
+                6. `.split()`
+                7. `m=str.maketrans("abc", "ABC")`
+                8. `.translate(m)`
+                9.  `.captalize()`
+                10. `.rstrip()`
+                11. `.ljust(width. fillchar= "")`
+                12. `.rjust(width. fillchar= "")`
+                13. `.center(width, fillchar=" ")`
+                14. `.zfill(width)`: pad a numeric string with zeros on the left, the string is never truncated
+                15. `.format(*args, **kwargs)`
+                    the string template contains one or more format codes (fields to be replaced) embedded in constant text. They are surrounded by `{}`. if a brace character has to be printed, it has to be escaped by doubling it, `{{`, `}}`, The format codes has structure `{index:[flags][options][width][.precision]type}`
+                    1. index: `{0}, {1}, {2}, ...; {}, {}, {}...; {a}`: for the first, second and ... in `args`, and keys in `kwargs`
+                    2. flags:
+                        1. `#`: used with type `o`, `x`, `X`, the value is preceded with `0o`, `0x`, `0X` respecitively
+                        2. `0`: zero padded for numeric values
+                        3. `-`: the converted value is left adjusted, blank spaces is inserted
+                        2. `+`: a sign `+` or `-` will preceded the conversion, overrides a space flag
+                        3. other padding character, should specify options
+                    3. options:
+                        1. `>`: right justify, default for numbers
+                        2. `<`: left justify: default for strings,
+                        1. `^`: center aligned 
+                        4. `0`: 0 will be padded for numbers
+                        5. `,`: use commas for a thousand separator
+                        6. `=`: force the padding to be placed after the sign (if any) and before the digits
+                    4. width: total number of string length, including decimal point
+                    5. precision: the number following decimal point
+                    6. type:
+                        1. `d`: decimal integer
+                        2. `i, u`: same as `d`
+                        2. `o`: octal
+                        3. `x, X`: hexadecimal
+                        4. `f, F`: float point
+                        6. `e, E`: floting point exponential format
+                        7. `g, G`: same as `e, E`, if exponent is greater than -4 or less than precision; otherwise `f, F` is used
+                        2. `c`: single character, accepts integer or single character string
+                        3. `r`: string from `repr()`
+                        10. `s`: string from `str()`
+                        11. `%`: percent number, when in `%` format, then just return `%` character
+                    
+                    Since Python3.6, `f""` sring literals is introduced:
+        
+                    ```python
+                    price = 11.23
+                    f"Price in Swiss Franks: {price * 1.086:5.2f}"
+                    ```
+        6. bytes
+            5. immutable
+            6.  a sequence of small integers. the elements are in the range 0 to 255
+            7.  printed as a sequence of ASCII characters
+            8. not possible to mix text and data in Python3, otherwise raise TypeError
+            9.  `"hello".encode("UTF-8"); b"hello"`
+            10. `b"hello".decode("UTF-8")`
+        7. bytearray
+            1. sequential
+            2. mutable
+        8. list:
+            1. Properties:
+                1. a sequence of elements, which can be arbitrary objects, and can be nested
+                2. mutable
+            2.  initialization
+                1. `s = []`: empty list
+                2. `s = [1, "hello", False]`: a list of mixed data types
+                3. `s = [1, [1, 2, 3]]`: a nested list
+            3.  operations
+                1. `.append()`: append object to the end of the list
+                2. `.pop(index=-1)`: remove and return element at index (default last)
+                3. `.insert(index, object)`: insert object before index
+                4. `.remove(value)`: remove the first occurrente of value
+                5. `.extend(iterable)`: extend list by appending elements from the iterable
+                6. `.clear()`: remove all items from list
+                7. `.copy()`: return a shallow copy of the list
+                8. `.count(value)`: return number of occurrences of value
+                9. `.index(value, start=0, stop=last)`: return the first index of value, raise ValueError if the value is not present
+                10. `.reverse()`
+                11. `.sort()`
+                12. `+`: not recommend for list, much slow, choose `.append()`, `.extend()`, or `+=`
+        9. tuple: like list, but immutable and faster
+            1.  Initialization
+                1. `s = ()`: empty tuple
+                2. `s = (1, "hello", False)`
+        10. dict:
+            1.  Properties
+                1. unordered
+                2. mutable
+                3. keys must be immutable data types
+            2.  Initialization
+                1. `d = {}; d = dict()`: an empty dict
+                2. `d = {"a": 10, "b": 20}; d = d(a=10, b=20)`
+                3. `dict(mapping)`
+                4. `dict(iterable)`
+            3.  Access: using keys
+                1. `d["a"]`
+                2. `d["a"] = 30`
+            4.  Methods
+                1. `.keys()`
+                2. `.values()`
+                3. `.items()`
+                4. `list(.keys()), list(.values()), list(.items())`: turn the result to list
+                5. `del d["a"]`: delete key "a" together with its value
+                6. `k in d; k not in d`
+                7. `.get(key, default=None)`
+                8. `.pop(key), .pop(key, default)`
+                9. `.copy()`: a shallow copy
+                10. `.clear()`: clear the dict, set it to empty
+                11. `.update(dict)`: merge and overwritten the objects with given dict
+        11. set
+            1.  Properties
+                1. unordered
+                2. mutable
+                3. elements are immutable and unique
+            2.  Initialization
+                1. `set(); {"a", "b", "c"}`: an empty set, `{}` creates an empty dict
+                2. `set(iterable)`
+            3.  Methods
+                1. `.add(el)`
+                2.  `.discard(el)`: an element removed from this set. If el is not in this set, nothing will be done
+                3.  `.remove(el)`: like `.discard()`, but a KeyError will be raised
+                4.  `.pop()`: remove and return an arbitray set element, a KeyError is raised if the set is empty
+                5. `.clear()`
+                6. `.copy()`: a shallow copy
+                7.  `.issubset(y); x <= y`:  True, if the object is a subset of y
+                8.  `x < y`: True if x is a proper set (真子集)of y
+                9.  `.issuperset(y); x >= y`: True, if the object is a superset of y
+                10. `x > y`: True if x is a proper superset of y
+                11. `.isdisjoint(y)`: return True if two sets have a null intersection
+                12. `.difference(y); x - y; x - y - z`: return difference of two or more sets as a new set, leaving the original set unchanged
+                13. `.difference_update(y)`: remove all elements of another set from this set
+                14. `.union(y); x | y`: return the union of two sets as a new set
+                15. `.intersection(y); x & y`: return the intersection of two sets as a new set
+        12. frozenset: like set, but immutable
+            1.  Initialization
+                1. `frozenset()`: an empty frozenset
+                2. `frozenset(iterable)`
+            2. common
+    2.  Collection: data contains several elements.
+        1.  `in, not in`: check if an element contained, `"hello" in s; "hello1" not in s`
+        2.  `len(s)`
+    3. Sequential: elements are ordered in a defined sequence and they can be accessed via indices. The sequence implements `getitem()` and `len()` method. Python starts from 0.
+        1.  `s[0]`: get the first element
+        2.  `s[-1]`: get the last element
+        3.  `s[-1]`: get the second last element
+        4.  `s[0][0]`: get the first element of first element
+        5.  `s[start:end]`: get from `s[tart]` to `start[end]`, except `start[end]`
+        6.  `s[start:end:step]`: get `s[start], s[start+1*step], ..., s[start+i*step]` where `start+i*step<end`
+        7.  `s[:]`: a shallow copy
+        8.  `len(s)`
+        9.  `+`: concatenate two sequence
+        10. `*`: repeat sequence n times
+    4. Mutable: whether the elements can be modified
+2. common functions
+    1.  builtins
+        1. `help()`
+        2. `input(prompt=None)`: read from standard input
+        3. `print(value, ..., sep=" ", end="\n", file=sys.stdout, flush=False)`: function in Pythone, while statement in Python2
+        4. `id()`: the identity of an object, memory address in CPython
+        5. `locals()`: return current scope's local variables
+        6. `type()`
+        7. `str()`
+        8. `len()`
+        9. `repr()`
+        10. `sorted()`
+        11. `range()`
+            1. `range(stop)`: return s, where 1 <= s < stop
+            2. `range(start, stop)`: return s, where start <= s < stop
+            3. `range(start, stop, step=1)`: return s where start<= s < end, with every step
+        12. `dir()`:
+            1. `dir()`: list names in the current local scope
+            2. `dir(math)`: list valid attributes and methods within the module `math`
+        13. `enumerate(a, start)`: `start` default 0, can be any integer
+        14. `zip(a, b)`
+        15. `ord()`: return the unicode code print for a one-character string
+        16. `chr()`: return a Unicode character from number, 0 <= i <= 0x10ffff
+        17. `int(x, base=10)`: `base=0` means to interpret the base from the string as an integer literal
+        18. `hex()`: convert a number to hexadecimal strings
+        19. `oct()`: conver to octal strings
+        20. `bin()`: convert to binary strings
+        21. `issubclass()`
+        22. `isinstance()`: `isinstance(True, int) => True`
+        23. `callable`: whether the object can be called
+        24. `hasattr()`
+        25. `getattr()`
+        26. `setattr()`
+        27. `class.__mro__`
+        28. `class.mro()`
+        29. `class.__bases__`
+        30. `self.__class__.__name__`
+        31. `self.__class__.__module__`
+        32. `map()`
+        33. `filter()`
+    2.  functools
+        1.  `functools.reduce()`
+    3.  locale
+        1. `locale.getpreferredencoding(False)`
+    4.  sys
+        1.  `sys.stdin`
+        2.  `sys.stdout`
+        3.  `sys.stderr`
+        4.  `sys.exit(1)`: exit program
+        5.  `sys.argv`:
+            1. `sys.argv[0]`: script name
+            2. `sys.argv[1]`: the first argument
+            3. `sys.argv[2], ...`: the second and so on argument
+        6.  `sys.path`: `module search path; path[0] is the script directory, else ''`
+        7.  `sys.prefix`
+        8.  `sys.platform`
+        9.  `sys.version_info`
+        10. `sys.version.[major, minor, micro]`
+        11. `sys.builtin_module_names`
+        12. `sys.getsizeof(): size of objects in bytes`
+        13. `sys.modules.get('multiprocessing')`
+        14. `sys.exc_info() => (etype, value, tb)`: `tb` now can be get from exception's `__traceback__` attribute since Python3
+    5.  traceback
+        1.  `traceback.extract_tb(tb)`: return a `FrameSummary` object, which have following attributes:
+            1. `filename`: filename for the frame
+            2. `lineno`: the line within the filename for the frame
+            3. `name`: function name or method executing when the frame was captured
+            4. `line`: the corresponding line source code with leading and trailing whitespace stripped
+            5. `locals`: local variables in the current frame
+        2.  `traceback.print_tb(tb)`
+        3.  `traceback.format_tb(tb)`: return with strings, not print the result
+        4.  `traceback.print_exception(etype, value, tb)`
+        5.  `traceback.format_exception(etype, value, tb)`
+        6.  `traceback.print_exc() <=> traceback.print_exception(*sys.exc_info())`
+        7.  `trackback.format_exc()`
+        8.  `traceback.extract_stack()`
+        9.  `traceback.format_stack()`
+        10. `traceback.print_stack()`
+    6.  os
+        1.  `os.environ`
+        2.  `os.fspath(filename)`
+        3.  `os.path.normcase(filename)`
+        4.  `os.path.abspath(__file__)`
+        5.  `os.path.dirname()`
+        6.  `os.path.basename(dirname)`
+        7.  `os.path.splitext(filename)`
+        8.  `os.path.join(dirname, filename)`
+        9.  `os.getpid()`
+    7.  math
+        1.  `math.pi`
+        2.  `math.e`
+        3. `math.sqrt()`
+        4. `math.sin()`
+        5. `math.cos()`
+        6. `math.tan()`
+        7. `math.pow()`
+    8.  time
+        1.  `time.time()`
+    9.  itertools
+        1.  `itertools.zip_longest(a, b)`
+    10. random
+        1. `random.random()`: return s, that 0 <= s < 1
+        2.  `random.randint(m, n)`: return s, m <= s <= n
+        3.  `random.choice(seq)`: return s from seq
+        4.  `random.sample(population, k)`: choose k unique random elements from a population sequence or set
+    11. thread
+        1.  `threading.RLock(); lock.acquire(); lock.release()`
+        2.  `threading.get_ident()`
+        3.  `threading.current_thread().name`
+    12. multiprocessing
+        1.  `multiprocessing.current_process().name`
+    13. string: a collection of string constants
+        1. `string.ascii_uppercase`: `'ABCDEFGHIJKLMNOPQRSTUVWXYZ'`
+        2. `string.ascii_lowercase`: `'abcdefghijklmnopqrstuvwxyz'`
+        3. `string.ascii_letters`: `ascii_lowercase + ascii_uppercase`
+        4. `string.digits`: `'0123456789'`
+        5.  `string.octdigits`: `'01234567'`
+        6.  `string.hexdigits`: `string.digits + 'abcdef' + 'ABCDEF'`
+        7.  `string.whitespace`: `' \t\n\r\v\f'`
+        8.  `string.punctuation`: `` r"""!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~""" ``
+        9.  `string.printable`: `string.digits + string.ascii_letters + string.punctuation + string.whitespace`
+    14. copy
+        1. `copy.deepcopy()`
+    15. dis
+        1. dis.dis()
+    16. urllib
+        1. `urllib.request.urlopen()`
 
 ## Ansible
 
@@ -1311,695 +1774,7 @@ cp airflow-*er.service /usr/lib/systemd/system/
     5. `-e, --export`: export variables to JSON file
     6. `-d, --default`: default value returned if variable do not exist
 
-## Base {#py-base}
 
-### Common Functions {-}
-
-1. builtins
-    1. `help()`
-    2. `input(prompt=None)`: read from standard input
-    3. `print(value, ..., sep=" ", end="\n", file=sys.stdout, flush=False)`: function in Pythone, while statement in Python2
-    4. `id()`: the identity of an object, memory address in CPython
-    5. `locals()`: return current scope's local variables
-    6. `type()`
-    7. `str()`
-    8. `len()`
-    9. `repr()`
-    10. `sorted()`
-    11. `range()`
-        1. `range(stop)`: return s, where 1 <= s < stop
-        2. `range(start, stop)`: return s, where start <= s < stop
-        3. `range(start, stop, step=1)`: return s where start<= s < end, with every step
-    12. `dir()`:
-        1. `dir()`: list names in the current local scope
-        2. `dir(math)`: list valid attributes and methods within the module `math`
-    13. `enumerate(a, start)`: `start` default 0, can be any integer
-    14. `zip(a, b)`
-    15. `ord()`: return the unicode code print for a one-character string
-    16. `chr()`: return a Unicode character from number, 0 <= i <= 0x10ffff
-    17. `int(x, base=10)`: `base=0` means to interpret the base from the string as an integer literal
-    18. `hex()`: convert a number to hexadecimal strings
-    19. `oct()`: conver to octal strings
-    20. `bin()`: convert to binary strings
-    21. `issubclass()`
-    22. `isinstance()`: `isinstance(True, int) => True`
-    23. `callable`: whether the object can be called
-    24. `hasattr()`
-    25. `getattr()`
-    26. `setattr()`
-    27. `class.__mro__`
-    28. `class.mro()`
-    29. `class.__bases__`
-    30. `self.__class__.__name__`
-    31. `self.__class__.__module__`
-    32. `map()`
-    33. `filter()`
-2.  functools
-    1.  `functools.reduce()`
-3. locale
-    1. `locale.getpreferredencoding(False)`
-4.  sys
-    1.  `sys.stdin`
-    2.  `sys.stdout`
-    3.  `sys.stderr`
-    4.  `sys.exit(1)`: exit program
-    5.  `sys.argv`:
-        1. `sys.argv[0]`: script name
-        2. `sys.argv[1]`: the first argument
-        3. `sys.argv[2], ...`: the second and so on argument
-    6.  `sys.path`: `module search path; path[0] is the script directory, else ''`
-    7.  `sys.prefix`
-    8.  `sys.platform`
-    9.  `sys.version_info`
-    10. `sys.version.[major, minor, micro]`
-    11. `sys.builtin_module_names`
-    12. `sys.getsizeof(): size of objects in bytes`
-    13. `sys.modules.get('multiprocessing')`
-    14. `sys.exc_info() => (etype, value, tb)`: `tb` now can be get from exception's `__traceback__` attribute since Python3
-5. traceback
-    1.  `traceback.extract_tb(tb)`: return a `FrameSummary` object, which have following attributes:
-        1. `filename`: filename for the frame
-        2. `lineno`: the line within the filename for the frame
-        3. `name`: function name or method executing when the frame was captured
-        4. `line`: the corresponding line source code with leading and trailing whitespace stripped
-        5. `locals`: local variables in the current frame
-    2.  `traceback.print_tb(tb)`
-    3.  `traceback.format_tb(tb)`: return with strings, not print the result
-    4.  `traceback.print_exception(etype, value, tb)`
-    5.  `traceback.format_exception(etype, value, tb)`
-    6.  `traceback.print_exc() <=> traceback.print_exception(*sys.exc_info())`
-    7.  `trackback.format_exc()`
-    8.  `traceback.extract_stack()`
-    9.  `traceback.format_stack()`
-    10. `traceback.print_stack()`
-6.  os
-    1.  `os.environ`
-    2.  `os.fspath(filename)`
-    3.  `os.path.normcase(filename)`
-    4.  `os.path.abspath(__file__)`
-    5.  `os.path.dirname()`
-    6.  `os.path.basename(dirname)`
-    7.  `os.path.splitext(filename)`
-    8.  `os.path.join(dirname, filename)`
-    9.  `os.getpid()`
-7.  math
-    1.  `math.pi`
-    2.  `math.e`
-    3. `math.sqrt()`
-    4. `math.sin()`
-    5. `math.cos()`
-    6. `math.tan()`
-    7. `math.pow()`
-8.  time
-    1.  `time.time()`
-9.  itertools
-    1.  `itertools.zip_longest(a, b)`
-10. random
-    1. `random.random()`: return s, that 0 <= s < 1
-    2.  `random.randint(m, n)`: return s, m <= s <= n
-    3.  `random.choice(seq)`: return s from seq
-    4.  `random.sample(population, k)`: choose k unique random elements from a population sequence or set
-11. thread
-    1.  `threading.RLock(); lock.acquire(); lock.release()`
-    2.  `threading.get_ident()`
-    3.  `threading.current_thread().name`
-12. multiprocessing
-    1.  `multiprocessing.current_process().name`
-13. string: a collection of string constants
-    1. `string.ascii_uppercase`: `'ABCDEFGHIJKLMNOPQRSTUVWXYZ'`
-    2. `string.ascii_lowercase`: `'abcdefghijklmnopqrstuvwxyz'`
-    3. `string.ascii_letters`: `ascii_lowercase + ascii_uppercase`
-    4. `string.digits`: `'0123456789'`
-    5.  `string.octdigits`: `'01234567'`
-    6.  `string.hexdigits`: `string.digits + 'abcdef' + 'ABCDEF'`
-    7.  `string.whitespace`: `' \t\n\r\v\f'`
-    8.  `string.punctuation`: `` r"""!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~""" ``
-    9.  `string.printable`: `string.digits + string.ascii_letters + string.punctuation + string.whitespace`
-14. copy
-    1. `copy.deepcopy()`
-15. dis
-    1. dis.dis()
-16. urllib
-    1. `urllib.request.urlopen()`
-
-### Syntax {-}
-
-1. Variable
-    1. `[a-zA-Z0-9]` and other unicode characters
-    2. the first character should be digits, `[0-9]`
-    3.  case sensitive
-    4.  should not be keywords, that name can be with a trailing underscore `_`, `class_`
-2. Keywords
-    1. `help("keywords")`: list keywords
-3. Naming Conventions
-    1. never use the character `l` (lower case `L`, like one), `O` (like zero), `I` as single variable names
-    2. use ASCII-only characters and English words whenever feasible
-    3.  underscore notation
-        1. variable
-        2. function
-4. Operators
-   
-   The followings can be applied to all numeric types
-
-    1. `+, -, * /, %`
-    2. `//`: floor division
-    3. `**`: exponentiation, `3 ** 2 => 9`
-    4. `+x, -x`: unary plus or minus number, `+3, -3`
-    5. `~x`: bitwise negation
-    6. `&, |, ^`: bitwise And, Or, XOR
-    7.  `<, <`: shift left, right
-    8.  `>, >=, <, <=, ==, !=`: comparision
-    9.  `and, or, not`: boolean And, Or, Not
-    10. `in`: element of
-    11. `=, +=, -=, *=, /=, ...`
-
-5. Conditional Statement
-
-    ```python
-    if condition_1:
-        statement1
-        statement2
-    elif condition_2:
-        statement3
-        statement4
-    elif condition_3:
-        ...
-    else:
-        ...
-
-    expression if ... else expression
-    ```
-
-6. Looping Statement
-    1.  while: condition-controlled loop
-
-        ```python
-        while condition:
-            statement_1
-            ...
-            statement_n
-        else: # when condition becomes False
-            statement_1
-            ...
-            statement_n
-        ```
-    2.  for: collection-controlled loop
-
-        ```python
-        for e in c:
-            statement_1
-            ...
-            statement_n
-        else:
-            statement_1
-            ...
-            statement_n
-        ``` 
-    3.  break: exit the loop. If a loop is left by `break`, the `else` part is not executed
-    4.  continue: stop currrent iteration and start then next iteration by checking the condition
-
-7. Input & Output
-    1. console
-        1. `input()`
-        2. `print()`
-    2. file
-        1. `f = open(file, mode)`
-            1. `r`: read file in text mode
-            2. `rb`: read file in binary mode
-            3. `w`: writing, truncate the file if it already exists
-            4. `a`: append to the file
-        2. `f.read(n=None)`: read file into a one string object
-        3. `f.readline()`: read one line
-        4. `f.readlines()`: return all lines to a list
-        5. `f.write(str)`: write string to the file
-        6. `f.close()`
-        7. `f.tell()`: tell the position of the current stream
-            1. `0`: at the first character of the file
-        8. `f.seek(offset, start=0)`: move to specified position, for start value
-            1. `0`: beginning of the file
-            2. `1`: the current position for binary reading
-            3. `2`: the end of file for binary reading
-
-8. Functions
-
-    A function ia a structuring element in programming languages to group a bunch of statements, so they can be utilized more than once.
-
-    1. Definition: use `def` to define a function with a name
-
-        ```python
-        def func_name(parameters):
-            """ Docstring about the function """
-            statement_1
-            ...
-            statement_n
-        ```
-
-    2.  Argument: a parameter passed to when call the function
-        1. can be empty when defined
-        2. can be positional or keyword, `f(1, 2, a=3, b=4)`
-        3. can have default value when defined, `__defaults__` is created
-        4. `*args`: arbitrary number of parameters. `*` in the front of the last positional parameter name denote it as a tuple reference, `args` is a tuple
-        5. `**kwargs**`: arbitrary number of keyword parameters. `kwargs` is a dict
-    3.  Body
-        1. Return
-            1. `None` will return when no return used, or just return without an expression
-            2. `return expr` will return `expr` value
-            3. `return` will stop the function
-            4. `return (a, b)` can return multiple values using tuple, list or other types
-        2. Side Effect: in addition to produce a return value, the function modifies the caller's environment in other ways, including:
-            1. modify a global or static variable
-            2. modify one of its arguments
-            3. raise an exception
-            4. write data to a display or file
-            5. ...
-        3. Variable Scope: variable names are by default local to the function
-            1. `global`: made the vairable global, not local
-            2. `nonlocal`: a nonlocal variable has to be defined in the enclosing function scope
-            3. a variable can't be both local and global, otherwise `UnboundLocalError` will be raised
-    4.  `__doc__`: the first statement in the body of a function is usually a string statement called a Docstring
-9.  Modules: Every file with file extension `.py` and proper python code can be seen or is a module.
-    1. import: all objects in the module can be accessed using `import`:
-        1. `import math`: import a module
-        2. `import math as mathematics`: import a module with a new na
-        3. `import math, random`: import mutiple mudul
-        4. `from math import pi, sin`: import certain objects of a modu
-        5. `from math import pi, pow as power, sin as sinus`: import objects with a new na
-        6. `from math import *`: import everything from a module, except those beginning with an underscore `_`, not recommended, possible for interactive sessions
-    2. Search Path: modules should be on search path when import
-        1. the directory where the file is executed
-        2. `PYTHONPATH` environmental variable when set
-        3. standard installation path
-    3.  Reload: every module can only be imported once per interpreter session or in a program. Restart the interpreter or reload the module again when some code modified
-        1. `from importlib import reload; reload(a_module)`: python3.4+
-        2. `from imp import reload; reload(a_module)`: python3+, deprecated since 3.4
-        3. `reload(a_module)`: python2
-    4.  `__name__`: a module can be run as a script as if it had been imported, with exception that its `__name__` set to `__main__`. So it's possible to program different behaviour into a module for two cases according to `__name__` value:
-
-        ```python
-        if __name__ = "__main__"
-            pass
-        ```
-
-10. Packages
-
-    A package is basically a directory with python files and a file with the name `__init__.py`, which can be empty or contains valid code. It structures module namespace using **dotted modules names**. `A.B` stands for a submodule named `B` in a package named `A`.
-
-    An `__all__` list in the `__init__.py` can list module and packages names to be imported when import a package using `*` in the form `from package import *`.
-
-11. Exception
-    1. `try except`: start an exception handling
-    2. `else`: optional after all the exceplt clauses, executed if try clause does not raise an exception
-    3. `finally`: clean-up or termination clauses, they must be executed under all circumstances, whether an exception occurred or not
-    4. `raise`: raise an exception, when just raise, the exception will be thrown again
-
-    ```python
-    try:
-        statement_1
-        ...
-    except IOError as e:
-        statement_1
-        ...
-    except ValueError:
-        statement_1
-        ...
-    except (NameError, TypeError):
-        statement_1
-        ...
-    except:
-        statement_1
-        ...
-    else:
-        statement_1
-        ...
-    finally:
-        statement_1
-        ...
-    
-    class MyException(Exception):
-        pass
-    raise MyException("An exception doesn't always prove the rule")
-    ```
-
-12. Iterable & Iterator
-    
-    1. Iterable: object can be used in `for loop` statement. It should have method `__iter__` which returns an iterator or `__getitem__` with sequential indexes starting with 0
-    2. Iterator: subset of iterable. It should have methods `__iter__` which returns itself and `__next__` which will be used when the function `next()` is called
-
-    When a for loop is executed, the `for` statement calls `iter()` on the object. If successful, the `iter` will return an iterator that defines `__next__()`, which accesses elements of the object one at a time. the `__next__()` method will raise a `StopIteration` except if there are no further elements available. The `for` loop will terminate as soon as it catches a `StopIteration` exception.
-
-    ```python
-    letters = ["A", "B", "C"]
-    for letter in letters:
-        print(letter)
-
-    letters_iterator = iter(letters)
-    while True:
-        try:
-            letter = next(letters_iterator)
-            print(letter)
-        except StopIteration:
-            break
-    ```
-
-13. Generator
-
-    A generator is a function returning a generator object which is also an iterator (not vice versa) producing values lazily. The advantage of generators consist in automatically creating methods `__iter__()` and `__next__()`.
-    
-    There are two types of generators:
-    
-    1. generator function: use `yield` instead of `return` to produce values. If there is a `return` statement in the code of a generator, the execution will stop with a `StopIteration` exception
-    2. generator comprehension: use `()` similar to list comprehension
-
-14. lambda
-
-    The general syntax of a lambda function is : `lambda argument_list: expression`
-
-    ```python
-    sum = lambda x, y: x + y
-    sum(3, 4)
-    ```
-
-15. Decorators
-
-    When define decorators, take into account that the attributes of origininal functions will be lost after the decoration:
-
-    1. `__name__`
-    2.  `__doc__`
-    3.  `__module__`
-
-    It can be solved this way:
-
-    ```python
-    def greeting(func):
-        def function_wrapper(x):
-            """ function wrapper of greeting """
-            print("Hi " + func.__name__ + " returns:")
-            return func(x)
-        function_wrapper.__name__ = func.__name__
-        function_wrapper.__doc__ = func.__doc__
-        function_wrapper.__module__ = func.__module__
-        return function_wrapper
-    ```
-
-    or using `functools.wraps`:
-
-    ```python
-    from functools import wraps
-    def greeting(func):
-        @wraps(func)
-        def function_wrapper(x):
-            """ function wrapper of greeting """
-            print("Hi " + func.__name__ + " returns:")
-            return func(x)
-        return function_wrapper
-    ```
-
-    Class-based decorator should make the class callable, which has `__call__()` method:
-
-    ```python
-    class Memoize:
-        def __init__(self, fn):
-            self.fn = fn
-            self.memo = {}
-
-        def __call__(self, *args):
-            if args not in self.memo:
-                self.memo[args] = self.fn(*args)
-            return self.memo[args]
-
-    @Memoize # fib = Memoize(fib)
-    def fib(n):
-        if n == 0:
-            return 0
-        elif n == 1:
-            return 1
-        else:
-            return fib(n-1) + fib(n-2)
-
-    fib(40)
-
-    # the corresponding function-based way:
-    def memoize(f):
-        memo = {}
-        def helper(x):
-            if x not in memo:            
-                memo[x] = f(x)
-            return memo[x]
-        return helper
-
-    @memoize
-    def fib(n):
-        if n == 0:
-            return 0
-        elif n == 1:
-            return 1
-        else:
-            return fib(n-1) + fib(n-2)
-    ```
-
-16. References
-    1. [python-course](https://www.python-course.eu/)
-
-### Data Structures {-}
-
-Different data types can have different properties. These properties can be:
-
-1. Collection
-   
-    Data contains several elements.
-
-    1.  `in, not in`: check if an element contained, `"hello" in s; "hello1" not in s`
-    2.  `len(s)`
-
-2. Sequential
-   
-   Elements are ordered in a defined sequence and they can be accessed via indices. The sequence implements `getitem()` and `len()` method. Python starts from 0.
-   
-    1. `s[0]`: get the first element
-    2. `s[-1]`: get the last element
-    3. `s[-1]`: get the second last element
-    4. `s[0][0]`: get the first element of first element
-    5. `s[start:end]`: get from `s[tart]` to `start[end]`, except `start[end]`
-    6. `s[start:end:step]`: get `s[start], s[start+1*step], ..., s[start+i*step]` where `start+i*step<end`
-    7. `s[:]`: a shallow copy
-    8. `len(s)`
-   
-   Functions:
-
-    1. `+`: concatenate two sequence
-    2. `*`: repeat sequence n times
-
-3. Mutable
-   
-   whether the elements can be modified.
-
-: (\#tab:py-data-types) Python Data Type Properties
-
-| type      | collection | Seq | Mapping | mutable |
-| --------- | ---------- | --- | ------- | ------- |
-| bool      | no         | no  | no      | no      |
-| int       | no         | no  | no      | no      |
-| float     | no         | no  | no      | no      |
-| complex   | no         | no  | no      | no      |
-| str       | yes        | yes | no      | no      |
-| bytes     | yes        | yes | no      | no      |
-| bytearray | yes        | yes | no      | yes     |
-| list      | yes        | yes | no      | yes     |
-| tuple     | yes        | yes | no      | no      |
-| dict      | yes        | no  | yes     | yes     |
-| set       | yes        | no  | no      | yes     |
-| frozenset | yes        | no  | no      | no      |
-
-* bool: subclass of `int`
-    1. `True`
-    2. `False`, following values will be considered as `False` value
-        1. `False`
-        2. `0`
-        3. `0.0`
-        4. `0j`
-        5. `""`
-        6. `()`
-        7. `[]`
-        8. `{}`
-        9. `None`
-* int: unlimited size in Python3, no `long` type as in Python2
-    1. `1234`: normal integer, base 10
-    2. `0b11`: binary, base 2, prefix by `0b` or `0B`
-    3. `0o1234`: octal, base 8, prefix by `0o` or `0O`
-    4. `0x1234`: hexadecimal, base 16, prefix by `0x` or `0X`
-* float: `1.0`
-* complex: `3+2j`
-* str
-    1. Properties
-        1. sequences of pure Unicode characters in Python3, no specific encoding like UTF-8
-        2. immutable
-    2. Represtentations
-        1. `"hello"`: double quotes
-        2. `'hello'`: single quotes
-        3. `"""hello"""`: triple double quotes
-        4. `'''hello'''`: triple single quotes
-        5. `r"hello"`: raw string, backslashes are not handleed in any special way, useful in REs processing for simplicity
-        6. `b"hello"`: bytes, see `bytes`
-    3. Escaping: use backslash `\`
-        1. `\\`: backslash
-        2. `\'`: single quote
-        3. `\"`: double quote
-        4. `\a`: BEL, Bell
-        5. `\b`: BS, Backspace
-        6. `\t`: TAB
-        7. `\n`: LF, Linefeed
-        8. `\f`: FF, formfeed
-        9. `\v`: VT, Vertical Tab
-        10. `\r`: CR, Carrige Return
-        11. `\ooo`: octal value `ooo`
-        12. `\xhh`: hex value `hh`
-        13. `\uxxxx`: 16-bit hex value `xxxx` (Unicode only)
-        14. `\Uxxxxxxxx`: 32-bit hex value `xxxxxxxx` (Unicode only)
-        15. `\N{name}`: named `name` in Unicode database (Unicode only)
-    4.  Operations
-        1. `.upper()`
-        2. `.lower()`
-        3. `.replace()`
-        4. `.find()`
-        5. `.join()`
-        6. `.split()`
-        7. `m=str.maketrans("abc", "ABC")`
-        8. `.translate(m)`
-        9. `.captalize()`
-        10. `.rstrip()`
-        11. `.ljust(width. fillchar= "")`
-        12. `.rjust(width. fillchar= "")`
-        13. `.center(width, fillchar=" ")`
-        14. `.zfill(width)`: pad a numeric string with zeros on the left, the string is never truncated
-        15. `.format(*args, **kwargs)`
-
-            the string template contains one or more format codes (fields to be replaced) embedded in constant text. They are surrounded by `{}`. if a brace character has to be printed, it has to be escaped by doubling it, `{{`, `}}`.
-
-            The format codes has structure `{index:[flags][options][width][.precision]type}`
-
-            1. index: `{0}, {1}, {2}, ...; {}, {}, {}...; {a}`: for the first, second and ... in `args`, and keys in `kwargs`
-            2. flags:
-                1. `#`: used with type `o`, `x`, `X`, the value is preceded with `0o`, `0x`, `0X` respecitively
-                2. `0`: zero padded for numeric values
-                3. `-`: the converted value is left adjusted, blank spaces is inserted
-                4. `+`: a sign `+` or `-` will preceded the conversion, overrides a space flag
-                5. other padding character, should specify options
-            3. options:
-                1. `>`: right justify, default for numbers
-                2. `<`: left justify: default for strings,
-                3. `^`: center aligned 
-                4. `0`: 0 will be padded for numbers
-                5. `,`: use commas for a thousand separator
-                6. `=`: force the padding to be placed after the sign (if any) and before the digits
-            4. width: total number of string length, including decimal point
-            5. precision: the number following decimal point
-            6. type:
-                1. `d`: decimal integer
-                2. `i, u`: same as `d`
-                3. `o`: octal
-                4. `x, X`: hexadecimal
-                5. `f, F`: float point
-                6. `e, E`: floting point exponential format
-                7. `g, G`: same as `e, E`, if exponent is greater than -4 or less than precision; otherwise `f, F` is used
-                8. `c`: single character, accepts integer or single character string
-                9. `r`: string from `repr()`
-                10. `s`: string from `str()`
-                11. `%`: percent number, when in `%` format, then just return `%` character
-            
-            Since Python3.6, `f""` sring literals is introduced:
-
-            ```python
-            price = 11.23
-            f"Price in Swiss Franks: {price * 1.086:5.2f}"
-            ```
-* bytes
-    1. immutable
-    2. a sequence of small integers. the elements are in the range 0 to 255
-    3. printed as a sequence of ASCII characters
-    4. not possible to mix text and data in Python3, otherwise raise TypeError
-    5.  `"hello".encode("UTF-8"); b"hello"`
-    6.  `b"hello".decode("UTF-8")`
-* bytearray
-    1. sequential
-    2. mutable
-* list:
-    1. Properties:
-        1. a sequence of elements, which can be arbitrary objects, and can be nested
-        2. mutable
-    2. initialization
-        1. `s = []`: empty list
-        2. `s = [1, "hello", False]`: a list of mixed data types
-        3. `s = [1, [1, 2, 3]]`: a nested list
-    3. operations
-        1. `.append()`: append object to the end of the list
-        2. `.pop(index=-1)`: remove and return element at index (default last)
-        3. `.insert(index, object)`: insert object before index
-        4. `.remove(value)`: remove the first occurrente of value
-        5. `.extend(iterable)`: extend list by appending elements from the iterable
-        6. `.clear()`: remove all items from list
-        7. `.copy()`: return a shallow copy of the list
-        8. `.count(value)`: return number of occurrences of value
-        9. `.index(value, start=0, stop=last)`: return the first index of value, raise ValueError if the value is not present
-        10. `.reverse()`
-        11. `.sort()`
-        12. `+`: not recommend for list, much slow, choose `.append()`, `.extend()`, or `+=`
-* tuple: like list, but immutable and faster
-    1. Initialization
-        1. `s = ()`: empty tuple
-        2. `s = (1, "hello", False)`
-* dict:
-    1. Properties
-        1. unordered
-        2. mutable
-        3. keys must be immutable data types
-    2. Initialization
-        1. `d = {}; d = dict()`: an empty dict
-        2. `d = {"a": 10, "b": 20}; d = d(a=10, b=20)`
-        3. `dict(mapping)`
-        4. `dict(iterable)`
-    3. Access: using keys
-        1. `d["a"]`
-        2. `d["a"] = 30`
-    4. Methods
-        1. `.keys()`
-        2. `.values()`
-        3. `.items()`
-        4. `list(.keys()), list(.values()), list(.items())`: turn the result to list
-        5. `del d["a"]`: delete key "a" together with its value
-        6. `k in d; k not in d`
-        7. `.get(key, default=None)`
-        8. `.pop(key), .pop(key, default)`
-        9. `.copy()`: a shallow copy
-        10. `.clear()`: clear the dict, set it to empty
-        11. `.update(dict)`: merge and overwritten the objects with given dict
-* set
-    1. Properties
-        1. unordered
-        2. mutable
-        3. elements are immutable and unique
-    2. Initialization
-        1. `set(); {"a", "b", "c"}`: an empty set, `{}` creates an empty dict
-        2. `set(iterable)`
-    3. Methods
-        1. `.add(el)`
-        2.  `.discard(el)`: an element removed from this set. If el is not in this set, nothing will be done
-        3.  `.remove(el)`: like `.discard()`, but a KeyError will be raised
-        4.  `.pop()`: remove and return an arbitray set element, a KeyError is raised if the set is empty
-        5. `.clear()`
-        6. `.copy()`: a shallow copy
-        7.  `.issubset(y); x <= y`:  True, if the object is a subset of y
-        8.  `x < y`: True if x is a proper set (真子集)of y
-        9.  `.issuperset(y); x >= y`: True, if the object is a superset of y
-        10. `x > y`: True if x is a proper superset of y
-        11. `.isdisjoint(y)`: return True if two sets have a null intersection
-        12. `.difference(y); x - y; x - y - z`: return difference of two or more sets as a new set, leaving the original set unchanged
-        13. `.difference_update(y)`: remove all elements of another set from this set
-        14. `.union(y); x | y`: return the union of two sets as a new set
-        15. `.intersection(y); x & y`: return the intersection of two sets as a new set
-* frozenset: like set, but immutable
-    1. Initialization
-        1. `frozenset()`: an empty frozenset
-        2. `frozenset(iterable)`
 
 ## Packages {#py-pkgs}
 

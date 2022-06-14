@@ -171,88 +171,7 @@
         4. status: `zkServer.sh status`
     5. Commands
         1. connect: `bin/zkCli.sh -server 127.0.0.1:2181`
-5. Kafka
-    1. Install
-
-        ```sh
-        KAFKA_VERSION=2.8.0
-        KAFKA_SCALA_VERSION=2.13
-        wget https://mirrors.tuna.tsinghua.edu.cn/apache/kafka/${KAFKA_VERSION}/kafka_${KAFKA_SCALA_VERSION}-${KAFKA_VERSION}.tgz
-        ```
-    2. Envs
-
-        ```sh
-        export KAFKA_HOME=/data/hadoop/hadoop/bin/kafka/kafka_2.13-2.8.0
-        export PATH=${KAFKA_HOME}/bin:${PATH}
-        ```
-    3. Configurations
-        1. `config/server.properties`
-            1. `broker.id=1`: the id of broker, must be unique integer for each broker
-            2. `listeners=PLAINTEXT://host:9092`: listen port for client connecting, `[default: 9092]`
-            3. `log.dirs=/path/1,/path/2`: where to store log files
-            4. `zookeeper.connect=zoo1:2181,zoo2:2181...`: connect to zookeeper
-            5. `num.partitions=2`: partitions per topic. more partitions allow greater parallelism for consumption, but result in more files across the brokers
-        2. `config/connect-distributed.properties`
-            1. `bootstrap.servers=host1:9092,host2:9092`: any available broker is enough
-            2. `group.id=connect-cluster`: unique name for the cluster, used in forming the connect cluster group, must not conflict with consumer group IDs
-            3. `key.converter=org.apache.kafka.connect.json.JsonConverter`: default
-            4. `value.converter=org.apache.kafka.connect.json.JsonConverter`: default
-            5. `key.converter.schemas.enable=false`: `[default: true]`
-            6. `value.converter.schemas.enable=false`: `[default: true]`
-            7. `offset.flush.interval.ms=10000`
-            8. `rest.port=8083`: `[default: 8083]`
-            9. `plugin.path=/usr/local/share/java,/usr/local/share/kafka/plugins,/opt/connectors`: set additional connector jar path
-            10. config storage
-                1. Notes
-                    1. `[default: connect-configs]`
-                    2. should be a single partition
-                    3. highly replicated, compacted, 3 or more, no more than broker numbers
-                2. Settings
-                    1. `config.storage.topic=connect-configs`
-                    2. `config.storage.replication.factor=1`: for one broker
-                3. Commands
-                    1. `kafka-topics.sh --create --topic connect-configs --bootstrap-server hpmaster:9092 --partitions 1 --replication-factor 2 --config cleanup.policy=compact`
-            11. offset storage
-                1. Notes
-                    1. `[default: connect-offsets]`
-                    2. should be multiple partition
-                    3. replicated, compact, no more than broker numbers
-                2. Settings
-                    1. `offset.storage.topic=connect-offsets`
-                    2. `offset.storage.replication.factor=1`: for one broker
-                    3. `offset.storage.partitions=25`
-                3. Commands
-                    1. `kafka-topics.sh --create --topic connect-offsets --bootstrap-server hpmaster:9092 --partitions 10 --replication-factor 2 --config cleanup.policy=compact`
-            12. status storage
-                1. Notes
-                    1. `[default: connect-status]`
-                    2. should be multiple partition
-                    3. replicated, compact, no more than broker numbers
-                2. Settings
-                    1. `status.storage.topic=connect-offsets`
-                    2. `status.storage.replication.factor=1`: for one broker
-                    3. `status.storage.partitions=5`
-                3. Commands
-                    1. `kafka-topics.sh --create --topic connect-status --bootstrap-server hpmaster:9092 --partitions 10 --replication-factor 2 --config cleanup.policy=compact`
-    4. Services
-        1. start for every host: `kafka-server-start.sh [-daemon] <config/server.properties>`
-        2. stop for every host: `kafka-server-stop.sh <config/server.properties>`
-        3. topic:
-            1. list: `kafka-topics.sh --list --bootstrap-server localhost:9092`
-            2. create: `kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092`
-                1. `--topic <topic-name>`
-                2. `--replication-factor <num>`
-                3. `--partitions <num>`
-            3. describe: `kafka-topics.sh --describe --topic quickstart-events --bootstrap-server localhost:9092`
-            4. delete: `kafka-topics.sh --delete --topic quickstart-events --bootstrap-server localhost:9092`
-        4. connectors
-            1. standalone: `connect-standalone.sh <config/connect-standalone.properties> <connector1.properties> [<connector2.properties>...]`
-            2. cluster: `connect-distributed.sh [-daemon] <config/connect-distributed.properties>`
-        5. jps: `kafka`
-    5. Commands
-        1. producer (write): `kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092`
-        2. consumer (read): `kafka-console-consumer.sh --topic quickstart-events --from-beginning --bootstrap-server localhost:9092`
-6. Hive
+5. Hive
     1. Install
 
         ```sh
@@ -326,7 +245,7 @@
             2. hive cli: `${HIVE_HOME}/bin/hive`
     5. Web UI
         1. `http://hpmaster:10002`: hiveserver2
-7. Tez
+6. Tez
     1. Install
 
         ```sh
@@ -357,7 +276,7 @@
                 1. `hdfs-site.xml`
                     1. `dfs.client.datanode-restart.timeout: 30`: the original value may be `30s`, not parsed to `30`, set it explicitly
                 2. no need to reboot hadoop, just restart hiverserver2 again
-8. Hbase
+7. Hbase
     1. Install
 
         ```sh
@@ -428,7 +347,7 @@
             15. read a column: `get "<table_Name>", "<row_key>", "<column_family:column_name>"`
             16. delete a row: `delete "<table_name>", "<row_key>"`
             17. delete a column: `delete "<table_name>", "<row_key>", "<column_family:column_name>"`
-9.  Phoenix
+8.  Phoenix
     1. Install
 
         ```sh
@@ -439,7 +358,7 @@
         stop-hbase.sh && start-hbase.sh
         # client usage: $PHOENIX_HOME/phoenix-client-hbase-${HBASE_VERSION}-${PHOENIX_VERSION}.jar
         ```
-10. Scala
+9.  Scala
     1. Install
 
         ```sh
@@ -452,7 +371,7 @@
         export SCALA_HOME=/data/hadoop/hadoop/bin/scala/scala-2.12.14
         export PATH=${SCALA_HOME}/bin:${PATH}
         ```
-11. Maven
+10. Maven
     1. Install
 
         ```sh
@@ -466,7 +385,7 @@
         export PATH=${M2_HOME}/bin:${PATH}
         [export MAVEN_OPTS="-Xmx2g -XX:ReservedCodeCacheSize=1024m" # for java8+]
         ```
-12. Spark
+11. Spark
     1. Install
 
         ```sh
@@ -591,7 +510,7 @@
             23. `--files file`: access with `SparkFiles.get(filename)`
             24. `spark-examples.jar`: application jar, path similar to `--jars`
             25. `arg1 arg2 ...`: application's options
-13. Zeppelin
+12. Zeppelin
     1. Install
 
         ```sh

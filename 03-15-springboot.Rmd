@@ -1,0 +1,5 @@
+Spring Boot
+
+1. project
+    1. [initializer](https://start.spring.io/)
+    2. `pom.xml`for Idea2021.2, add `<version>${project.parent.version}</version>` to plugin `spring-boot-maven-plugin`

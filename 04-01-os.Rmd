@@ -12,7 +12,13 @@
         2. **1G** for **/boot**, using **standard partition** and **xfs** filesystem
         3. **/**, **/home**, **swap** using **lvm** and **xfs** filesystem, specify storage size
     4. QA
-       1. `Cannot find a valid baseurl for repo`: in `/etc/sysconfig/network-scripts/ifcfg-ens33`, changes     `ONBOOT=no` to `ONBOOT=yes`, then `systemctl restart network`
+        1. `Cannot find a valid baseurl for repo`: in `/etc/sysconfig/network-scripts/ifcfg-ens33`, changes `ONBOOT=no` to `ONBOOT=yes`, then `systemctl restart network`
+        2. `time not correct`
+
+            ```
+            yum install ntp
+            ntpdate us.pool.ntp.org # correct time
+            ```
 2. Basic Software
     1. Minimal: `yum install gcc wget net-tools nss curl libcurl curl-devel epel-release`
         1. `gcc`, `wget`, `net-tools`: for minimal centos7
@@ -40,10 +46,16 @@
     3. Tmux
         1. dependencies: `sudo yum install automake libevent libevent-devel ncurses-devel`
             1. `automake`, `libevent`, `libevent-devel`: for generating `autogen.sh`
-        2. source from git: `git clone https://github.com/tmux/tmux.git`
-        3. install
+        2. source from tar 
 
             ```sh
+            wget https://github.com/tmux/tmux/releases/download/3.2a/tmux-3.2a.tar.gz
+            ./configure && make && sudo make install
+            ```
+        3. source from git
+
+            ```sh
+            git clone https://github.com/tmux/tmux.git
             cd tmux && sh autogen.sh && ./configure 
             make && sudo make install
             ```
@@ -53,7 +65,7 @@
             # from deploy/rc/.tmux.c
             # reset prifix key, mapping to C-a, when tmux does not use zsh, may need reboot
             unbind C-b
-            set -g prefix 
+            set -g prefix C-a
             # r: reload config file
             bind r source-file ~/.tmux.c
             # remap panel navigation like vim
@@ -114,7 +126,8 @@
         2. source from tar
 
             ```sh
-            PYTHON_VERSION = 3.7.0
+            # PYTHON_VERSION = 3.7.0
+            PYTHON_VERSION = 3.10.4
             wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz
             tar xf Python-${PYTHON_VERSION}.tgz
             ```

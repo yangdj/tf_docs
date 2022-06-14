@@ -116,13 +116,7 @@
     7. [How to Stop a Thread or a Task](http://forward.com.au/javaProgramming/HowToStopAThread.html)
     8. [Why Are Thread.stop, Thread.suspend, Thread.resume and Runtime.runFinalizersOnExit Deprecated?](https://docs.oracle.com/javase/1.5.0/docs/guide/misc/threadPrimitiveDeprecation.html)
 2. Command
-    1. Common
-        1. `jar`
-            1. `jar cvf helloworld.jar -C classes/ .`: package classes into helloworld.jar under the current directory
-            2. `jar tvf helloworld.jar`
-    2. Java
-        1. `java -cp helloworld.jar HelloWorld`
-    3. Scala
+    1. Scala
         1. `scalac`
             1. `scalac helloworld.scala`: compiles scala source
             2. `scalac -d classes helloworld.scala`: compiles scala source, and stores in specified folder
@@ -798,251 +792,169 @@
             myLoop(start = 5, end = 10) { i => println(s"i has value ${i}")}
             ```
 8. Class
-    1. Scala
-        1. Initialization
-            1. New
-                1. `val big = new java.math.BigInteger("12345")`: parameterize with value
-                2. `val greetStrings = new Array[String](3)`: parameterize with type and length
-            2. Factory Method
-                1. Properties
-                    1. a factory method calls an `apply` method, which creates and returns the new object
-                    2. the `apply` method is defined on the corresponding companion class which seems like calling a static method     from the class
-                2. Examples
-                    1. `arr(2) <=> arr.apply(2)`: a variable surrounded by `()` invocates an `apply` method on that variable
-                    2. `val greetStrings = Array("zero", "one", "two") <=> Apply.apply("zero", "one", "two")`
-                    3. `arr(2) =  "hello" <=> arr.update(2, "hello")`: an assignment invocates an update method
-                    4. `1 -> "Go" <=> (1).->("Go")`: `->` can be invoked on any object, returns a two-element tuple, see Map
-        2. Modifiers
-            1. `public`: default, no need to specify
-            2. `private`
-            3. `protected`: only accesible for subclasses of the class in which the member is defined
-            4. `override`
-            5. `require`: `require(d != 0)` defined in standalone object `Predef`
-            6. `this`: self reference
-            7. `this(n: Int) = this(n, 1)`: auxiliary constructor must invoke another constructor of the same class first. the     primary construction is the final single point of entry of a class, and the only calls supclass constructor
-        3. Definition
-            1. Regular
-    
-                ```scala
-                class ChecksumAccumulator {
-                    private var sum = 0
-                    def add(b: Byte): Unit = { sum += b }
-                    def checusum(): Int = ~(sum & 0xff) + 1
-                }
-    
-                class Rational(n: Int, d: Int) {
-                    require(d != 0)
-                    val numer: Int = n
-                    val denom: Int = d
-    
-                    def this(n: Int) = this(n, 1) // auxiliary constructor
-    
-                    override def toString = numer + "/" + denom
-    
-                    def add(that: Rational): Rational =
-                        new Rational(
-                          numer * that.denom + that.numer * denom,
-                          denom * that.denom
-                        )
-    
-                    def + (that: Rational): Rational =
-                        new Rational(
-                          numer * that.denom + that.numer * denom,
-                          denom * that.denom
-                        )
-    
-                    def lessThan(that: Rational) = 
-                        this.numer * that.denom < that.numer * this.denom
-    
-                    def max(that: Rational) = 
-                        if (this.lessThan(that)) that else this
-                }
-                ```
-            2. singleton object
-                1. a singleton function behavies like a static method in Java
-                2. share same name with a class, it is called that class's companion object. 
-                3. the class is called the companion class of the singleton. they are defined in the same source file.
-                4. the class and the singleton can access each other's private members
-                5. a singleton wihout a companion class is a standalone object. it can collect utility methods or become an app's     entry point
-                6. the entry point has a `main` method, takes an `Array[String]` parameter and returns a `Unit` value, e.g.,
-    
-                    ```scala
-                    import ChecksumAccumulator.calculate
-      
-                    object Summer {
-                        def main(args: Array[String]): Unit = {
-                            for (arg <- args)
-                                println(arg + ": " + calculate(arg))
-                            }
-                    }
-                    ```
-                
-                ```scala
-                import scala.collection.mutable
-      
-                object ChecksumAccumulator {
-                    private val cache = mutable.Map.empty[String, Int]
-    
-                    def calculate(s: String): Int = 
-                        if (cache.contains(s))
-                            cache(s)
-                        else {
-                            val acc = new ChecksumAccumulator
-                            for (c <- s)
-                                acc.add(c.toByte)
-                            val cs = acc.checksum()
-                            cache += (s -> cs)
-                            cs
-                          }
-                }
-    
-                val ca = ChecksumAccumulator.calculate("Every value is an object.")
-                ```
-            3. Case Class
-                1. Properties
-                    1. automatically create a singleton object, which has following methods and traits
-                        1. Methods
-                            1. `apply())`
-                            2. `unapply()`: for pattern match
-                            3. `copy()`: `val b = a.copy()`
-                            4. `toString()`
-                            5. `hashCode()`
-                            6. `equals()`: instances are compared by structure and not by reference
-                        2. Inherited Traits
-                            1. `Product`
-                            2. `Serializable`
-                    2. suitable for immutable data, parameters are public val types
-                2. Definitions
-    
-                    ```scala
-                    case class Person(name: String, age: Int)
-                    ```
-            4. Case Object:
-                1. Properties
-                    1. similar to case class, but without `apply()` and `unapply()` methods
-                    2. use when no parameters are needed 
-            5. `scala.APP` Trait
-                1. work like a singleton object with a `main` method, use `args` to access command-line arguments
-    
+    1. Initialization
+        1. New
+            1. `val big = new java.math.BigInteger("12345")`: parameterize with value
+            2. `val greetStrings = new Array[String](3)`: parameterize with type and length
+        2. Factory Method
+            1. Properties
+                1. a factory method calls an `apply` method, which creates and returns the new object
+                2. the `apply` method is defined on the corresponding companion class which seems like calling a static method     from the class
+            2. Examples
+                1. `arr(2) <=> arr.apply(2)`: a variable surrounded by `()` invocates an `apply` method on that variable
+                2. `val greetStrings = Array("zero", "one", "two") <=> Apply.apply("zero", "one", "two")`
+                3. `arr(2) =  "hello" <=> arr.update(2, "hello")`: an assignment invocates an update method
+                4. `1 -> "Go" <=> (1).->("Go")`: `->` can be invoked on any object, returns a two-element tuple, see Map
+    2. Modifiers
+        1. `public`: default, no need to specify
+        2. `private`
+        3. `protected`: only accesible for subclasses of the class in which the member is defined
+        4. `override`
+        5. `require`: `require(d != 0)` defined in standalone object `Predef`
+        6. `this`: self reference
+        7. `this(n: Int) = this(n, 1)`: auxiliary constructor must invoke another constructor of the same class first. the     primary construction is the fisingle point of entry of a class, and the only calls supclass constructor
+    3. Definition
+        1. Regular
+
+            ```scala
+            class ChecksumAccumulator {
+                private var sum = 0
+                def add(b: Byte): Unit = { sum += b }
+                def checusum(): Int = ~(sum & 0xff) + 1
+            }
+
+            class Rational(n: Int, d: Int) {
+                require(d != 0)
+                val numer: Int = n
+                val denom: Int = d
+
+                def this(n: Int) = this(n, 1) // auxiliary constructor
+
+                override def toString = numer + "/" + denom
+
+                def add(that: Rational): Rational =
+                    new Rational(
+                      numer * that.denom + that.numer * denom,
+                      denom * that.denom
+                    )
+
+                def + (that: Rational): Rational =
+                    new Rational(
+                      numer * that.denom + that.numer * denom,
+                      denom * that.denom
+                    )
+
+                def lessThan(that: Rational) = 
+                    this.numer * that.denom < that.numer * this.denom
+
+                def max(that: Rational) = 
+                    if (this.lessThan(that)) that else this
+            }
+            ```
+        2. singleton object
+            1. a singleton function behavies like a static method in Java
+            2. share same name with a class, it is called that class's companion object. 
+            3. the class is called the companion class of the singleton. they are defined in the same source file.
+            4. the class and the singleton can access each other's private members
+            5. a singleton wihout a companion class is a standalone object. it can collect utility methods or become an app's     entry point
+            6. the entry point has a `main` method, takes an `Array[String]` parameter and returns a `Unit` value, e.g.,
+
                 ```scala
                 import ChecksumAccumulator.calculate
-      
-                object FallWinterSpringSummer extends App {
-                    for (season <- List("fall", "winter", "spring"))
-                        println(season + ": " + calculate(season))
+  
+                object Summer {
+                    def main(args: Array[String]): Unit = {
+                        for (arg <- args)
+                            println(arg + ": " + calculate(arg))
+                        }
                 }
                 ```
-9.  Exception
-    1. Java
-        1. Catch or Specify Requirement: code that might throw exceptions must be enclosed by either of the following, otherwise the code will not be compiled
-            1. A `try` statement that catches the excpetion. The `try` must privide a handle for the exception
-            2. A method specifies it can throw the exception. The method must provide a `throws` clause listing the exception
-        2. Types
-            1. Checked Exception
-                1. Exception
-                    1. Should anticipate and recover from
-                    2. All exceptions are checked exceptions, except for `Error` and `RuntimeException` and their subclasses
-                    3. **Subject to the Catch or Specify Requirement**
-                    4. A well-written program will catch this exception and notify the mistake
-            2. Unchecked Exceptions
-                1. Error
-                    1. External to the application which usually cannot anticipate or recover from
-                    2. Indicated by `Error` and its subclasses
-                    3. **Not subject to the Catch or Specify Requirement**
-                    4. Might catch this exception in order to notify the problem, but makes sense to print a stack trace and exit
-                2. Runtime Exception
-                    1. Internal to the application that cannot anticipate or recover from, indicating bugs such as logic error or improper use of API
-                    2. Indicated by `RuntimeException` and its subclasses
-                    3. **Not subject to the Catch or Specify Requirement**
-                    4. Can catch this exception, but it probably makes more sense to eliminate the bug that caused the excption
-        3. Exception Handlers
-            1. try-catch-finally
-                1. `try`: work with at least one of `catch` or `finally`
-                2. `catch`
-                    1. a single handler with one exception
-    
-                        ```java
-                        try {
-                            ...
-                        }
-                        catch (Exception e) {
-                            ...
-                        }
-                        ```
-                    2. a single handler with multiple type exceptions
-                        1. the `catch` parameter is implicitly `final`, so it cannot be assigned any other value within the catch block
-                        2. since Java SE7
-    
-                        ```java
-                        try {
-                            ...
-                        }
-                        catch (Exception1|Exception2 e) {
-                            ...
-                        }
-                        ```
-                    3. multiple handlers
-    
-                        ```java
-                        try {
-                            ...
-                        }
-                        catch (Exception1 e1) {
-                            ...
-                        }
-                        catch (Exception2 e2) {
-                            ...
-                        }
-                        catch (Exception1|Exception2 e) {
-                            ...
-                        }
-                        ```
-                3. `finally`: always execute when the try block exits
-                    1.  if the JVM exits while the `try` or `catch` code is being executed, then the `finally` block may not execute
-                    2.  if the thread executing the `try` or `catch` code is interrupted or killed, the `finally` block may not     execute even though the application as a whole continues
-            2. try-with-resources
-                1. since Jave SE7
-                2. any object that implements `java.lang.AutoCloseable`, including all objects which implement `java.io.Closeable`,     can be used as a resource. The `Closeable` interface extends the `AutoCloseable` interface
-                    1.  the `close` method of the `AutoCloseable` interface throws exceptions of type `Exception`
-                    2.  the `close` method of the `Closeable` interface throws exceptions of type `IOException`
-                3. multiple resources can be separated by a semicolon `;`. `close` methods of resources are called in the opposite     order of their creation
-                4. a try-with-resources statement can have `catch` and `finally` blocks just like an ordinary `try` statement. in a try-with-resources statement, any `catch` or `finally` block is run after the resources declared have been closed
-            3. Method Throws Exceptions: not catch the exception, but allow further up the call stack to handle it
-
-                ```java
-                public void writeList() throws IOException, OtherException, ... { ...}
-                ```
-            4. Throw statement: `throw new IOException()`
-    2. Scala
-        1. `throw new IllegalArgumentException`: `throw` has type `Nothing`
-        2. `try{} catch{} finally {}`: returns a value, if exception thrown not caught, the expression has no result at all
-        3. the value computed in the `finally` clause will be dropped, it usually does some clean work
-        4. if `finally` has explicit return, or throws an exception, the return value or exception will the final expression result
-    
+            
             ```scala
-            def f(): Int = try return 1 finally return 2 => f() => 2
-            def g(): Int = try 1 finally 2 // g() => 1
-            ```
-    
-        ```scala
-        def urlFor(path: String) =
-            try {
-                new URL(path)
-            } catch {
-                case e: MalformedURLException =>
-                new URL("http://www.scala-lang.org")
+            import scala.collection.mutable
+  
+            object ChecksumAccumulator {
+                private val cache = mutable.Map.empty[String, Int]
+
+                def calculate(s: String): Int = 
+                    if (cache.contains(s))
+                        cache(s)
+                    else {
+                        val acc = new ChecksumAccumulator
+                        for (c <- s)
+                            acc.add(c.toByte)
+                        val cs = acc.checksum()
+                        cache += (s -> cs)
+                        cs
+                      }
             }
-        
-        try {
-            val file = new FileReader("input.txt")
-            ...
-        } catch {
-            case ex: IOException => // Handle I/O error
-            case ex: _ => // Handle other condition
-        } finally {
-            file.close()
-        }
+
+            val ca = ChecksumAccumulator.calculate("Every value is an object.")
+            ```
+        3. Case Class
+            1. Properties
+                1. automatically create a singleton object, which has following methods and traits
+                    1. Methods
+                        1. `apply())`
+                        2. `unapply()`: for pattern match
+                        3. `copy()`: `val b = a.copy()`
+                        4. `toString()`
+                        5. `hashCode()`
+                        6. `equals()`: instances are compared by structure and not by reference
+                    2. Inherited Traits
+                        1. `Product`
+                        2. `Serializable`
+                2. suitable for immutable data, parameters are public val types
+            2. Definitions
+
+                ```scala
+                case class Person(name: String, age: Int)
+                ```
+        4. Case Object:
+            1. Properties
+                1. similar to case class, but without `apply()` and `unapply()` methods
+                2. use when no parameters are needed 
+        5. `scala.APP` Trait
+            1. work like a singleton object with a `main` method, use `args` to access command-line arguments
+
+            ```scala
+            import ChecksumAccumulator.calculate
+  
+            object FallWinterSpringSummer extends App {
+                for (season <- List("fall", "winter", "spring"))
+                    println(season + ": " + calculate(season))
+            }
+            ```
+9. Exception
+    1. `throw new IllegalArgumentException`: `throw` has type `Nothing`
+    2. `try{} catch{} finally {}`: returns a value, if exception thrown not caught, the expression has no result at all
+    3. the value computed in the `finally` clause will be dropped, it usually does some clean work
+    4. if `finally` has explicit return, or throws an exception, the return value or exception will the final expression result
+
+        ```scala
+        def f(): Int = try return 1 finally return 2 => f() => 2
+        def g(): Int = try 1 finally 2 // g() => 1
         ```
+
+    ```scala
+    def urlFor(path: String) =
+        try {
+            new URL(path)
+        } catch {
+            case e: MalformedURLException =>
+            new URL("http://www.scala-lang.org")
+        }
+    
+    try {
+        val file = new FileReader("input.txt")
+        ...
+    } catch {
+        case ex: IOException => // Handle I/O error
+        case ex: _ => // Handle other condition
+    } finally {
+        file.close()
+    }
+    ```
 10. Package & Import
     1. Package
         1. Create 
@@ -1050,25 +962,15 @@
             2. statement must be placed at the top of every source file: `package com.test`
             3. source file must be placed in directories matching the package name
     2. Import: allow using a simple package element name
-        1. Java
-            1. Auto import
-                1. Java
-                    1. `java.lang`: but its sub packages are not included
-                    2. the package the current class is located
-            2. Usage
-                1. `import java.util.List`
-                2. `import java.util.*`
-                3. `import static java.lang.Math.pow`
-        2. Scala
-            1. auto import
-                1. `java.lang`
-                2. `scala`
-                3. `Predef`
-                    1. `println` invokes `Predef.println`, which invokes `Console.println`
-                    2. `assert` invokes `Predef.assert`
-            2. Usage
-                1. `import scala.collection.mutable`
-                2. `import scala.collection._`
+        1. auto import
+            1. `java.lang`
+            2. `scala`
+            3. `Predef`
+                1. `println` invokes `Predef.println`, which invokes `Console.println`
+                2. `assert` invokes `Predef.assert`
+        2. Usage
+            1. `import scala.collection.mutable`
+            2. `import scala.collection._`
 
 11. Libraries
     1. `java.lang`

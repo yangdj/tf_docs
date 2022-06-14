@@ -1,0 +1,572 @@
+# Java
+
+## Basics
+
+1. References
+    1. [Covariance and Contravariance in Java](https://medium.com/@yuhuan/covariance-and-contravariance-in-java-6d9bfb7f6b8e)
+    2. [Unbounded Wildcards](https://tlylt.medium.com/unbounded-wildcards-eea09b8f0aa0)
+    3. [Super Type Tokens in Java Generics](https://www.baeldung.com/java-super-type-tokens#1reification)
+2. Command
+    1. find class
+        1. from current working directory
+        2. `CLASSPATH`: environment variable
+        3. `-classpath`, `-cp`: in `java` and `javac` command line, before the specified class, `java -cp classes:a:b tutor.HelloWorld`
+    2. package
+        1. `jar`
+            1. `jar cvf helloworld.jar -C classes/ .`: package classes into `helloworld.jar` under the current directory
+            2. `jar tvf helloworld.jar`: extract the jar file
+3. Datatypes
+    1. literal
+        1. integer
+            1. decimal: 10
+            2. binary: 0b11, 0B11, since JDK7
+            3. octal: 012
+            4. hexadecimal: 0xFF, 0xff, 0XFF, 0Xff
+        2. long: 10L, 10l
+        3. float: 10.0F, 10.0f
+        4. double: 10.0
+        5. char: `A`
+            1. escaping
+                1. `\'`
+                2. `\"`
+                3. `\\`
+                4. `\b`
+                5. `\t`
+                6. `\n`
+                7. `\f`
+                8. `\r`
+                9. `\ddd`: `ddd` is octal constant
+                10. `\uxxxx`: `xxxx` is a hexadecimal constant
+        6. boolean: `true`, `false`
+    2. primitives
+        1. id from 1 to 7 can get bits size through `.SIZE` attributes, range through `.MIN_VALUE` and `.MAX_VALUE`, e.g., `Integer.SIZE`, `Integer.MIN_VALUE` and `Integer.MAX_VALUE`
+
+        | id  | type    | bits | default | range              | e.g.             |
+        | --- | ------- | ---- | ------- | ------------------ | ---------------- |
+        | 1   | byte    | 8    | 0       | -2^7 - 2^7 -1      | byte b = 10      |
+        | 2   | short   | 16   | 0       | -2^15 ~ 2^15 - 1   | short s = 10     |
+        | 3   | int     | 32   | 0       | -2^31 ~ 2^31 - 1   | int i = 10       |
+        | 4   | long    | 64   | 0       | -2^63 ~ 2^63 - 1   | long l = 10L     |
+        | 5   | float   | 32   | 0.0     | 1.4E-45 ~ 3.4E38   | float f = 10.0F  |
+        | 6   | double  | 64   | 0.0     | 4.9E-324 ~ 1.8E308 | double d = 10.0D |
+        | 7   | char    | 16   | \u0000  | 0 ~ 2^16 - 1       | char c = 'c'     |
+        | 8   | boolean | 8    | false   | true, false        | boolean b = true |
+
+    3. references
+        1. wrapper primitives
+            1. Byte
+            2. Short
+            3. Integer
+            4. Long
+            5. Float
+            6. Double
+            7. Character
+            8. Boolean
+        2. array
+            1. initialization
+                1. one dimension
+                    1. declaration: `int[] a`
+                    2. assgiment
+                        1. `a = new int[size]`
+                        2. `a[0] = 10`
+                    3. declaration and assignment
+                        1. `int[] a = new int[size]`
+                        2. `int[] a = new int[3] {1, 2, 3}`
+                        3. `int[] a = {1, 2, 3}`
+                2. multidimension
+                    1. declaration: `int[][] a`
+                    2. assginment
+                        1. `a = new int[3][4]`
+                        2. `a = new int[3][]`
+                        3. `a[0] = new int[4]`
+                    3. declaration and assignment 
+                        1. `int[][] a = new int[3][4]`
+                        2. `int[][] a = new int[3][]`
+                        3. `int[][] a = {{1, 2, 3}, {4, 5, 6}}`
+            2. members
+                1. `.length`
+        3.  String
+            1. initialization
+                1. `String str = new String("Hello")`
+                2. `String str2 = new String(str)`
+                3. `String str = "Hello"`
+            2. members
+                1. `+`: concatenates strings, `"hello" + "world"`
+                2. `.length()`
+                3. `.equal(str)`
+                4. `.charAt(index)`
+                5. `.compareTo(str)`
+                6. `.indexOf(str)`
+                7. `lastIndexOf(str)`
+        4.  StringBuffer
+           1. `.setCharAt()` 
+        5.  StringBuilder
+            1. `.append(ch)`
+4. Variables
+    1. initialzation
+        1. declaratoin: `type var; int a, b`
+        2. assignment: `var = 10`
+        3. declaration and assignment: `int a = 10, b = 20; int b = a * 10`
+    2. scope
+        1. block level defined inside `{...}`, same name variable cannot be declared in different scope, different that C or C++
+        2. method
+        3. class
+5. Operators
+    1. suffix: `() [] .`
+    2. type: `instanceof`
+    3. arithmetic
+        1. `+ - * / %`
+        2. `++ --`
+    4. relational
+        1. `> < >= <=`
+        2. `== !=`
+    5. logical
+        1. `& | ^`: AND and OR and XOR
+        2. `!`: NOT
+        3. `&& ||`: short-circuit AND and OR
+    6. bitwise: used for `long`, `int`, `short`, `byte` and `char`
+        1. `& ! ^ ~`
+        2. `<<`: shift left, use 0 to complement
+        3. `>>` signed shift right preserving the sign bit
+        4. `>>>`: unsigned shift right or zero-fill right shift, use 0 to complement
+    7. assignment
+        1. `=`
+        2. `+= -= *= /= %=`
+        3. `&= |= ^=`: bitwise
+        4. `<<= >>=`
+    8. ternary: `condition ? true ：false;`
+    9. lambda: `->`
+    10. comma: `,`
+6. Controls
+    1.  loop
+        1. `for (init; condition; iteration)`
+        2. `for (type item: collection)`: since Java5, `item` is **read-only**, an assignment to the `item` haves no effect on the underlying object
+        3. `while (condition) statement;`
+        4. `do {statement;} while (condiiton);`
+        5. `break; break label;`
+        6. `continue; continue label;`
+    2.  conditional
+        1. `if (condition) statement; else if (condition) statement; else statement;`
+        2. `switch (expression) { case constant: statements; break;}`
+7.  Object: an implicit superclass of all other classes
+    1. `equals(Object obj)`
+    2. `hashCode()`
+    3. `toString()`
+    4. `finalize()`: called before an object's final destruction by GC. If programs ends before GC occurs, `finalize()` will no work
+    5. `clone()`
+    6. `final Class<?> getClass()`
+    7. `final notify()`
+    8. `final notifyAll()`
+    9. `final wait()`
+    10. `final wait(long millis)`
+    11. `final wait(long millis, int nano)`
+8. Class
+    1. members
+        1. object: belong to instance
+            1. variable: fields, instance variables
+            2. method
+                1. components
+                    1. signature
+                        1. function name
+                        2. parameter: method variable receives the argument, acts like local variable scoped to its method
+                            1. vararg
+                                1. vararg will be array passed in, `int sum(int... v) {}`
+                                2. vararg must be the last in the parameter list
+                                3. only one vararg parameter allowed
+                    2. arguments: values passed to a method parameters
+                    3. return type
+                        1. `void`: no value returned
+                        2. `return`
+                2. overload
+                    1. same function name with different parameter declarations
+                    2. return types can differ
+                3. recursionz: a method calls itself
+            3. constructor:
+                1. have no explicit return type
+                2. java provides a default constructor that initializes all member variables to their default values
+                    1. `0` for numeric types
+                    2. `false` for booleans
+                    3. `null` for reference types
+                3. if explicitly defined, the default constructor is no longer used
+                4. constructor can be overloaded
+            4. object related
+                1. `new`
+                2. `this`
+        2. static: belong to class
+            1. variable
+            2. method
+            3. static block
+                1. executed when the first is first loaded, before the class can be used for any other purpose
+        3. nested class: since JDK1.1
+            1. static
+                1. can only access static members of its outer class
+                2. can be declared `private`, `public`, `protected` and package-private with no modifier
+            2. non-static: inner class
+                1. associate with an instance of its enclosing class
+                2. access to all of the variables and methods of its outer class, similar to other non-static members of outer class, use `OuterClass.this.members`
+                3. cannot define any static members itself
+        4. anonymous class
+            1. like a local class except do not have a name
+            2. make code more concise if only use only once
+            3. is an expression, enable to declare and instantiate a class at the same time
+            4. cannot declare constructors
+        5. abstract class and method
+            1. abstract class: `abstract class name {}`
+                1. when a subclass inherits an abstract class, it must implement all of its abstract methods in the superclass, otherwise, the subclass must also be specified as `abstract`
+                2. abstract class can not be instanced
+            2. abstract method: `abstract type name(...);`
+                1. no method body is present
+                2. only on instance methods, not applied to `static` methods or constructors
+                3. a class that contains one or more abstract methods must also be declared as abstract
+    2.  access modifiers
+        1. top level
+            1. `public`
+            2. no explicit modifier: package private
+        2. member level
+            1. `public`: anywhere
+            2. no explicit modifier: within package, can not be accessed outside the package
+            3. `private`: within class
+            4. `protected`: within package or subclasses inherit the class in another package
+        3. others
+            1. `final`
+                1. final class: can not be inherited, implicitly declares all of its methods as `final`, `final class A {}`, SO `final` can not work with `abstract`
+                2. final method: can not be overrided, `final void mesh() {}`
+                3. final variable: create a constant value
+                    1. instance
+                        1. initialized when declaration, `final int a = 10;`
+                        2. initialized in instance-initializer block (IIB), `final int b; { b = 20}`
+                        3. inside constructors, when more than one constructor exists, must be assigned in all of constructors, `class A {final int c; A() { c = 30}}`
+                    2. static
+                        1. initialized when declaration, `final static double PI = 3.14;`
+                        2. in static block, `final static double PI; static { PI = 3.14}`
+                    3. local
+                        1. initialized when declaration , `final int a = 10`
+                        2. declaration and then assigment, `final int a; a = 100;`
+                    4. parameter: can only be assigned by arguments
+    3.  inheritance
+        1. property
+            1. only support one superclass using `extends`
+            2. a superclass refererce can refer to a subclass object
+        2. constructor
+            1. when both subclass and superclass defining no constructor, they use default constructors created automatically by Java
+            2. when only the subclass defines a constructor, simply construct the subclass object
+            3. when both the subclass and superclass define constructors, both of them should be executed, using `super`. **`super` must be the first statement executed inside a subclass constructor**
+                1. `super()`: call superclass constructor
+                2. `super.member`: call superclass member
+        3. overriding method
+            1. have same signature and compatible return type as a method in its superclass
+9.  Interface
+    1.  properties
+        1. specify what must be done, but not how to do it, `access interface name {ret-type method-name (param-list) [throws AException]; type var1 = value1; ...}` 
+        2. interface methods are implicitly `public`. methods that implement an interface must be declared `public`, because methods in interface are implicitly `public`
+        3. variables declared in the interface are not instance variables, but implicitly `public`, `final` and `static` and must be initialized, so they are constants
+        4. if a class includes an interface but does not fully implement the methods defined by that interface, then that class must be declared as `abstract`
+        5. an interface cannot have instance variable, but declaring a reference variable of an interface type is allowed
+        6. use `extends` for one interface to inheirt another interface
+        7. since JDK8, it can provide a default implementation preceded by the keyword `default`, `default int getId() {return 1}`
+        8. JDK8 also suports static method. They are not inherited by either an implementing class or a subinterface
+        9. `IntefaceName.super().methodName` refers to a default implementation explicitly, that is use `methodName` in interface `InterfaceName`
+10. Enumeration
+    1. properties
+        1. use `enum`, `enum Transport {CAR, TRUCK, BOAT}`
+        2. the identifiers are enumeration constants, and implicitly declared as a `public`, `static` member. Their type is the type of enumeration, such as `Transport`, called *self-typed*
+        3. an enum can not be instantiated by `new`
+        4. can define constructor, instance variables and methods
+        5. can not inherit another class, but itself inheirt from abstract class `Enum`
+        6. cannot be a superclass
+    2. methods
+        1. static
+            1. `.values()`
+            2. `.valueOf(String str)`
+        2. instance
+            1. `.ordinal()`
+            2. `.compareTo()`
+11. Annotation
+    1. properties
+        1. embed supplemental information into a source file called an *annotation*, which does not change the actions of a program
+        2. an annotation cannot include an `extends` clause, but all annotation types automatically extend `Annotation` interface in `java.lang.annotation` package. use `@interface AnnoName {String str(); int val() default 900; ...}`, consists solely of method declarations without bodies, much like fields. Java will implement these methods
+        3. methods in the annotation must be without parameters, the return type must be one of the following:
+            1. a primitive type
+            2. an object of type `String` or `Class`
+            3. an `enum` type
+            4. another annotation type
+            5. an array of one of the preceding types
+        4. when a annotation member is given a value, only its name is used, look like fields in this context, `@AnnoName(str="Example", val=100)`
+        5. an annotation specified `RetentionPolicy.RUNTIME`, can be queried during run time using `reflection`. the reflection enables information about a class to be obtained at run time
+    2. type
+        1. marker annotation: have no members, just to make an item with some attribute
+        2. single-member annotation: have one member, no need to specify member name, just support value when the member name is `value`
+    3. sources
+        1. `java.lang.annotation`
+            1. `@Documented`
+            2. `@Inherited`
+            3. `@Retention`: used only as an annotation to another annotation
+                1. `RetentionPolicy.SOURCE`: retained only in the source file, and discarded during compilation
+                2. `RetentionPolicy.CLASS`: default, stored in the `.class` file during compilation, not available through JVM during run time
+                3. `RetentionPolicy.RUNTIME`: stored in the `.class` file during compilation and available through JVM during run time, offer greatest annotation persistence
+            4. `@Taget`: support one or more values `@Target({ElementType.FIELD, ElementType.LOCAL_VARIABLE})`
+                1. `ElementType`
+                    1. `CONSTRUCTOR`
+                    2. `FIELD`
+                    3. `LOCAL_VARIABLE`
+                    4. `METHOD`
+                    5. `PARAMETER`
+                    6. `PACKAGE`
+                    7. `TYPE`: class, interface (including annotation type), or enum declaration
+                    8. `ANNOTATION_TYPE`
+            5. `@Repeatable` 
+            6. `@Native`
+        2. `java.lang`
+            1. `@Override`
+            2. `@Deprecated`
+            3. `@SafeVarargs`
+            4. `@FunctionalInterface`
+            5. `@SuppressWarnings`
+12. Generics: reuse code safely and reliadbly
+    1. For
+        1. classes: `class A<T, V extends T> {}`
+        2. interfaces: `interface A<T>`
+        3. constructor: `<T extends Number> Summation(T arg) {}`
+        4. methods: `T getOb(T others) {}`
+        5. static methods: `static <T extends Comparable<T>, V extends T> boolean arraysEqual(T[] x, V[] y) `
+    2. Properties
+        1. work only with reference types, primitive type not allowed
+        2. type member can't be instantiated, this is wrong `new T[]`
+        3. no static member can use a type parameter declared by the enclosing class, but staticc generic methods are allowed, which define their own type parameters
+        4. an array whose element type is a type parameter is not allowed instantiated, this is wrong `new T[]`
+        5. an array of type-specific generic referces can not be created, this is wrong `new Gen<Integer>[10]`
+        6. a generic class cannot extend `Throwable`, so can not create generic exception classes
+    3. Type Member
+        1. no bound: `<T>`
+        2. upper bound: `<T extends A>`
+        3. lower bound: `<T super A>`
+        4. raw type: without type arguments, lose type safety, may cause run-time error. in essence, the type will be replaced by `Object`
+    4. Wildcard Argument
+        1. no bound: `<?>`
+        2. upper bound: `<? extends A>`
+        3. lower bound: `<? super A>`
+13. Lambda Expression
+    1. components
+        1. `->`: lambda operator
+        2. parameters
+        3. body
+            1. a single expression: `n -> (n % 2) == 0; (n) -> (n % 2) == 0`, `()` not needed for one parameter
+            2. a block of code: code in `{}` containing `return`
+    2. properties
+        1. variable capture
+            1. instance and static vairable defined in the enclosing scope of a lambda expression can be accessed and modified
+            2. local variables defined in the enclosing scope of the lambda expresson can be used when they are *effectively final*, which cannot be changed after it is first assigned without explicity defined `final`
+        2. throw an exception
+            1. should throw a checked exception
+            2. compatible with functional interface exceptions
+        3. method references
+            1. to a static method: `ClassName::methodName`, `::` is added by JDK8 for this purpose
+            2. to a instance method: `objRef::methodName`
+            3. to any object of a given class: `ClassName::instanceMethodName`, then the first parameter matches the invoking object, and others matches the method parameters
+            4. to a generic method: can use, but not needed, e.g., `ClassName::<Integer>methodName`
+        4. constructor references
+            1. create references to constructors using `classname::new`, to a generic class `classname<Integer>::new`
+            2. declare a constructor that creates an array using `type[]::new`, the interface that creates an array must containa method taking a single `int` parameter and returns a reference to the array of the specified size
+
+                ```java
+                interface MyClassArrayCreator {
+                    MyClass[] func(int n);
+                }
+
+                MyClassArrayCreator mcArrayCons = MyClass[]::new;
+                MyClass[] a = mcArrayCons.func(3);
+                for (int i = 0; i < 3; i++)
+                    a[i] = new MyClass(i)
+                
+                // generic
+                interface MyArrayCreator<T> {
+                    T[] func(int n);
+                }
+
+                MyArrayCreator<Thread> mcArrayCons = Thread[]::new;
+                Thread[] thrds = mcArrayCons.func(5)
+                ```
+    3. kinds for target type context
+        1. variable initialization
+        2. assignment
+        3. argument passing
+        4. others including casts, `?` operator, array initializers, `return`statements and lambda expressions
+    4.  functional interface: contains one and only one abstract method, support generic type
+14. Package
+    1. define: `package a.b`
+    2. find: through `CLASSPATH` or `-cp, -classpath`
+    3. import
+        1. `import a.b.c`
+        2. `import a.b.*`
+        3. `import static java.lang.Math.sqrt`: import static method `sqrt` in `Math`
+        4. `import static java.lang.Math.*`: import all static methods in class `Math`
+    4. standard 
+        1. `java.lang`: import automatically into evary java program
+        2. `java.io`: I/O classes
+        3. `java.net`: for networking
+15. Exception
+    1. Catch or Specify Requirement: code that might throw exceptions must be enclosed by either of the following, otherwise the code will not be compiled
+        1. A `try` statement that catches the excpetion. The `try` must privide a handle for the exception
+        2. A method specifies it can throw the exception. The method must provide a `throws` clause listing the exception
+    2. Types
+        1. Checked Exception
+            1. Exception
+                1. Should anticipate and recover from
+                2. All exceptions are checked exceptions, except for `Error` and `RuntimeException` and their subclasses
+                3. **Subject to the Catch or Specify Requirement**
+                4. A well-written program will catch this exception and notify the mistake
+        2. Unchecked Exceptions
+            1. Error
+                1. External to the application which usually cannot anticipate or recover from, which always occurs in the JVM
+                2. Indicated by `Error` and its subclasses
+                3. **Not subject to the Catch or Specify Requirement**
+                4. Might catch this exception in order to notify the problem, but makes sense to print a stack trace and exit
+            2. RuntimeException
+                1. Internal to the application that cannot anticipate or recover from, indicating bugs such as logic error or improper use of API in the during run time
+                2. Indicated by `RuntimeException` and its subclasses
+                3. **Not subject to the Catch or Specify Requirement**
+                4. Can catch this exception, but it probably makes more sense to eliminate the bug that caused the excption
+                5. subclass
+                    1. `NullPointerException`
+                    2. `IndexOutOfBoundsException`
+                    3. `ArithmeticException`
+                    4. `IllegalArgumentException`
+                    5. `ClassCastException`
+        3. Throwable
+            1. `.printStackTrace()`
+            2. `.toString()`
+    3. Exception Handlers
+        1. try-catch-finally
+            1. `try`: work with at least one of `catch` or `finally`
+            2. `catch`
+                1. a single handler with one exception
+
+                    ```java
+                    try {
+                        ...
+                    }
+                    catch (Exception e) {
+                        ...
+                    }
+                    ```
+                2. a single handler with multiple type exceptions
+                    1. the `catch` parameter is implicitly `final`, so it cannot be assigned any other value within the catch block
+                    2. since Java SE7
+
+                    ```java
+                    try {
+                        ...
+                    }
+                    catch (Exception1|Exception2 e) {
+                        ...
+                    }
+                    ```
+                3. multiple handlers
+
+                    ```java
+                    try {
+                        ...
+                    }
+                    catch (Exception1 e1) {
+                        ...
+                    }
+                    catch (Exception2 e2) {
+                        ...
+                    }
+                    catch (Exception1|Exception2 e) {
+                        ...
+                    }
+                    ```
+            3. `finally`: always execute when the try block exits, even when `try` or `catch` statements return from the method
+                1.  if the JVM exits while the `try` or `catch` code is being executed, then the `finally` block may not execute
+                2.  if the thread executing the `try` or `catch` code is interrupted or killed, the `finally` block may not execute even though the applicanas a whole continues
+        2. try-with-resources
+            1. since Jave SE7, a *resource* is an object that must be closed after the program is finished with it, and it is `final` implicitly, scoped to try-with-resources statement
+            2. any object that implements `java.lang.AutoCloseable`, including all objects which implement `java.io.Closeable`, can be used as a resource. `Closeable` interface extends the `AutoCloseable` interface
+                1.  the `close` method of the `AutoCloseable` interface throws exceptions of type `Exception`
+                2.  the `close` method of the `Closeable` interface throws exceptions of type `IOException`
+            3. multiple resources can be separated by a semicolon `;`. `close` methods of resources are called in the opposite order of their creation
+            4. a try-with-resources statement can have `catch` and `finally` blocks just like an ordinary `try` statement. in a try-with-resources statement, `catch` or `finally` block is run after the resources declared have been closed
+            5. **if an exception is thrown from `try` block and one or more exceptions are thrown from the try-with-resources statement, then those exceptions thrown from the try-with-resources statement are suppressed, and the exception thrown by the block is the one that is thrown. the suppressed exceptions can be retrieve by calling `Throwable.getSuppressed()` from the exception thrown by the `try` block, `Throwabel[] th = e.getSuppressed()`**
+        3. Method Throws Exceptions: not catch the exception, but allow further up the call stack to handle it
+
+            ```java
+            public void writeList() throws IOException, OtherException, ... { ...}
+            ```
+        4. Throw statement: `throw new IOException()`
+16. IO
+    1. byte stream
+        1. `InputStream`
+            1. `BufferedInputStream`
+            2. `ByteArrayInputStream`
+            3. `FileInputStream`
+            4. `DataInputStream`
+            5. `java.util.Scanner()`
+                1. `hasNextInt()`
+                2. `hasNextDouble()`
+                3. `nextInt()`
+                4. `nextDouble()`
+        2. `OutputStream`
+            1. `BufferedOutputStream`
+            2. `ByteArrayOutputStream`
+            3. `FileOutputStream`
+            4. `DataOutputStream`
+            5. `PrintStream`
+    2. character stream
+        1. `Reader`
+            1. `BufferedReader`
+                1. `.readLine()`
+            2. `InputStreamReader`
+            3. `CharArrayReader`
+            4. `StringReader`
+            5. `FileReader`
+        2. `Writer`
+            1. `BufferedWriter`
+            2. `OutputStreamWriter`
+            3. `CharArrayWriter`
+            4. `StringWriter`
+            5. `FileWriter`
+            6. `PrintWriter`
+                1. `.print()`
+                2. `.println()`
+
+## Multithreading
+
+1. status
+    1. running
+    2. ready to run
+    3. suspended and resumed
+    4. blocked waiting for a resource
+    5. terminated
+2. Initialization
+    1. `Thread` class
+        1. members
+            1. `static sleep()`
+            1. `static currentThread()`
+            2. `.getName()`
+            4. `.setName()`
+            5. `.getPriority()`
+            6. `.setPriority(int level)`
+                1. `Thread.MIN_PRIORITY`
+                2. `Thread.NORM_PRIORITY`
+                1. `Thread.MAX_PRIORITY`
+            7. `.isAlive()`
+            2. `.join()`: wait for a thread to terminate
+            3. `.run()`: entry point for the thread
+            4.  `.start()`: start a thread by calling `.run()`
+    2. `Runnable` interface
+        1. define only one method `run()`
+3. Synchronization
+    1. properties
+        1. the key concept in Java is *monitor*, which controls access to an object, and implemented by the concept of a *lock*
+        2. all objects in Java have a monitor built into the Java language itself, so all objects can be synchronized
+        3. using `synchronized` to support synchroization
+            1. synchronized method: `synchronized int sum(int[] nums) {}`
+            2. synchronized block: `synchronized(objref) {}`
+4. Communication
+    1. methods in `Object`
+        1. `wait()`
+        2. `notify()`
+        3. `notifyAll()`: notify all threads, with the highest priority thread gaining access to the object
+    2. properties
+        1. called only from within a synchronized context

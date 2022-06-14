@@ -1,16 +1,32 @@
 # MySQL
 
 1. Deployment
-    1. Mariadb
+    1. MySQL
+        1. [install guide](https://dev.mysql.com/doc/mysql-yum-repo-quick-guide/en/)
+        1. [download repo](https://dev.mysql.com/downloads/repo/yum/)
+        2. check md5: `md5sum mysql80-community-release-el7-6.noarch.rpm`
+        3. install repo in `/etc/yum.repos.d`: `sudo rpm -ivh mysql80-community-release-el7-6.noarch.rpm`
+        4. install mysql: `sudo yum install mysql-community-server`
+            1. `--nogpgcheck`, when `GPG key retrieval failed: [Errno 14] curl#37 - "Couldn't open file /etc/pki/rpm-gpg/RPM-GPG-KEY-mysql-2022"`
+        5. start mysql: `sudo systemctl start mysqld`
+        6. get temprory passwd: `sudo grep 'temporary password' /var/log/mysqld.log`
+        7. config: `mysql_secure_installation`
+        8. outer access for MySQL8: `CREATE USER 'root'@'%' IDENTIFIED BY 'root'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;`
+        9. Q&A
+            1. `MySQL 8.0 Public Key Retrieval is not allowed`
+                1. dbeaver: `Driver properties -> allowPublicKeyRetrieval: TRUE`
+                2. connection: `allowPublicKeyRetrieval=true`
+    2. Mariadb
         1. Dependencies
             1. MariaDB.repo
 
                 ```
                 # MariaDB 10.3 CentOS repository list
                 # http://downloads.mariadb.org/mariadb/repositories/
+                # 10.3
                 
                 [mariadb] name = MariaDB
-                baseurl = http://yum.mariadb.org/10.3/centos7-amd64 
+                baseurl = http://yum.mariadb.org/10.6/centos7-amd64 
                 gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
                 gpgcheck=1
                 ```
@@ -83,14 +99,17 @@
                 ```
         4. Services
             1. start: `systemctl start mariadb.service`
-2. reset password
+2. reset root password
     1. `/etc/mysqld`, add `skip-grant-tables` under `[mysqld]` part
     2. restart mysql server
     3. `mysql -uroot -p` login the server
     4. `update mysql.user set authentication_string=password('*****') where user='root'`
     5. remove `skip-grant-tables` content
     6. restart the server
-3. open binlog
+3. create user
+    1. `create user 'user1'@'%' identified by 'ThePassword';`
+    2. `grant all on db_example.* to 'user1'@'%';`
+4. open binlog
     1. `/etc/my.cnf`: for 5.7
         1. `[mysqld]`
             1. `server-id=<1>`: 5.7+
@@ -105,7 +124,7 @@
         1. `CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';`
         2. `GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'user';`
         3. `FLUSH PRIVILEGES;`
-4. Command
+5. Command
     1. Database
         1. create: `create database flow default character set utf8mb4 default collate utf8mb4_unicode_ci`
     2. User

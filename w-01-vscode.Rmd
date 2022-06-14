@@ -17,9 +17,8 @@ Settings have three levels for user, workspace and root folder, see [Settings](h
 3. `ws.code-workspace`: workspace file
 4. `.vscode/`: root folder
     1. `settings.json`
-    2. `keybindings.json`
-    3. `launch.json`
-    4. `tasks.json`
+    2. `launch.json`
+    3. `tasks.json`
    
 VS Code makes commonly used paths and other values as variables and supports variable substitution inside strings in [Debugging](#vs-launch) and [Task](#vs-tasks) configuration files and some select settings using `${variableName}`format. The following variables are often used, for a full list of predefined variables, see [Variables Reference](https://code.visualstudio.com/docs/editor/variables-reference):
 
