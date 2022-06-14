@@ -32,10 +32,10 @@ VS Code makes commonly used paths and other values as variables and supports var
 {
     "editor.insertSpaces": true,
     "editor.tabSize": 4,
-    "editor.detectIndentation": false,
-    "files.encoding": "utf8",
     "files.eol": "\n",
-    "files.": {"*.rmd": "markdown"},
+    "files.encoding": "utf8",
+    "files.associations": {"*.rmd": "markdown"},
+    "editor.detectIndentation": false,
     "workbench.editor.enablePreview": false,
     "editor.renameOnType": true,
     "files.insertFinalNewline": true,
