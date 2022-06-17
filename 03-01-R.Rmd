@@ -1,688 +1,580 @@
-# (PART) Languages {-}
-
 # R
 
-## Start
+## Environments
 
-### Installation {-}
+1. Deployment
+    1. R For Linux
 
-1. R For Linux
-
-    ```bash
-    yum install epel-release
-    yum install R
-    # if [ ! /usr/lib64/libpq.so.5 ]
-    ln -s /usr/local/pgsql/lib/libpq.so.5 /usr/lib64
-    ```
-2. RStudio-Server
-
-    ```bash
-    wget https://download2.rstudio.org/rstudio-server-rhel-1.1.463-x86_64.rpm
-    yum install rstudio-server-rhel-1.1.463-x86_64.rpm
-    # verify
-    rstudio-server verify-installation
-    # firewall
-    firewall-cmd --permanent --add-port=8787/tcp
-    systemctl reload firewalld
-    ```
-3. ShinyServer
-
-    ```bash
-    wget https://download3.rstudio.org/centos5.9/x86_64/shiny-server-1.5.5.872-rh5-x86_64.rpm
-    yum install --nogpgcheck shiny-server-1.5.5.872-rh5-x86_64.rpm
-    ```
-
-4. shinyproxy
-
-    ```sh
-    SHINYPROXY_VERSION = 2.1.0
-    wget https://www.shinyproxy.io/downloads/shinyproxy-${SHINYPROXY_VERSION}.jar
-    ```
-
-    Operations
-
-    1. start: `java -jar shinyproxy-${SHINYPROXY_VERSION}.jar`
-    2. update jar file in `BOOT-INF` folder: `jar -uf0 shinyproxy-${SHINYPROXY_VERSION}.jar BOOT-INF`
-    3. localization
-
+        ```bash
+        yum install epel-release
+        yum install R
+        # if [ ! /usr/lib64/libpq.so.5 ]
+        ln -s /usr/local/pgsql/lib/libpq.so.5 /usr/lib64
         ```
-        # shinyproxy/BOOT-INF/lib/containerproxy...jar::templates/login.html
-        "Please sign in:" -> "请登录: " or give it a blank value
-        placeholder="User name" -> "用户名"
-        placeholder="Password" -> "密码"
-        "Sign in" -> "登录"
-        "<strong>Could not sign in!</strong><br><span th:text="${error}"></span>"
-        "<strong>无法登陆!</strong><br><span th:text="用户名或密码无效"></span>"
-    
-        # shinyproxy/BOOT-INF/classes/fragments/navbar.html
-        "Admin" -> "管理员"
-        "Sign Out" -> "退出"
-    
-        # shinyproxy/BOOT-INF/classes/templates/app.html
-        Launching -> "正在加载"
-        ```
-    
-    4. docker image
-
-        ```
-        FROM conoria/alpine-r-bookdown
-        RUN R -q -e 'bookdown::render_book("index.Rmd", "bookdown::gitbook")' && mv _book /public
-        ```
-
-### Configuration {-}
-
-`?Startup` describes initialization at start of an R session, and `usethis` package supplies useful functions for settings.
-
-1. `~/.Renviron	`
-
-    ```bash
-    # Install package path
-    R_LIBS_USER="~/R"
-
-    # Environment
-    JAVA_HOME=...
-    HADOOP_HOME=...
-    HADOOP_CONF_HOME=...
-    SPARK_HOME=...
-    SPARK_CONF_HOME=...
-    ...
-    ```
-
-2. `~/.Rprofile`
-
-    ```r
-    # CRAN mirror
-    # CRANextra mirror supports some packages compiled for windows
-    # local({code ...}) if code needs to be executed
-    # options(...)
-    local({
-        r <- getOption("repos")
-        r["CRAN"] <- "https://mirrors.tuna.tsinghua.edu.cn/CRAN/"
-        r["CRANextra"] <- "http://www.stats.ox.ac.uk/pub/RWin"
-        options(repos = r)
-    })
-
-    # shiny
-    local({ 
-        options(
-            shiny.port = 3838, 
-            shiny.host = "0.0.0.0",
-            DT.options = list(
-                scrollX = TRUE, 
-                language = list(url = "//cdn.datatables.net/plug-ins/1.10.11/i18n/Chinese.json")
-                )
-        )
-    })
-
-    # .First: executes when R starts
-    .First <- function() {
-    library(ggplot2)
-    ...
-    }
-
-    # .Last: executes when R quits
-    .Last <- function() {
-    cat("goodbye")
-    ...
-    }
-    ```
-
-### Running {-}
-
-Write an R scripts, e.g.,  `foo.R`:
-
-```r
-#!/usr/bin/env Rscript
-print("hello, world!")
-```
-
-Then run it:
-
-1. `./foo.R`
-2. `Rscript foo.R`  
-
-`Rscript` can also execute expressions with `-e` arguments:
-
-1. `Rscript -e "print('hello, world!')"`
-2. `Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook')"`
-
-## Data Types
-
-Vectors are the base types in R, and the following three attributes are used to implement fundamental parts of R:
-
-1. Names: name the elements of a vector
-2. Dimensions: make a vector behave like a matrix or array
-3. Class: implement S3 object oriented system which controls how generic functions work
-
-### Special Object {-}
-
-The following object have special meaning in R:
-
-1. `NULL`: absent object
-2. `NA`: Not Available, absent value, missing value
-3. `NaN`: Not a Number, without meaning
-    1. `log(-2)`
-    2. `0 / 0`
-4. `Inf`, `-Inf`: positive and negative infinity
-    1. `1 / 0 ` => `Inf`
-    2. `-1 / 0` => `-Inf`
-    3. `log(0)` => `-Inf`
-
-Use following functions to decide the object:
-
-1. `is.null()`
-2. `is.na()`: `TRUE` for `NA` and `NaN`
-3. `is.nan()`
-4. `is.infinite()`: `FALSE` for `NA` and `NaN`
-5. `is.finite()`: `FALSE` for `NA` and `NaN`
-
-So `is.finite(x) != is.infinite(x)` is `FALSE` when `x = NA` or `NaN`.
-
-### Atomic Vector {-}
-
-An vector consists of length and identical basic data type. R has six basic types, and `.Machine` lists numeric value ranges:
-
-1. logical: `[TRUE, FALSE, NA]`
-2. integer: `[1L, ..., NA_integer_, NA]`
-3. double: `[1, 1.0, ..., NaN, Inf, -Inf, NA_real, NA]`
-4. complex: `[1+1i, ..., NA_complex_, NA]`
-5. character: `["abc", ..., NA_character_, NA]`
-6. raw
-
-Integer and double are collectively called numeric, so `is.numeric()` is `TRUE` for both of them.
-
-Types implicit conversion order is: logical > integer > double > character.
-
-: (\#tab:r-conversion) R Basic Types Implicit Conversion
-
-| Types     | logical | integer | double | character |
-| --------- | ------- | ------- | ------ | --------- |
-| logical   | TRUE    | 1L      | 1      | TRUE      |
-| integer   | -       | 1L      | 1      | "1"       |
-| double    | -       | -       | 1      | "1"       |
-| character | -       | -       | -      | "1"       |
-
-### Recursive Vector {-}
-
-List
-
-List is generic vector, in which elements can have different types.
-
-```r
-x <- list(a=10, b=TRUE, c= "hello")
-```
-
-There are there way to get a list value:
-
-1. `x["a"]`: return a sublist containing `a`
-2. `x[["a"]]`: return the `a` value
-3. `x$a`: same as `x[["a"]]`
-
-### Augmented Vector {-}
-
-Vectors with additional attributes, including class.
-
-1. factor: builts on integer vectors
-2. date: builds on numeric vectors, represents days since 1970-01-01
-3. date-time: builds on numeric vectors with class POSIXct, represents seconds since 1970-01-01 00:00:00
-4. data.frame: builds on lists with attributes names, row.names and class
-
-### Other Types {-}
-
-1. function:
-    1. builtin
-    2. closure
-    3. special
-
-## Function Collection
-
-### Basic {-}
-
-1. `is()`: list all classes that an object inherits from
-2. `class()`
-3. `inherits()`
-4. `is.object()`: `FALSE` when an object is a pure base type, not S3, S4 or RC
-5. `object.size()`
-6. `str()`
-7. `typeof()`
-8. `length()`
-9. `nrow()`
-10. `names()`
-11. `setNames()`
-12. `attributes()`
-13. `attr()`
-14. `dim()`
-15. `sample()`
-16. `seq()`
-17. `seq_along()`
-18. `seq_len()`
-19. `rep()`
-20. `sort()`
-21. `order()`
-22. `unlist()`
-23. `which()`
-    1. `which.max()`
-    2. `which.min()`
-24. `any()`
-25. `all()`
-
-### String {-}
-
-1. `nchar()`
-2. `nzchar()`
-3. `strrep()`
-4. `strwrap()`
-5. `strsplit()`
-6. `grep()`
-7. `gsub()`
-
-### Set {-}
-
-1. `match()`
-2. `%in%`
-3. `unique()`
-4. `intersect()`
-5. `union()`
-6. `setdiff()`
-
-### Apply {-}
-
-1. `lapply()`
-2. `sapply()`
-3. `vapply()`
-
-### System {-}
-
-1. `require()`
-2. `library()`
-3. `getwd()`
-4. `setwd()`
-5. `R.home()`
-6. `SessionInfo()`
-7. `options()`
-8. `getOption()`
-9. `View()`
-
-### Exception {-}
-
-1. `stop()`
-2. `stopifnot()`
-3. `warning()`
+    2. RStudio-Server
    
-### File {-}
-
-1. `basename()`
-2. `dirname()`
-3. `list.files()`
-4. `list.dirs()`
-5. `system.file()`
-6. `file.path("a", "b")`
-7. `path.expand("~")`
-8. `normalizePath(".")`
-9. `tempdir()`
-10. `tempfile()`
-
-## Control Structure
-
-### If-Else {-}
-
-```r
-if (logical) {...
-} else if (logical) {
-...
-} else {
-}
-```
-
-1. `ifelse()`
-2. `switch()`
-
-## OO
-
-R has several object implementations, including:
-
-1. S3
-2. S4
-3. RC
-
-### S3 {-}
-
-S3 objects are usually built on [lists](#recursive-vector), or [atomic vectors](#atomic-vector) with attributes. `is.object() & !isS4(x)` closely tests whether the object is an S3 object. Methods belong to functions, not classes. The functions are called *generic function*, and use *method dispatch* to call the object's specific function.
-
-```r
-foo <- structure(list(), class = "foo")
-foo <- list(); class(foo) <- "foo"
-
-inherits(foo, "foo")
-
-f <- function(x) UseMethod("f")
-f.foo <- function(x) "Class foo"
-f.default <- function(x) "Unknown class"
-
-f <- function(x, ...) UseMethods("f")
-f.foo <- function(x, y) paste("Class foo", y)
-```
-
-#### Generic Related Functions {-#gf}
-
-1. `UseMethod("as.Date")`
-2. `methods("as.Date"); methods(class = "data.frame")`
-3. `getS3method("as.Date", "default")`
-
-#### Group Generic Methods {-#ggm}
-
-Group Generic Methods group several related functions together, see `?groupGeneric`, including:
-
-1. Math
-    1. abs
-    2. sign
-    3. sqrt
-    4. floor
-    5. cos
-    6. sin
-    7. log
-    8. exp
-    9. ...
-2. Ops
-    1. `+ - * / ^ %% %/%`
-    2. `== != < <= >= >`
-    3. `& | !`: vector returns
-    4. `&& ||`: scalar returns
-3. Summary
-    1. all
-    2. any
-    3. sum
-    4. prod
-    5. min
-    6. max
-    7. range
-4. Complex
-    1. Arg
-    2. Conj
-    3. Im
-    4. Mod
-    5. Re
-
-### S4 {-}
-
-All S4 related code is stored in the `methods` package. `isS4()` can identify an S4 object.
-
-#### Class and Objects {-}
-
-```r
-setClass("Person",
-    slots = list(name = "character", age = "numeric")
-)
-
-setClass("Employee",
-    slots = list(boss = "Person"),
-    contains = "Person"
-)
-
-alice <- new("Person", name = "Alice", age = 40)
-john <- new("Employee", name = "John", age = 20, boss = alice)
-alice@age
-slot(john, "boss")
-```
-
-If an S4 ojbect contains (inherits from) an S3 class or a base type, it will have a `.Data` slot which contains the underlying base type or S3 object.
-
-```r
-setClass("RangeNumeric",
-    contains = "numeric",
-    slots = list(min = "numeric", max = "numeric")
-)
-
-rn <- new("RangeNumeric", 1:10, min = 1, max = 10)
-rn@.Data
-```
-
-#### Generics and Method Dispatch {-}
-
-`setGeneric()` creates a new generic or converts an existing function to a generic.
-
-```r
-setGeneric("myGeneric", function(x) {
-    standardGeneric("myGeneric") # equivalent to UseMethod()
-})
-
-setGeneric("union")
-```
-
-`setMethod()` takes the name of the generic, the classes the method should be associated with and a function that implements the method.
-
-```r
-setMethod("union",
-    c(x = "data.frame", y = "data.frame"),
-    function(x, y) {
-        unique(rbind(x, y))
-    }
-)
-```
-
-Related Functions
-
-1. `class?mle`: find the docs for a class
-2. `?S4groupGeneric`
-3. `isGeneric()`
-4. `getGenerics()`: get a list of all S4 generics
-5. `getClasses()`: get a list of all S4 classes
-6. `initialize()`
-7. `showClass()`
-8. `getMethod()`
-9. `showMethods()`: get a list of all S4 methods
-10. `callGeneric()`: call the current generic function from a method
-11. `selectMethod("nobs". list("mle"))`: select which method gets called
-12. `callNextMethod()`: call parent method
-13. `setAs()`
-14. `setValidity()`
-
-## Debugging
-
-
-R has following tools for debugging, see [Debugging R Code](https://rstudio-education.github.io/hopr/debug.html).
-
-1. `traceback()`
-2. `browser()`
-    1. `n`: execute next line
-    2. `s`: step into function
-    3. `f`: finish current function/loop
-    4. `c`: continue execution normally
-    5. `Q`: stop debugging
-    6. `where`: print current position
-    7. `get("n")`: get value from object `n`
-3. `debug(sample)`
-4. `isdebugged(sample)`
-5. `undebug(sample)`
-6. `debugonce`
-7. `trace("sample", browser, at = 4)`
-8. `untrace(sample)`
-9.  `recover()`
-
-## R Markdown
-
-References:
-
-1. [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
-2. [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/)
-3. [Knitr Options](https://yihui.org/knitr/options/)
-4. [Tinytex](https://yihui.org/tinytex/)
-
-## ODBC
-
-```r
-install.packages("odbc")
-```
-
-References:
-    
-1. [rstudio-db](https://db.rstudio.com/)
-
-### Configuration {-}
-
-`odbcinst -j` lists configuration files.
-
-1. `/etc/odbcinst.ini; ~/odbcinst.ini`: [drivers](#odbc-drivers) settings for system and local users
-
-    ```ini
-    [SQLite3]
-    Description = SQLite ODBC Driver
-    Driver = /usr/local/devart/odbcsqlite/libdevartodbcsqlite.3.0.1.x64.so
-    Setup = /usr/local/devart/odbcsqlite/libdevartodbcsqlite.3.0.1.x64.so
-
-    [Mariadb]
-    Description = Mariadb driver
-    Driver = /usr/lib64/libmaodbc.so
-
-    [PostgreSQL]
-    Description = Postgresql driver for GNU/Linux
-    Driver = /usr/lib64/psqlodbcw.so
-    Setup = /usr/lib64/libodbcpsqlS.so
-
-    [Hive]
-    Description = cloudera hive driver
-    Driver = /opt/cloudera/hiveodbc/lib/64/libclouderahiveodbc64.so
-    ```
-
-2. `/etc/odbc.ini; ~/.odbc.ini`: datasources for system and users (DNS)
-
-    ```ini
-    [sqlite3]
-    Description = My SQLite test database
-    Driver = SQLite3
-    Database = /path/to/file.db
-
-    [mariadb]
-    Driver = Mariadb
-    Server = localhost
-    Port = 3306
-    Database = db
-    Socket = /path/to/mysql.sock
-    User = user
-    Password = pwd
-
-    [postgresql]
-    Driver = PostgreSQL
-    Servername = localhost
-    Port = 5432
-    Database = db
-    UserName = user
-    Password = pwd
-
-    [hive]
-    Driver = Hive
-    Host = localhost
-    Port = 10000
-    Database = db
-    AuthMech = 3
-    Username = user
-    Password = pwd
-    ```
-
-### Drivers {-#odbc-drivers}
-
-* SQLite3
-
-    ```bash
-    wget https://www.devart.com/odbc/sqlite/devart-odbc-sqlite.x86_64.rpm
-    rpm -ivh devart-odbc-sqlite.x86_64.rpm
-    ```
-
-* MariaDB/MySQL
-    * Linux
-
         ```bash
-        # MySQL
-        wget https://dev.mysql.com/get/Downloads/Connector-ODBC/8.0/mysql-connector-odbc-8.0.14-1.el7.x86_64
-        rpm rpm -ivh mysql-connector-odbc-8.0.14-1.el7.x86_64.rpm
-    
-        # MariaDB (recommended)
-        wget https://downloads.mariadb.com/Connectors/odbc/connector-odbc-3.0.8/mariadb-connector-odbc-3.0.    8-ga-rhel7-x86_64.tar.gz
-        tar xf mariadb-connector-odbc-3.0.8-ga-rhel7-x86_64.tar.gz
-        cp lib64/libmaodbc.so /usr/lib64/
+        wget https://download2.rstudio.org/rstudio-server-rhel-1.1.463-x86_64.rpm
+        yum install rstudio-server-rhel-1.1.463-x86_64.rpm
+        # verify
+        rstudio-server verify-installation
+        # firewall
+        firewall-cmd --permanent --add-port=8787/tcp
+        systemctl reload firewalld
         ```
-    * [Windows](https://dev.mysql.com/downloads/connector/odbc/)
-
-* PostgreSQL
-    * Linux: `yum install postgresql-odbc`
-    * [Windows](https://www.postgresql.org/ftp/odbc/versions/msi/):
-        * when defines DNS, using driver `PostgreSQL Unicode (x64)`
-        * Set `Option -> Datasource -> Page2 -> Connect Strings: set client_encoding to 'UTF8'` when chinese characters do not display normally
-
-* Hive
-    * [Linux ClouderaHiveODBC](https://www.cloudera.com/downloads/connectors/hive/odbc/2-6-1.html)
-
+    3. ShinyServer
+    
         ```bash
-        wget https://downloads.cloudera.com/connectors/hive_odbc_2.6.1.1001/Linux/ClouderaHiveODBC-2.6.1.1001-1.x86_64.rpm
-        rpm -ivh ClouderaHiveODBC-2.6.1.1001-1.x86_64.rpm
+        wget https://download3.rstudio.org/centos5.9/x86_64/shiny-server-1.5.5.872-rh5-x86_64.rpm
+        yum install --nogpgcheck shiny-server-1.5.5.872-rh5-x86_64.rpm
         ```
-    * [Microsoft Hive ODBC](https://www.microsoft.com/en-us/download/details.aspx?id=40886)
-
-        When defines DNS, setting "Advanced Options" -> "Unicode SQL character type" if chinese characters do not display normally.
-* [Impala](https://www.cloudera.com/downloads/connectors/impala/odbc/2-6-5.html)
-    * Windows: `DSN -> Advanced Options -> Use SQL Unicode Types`
-
-### Connections {-}
-
-When connecting to databases, choose odbc or R database packages.
-
-1. odbc
-
-    ```r
-    con <- DBI::dbConnect(odbc::odbc(), dsn = "dsn")
-    ...
-    DBI::dbDisconnect(con
-    ```
-
-2. database package
-
-    ```r
-    con <- DBI::dbConnect(driver, user, password, host, port, dbname, ...)
-    ...
-    DBI::dbDisconnect(con)
-    ```
-
-    drivers can be:
-
-    1. RSQLite::SQLite()
-    2. RMariaDB::MariaDB()
-    3. RPostgres::Postgres()
+    4. Shinyproxy
+        1. install
     
-    ```r
-    con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
-    con <- DBI::dbConnect(RPostgres::Postgres(), user="user", password="pwd", ...)
-    ```
+            ```sh
+            SHINYPROXY_VERSION = 2.1.0
+            wget https://www.shinyproxy.io/downloads/shinyproxy-${SHINYPROXY_VERSION}.jar
+            ```
+        2. operations
+            1. start: `java -jar shinyproxy-${SHINYPROXY_VERSION}.jar`
+            2. docker image
+        
+                ```
+                FROM conoria/alpine-r-bookdown
+                RUN R -q -e 'bookdown::render_book("index.Rmd", "bookdown::gitbook")' && mv _book /public
+                ```
+        3. configuration
+            1. update jar file in `BOOT-INF` folder: `jar -uf0 shinyproxy-${SHINYPROXY_VERSION}.jar BOOT-INF`
+            2. localization
+        
+                ```
+                # shinyproxy/BOOT-INF/lib/containerproxy...jar::templates/login.html
+                "Please sign in:" -> "请登录: " or give it a blank value
+                placeholder="User name" -> "用户名"
+                placeholder="Password" -> "密码"
+                "Sign in" -> "登录"
+                "<strong>Could not sign in!</strong><br><span th:text="${error}"></span>"
+                "<strong>无法登陆!</strong><br><span th:text="用户名或密码无效"></span>"
+            
+                # shinyproxy/BOOT-INF/classes/fragments/navbar.html
+                "Admin" -> "管理员"
+                "Sign Out" -> "退出"
+            
+                # shinyproxy/BOOT-INF/classes/templates/app.html
+                Launching -> "正在加载"
+                ```
+2. Configuration
+    1. `?Startup` describes initialization at start of an R session
+    2. `~/.Renviron	`
+    
+        ```bash
+        # Install package path
+        R_LIBS_USER="~/R"
+    
+        # Environment
+        JAVA_HOME=...
+        HADOOP_HOME=...
+        HADOOP_CONF_HOME=...
+        SPARK_HOME=...
+        SPARK_CONF_HOME=...
+        ...
+        ```
+    3. `~/.Rprofile`
+    
+        ```r
+        # CRAN mirror
+        # CRANextra mirror supports some packages compiled for windows
+        # local({code ...}) if code needs to be executed
+        # options(...)
+        local({
+            r <- getOption("repos")
+            r["CRAN"] <- "https://mirrors.tuna.tsinghua.edu.cn/CRAN/"
+            r["CRANextra"] <- "http://www.stats.ox.ac.uk/pub/RWin"
+            options(repos = r)
+        })
+    
+        # shiny
+        local({ 
+            options(
+                shiny.port = 3838, 
+                shiny.host = "0.0.0.0",
+                DT.options = list(
+                    scrollX = TRUE, 
+                    language = list(url = "//cdn.datatables.net/plug-ins/1.10.11/i18n/Chinese.json")
+                    )
+            )
+        })
+    
+        # .First: executes when R starts
+        .First <- function() {
+        library(ggplot2)
+        ...
+        }
+    
+        # .Last: executes when R quits
+        .Last <- function() {
+        cat("goodbye")
+        ...
+        }
+        ```
+3. Execution
+    1. write a script, e.g., `foo.R`
 
-    For Windows, when using driver `RPostgreSQL::PostgreSQL()`, not `RPostgres::Postgres()`, it may need change client encoding before executing queries:
+        ```r
+        #!/usr/bin/env Rscript
+        print("hello, world!")
+        ```
+    2. execution
+        1. expressions
+            1. `Rscript -e "print('hello, world!')"`
+            2. `Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook')"`
+        2. script
+            1. `./foo.R`
+            2. `Rscript foo.R`  
 
-    ```r
-    con <- ...
-    RPostgreSQL::postgresqlpqExec(con, "SET client_encoding = 'GBK'")
-    dbGetQuery(con, query)
-    ...
-    ```
+## Basic
 
-### Operations {-}
+1. Data Types
+    1. Constants
+        1. value
+            1. `NULL`: absent object
+            2. `NA`: Not Available, absent value, missing value
+            3. `NaN`: Not a Number, without meaning
+                1. `log(-2)`
+                2. `0 / 0`
+            4. `Inf`, `-Inf`: positive and negative infinity
+                1. `1 / 0 ` => `Inf`
+                2. `-1 / 0` => `-Inf`
+                3. `log(0)` => `-Inf`
+        2. test
+            1. `is.null()`
+            2. `is.na()`: `TRUE` for `NA` and `NaN`
+            3. `is.nan()`
+            4. `is.infinite()`: `FALSE` for `NA` and `NaN`
+            5. `is.finite()`: `FALSE` for `NA` and `NaN`
 
-Table:
+            so `is.finite(x) != is.infinite(x)` is `FALSE` when `x = NA` or `NaN`.
 
-1. `DBI::Id(cluster="mycluster", catalog = "mycatalog", schema="schema_name", table="table_name")`: refer to table nested in a hierarchy, postgresql, sqlserver, e.g..
-2. `DBI::dbExistsTable()`
-    1. `DBI::dbExistsTable(con, "tos_os_p")`
-    2. `DBI::dbExistsTable(con, DBI::id(schema="dw", table="tos_os_p"))`
-3. `DBI::dbCreateTable()`
-4. `DBI::dbAppendTable()`
-5. `DBI::dbReadTable()`
-6. `DBI::dbWriteTable()`
-    1. `DBI::dbWriteTable(con, Id(schema="dw", "table="tos_os_p"), batch_rows = 10000, overwrite = TRUE)`
-7. `DBI::dbRemoveTable()`
-8. `DBI::dbListFields()`
+    2. Vectors: base types in R
+        1. attributes
+            1. Names: name the elements of a vector
+            2. Dimensions: make a vector behave like a matrix or array
+            3. Class: implement S3 object oriented system which controls how generic functions work
+        2. types
+            1. atomic vector
+                1. properties
+                    1. consists of length and identical basic data type. R has six basic types, and `.Machine` lists numeric value ranges:
+                    2. integer and double are collectively called numeric, so `is.numeric()` is `TRUE` for both of them.
+                    3. implicit conversion order is: logical > integer > double > character.
 
-Queries:
+                        : (\#tab:r-conversion) R Basic Types Implicit Conversion
 
-1. `DBI::dbGetQuery()`: send query, retrieve results and clear result set, best for interactive use
-2. `DBI::dbSendQuery() DBI::dbFetch()`  `DBI::dbHasCompleted DBI::dbClearResult()`
-3. `DBI::dbExecute()`: execute an update query best for interactive
-4. `DBI::dbSendStatement()`: execute data manipulation (update, insert into, delete, drop table,...)
-5. `DBI::dbListTables()`: not supports schema, use DBI::dbGetQuery() when needed
-6. `DBI::dbBegin() DBI::dbCommit() DBI::dbRollback()`: for transactions
+                        | Types     | logical | integer | double | character |
+                        | --------- | ------- | ------- | ------ | --------- |
+                        | logical   | TRUE    | 1L      | 1      | TRUE      |
+                        | integer   | -       | 1L      | 1      | "1"       |
+                        | double    | -       | -       | 1      | "1"       |
+                        | character | -       | -       | -      | "1"       |
+                2. types
+                    1. logical: `[TRUE, FALSE, NA]`
+                    2. character: `["abc", ..., NA_character_, NA]`
+                    3. integer: `[1L, ..., NA_integer_, NA]`
+                    4. double: `[1, 1.0, ..., NaN, Inf, -Inf, NA_real, NA]`
+                    5. complex: `[1+1i, ..., NA_complex_, NA]`
+                    6. raw
+
+            2. Recursive Vector
+                1. List: generic vector, elements can have different types, `x <- list(a=10, b=TRUE, c= "hello")`
+                    1. `x["a"]`: return a sublist containing `a`
+                    2. `x[["a"]]`: return the `a` value
+                    3. `x$a`: same as `x[["a"]]`
+            3. Augmented Vector: Vectors with additional attributes, including class
+                1. factor: builts on integer vectors
+                2. date: builds on numeric vectors, represents days since `1970-01-01`
+                3. date-time: builds on numeric vectors with class POSIXct, represents seconds since `1970-01-01 00:00:00`
+                1. data.frame: builds on lists with attributes names, row.names and class
+2. Functions
+    1. types
+        1. builtin
+        2. closure
+        3. special
+    1. common
+        1. `is()`: list all classes that an object inherits from
+        2. `class()`
+        3. `inherits()`
+        4. `is.object()`: `FALSE` when an object is a pure base type, not S3, S4 or RC
+        5. `object.size()`
+        6. `str()`
+        7. `typeof()`
+        8. `length()`
+        9. `nrow()`
+        10. `names()`
+        11. `setNames()`
+        12. `attributes()`
+        13. `attr()`
+        14. `dim()`
+        15. `sample()`
+        16. `seq()`
+        17. `seq_along()`
+        18. `seq_len()`
+        19. `rep()`
+        20. `sort()`
+        21. `order()`
+        22. `unlist()`
+        23. `which()`
+            1. `which.max()`
+            2. `which.min()`
+        24. `any()`
+        25. `all()`
+    2. string
+        1. `nchar()`
+        2. `nzchar()`
+        3. `strrep()`
+        4. `strwrap()`
+        5. `strsplit()`
+        6. `grep()`
+        7. `gsub()`
+    3. set
+        1. `match()`
+        2. `%in%`
+        3. `unique()`
+        4. `intersect()`
+        5. `union()`
+        6. `setdiff()`
+    4. apply
+        1. `lapply()`
+        2. `sapply()`
+        3. `vapply()`
+    5. system
+        1. `require()`
+        2. `library()`
+        3. `getwd()`
+        4. `setwd()`
+        5. `R.home()`
+        6. `SessionInfo()`
+        7. `options()`
+        8. `getOption()`
+        9. `View()`
+    6. exception
+        1.  `stop()`
+        2. `stopifnot()`
+        3. `warning()`
+    1. file
+        1. `basename()`
+        2. `dirname()`
+        3. `list.files()`
+        4. `list.dirs()`
+        5. `system.file()`
+        6. `file.path("a", "b")`
+        7. `path.expand("~")`
+        8. `normalizePath(".")`
+        9. `tempdir()`
+        10. `tempfile()`
+3. control flow
+    1. if
+
+        ```r
+        if (logical) {...
+        } else if (logical) {
+        ...
+        } else {
+        }
+        ```
+    2. `ifelse()`
+    3. `switch()`
+4. OO
+    1. S3
+        1. properties
+            1. usually built on lists, or atomic vectors with attributes
+            2. `is.object() & !isS4(x)` closely tests whether the object is an S3 object. Methods belong to functions, not classes. 
+            3. the functions are called *generic function*, and use *method dispatch* to call the object's specific function.
+        2. definition
+
+            ```r
+            foo <- structure(list(), class = "foo")
+            foo <- list(); class(foo) <- "foo"
+
+            inherits(foo, "foo")
+
+            f <- function(x) UseMethod("f")
+            f.foo <- function(x) "Class foo"
+            f.default <- function(x) "Unknown class"
+
+            f <- function(x, ...) UseMethods("f")
+            f.foo <- function(x, y) paste("Class foo", y)
+            ```
+        3. Generic Related Functions
+            1. `UseMethod("as.Date")`
+            2. `methods("as.Date"); methods(class = "data.frame")`
+            3. `getS3method("as.Date", "default")`
+        4. Group Generic Methods: group several related functions together, see `?groupGeneric`, including:
+            1. Math
+                1. abs
+                2. sign
+                3. sqrt
+                4. floor
+                5. cos
+                6. sin
+                7. log
+                8. exp
+                9. ...
+            2. Ops
+                1. `+ - * / ^ %% %/%`
+                2. `== != < <= >= >`
+                3. `& | !`: vector returns
+                4. `&& ||`: scalar returns
+            3. Summary
+                1. all
+                2. any
+                3. sum
+                4. prod
+                5. min
+                6. max
+                7. range
+            4. Complex
+                1. Arg
+                2. Conj
+                3. Im
+                4. Mod
+                5. Re
+                6. S4
+                7. RC
+    2. S4: 
+        1. properties
+            1. all S4 related code is stored in the `methods` package. `isS4()` can identify an S4 object.
+        2. class and objects
+            1. general
+
+                ```r
+                setClass("Person",
+                    slots = list(name = "character", age = "numeric")
+                )
+
+                setClass("Employee",
+                    slots = list(boss = "Person"),
+                    contains = "Person"
+                )
+
+                alice <- new("Person", name = "Alice", age = 40)
+                john <- new("Employee", name = "John", age = 20, boss = alice)
+                alice@age
+                slot(john, "boss")
+                ```
+            2. if an S4 ojbect contains (inherits from) an S3 class or a base type, it will have a `.Data` slot which contains the underlying base type or S3 object.
+
+                ```r
+                setClass("RangeNumeric",
+                    contains = "numeric",
+                    slots = list(min = "numeric", max = "numeric")
+                )
+
+                rn <- new("RangeNumeric", 1:10, min = 1, max = 10)
+                rn@.Data
+                ```
+        3. Generics and Method Dispatch {-}
+            1. `setGeneric()` creates a new generic or converts an existing function to a generic.
+
+                ```r
+                setGeneric("myGeneric", function(x) {
+                    standardGeneric("myGeneric") # equivalent to UseMethod()
+                })
+
+                setGeneric("union")
+                ```
+            2. `setMethod()` takes the name of the generic, the classes the method should be associated with and a function that implements the method.
+
+                ```r
+                setMethod("union",
+                    c(x = "data.frame", y = "data.frame"),
+                    function(x, y) {
+                        unique(rbind(x, y))
+                    }
+                )
+                ```
+            3. Related Functions
+                1. `class?mle`: find the docs for a class
+                2. `?S4groupGeneric`
+                3. `isGeneric()`
+                4. `getGenerics()`: get a list of all S4 generics
+                5. `getClasses()`: get a list of all S4 classes
+                6. `initialize()`
+                7. `showClass()`
+                8. `getMethod()`
+                9. `showMethods()`: get a list of all S4 methods
+                10. `callGeneric()`: call the current generic function from a method
+                11. `selectMethod("nobs". list("mle"))`: select which method gets called
+                12. `callNextMethod()`: call parent method
+                13. `setAs()`
+                14. `setValidity()`
+5. debugging: see [Debugging R Code](https://rstudio-education.github.io/hopr/debug.html).
+    1. `traceback()`
+    2. `browser()`
+        1. `n`: execute next line
+        2. `s`: step into function
+        3. `f`: finish current function/loop
+        4. `c`: continue execution normally
+        5. `Q`: stop debugging
+        6. `where`: print current position
+        7. `get("n")`: get value from object `n`
+    3. `debug(sample)`
+    4. `isdebugged(sample)`
+    5. `undebug(sample)`
+    6. `debugonce`
+    7. `trace("sample", browser, at = 4)`
+    8. `untrace(sample)`
+    9. `recover()`
+
+## Packages
+
+1. rmarkdown
+    1. references
+        1. [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+        2. [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/)
+        3. [Knitr Options](https://yihui.org/knitr/options/)
+        4. [Tinytex](https://yihui.org/tinytex/)
+2. database
+    1. RSQLite: Sqlite
+    2. RMariaDB: MySQL or MariaDB
+    3. RPostgres: PostgreSQL
+3. odbc
+    1. references
+        1. [rstudio-db](https://db.rstudio.com/)
+    2. configurations
+        1. Linux
+            1. `odbcinst -j` lists configuration files.
+            2. `/etc/odbcinst.ini; ~/odbcinst.ini`
+            
+                ```ini
+                [SQLite3]
+                Description = SQLite ODBC Driver
+                Driver = /usr/local/devart/odbcsqlite/libdevartodbcsqlite.3.0.1.x64.so
+                Setup = /usr/local/devart/odbcsqlite/libdevartodbcsqlite.3.0.1.x64.so
+            
+                [Mariadb]
+                Description = Mariadb driver
+                Driver = /usr/lib64/libmaodbc.so
+            
+                [PostgreSQL]
+                Description = Postgresql driver for GNU/Linux
+                Driver = /usr/lib64/psqlodbcw.so
+                Setup = /usr/lib64/libodbcpsqlS.so
+            
+                [Hive]
+                Description = cloudera hive driver
+                Driver = /opt/cloudera/hiveodbc/lib/64/libclouderahiveodbc64.so
+                ```
+            3. `/etc/odbc.ini; ~/.odbc.ini`: datasources for system and users (DNS)
+
+                ```ini
+                [sqlite3]
+                Description = My SQLite test database
+                Driver = SQLite3
+                Database = /path/to/file.db
+
+                [mariadb]
+                Driver = Mariadb
+                Server = localhost
+                Port = 3306
+                Database = db
+                Socket = /path/to/mysql.sock
+                User = user
+                Password = pwd
+
+                [postgresql]
+                Driver = PostgreSQL
+                Servername = localhost
+                Port = 5432
+                Database = db
+                UserName = user
+                Password = pwd
+
+                [hive]
+                Driver = Hive
+                Host = localhost
+                Port = 10000
+                Database = db
+                AuthMech = 3
+                Username = user
+                Password = pwd
+                ```
+    3. drivers
+        1. SQLite3
+
+            ```bash
+            wget https://www.devart.com/odbc/sqlite/devart-odbc-sqlite.x86_64.rpm
+            rpm -ivh devart-odbc-sqlite.x86_64.rpm
+            ```
+        2. MariaDB/MySQL
+            1. Linux
+
+                ```bash
+                # MySQL
+                wget https://dev.mysql.com/get/Downloads/Connector-ODBC/8.0/mysql-connector-odbc-8.0.14-1.el7.x86_64
+                rpm rpm -ivh mysql-connector-odbc-8.0.14-1.el7.x86_64.rpm
+
+                # MariaDB (recommended)
+                wget https://downloads.mariadb.com/Connectors/odbc/connector-odbc-3.0.8/mariadb-connector-odbc-3.0.    8-ga-rhel7-x86_64.tar.gz
+                tar xf mariadb-connector-odbc-3.0.8-ga-rhel7-x86_64.tar.gz
+                cp lib64/libmaodbc.so /usr/lib64/
+                ```
+            2. [Windows](https://dev.mysql.com/downloads/connector/odbc/)
+
+        3. PostgreSQL
+            1. Linux: `yum install postgresql-odbc`
+            2. [Windows](https://www.postgresql.org/ftp/odbc/versions/msi/):
+                1. when defines DNS, using driver `PostgreSQL Unicode (x64)`
+                2. set `Option -> Datasource -> Page2 -> Connect Strings: set client_encoding to 'UTF8'` when chinese characters do not display normally
+        4. Hive
+            1. [Linux ClouderaHiveODBC](https://www.cloudera.com/downloads/connectors/hive/odbc/2-6-1.html)
+
+                ```bash
+                wget https://downloads.cloudera.com/connectors/hive_odbc_2.6.1.1001/Linux/ClouderaHiveODBC-2.6.1.1001-1.x86_64.rpm
+                rpm -ivh ClouderaHiveODBC-2.6.1.1001-1.x86_64.rpm
+                ```
+            2. [Microsoft Hive ODBC](https://www.microsoft.com/en-us/download/details.aspx?id=40886)
+
+                When defines DNS, setting "Advanced Options" -> "Unicode SQL character type" if chinese characters do not display normally.
+        5. [Impala](https://www.cloudera.com/downloads/connectors/impala/odbc/2-6-5.html)
+            1. Windows: `DSN -> Advanced Options -> Use SQL Unicode Types`
+    4. connections: when connecting to databases, choose odbc or R database packages.
+        1. odbc
+            1. connect: `con <- DBI::dbConnect(odbc::odbc(), dsn = "dsn")`
+            2. disconnect: `DBI::dbDisconnect(con)`
+        2. database package
+            1. drivers
+                1. sqlite: `RSQLite::SQLite()`
+                2. MySQL or MariaDB: `RMariaDB::MariaDB()`
+                3. PostgreSQL: `RPostgres::Postgres()`
+                    1. for Windows, when using driver `RPostgreSQL::PostgreSQL()`, not `RPostgres::Postgres()`, it may need change client encoding before executing queries `RPostgreSQL::postgresqlpqExec(con, "SET client_encoding = 'GBK'")`
+            2. connect: `con <- DBI::dbConnect(driver, user, password, host, port, dbname, ...)`
+            3. disconnect: `DBI::dbDisconnect(con)`
+            4. example
+                1. `con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")`
+                2. `con <- DBI::dbConnect(RPostgres::Postgres(), user="user", password="pwd", ...)`
+    5. operations
+        1. table
+            1. `DBI::Id(cluster="mycluster", catalog = "mycatalog", schema="schema_name", table="table_name")`: refer to table nested in a hierarchy, postgresql, sqlserver, e.g..
+            2. `DBI::dbExistsTable()`
+                1. `DBI::dbExistsTable(con, "tos_os_p")`
+                2. `DBI::dbExistsTable(con, DBI::id(schema="dw", table="tos_os_p"))`
+            3. `DBI::dbCreateTable()`
+            4. `DBI::dbAppendTable()`
+            5. `DBI::dbReadTable()`
+            6. `DBI::dbWriteTable()`
+                1. `DBI::dbWriteTable(con, Id(schema="dw", "table="tos_os_p"), batch_rows = 10000, overwrite = TRUE)`
+            7. `DBI::dbRemoveTable()`
+            8. `DBI::dbListFields()`
+        2. queries
+            1. `DBI::dbGetQuery()`: send query, retrieve results and clear result set, best for interactive use
+            2. `DBI::dbSendQuery() DBI::dbFetch()`  `DBI::dbHasCompleted DBI::dbClearResult()`
+            3. `DBI::dbExecute()`: execute an update query best for interactive
+            4. `DBI::dbSendStatement()`: execute data manipulation (update, insert into, delete, drop table,...)
+            5. `DBI::dbListTables()`: not supports schema, use DBI::dbGetQuery() when needed
+            6. `DBI::dbBegin() DBI::dbCommit() DBI::dbRollback()`: for transactions
+1. pool
+    1. `pool <- dbPool(odbc::odbc(), dsn = "dsn")`
+    2. `poolClose(pool)`
+4. dplyr
+    1. `vignette("programming")`
+    2. `tbl(con, "tos_os_p")`
+    3. `tbl(con, in_schema("dw", "tos_os_p")`: use `in_schema` when need, e.g., postgresql
