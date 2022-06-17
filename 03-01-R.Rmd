@@ -198,7 +198,18 @@
         1. builtin
         2. closure
         3. special
-    1. common
+    1. packages
+        1. `sudo su - -c "R -e \"install.packages('ggplot2', repos='...')\""`
+        2. `install.packages(c("pkg1", "pkg2))`
+        3. `update.packages("pkg1")`
+        4. `remove.packages("pkg1")`
+        5. `if (!requireNamespace("remotes")) install.packages("remotes")`
+        6. `library("pkg1")`: load and attach package on the search list
+        7. `search(), searchpaths()`: gives a list of attached packages`
+        8. `.Library`:  default library location
+        9. `.libPaths()`: all library trees R knows
+        10. `help(package="pkg")`
+    2. common
         1. `is()`: list all classes that an object inherits from
         2. `class()`
         3. `inherits()`
@@ -207,7 +218,7 @@
         6. `str()`
         7. `typeof()`
         8. `length()`
-        9. `nrow()`
+        9.  `nrow()`
         10. `names()`
         11. `setNames()`
         12. `attributes()`
@@ -226,7 +237,7 @@
             2. `which.min()`
         24. `any()`
         25. `all()`
-    2. string
+    3. string
         1. `nchar()`
         2. `nzchar()`
         3. `strrep()`
@@ -234,18 +245,18 @@
         5. `strsplit()`
         6. `grep()`
         7. `gsub()`
-    3. set
+    4. set
         1. `match()`
         2. `%in%`
         3. `unique()`
         4. `intersect()`
         5. `union()`
         6. `setdiff()`
-    4. apply
+    5. apply
         1. `lapply()`
         2. `sapply()`
         3. `vapply()`
-    5. system
+    6. system
         1. `require()`
         2. `library()`
         3. `getwd()`
@@ -255,11 +266,11 @@
         7. `options()`
         8. `getOption()`
         9. `View()`
-    6. exception
+    7. exception
         1.  `stop()`
         2. `stopifnot()`
         3. `warning()`
-    1. file
+    8. file
         1. `basename()`
         2. `dirname()`
         3. `list.files()`
@@ -432,7 +443,240 @@
         2. [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/)
         3. [Knitr Options](https://yihui.org/knitr/options/)
         4. [Tinytex](https://yihui.org/tinytex/)
-2. database
+    2. commands
+        1. `rmarkdown::pandoc_version()`
+    3. hook
+
+        ````r
+        ```{r init, include=FALSE}
+        library(knitr)
+        hook_output = knit_hooks$get('output')
+        knit_hooks$set(output = function(x, options) {
+          # this hook is used only when the linewidth option is not NULL
+          if (!is.null(n <- options$linewidth)) {
+            x = knitr:::split_lines(x)
+            # any lines wider than n should be wrapped
+            if (any(nchar(x) > n)) x = strwrap(x, width = n)
+            x = paste(x, collapse = '\n')
+          }
+          hook_output(x, options)
+        })
+        ```
+        ````
+    5. other related
+        1. showtext
+        2. tinytext
+            1. `tinytex::install_tinytex()`
+            1. `tinytex::uninstall_tinytex()`
+            2. `tinytex::reinstall_tinytex()`
+            3. `tinytex::tlmgr_update()`
+        3. xaringan
+            1. install: `remotes::install_github('yihui/xaringan')`
+            2. comile
+                1. `rmarkdown::render('foo.Rmd', 'xaringan::moon_reader')`
+                2. `names(xaringan:::list_css())`: available themes
+                3. `xaringan::summon_remark()`: download a copy of remark.js in advance, stored default in libs/remark-latest.min.js
+        4. bookdown
+            1. compile
+                1. `bookdown::render_book('index.Rmd', 'bookdown::gitbook')`
+                2. `bookdown::render_book('index.Rmd', 'bookdown::pdf_book')`
+                3. `bookdown::render_book('index.Rmd', 'bookdown::epub_book')`
+                4. `bookdown::preview_chapter()`: render only one chapter at a time`
+                5. `bookdown::server_book()`
+            2. structure
+                1. `bookname/`
+                    1. `_bookdown.yml`
+
+                        ```yaml
+                        book_filename: "book name" # filename of the main Rmd file (e.g., merged from all chapters),  _main.Rmd default
+                        language:
+                          label:
+                            fig: 'Figure '
+                            tab: 'Table '
+                            eq: 'Equation '
+                            thm: 'Theorem '
+                            lem: 'Lemma '
+                            cor: 'Corollary '
+                            prp: 'Proposition '
+                            cnj: 'Conjecture '
+                            def: 'Definition '
+                            exm: 'Example '
+                            exr: 'Exercise '
+                            proof: 'Proof. '
+                            remark: 'Remark. '
+                            solution: 'Solution. '
+                          ui:
+                            chapter_name: ["Chapter", !expr function(i) paste('Chapter', i), # i is the chapter number
+                                           !expr function(i) paste0(chapter_name[1], i, chapter_name[2])]
+                            edit: Edit
+                            appendix_name: "" # similar to chapter_name
+                        delete_merged_file: true
+                        before_chapter_script: ["script1.R", "script2.R"] # executed before each chapter
+                        after_chapter_script: script3.R
+                        rmd_subdir: [true, false] # whether to search for book source Rmd files in subdirectories
+                        rmd_files: ["index.Rmd", "abs.Rmd", "intro.Rmd"] # define list and order of Rmd files to compile
+                        rmd_files:
+                          html: [a.Rmd, b.Rmd, c.Rmd] # file for html output
+                          latex: [b.Rmd, c.Rmd] # file for pdf output
+                        output_dir: "book-output" # _book default
+                        clean: ["my-book.bbl", "R-packages.bib"]
+                        ```
+                    2. `_output.yml`
+
+                        ```yaml
+                        bookdown::html_book:
+                          theme: [null, default, cerulean, journal, flatly, darkly, readable, spacelab, united, cosmo, 
+                                  lumen, paper, sandstone, simplex]
+                          includes:
+                            in_header: style.css
+                        bookdown::gitbook:
+                          css: style.css
+                          includes:
+                            in_header: [style.css, math.html]
+                            before_body:
+                            after_body:
+                          highlight: [default, tango, pygments, kate, monochrome,
+                                      espresso, zenburn, haddock, breezedark]
+                          lib_dir: "book_assets"
+                          split_by: ["chapter", "chapter+number", "section", "section+number", "rmd", "none"]
+                          config:
+                            toc:
+                              collapse: [null, section, subsection]
+                              scroll_highlight: yes
+                              before: null
+                              before: |
+                                <li><a href="...">Awesome Book</a><li>
+                                <li><a href="...">Wonderful Book</a><li>
+                              after: null
+                              after:  |
+                                <li><a href="...">published with bookdown</a><li>
+                              toolbar:
+                                position: [fixed, static]
+                              search: yes
+                              edit: null
+                              download: [null<d>, no, ["pdf", "epub", "mobi"]<+>, ["book.pdf", "book.epub"]<+>]
+                              download:
+                                - ["book.pdf", "PDF"]
+                                - ["book.epub", "EPUB"]
+                            fontsettings: [null, no]
+                            fontsettings:
+                              theme: [white, Sepia, Night]
+                              family: sans
+                              size: 2 # can be 1-4
+                            sharing: [null, no]
+                            sharing:
+                              facebook: yes
+                              github: no
+                              twitter: yes
+                              linkedin: no
+                              weibo: no
+                              instapaper: no
+                              vk: no
+                              all: ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+                            info: [no, yes]
+                        bookdown::pdf_book:
+                          includes:
+                            in_header: tex/header.tex
+                            before_body:
+                            after_body:
+                          dev: "cairo_pdf"
+                          keep_tex: yes
+                          latex_engine: xelatex
+                          citation_package: [biblatex, natbib]
+                          toc: yes
+                          toc_depth: 3
+                          template: null
+                        bookdown::epub_book: default
+                        ```
+                    3. `index.Rmd`
+                        1. treated as the first file when merging all Rmd files if exists. filenames starting with underscore "_" are always ignored.
+                        2. YAML metadata is specified in the first Rmd file of the book, always in `index.Rmd`
+                        
+                            ```yaml
+                            ---
+                            title: "book title"
+                            author: ""
+                            date: "`r Sys.Date()`"
+                            site: bookdown::bookdown_site # for RStudio use
+                            output: bookdown::gitbook
+                            documentclass: book # for LaTeX output
+                            bibliography: [one.bib, another.bib, ...]
+                            biblio-style: apalike
+                            link-citations: yes # adds internal links to the bibliography entry in the HTML output
+                            nocite: "@*" # force all bibliography displayed even if they are not cited in body
+                            lot: yes # list of tables
+                            lof: yes # list of figures
+                            fontsize: 12pt
+                            monofont: "Source Code Pro"
+                            monofontoptions: "Scale=0.7"
+                            github-repo: rstudio/bookdown # The GitHub repository
+                            description: "more info about the book" # <meta name="description" content="..."> for web SEO
+                            url: "https\://bookdown.org/john/awesome/" # book's website
+                            favicon: "favicon.ico"
+                            cover-image: "path/to/image" # The path to the cover image of the book
+                            apple-touch-icon: "touch-icon.png" # for IOS
+                            apple-touch-icon-size: 120
+                            ---
+                            ```
+                    5. `01-intro.Rmd`
+                    6. `02-method.Rmd`
+                    7. `xx-others.Rmd`
+        5. knitr
+            1. Global Options
+                1. `options(knitr.graphics.auto_pdf = TRUE)`
+                2. `knitr::opts_knit$get("")`
+                3. `knitr::opts_knit$set("")`: package options
+                4. `knitr::opts_chunk$get()`: get code chunk options
+                5. `knitr::opts_chunk$set()`: set chunk options
+
+
+                ```r
+                    ```{r setup, include = FALSE}
+                    knitr::opts_chunk$set(
+                        echo = FALSE,
+                        warning = FALSE,
+                        fig.showtext = TRUE,
+                        engine.path = list(
+                            python="~/.bin/python",
+                            ruby="~/.bin/ruby"
+                        )
+                    )
+                    options(digits = 2)
+                    ```
+                ```
+            2. Commands
+                1. `knitr::include_graphics()`
+                2. `knitr::kable()`
+                3. `knitr::include_url()`: include a web page throught its URL, when output is HTML, iframe is used`
+                4. `knitr::is_html_output()`
+                5. `knitr::is_latex_output()`
+                6. `knitr::knit_engines$get()`
+                7. `knitr::write_bib()`
+            3. Chunk Options
+                1. `echo = [TRUE<d>, FALSE]`: whether to display the source code in the output document
+                2. `eval = [TRUE<d>, FALSE]`: whether to evaluate the code chunk
+                3. `results = ["markup"<d>, "asis", "hold", "hide"|"FALSE"]`: how to display text results
+                4. `include = [TRUE<d>, FALSE]`: when FALSE, source and results hidden, while code still evaluated, plots generated too
+                5. `error = [TRUE<d>, FALSE]`
+                6. `warning = [TRUE<d>, FALSE]`
+                7. `message = [TRUE<d>, FALSE]`
+                8. `comment = "#>"`: output comments distinguish from regular comments
+                9. `cache = [FALSE<d>, TRUE]`: whether to cache results when the code chunks are time-consuming
+                10. `child = c("file1.Rmd", "file2.Rmd", ...)`
+                11. `fig.showtext<?> = TRUE`: for Chinese character display in the plot
+                12. `fig.path = "figures/"`
+                13. `fig.cap = [NULL<d>, " A figure caption"]`
+                14. `fig.width = 6`: size in inches
+                15. `fig.height = 4.2`
+                16. `fig.asp = 0.7`: the ratio of figure height/width
+                17. `fig.align = ["default"<d>, "left", "right", "center"]`: default not make any alignment adjustments
+                18. `fig.link = "https://..."`: a link added to the plot
+                19. `out.width = [7, "30%", c("50%", "50")]`
+                20. `out.height = 7`: specifies the output size
+                21. `fig.show = ["hold"]`: when "hold", plots put together, side by side if total out.width not succeed the width
+                22. `engine = ["R"<d>, "python", "sql", "bash", ...]`
+                23. `engine.path=[null<d>, list(python="~/.bin/python", ruby="~/.bin/ruby")]`
+2. database related
     1. RSQLite: Sqlite
     2. RMariaDB: MySQL or MariaDB
     3. RPostgres: PostgreSQL
@@ -441,8 +685,9 @@
         1. [rstudio-db](https://db.rstudio.com/)
     2. configurations
         1. Linux
-            1. `odbcinst -j` lists configuration files.
-            2. `/etc/odbcinst.ini; ~/odbcinst.ini`
+            1. `yum install unixODBC unixODBC-devel`: dependent on the driver manager unixODBC
+            2. `odbcinst -j` lists configuration files.
+            3. `/etc/odbcinst.ini; ~/odbcinst.ini`
             
                 ```ini
                 [SQLite3]
@@ -463,7 +708,7 @@
                 Description = cloudera hive driver
                 Driver = /opt/cloudera/hiveodbc/lib/64/libclouderahiveodbc64.so
                 ```
-            3. `/etc/odbc.ini; ~/.odbc.ini`: datasources for system and users (DNS)
+            4. `/etc/odbc.ini; ~/.odbc.ini`: datasources for system and users (DNS)
 
                 ```ini
                 [sqlite3]
@@ -571,10 +816,103 @@
             4. `DBI::dbSendStatement()`: execute data manipulation (update, insert into, delete, drop table,...)
             5. `DBI::dbListTables()`: not supports schema, use DBI::dbGetQuery() when needed
             6. `DBI::dbBegin() DBI::dbCommit() DBI::dbRollback()`: for transactions
-1. pool
+4. pool
     1. `pool <- dbPool(odbc::odbc(), dsn = "dsn")`
     2. `poolClose(pool)`
-4. dplyr
+5. dplyr
     1. `vignette("programming")`
     2. `tbl(con, "tos_os_p")`
     3. `tbl(con, in_schema("dw", "tos_os_p")`: use `in_schema` when need, e.g., postgresql
+6. openxlsx: excel operations
+7. glue: string operations
+8. development tools
+    1. roxygen2
+        1. `vignette("roxygen2")`
+        2. `vignette("namespace")`
+        3. `vignette("rd")`
+    2. usethis
+        1. commands
+            1. `usethis::create_package()`
+            2. `usethis::create_project()`: non-package, e.g., analysis project
+            3. `usethis::use_package("package", type=["Imports"<d>,"Suggests", Depends"])`
+            4. `usethis::use_data(x, y, ...)`: creates .rda data in package folder `data/`
+            5. `usethis::use_data_raw()`: creates R file for generating rda data in package folder `data-raw/`
+            6. `usethat::use_vignette()`
+            7. `usethat::use_testthat()`: sets up overall testing infrastructure
+            8. `usethat::use_test("name")`: creates test-name.R file
+            9. `usethis::edit_r_profile()`
+            10. `usethis::edit_r_environ()`
+            11. `usethis::edit_git_ignore()`
+            12. `usethis::use_package_doc()`
+        2. `.Rprofile`
+
+            ```r
+            options(
+              usethis.full_name = "Jane Doe",
+              usethis.description = list(
+                 `Authors@R` = 'person("Jane", "Doe", email = "jane@example.com", role = c("aut", "cre"), comment = c(ORCID = "YOUR-ORCID-ID"))',
+                License = "MIT + file LICENSE",
+                Version = "0.0.0.9000"
+              ),
+              usethis.protocol = "ssh"
+            )
+            ```
+    3. devtools
+        1. `devtools::session_info()`
+        2. `devtools::document()`
+        3. `devtools::build()`
+        4. `devtools::load_all()`
+        5. `devtools::test()`
+        6. `devtools::install("local_package")`
+        7. `devtools::install_github('user/repo')`
+        8. `devtools::uninstall('package')`
+    4. testthat: r unit test
+9. ML
+    1. mlr3
+    2. mlr3learners
+    3. mlr3viz
+    4. precrec
+
+## R Markdown Usage
+
+1. Configurations
+    1. rmarkdown
+
+        ```yaml
+        ---
+        title: "An R Markdown Document"
+        author: "San Li"
+        output: ["html_document", "pdf_document]
+        output:
+          html_document:
+            toc: yes
+        ---
+        ```
+    2. xaringan
+    
+        ```yaml
+        ---
+        title: "xaringan: from scratch"
+        subtitle: ""
+        author: "Y"
+        institute: "ins center"
+        date: "2018-12-28 (updated `r Sys.Date()`)"
+        output:
+          xaringan::moon_reader:
+            seal: false # disable xaringan's title slide, create self title slide
+            chakra: libs/remark-latest.min.js # use local remark.js
+            css: [default, xaringan.css]
+            lib_dir: libs
+            nature:
+              beforeInit: "macros.js" # self defined js code
+              titleSlideClass: [top, left, inverse]
+              highlightStyle: github
+              highlightLines: true
+              countIncrementalSlides: false
+              countdown: 60000 # spend time on every slide, e.g., 60 seconds
+              autoplay: 30000 # autoplay slides
+              autoplay:
+                interval: 30000
+                loop: true
+        ---
+        ```
