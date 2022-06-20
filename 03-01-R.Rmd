@@ -916,3 +916,307 @@
                 loop: true
         ---
         ```
+2. Markdown Syntax
+    1. text
+        1. inline
+            1. `_text_`, `*text*`: italic
+            2. `__text__`, `**text**`: bold
+            3. `~~text~~`: strikethrough
+            4. `~`: subscript
+            5. `^`: superscript
+            6. `\\`, `\*`, `\_`: escape
+            7. `<! -- text comment -->`
+        2. blocks
+            1. `#, ##, ..., ######`: first to sixth level headers, headers followed by `{-}`  will not be numbered, e.g., `# First {-}`
+            2. `>`: blockquote
+        3. specials
+            1. labels only contains `a-z, A-Z, 0-9`, slashes `/` , dashes `-`, underscore `_` not supported
+            2. for YAML values, both `yes` and `true` mean `true`, and `no`, `false` mean false
+            3. use more backticks outside to include literal backticks, `` `code` ``
+            4. to show a literal chunk in the document, do like the following
+
+                `````markdown
+                ````
+                `r ''````{r} # a literal code chunk
+                ``` 
+                ````
+                `````
+
+                the results is:
+
+                ````markdown
+                ```{r}
+                # a literal code chunk
+                ```
+                ````
+    2. lines
+        1. `***, ---, ___`: horizontal line
+    3. links
+        1. `<url>`, `[text](url)`: hyperlink
+        2. `![alt text](path/to/image)`: image link
+        3. `^[note]`: footnotes
+    4. lists
+        1. unordered list: items start with `*`, `-` or `+`
+
+            ```markdown
+            * a
+            * b
+            * c
+            ``` 
+        2. ordered list: items start with a number
+
+            ```markdown
+            1. a
+            2. b
+            3. c
+            ```
+        3. definition list: can be used for glossary
+            1. basic form
+
+                ```markdown
+                Term 1
+                line can be omitted
+                : Definition 1
+
+                <!-- indent four spaces -->
+
+                    another parts
+
+                Term 2
+                : Definition 2a
+                : Definition 2b
+                ```
+            2. compact form
+
+                ```markdown
+                Term 1
+                 ~ Definition 1
+
+                Term 2
+                 ~ Definition 2a
+                 ~ Definition 2b
+                ```
+    5. table
+
+        ```markdown
+        | center | left  | right | default |
+        | :----: | :---  | ---:  |---------|
+        | cont1  | cont2 | con3  | con4    |
+        |   ...  | ...   | ...   | ...     |
+
+        : (\#tab:table-label) This is table caption place with label
+        Table: (\#tab:table-label) This is another table caption style with label
+        ```
+    6. code
+        1. inline: surrounded by a pair of backticks, e.g., `` `r 1+1` ``
+        2. blocks
+            1. plain code blocks can be written after three or more backticks, or indent by four spaces
+            2. code chunks
+
+                ````markdown
+                ``` {r chunk-label, fig.cap = "A figure caption"}
+                plot(pressure)
+                ```
+                ````
+        3. engine
+            1. r
+            2. python
+            3. sql
+            4. bash
+            5. css
+    7. cross references
+        1. figure: `fig.cap = "..."` via chunk option will be automatically labeled and numbered. `\@ref(fig:foo)` refers to figure labeled `foo`
+        2. table
+            1. chunk code with label `foo` will have a table label `tab:foo`, then use `\@ref(tab:foo)` to refer to the table.
+            2. for a normal table, it must have have a `Table: (\#label) your caption`, where label must have the prefix `tab`, e.g., `tab:simple-table`
+        3. section
+            1. a header followed by a `{#id_label}` will have an ID, then use `\@ref{id_label}` to refer to the header
+            2. may also use the following way to refer to the header
+                1. `[section header text]`
+                2. `[link text][section header text]`
+                3. `[link text](#id_label)`
+    8. references
+
+        when the output format is LaTeX, the list of references will be automatically put in a chapter or section at the end of the document. For non-LaTex output, if want to put in a separate chapter (otherwise it will be just appended at the end of the document), then it can be done like the following code, "References" can be changed to other name according to demand.
+
+        ```markdown
+        `r if (knitr::is_html_output()) '
+        # References {-}
+        '`
+        ```
+
+        References position can also be modified using the following way, suitable other format, such as PDF too.
+
+        ```markdown
+        # References
+
+        <div id="refs"></div>
+        ```
+    9. math
+        1. `$...$`: inline latex equtions
+        2. `$$...$$`: block latex equtions
+    10. latex
+        1. refs
+            1. `\label{label-name}`
+            2. `[\ref{label-name}`, `\autoref{label-name}]`
+            3. `\newpage`
+            4. `\setcounter{tocdepth}{6}`
+            5. `\tableofcontents`
+            6. `\listoffigures`
+            7. `\listoftables`
+            8. `\FloatBarrier`: keep figures, tables and others display in its own chapter
+        2. settings
+            1. `\renewcommand{\contentsname}{\centering 目录}`
+            2. `\usepackage{xeCJK}`
+            3. `\setCJKmainfont{STSong}`
+            4. `\pretitle{\vspace{\droptitle}\centering\huge}`
+            5. `\preauthor{\centering\large\vspace{24bp}}`
+            6. `\predate{\centering\large}`
+            7. `\fontsize{12}{22}`
+2. Bookdown Extensions
+    1. extended headers
+        1. first level starts with `(PART)` will be organized into parts and numbered, `(PART*)` will not be numbered
+        2. first level starts with `(APPENDIX)` will not be numbered, indicating the following chapters are appendices
+    2. references
+        1. text
+
+            it is particularly useful for figure and table captions. The syntax is `(ref:label)` text, where label is a unique name throughout the document for text. It must be in a   separate paragraph with empty lines above and below it. The paragraph must not be wrapped into multiple lines, and should not end with a white space. Then using `(ref: label}`   refers to the content.
+
+            ````markdown
+            (ref:foo) Define a text reference **here**.
+
+            ```{r foo, fig.cap='(ref:foo)'} 
+            plot(cars)  # a scatterplot
+            ```
+            ````
+        2. equation
+            
+            `(\#eq:label_name)` labels the equation in the eqution environments, and `\@ref(eq:label_name)` refers to the equation. Equations using `equation*` or adding `\nonumber` or `\notag` to equations will not be numbered, also for `gather*`, `align*`. split environment will make all lines share the same number.
+
+            1. with number, using `\@ref(eq:binom)` to refer to the equation
+
+                ```markdown
+                \begin{equation}
+                f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}  (\#eq:binom)
+                \end{equation}
+                ```
+
+            2. without number
+
+                ```markdown
+                \begin{equation*}
+                f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
+                \end{equation*}
+
+                \begin{equation}
+                f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k} \notag
+                \end{equation}
+                ```
+        3. theorems and proofs
+            1. theorems environments: `\@ref(prefix:label)` refers to the theorem, .e.g., `\@ref(thm:pyth)` refers to the pyth theorem.
+
+                | Environment | Printed Name | Label Prefix |
+                | ----------- | ------------ | ------------ |
+                | theorem     | Theorem      | thm          |
+                | lemma       | Lemma        | lem          |
+                | corollary   | Corollary    | cor          |
+                | proposition | Proposition  | prp          |
+                | conjecture  | Conjecture   | cnj          |
+                | definition  | Definition   | def          |
+                | example     | Example      | exm          |
+                | exercise    | Exercise     | exr          |
+
+            2. proof environments: support `proof`, `remark` and `solution`
+                1. similar to the theorem environments and can be named
+                2. unnumbered, so cannot be referred to
+            3. examples
+
+                ````markdown
+                ```{theorem, label="foo", name="content name"}
+                Here is the theorem.
+                ```
+
+                ```{lemma, foo, name="content name"}
+                Here is the lemma.
+                ```
+                ````
+3. Xaringan Extensions
+    1. usage
+        1. `---`: three dashes begins a new slide, not rendered as a horizontal line `<hr />`
+        2. `--`: two dashes add contents incrementally
+        3. `.class[contents]`: styles contents with a class. `.footnote[contents]` will put the contents bottom
+    2. property
+        1. `name: id`: gives the current slide an id. It can then be styled using `#id`, or linked `[name][#id]`
+        2. `class: name`: gives a class, default value `[left, right, center, top, bottom, middle, inverse]`
+        3. `background-image: url(image.jpg)`: give current slide a background image
+        4. `background-position: 50% 50%`
+        5. `background-size: [cover, contain, 100px]`
+        6. `count: [true, false]`: whether counts the slide
+        7. `template: {{ name }}`: uses another slide as its template and appends new content
+        8. `layout: [true, false]`: server as default template for following slides, when false, returns to normal
+        9. `exclude: [true, false]`: when true, the slide will be hidden without rendering
+    3. layout
+        1. `.pull-left[contents]` `.pull-right[contents]`
+            1. float contents to left or right of the slide, both width 47% default
+            2. best to show the comparable contents
+        2. `.left-column[contents]`, `.right-column[contents]`
+            1. float contents to the left or right of the slide, with width 20% and 75% default
+            2. best to show outlines on the left, and the contents on the right.
+    4. table: make sure tha table is in the HTML format, instead of Markdown or other formats, `knitr::kable(head(iris), format = 'html')`
+    5. code highlight
+        1. code starting with `*`, or wrapped in `{{ }}`, or end with `#<<` will be highlighted when `highlightLines: true`
+        2. line-highlighting can also be set when use the chunk option `highlight.output = c(1, 3)`, the first and third is highlighted, or `highlight.output = c(TRUE, FALSE)` for example.
+
+            ````markdown
+            ```{r, highlight.output=c(1,3)}
+            head(iris)
+            ```
+            ````
+    6. presentation: press `C` to clone a display, then press `P` to switch to presenter mode, support Vim movement, see shortcuts with `h`
+    7. css
+        1. theme: consists of two css files `foo.css` and `foo-fonts.css`, where foo is the theme name
+        2. to use a theme, specify css option as an array of css filenames (without `.css` extension) 
+
+            ```yaml
+            output:
+              xaringan::moon_reader:
+                css: [default, foo, foo-fonts]
+            ```
+    8. macros
+
+        self-defined macros (js functions) can be applied using the syntax `![:macroName, arg1, arg2,,,]` or `![:macroName, arg1, arg2, ...](this)`. the following defines a scale macro and can use `![:scale 50%](image.jpg)`, then it will be translated to  `<img src="image.jpg" style="width: 50%" />`
+
+        ```js
+        remark.macros.scale = function (percentage) {
+          var url = this;
+          return '<img src="' + url + '" style="width: ' + percentage + '" />';
+        };
+        ```
+
+        To insert macros in slides, put macros in a js file, e.g., `macros.js`, then sets the option:
+
+        ```yaml
+        output:
+          xaringan::moon_reader:
+            nature:
+              beforeInit: "macros.js"
+        ```
+    9. example
+
+        ```markdown
+        ---
+        name: intro
+        layout: true
+        
+        # Introduction
+        
+        .pull-left[
+        pull left contents
+        ]
+        
+        .pull-right[
+        pull right contents
+        ]
+        
+        other contents ...
+        ```

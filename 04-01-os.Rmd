@@ -3,7 +3,7 @@
 ## Environments
 
 1. Centos
-    1. download [minimal centos image](http://centos.nethub.com.hk/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2009.    iso) 
+    1. download [minimal centos image](http://centos.nethub.com.hk/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2009.iso) 
     2. install and partition disk
         1. select **install centos7** after booting
         2. click **tab** at the bottom of the information, append **inst.gpt**, then press **enter** key, the system will use **gpt** to partition the disk
@@ -15,14 +15,14 @@
         1. `Cannot find a valid baseurl for repo`: in `/etc/sysconfig/network-scripts/ifcfg-ens33`, changes `ONBOOT=no` to `ONBOOT=yes`, then `systemctl restart network`
         2. `time not correct`
 
-            ```
+            ```bash
             yum install ntp
             ntpdate us.pool.ntp.org # correct time
             ```
 2. Basic Software
     1. Minimal: `yum install gcc wget net-tools nss curl libcurl curl-devel epel-release`
         1. `gcc`, `wget`, `net-tools`: for minimal centos7
-        2. `nss`, `curl`, `libcurl`, `curl-devel`: net protocals and avoid `peer reports incompatible or unsupported         protocol version`
+        2. `nss`, `curl`, `libcurl`, `curl-devel`: net protocals and avoid `peer reports incompatible or unsupported protocol version`
         3. `epel-release`: download software from epel-release repository, it contains new version software
     2. Git
         1. dependencies: `yum install autoconf zlib-devel perl-ExtUtils-MakeMaker asciidoc xmlto`
@@ -126,8 +126,9 @@
         2. source from tar
 
             ```sh
-            # PYTHON_VERSION = 3.7.0
-            PYTHON_VERSION = 3.10.4
+            # PYTHON_VERSION=3.7.0
+            # PYTHON_VERSION=3.8.3
+            PYTHON_VERSION=3.9.2
             wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz
             tar xf Python-${PYTHON_VERSION}.tgz
             ```
@@ -141,7 +142,7 @@
             # sudo make altinstall (instead of make install) support multiple python versions
             ```
         4. QA
-            1. `export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}`
+            1. `export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}`: find shared libraries
     5. Vim
         1. dependencies
             1. Python
@@ -452,7 +453,7 @@
         5. `passwd <user_name>`: set password
         6. `chown -R <user_name>: <user_home>`
         7. `groupadd <groupname>`
-        8. `gpasswd -a <user_name> wheel`: `wheel`, add sudo priviledge
+        8. `gpasswd -a <user_name> wheel`: `wheel`, add sudo priviledge, may need enter again
     4. SSH
         1. operations
             1. `ssh-keygen -t rsa`: create keys, stored in `~/.ssh` default
@@ -460,8 +461,9 @@
                 2. `id_rsa`: private key file, must keep safely
                 3. `authorized_keys`: file storing login user's public key, must have **mode 600**, otherwise will not work
                 4. `known_hosts`: trust hosts
-            2. `ssh-copy-id user@host`: copy public key to remote host
-            3. `ssh user@host 'mkdir -p .ssh && cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub`: same as `2`
+            2. copy public key to remote host
+                1. `ssh-copy-id user@host`
+                1. `ssh user@host 'mkdir -p .ssh && cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub`
         2. Config: see `man ssh_config`
             1. files
                 1. `/etc/ssh/ssh_config`: system-wide file
