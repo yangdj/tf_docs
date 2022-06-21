@@ -28,13 +28,13 @@
             1. `~/.pip/pip.conf`: for Linux and OSX
             2. `~\pip\pip.ini`: for Windows
 
-        ```ini
-        [global]
-        index-url = https://pypi.tuna.tsinghua.edu.cn/simple
-        [install]
-        trusted-host = https://pypi.tuna.tsinghua.edu.cn
-        ```
-        1. Commands
+            ```ini
+            [global]
+            index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+            [install]
+            trusted-host = https://pypi.tuna.tsinghua.edu.cn
+            ```
+        2. Commands
             1. `pip install package`
             2. `pip uninstall package`
             3. `pip install --upgrade package`
@@ -187,13 +187,13 @@
                 3. `2`: the end of file for binary reading
     7.  Function:
         1. Definition: use `def` to define a function with a name
-        1. Parameters:
+        2. Parameters:
             1. can be empty when defined
             2. can be positional or keyword, `f(1, 2, a=3, b=4)`
             3. can have default value when defined, `__defaults__` is created
             4. `*args`: arbitrary number of parameters. `*` in the front of the last positional parameter name denote it as a tuple reference, `args` is a tuple
             5. `**kwargs**`: arbitrary number of keyword parameters. `kwargs` is a dict
-        2. Body
+        3. Body
             1. Return
                 1. `None` will return when no return used, or just return without an expression
                 2. `return expr` will return `expr` value
@@ -209,7 +209,7 @@
                 1. `global`: made the vairable global, not local
                 2. `nonlocal`: a nonlocal variable has to be defined in the enclosing function scope
                 3. a variable can't be both local and global, otherwise `UnboundLocalError` will be raised
-    5.  Modules: Every file with file extension `.py` and proper python code can be seen or is a module.
+    8.  Modules: Every file with file extension `.py` and proper python code can be seen or is a module.
         1. import: all objects in the module can be accessed using `import`:
             1. `import math`: import a module
             2. `import math as mathematics`: import a module with a new na
@@ -226,10 +226,10 @@
             2. `from imp import reload; reload(a_module)`: python3+, deprecated since 3.4
             3. `reload(a_module)`: python2
         4.  `__name__`: a module can be run as a script as if it had been imported, with exception that its `__name__` set to `__main__`
-    6. Packages
+    9. Packages
         1. A package is basically a directory with python files and a file with the name `__init__.py`, which can be empty or contains valid code. It structures module namespace using **dotted modules names**. `A.B` stands for a submodule named `B` in a package named `A`.
         2. An `__all__` list in the `__init__.py` can list module and packages names to be imported when import a package using `*` in the form `from package import *`.
-    7. Exception
+    10. Exception
         1. `try except`: start an exception handling
         2. `else`: optional after all the exceplt clauses, executed if try clause does not raise an exception
         3. `finally`: clean-up or termination clauses, they must be executed under all circumstances, whether an exception occurred or not
@@ -258,7 +258,7 @@
             statement_1
             ...
         ```
-    8. Iterable & Iterator
+    11. Iterable & Iterator
         1. Iterable: object can be used in `for loop` statement. It should have method `__iter__` which returns an iterator or `__getitem__` with sequential indexes starting with 0
         2. Iterator: subset of iterable. It should have methods `__iter__` which returns itself and `__next__` which will be used when the  function `next()` is called. When a for loop is executed, the `for` statement calls `iter()` on the object. If successful, the `iter` will return an iterator that defines `__next__()`, which accesses elements of the object one at a time. the `__next__()` method will raise a `StopIteration` except if there are no further elements available. The `for` loop will terminate as soon as it catches a `StopIteration` exception.
     
@@ -275,11 +275,11 @@
             except StopIteration:
                 break
         ```
-    9. Generator: A generator is a function returning a generator object which is also an iterator (not vice versa) producing values lazily. The advantage of generators consist in automatically creating methods `__iter__()` and `__next__()`. There are two types of generators:
+    12. Generator: A generator is a function returning a generator object which is also an iterator (not vice versa) producing values lazily. The advantage of generators consist in automatically creating methods `__iter__()` and `__next__()`. There are two types of generators:
         1. generator function: use `yield` instead of `return` to produce values. If there is a `return` statement in the code of a generator, the execution will stop with a `StopIteration` exception
         2. generator comprehension: use `()` similar to list comprehension
-    10. lambda: `lambda argument_list: expression`
-    11. Decorators
+    13. lambda: `lambda argument_list: expression`
+    14. Decorators
         When define decorators, take into account that the attributes of origininal functions will be lost after the decoration
         1. `__name__`
         2.  `__doc__`
@@ -350,7 +350,7 @@
             else:
                 return fib(n-1) + fib(n-2)
         ```
-1. Datatypes 
+5. Datatypes 
     1. basic
         1. bool: subclass of `int`
             1. `True`
@@ -383,21 +383,21 @@
                 5. `r"hello"`: raw string, backslashes are not handleed in any special way, useful in REs processing for simplicity
                 6. `b"hello"`: bytes, see `bytes`
             3.  Escaping: use backslash `\`
-                2. `\\`: backslash
-                3. `\'`: single quote
-                2. `\"`: double quote
-                3. `\a`: BEL, Bell
-                4. `\b`: BS, Backspace
-                5. `\t`: TAB
-                6. `\n`: LF, Linefeed
-                7. `\f`: FF, formfeed
-                8.  `\v`: VT, Vertical Tab
-                9.  `\r`: CR, Carrige Return
-                10. `\ooo`: octal value `ooo`
-                11. `\xhh`: hex value `hh`
-                12. `\uxxxx`: 16-bit hex value `xxxx` (Unicode only)
-                13. `\Uxxxxxxxx`: 32-bit hex value `xxxxxxxx` (Unicode only)
-                14. `\N{name}`: named `name` in Unicode database (Unicode only)
+                1. `\\`: backslash
+                2. `\'`: single quote
+                3. `\"`: double quote
+                4. `\a`: BEL, Bell
+                5. `\b`: BS, Backspace
+                6. `\t`: TAB
+                7. `\n`: LF, Linefeed
+                8. `\f`: FF, formfeed
+                9.  `\v`: VT, Vertical Tab
+                10. `\r`: CR, Carrige Return
+                11. `\ooo`: octal value `ooo`
+                12. `\xhh`: hex value `hh`
+                13. `\uxxxx`: 16-bit hex value `xxxx` (Unicode only)
+                14. `\Uxxxxxxxx`: 32-bit hex value `xxxxxxxx` (Unicode only)
+                15. `\N{name}`: named `name` in Unicode database (Unicode only)
             4.  Operations
                 1. `.upper()`
                 2. `.lower()`
@@ -420,12 +420,12 @@
                         1. `#`: used with type `o`, `x`, `X`, the value is preceded with `0o`, `0x`, `0X` respecitively
                         2. `0`: zero padded for numeric values
                         3. `-`: the converted value is left adjusted, blank spaces is inserted
-                        2. `+`: a sign `+` or `-` will preceded the conversion, overrides a space flag
-                        3. other padding character, should specify options
+                        4. `+`: a sign `+` or `-` will preceded the conversion, overrides a space flag
+                        5. other padding character, should specify options
                     3. options:
                         1. `>`: right justify, default for numbers
                         2. `<`: left justify: default for strings,
-                        1. `^`: center aligned 
+                        3. `^`: center aligned 
                         4. `0`: 0 will be padded for numbers
                         5. `,`: use commas for a thousand separator
                         6. `=`: force the padding to be placed after the sign (if any) and before the digits
@@ -434,13 +434,13 @@
                     6. type:
                         1. `d`: decimal integer
                         2. `i, u`: same as `d`
-                        2. `o`: octal
-                        3. `x, X`: hexadecimal
-                        4. `f, F`: float point
+                        3. `o`: octal
+                        4. `x, X`: hexadecimal
+                        5. `f, F`: float point
                         6. `e, E`: floting point exponential format
                         7. `g, G`: same as `e, E`, if exponent is greater than -4 or less than precision; otherwise `f, F` is used
-                        2. `c`: single character, accepts integer or single character string
-                        3. `r`: string from `repr()`
+                        8. `c`: single character, accepts integer or single character string
+                        9. `r`: string from `repr()`
                         10. `s`: string from `str()`
                         11. `%`: percent number, when in `%` format, then just return `%` character
                     
@@ -451,12 +451,12 @@
                     f"Price in Swiss Franks: {price * 1.086:5.2f}"
                     ```
         6. bytes
-            5. immutable
-            6.  a sequence of small integers. the elements are in the range 0 to 255
-            7.  printed as a sequence of ASCII characters
-            8. not possible to mix text and data in Python3, otherwise raise TypeError
-            9.  `"hello".encode("UTF-8"); b"hello"`
-            10. `b"hello".decode("UTF-8")`
+            1. immutable
+            2.  a sequence of small integers. the elements are in the range 0 to 255
+            3.  printed as a sequence of ASCII characters
+            4. not possible to mix text and data in Python3, otherwise raise TypeError
+            5.  `"hello".encode("UTF-8"); b"hello"`
+            6.  `b"hello".decode("UTF-8")`
         7. bytearray
             1. sequential
             2. mutable
@@ -554,7 +554,7 @@
         9.  `+`: concatenate two sequence
         10. `*`: repeat sequence n times
     4. Mutable: whether the elements can be modified
-2. common functions
+6. common functions
     1.  builtins
         1. `help()`
         2. `input(prompt=None)`: read from standard input
@@ -1141,6 +1141,27 @@
     7. `ansible-pull`
 
 ## Airlfow
+
+1. Installation
+    1. dependencies
+        1. sqlite >= 3.15.0
+
+            ```bash
+            wget https://www.sqlite.org/2022/sqlite-autoconf-3380500.tar.gz --no-check-certificate
+            ./configure && make && make install
+            ```
+    1. airflow
+
+        ```bash
+        AIRFLOW_VERSION=2.3.2
+        PYTHON_VERSION=3.9
+        CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
+        pip install "apache-airflow[celery]==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
+        ```
+    2. dependent packages: `pip install "apache-airflow[pkg1, pkg2]==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"`
+2. Configurations
+    1. environments
+        1. `export AIRFLOW_HOME=~/airflfow`
 
 ### Installation {-}
 
