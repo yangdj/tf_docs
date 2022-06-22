@@ -1162,161 +1162,72 @@
 2. Configurations
     1. environments
         1. `export AIRFLOW_HOME=~/airflfow`
+    2. initialization
+        1. `airflow` generate busic project
+        2. `airflow.cfg`
+            1. [core]
+                1. `executor = CeleryExecutor`
+                2. `load_examples = True`
+                3. `default_timezone = Asia/Shanghai`
+            2. [database]
+                1. sqlite: `sql_alchemy_conn = sqlite:////home/data/jr/airflow/airflow.db`
+                2. mysql
+                    1. create database
 
-### Installation {-}
+                        ```sql
+                        CREATE DATABASE airflow_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+                        CREATE USER 'airflow_user' IDENTIFIED BY 'airflow_pass';
+                        GRANT ALL PRIVILEGES ON airflow_db.* TO 'airflow_user';
+                        ```
+                    2. install mysqlclient through `apache-airflow[mysql]`: `pip install "apache-airflow[mysql]==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"`
+                        1. may cause error `mysql_config not found`: `yum install mysql-devel`
+                    3. sql_alchemy_conn: `mysql+mysqldb://<user>:<password>@<host>[:<port>]/<dbname>?charset=utf8`
+                    4. sql_engine_collation_for_ids: `sql_engine_collation_for_ids=utf8mb3_bin` **default value** when database character set use `utf8mb4`
+            3. [celery]
+                1. redis: `pip install "apache-airflow[redis]==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"`
+                    1. broker_url
+                        1. redis
+                            1. without password: `broker_url = redis://127.0.0.1:6379/15`
+                            2. with passwd: `broker_url = redis://:password@127.0.0.1:6379/15`
+                    2. result_backend
+                        1. mysql: `result_backend = db+mysql://airflow:airflow@localhost/airflow?charset=utf8`
+            4. [api]
+                1. auth_backends
+                    1. basic_auth: `auth_backends = airflow.api.auth.backend.basic_auth` 
+            5. [webserver]
+                1. timezone: `default_ui_timezone = Asia/Shanghai`
+            6. [smtp]
+                1. smtp_host 
+                    1. tx: `smtp_host = smtp.exmail.qq.com`
+                2. smtp_port: `smtp_port = 465`
+                3. smtp_user: `smtp_user = hello@world.com`
+                4. smtp_password: `smtp_password = password`
+                5. smtp_mail_from: `smtp_mail_from = hello@world.com`
+                6. smtp_ssl: `smtp_starttls = False; smtp_ssl = True; smtp_port = 465`
+                7. smtp_starttls: `smtp_starttls = True; smtp_ssl = False; smtp_port = 587`
+    3. operations
+        1. db
+            1. initialize: `airflow db init`
+            2. upgrade: `airflow db upgrade`
+        2. create user
 
-1. `SLUGIFY_USES_TEXT_UNIDECODE=yes pip install apache-airflow`: since airflow >= 1.10
-2. `pip install Fernet cryptography`
-3. `pip install "apache-airflow[password]"`: for authentication
-4. `pip install "apache-airflow[hive]"`: for hive
-5. `pip install psycopg2-binary`: for postgresql
-6. `pip install "apache-airflow[mssql]"`: for mssql
-7. `pip install "apache-airflow[celery]"`: `4.4.7` for `1.9`
-8. `pip install "apache-airflow[redis]"`: when use redis for CeleryExecutor
-9. `pip install "apache-airflow[rabbitmq]"`: when use rabbitmq for CeleryExecutor
-
-Installing `apache-airflow[rabbitmq]` may encounter a source error, then:
-
-1. modify `except Exception, e` to `except Exception as e`
-2. `python setup.py build`
-3. `python setup.py install`
-
-### Setup {-}
-
-1. set `AIRFLOW_HOME` path
-
-    ```sh
-    export AIRFLOW_HOME= /YOUR/AIRFLOW/PROJECT/HOME/
-    ```
-
-2. initialization: 
- 
-    ```sh
-    airflow initdb # < 2.0
-    airflow resetdb # rebuild the database< 2.0
-    airflow db init # >= 2.0
-    ```
-    
-    in generated file `airflow.cfg`, update following values according to demands:
-
-    1. sql_alchemy_conn
-        1. postgresql:  `sql_alchemy_conn = postgresql+psycopg2://airflow:airflow@localhost:5432/proj`
-        2. mysql: `sql_alchemy_conn = mysql://airflow:airflow@localhost/airflow?charset=utf8`
-
-    2. executor
-        1. `executor = CeleryExecutor`
-            1. use redis:
-                1. without password: `broker_url = redis://127.0.0.1:6379/15`
-                2. with password: `broker_url = redis://:password@127.0.0.1:6379/15`
-            2. use rabbigmq: `broker_url = amqp://myairflow:airflowpass@localhost:5672/myvhost`
-
-                ```sh
-                # set rabbimq airflow user when using rabbitmq
-                sudo rabbitmqctl add_user myairflow airflowpass
-                sudo rabbitmqctl add_vhost myvhost
-                sudo rabbitmqctl set_user_tags myairflow airflow
-                sudo rabbitmqctl set_permissions -p myvhost myairflow ".*" ".*" ".*"
-                ```
-
-    3. result_backend (celery_result_backend < 1.10)
-        1. postgresql: `result_backend = db+postgresql://airflow:airflow@localhost:5432/proj`
-        2. mysql: `result_backend = db+mysql://airflow:airflow@localhost/airflow?charset=utf8`
-        3. redis: `result_backend = redis://127.0.0.1:6379/15`
-
-    4. authenticate under `[webserver]` part, not `[api]` part, otherwise it may be report all kinds of error, e.g., not found `client_auth`
-        1. `<2.0`
-            1. `authenticate = True`
-            2. `auth_backend = airflow.contrib.auth.backends.password_auth`
-        2. `>= 2.0`
-            1. `auth_backend = airflow.api.auth.backend.basic_auth`
-        
-    5. timezone
-        1. `default_timezone = Asia/Shanghai` (1.10)
-        2. `default_ui_timezone = Asia/Shanghai` (>=2.0)
-
-    6. `load_examples = False`: hide example dags, config before first start webserver, otherwise:
-        1. manually delete example dag records in `dag` table
-        2. `airflow resetdb`: rebuild database, but will lose other useful settings, avoid in production environment
-
-    7. email under `[email]` part
-        1. use `tls`
-
-            ```ini
-            smtp_starttls = True
-            smtp_ssl = False
-            smtp_port = 587
+            ```bash
+            airflow users create \
+                --username admin \
+                --firstname Peter \
+                --lastname Parker \
+                --role Admin \
+                --email spiderman@superhero.org
             ```
-        2. use `ssl`
-
-            ```ini
-            smtp_starttls = False
-            smtp_ssl = True
-            smtp_port = 465
-            ```
-        
-        3. `smtp_host`
-            1. `smtp.exmail.qq.com`: for qq
-        
-        4. other settings
-
-            ```ini
-            smtp_user = hello@world.com
-            smtp_password = password
-            smtp_mail_from = hello@world.com
-            ```
-
-3. create airflow user account
-
-    ```python
-    # create_user.py
-    import airflow
-    from airflow import models, settings
-    from airflow.contrib.auth.backends.password_auth import PasswordUser
-    user = PasswordUser(models.User())
-    user.username = 'airflow'
-    user.email = 'new@example.com'
-    # user.password = 'airflow'
-    user._set_password = 'airflow'
-    session = settings.Session()
-    session.add(user)
-    session.commit()
-    session.close()
-    ```
-
-    ```sh
-    python create_user.py
-    ```
-    or directly create user
-
-    ```sh
-    airflow users create \
-        --username admin \
-        --firstname Peter \
-        --lastname Parker \
-        --role Admin \
-        --email spiderman@superhero.org
-    ```
-
-4. firewall
-    1. `sudo firewall-cmd --permanent --add-port=8000/tcp`: airflow webserver, 8080 default 
-    2. `sudo firewall-cmd --permanent --add-port=5555/tcp`: airflow flower, 5555 default
-    3. `sudo systemctl reload firewalld`
-
-### Deployment {-}
-
-#### Start services directly {-}
-
-1. start webserver with port `8080` default: `airflow webserver --port 8080`
-2. start worker: `airflow worker`
-3. start scheduler: `airflow scheduler` (need restart after `airflow resetdb`)
-4. start flower, with port `5555` default: `airflow flower`
-   
-```sh
-nohup airflow webserver >> /data/jst/airflow/server_logs/webserver.log 2>&1 &
-nohup airflow worker >> /data/jst/airflow/server_logs/worker.log 2>&1 &
-nohup airflow scheduler >> /data/jst/airflow/server_logs/scheduler.log 2>&1 &
-nohup airflow flower >> /data/jst/airflow/server_logs/flower.log 2>&1 &
-```
+        3. webserver
+            1. start: `airflow webserver -D`, default port `8080`
+        4. scheduler
+            1. start: `airflow scheduler -D`
+        5. celery
+            1. start: `airflow celery worker -D`
+            2. stop: `airflow celery stop`
+        6. flower
+            1. start: `airflow celery flower -D`, default port `5555`
 
 ### Dependencies {-}
 
