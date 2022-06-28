@@ -83,6 +83,8 @@
         2. numpy
         3. pandas
         4. line_profiler
+        5. sqlparse
+        6. sql-metadata
     3. visualization
         1. matplotlib
         2. seaborn
