@@ -205,101 +205,73 @@ Elements consist of three parts:
 </table>
 ```
 
-### Form {-}
-
-`<form></form>` is used to interact with the server, which has the following attributes:
-
-1. `method=["POST", "GET"]`
-2. `action="/"`: return back to current pages when action is omitted or has blank value
-3. `enctype="multipart/form-data"`: for binary data sending, e.g., file
-4. `novalidate`: turn off the browser's automatic validation
-
-#### Input {-}
-
-`<input />` is a single line text field, having different meaning according to `type` attribute, including:
-
-1. `text`: default value when `type` has no or an unknown value
-    1. `minlength="10"`: minimum number of characters
-    2. `maxlength="80"`: maximum number of characters
-    3. `autocomplete=["off", "on"]`
-2. `hidden`: invisible to user and has no associated label, requiring `name` and `value` attributes when sent to server
-3. `password`
-4. `radio`
-    `checked`: if checked, but have no `value`, the value will be `on`
-5. `checkbox`
-    `checked`: meaning same as `radio`
-6. `file`
-    1. `multiple`
-    2. `accept="image/*"`
-7. `submit`
-8. `image`: submit using image
-9.  `button`: have no automatic effect like `submit`, but can be customized using js code
-10. `reset`: not recommended
-
-the following `<input />` `type` values are added in HTML5:
-
-1. `number`
-    1. `min="10"`
-    2. `max="30"`
-    3. `step="2"` 
-2. `range`
-3. `search`
-4. `email`
-5. `tel`
-6. `url`
-7. `color`
-8. `datetime`: discarded
-9.  `datetime-local`
-10. `date`
-11. `time`
-12. `month`
-13. `week`
-
-#### Button {-}
-
-`<button></button>` can have similar effect as submit input. It has different `type` attributes:
-
-1. `submit`: default value when type has no or invalid value
-2. `reset`
-3. `button`: without automatic effect, but can be customized using js code
-
-#### Others {-}
-
-The following controls are also often used.
-
-1. `<fieldset></fieldset>`
-    1. `<legend></legend>`
-2. `<textarea></textarea>`
-    1. `cols=30`
-    2. `rows=10`
-3. `<select></select>`
-    1. `multiple`
-    2. `<option></option>`
-        1. `value="app"`
-4. `<label></label>`
-    1. `for="username"` 
-
-```html
-<select id="card" name="fruit" multiple>
-    <option value="apple">Apple</option>
-    <option value="orange" selected>Orange</option>
-    <option value="pear">Pear</option>
-</select>
-
-<label for="username">name</label>
-<input type="text" id="username" name="user_name">
-```
-
-#### Attributes {-}
-
-The followings are common attributes for controls.
-
-1. `name="..."`: name for server-side use
-2. `value="..."`: initial value, line breaks will be removed by browser before sending data to server
-3. `readonly`: input cannot be modified, but the value is sent with the rest of the form data
-4. `diabled`: input cannot be modified, and the value is never sent with the rest of the form data
-5. `required`
-6. `placeholder="..."`
-7. `autofocus`
-8. `pattern="[Aa]b|[Xx]y"`: not support `<textarea></textarea>`
-9. `form="form-id"`: when control is outside of the `<form id="form-id>`
+1. Widget
+    1. common properties
+        1. `id="..."`: element id
+        1. `name="..."`: name for server-side use
+        2. `value="..."`: initial value, line breaks will be removed by browser before sending data to server
+        3. `readonly`: input cannot be modified, but the value is sent with the rest of the form data
+        4. `diabled`: input cannot be modified, and the value is never sent with the rest of the form data
+        5. `required`
+        6. `placeholder="..."`
+        7. `autofocus`
+        8. `pattern="[Aa]b|[Xx]y"`: not support `<textarea></textarea>`
+        9. `form="form-id"`: when control is outside of the `<form id="form-id>`
+    2. `<form>`
+        1. `method=["POST", "GET"]`
+        2. `action="/"`: return back to current pages when action is omitted or has blank value
+        3. `enctype="multipart/form-data"`: for binary data sending, e.g., file
+        3. `novalidate`: turn off the browser's automatic validation
+    3. `<input>`: a single line text field
+        1. `type`
+            1. primitive
+                1. `text`: default value when `type` has no or an unknown value
+                    1. `minlength="10"`
+                    2. `maxlength="80"`
+                    3. `autocomplete=["off", "on"]`
+                2. `hidden`: invisible to user and has no associated label, requiring `name` and `value` attributes when sent to server
+                3. `password`
+                4. `radio`
+                    `checked`: if checked, but have no `value`, the value will be `on`
+                5. `checkbox`
+                    `checked`: meaning same as `radio`
+                6. `file`
+                    1. `multiple`
+                    2. `accept="image/*"`
+                7. `submit`
+                5. `image`: submit using image
+                6.  `button`: have no automatic effect like `submit`, but can be customized using js code
+                7.  `reset`: not recommended
+            2. HTML5
+                1. `number`
+                    1. `min="10"`
+                    2. `max="30"`
+                    3. `step="2"` 
+                2. `search`
+                3. `range`
+                4. `email`
+                5. `tel`
+                6. `url`
+                7. `color`
+                8. `datetime`: discarded
+                9. `datetime-local`
+                10. `date`
+                11. `time`
+                12. `month`
+                13. `week`
+    4. `<textarea>`
+        1. `cols=30`
+        2. `rows=10`
+    5. `<label>`
+        1. `for="elementid"`
+    6. `<button>`: can have similar effect as submit input
+        1. `type`
+            1. `submit`: default value when type has no or invalid value
+            2. `reset`
+            3. `button`: without automatic effect, but can be customized using js code
+    7. `<select></select>`
+        1. `multiple`
+        2. `<option>`
+            1. `value="app"`
+    8. `<fieldset>`
+        1. `<legend>`

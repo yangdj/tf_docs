@@ -1,380 +1,262 @@
 # (PART) Tools {-}
 
-# VS Code {#vscode}
+# VS Code
 
-## Settings
-
-Settings have three levels for user, workspace and root folder, see [Settings](https://code.visualstudio.com/docs/getstarted/settings).
-
-1. User path:
-    1. `%APPDATA%\Code\User\`: Windows
-    2. `$HOME/.config/Code/User/`: Linux
-    3. `$HOME/Library/Application Support/Code/User/`: MacOS
-2. User files
-    1. `settings.json`
-    2. `keybindings.json`
-    3. `tasks.json`
-3. `ws.code-workspace`: workspace file
-4. `.vscode/`: root folder
-    1. `settings.json`
-    2. `launch.json`
-    3. `tasks.json`
-   
-VS Code makes commonly used paths and other values as variables and supports variable substitution inside strings in [Debugging](#vs-launch) and [Task](#vs-tasks) configuration files and some select settings using `${variableName}`format. The following variables are often used, for a full list of predefined variables, see [Variables Reference](https://code.visualstudio.com/docs/editor/variables-reference):
-
-1. `${workspaceFolder}`: the root path of a workspace folder
-2. `${file}`: the open file in the active editor
-3. `${env:Name}`: the environment variable `Name`
-
-### Settings.json {-}
-
-```json
-{
-    "editor.insertSpaces": true,
-    "editor.tabSize": 4,
-    "files.eol": "\n",
-    "files.encoding": "utf8",
-    "files.associations": {"*.rmd": "markdown"},
-    "editor.detectIndentation": false,
-    "workbench.editor.enablePreview": false,
-    "editor.renameOnType": true,
-    "files.insertFinalNewline": true,
-    "python.autoComplete.addBrackets": true,
-    "python.jediEnabled": false,
-    "launch": {
-        "version": "0.2.0",
-        "configuration": [{
-            "type": "node",
-            "request": "launch",
-            "name": "Launch Program",
-            "program": "${file}"
-        }]
-    }
-}
-```
-
-### keybindings.json {-}
-
-```json
-[
+1. Settings
+    1. User: global
+        1. Path
+            1. `%APPDATA%\Code\User\`: Windows
+            2. `$HOME/.config/Code/User/`: Linux
+            3. `$HOME/Library/Application Support/Code/User/`: MacOS
+        2. Files
+            1. `settings.js
+                ```json
+                {
+                    "editor.insertSpaces": true,
+                    "editor.tabSize": 4,
+                    "files.autoSave": "afterDelay",
+                    "files.eol": "\n",
+                    "files.encoding": "utf8",
+                    "files.associations": {"*.rmd": "markdown"},
+                    "files.insertFinalNewline": true,
+                    "workbench.editor.enablePreview": false,
+                    "editor.renameOnType": true,
+                    "python.analysis.completeFunctionParens": true
+                }
+                ```
+            2. `keybindings.jso
+                ```json
+                [
+                    {
+                        "key": "tab",
+                        "command": "selectNextSuggestion",
+                        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+                    },
+                    {
+                        "key": "shift+tab",
+                        "command": "selectPrevSuggestion",
+                        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+                    }
+                ]
+                ```
+            3. `tasks.json`
+    2. Workerspace: `ws.code-workspace`, workspace file
+    3. Root Folder: `.vscode/`
+        1. `settings.json`
+        2. `launch.json`
+        3. `tasks.json`
+2. Editing
+    1. Shoutcuts
+        1. `Ctrl+K Ctrl+S; Cmd+K Cmd+S`: keyboard shortcuts list
+        2. `` Ctrl+` ``: toggle integrated terminal
+        3. `Ctrl+P; Cmd+P`: go to file
+        4. `Alt+<-, Alt+->`: go to adjacent file
+        5. `Ctrl+G;`: go to line
+        6. `Ctrl+Shift+O`: go to symbols
+        7.  `Ctrl+Shift+\`: go to bracket
+        8. `Ctrl+Shift+P; Cmd+Shift+P`: go to command
+        9. `Ctrl+Click`: go to link or definition
+        10. `Alt+Z`: toggle word wrap
+        11. `Ctrl+[, Ctrl+]`: line indent
+        12. `Alt+Click`: add new cursor
+        13. `Shift+Alt+click`: column cursors
+        14. `Ctrl+Space`: trigger autocompletion
+        15. `Ctrl+D`: select current or next word under the cursor when repeat
+        16. `Ctrl+Shift+L`: select all the same word under the cursor
+        17. `Shift+Alt+->`: expand selection
+        18. `Shift+Alt+<-`: shrink selection
+        19. `Ctrl+Backspace`: delete left word
+        20. `Ctrl+Delete`: delete right word
+        21. `Ctrl+Enter`: insert line below
+        22. `Ctrl+Shift+Enter`: insert line above
+        23. `Ctrl+Shift+K`: delete current line
+        24. `Alt+Uparrow, Alt+Downarrow`: move line up and down
+        25. `Alt+Shift+Uparrow, Alt+Shift+Downarrow`: copy line up and down
+    2. Path Matching: use a glob pattern to target files
+        1. `*`: match one or more characters
+        2. `?`: match one character
+        3. `**`: match any number of path segments including none
+        4. `[]`: match one of characters group, `example.[0-9]` matches `example.0, example.1, ...`
+        5. `!`: match negation of the characters
+        6. `{}`: match a set of values, `{**/*.html,**/*.txt}` match all html and text files
+    3. Autocomplete and Intellisense
+        1. Python
+            1. `python.autoComplete.extraPaths: []`
+    4. Navigation
+        1. Basic
+            1. Go to Definition: `F12`
+            2. Peek Definition: `Alt+F12`
+            3. Go to Declaration
+            4. Peek Declaration
+    5. Quick Fixes
+        1. Basic
+            1. Auto Import
+    6. Formatting
+        1. Python
+            1. `"python.formatting.provider": "autopep8"`: default
+    7. Refactoring
+        1. Python
+            1. Extract Variable
+            2. Extract Method
+            3. Rename Module
+            4. Sort Imports
+3. Linting
+    1. Python
+        1. `Python: Select Linter` choose `pylint`
+        2. `Python: Enable/Disable Linting`
+        3. `Python: Run Linting`: run automatically when saving a file
+4. Debugging
+    1. Basic
+        1. Types
+            1. Breakpoint
+            2. Conditional Breakpoint
+                1. Expression
+                2. Hit Count
+            3. Logpoint
+        2. Files: `.vscode/launch.json`
+            1. Variables
+                1. `${workspaceFolder}`: the root path of a workspace folder
+                2. `${file}`: the open file in the active editor
+                3. `${env:Name}`: the environment variable `Name`
+            2. attributes
+                1. Mandatory
+                    1. `name`: the reader-friendly name to appear in the Debug launch configuration drop-down
+                    2. `type`: the type of debugger to use
+                        1. `node`
+                        2. `python`
+                    3. `request`: the request type of launch configuration
+                        1. `launch`: start app in debug mode before VS Code attaches to it, e.g., for server and desktop app
+                        2. `attach`: connect VS Code's debugger to an app or process that's already running, e.g., browser app
+                2. Optional
+                    1. `preLaunchTask`: launch a task before start of a debug session, set this attribute to a task specified in `.vscode/task.json`
+                    2. `postDebugTask`: similar to `preLaunchTask`, but at the end of a debug session
+                3. Others
+                    1. `program`: executable or file to run when launching the debugger
+                    2. `args`: arguments passed to the program to debug
+                    3. `outFiles:["${workspaceFolder}/out/**/*.js"]`: locate generated (transpiled) files for searching
+                    4. `env`: environment variables (`null` used to an undefine variable)
+                    5. `envFile`: path to dotenv file with environment variables
+                    6. `cwd`: current working directory for finding dependencies and other files
+                    7. `port`: port when attaching to a running process
+                    8. `console`: what kind of console to use
+                        1. `integratedTerminal`
+                        2. `internalConsole`
+                        3. `externalTerminal`
+                    9. Platform-specific attributes: define values depend on the operation system where the debugger is running
+                        1. `windows`
+                        2. `linux`
+                        3. `osx`
+    2. Python
+        1. BreakPoint: can call `debugpy.breakpoint()` definitely
+        2. Hit Count: support integers and `==, >, >=, < <=, %`, not include `!=`
+5. Testing
+6. Tasks: integerate with external tools via tasks, which can be configured in `.vscode/tasks.json` to run scripts and start processes
+    1. `version`: task format version
+    2. `tasks`: tasks array
+        1. `label`: task's label used in the user interface
+        2. `type`:
+            1. `shell`: interpreted as shell command
+            2. `process`: interpreted as a process
+        3. `command`: actual command to execute
+        4. `args`: command args
+        5. `group`: define which group the task belongs
+            1. `kind`:
+                1. `build`
+            2. `isDefault`
+        6. `dependsOn`: compose tasks out of simpler tasks
+        7. `dependsOrder`:
+            1. `parallel`: tasks executed in parallel by default
+            2. `sequence`: tasks executed in the order listed in `dependsOn`
+        8. `problemMatcher`: parse output from the tasks and provide integrated issue display and navigation
+    3. `options`: override the default values
+        1. `shell`
+            1. `args`
+            2. `executable`:
+                1. `bash`
+                2. `cmd.exe`
+        2. `cwd`
+        3. `env`
+    4. Platform-specific attributes: define values depend on the operation system where the task is running
+        1. `windows`
+        2. `linux`
+        3. `o
+    ```json
+    // tasks.json
     {
-        "key": "tab",
-        "command": "selectNextSuggestion",
-        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
-    },
-    {
-        "key": "shift+tab",
-        "command": "selectPrevSuggestion",
-        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
-    }
-]
-```
-
-### launch.json	{-#vs-launch}
-
-[`launch.json`](https://code.visualstudio.com/docs/editor/debugging) is a file for debugging configuration.
-
-Mandatory attributes for all:
-
-* `name`: the reader-friendly name to appear in the Debug launch configuration drop-down
-* `type`: the type of debugger to use, e.g.,
-    * `node`
-    * `python`
-* `request`: the request type of launch configuration
-    1. `launch`: start app in debug mode before VS Code attaches to it, e.g., for server and desktop app
-    2. `attach`: connect VS Code's debugger to an app or process that's already running, e.g., browser app
-
-Optional attributes for all:
-
-* `preLaunchTask`: launch a task before the start of a debug session, set this attribute to a task specified in `task.json` (in the workspace's `.vscode` folder)
-* `postDebugTask`: similar to `preLaunchTask`, but at the end of a debug session
-
-Other attributes:
-
-* `program`: executable or file to run when launching the debugger
-* `args`: arguments passed to the program to debug
-* `outFiles:["${workspaceFolder}/out/**/*.js"]`: locate generated (transpiled) files for searching
-* `env`: environment variables (`null` used to an undefine variable)
-* `envFile`: path to dotenv file with environment variables
-* `cwd`: current working directory for finding dependencies and other files
-* `port`: port when attaching to a running process
-* `console`: what kind of console to use, e.g.,
-    * `integratedTerminal`
-    * `internalConsole`
-    * `externalTerminal`
-* Platform-specific attributes: define values depend on the operation system where the debugger is running
-    * `windows`
-    * `linux`
-    * `osx`
-
-```json
-{
-    "version": "0.2.0",
-    "configurations": [
-        {
-        "name": "Python: current file",
-        "type": "python",
-        "request": "launch",
-        "program": "${file}",
-        "console": "integratedTerminal"
-        },
-        {
-        "name": "Python: Django",
-        "type": "python",
-        "request": "launch",
-        "program": "${workspaceFolder}/web_project/manage.py",
-        "console": "integratedTerminal",
-        "args": [ "runserver" ],
-        "django": true, // enable debugging of Django page templates
-        "subProcess": true // for debugging
-        }
-    ]
-}
-```
-
-### tasks.json {-#vs-tasks}
-
-VS Code integerates with external tools via tasks. Tasks can be configured in the file `tasks.json` to run scripts and start processes so that many of exsiting tools can be used from within VS Code without having to enter a command line or write new code.
-
-Attributes:
-
-* `version`: task format version
-* `tasks`: tasks array
-    * `label`: task's label used in the user interface
-    * `type`:
-        * `shell`: interpreted as shell command
-        * `proces`: interpreted as a process
-    * `command`: actual command to execute
-    * `args`: command args
-    * `group`: define which group the task belongs
-        * `kind`:
-            * `build`
-        * `isDefault`
-    * `dependsOn`: compose tasks out of simpler tasks
-    * `dependsOrder`:
-        * `parallel`: tasks executed in parallel by default
-        * `sequence`: tasks executed in the order listed in `dependsOn`
-    * `problemMatcher`: parse output from the tasks and provide integrated issue display and navigation
-* `options`: override the default values
-    * `shell`
-        * `args`
-        * `executable`:
-            * `bash`
-            * `cmd.exe`
-    * `cwd`
-    * `env`
-* Platform-specific attributes: define values depend on the operation system where the task is running
-    * `windows`
-    * `linux`
-    * `osx`
-
-```json
-// tasks.json
-{
-    "version": "2.0.0",
-    "options": {
-        "shell": {
-            "args": ["-i"]
-        }
-    },
-    "tasks": [
-        {
-        "label": "r-bookdown",
-        "type": "shell",
-        "windows": {
-            "command": "Rscript -e \"bookdown::render_book('index.Rmd', 'bookdown::gitbook')\""
+        "version": "2.0.0",
+        "options": {
+            "shell": {
+                "args": ["-i"]
             }
-        }
-    ]
-}
-```
-
-## Editing
-
-### Shoutcuts {-}
-
-1. `Ctrl+K Ctrl+S; Cmd+K Cmd+S`: keyboard shortcuts list
-2. `` Ctrl+` ``: toggle integrated terminal
-3. `Ctrl+P; Cmd+P`: go to file
-4. `Alt+<-, Alt+->`: go to adjacent file
-5. `Ctrl+G;`: go to line
-6. `Ctrl+Shift+O`: go to symbols
-7.  `Ctrl+Shift+\`: go to bracket
-8. `Ctrl+Shift+P; Cmd+Shift+P`: go to command
-9. `Ctrl+Click`: go to link or definition
-10. `Alt+Z`: toggle word wrap
-11. `Ctrl+[, Ctrl+]`: line indent
-12. `Alt+Click`: add new cursor
-13. `Shift+Alt+click`: column cursors
-14. `Ctrl+Space`: trigger autocompletion
-15. `Ctrl+D`: select current or next word under the cursor when repeat
-16. `Ctrl+Shift+L`: select all the same word under the cursor
-17. `Shift+Alt+->`: expand selection
-18. `Shift+Alt+<-`: shrink selection
-19. `Ctrl+Backspace`: delete left word
-20. `Ctrl+Delete`: delete right word
-21. `Ctrl+Enter`: insert line below
-22. `Ctrl+Shift+Enter`: insert line above
-23. `Ctrl+Shift+K`: delete current line
-24. `Alt+Uparrow, Alt+Downarrow`: move line up and down
-25. `Alt+Shift+Uparrow, Alt+Shift+Downarrow`: copy line up and down
-
-### Path Matching {-}
-
-Path matching uses a glob pattern to target files, including:
-
-1. `*`: match one or more characters
-2. `?`: match one character
-3. `**`: match any number of path segments including none
-4. `[]`: match one of characters group, `example.[0-9]` matches `example.0, example.1, ...`
-5. `!`: match negation of the characters
-6. `{}`: match a set of values, `{**/*.html,**/*.txt}` match all html and text files
-
-## Coding
-
-* Syntax Highlighting
-* Semantic Highlighting
-    * Symbol Type
-        * constant
-        * variable
-            * global
-            * local
-        * class
-        * method
-        * property
-        * interface
-        * module
-        * package
-        * lib
-        * typeParameter
-        * namespace
-    * variable property
-        * read-only
-        * modifiable
-        * callable
-* IntelliSense
-    * Word completion
-    * Code Completion
-    * Suggestion
-    * Hover Info: `Ctrl+K Ctrl+I`
-    * Signature Information: `Ctrl+Shift+Space`, automatically shown when type a `(` or `,`
-    * Auto Imports
-* Snippets
-    * `editor.snippetSuggestions: "none"` disables snippets
-* Navigation
-    * Go to Definition: `Ctrl+mouse; F12`, go to the source code of a symbol definition
-    * Peek Definition: `Alt=F12`, bring up a peek window showing the definition of a symbol
-    * Go to References: `Shift+F12`, show all references to a symbol
-    * Go to Type Definition: go to the type that defines a symbol
-    * Go to Implementation: `Ctrl+F12`, go to the implementations of an interface or abstract method
-    * Go to Symbol in File: `Ctrl+Shift+O`
-    * Go to Symbol in Workspace: `Ctrl+T`
-* Formatting
-    * Format Documentation: format the entire active file
-    * Format Selection: format the selected text
-* Refactoring
-    * Rename: `F2`
-    * Extract to Method or Function
-    * Extract to Constant
-    * Extract Type to Interface or Type Alias
-    * Move to New file
-    * Convert between Named Imports and Namespace Imports
-    * Convert between Default Export and Named Export
-    * Generate Get and Set Accessors
-    * Convert Parameters to Destructured Object
-* Linting
-* Quick Fixes: address coding errors, `Ctrl+.` triggers Quick Fix
-    * Error Checking
-    * Adding a missing `this` to a member access
-    * Fixing a misspelled property name
-    * Removing unreachable code or unused imports
-    * Declaring
-* Debugging:
-    * Set Breakpoint: `F9`
-    * Set Logpoint: using `{}` to incluede expression, e.g., `the msg value is: {msg}.`
-    * Conditional Breakpoint
-        * Expression Condition: the Breakpoint will be hit whenever the expression evaluates to `true`
-        * Hit Count: control how many times a break needs to be hit before it will break execution
-    * Function Breakpoint
-    * Data Breakpoint: get hit when the value changes
-    * Inspect Objects
-    * Watch Objects and Expressions
-    * Navigate the Call Stack
-    * Execute Code in the Debug Console
-* Compiling
-* Testing
-* Building
-* Packaging
-* Deploying
-
-## Plugins
-
-1. Markdown All in One
-2. Markdown+Math
-    1. `"mdmath.delimiters": "brackets"`
-    2. inline: `\( ...\)`
-    3. block: `$$ ... $$`
-3. Text Tables
-    1. `Ctrl + q Ctrl + q`: toggle table mode
-    2. `Ctrl + q Ctrl + f`: format table under the cursor
-    3. `Tab`: go to next table in cell in table mode
-4. Simple Vim
-    1. `_`: move to the begining of the line
-    2. `rr`: yank and delete the line
-    3. `dd`: delete the line, do not yank
-    4. `C`: delete from the cursor to the end of line
-5. Draw.io Integration
-    1. `"hediet.vscode-drawio.theme: "atlas"`: set the theme
-6. Remote development: use SSH configurations 
-7. Python Microsoft
-    1. Settings
-        1. `"python.autoComplete.addBrackets": true`: append bracket following function name
-        2. `"python.pythonPath": "python"`: python intepreter path
-        3. `"python.autoComplete.extraPaths": ["pkg1", "pkg2", ...]`: additional package path
-        4. `"python.jediEnabled": false`: disable Jedi autocomplete, then use "python language server"
-        5. `"python.linting.enabled": true` - enable linting
-    2. Envirionment
-        1. `Python: Select Interpreter`
-        2. `Python: Start REPL`
-    3. Refactor
-        1. `Python Refactor: Extract Variable`
-        2. `Python Refactor: Extract Method`
-        3. `Python Refactor: Sort Imports`
-    4. Linting
-        1. `Python: Select Linter - use pylint default`
-        2. `Python: Enable Linting`
-        3. `Python: Run Linting`
-    5. Testing
-        1. `Python: Configure Tests`: select a test framework and configure it
-        2. `Python: Discover Tests`: discover test framework automatically when saving a test
-        3. `Python: Run All Tests`
-        4. `unittestAargs: ["-v", "-s", "./test", "-p", "test_*.py"] `:
-            1. `-v`: verbose output, remove this argument for simple output
-            2. `-s`: specify starting directory for testing files, e.g., `./test` directory
-            3. `-p`: pattern to look for test files in the `-s` directory, such as files starting with `test_`
-            4. details see [unittest command line](https://docs.python.org/3/library/unittest.html#command-line-interface)
-    6. Juypter
-        1. `"python.dataScience.themeMatplotlibPlots": true`
-        2. `Python: Create Blank New Jupyter Notebook`: create a notebook
-        3. `# %%`: define jupyter-like script cells within python files
-        4. `# %%[markdown]`: define juypter-like markdown cells
-        5. Shoutcuts:
-            1. `ESC`: edit mode to command mode
-            2. `Enter`: command mode to edit mode
-            3. `A `: add cell above
-            4. `B`: add cell below
-            5. `DD`: delete current cell
-            6. `j,k` - move up and down in command mode
-            7. `ctrl + enter`: run current cell
-            8. `shift + enter`: run current cell and insert a cell below
-8. Debugger for Chrome
-
-## Languages
-
-### TypeScript {-#vs-ts}
-
-* `"typescript.suggest.completeJSDocs": false`: disable JSDoc comment suggestions
-* `"typescript.autoImportSuggestions.enabled": false`: disable auto imports
-* `"typescript.format.*`: configure built-in formatter
-* `"typescript.format.enable": false`: disable formatter
-* `"typescript.referencesCodeLens.enabled": true`: enable codelens
+        },
+        "tasks": [
+            {
+            "label": "r-bookdown",
+            "type": "shell",
+            "windows": {
+                "command": "Rscript -e \"bookdown::render_book('index.Rmd', 'bookdown::gitbook')\""
+                }
+            }
+        ]
+    }
+    ```
+7. Plugins
+    1. Markdown All in One
+    2. Markdown+Math
+        1. `"mdmath.delimiters": "brackets"`
+        2. inline: `\( ...\)`
+        3. block: `$$ ... $$`
+    3. Text Tables
+        1. `Ctrl + q Ctrl + q`: toggle table mode
+        2. `Ctrl + q Ctrl + f`: format table under the cursor
+        3. `Tab`: go to next table in cell in table mode
+    4. Simple Vim
+        1. `_`: move to the begining of the line
+        2. `rr`: yank and delete the line
+        3. `dd`: delete the line, do not yank
+        4. `C`: delete from the cursor to the end of line
+        5. remove keybinding `extension.simpleVim.scrollDownPage`, let `ctrl+f` for vscode's finding
+    5. Draw.io Integration
+        1. `"hediet.vscode-drawio.theme: "atlas"`: set the theme
+    6. Remote development: use SSH configurations
+    7. Python Microsoft
+        1. Settings
+            1. `"python.autoComplete.addBrackets": true`: append bracket following function name
+            2. `"python.pythonPath": "python"`: python intepreter path
+            3. `"python.autoComplete.extraPaths": ["pkg1", "pkg2", ...]`: additional package path
+            4. `"python.jediEnabled": false`: disable Jedi autocomplete, then use "python language server"
+            5. `"python.linting.enabled": true` - enable linting
+        2. Envirionment
+            1. `Python: Select Interpreter`
+            2. `Python: Start REPL`
+        3. Refactor
+            1. `Python Refactor: Extract Variable`
+            2. `Python Refactor: Extract Method`
+            3. `Python Refactor: Sort Imports`
+        4. Linting
+            1. `Python: Select Linter - use pylint default`
+            2. `Python: Enable Linting`
+            3. `Python: Run Linting`
+        5. Testing
+            1. `Python: Configure Tests`: select a test framework and configure it
+            2. `Python: Discover Tests`: discover test framework automatically when saving a test
+            3. `Python: Run All Tests`
+            4. `unittestAargs: ["-v", "-s", "./test", "-p", "test_*.py"] `:
+                1. `-v`: verbose output, remove this argument for simple output
+                2. `-s`: specify starting directory for testing files, e.g., `./test` directory
+                3. `-p`: pattern to look for test files in the `-s` directory, such as files starting with `test_`
+                4. details see [unittest command line](https://docs.python.org/3/library/unittest.html#command-line-interface)
+        6. Juypter
+            1. `"python.dataScience.themeMatplotlibPlots": true`
+            2. `Python: Create Blank New Jupyter Notebook`: create a notebook
+            3. `# %%`: define jupyter-like script cells within python files
+            4. `# %%[markdown]`: define juypter-like markdown cells
+            5. Shoutcuts:
+                1. `ESC`: edit mode to command mode
+                2. `Enter`: command mode to edit mode
+                3. `A `: add cell above
+                4. `B`: add cell below
+                5. `DD`: delete current cell
+                6. `j,k` - move up and down in command mode
+                7. `ctrl + enter`: run current cell
+                8. `shift + enter`: run current cell and insert a cell below

@@ -7,15 +7,16 @@
         3. activate virtual environment: `source virtual-name/bin/activate`
         4. quit the environment: `deactivate`
     2. conda
-        1. version info: `conda --version`
-        2. update: `conda update conda`
-        3. list all environments: `conda info --envs`
-        4. create virtual environment: `conda create --name vtl-name python=3.5`
-        5. activate virtual environment: `conda activate vtl-name`
-        6. quit virtual environment: `conda deactivate`
-        7. remove virtual environment: `conda remove --name vtl-name --all`
-        8. add new channel when `packages not available`: `conda config --append channels conda-forge`
-        9. **Use Anoconda Prompt to execute when faild in cmd environment**
+        1. Windows: may need add `anaconda\Library\bin` to  `PATH` environment variable to find `conda`
+        2. version info: `conda --version`
+        3. update: `conda update conda`
+        4. list all environments: `conda info --envs`
+        5. create virtual environment: `conda create --name vtl-name python=3.5`
+        6. activate virtual environment: `conda activate vtl-name`
+        7. quit virtual environment: `conda deactivate`
+        8. remove virtual environment: `conda remove --name vtl-name --all`
+        9. add new channel when `packages not available`: `conda config --append channels conda-forge`
+        10. **Use Anoconda Prompt to execute when faild in cmd environment**
 2. Package Management
     1. conda
         1. `conda list pkg`
@@ -46,8 +47,8 @@
 3. Common Packages
     1. Databases
         1. MySQL
-            1. `pymysql`
-            2. `mysqlclient`
+            1. `mysqlclient`
+            2. `pymysql`
         2. PostgreSQL: `psycopg2-binary`
         3. SQLServer
             1. `pymssql`
