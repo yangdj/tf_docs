@@ -6,7 +6,7 @@
         2. `django.get_version()`
     2. mysqlclient: for MySQL
 2. commands
-    1. create project: `django-admin startproject mysite`
+    1. create project: `django-admin startproject mysite [.]`
     4. create app: `python manage.py startapp polls`
     5. run server: `python manage.py runserver [8000, 0:8080]`
     6. generate model from existing table: `python manage.py inspectdb table_name --database=db
