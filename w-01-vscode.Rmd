@@ -260,3 +260,4 @@
                 6. `j,k` - move up and down in command mode
                 7. `ctrl + enter`: run current cell
                 8. `shift + enter`: run current cell and insert a cell below
+        7. Live Preview Microsoft
