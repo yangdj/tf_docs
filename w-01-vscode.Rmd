@@ -12,13 +12,13 @@
             1. `settings.js
                 ```json
                 {
+                    "files.encoding": "utf8",
+                    "files.eol": "\n",
                     "editor.insertSpaces": true,
                     "editor.tabSize": 4,
-                    "files.autoSave": "afterDelay",
-                    "files.eol": "\n",
-                    "files.encoding": "utf8",
-                    "files.associations": {"*.rmd": "markdown"},
                     "files.insertFinalNewline": true,
+                    "files.autoSave": "afterDelay",
+                    "files.associations": {"*.rmd": "markdown"},
                     "workbench.editor.enablePreview": false,
                     "editor.renameOnType": true,
                     "python.analysis.completeFunctionParens": true
@@ -53,7 +53,7 @@
         4. `Alt+<-, Alt+->`: go to adjacent file
         5. `Ctrl+G;`: go to line
         6. `Ctrl+Shift+O`: go to symbols
-        7.  `Ctrl+Shift+\`: go to bracket
+        7. `Ctrl+Shift+\`: go to bracket
         8. `Ctrl+Shift+P; Cmd+Shift+P`: go to command
         9. `Ctrl+Click`: go to link or definition
         10. `Alt+Z`: toggle word wrap
@@ -63,43 +63,58 @@
         14. `Ctrl+Space`: trigger autocompletion
         15. `Ctrl+D`: select current or next word under the cursor when repeat
         16. `Ctrl+Shift+L`: select all the same word under the cursor
-        17. `Shift+Alt+->`: expand selection
-        18. `Shift+Alt+<-`: shrink selection
-        19. `Ctrl+Backspace`: delete left word
-        20. `Ctrl+Delete`: delete right word
-        21. `Ctrl+Enter`: insert line below
-        22. `Ctrl+Shift+Enter`: insert line above
-        23. `Ctrl+Shift+K`: delete current line
-        24. `Alt+Uparrow, Alt+Downarrow`: move line up and down
-        25. `Alt+Shift+Uparrow, Alt+Shift+Downarrow`: copy line up and down
+        17. `Ctrl+Alt+Down`: insert cursors below
+        18. `Ctrl+Alt+Up`: insert cursors above
+        19. `Shift+Alt+->`: expand selection
+        20. `Shift+Alt+<-`: shrink selection
+        21. `Ctrl+Backspace`: delete left word
+        22. `Ctrl+Delete`: delete right word
+        23. `Ctrl+Enter`: insert line below
+        24. `Ctrl+Shift+Enter`: insert line above
+        25. `Ctrl+Shift+K`: delete current line
+        26. `Alt+Uparrow, Alt+Downarrow`: move line up and down
+        27. `Alt+Shift+Uparrow, Alt+Shift+Downarrow`: copy line up and down
+        28. `Shift+Alt+F`: format document
+        29. `Ctrl+K Ctrl+F`: format the selected text
     2. Path Matching: use a glob pattern to target files
         1. `*`: match one or more characters
         2. `?`: match one character
         3. `**`: match any number of path segments including none
         4. `[]`: match one of characters group, `example.[0-9]` matches `example.0, example.1, ...`
-        5. `!`: match negation of the characters
+        5. `[!...]`: match negation of the characters, `example.[!0-9]`
         6. `{}`: match a set of values, `{**/*.html,**/*.txt}` match all html and text files
-    3. Autocomplete and Intellisense
+    3. Regex
+        1. `$1, $2, ...`: refer to groups
+        2. `\l, \u`: lowercase or upper a single character
+            1. `\l\l\l$1`: lowercase the first three characters of the group, which can be stacked
+        3. `\L, \U`: lowercase or upper the whole matching group
+    4. Autocomplete and Intellisense
         1. Python
             1. `python.autoComplete.extraPaths: []`
-    4. Navigation
+    5. Navigation
         1. Basic
             1. Go to Definition: `F12`
             2. Peek Definition: `Alt+F12`
             3. Go to Declaration
             4. Peek Declaration
-    5. Quick Fixes
+    6. Quick Fixes
         1. Basic
             1. Auto Import
-    6. Formatting
+    7. Formatting
         1. Python
             1. `"python.formatting.provider": "autopep8"`: default
-    7. Refactoring
+    8. Refactoring
         1. Python
             1. Extract Variable
             2. Extract Method
             3. Rename Module
             4. Sort Imports
+    9. Emmet
+        1. Settings
+            1. `"emmet.triggerExpansionOnTab": true`
+            2. `editor.emmet.action.removeTag`: `Ctrl+k`
+        2. Expanses
+            1. `html:5`
 3. Linting
     1. Python
         1. `Python: Select Linter` choose `pylint`

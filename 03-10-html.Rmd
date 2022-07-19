@@ -17,14 +17,17 @@
 3. Elements
     1. Components
         1. Tag: opening and closing tag  `<p>...</p>`
-            1.  Empty elements: have no closing tags, therefore no contents, including:
-                1. `<meta />`
-                2. `<link />`
-                3. `<br />`
-                4. `<hr />`
-                5. `<img />`
-                6. `<col />`
-                7. `<input />` 
+            1.  Self Closing:
+                1. `<meta>`
+                2. `<link>`
+                3. `<img>`
+                4. `<br>`
+                5. `<hr>`
+                6. `<input>` 
+                7. `<embed>`
+                8. `<param>`
+                9.  `<source>`
+                10. `<wbr>`
         2. Attributes: `name="value"` pairs, `<p color="red">...</p>`
             1. Common
                 1. `id`
@@ -35,97 +38,96 @@
         3. Content: `<p color="red">paragraph content</p>`
     2. Concrete
         1. `<!DOCTYPE html>`
-        2. `<html></html>`
+        2. `<html>`
             1. `lang=["en", "zhan-Hans"]` 
-        3. `<head></head>`
-            1. `<meta />`: data describes data
+        3. `<head>`
+            1. `<meta>`: data describes data
                 1. `charset="UTF-8"`
-                2. `name="Viewport" content="width=device-width, initial-scale=1.0"` 
-            2. `<link />`
-                1. `rel="icon" href="favicon.ico"` 
-                2. `rel="stylesheet href="styles/style.css"`
-            3. `<script></script>`
+                2. `name="viewport" content="width=device-width, initial-scale=1.0"` 
+            2. `<link>`
+             1. `rel="icon" href="favicon.ico"` 
+                1. `rel="stylesheet href="styles/style.css"`
+            3. `<script>`
                 1. `src="scripts/main.js"`   
                 2. `defer`: make js running after HTML file loaded completely
-            4. `<title></title>`
-        4. `<body></body>`
-            1. `<a></a>`
-                1. `href`
-                    1. `href="http://www.website.com" title="a website"`
-                    2. `href="mailto:hello@world.org"`: open an email window with a destinatino address
-                    3. `href="mailto:"`: open an email window without a destination address
-                2. `target="_blank"`: open the link in a new tab
-            2. `<img />`
-                1. `src="img/myimage.png"`  
-                2. `alt="my image"`
-                3. `title="image"`
-                4. `width=""` 
-                5. `height=""`
-            3. `<figure><img /><figcaption>...</figcaption></figure>`
-            4. `<hr />`: horizontal line
-            5. `<br />`: break line
-            6. `<h1></h1>`
-            7. `<h2></h2>`
-            8. `<h3></h3>`
-            9. `<h4></h4>`
-            10. `<h5></h5>`
-            11. `<h6></h6>`
-            12. `<p></p>`
-            13. `<em></em>`: emphasis different content
-            14. `<strong></strong>`: indicate importance, seriousness, or ugency
-            15. `<span></span>`
-            16. `<code></code>`
-            17. `<pre></pre>`: preserve source text
-            18. `<sup></sup>`
-            19. `<sub></sub>`
-            20. `<blockquote></blockquote>`: long external block-level quotation 
-                1.  `cite=""`
-            21. `<q>...</q>`: short inline quotation
-                1. `cite=""`
-            22. `<cite></cite>`: refer to a creative work, author or resources, always around `<a>...</a>`
-            23. `<abbr></abbr>`
-                1. `title=""` 
-            24. `<address></address>`
-            25. `<var></var>`: mark up variable names
-            26. `<kbd></kbd>`: mark up keyboard input into the computer
-            27. `<samp></samp>`: mark up output of a computer program
-            28. `<time></time>`
-                1.  `datetime="2020-05-27"`
-            29. List
-                1. `<ul></ul>`: unordered list
-                    1. `<li></li>`: list item
-                2. `<ol></ol>`: ordered list
-                    1. Attributes
-                        1. `start="4"`
-                        2. `reversed` 
-                    2. `<li></li>`: list item
-                        1. `value="10"`
-                3. `<dl></dl>`: description list
-                    1. `<dt></dt>`: descrition title
-                    2. `<dd></dd>`: description data, one `<dt>` can have more than one `<dd>`
-            30. Table
-                1. `<table></table>`
-                2. `<caption></caption>`
-                3. `<colgroup></colgroup>` 
-                4. `<col />`
-                    1. `span="2"` 
-                5. `<thead></thead>`
-                6. `<tfoot></tfoot>`
-                7. `<tbody></tbody>`
-                8. `<tr></tr>`
-                    1. `<th></th>`
-                    2. `<td></td>`
-                        1. `colspan="2"`
-                        2. `rowspan="4"`
-        5. Structure
-            1. `<aticle></article>`
-            2. `<section></section>`
-            3. `<div></div>`
-            4. `<aside></aside>`
-            5. `<footer></footer>`
-            6. `<header></header>`
-            7. `<nav></nav>`
-            8. `<main></main>`
+            4. `<title>`
+        4. `<body>`
+        5. `<aticle>`
+        6. `<section>`
+        7. `<div>`
+        8. `<aside>`
+        9. `<footer>`
+        10. `<header>`
+        11. `<nav>`
+        12. `<main>`
+        13. `<a>`
+            1. `href`
+                1. `href="http://www.website.com" title="a website"`
+                2. `href="mailto:hello@world.org"`: open an email window with a destinatino address
+                3. `href="mailto:"`: open an email window without a destination address
+            2.  `target="_blank"`: open the link in a new tab
+        14. `<img>`
+            1. `src="img/myimage.png"`  
+            2.  `alt="my image"`
+            3.  `title="image"`
+            4.  `width=""` 
+            5.  `height=""`
+        15. `<figure><img /><figcaption>...</figcaption></figure>`
+        16. `<hr>`: horizontal line
+        17. `<br>`: break line
+        18. `<h1>`
+        19. `<h2>`
+        20. `<h3>`
+        21. `<h4>`
+        22. `<h5>`
+        23. `<h6>`
+        24. `<p>`
+        25. `<em>`: emphasis different content
+        26. `<strong>`: indicate importance, seriousness, or ugency
+        27. `<span>`
+        28. `<code>`
+        29. `<pre>`: preserve source text
+        30. `<sup>`
+        31. `<sub>`
+        32. `<blockquote>`: long external block-level quotation 
+            1.  `cite=""`
+        33. `<q>`: short inline quotation
+            1. `cite=""`
+        34. `<cite>`: refer to a creative work, author or resources, always around `<a>...</a>`
+        35. `<abbr>`
+            1. `title=""` 
+        36. `<address>`
+        37. `<var>`: mark up variable names
+        38. `<kbd>`: mark up keyboard input into the computer
+        39. `<samp>`: mark up output of a computer program
+        40. `<time>`
+            1.  `datetime="2020-05-27"`
+        41. List
+            1. `<ul>`: unordered list
+                1. `<li>`: list item
+            2.  `<ol>`: ordered list
+                1. Attributes
+                    1. `start="4"`
+                    2. `reversed` 
+                2. `<li>`: list item
+                    1. `value="10"`
+            3. `<dl>`: description list
+                1. `<dt>`: descrition title
+                2. `<dd>`: description data, one `<dt>` can have more than one `<dd>`
+        42. Table
+            1. `<table>`
+            2. `<caption>`
+            3. `<colgroup>` 
+            4. `<col>`
+                1. `span="2"` 
+            5.  `<thead>`
+            6.  `<tfoot>`
+            7.  `<tbody>`
+            8.  `<tr>`
+                1. `<th>`
+                2. `<td>`
+                    1. `colspan="2"`
+                    2. `rowspan="4"`
 4. Forms
     1. common properties
         1. `id="..."`: element id
@@ -190,7 +192,7 @@
             1. `submit`: default value when type has no or invalid value
             2. `reset`
             3. `button`: without automatic effect, but can be customized using js code
-    7. `<select></select>`
+    7. `<select>`
         1. `multiple`
         2. `<option>`
             1. `value="app"`
