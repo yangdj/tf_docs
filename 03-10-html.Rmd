@@ -72,7 +72,7 @@
             3.  `title="image"`
             4.  `width=""` 
             5.  `height=""`
-        15. `<figure><img /><figcaption>...</figcaption></figure>`
+        15. `<figure><img ...><figcaption>...</figcaption></figure>`
         16. `<hr>`: horizontal line
         17. `<br>`: break line
         18. `<h1>`
