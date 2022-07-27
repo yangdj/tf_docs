@@ -1,11 +1,47 @@
 # JavaScript
 
-JS (JavaScript) is used to make web page dynamic.
-
-References:
-
-1. [JavaScript prototype](https://www.cnblogs.com/dolphinX/p/3286177.html)
-2. [Learn ES2015](https://babeljs.io/docs/en/learn)
+1. Npm
+    1. Command
+        1. `npm init`: initialize `package.json`
+        2. `npm install`
+            1. `npm install (-D | --save-dev) <package>`: appear in `devDependencies`
+            2. `npm install [-P | --save-prod] <package>`: default, appear in `dependencies`
+        3. `npm uninstall`
+        4. `npm run`: run package scripts
+            1. `npm run dev`
+            2. `npm run build`
+            3. `npm run test`
+    2. Configuration: `package.json`
+2. Packages
+    1. Alpine.js
+        1. `npm install alpinejs`
+        2. Chrome Plugin: Alpine.js devtools
+3. Webpack: [doc](https://webpack.docschina.org/concepts/)
+    1. Install: `npm install --save-dev webpack webpack-cli`
+    2. Plugins
+        1. Html
+            1. `npm install --save-dev html-webpack-plugin`
+            2. `const HtmlWebpackPlugin = require("html-webpack-plugin");`
+        2. Css
+            1. `npm install --save-dev css-loader mini-css-extract-plugin`
+            2. `const MiniCssExtractPlugin = require("mini-css-extract-plugin");`
+    3. Configuration
+        1. add `"build": "webpack"` to `scripts` of `package.json`
+        2. `webpack.config.js`
+            1. `mode: "production"`
+                1. `production`: default
+                2. `development`
+                3. `none`
+            2. `entry: "./src/index.js"`: default
+            3. `output: {}`
+                1. `filename: "index.js"`: default `./dist/main.js`
+                2. `path: path.resolve(__dirname, "../static")`
+            4. `plugins: []`
+                1. `new HtmlWebpackPlugin({})`
+                    1. `filename: "../templates/index.html"`
+                    2. `template: "src/index.html"`
+                    3. `inject: false`
+                    4. `minify: false`
 
 ## Syntax
 
