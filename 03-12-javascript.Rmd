@@ -16,6 +16,18 @@
     1. Alpine.js
         1. `npm install alpinejs`
         2. Chrome Plugin: Alpine.js devtools
+
+        ```js
+        import Alpine from "alpinejs"
+        ...
+        window.Alpine = Alpine
+        Alpine.start();
+        ```
+    2. Bulma.css
+        1. `npm install bulma`
+        2. `@import 'bulma/css/bulma.css'`
+    3. fortawesome
+        1. `npm install @fortawesome/fontawesome-free`
 3. Webpack: [doc](https://webpack.docschina.org/concepts/)
     1. Install: `npm install --save-dev webpack webpack-cli`
     2. Plugins
@@ -25,6 +37,8 @@
         2. Css
             1. `npm install --save-dev css-loader mini-css-extract-plugin`
             2. `const MiniCssExtractPlugin = require("mini-css-extract-plugin");`
+        3. Scss
+            1. `npm install --save-dev sass-loader sass`
     3. Configuration
         1. add `"build": "webpack"` to `scripts` of `package.json`
         2. `webpack.config.js`
@@ -42,6 +56,15 @@
                     2. `template: "src/index.html"`
                     3. `inject: false`
                     4. `minify: false`
+                2. `new MiniCssExtractPlugin({})`
+                    1. `filename: "../css/style.css"`: can only use relative path
+            5. `module: {}`
+                1. `rules: []`
+                    1. `test: /\.s[ca]ss$/i`
+                    2. `use: []`
+                        1. `MiniCssExtractPlugin.loader`
+                        2. `'css-loader'`
+                        3. `'sass-loader'`: compile sass to css
 
 ## Syntax
 
