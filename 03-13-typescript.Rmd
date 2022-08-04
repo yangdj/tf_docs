@@ -1,61 +1,51 @@
 # TypeScript
 
-[TypeScript](https://www.typescriptlang.org/) extends JavaScript by adding types. It offers classes, modules, and interfaces to help building robust components.
+1. Installation: `npm install -g typescript`
+    1. `tsc --version`
+    2. `tsc --help`
+    3. `tsc --init`: generate `tsconfig.json` file
+2. Configurations
+    1. `tsconfig.json`
+        1. `compilerOptions`
+            1. `mudule`
+                1. `CommonJS`
+                2. `AMD`
+                3. `UMD`
+                4. `ES6`
+                5. `ES2015`
+                6. `ES2020`
+                7. `ES2020`
+                8. `ESNext`
+            2. `target`
+                1. `ES5`
+                2. `ES3`
+                3. `ES6`
+                4. `ES2015`
+                5. `ES2016`
+                6. `ES2017`
+                7. `ES2018`
+                8. `ES2019`
+                9. `ES2020`
+                10. `ES2020`
+                11. `ESNext`
+            3. `outDir`
+            4. `allowJs`: when `true`, javascript files can be compiled
+            5. `sourceMap`: when `true`, generates corresponding `.map` file
+        2. `exclude`
+        3. `include`
 
-To install TypeScript, install it through NPM and test it by checking the version or help:
-
-```bash
-npm install -g typescript
-tsc --version
-tsc --help
-```
-
-## tsconfig.json {#ts-tsconfig}
-
-[tsconfig.json](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) is used to define project settings such as the compiler options and the files that should be included.
-
-`tsc --init` generates configuration file `tsconfig.json` which has the following properties:
-
-* `compilerOptions`
-    * `mudule`
-        * `CommonJS`
-        * `AMD`
-        * `UMD`
-        * `ES6`
-        * `ES2015`
-        * `ES2020`
-        * `ES2020`
-        * `ESNext`
-    * `target`
-        * `ES5`
-        * `ES3`
-        * `ES6`
-        * `ES2015`
-        * `ES2016`
-        * `ES2017`
-        * `ES2018`
-        * `ES2019`
-        * `ES2020`
-        * `ES2020`
-        * `ESNext`
-    * `outDir`
-    * `allowJs`: when `true`, javascript files can be compiled
-    * `sourceMap`: when `true`, generates corresponding `.map` file
-* `exclude`
-* `include`
-
-```json
-// tsconfig.json
-{
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
-    "outDir": "out",
-    "allowJs": "true",
-    "checkJs": true,
-    "sourceMap": true
-  },
-  "exclude": ["node_modules", "**/node_modules/*"],
-  "include": ["src/**/*"]
-}
-```
+        ```json
+        // tsconfig.json
+        {
+          "compilerOptions": {
+            "module": "commonjs",
+            "target": "es6",
+            "outDir": "out",
+            "allowJs": "true",
+            "checkJs": true,
+            "sourceMap": true
+          },
+          "exclude": ["node_modules", "**/node_modules/*"],
+          "include": ["src/**/*"]
+        }
+        ```

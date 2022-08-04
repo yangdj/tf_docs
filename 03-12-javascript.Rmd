@@ -1,18 +1,25 @@
 # JavaScript
 
-1. Npm
+1. node: [download](https://nodejs.org/en/)
+2. Npm
     1. Command
         1. `npm init`: initialize `package.json`
-        2. `npm install`
+        2. `npm confg`
+            1. `list`
+            2. `set registry http://registry.npm.taobao.org/`
+        3. `npm list`
+        4. `npm search`
+        5. `npm install`
             1. `npm install (-D | --save-dev) <package>`: appear in `devDependencies`
             2. `npm install [-P | --save-prod] <package>`: default, appear in `dependencies`
-        3. `npm uninstall`
-        4. `npm run`: run package scripts
+        6. `npm uninstall`
+        7. `npm run`: run package scripts
             1. `npm run dev`
             2. `npm run build`
             3. `npm run test`
+        8. `npx serve`: start local server
     2. Configuration: `package.json`
-2. Packages
+3. Packages
     1. Alpine.js
         1. `npm install alpinejs`
         2. Chrome Plugin: Alpine.js devtools
@@ -28,7 +35,7 @@
         2. `@import 'bulma/css/bulma.css'`
     3. fortawesome
         1. `npm install @fortawesome/fontawesome-free`
-3. Webpack: [doc](https://webpack.docschina.org/concepts/)
+4. Webpack: [doc](https://webpack.docschina.org/concepts/)
     1. Install: `npm install --save-dev webpack webpack-cli`
     2. Plugins
         1. Html
