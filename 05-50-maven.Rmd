@@ -5,7 +5,7 @@
         1. global: `MVN_HOME/conf/settings.xml`
         2. user: `$HOME/.m2/settings.xml`
     2. contents
-        1. add new mirros
+        1. add new mirrors
 
             ```xml
             <mirrors>
@@ -23,4 +23,20 @@
                 </mirror>
                 ...
             </mirrors>
+            ```
+        2. `Maven 3.8.1 http repositories are blocked`
+
+            ```xml
+            <mirror>
+                <id>maven-default-http-blocker</id>
+                <mirrorOf>external:http:*</mirrorOf>
+                <name>Pseudo repository to mirror external repositories initially using HTTP.</name>
+                <url>http://example.com/public</url>
+                <blocked>false</blocked>
+            </mirror>
+            ```
+        3. Install local jar file
+
+            ```sh
+            mvn install:install-file -Dfile=eplat-sdk-security-2.0.5.jar -DgroupId=com.baosight.eplat -DartifactId=eplat-sdk-security -Dversion=2.0.5 -Dpackaging=jar -Dmaven.repo.local=C:/users/admin/.m2/repository
             ```

@@ -465,14 +465,14 @@
         ````
     5. other related
         1. showtext
-        2. tinytext
+        2. tinytex
             1. `tinytex::install_tinytex()`
             1. `tinytex::uninstall_tinytex()`
             2. `tinytex::reinstall_tinytex()`
             3. `tinytex::tlmgr_update()`
         3. xaringan
             1. install: `remotes::install_github('yihui/xaringan')`
-            2. comile
+            2. compile
                 1. `rmarkdown::render('foo.Rmd', 'xaringan::moon_reader')`
                 2. `names(xaringan:::list_css())`: available themes
                 3. `xaringan::summon_remark()`: download a copy of remark.js in advance, stored default in libs/remark-latest.min.js
@@ -488,7 +488,7 @@
                     1. `_bookdown.yml`
 
                         ```yaml
-                        book_filename: "book name" # filename of the main Rmd file (e.g., merged from all chapters),  _main.Rmd default
+                        book_filename: "book_name" # filename of the main Rmd file (e.g., merged from all chapters),  _main.Rmd default
                         language:
                           label:
                             fig: 'Figure '
@@ -554,8 +554,8 @@
                                 position: [fixed, static]
                               search: yes
                               edit: null
-                              download: [null<d>, no, ["pdf", "epub", "mobi"]<+>, ["book.pdf", "book.epub"]<+>]
-                              download:
+                            download: [null<d>, no, ["pdf", "epub", "mobi"]<+>, ["book.pdf", "book.epub"]<+>]
+                            download:
                                 - ["book.pdf", "PDF"]
                                 - ["book.epub", "EPUB"]
                             fontsettings: [null, no]
@@ -611,7 +611,7 @@
                             monofontoptions: "Scale=0.7"
                             github-repo: rstudio/bookdown # The GitHub repository
                             description: "more info about the book" # <meta name="description" content="..."> for web SEO
-                            url: "https\://bookdown.org/john/awesome/" # book's website
+                            url: "https://bookdown.org/john/awesome/" # book's website
                             favicon: "favicon.ico"
                             cover-image: "path/to/image" # The path to the cover image of the book
                             apple-touch-icon: "touch-icon.png" # for IOS
