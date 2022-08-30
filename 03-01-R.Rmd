@@ -483,6 +483,7 @@
                 3. `bookdown::render_book('index.Rmd', 'bookdown::epub_book')`
                 4. `bookdown::preview_chapter()`: render only one chapter at a time`
                 5. `bookdown::server_book()`
+                6. `rmarkdown::render_site(encoding = 'UTF-8')`: render project
             2. structure
                 1. `bookname/`
                     1. `_bookdown.yml`
@@ -618,9 +619,9 @@
                             apple-touch-icon-size: 120
                             ---
                             ```
-                    5. `01-intro.Rmd`
-                    6. `02-method.Rmd`
-                    7. `xx-others.Rmd`
+                    4. `01-intro.Rmd`
+                    5. `02-method.Rmd`
+                    6. `xx-others.Rmd`
         5. knitr
             1. Global Options
                 1. `options(knitr.graphics.auto_pdf = TRUE)`
