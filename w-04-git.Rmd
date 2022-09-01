@@ -15,8 +15,9 @@
             2. `git config --global user.name <user_name>`
             3. `git config --global user.email <user_email>`
             4. `git config --global core.editor <vim>`
-            5. `git config --global push.default simple`
-            6. `git config --global core.excludesfile <~/.gitignore>`: if not specified, then default `$XDG_CONFIG_HOME/git/ignore`, if `$XDG_CONFG_HOME` not set or empty, use `$HOME/.config/git/ignore`
+            5. `git config --global core.autocrlf false`
+            6. `git config --global push.default simple`
+            7. `git config --global core.excludesfile <~/.gitignore>`: if not specified, then default `$XDG_CONFIG_HOME/git/ignore`, if `$XDG_CONFG_HOME` not set or empty, use `$HOME/.config/git/ignore`
     2. Repo's Structure
         1. Project/
             1. `.git/`: auto created

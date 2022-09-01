@@ -45,6 +45,17 @@
         1. `settings.json`
         2. `launch.json`
         3. `tasks.json`
+        4. `extensions.json`
+
+            ```json
+            {
+                "recommendations": ["Vue.volar", "Vue.vscode-typescript-vue-plugin"]
+            }
+            ```
+            
+            1. `Extensions -> @recommended`
+            2. `code --list-extensions`
+
 2. Editing
     1. Shoutcuts
         1. `Ctrl+K Ctrl+S; Cmd+K Cmd+S`: keyboard shortcuts list
