@@ -34,6 +34,14 @@
             <property name="dynamic.classpath" value="true" />`
             </component>
             ```
+        2. `encoding shown error`
+            1. `Settings -> File Encoding`
+                1. `Global Encoding: UTF-8`
+                2. `Project Encoding: UTF-8`
+                3. `Default encoding for properties Files: UTF-8`
+            2. `idea/bin/idea64.exe.vmoptins`: add `-Dfile.encoding=UTF-8`
+            3. `idea -> help -> Edit Custom VM Options`: add `-Dfile.encoding=UTF-8`
+            4. `Configuration -> VM options: -Dfile.encoding=UTF-8`
     2. Run output not work in Vim mode: select some output, then works
     3. Scala
         1. download scala plugin
