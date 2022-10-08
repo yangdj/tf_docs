@@ -1,5 +1,81 @@
 Spring Boot
 
-1. project
-    1. [initializer](https://start.spring.io/)
-    2. `pom.xml`for Idea2021.2, add `<version>${project.parent.version}</version>` to plugin `spring-boot-maven-plugin`
+1. Project
+    1. [Initializer](https://start.spring.io/)
+    2. Initializer Shell
+        1. `curl https://start.spring.io`: help info
+        2. `curl https://start.spring.io/starter.tgz -d dependencies=web,mysql,data-jpa | tar -xzvf -`
+
+        ```bash
+        curl https://start.spring.io/starter.tgz \
+        -d javaVersion=8 
+        -d bootVersion=2.7.3.RELEASE \
+        -d baseDir=todo-service \
+        -d artifactId=todo-service \
+        -d dependencies=web,mysql,data-jpa \
+        | tar -xzvf -
+        ```
+    3. Dependencies
+
+        ```xml
+        <!-- web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- jpa -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+
+        <!-- mysql -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        ```
+    4. `pom.xml`for Idea2021.2, add `<version>${project.parent.version}</version>` to plugin `spring-boot-maven-plugin`
+2. Annotations
+    1. Setup
+        1. `@SpringBootApplication`
+        2. `@Configuration`
+        3. `@ComponentScan`
+        4. `@EnableAutoConfiguration`
+    2. Request Responses
+        1. `@GetMapping`
+            1. `@GetMapping("/hello")`
+            2. `@GetMapping("/{id}")`
+        2. `@PostMapping`
+        3. `@RequestMapping`
+        4. `@RequestParam`
+            1. `public String hello(@RequestParam(value="name", defaultValue="World") String name) {...}`
+        5. `@PathVariable`
+
+            ```java
+            @GetMapping("/{id}")
+            public User getUser(@PathVariable int id) {
+                ... 
+            }
+            ```
+    3. Components
+        1. `@Component`
+        2. `@RestController`: combine `@Controller` and `@ResponseBody` into a single annotation
+        3. `@Controller`
+        4. `@ResponseBody`
+        5. `@Service`
+        6. `@Repository`
+    4. Injection
+        1. `@Autowired`
+        2. `@Qualifier`
+    5. Tests
+        1. `@SpringBootTest`
+        2. `@MockBean`
+        3. `@Validated`
