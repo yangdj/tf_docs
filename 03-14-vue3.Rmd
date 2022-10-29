@@ -11,17 +11,21 @@
 2. Components
     1. Templates
         1. `{{ counter }}`: text binding
-        2. `v-bind`: attribute binding directive
+        2. `v-html`: raw Html directive, `<span v-html="msg"></span>`
+            1. easily lead to XSS vulnerabilities
+            2. only used on trusted content and never on user-provided content
+        3. `v-bind`: attribute binding directive, if the bind value is `null` or `undefined`, then the attribute will be removed from the rendered elelment
             1. `v-bind:title="message"`
             2. `v-bind:[attrName]="message"`: dynamic attribute binding 
             3. `:title="message"`: shorthand for `v-bind:title="message"`
-        3. `v-on`: event binding directive
+            4. `v-bind="objectAttrs"`: dynamically bind multiple attributes
+        4. `v-on`: event binding directive
             1. `v-on:click="reverseMessage"`
             2. `v-on:submit.prevent="onSubmit"`: event modifier using `"."`, bounding in some special way
             3. `v-on:[eventName]="reverseMessage"`: dynamic event binding
             4. `@click="reverseMessage"`: shorthand for  `v-on:click="reverseMessage"`
             5. `@[eventName]="reverseMessage"` shorthand for `v-on:[eventName]="reverseMessage"`
-        4. `v-model`: two-way binding directive between form input and app state
+        5. `v-model`: two-way binding directive between form input and app state
         
             ```html
             <div id="two-way-binding">
@@ -29,14 +33,14 @@
                 <input v-model="message" />
             </div>
             ```
-        5. `v-if`: conditional directive        
+        6. `v-if`: conditional directive        
 
             ```html
             <div id="conditional-rendering">
                 <span v-if="seen">Now you see me</span>
             </div>
             ```        
-        6. `v-for`: loops directive
+        7. `v-for`: loops directive
            
             ```html
             <div id="list-rendering">
@@ -47,9 +51,8 @@
                 </ol>
             </div>
             ```        
-        7. `v-once`: one-time interpolations, do not update on data change        
+        8. `v-once`: one-time interpolations, do not update on data change        
 
             ```html
             <span v-once>This will never change: {{ msg }}</span>
             ```        
-        8. `v-html`: real HTML directive        

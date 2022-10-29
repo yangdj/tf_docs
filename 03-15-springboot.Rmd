@@ -1,4 +1,5 @@
-Spring Boot
+# Spring Boot
+## Base
 
 1. Project
     1. [Initializer](https://start.spring.io/)
@@ -24,11 +25,7 @@ Spring Boot
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- jpa -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
+        <!-- mybatis -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -41,41 +38,105 @@ Spring Boot
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+        <!-- lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
         ```
     4. `pom.xml`for Idea2021.2, add `<version>${project.parent.version}</version>` to plugin `spring-boot-maven-plugin`
-2. Annotations
+2. JDBC
+    1. MySQL
+        1. Driver
+            1. 8.x: `com.mysql.cj.jdbc.Driver`
+            2. 5.x: `com.mysql.jdbc.Driver`
+        2. url: `jdbc:mysql://localhost:3306/dbname?characterEncoding=utf8&serverTimezone=UTC`
+    2. DB2
+        1. url: `'jdbc:db2://localhost:50000/dbname`
+3. Configuration
+    1. `application.properties`
+        1. basic
+            1. `spring.profiles.active=prod`: use `application-prod.properties` file
+            2. `spring.profiles.include=throttling,db`
+        2. server
+            1. `server.port=8080`
+        3. database
+            1. `spring.datasource.url=...`
+                1. mysql: `jdbc:mysql://localhost:3306/dbname?characterEncoding=utf8&serverTimezone=UTC`
+            2. `spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver`
+            3. `spring.datasource.username=root`
+            4. `spring.datasource.password=root`
+        4. mybatics
+            1. `mybatis.mapper-locations=classpath:mapper/*Mapper.xml`
+            2. `mybatis.type-aliases-package=com.example.tf_boot.entity`
+            3. `mybatis.configuration.map-underscore-to-camel-case=true`
+            4. `mybatis.config-location=classpath:mybatis/mybatis-config.xml`: config mybatis from specified file
+    2. `application-dev.properties`: for development environment
+4. Annotations
     1. Setup
         1. `@SpringBootApplication`
-        2. `@Configuration`
+        2. `@SpringBootConfiguration`
         3. `@ComponentScan`
         4. `@EnableAutoConfiguration`
-    2. Request Responses
-        1. `@GetMapping`
+        5. `@Configuration`
+    2. Components
+        1. `@Component`
+        2. `@Controller`
+        3. `@RestController`: combine `@Controller` and `@ResponseBody` into a single annotation
+        4. `@Service`
+        5. `@Repository`
+    3. Request & Responses
+        1. `@RequestMapping`
+            1. `@RequestMapping(method=RequestMethod.GET)`
+            2. `@RequestMapping(method=RequestMethod.POST)`
+        2. `@GetMapping`
             1. `@GetMapping("/hello")`
             2. `@GetMapping("/{id}")`
-        2. `@PostMapping`
-        3. `@RequestMapping`
-        4. `@RequestParam`
+        3. `@PostMapping`
+        4. `@PathVariable`
+            1. `public User getUser(@PathVariable int id) {...}`
+            2. `public User getUser(@PathVariable("id") int id, @PathVariable("app") String app) {...}`
+        5. `@RequestParam`
             1. `public String hello(@RequestParam(value="name", defaultValue="World") String name) {...}`
-        5. `@PathVariable`
-
-            ```java
-            @GetMapping("/{id}")
-            public User getUser(@PathVariable int id) {
-                ... 
-            }
-            ```
-    3. Components
-        1. `@Component`
-        2. `@RestController`: combine `@Controller` and `@ResponseBody` into a single annotation
-        3. `@Controller`
-        4. `@ResponseBody`
-        5. `@Service`
-        6. `@Repository`
+        6. `@RequestBody`
+            1. `public void insertUser(@RequestBody User user) {...}`
+        7. `@ResponseBody`
     4. Injection
-        1. `@Autowired`
+        1. `@Autowired`: not recommended, use constructor
         2. `@Qualifier`
     5. Tests
         1. `@SpringBootTest`
         2. `@MockBean`
         3. `@Validated`
+
+## MyBatis
+
+1. Annotation
+    1. `@MapperScan("com.example.mapper")`: inject mapper objects
+    2. `@Alias("Hello")`: add to entities, make other names invalid
+2. SQL
+    1. `<sql id="sqlid">`: define sql segment
+    2. `<include refid="sqlid">`: use defined `<sql>` in SQL statement
+    3. `<resultMap id="UserMap" type="User">`
+        1. `<id column="id" jdbcType="INTEGER" property="id" />`
+        2. `<result column="gmt_create" jdbcType="DATE" property="createTime" />`
+        3. `<constructor>`
+            1. `<arg column="user_name" javaType="String" />`: args order same with constrctor args order
+                1. `name="userName"`
+        4. `<association property="role" javaType="Role">`
+            1. `<id column="role_id" jdbcType="INTEGER" property="id" />`
+            2. `<result column="role_name" jdbcType="VARCHAR" property="roleName" />`
+        5. `<collection property="roles" ofType="Role">`
+    4. `<select id="queryUser">`: select statement
+        1. `parameterType="Long"`
+        2. `resultMap="UserMap"`
+        3. `resultType="User"`
+    5. `<insert id="insertUser">`: insert statement
+        1. `parameterType="User"`
+        2. `keyProperty="id"`: tell which property is primary key
+    6. `<update id="updateUser">`
+        1. `parameterType="User"`
+    7. `<delete id="updateUser">`
+        1. `parameterType="Long"`

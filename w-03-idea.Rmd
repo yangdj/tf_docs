@@ -4,6 +4,7 @@
     1. Editor
         1. File Encoding: `Editor/File Encoding: UTF-8`
         2. Line Separator: `Editor/Code Style/Line separator: \n`
+        3. Templates: `Editor/File and Code Templates`
     2. Imports: `Code Style.java.Imports`
         1. `Class count to use import with '*': 500`
         2. `Names count to use static import with '*': 500`
@@ -42,6 +43,7 @@
             2. `idea/bin/idea64.exe.vmoptins`: add `-Dfile.encoding=UTF-8`
             3. `idea -> help -> Edit Custom VM Options`: add `-Dfile.encoding=UTF-8`
             4. `Configuration -> VM options: -Dfile.encoding=UTF-8`
+        3. `Lombok Requires Annotation Processing`: `Settings → Build -> Compile: Annotation Processors, add "Enable annotation processing"`
     2. Run output not work in Vim mode: select some output, then works
     3. Scala
         1. download scala plugin

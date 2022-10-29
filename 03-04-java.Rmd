@@ -15,7 +15,19 @@
         1. `jar`
             1. `jar cvf helloworld.jar -C classes/ .`: package classes into `helloworld.jar` under the current directory
             2. `jar tvf helloworld.jar`: extract the jar file
-3. Datatypes
+3. Elements
+    1. Package
+    2. Types
+        1. Class
+            1. Field
+            2. Method
+                1. Parameter
+                2. Local Variable
+            3. Constructor
+        2. Interface
+        3. Annotation
+        4. Enum
+4. Datatypes
     1. literal
         1. integer
             1. decimal: 10
@@ -102,7 +114,7 @@
            1. `.setCharAt()` 
         5.  StringBuilder
             1. `.append(ch)`
-4. Variables
+5. Variables
     1. initialzation
         1. declaratoin: `type var; int a, b`
         2. assignment: `var = 10`
@@ -111,7 +123,7 @@
         1. block level defined inside `{...}`, same name variable cannot be declared in different scope, different that C or C++
         2. method
         3. class
-5. Operators
+6. Operators
     1. suffix: `() [] .`
     2. type: `instanceof`
     3. arithmetic
@@ -137,7 +149,7 @@
     8. ternary: `condition ? true ：false;`
     9. lambda: `->`
     10. comma: `,`
-6. Controls
+7. Controls
     1.  loop
         1. `for (init; condition; iteration)`
         2. `for (type item: collection)`: since Java5, `item` is **read-only**, an assignment to the `item` haves no effect on the underlying object
@@ -148,7 +160,7 @@
     2.  conditional
         1. `if (condition) statement; else if (condition) statement; else statement;`
         2. `switch (expression) { case constant: statements; break;}`
-7.  Object: an implicit superclass of all other classes
+8.  Object: an implicit superclass of all other classes
     1. `equals(Object obj)`
     2. `hashCode()`
     3. `toString()`
@@ -160,7 +172,7 @@
     9. `final wait()`
     10. `final wait(long millis)`
     11. `final wait(long millis, int nano)`
-8. Class
+9. Class
     1. members
         1. object: belong to instance
             1. variable: fields, instance variables
@@ -255,7 +267,7 @@
                 2. `super.member`: call superclass member
         3. overriding method
             1. have same signature and compatible return type as a method in its superclass
-9.  Interface
+10. Interface
     1.  properties
         1. specify what must be done, but not how to do it, `access interface name {ret-type method-name (param-list) [throws AException]; type var1 = value1; ...}` 
         2. interface methods are implicitly `public`. methods that implement an interface must be declared `public`, because methods in interface are implicitly `public`
@@ -266,7 +278,7 @@
         7. since JDK8, it can provide a default implementation preceded by the keyword `default`, `default int getId() {return 1}`
         8. JDK8 also suports static method. They are not inherited by either an implementing class or a subinterface
         9. `IntefaceName.super().methodName` refers to a default implementation explicitly, that is use `methodName` in interface `InterfaceName`
-10. Enumeration
+11. Enumeration
     1. properties
         1. use `enum`, `enum Transport {CAR, TRUCK, BOAT}`
         2. the identifiers are enumeration constants, and implicitly declared as a `public`, `static` member. Their type is the type of enumeration, such as `Transport`, called *self-typed*
@@ -281,7 +293,7 @@
         2. instance
             1. `.ordinal()`
             2. `.compareTo()`
-11. Annotation
+12. Annotation
     1. properties
         1. embed supplemental information into a source file called an *annotation*, which does not change the actions of a program
         2. an annotation cannot include an `extends` clause, but all annotation types automatically extend `Annotation` interface in `java.lang.annotation` package. use `@interface AnnoName {String str(); int val() default 900; ...}`, consists solely of method declarations without bodies, much like fields. Java will implement these methods
@@ -322,7 +334,7 @@
             3. `@SafeVarargs`
             4. `@FunctionalInterface`
             5. `@SuppressWarnings`
-12. Generics: reuse code safely and reliadbly
+13. Generics: reuse code safely and reliadbly
     1. For
         1. classes: `class A<T, V extends T> {}`
         2. interfaces: `interface A<T>`
@@ -345,7 +357,7 @@
         1. no bound: `<?>`
         2. upper bound: `<? extends A>`
         3. lower bound: `<? super A>`
-13. Lambda Expression
+14. Lambda Expression
     1. components
         1. `->`: lambda operator
         2. parameters
@@ -392,7 +404,7 @@
         3. argument passing
         4. others including casts, `?` operator, array initializers, `return`statements and lambda expressions
     4.  functional interface: contains one and only one abstract method, support generic type
-14. Package
+15. Package
     1. define: `package a.b`
     2. find: through `CLASSPATH` or `-cp, -classpath`
     3. import
@@ -404,7 +416,7 @@
         1. `java.lang`: import automatically into evary java program
         2. `java.io`: I/O classes
         3. `java.net`: for networking
-15. Exception
+16. Exception
     1. Catch or Specify Requirement: code that might throw exceptions must be enclosed by either of the following, otherwise the code will not be compiled
         1. A `try` statement that catches the excpetion. The `try` must privide a handle for the exception
         2. A method specifies it can throw the exception. The method must provide a `throws` clause listing the exception
@@ -494,7 +506,7 @@
             public void writeList() throws IOException, OtherException, ... { ...}
             ```
         4. Throw statement: `throw new IOException()`
-16. IO
+17. IO
     1. byte stream
         1. `InputStream`
             1. `BufferedInputStream`
@@ -570,3 +582,10 @@
         3. `notifyAll()`: notify all threads, with the highest priority thread gaining access to the object
     2. properties
         1. called only from within a synchronized context
+
+## JDBC
+
+1. MySQL
+    1. Driver
+        1. 8.x: `com.mysql.cj.jdbc.Driver`
+        2. 5.x: `com.mysql.jdbc.Driver`
